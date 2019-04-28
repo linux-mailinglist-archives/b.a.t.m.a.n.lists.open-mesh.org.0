@@ -1,40 +1,54 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F72BB552
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Apr 2019 07:59:30 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07A56B646
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Apr 2019 19:04:53 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id DECD781599;
-	Sun, 28 Apr 2019 07:59:23 +0200 (CEST)
-Authentication-Results: open-mesh.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=narfation.org header.i=@narfation.org header.b="BIYWlemI";
-	dkim-atps=neutral
-Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=79.140.41.39;
- helo=v3-1039.vlinux.de; envelope-from=sven@narfation.org; receiver=<UNKNOWN> 
-Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 97A7F802ED
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 28 Apr 2019 07:59:21 +0200 (CEST)
-Received: from sven-desktop.home.narfation.org (unknown
- [IPv6:2a00:1ca0:1480:f1fc:40ab:485b:157a:d47a])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id E2B7D11010E
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 28 Apr 2019 07:59:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=narfation.org;
- s=20121; t=1556431161;
- bh=jKbpCEGN1i1L85AD5m1ZsRHy7ivyP3r1h9Z1ouNOmr4=;
- h=From:To:Subject:Date:From;
- b=BIYWlemIkwwD4AZFsOQMbR/eZVrVN8nXYPZ8lLIrMaAUI4bRyZIHNgKmvap+DcpXb
- yNLTkeUIo3u4gdFgPOSaxA9U7qF++pqFyacTonC/Su5cj/kAA2XBnMb5ao4H4R9zAm
- mpNbkVgqISeMpV+X4XSdtnLHi8bRcYma3geqsY1I=
+	by open-mesh.org (Postfix) with ESMTP id 904AD80777;
+	Sun, 28 Apr 2019 19:04:47 +0200 (CEST)
+Received: from v3-1039.vlinux.de (narfation.org [IPv6:2001:4d88:2000:7::2])
+ by open-mesh.org (Postfix) with ESMTPS id 7CEC380531
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 28 Apr 2019 19:04:44 +0200 (CEST)
+Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by v3-1039.vlinux.de (Postfix) with ESMTPSA id D5DFB1100CF;
+ Sun, 28 Apr 2019 19:04:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1556471084; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
+ bh=03XXwROeKtZYBbUDVYEpJEDPTmNWseNZE3+qrS7a2TM=;
+ b=eGDjVCzDupQZo/OObNRiAJqY7RU4Yny46f+RHrgXRGrxirU1FCqqqQc7CN9kX/BWqoHl7O
+ VJjXWccK/IELCbyer7hakcnv3vbeVk8H7yPExkHRVWxWs120kfkDBkWziyYkQ/LbFS2K9v
+ VjXSmvbzOYjUzWvMQNDvmKDv4z+udWE=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Date: Sun, 28 Apr 2019 07:59:15 +0200
-Message-Id: <20190428055915.31585-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+Date: Sun, 28 Apr 2019 19:04:40 +0200
+Message-ID: <2852684.HY4pDEyiBM@sven-edge>
+In-Reply-To: <20190426171231.18156-1-linus.luessing@c0d3.blue>
+References: <20190426171231.18156-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [B.A.T.M.A.N.] [RFC] batman-adv: genetlink: optionally validate
- strictly/dumps
+Content-Type: multipart/signed; boundary="nextPart3415318.LZ3gu7H8KP";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1556471084;
+ h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
+ bh=03XXwROeKtZYBbUDVYEpJEDPTmNWseNZE3+qrS7a2TM=;
+ b=FHKh78aio5xtZAgNxGDwtGOOG1cb5M/AM9auhs54noKBup+wfxm3/1CdQ+j6vMh2JWJgya
+ 3G2DlxcyM1c1DLiSxSoD4JH2Zb7Wj1C3au3kg5qud+EGVCOJAPchPWlpueG5KDeFOsLhPd
+ /rgMBpDTm0cZ7z+jXwAy0avVTes/PtI=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1556471084; a=rsa-sha256; cv=none;
+ b=12F9BzgS9QvjqTzpgjB7ly3F9lP++F5IJgLpqZ05J45LGraLbcxla0YnTZI+UfIE7kGaPt
+ zapB+dmE5gowzDAVVMdB+Bv2iUy36HnVdvuM/HvQOe2Qo1FuNfOnnXM0U5G7+Pj4P3RLci
+ mU5+pEkbxCbh+HjGVuAyTqdEttpyDFA=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+Subject: Re: [B.A.T.M.A.N.] [PATCH] batman-adv: introduce "noflood"
+ broadcast flood prevention option
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,169 +63,65 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Martin Weinelt <martin@linuxlounge.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Johannes Berg <johannes.berg@intel.com>
+--nextPart3415318.LZ3gu7H8KP
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Add options to strictly validate messages and dump messages,
-sometimes perhaps validating dump messages non-strictly may
-be required, so add an option for that as well.
+On Friday, 26 April 2019 19:12:31 CEST Linus L=FCssing wrote:
+> With DAT DHCP snooping, the gateway feature and multicast optimizations
+> in place in some scenarios broadcast flooding might not be strictly
+> necessary anymore to be able to establish IPv4/IPv6 communication.
+> Therefore this patch adds an option to disable broadcast flooding.
+>=20
+> Larger mesh networks typically filter a variety of multicast packets via
+> ebtables/netfilter to clamp on overhead. With this option such firewall
+> rules can be relaxed so that such multicast packets are only dropped
+> if they cannot be handled by multicast-to-unicast, for instance.
+>=20
+> "noflood" comes in two flavours: If set to 1 then flood prevention is
+> enabled for all multicast/broadcast packets except ICMPv6 and IGMP
+> (cautious mode). Or, if set to 2 then flood prevention is enabled for
+> all multicast/broadcast packets (aggressive mode). If set to 0 then
+> flood prevention is disabled.
+>=20
+> "noflood" is disabled by default as there are still some things to take
+> care of to avoid breaking things (especially for the "aggressive mode").
+>=20
+> Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
 
-Since none of this can really be applied to existing commands,
-set the options everwhere using the following spatch:
+@Martin, I think you've started to experiment with this noflood feature. An=
+y=20
+experiences which you can share with us?
 
-    @@
-    identifier ops;
-    expression X;
-    @@
-    struct genl_ops ops[] = {
-    ...,
-     {
-            .cmd = X,
-    +       .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
-            ...
-     },
-    ...
-    };
+Kind regards,
+	Sven
+--nextPart3415318.LZ3gu7H8KP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-For new commands one should just not copy the .validate 'opt-out'
-flags and thus get strict validation.
+-----BEGIN PGP SIGNATURE-----
 
-Signed-off-by: Johannes Berg <johannes.berg@intel.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
-This patch was already applied upstream as 
-ef6243acb4782df587a4d7d6c310fa5b5d82684b but compat code is missing for it.
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzF3SgACgkQXYcKB8Em
+e0abHw//dT7mmJlCqq/EZWzOBS/Bwnl6YcUdgRBggHdPXWPzVDpO27BA+gHnEGh+
+NLUQ1dOWhGUllu6HrC8FpFIMnrihz/MWkjAY4hpfeI/pAYqv6UU2jFTFDYwnkchL
+5/rFFdr/yodq3L2EKYWOacABjXrfbJ2TF9tAMW6nZ5zgFPjCvNycsn6fOsA21SBK
+lQbQfE7wqJpTeo4L8fyybZRiEmJ90sM6g/BQDPpGA5nRDyAwDOPTfyO4nvpVS5Bp
+W1/veCNIWjz7eKICnV8mZPUfjKZSTdZCGg9fL1JubeGwzlO6BZE1WYW4NcpeY6Rr
+GEya5SrfWaHbY4YYfM88aaNWX6TzcQaXalBBKyrC8fcnhmKKBGVzSHssNWEZ1dk5
+z/w07m0+nb8+idzIig8TBIm3FS84EGba45ANzbnNswMFJieGgdOg9ED2n9T2SLeu
+ox4Byh9cZyVcwS54L5gem1Qot1URk6eFZb7ev+UTNc0uz3cKAmyLjDVRe/Ge+kMH
+XJI/0fEFYCTa+p0Xrvce9uJeMkcmIEsrYPCB3+sWo+4k/6LB/48Li+mWL+HsOFvZ
+9PKJKAXNc0q+qBzkUpJ/+V6OJ+K93ntyN53JWcxgXBr1OKxLFsCCru45RX+Stg21
+V9G65EvddWAJRKhyooXKlu/AG1SWJawZuG3433gKzw98XJY7Bxg=
+=vBgl
+-----END PGP SIGNATURE-----
 
- net/batman-adv/netlink.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+--nextPart3415318.LZ3gu7H8KP--
 
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index e7907308..a67720fa 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -1343,29 +1343,34 @@ static void batadv_post_doit(const struct genl_ops *ops, struct sk_buff *skb,
- static const struct genl_ops batadv_netlink_ops[] = {
- 	{
- 		.cmd = BATADV_CMD_GET_MESH,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		/* can be retrieved by unprivileged users */
- 		.doit = batadv_netlink_get_mesh,
- 		.internal_flags = BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd = BATADV_CMD_TP_METER,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.doit = batadv_netlink_tp_meter_start,
- 		.internal_flags = BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd = BATADV_CMD_TP_METER_CANCEL,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.doit = batadv_netlink_tp_meter_cancel,
- 		.internal_flags = BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_ROUTING_ALGOS,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_algo_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_HARDIF,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		/* can be retrieved by unprivileged users */
- 		.dumpit = batadv_netlink_dump_hardif,
- 		.doit = batadv_netlink_get_hardif,
-@@ -1374,57 +1379,68 @@ static const struct genl_ops batadv_netlink_ops[] = {
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_TRANSTABLE_LOCAL,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_tt_local_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_TRANSTABLE_GLOBAL,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_tt_global_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_ORIGINATORS,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_orig_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_NEIGHBORS,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_hardif_neigh_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_GATEWAYS,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_gw_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_BLA_CLAIM,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_bla_claim_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_BLA_BACKBONE,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_bla_backbone_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_DAT_CACHE,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_dat_cache_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_MCAST_FLAGS,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.dumpit = batadv_mcast_flags_dump,
- 	},
- 	{
- 		.cmd = BATADV_CMD_SET_MESH,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.doit = batadv_netlink_set_mesh,
- 		.internal_flags = BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd = BATADV_CMD_SET_HARDIF,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.doit = batadv_netlink_set_hardif,
- 		.internal_flags = BATADV_FLAG_NEED_MESH |
-@@ -1432,6 +1448,7 @@ static const struct genl_ops batadv_netlink_ops[] = {
- 	},
- 	{
- 		.cmd = BATADV_CMD_GET_VLAN,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		/* can be retrieved by unprivileged users */
- 		.doit = batadv_netlink_get_vlan,
- 		.internal_flags = BATADV_FLAG_NEED_MESH |
-@@ -1439,6 +1456,7 @@ static const struct genl_ops batadv_netlink_ops[] = {
- 	},
- 	{
- 		.cmd = BATADV_CMD_SET_VLAN,
-+		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
- 		.flags = GENL_ADMIN_PERM,
- 		.doit = batadv_netlink_set_vlan,
- 		.internal_flags = BATADV_FLAG_NEED_MESH |
--- 
-2.20.1
+
 
