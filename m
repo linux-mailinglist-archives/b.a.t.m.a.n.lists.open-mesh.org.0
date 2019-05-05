@@ -2,52 +2,52 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2E01136F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  2 May 2019 08:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70A5E1418C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  5 May 2019 19:38:05 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 6E4F4815A3;
-	Thu,  2 May 2019 08:40:13 +0200 (CEST)
-Received: from v3-1039.vlinux.de (narfation.org [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id 1003D803E6
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  2 May 2019 08:40:09 +0200 (CEST)
-Received: from bentobox.localnet (unknown [IPv6:2001:16b8:55f0:6ee::b32])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id 89E801100B2;
- Thu,  2 May 2019 08:40:07 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 3BCC58153C;
+	Sun,  5 May 2019 19:37:58 +0200 (CEST)
+Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
+ by open-mesh.org (Postfix) with ESMTPS id 3642C80268
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  5 May 2019 19:37:54 +0200 (CEST)
+Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by v3-1039.vlinux.de (Postfix) with ESMTPSA id D813C1100E2;
+ Sun,  5 May 2019 19:37:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1556779208; h=from:from:sender:reply-to:subject:subject:date:date:
+ s=20121; t=1557077873; h=from:from:sender:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=ZcF9Dk6tfsOH8sM6ac7/JOZFB7T5xKSJrASyQzeMng0=;
- b=hb9NVroLSWMikVFNOrIR1YpjyctU7zM6P2Kas/YzURi+d4QOeHsDIWZCI1e9cIGDI4p02z
- e+mrLgVkrghd63WneVAGKmQAxSkqg0K1HCkZAq2AhB5A/72a5GDryOdYTwiUo1IiqAMrOF
- 0uzJ5dmP0D/DYNGRlU8HztLADdFhq3o=
+ bh=YdceSydYdMqD65WSp79Hb74Cvk0glkb4U6KgaZP2xYc=;
+ b=gTPvZfJr0Gfq6bDd6l8/WCBNyKERkj08tWYP2Lx/c12KxTVjgNcHbVe6kctZz3TxaPb/FG
+ 0VNk4ALiheJIQ3jtc18A6PD8vTZO+0GRVzeWMYwYumyQs1n+N4uETOWgc5j/1SbOGACcTX
+ jp1hLyX93TklP0lvxWstrqFAGLhcOhA=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [B.A.T.M.A.N.] [PATCH] batman-adv: introduce "noflood" broadcast
- flood prevention option
-Date: Thu, 02 May 2019 08:40:01 +0200
-Message-ID: <3454648.6uTQT57BjI@bentobox>
-In-Reply-To: <20190426171231.18156-1-linus.luessing@c0d3.blue>
-References: <20190426171231.18156-1-linus.luessing@c0d3.blue>
+Subject: Re: [B.A.T.M.A.N.] [PATCH 0/6] batman-adv: Add routeable multicast
+ optimizations
+Date: Sun, 05 May 2019 19:37:48 +0200
+Message-ID: <12977711.pgt7cpdoR5@sven-edge>
+In-Reply-To: <20190424011919.9821-1-linus.luessing@c0d3.blue>
+References: <20190424011919.9821-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart111201324.tzmnCbSyTM";
+Content-Type: multipart/signed; boundary="nextPart2792525.6IniqGzT5q";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1556779208;
+ s=20121; t=1557077874;
  h=from:from:sender:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=ZcF9Dk6tfsOH8sM6ac7/JOZFB7T5xKSJrASyQzeMng0=;
- b=J3g9paPZFTtKpGxRL2ccSyrC5MzaLWAO3Qyyfy4xq6jhNQiTX0XsC0/rNjub+JUCjZiqrm
- EenyNMZbqWz+NXoZfA1XOtnP7X9Ee7qOlRuep2wAGNyQIz7Oz5V13Wsqdx4sK50lx/2ZL0
- TVfrB6CsLrQzW1pkgIrbjqdsKnARPAg=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1556779208; a=rsa-sha256; cv=none;
- b=tx6V7H7v7A3fQjyJ2ha3eiFT7818naO9cH2LQ814WApc8odJRmn04hSXmceKVNl/4tsze5
- 8yM+fOtwqJFYPP/NoYtDtw24lqerFSzoWsRSe9IxUgrwaEWRA+87CKwJKG3lfnB1LmlJiH
- 1fS2BZ5D0Ls7TMUegL37zqOm2BjMHgE=
-ARC-Authentication-Results: i=1; v3-1039.vlinux.de;
+ bh=YdceSydYdMqD65WSp79Hb74Cvk0glkb4U6KgaZP2xYc=;
+ b=nfDDbnnjsI+BSSpIwMpjBVHSNHflOiySHOeB3ryWR1CfoO7B4Dg7dwgKCLG0rYkHLbjMEY
+ gDhr8tpYWJCUKefiqKemaxT5mYloBbQEVUekRJwpGh9r6jHBWSjwJPxXJr+naaImWEMrlI
+ ydQ/8Dbdz7ZRWyWO/YXU/UBbn0NLEVk=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1557077874; a=rsa-sha256; cv=none;
+ b=bnOn5LmTjk5Z15qO3u2MHHvolF6Ab8wUMghfLznyDI+648OU3KgrJNGNglp/yG6i+fi4bY
+ XpihjhixaVE3TLp0Z3pMI2Tg/UubRpQcxr1wAwcfp0cvVVVMHu8bhBAQfIq9JUU4k7Nrsi
+ U8VEnAYeZzSm25Gsa9anJjCnWuJZ+Tw=
+ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
@@ -66,149 +66,143 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart111201324.tzmnCbSyTM
+--nextPart2792525.6IniqGzT5q
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="UTF-8"
 
-On Friday, 26 April 2019 19:12:31 CEST Linus L=FCssing wrote:
-> With DAT DHCP snooping, the gateway feature and multicast optimizations
-> in place in some scenarios broadcast flooding might not be strictly
-> necessary anymore to be able to establish IPv4/IPv6 communication.
-> Therefore this patch adds an option to disable broadcast flooding.
->=20
-> Larger mesh networks typically filter a variety of multicast packets via
-> ebtables/netfilter to clamp on overhead. With this option such firewall
-> rules can be relaxed so that such multicast packets are only dropped
-> if they cannot be handled by multicast-to-unicast, for instance.
->=20
-> "noflood" comes in two flavours: If set to 1 then flood prevention is
-> enabled for all multicast/broadcast packets except ICMPv6 and IGMP
-> (cautious mode). Or, if set to 2 then flood prevention is enabled for
-> all multicast/broadcast packets (aggressive mode). If set to 0 then
-> flood prevention is disabled.
->=20
-> "noflood" is disabled by default as there are still some things to take
-> care of to avoid breaking things (especially for the "aggressive mode").
->=20
-> Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
->=20
-> ---
-> The initial approach was a "noflood"-mark which worked similar to the
-> isolation mark. Which allowed more flexibility so that the user could
-> mark specific packets to be excluded from broadcast flooding via
-> ebtables/netfilter. However, in practice skb-marking is not that easy to
-> configure and if misconfigured will break a network horribly. Which was
-> also a downside noted and discussed at BattleMesh v11.
->=20
-> This version now is a less flexible but therefore also simpler to use
-> variant.
-
-It looks like this is an option which can break the mesh rather easily. Her=
-e=20
-some quotes from 2019-04-30/2019-05-01:
-
-<marec> even the 'cautious' option drops everything except for IGMP and ICM=
-Pv6
-<marec> nobody has a clear picture what that $everything is
-<marec> how does it help you if IGMP and ICMPv6 go through if all other mul=
-ticast / broadcast is dropped ?
-<marec> (because of too many mesh participants with multicast optimizations=
- disabled)
-<T_X> with IGMP/ICMPv6 to always go through I hope we have the most basic t=
-hings for IP-IP communication covered and unsucceptible to DoS cases you ha=
-ve already outlined
-<marec> T_X: how so ?
-<marec> T_X: even considering your gluon case - how many nodes would you ne=
-ed to update and have to enable mcast optimization to safely turn on nofloo=
-d ?
-<marec> as I recall, your meshes are all bridged together over vpns
-<marec> with only 16 nodes not upgraded or mcast optimization disabled nofl=
-ood will be permanently active
-<marec> (or whatever your fanout value is)
-
-<T_X> so even if no node were having the multicast optimizations enabled, t=
-hen communication both on the intranet and to the internet would still work
-<marec> that was not my point
-<marec> I want to allow people to experiment with and use multicast in a va=
-riety of undefined applications. <<< how do you want to get there ?
-<marec> while noflood drops everything
-<marec> (except for maybe IGMP and ICMPv6)
-<T_X> ah. yes. in that case, such applications would not / would stop worki=
-ng. but that's our current default case with basically filtering all/most m=
-ulticast traffic except ICMPv6 via ebtables in Gluon
-
-<marec> even standard DAT falls back to flooding, isn't it ?
-<T_X> marec: yep
-<marec> so, ARP does not work with noflood ?
-<T_X> if no ARP response in x milliseconds (250ms I think?) then it will fl=
-ood the ARP request
-<T_X> marec: right
-
-
-<marec> sounds to me the noflood will be pretty difficult to understand and=
- debug
-<marec> how does a normal user understand when ARP works sometimes .. or ev=
-en normal mcast apps work sometimes ?
-<marec> how will that seeming randomness be distinguishable from normal pac=
-ket loss ?
-<T_X> yes. would at least need some thorough wiki page, I guess. *cough* :)
-<marec> I am talking about user outside the gluon garden
-<marec> sorry for pointing it out again but this noflood feature still feel=
-s like a gluon tailored solution - assuming auto-updaters, mcast enabled, n=
-o IPv4 or other things other than IPv6 with router advertisements
-
-
-<ordex> my opinion is that I agree with T_X when he says "just add this pat=
-ch to the Gluon repository for now"
-<ordex> honestly, skb-marking is much better imho. way less prone to mesh-e=
-xplosions and people (that have a thorough understanding of ARP, ICMPv6, IG=
-MP, MLD and understand what batman-adv would do or not) can decide how to t=
-reat such packets *externally* to batman-adv
-<ordex> this is what how we use the client-isolation with skb-marking - the=
- dropping logic is implemented outside
-<ordex> with a match on the skb-mark
-<T_X> ok. and both the client-isolation and noflood skb->markings would ful=
-lfil a kind of similar purpose - that is preventing specific packets from r=
-eaching $destination, which could not be fullfilled with netfilter alone, r=
-ight?
+On Wednesday, 24 April 2019 03:19:13 CEST Linus L=C3=BCssing wrote:
+> The following patchset fills the next gaps in the multicast address
+> rules page by adding support for group-aware optimizations for
+> multicast addresses of scope greater than link-local. So far, only
+> link-local addresses were optimized as packets with routeable
+> addresses not only need to be forwarded to local multicast listeners
+> but also multicast routers.
 [...]
-<ordex> the reason for the skb-marking is to have something to match packet=
-s against. In the client isolation case the knowledge about what to drop wa=
-s inside batman-adv, thus we needed a way to "export" this knowledge
 
-
-
-I would guess that you can also do something like this using ebtables + tc=
+I get a lot of build errors when trying to build these patches. Here is the=
 =20
-filter. Even with (tc) eBPF... since eBPF seems to be the miracle solution=
-=20
-for everything these days.
+complete list, including warnings of other build tests:
+
+Output of different failed tests
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+ecsv/pu: checkpatch ./net/batman-adv/multicast.c
+=2D-----------------------------------------------
+
+    CHECK: Blank lines aren't necessary before a close brace '}'
+    #791: FILE: ./net/batman-adv/multicast.c:791:
+    +
+    +}
+   =20
+    WARNING: Block comments should align the * on each line
+    #799: FILE: ./net/batman-adv/multicast.c:799:
+    + * capabilities and inabilities.
+    +  */
+   =20
+    total: 0 errors, 1 warnings, 1 checks, 2368 lines checked
+
+ecsv/pu: headers
+=2D---------------
+
+    diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
+    index ca4898d3..f106728b 100644
+    --- a/net/batman-adv/multicast.c
+    +++ b/net/batman-adv/multicast.c
+    @@ -23,7 +23,6 @@
+     #include <linux/inetdevice.h>
+     #include <linux/ip.h>
+     #include <linux/ipv6.h>
+    -#include <linux/jiffies.h>
+     #include <linux/kernel.h>
+     #include <linux/kref.h>
+     #include <linux/list.h>
+
+ecsv/pu: kerneldoc ./net/batman-adv/multicast.c
+=2D----------------------------------------------
+
+    ./net/batman-adv/multicast.c:803: warning: Function parameter or member=
+ 'flags' not described in 'batadv_mcast_mla_flags_update'
+
+ecsv/pu: kerneldoc ./net/batman-adv/types.h
+=2D------------------------------------------
+
+    ./net/batman-adv/types.h:1200: warning: Function parameter or member 't=
+vlv_flags' not described in 'batadv_mcast_mla_flags'
+
+ecsv/pu: kerneldoc include/uapi/linux/batadv_packet.h
+=2D----------------------------------------------------
+
+    include/uapi/linux/batadv_packet.h:124: warning: Enum value 'BATADV_MCA=
+ST_WANT_ALL_RTR6' not described in enum 'batadv_mcast_flags'
+    include/uapi/linux/batadv_packet.h:124: warning: Excess enum value 'BAT=
+ADV_MCAST_NO_WANT_ALL_RTR6' description in 'batadv_mcast_flags'
+
+ecsv/pu: sparse linux-3.18 cfg: BLA=3Dy DAT=3Dy DEBUGFS=3Dy DEBUG=3Dy TRACI=
+NG=3Dn NC=3Dn MCAST=3Dy BATMAN_V=3Dn SYSFS=3Dn
+=2D------------------------------------------------------------------------=
+=2D-
+
+    In file included from /home/build_test/build_env/tmp.2gwYBLVNdO/net/bat=
+man-adv/main.h:216:0,
+                     from /home/build_test/build_env/tmp.2gwYBLVNdO/net/bat=
+man-adv/bat_algo.c:7:
+    /home/build_test/build_env/tmp.2gwYBLVNdO/net/batman-adv/types.h:1255:1=
+3: error: duplicate member =E2=80=98mla_lock=E2=80=99
+      spinlock_t mla_lock;
+                 ^~~~~~~~
+    make[3]: *** [/home/build_test/build_env/tmp.2gwYBLVNdO/net/batman-adv/=
+bat_algo.o] Error 1
+    make[2]: *** [/home/build_test/build_env/tmp.2gwYBLVNdO/net/batman-adv]=
+ Error 2
+    make[1]: *** [_module_/home/build_test/build_env/tmp.2gwYBLVNdO] Error 2
+    make: *** [all] Error 2
+
+ecsv/pu: sparse linux-4.14.104 cfg: BLA=3Dy DAT=3Dy DEBUGFS=3Dy DEBUG=3Dn T=
+RACING=3Dy NC=3Dn MCAST=3Dy BATMAN_V=3Dy SYSFS=3Dy
+=2D------------------------------------------------------------------------=
+=2D-
+
+    In file included from /home/build_test/build_env/tmp.2gwYBLVNdO/net/bat=
+man-adv/main.h:216:0,
+                     from /home/build_test/build_env/tmp.2gwYBLVNdO/net/bat=
+man-adv/bat_algo.c:7:
+    /home/build_test/build_env/tmp.2gwYBLVNdO/net/batman-adv/types.h:1255:1=
+3: error: duplicate member =E2=80=98mla_lock=E2=80=99
+      spinlock_t mla_lock;
+                 ^~~~~~~~
+    make[3]: *** [/home/build_test/build_env/tmp.2gwYBLVNdO/net/batman-adv/=
+bat_algo.o] Error 1
+    make[2]: *** [/home/build_test/build_env/tmp.2gwYBLVNdO/net/batman-adv]=
+ Error 2
+    make[1]: *** [_module_/home/build_test/build_env/tmp.2gwYBLVNdO] Error 2
+    make: *** [all] Error 2
 
 Kind regards,
 	Sven
---nextPart111201324.tzmnCbSyTM
+--nextPart2792525.6IniqGzT5q
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzKkMEACgkQXYcKB8Em
-e0YGbhAAkIOq6okla+/blZ1pwE76wre7kPItj5nyjVWvj7yv6amxOQwFhOyf0mSo
-v2K540n7G5AYdpB5biZJ7WMB+Pg0vLB7GvGbcn7CmnciKpfAi/669GD+lzkLYo+8
-YKAFslmSdcNISee5lzDJvj0zxkAG3+yPUcY9yBQkgh68sabNjLC2tOqNrKfYmvRw
-x+iUXTuJtJu66LDtsDhMQoiKZ0Wo0+cJopIjuwMdv0CfxgWvwdeVtfoK+W5h8DEH
-BeW4IoGfVbF+f26ADjbKdZN09G8ewNnziIbrMN/Vo5G+sUGqwDN4wSAbJTYLfPB5
-NvZXsLDvpx8ljJFBEUkqzfc9shQuBmx6G/6an3TbUDMe1LEY6MkOVB4pAof5mIrJ
-dLN+VpyedwqjlDftHN1+c1kL9hWtSMKrWdslbwH9xUorR5tiTG8Cs7Pg3n15vmum
-4STt1ED0g/et0CMZv4NdrsgfNcloGDss4Rse40PCkYPQ6DcHgImu762hDo39BUwt
-o1Wlxr2cMYv9EVGz+Q/ld81oAgZTo7TfxNEgNlsZoqyFrpUIG/iOeExNTbnYJ/z2
-E980ju5ysB7jOnayh4qnp+cy8IbLIXBF2kdMhzdwxT38McdOJiPJhv+c0+FwlF0h
-FWfQQnmKvSueZsmYbxBTF4fJLtdlFBLcT9PQIcxqaO1LkVMZiKk=
-=4yat
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzPH2wACgkQXYcKB8Em
+e0YXhBAAqO2ctYxF3KCCq6QUwaK+42f+vlnjWr4Pznoq9z2XJm2YoIRTP8mngXWR
+tOK71Xt2Zc//nW/zs9XEAhvgpzumT+5lO60qp1jkqK608S0JFQUqJeZt19Rc9oB1
+Wahg5SaSY6LLRDci+XuYWwGne89vhYXM3mA5mWdo7fT4f6WIHGsIbuzE/fIvKn/5
+s9Ze8szMLLV5SoQLyC+pxQumezv0OsUdye5KgdO5DM7+NhBmm7SSld4H+5mAy9zE
+UAzXMFJ1yEu7EYobVJuAFMsUnUHSeCo03A8DvcJ3FJ5/8GXARmxQweF6iLnBinjK
+nXOVsgNVfEUdNJQObcldMmUAn8ao8Vo5BgYW4USUwY7t6t/Jx9DmY1vcF0drCR/U
+kBnNkJec9EzXten8apRpj8KHTFc9D33ljHqLSmuHZHrhX69HbgsLgDTDNRwVBiL1
+sGO8xnhfMAQlllExBQCAOSw24kHcDKU6RCap7IDOySEJCkj63BhvzaOS/0kH5DEL
+eqfgj1EY7NMjU2bTjrazdKWVPP7BS9XoO8jSKylO/XfXcwLLp87uLPQLTRapfY4y
+bKsitTmsNNmNWX2RdF7rhm2lOLw9hET/yFMRWBn9VlHQVHxpgoj4pH6kzB8f+gih
+34XvyB6P7yypnFPJtcCHNbc1kPB3Y7q6x7aMIGiFiJOpRhTabFU=
+=epkD
 -----END PGP SIGNATURE-----
 
---nextPart111201324.tzmnCbSyTM--
+--nextPart2792525.6IniqGzT5q--
 
 
 
