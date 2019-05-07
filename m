@@ -1,55 +1,62 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B91D315F3E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  7 May 2019 10:21:49 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B09316678
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  7 May 2019 17:17:33 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id C9698823E6;
-	Tue,  7 May 2019 10:21:46 +0200 (CEST)
-Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 7D1E080A40
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  7 May 2019 10:21:44 +0200 (CEST)
-Received: from bentobox.localnet (unknown
- [IPv6:2001:16b8:553e:edf2:a8fb:d592:8e48:5aee])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id DA1211100E8;
- Tue,  7 May 2019 10:21:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1557217304; h=from:from:sender:reply-to:subject:subject:date:date:
+	by open-mesh.org (Postfix) with ESMTP id 7417C81620;
+	Tue,  7 May 2019 17:17:29 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+ by open-mesh.org (Postfix) with ESMTPS id 7701D80638
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  7 May 2019 17:17:26 +0200 (CEST)
+Date: Tue, 7 May 2019 17:17:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1557242246; h=from:from:sender:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=xiqFdCgyt7FtDFxt4Rq1xnXKJORrf9g5d7Uje1VWnJk=;
- b=qhYC9/cq9oY/mkqsgpRF6oBcVWsZM9USNKwJehxfintIuBsj6g6RdWle9tGvTj7e4o92uq
- idtsTxSj7tEreM5RJA+mORE1rsdYUnRaV2junbz0V+NGynkuxUj6TVZw2BMbzyzDvYpQte
- 8qkRrVND/Es7JJz8FD3aMEhw148EMNU=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
+ bh=0h1odlNTIl0DgE25HkrqLH3M3gA4Zhcb1JLoKiQLM8k=;
+ b=ZJo+7OLK/ud3PWG+CvsdrZNA4fp5rwpnNTJGLOSFiG0O968dyZ810Rv2uf03U/kmZd1Y/K
+ uff5s1eRU8O1xb12duhpvygmv9/6Ey2IjAaaV1YeJOGYQOIziEBsDMWLZEX6pMQ4wak0+7
+ ZGdTnkFVMtsT1IXS6MYdMkLzH0MaNSpjkJKWuZKSBt+6jeSA5KRb3yqNheWeSJzzult155
+ Jb6CrofI8MM4+aXdz5H7fnjG3rBF8GNV8OXUA5HLjLRLCbvcKijG9o3UZO9Ev62Jqe+mmR
+ B1Q0eOvLeUEnRC76vF5LuAixeQacwoIeIbKq9t9akaL+GXzzzg2iSXDJTNXyyw==
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>
 Subject: Re: [PATCH v2] batman-adv: Introduce no noflood mark
-Date: Tue, 07 May 2019 10:21:40 +0200
-Message-ID: <1895475.8kFdyZb9vl@bentobox>
-In-Reply-To: <3691280.TvIfeD7Em7@rousseau>
+Message-ID: <20190507151723.GB1493@otheros>
 References: <20190507072821.8147-1-linus.luessing@c0d3.blue>
  <3693433.LtgH54LjNc@bentobox> <3691280.TvIfeD7Em7@rousseau>
+ <1895475.8kFdyZb9vl@bentobox>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5448167.cg51Gv6jSr";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1557217304;
- h=from:from:sender:reply-to:subject:subject:date:date:
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1895475.8kFdyZb9vl@bentobox>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
+ s=2018; t=1557242246; h=from:from:sender:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=xiqFdCgyt7FtDFxt4Rq1xnXKJORrf9g5d7Uje1VWnJk=;
- b=B0YQwOcjQ42k1tly9l3WnUXNKRLnEWEKatxjkm6pIfil0gDjiR0XaYr/qqJu0PN91AZlTT
- IwYddhtpnqnuJV8gqdYCXO8m6DJJM4jsidSITK74+Ge9jcKnCQANwf34viKgdv/QxCAfMW
- 1XRFY6jsFx2BupIr9GthUum8JoJJicE=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1557217304; a=rsa-sha256; cv=none;
- b=Z3nJEIEI8h7FN5PBYT2X9jKtWrOaU1ooCdBWYVDroTEZ+RN03poQzkeWIiFt3UhGNyQ26f
- Moj4MhcGTNIswwlYiZGMADtU0/yQWlnyhkuHZcC1ejOdiX7T2li2jcsBzNkfmf7Z/5yOVE
- 5xhfS1Czw+02MCJT1nNowER6phRxZKY=
-ARC-Authentication-Results: i=1; v3-1039.vlinux.de;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+ bh=0h1odlNTIl0DgE25HkrqLH3M3gA4Zhcb1JLoKiQLM8k=;
+ b=B3EKhdDrcC2qbg2p48OP4bBxWBHqb2fQVLlldIeWJmPKxi5F1UmKd7MLZCsxg7x2yxfNId
+ qdSHSrkMBvwZMbiiRNMnnVe3AYx6Td7ucQW9frUldcKFLXz4iOI+wnD7a+XysACR0bd1EG
+ vzhDcelrTkyYt2QJVfhykd6LFr0pDul+1K0/MzgaNZzbTf4wm1b3L6hYLo4/S/BX1uFPHX
+ dGvELQnlklxpbHaetCjXsu83cEWIgovOxsT/GEkkt0SL/BoUdxKTrUJTJurMMwCnumwEHf
+ uF+FOmWzmz+/HM6C5gEvckUXNZDAXF539u74WOlBDIPoocZpF4n9kYkTt8GVRA==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1557242246; a=rsa-sha256; cv=none;
+ b=OvQA+/2rDk7Irpflw5a+bXT1qj5UINbYPU075vaSKbFPxvUvS+7exFUiDzTXy5+gTGmM4M
+ ostBPpqyL1BjVC9Wv6TSJ54wcpQHfVguyL9eKSsvLC641nNfq/h0duNhE/HA8JUPOZqTyF
+ FnrRY8tHi5eEDRLmKg3nDlsvIdWphaTlVAbPihO8lAUYbTyP6QesFoIkUNCbpRTJJVDkQi
+ vGd8CbbB0UHtUgvz55mQtTgIR1UDyi4u4vBLIqc92I+UmxnSHivUyaHH2c4hx0AT2K3xJX
+ M8q/AG8sxFIclBR04/6nc7Kch5e2+BQ3BcwGkOqHEtYK6PjaxWzwFv46AdiPIw==
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -68,70 +75,66 @@ Cc: Marek Lindner <mareklindner@neomailbox.ch>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart5448167.cg51Gv6jSr
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-On Tuesday, 7 May 2019 10:00:18 CEST Marek Lindner wrote:
-[...]
-> > I still don't see why this has to be implemented in batman-adv and not as an
-> > external filter (tc-ebpf or something like that).
+On Tue, May 07, 2019 at 10:21:40AM +0200, Sven Eckelmann wrote:
+> On Tuesday, 7 May 2019 10:00:18 CEST Marek Lindner wrote:
+> [...]
+> > > I still don't see why this has to be implemented in batman-adv and not as an
+> > > external filter (tc-ebpf or something like that).
+> > 
+> > As I understand the use-case (Linus correct me if I am wrong): The mark is 
+> > supposed to drop packets that couldn't be $optimized by one of the various 
+> > batman-adv payload traffic optimizations. From outside of batman-adv it would be 
+> > difficult to tell if a broadcast / multicast packet was optimized (think: served 
+> > via DAT cache, sent as unicast, etc) or not.
 > 
-> As I understand the use-case (Linus correct me if I am wrong): The mark is 
-> supposed to drop packets that couldn't be $optimized by one of the various 
-> batman-adv payload traffic optimizations. From outside of batman-adv it would be 
-> difficult to tell if a broadcast / multicast packet was optimized (think: served 
-> via DAT cache, sent as unicast, etc) or not.
+> It should be easy to see in tc whether a packet is transmitted as unicast or 
+> broadcast. It is just a bit check in the destination mac. So it would end up 
+> as a filter somewheere in the hardif tx path which first checks following 
+> before rejecting a packet:
+> 
+> * is it a multicast/broadcast destination address?
+> 
+>   - maybe this part isn't even necessary - at least the mcast2unicast stuff 
+>     uses batadv_send_skb_unicast 
+> 
+> * is it a batman-adv packet?
+> * is is a batman-adv compat 15 broadcast packet?
+> * does it have the noflood mark?
+> 
+> This would even allow some fancy stuff like rate limiting or per hardif 
+> behavior. With the problem that there is no package yet which does this in 
+> gluon.
 
-It should be easy to see in tc whether a packet is transmitted as unicast or 
-broadcast. It is just a bit check in the destination mac. So it would end up 
-as a filter somewheere in the hardif tx path which first checks following 
-before rejecting a packet:
+Ah, that's an interesting idea. So basically filtering on the
+hardif instead of in batman-adv via some custom compiled BPF
+filters. So basically similar to writing a small program like the
+gluon-radv-filterd with a BPF_* parser?
 
-* is it a multicast/broadcast destination address?
+https://github.com/freifunk-gluon/gluon/blob/master/package/gluon-radv-filterd/src/gluon-radv-filterd.c#L223
 
-  - maybe this part isn't even necessary - at least the mcast2unicast stuff 
-    uses batadv_send_skb_unicast 
+> Or am I missing something essential here which is also done in the 
+> batadv_interface_tx path?
 
-* is it a batman-adv packet?
-* is is a batman-adv compat 15 broadcast packet?
-* does it have the noflood mark?
+Hm, I guess functionally this would be mostly equivalent. Maybe
+except a bit of performance due to our custom queueing
+infrastructure. Not sure how much performance it would cost on our
+small MIPS devices if a client were sending a few MBit/s of UDP
+multicast through our batadv_add_bcast_packet_to_list()
+infrastructure.
 
-This would even allow some fancy stuff like rate limiting or per hardif 
-behavior. With the problem that there is no package yet which does this in 
-gluon.
+The noflood-mark would drop the packet early on in batadv_interface_tx(),
+before any queueing or copying happens.
 
-Or am I missing something essential here which is also done in the 
-batadv_interface_tx path?
+Maybe more importantly even before the bcast_packet->seqno is
+increased. It could become an issue if a node were increasing it's
+seqno quickly without other nodes noticing the new seqnos.
+Broadcast packets we actually let through might then be received
+with a seqno outside of the seqno window on the receiving nodes.
 
-And why would we see see stuff which as served via DAT? This is usually not 
-transmitted on the hardif ports.
+> And why would we see see stuff which as served via DAT? This is usually not 
+> transmitted on the hardif ports.
 
-Kind regards,
-	Sven
---nextPart5448167.cg51Gv6jSr
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+I guess Marek ment it the other way round (see his "or not" at the
+end of his sentence).
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzRQBQACgkQXYcKB8Em
-e0aK3Q//fJgaqNdebPTylHegpnepVVn1fsb6JSnF/GUAIZDDNwJBtAXq+SFL73AZ
-y9NVla7GqmnMgI5Xxsih8jhvN+a5qq9PULF8ouuiFtDWUaGKJxuZjZxGFtbc+Aab
-YDShIn6iNh5TdyUM9TxhbP/9Traofq96JERejODKoifavC4doQpYNSkPbit+n3y4
-WAfL5NbDpQ7yIDbB4f2EkNb096ZEcbdjZo6QkN+4mM8ZtfuTSNxQVpQ7ogmjFKZu
-WQ825agrvQyDE3CioZZpgd28yYF814+ri8V4gtHpuZC+WZoJw49qml/XlYWoDSW0
-1X1mFLsZ9iCHhp2aQqxlBSSU2bJRKEGQVyl2/F4R08ajBCL1V1egBIuqadrBBdms
-Nrb5Sx85yUAs8h3tXAIBWpyc2TcgwCrbgZZSbvHURlHkCogY2ZVfxFyUZJS+yLN7
-DmgONthMqnCQoI2d8mP/Q2ZtGOyIbmeZQJR8zMz2i5g+rzPviil7Vtu+dnLTORip
-ct7JkyDDfrpnuFZJx1zhsOUcXggiRo7ls5Oc2cmFSrY3OfN+mK8vhOU4+A8pyF7R
-ab9OUtS+aBddyRfN88fxz1xtR7UU7i1o9MpXlt/4NXI5Z7uyNhyZJ7KGvsW2P4jJ
-eGKH0WZh5IxjpFNmtr8sB9x7DWn8Jb5v9X4yucu6+FKeilMaDac=
-=7D5L
------END PGP SIGNATURE-----
-
---nextPart5448167.cg51Gv6jSr--
-
-
-
+Regards, Linus
