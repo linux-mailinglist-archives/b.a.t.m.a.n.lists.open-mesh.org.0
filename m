@@ -1,54 +1,31 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3F516719
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  7 May 2019 17:45:14 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 090C218A95
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  9 May 2019 15:28:27 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 28B5281D2D;
-	Tue,  7 May 2019 17:45:11 +0200 (CEST)
-Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 8BFEB805F4
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  7 May 2019 17:45:08 +0200 (CEST)
-Received: from bentobox.localnet (unknown [IPv6:2001:16b8:553e:edf2::505])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id B8C3B1100E8;
- Tue,  7 May 2019 17:45:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1557243908; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=jqkAg2CjekKXaWv2Rw/Q1PM+8nchOm9ehI2IHvrHj60=;
- b=yTGi/nmfBWQ7xP7WiGY4m/pxbGGwMzf8JLk9iWYgPWnZIsgkV1KEDyvuvBBdKOOYUM8VcH
- XpqNUGHHEvf7Pduw3joguWpDpG6SKwGl4C9x7o6aKC3NVnQ6vTO6IMR+ya9B8Acm2cdF+c
- paoeb2yGa+WgbVy6jsr/ZvqMaowagxw=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v2] batman-adv: Introduce no noflood mark
-Date: Tue, 07 May 2019 17:45:04 +0200
-Message-ID: <8751913.vGonOqSknk@bentobox>
-In-Reply-To: <20190507151723.GB1493@otheros>
-References: <20190507072821.8147-1-linus.luessing@c0d3.blue>
- <1895475.8kFdyZb9vl@bentobox> <20190507151723.GB1493@otheros>
+	by open-mesh.org (Postfix) with ESMTP id 4E82580485;
+	Thu,  9 May 2019 15:28:21 +0200 (CEST)
+Received: from mail.mail.packetmixer.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id CCA2A80485
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  9 May 2019 15:28:18 +0200 (CEST)
+Received: from kero.packetmixer.de (unknown
+ [IPv6:2001:16b8:55c8:9400:604e:fca1:2145:dcdc])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 1D2F26206F;
+ Thu,  9 May 2019 15:28:18 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: davem@davemloft.net
+Subject: [PATCH 0/2] pull request for net: batman-adv 2019-05-09
+Date: Thu,  9 May 2019 15:28:13 +0200
+Message-Id: <20190509132815.3723-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart8953029.KQddNnn0Kf";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1557243908;
- h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=jqkAg2CjekKXaWv2Rw/Q1PM+8nchOm9ehI2IHvrHj60=;
- b=c46pK8gvK1bDqCc/fPr4QUowmeUmdKJ5qMGT1oPABI4c+JJOzRaQfwn1ZWjli7ETJ87P66
- z4XlS1MofwUqq5BsmQFcu04ndk+ZEd1QBIJ7r1oVCtFFT5u8N53tzuuqso5or6OXKb7LBZ
- LMych+HiiII2cCYJaUAto4DU60pilW0=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1557243908; a=rsa-sha256; cv=none;
- b=zCI2iOU9XOxYD+URzz+AcrIkJAkZc0q6YwJngT+xPBCvmUda2qOq0TcSGodA7N01jvTHl6
- L2SF+eREtWzNngJIgMI639Qe9R/1wXzZLHmtvEOOirBa1/RAEU7h5mjetU6FZeE2mEN+z+
- icAw9s6FjFBNW5iN1GOGSKgzu00WtFo=
-ARC-Authentication-Results: i=1; v3-1039.vlinux.de;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,58 +40,48 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Marek Lindner <mareklindner@neomailbox.ch>
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart8953029.KQddNnn0Kf
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Hi David,
 
-On Tuesday, 7 May 2019 17:17:23 CEST Linus L=FCssing wrote:
-> Ah, that's an interesting idea. So basically filtering on the
-> hardif instead of in batman-adv via some custom compiled BPF
-> filters. So basically similar to writing a small program like the
-> gluon-radv-filterd with a BPF_* parser?
->=20
-> https://github.com/freifunk-gluon/gluon/blob/master/package/gluon-radv-fi=
-lterd/src/gluon-radv-filterd.c#L223
+here are some bugfixes which we would like to have integrated into net.
 
-Yes, but you don't have to write the stuff with these intrinsics and cBPF.
-This was done in gluon-radv-filterd only to avoid extra dependencies to=20
-build the program for this really minimal piece of code.
-And I didn't had much benefits from using eBPF at the moment [1].
+Please pull or let me know of any problem!
 
-You can just write it in C and use clang to create (e)BPF bytecode as=20
-described in http://man7.org/linux/man-pages/man8/tc-bpf.8.html
+Thank you,
+      Simon
 
-Kind regards,
-	Sven
+The following changes since commit 438b3d3fae4346a49fe12fa7cc1dc9327f006a91:
 
-[1] https://github.com/freifunk-gluon/gluon/pull/838#issuecomment-355547594
---nextPart8953029.KQddNnn0Kf
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+  batman-adv: Fix genl notification for throughput_override (2019-03-25 09:31:19 +0100)
 
------BEGIN PGP SIGNATURE-----
+are available in the git repository at:
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzRqAAACgkQXYcKB8Em
-e0ZdgQ/+I78xbh5yNkM5edrJuJNyYNbuDd9tLyTqc7+nyllD8vZ/QcOJNsuk+Y7e
-uJcPD2ZgWFOnCHOyIAZBPPBLEhHS0+0UrXNJjWN3jH+dZCaKSJXI63upJn+CXd4t
-oOVxRnAi/psvqqUxe2KyiAJ3nRZKtcPOTAUrkvhkRylfGCSzlk7hZJ/xUOnxwENS
-WuORcowh3b/wm9q2lvOk81f0EeHdhfmkXf4wE6RCPx/rovgZKiNUOpSeZVEyuDR+
-S6ox61ULqVwVgRu9p3PAoXNUiLwJv1UiQkeL8DxCwCVX2WA+OuYoFNF4SFyh5VoU
-bV3TBHiSxQj2ljdlJX4TaOna/d8CwuBr1W24JebA3ZKjbgRmbuZECbyRJ9hkHwjr
-lfFF3zGRUjrW9BcymprUk+cR4Dw86YvPbcnZwcyD7GzeSK1Y1L3RYyFakhY8Sbaf
-YQ1CXZwZ4rf2a6w0dytJHj0+44YGcIJ4D7kOgjDOrzNvR+phYJ9WREJzUFObGkXv
-JUJ2Fx0zS4vwPYhX9ysRLqueUxs+FS/CBEHiV78PLoMQNSXRMcVTZt5cGa4IvOwi
-qmIruktyqb9zjaOHjKtJweAlgD0WJk8G77RFJ1dPBcE8U5T7mPlT8+E4dW7KFThS
-J4tXkoSqiim840AVZriPB1UkRprYVTrrLML/b1ChPZ/w0w50XrU=
-=WI+W
------END PGP SIGNATURE-----
+  git://git.open-mesh.org/linux-merge.git tags/batadv-net-for-davem-20190509
 
---nextPart8953029.KQddNnn0Kf--
+for you to fetch changes up to a3c7cd0cdf1107f891aff847ad481e34df727055:
 
+  batman-adv: mcast: fix multicast tt/tvlv worker locking (2019-05-06 11:40:46 +0200)
 
+----------------------------------------------------------------
+This feature/cleanup patchset includes the following patches:
 
+ - bump version strings, by Simon Wunderlich (we forgot to include
+   this patch previously ...)
+
+ - fix multicast tt/tvlv worker locking, by Linus Lüssing
+
+----------------------------------------------------------------
+Linus Lüssing (1):
+      batman-adv: mcast: fix multicast tt/tvlv worker locking
+
+Simon Wunderlich (1):
+      batman-adv: Start new development cycle
+
+ net/batman-adv/main.c      |  1 +
+ net/batman-adv/main.h      |  2 +-
+ net/batman-adv/multicast.c | 11 +++--------
+ net/batman-adv/types.h     |  5 +++++
+ 4 files changed, 10 insertions(+), 9 deletions(-)
