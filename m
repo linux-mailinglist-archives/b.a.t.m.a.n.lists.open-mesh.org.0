@@ -1,57 +1,60 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F531C405
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 May 2019 09:39:45 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3C9B1C488
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 May 2019 10:19:43 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 7A10181C5D;
-	Tue, 14 May 2019 09:39:16 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 95A46816FF;
+	Tue, 14 May 2019 10:19:39 +0200 (CEST)
 Received: from mail.aperture-lab.de (mail.aperture-lab.de
  [IPv6:2a01:4f8:171:314c::100:a1])
- by open-mesh.org (Postfix) with ESMTPS id D240481685
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 May 2019 09:39:08 +0200 (CEST)
-From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+ by open-mesh.org (Postfix) with ESMTPS id 412E080340
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 May 2019 10:19:37 +0200 (CEST)
+Date: Tue, 14 May 2019 10:19:33 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1557819548; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ t=1557821977; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=21fegVcgSa2wwI+MSezd8d5H85nOzU0CW+NDxLwkqOs=;
- b=DxnGSin4qRJq2dYK0YVwXt+52naS35rRzgUS3OIVK/WpYgh+Yd09orjEt6GfbRkRXVmBfD
- wiPHF9MYVozBXctx8gvBXJdcYPa3Z639qugQV1gpfaOwqpDw+wdD+mM8iAjkk56iCcYFoe
- 2GuqzKr9jNQNfH8/rKKePNk9bPn3Ts3FDSA1O4B7CZXEdpYpnwrN6i5FoP+R0DS0SDZ784
- 1AtAKhsK5HV/SyCub7I+BGulRVAosJBqcxcAi6atMt1ZQPxArRop3F9ZMn/4A13RlgO1Jt
- rjni7SGXlacGvl9BDgq3Hl0gbMR7nOriBVjNrczL9wpWB4MsG2OV+Z1bDA/xpA==
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 3/3] batman-adv: forward broadcast packets via unicast
- transmissions
-Date: Tue, 14 May 2019 09:38:59 +0200
-Message-Id: <20190514073859.2053-4-linus.luessing@c0d3.blue>
-In-Reply-To: <20190514073859.2053-1-linus.luessing@c0d3.blue>
-References: <20190514073859.2053-1-linus.luessing@c0d3.blue>
+ bh=yg9WwstVdvxgdBJ070ccumS0CD84EdqlRjipKbnCLS8=;
+ b=IcIEU32zQLibJsV8oJk4r9zyAWv9vqqkuv23jWyodNQXrNQSjBC6bt4RkJ57nNDTzYj/3O
+ HUYmsMZRnLEWzy1WcxR8bExB/x56DTByt6eKb7qBqFH4VEMW5n0Yq/OZYC+UEjP0WiXsdb
+ c1VQZhGQUuZVBnDI7dmYeacS1izP9g5rvG2MRuMYXCslDLKiB3i8WNVW0E/LE/NwYvtPcZ
+ MiHWDZBXbF9mEJxiIeBsC7MG1shX+KO7ncvnf2FM4Yk10LFComAW7e6gMt3jW/wiW79+03
+ gqiCWGGeTACOmT+urg63HZ7ssp8AAfUTUUbzIjxHJ7MgvwBXczElfbzdUbQuIA==
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>
+Subject: Re: [PATCH v2] batman-adv: Introduce no noflood mark
+Message-ID: <20190514081933.GA1602@otheros>
+References: <20190507072821.8147-1-linus.luessing@c0d3.blue>
+ <3693433.LtgH54LjNc@bentobox> <3691280.TvIfeD7Em7@rousseau>
+ <1895475.8kFdyZb9vl@bentobox> <20190507151723.GB1493@otheros>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190507151723.GB1493@otheros>
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1557819548; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ s=2018; t=1557821977; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=21fegVcgSa2wwI+MSezd8d5H85nOzU0CW+NDxLwkqOs=;
- b=UTI2AErMuUkbgfGtSMP4SqEpqE7/ovMNBqjwCpeEclZskXsJzCkryRd/spunhPg0mYuCaV
- k6lid1TjT3Ya22hfXy85Nr8+doKeRDS8TYRcY5vJmSWIBVUobWCkt9x32WYO2t3pAuntxM
- PHJdhiNfn53dHM5xgpP73hSfXSAzcwzagtU9LVqHiIJVc8aA5XNdJHEvexuz8O4KfwpgOe
- +tOgq6UPPL/bHOsT2c6GtVtLqMeriJcH8uX/RZ1hQMzuAsl5onD9Jz4W/k4b/No/fk8uQO
- wOWVzF+zB6A1XJt7soPRAGE1ghr3k9CuVnCEgjtoTluW+0n8Pbu7PR4C5vFYgg==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1557819548; a=rsa-sha256; cv=none;
- b=hrwhaNs4JeDdPB02NWmPxZIpYpt6jeNPIiJfd70vFW12KCtPsA9AZOfz71nETUNwgTr/Xe
- b+45uy7o5aK9oMrHTfOhI9bYnBigLs0VU3QyhqNCfW0MNOZoSAMWLY4f1IchtAW1O3x8xp
- eLID61c1+4eYodb3OjJtOSkwz7DmCCu/rZ/JPifTeCITz9ArHWiQnXA1EWWzKrRqCy8RN3
- yyRkdthnKp17L1uhOmjCWDvr7ALJ+73IlgdoLWQ/M0ezc7XmqGK7ES0VoorAoxWbcpyWDX
- mIFZKH+N1Zu+5lHymh3vgfO8uIh9UnHFdLg+pmiA3k3WyYCRudcOmmskB3Tz5A==
+ bh=yg9WwstVdvxgdBJ070ccumS0CD84EdqlRjipKbnCLS8=;
+ b=ZgMQ8knF5yHKqDc48nb4AouGc36ORvMn3QMhlps2d19XCXm0HFqtAHpJqsx44eH4Vcs5V4
+ otfYLiw6rBw75CWpSj9q8w83rf8YQ32Co7cm4vfzW8urOw1ULgX5oPFi/90FfA+zDSlsD+
+ FSVIiz8EBMDZCPdlMxCO90ukxADcr/pdj+OR3fKvv2kpEbkDiPTAWkVBKR6FO71P8KZ8E4
+ 6sgmLsXnKO7E2tdoTIvgDqd84+0BxcR7QuBvAMy8xihUkwQwZaV3J98/ZKO28VJXyac5cX
+ KiAokILkVdbkJyCLLZhi2pclfnPxVRAZrO4CPdLBZR2rv5ftdnCPdrD1jaBJBw==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1557821977; a=rsa-sha256; cv=none;
+ b=dybx73980yAyTyrtdjPkDEmJ9f0eGq8XowwuptOApTB6vMtno7NgbBruDJkALkrRjjv+Js
+ 0x406RbzAZbTWoRNwK8Fcdjcyxi3CrStZc0vnIq1wyk/OOGLLcsYCVJxEnSwE2+5L2hyWg
+ rS2LLTQSNbaO4vHZ2mbmoVogeCNi8OJqVpw9jngVxdn54m8Avu/MMQKmby6/fwiTkQJGd/
+ yUsyVK2iKk6gnfQtZzGbTgnbhEmZquBKYKXBnlFhzXJC72cln+cgXA74Qnc2kMLqc2/p/9
+ nssxOBGrYc2uXkxZI9YRtai+fihsjJnL07G5FzeBVFMqta3Dgr/A3gdRMcxG2w==
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=linus.luessing@c0d3.blue
  smtp.mailfrom=linus.luessing@c0d3.blue
@@ -75,302 +78,43 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-With the high bitrates of modern wireless devices these days multiple
-unicast transmissions are usually less costly than a broadcast
-transmission on a low bitrate.
+On Tue, May 07, 2019 at 05:17:23PM +0200, Linus Lüssing wrote:
+> Maybe more importantly even before the bcast_packet->seqno is
+> increased. It could become an issue if a node were increasing it's
+> seqno quickly without other nodes noticing the new seqnos.
+> Broadcast packets we actually let through might then be received
+> with a seqno outside of the seqno window on the receiving nodes.
 
-Furthermore unicast transmissions come with the advantage of being
-acknowledged and potentially retried automatically, hence with a better
-reliability.
+Hm, what do others think about this? If I'm not mistaken then we
+currently have three places to consider, which would be affected
+by high packet rate multicast:
 
-The compromise so far was to (re-)transmit a broadcast packet three
-times in batman-adv and advise the user to set a higher multicast rate.
-However the multicast still needs to be chosen somewhat conservatively
-(typically something between 12MBit/s and 24MBit/s are chosen) to ensure
-robustness. Which might be too low for some applications.
+1) Sender, batadv_forw_packet_alloc() in batadv_add_bcast_packet_to_list():
+   -> BATADV_BCAST_QUEUE_LEN = 256
 
-With this patch a broadcast packet is forwarded on a link via individual
-unicast transmissions as long as the number of receivers is smaller or
-equal to the configurable multicast fanout (default: 16).
+2) Receiver, batadv_test_bit() in batadv_recv_bcast_packet():
+   -> BATADV_TQ_LOCAL_WINDOW_SIZE = 64 -> duplicate detection
 
-Unicasts are only send to neighboring nodes which are direct
-neighbors. So a neighbor node which we see on a link but which has a
-better reachability via a multi-hop path will not receive a unicast
-transmission.
+3) Receiver, batadv_window_protected() in batadv_recv_bcast_packet():
+   -> BATADV_EXPECTED_SEQNO_RANGE = 65536
 
-Furthermore, the broadcast avoidance checks still apply (no echo to
-previous sender, no echo to initial originator) to further reduce
-unicast transmissions.
 
-Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
----
- net/batman-adv/hard-interface.c |   1 +
- net/batman-adv/routing.c        |  38 ++++++++
- net/batman-adv/send.c           | 156 ++++++++++++++++++++++++++++++++
- net/batman-adv/types.h          |   8 ++
- 4 files changed, 203 insertions(+)
+I did some rough estimations with a 5Mbit/s multicast stream
+(typical bitrate of a 720p video), quantified to 1250 byte
+packets on a piece of paper. It seems ok-ish for the three cases
+above, but also seems to get in a range I would start feeling
+uncomfortable.
 
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index b71d8efc..11864f77 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -937,6 +937,7 @@ batadv_hardif_add_interface(struct net_device *net_dev)
- 
- 	batadv_v_hardif_init(hard_iface);
- 	atomic_set(&hard_iface->num_bcast_no_urcv, 0);
-+	atomic_set(&hard_iface->num_direct_orig, 0);
- 
- 	batadv_check_known_mac_addr(hard_iface->net_dev);
- 	kref_get(&hard_iface->refcount);
-diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 03b4e609..99a138ae 100644
---- a/net/batman-adv/routing.c
-+++ b/net/batman-adv/routing.c
-@@ -42,6 +42,40 @@
- static int batadv_route_unicast_packet(struct sk_buff *skb,
- 				       struct batadv_hard_iface *recv_if);
- 
-+/**
-+ * batadv_route_update_direct_neigh_count() - update the direct neighbor counter
-+ * @oldrouter: the previously selected router
-+ * @newrouter: the newly selected router
-+ * @orig: the originator (MAC) the router is updated for
-+ *
-+ * Updates to direct neighbor originator counter of the hard interface the old
-+ * and new router belongs to.
-+ */
-+static void
-+batadv_route_update_direct_neigh_count(struct batadv_neigh_node *oldrouter,
-+				       struct batadv_neigh_node *newrouter,
-+				       u8 *orig)
-+{
-+	bool oldrouter_is_direct = false;
-+	bool newrouter_is_direct = false;
-+	u8 *neigh_orig;
-+
-+	if (oldrouter) {
-+		neigh_orig = oldrouter->hardif_neigh->orig;
-+		oldrouter_is_direct = batadv_compare_eth(neigh_orig, orig);
-+	}
-+
-+	if (newrouter) {
-+		neigh_orig = newrouter->hardif_neigh->orig;
-+		newrouter_is_direct = batadv_compare_eth(neigh_orig, orig);
-+	}
-+
-+	if (oldrouter_is_direct && !newrouter_is_direct)
-+		atomic_dec(&oldrouter->if_incoming->num_direct_orig);
-+	else if (!oldrouter_is_direct && newrouter_is_direct)
-+		atomic_inc(&newrouter->if_incoming->num_direct_orig);
-+}
-+
- /**
-  * _batadv_update_route() - set the router for this originator
-  * @bat_priv: the bat priv with all the soft interface information
-@@ -77,6 +111,10 @@ static void _batadv_update_route(struct batadv_priv *bat_priv,
- 	if (neigh_node)
- 		kref_get(&neigh_node->refcount);
- 
-+	if (recv_if == BATADV_IF_DEFAULT)
-+		batadv_route_update_direct_neigh_count(curr_router, neigh_node,
-+						       orig_node->orig);
-+
- 	rcu_assign_pointer(orig_ifinfo->router, neigh_node);
- 	spin_unlock_bh(&orig_node->neigh_list_lock);
- 	batadv_orig_ifinfo_put(orig_ifinfo);
-diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
-index 1341b9ac..c83f14b2 100644
---- a/net/batman-adv/send.c
-+++ b/net/batman-adv/send.c
-@@ -905,6 +905,146 @@ static bool batadv_send_no_broadcast(struct batadv_priv *bat_priv,
- 	return true;
- }
- 
-+/**
-+ * batadv_forw_bcast_may_ucast() - check if a broadcast packet can be unicasted
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @if_out: the outgoing interface to check for
-+ *
-+ * Return: True if the number of 1-hop, direct neighbor originators on the given
-+ * interface is smaller than or equal to the configured multicast fanout limit
-+ * and all neighbor nodes support the reception of batman-adv broadcast
-+ * packets with a unicast ethernet frame destination. Otherwise returns false.
-+ */
-+static bool batadv_forw_bcast_may_ucast(struct batadv_priv *bat_priv,
-+					struct batadv_hard_iface *if_out)
-+{
-+	unsigned long num_direct_orig;
-+	unsigned long num_bcast_no_urcv;
-+
-+	num_direct_orig = atomic_read(&if_out->num_direct_orig);
-+	num_bcast_no_urcv = atomic_read(&if_out->num_bcast_no_urcv);
-+
-+	return !num_bcast_no_urcv &&
-+	       (num_direct_orig <= atomic_read(&bat_priv->multicast_fanout));
-+}
-+
-+/**
-+ * batadv_forw_bcasts_via_ucasts_check() - check if a neighbor needs a unicast
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: broadcast packet to check
-+ * @if_out: the outgoing interface to check for
-+ * @if_neigh: the neighbor node to check for
-+ * @own_packet: true if it is a self-generated broadcast packet
-+ *
-+ * Return: True if a packet needs to be transmitted to the given neighbor,
-+ * false otherwise.
-+ */
-+static bool
-+batadv_forw_bcasts_via_ucasts_check(struct batadv_priv *bat_priv,
-+				    struct sk_buff *skb,
-+				    struct batadv_hard_iface *if_out,
-+				    struct batadv_hardif_neigh_node *if_neigh,
-+				    bool own_packet)
-+{
-+	u8 *bcast_orig = ((struct batadv_bcast_packet *)skb->data)->orig;
-+	struct batadv_hardif_neigh_node *neigh_node = NULL;
-+	struct batadv_neigh_node *router = NULL;
-+	struct batadv_orig_node *orig_node;
-+	bool ret = false;
-+	u8 *router_addr;
-+	u8 *neigh_addr;
-+	u8 *orig_neigh;
-+
-+	if (!own_packet) {
-+		neigh_addr = eth_hdr(skb)->h_source;
-+		neigh_node = batadv_hardif_neigh_get(if_out,
-+						     neigh_addr);
-+	}
-+
-+	orig_neigh = neigh_node ? neigh_node->orig : NULL;
-+
-+	orig_node = batadv_orig_hash_find(bat_priv, if_neigh->orig);
-+	if (orig_node) {
-+		router = batadv_orig_router_get(orig_node, BATADV_IF_DEFAULT);
-+		router_addr = router ? router->addr : NULL;
-+	}
-+
-+	/* is the originator -> no rebroadcast */
-+	if (batadv_compare_eth(if_neigh->orig, bcast_orig)) {
-+		goto out;
-+	/* is the one we received from -> no rebroadcast */
-+	} else if (orig_neigh &&
-+		   batadv_compare_eth(if_neigh->orig, orig_neigh)) {
-+		goto out;
-+	/* only 1-hop, direct neighbor originators */
-+	} else if (router && !batadv_compare_eth(router_addr, if_neigh->addr)) {
-+		goto out;
-+	}
-+
-+	ret = true;
-+out:
-+	if (router)
-+		batadv_neigh_node_put(router);
-+	if (orig_node)
-+		batadv_orig_node_put(orig_node);
-+	if (neigh_node)
-+		batadv_hardif_neigh_put(neigh_node);
-+
-+	return ret;
-+}
-+
-+/**
-+ * batadv_forw_bcast_packet_via_ucasts() - unicast a broadcast packet
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: broadcast packet to send
-+ * @own_packet: true if it is a self-generated broadcast packet
-+ * @if_out: the outgoing interface to forward to
-+ *
-+ * Forwards a broadcast packet on the specified interface via unicast
-+ * transmissions.
-+ *
-+ * This call clones the given skb, hence the caller needs to take into
-+ * account that the data segment of the original skb might not be
-+ * modifiable anymore.
-+ *
-+ * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
-+ */
-+static int batadv_forw_bcast_via_ucasts(struct batadv_priv *bat_priv,
-+					struct sk_buff *skb,
-+					bool own_packet,
-+					struct batadv_hard_iface *if_out)
-+{
-+	struct batadv_hardif_neigh_node *hardif_neigh;
-+	struct sk_buff *newskb;
-+	int ret = NETDEV_TX_OK;
-+
-+	rcu_read_lock();
-+	hlist_for_each_entry_rcu(hardif_neigh, &if_out->neigh_list, list) {
-+		if (!kref_get_unless_zero(&hardif_neigh->refcount))
-+			continue;
-+
-+		if (!batadv_forw_bcasts_via_ucasts_check(bat_priv, skb, if_out,
-+							 hardif_neigh,
-+							 own_packet)) {
-+			batadv_hardif_neigh_put(hardif_neigh);
-+			continue;
-+		}
-+
-+		newskb = skb_clone(skb, GFP_ATOMIC);
-+		if (!newskb) {
-+			batadv_hardif_neigh_put(hardif_neigh);
-+			ret = NETDEV_TX_BUSY;
-+			break;
-+		}
-+
-+		batadv_send_skb_packet(newskb, if_out, hardif_neigh->addr);
-+		batadv_hardif_neigh_put(hardif_neigh);
-+	}
-+	rcu_read_unlock();
-+
-+	return ret;
-+}
-+
- /**
-  * __batadv_forw_bcast_packet() - forward and queue a broadcast packet
-  * @bat_priv: the bat priv with all the soft interface information
-@@ -949,6 +1089,22 @@ static int __batadv_forw_bcast_packet(struct batadv_priv *bat_priv,
- 			continue;
- 		}
- 
-+		/* try individual unicasts first */
-+		if (!delay && batadv_forw_bcast_may_ucast(bat_priv,
-+							  hard_iface)) {
-+			ret = batadv_forw_bcast_via_ucasts(bat_priv, skb,
-+							   own_packet,
-+							   hard_iface);
-+
-+			if (ret == NETDEV_TX_BUSY) {
-+				batadv_hardif_put(hard_iface);
-+				break;
-+			}
-+
-+			batadv_hardif_put(hard_iface);
-+			continue;
-+		} /* else: transmit via broadcast */
-+
- 		ret = batadv_forw_bcast_packet_if(bat_priv, skb, delay,
- 						  own_packet, primary_if,
- 						  hard_iface);
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 877a2762..52a51861 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -200,6 +200,14 @@ struct batadv_hard_iface {
- 	 */
- 	atomic_t num_bcast_no_urcv;
- 
-+	/**
-+	 * @num_direct_orig: number of neighboring originators on this
-+	 * interface which have a direct, 1-hop path (which is equivalent
-+	 * to the number of neighbor nodes on this interface which are a
-+	 * selected router)
-+	 */
-+	atomic_t num_direct_orig;
-+
- 	/** @bat_iv: per hard-interface B.A.T.M.A.N. IV data */
- 	struct batadv_hard_iface_bat_iv bat_iv;
- 
--- 
-2.20.1
+Dropping early via noflood instead of dropping later on the
+hard-interfaces via BPF would avoid taking up queueing space and
+sequence numbers.
 
+(And I think the queueing onto the kworker also creates quite a
+bit of load. At least something like that was my experience on
+a Raspberry Pi One with a USB wifi dongle which used a driver
+that queued everything onto the kworker, the kworker was
+always very busy and never made it above 10-15MBit/s if I remember
+correctly [1].)
+
+
+[1]: https://wikidevi.com/wiki/TP-LINK_TL-WDN4200
