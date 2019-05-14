@@ -1,56 +1,57 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC751C404
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 May 2019 09:39:37 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F531C405
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 May 2019 09:39:45 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id ECB55816B8;
-	Tue, 14 May 2019 09:39:11 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by open-mesh.org (Postfix) with ESMTPS id 822268165E
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 May 2019 09:39:07 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 7A10181C5D;
+	Tue, 14 May 2019 09:39:16 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:171:314c::100:a1])
+ by open-mesh.org (Postfix) with ESMTPS id D240481685
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 May 2019 09:39:08 +0200 (CEST)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1557819547; h=from:from:sender:reply-to:subject:subject:date:date:
+ t=1557819548; h=from:from:sender:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=83VPyxoBpH5w+YTsIpXS29RumNmt3DUJvvBm38YRWMg=;
- b=R3KLKBDyhDcFpKSbh0RIDw/NwY3+b5gnriVoRoJSPcglpmG+cdCg30tSf7hf5VywWjETl+
- 1JHKuVEVzJfqJSigj0wOj5EnRa2bwrcmznB2Wt8ZAA1LdL7wNrQqBgrViduoJkjMdsJgFA
- Vxega4xIflI32gwaQu9YQbFhkpunQX+LLxmmALl0TI+JGEhNeFS9XZS2kE97rYv+IDDl3+
- VsYYMwE6rSKSbYixk+X3l2kWF3YMD1PxXz+StARmVd3hAcnKUJeWQUPVAsGURHDi7x8Ekg
- XKzAWRCvp13uJJKmoO6iiGw4aTP9T6fXKka6J7pmtuiPPn999f9eH1FpqK/oMg==
+ bh=21fegVcgSa2wwI+MSezd8d5H85nOzU0CW+NDxLwkqOs=;
+ b=DxnGSin4qRJq2dYK0YVwXt+52naS35rRzgUS3OIVK/WpYgh+Yd09orjEt6GfbRkRXVmBfD
+ wiPHF9MYVozBXctx8gvBXJdcYPa3Z639qugQV1gpfaOwqpDw+wdD+mM8iAjkk56iCcYFoe
+ 2GuqzKr9jNQNfH8/rKKePNk9bPn3Ts3FDSA1O4B7CZXEdpYpnwrN6i5FoP+R0DS0SDZ784
+ 1AtAKhsK5HV/SyCub7I+BGulRVAosJBqcxcAi6atMt1ZQPxArRop3F9ZMn/4A13RlgO1Jt
+ rjni7SGXlacGvl9BDgq3Hl0gbMR7nOriBVjNrczL9wpWB4MsG2OV+Z1bDA/xpA==
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 2/3] batman-adv: allow broadcast packet type with unicast
- destination
-Date: Tue, 14 May 2019 09:38:58 +0200
-Message-Id: <20190514073859.2053-3-linus.luessing@c0d3.blue>
+Subject: [PATCH 3/3] batman-adv: forward broadcast packets via unicast
+ transmissions
+Date: Tue, 14 May 2019 09:38:59 +0200
+Message-Id: <20190514073859.2053-4-linus.luessing@c0d3.blue>
 In-Reply-To: <20190514073859.2053-1-linus.luessing@c0d3.blue>
 References: <20190514073859.2053-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1557819547; h=from:from:sender:reply-to:subject:subject:date:date:
+ s=2018; t=1557819548; h=from:from:sender:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:openpgp:autocrypt;
- bh=83VPyxoBpH5w+YTsIpXS29RumNmt3DUJvvBm38YRWMg=;
- b=AS64a8ZqEe/rI7+7GYxxeURyaAnEjcN1m1u/4JFZEU3jEbRIFMi7Fwi7SL59SmNLX0lAH6
- aJ0yHPVA4z/AByyNYw5dBCnI2iZTsl+XEkeKoOEMK8hZPlmDPdGf/2/3MvpKIhjALu0kGr
- 8WJOQc3ICjh31oIvvlOwKDNrA6V0KA/tK7YLyb6FIQ/vbCyjn/lfvUSxFV4qR3rxm37fOD
- iC9mNmn+MzFZTAVVb9Hw5LESDshopngUfjcnaH1CRNyPnJ7cTqQ1owD/8eqslQGDLnAmvJ
- AxRimUdP8lreUWACoFBCZGcOKGTMT6UM4rBjN09EDcHV7zmltmgCLnONaFagqQ==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1557819547; a=rsa-sha256; cv=none;
- b=LxlHAzMYbKKNB3EHqpfRXgQgD8B1xN3y+UZlHf+3N6GZPR9pDuh0K/57njh8qrEdHwjcfZ
- XV9id0/9En36UAULadacWySNDpQaNLrH4i82cEucBoP/Kz6pT4SmfcfoXWbaNFnZEsami+
- j0NG7xG1/zOOwqyHdOydOvB9i1d3e6qcNtMvzSZrrd81pxsSu+/BIFIspJs6ANJ+w4GDMM
- xokcxSdULM2casqOqZS3sNAWxilCRBz3F3NdfmTkRQWiEzOGzdh9U6cHhSL4kxbaiMJX9J
- QLtXyizzY95ZrcDdGcm09Y1ZvMVUDyHTD6KndL0aHX1F/iDieNeZfJGSB4aFpQ==
+ bh=21fegVcgSa2wwI+MSezd8d5H85nOzU0CW+NDxLwkqOs=;
+ b=UTI2AErMuUkbgfGtSMP4SqEpqE7/ovMNBqjwCpeEclZskXsJzCkryRd/spunhPg0mYuCaV
+ k6lid1TjT3Ya22hfXy85Nr8+doKeRDS8TYRcY5vJmSWIBVUobWCkt9x32WYO2t3pAuntxM
+ PHJdhiNfn53dHM5xgpP73hSfXSAzcwzagtU9LVqHiIJVc8aA5XNdJHEvexuz8O4KfwpgOe
+ +tOgq6UPPL/bHOsT2c6GtVtLqMeriJcH8uX/RZ1hQMzuAsl5onD9Jz4W/k4b/No/fk8uQO
+ wOWVzF+zB6A1XJt7soPRAGE1ghr3k9CuVnCEgjtoTluW+0n8Pbu7PR4C5vFYgg==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1557819548; a=rsa-sha256; cv=none;
+ b=hrwhaNs4JeDdPB02NWmPxZIpYpt6jeNPIiJfd70vFW12KCtPsA9AZOfz71nETUNwgTr/Xe
+ b+45uy7o5aK9oMrHTfOhI9bYnBigLs0VU3QyhqNCfW0MNOZoSAMWLY4f1IchtAW1O3x8xp
+ eLID61c1+4eYodb3OjJtOSkwz7DmCCu/rZ/JPifTeCITz9ArHWiQnXA1EWWzKrRqCy8RN3
+ yyRkdthnKp17L1uhOmjCWDvr7ALJ+73IlgdoLWQ/M0ezc7XmqGK7ES0VoorAoxWbcpyWDX
+ mIFZKH+N1Zu+5lHymh3vgfO8uIh9UnHFdLg+pmiA3k3WyYCRudcOmmskB3Tz5A==
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=linus.luessing@c0d3.blue
  smtp.mailfrom=linus.luessing@c0d3.blue
@@ -74,288 +75,302 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-So far, only batman-adv broadcast packets are allowed if they have a
-broadcast ethernet destination.
+With the high bitrates of modern wireless devices these days multiple
+unicast transmissions are usually less costly than a broadcast
+transmission on a low bitrate.
 
-For the upcoming broadcast-via-unicasts feature it is necessary that a
-neighboring node is capable of receiving a batman-adv broadcast packet
-with a unicast ethernet destination, too.
+Furthermore unicast transmissions come with the advantage of being
+acknowledged and potentially retried automatically, hence with a better
+reliability.
 
-Therefore this patch relaxes the ethernet destination check for
-batman-adv broadcast packets and adds the necessary capability tracking
-for later compatibility checking.
+The compromise so far was to (re-)transmit a broadcast packet three
+times in batman-adv and advise the user to set a higher multicast rate.
+However the multicast still needs to be chosen somewhat conservatively
+(typically something between 12MBit/s and 24MBit/s are chosen) to ensure
+robustness. Which might be too low for some applications.
+
+With this patch a broadcast packet is forwarded on a link via individual
+unicast transmissions as long as the number of receivers is smaller or
+equal to the configurable multicast fanout (default: 16).
+
+Unicasts are only send to neighboring nodes which are direct
+neighbors. So a neighbor node which we see on a link but which has a
+better reachability via a multi-hop path will not receive a unicast
+transmission.
+
+Furthermore, the broadcast avoidance checks still apply (no echo to
+previous sender, no echo to initial originator) to further reduce
+unicast transmissions.
 
 Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
 ---
- include/uapi/linux/batadv_packet.h |  2 +
- net/batman-adv/bat_iv_ogm.c        |  6 ++-
- net/batman-adv/bat_v_elp.c         |  2 +
- net/batman-adv/hard-interface.c    |  1 +
- net/batman-adv/originator.c        | 65 ++++++++++++++++++++++++++++++
- net/batman-adv/originator.h        |  3 ++
- net/batman-adv/routing.c           |  7 +++-
- net/batman-adv/types.h             | 21 ++++++++++
- 8 files changed, 104 insertions(+), 3 deletions(-)
+ net/batman-adv/hard-interface.c |   1 +
+ net/batman-adv/routing.c        |  38 ++++++++
+ net/batman-adv/send.c           | 156 ++++++++++++++++++++++++++++++++
+ net/batman-adv/types.h          |   8 ++
+ 4 files changed, 203 insertions(+)
 
-diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/batadv_packet.h
-index 4ebc2135..2ec59e4a 100644
---- a/include/uapi/linux/batadv_packet.h
-+++ b/include/uapi/linux/batadv_packet.h
-@@ -164,6 +164,7 @@ enum batadv_bla_claimframe {
-  * @BATADV_TVLV_TT: translation table tvlv
-  * @BATADV_TVLV_ROAM: roaming advertisement tvlv
-  * @BATADV_TVLV_MCAST: multicast capability tvlv
-+ * @BATADV_TVLV_BCAST: broadcast capability tvlv
-  */
- enum batadv_tvlv_type {
- 	BATADV_TVLV_GW		= 0x01,
-@@ -172,6 +173,7 @@ enum batadv_tvlv_type {
- 	BATADV_TVLV_TT		= 0x04,
- 	BATADV_TVLV_ROAM	= 0x05,
- 	BATADV_TVLV_MCAST	= 0x06,
-+	BATADV_TVLV_BCAST	= 0x07,
- };
- 
- #pragma pack(2)
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index bd4138dd..bcbebf10 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -1310,8 +1310,12 @@ batadv_iv_ogm_process_per_outif(const struct sk_buff *skb, int ogm_offset,
- 	if (is_single_hop_neigh) {
- 		hardif_neigh = batadv_hardif_neigh_get(if_incoming,
- 						       ethhdr->h_source);
--		if (hardif_neigh)
-+		if (hardif_neigh) {
- 			hardif_neigh->last_seen = jiffies;
-+
-+			batadv_hardif_neigh_update_capa(orig_node,
-+							hardif_neigh);
-+		}
- 	}
- 
- 	router = batadv_orig_router_get(orig_node, if_outgoing);
-diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
-index 2614a9ca..d49b61c1 100644
---- a/net/batman-adv/bat_v_elp.c
-+++ b/net/batman-adv/bat_v_elp.c
-@@ -489,6 +489,8 @@ static void batadv_v_elp_neigh_update(struct batadv_priv *bat_priv,
- 	hardif_neigh->bat_v.elp_latest_seqno = ntohl(elp_packet->seqno);
- 	hardif_neigh->bat_v.elp_interval = ntohl(elp_packet->elp_interval);
- 
-+	batadv_hardif_neigh_update_capa(orig_neigh, hardif_neigh);
-+
- hardif_free:
- 	if (hardif_neigh)
- 		batadv_hardif_neigh_put(hardif_neigh);
 diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 79d1731b..b71d8efc 100644
+index b71d8efc..11864f77 100644
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -936,6 +936,7 @@ batadv_hardif_add_interface(struct net_device *net_dev)
- 		hard_iface->num_bcasts = BATADV_NUM_BCASTS_WIRELESS;
+@@ -937,6 +937,7 @@ batadv_hardif_add_interface(struct net_device *net_dev)
  
  	batadv_v_hardif_init(hard_iface);
-+	atomic_set(&hard_iface->num_bcast_no_urcv, 0);
+ 	atomic_set(&hard_iface->num_bcast_no_urcv, 0);
++	atomic_set(&hard_iface->num_direct_orig, 0);
  
  	batadv_check_known_mac_addr(hard_iface->net_dev);
  	kref_get(&hard_iface->refcount);
-diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
-index 45db798a..73eacccf 100644
---- a/net/batman-adv/originator.c
-+++ b/net/batman-adv/originator.c
-@@ -42,6 +42,7 @@
- #include "routing.h"
- #include "soft-interface.h"
- #include "translation-table.h"
-+#include "tvlv.h"
- 
- /* hash class keys */
- static struct lock_class_key batadv_orig_hash_lock_class_key;
-@@ -196,6 +197,26 @@ void batadv_orig_node_vlan_put(struct batadv_orig_node_vlan *orig_vlan)
- 	kref_put(&orig_vlan->refcount, batadv_orig_node_vlan_release);
- }
- 
-+/**
-+ * batadv_orig_bcast_tvlv_ogm_handler() - process incoming broadcast tvlv
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @orig: the orig_node of the ogm
-+ * @flags: flags indicating the tvlv state (see batadv_tvlv_handler_flags)
-+ * @tvlv_value: tvlv buffer containing the multicast data
-+ * @tvlv_value_len: tvlv buffer length
-+ */
-+static void batadv_orig_bcast_tvlv_ogm_handler(struct batadv_priv *bat_priv,
-+					       struct batadv_orig_node *orig,
-+					       u8 flags,
-+					       void *tvlv_value,
-+					       u16 tvlv_value_len)
-+{
-+	if (flags & BATADV_TVLV_HANDLER_OGM_CIFNOTFND)
-+		clear_bit(BATADV_ORIG_CAPA_HAS_BCAST_URCV, &orig->capabilities);
-+	else
-+		set_bit(BATADV_ORIG_CAPA_HAS_BCAST_URCV, &orig->capabilities);
-+}
-+
- /**
-  * batadv_originator_init() - Initialize all originator structures
-  * @bat_priv: the bat priv with all the soft interface information
-@@ -215,6 +236,12 @@ int batadv_originator_init(struct batadv_priv *bat_priv)
- 	batadv_hash_set_lock_class(bat_priv->orig_hash,
- 				   &batadv_orig_hash_lock_class_key);
- 
-+	batadv_tvlv_container_register(bat_priv, BATADV_TVLV_BCAST, 1, NULL, 0);
-+	batadv_tvlv_handler_register(bat_priv,
-+				     batadv_orig_bcast_tvlv_ogm_handler,
-+				     NULL, BATADV_TVLV_BCAST, 1,
-+				     BATADV_TVLV_HANDLER_OGM_CIFNOTFND);
-+
- 	INIT_DELAYED_WORK(&bat_priv->orig_work, batadv_purge_orig);
- 	queue_delayed_work(batadv_event_workqueue,
- 			   &bat_priv->orig_work,
-@@ -269,6 +296,9 @@ static void batadv_hardif_neigh_release(struct kref *ref)
- 	hlist_del_init_rcu(&hardif_neigh->list);
- 	spin_unlock_bh(&hardif_neigh->if_incoming->neigh_list_lock);
- 
-+	if (!atomic_read(&hardif_neigh->bcast_has_urcv))
-+		atomic_dec(&hardif_neigh->if_incoming->num_bcast_no_urcv);
-+
- 	batadv_hardif_put(hardif_neigh->if_incoming);
- 	kfree_rcu(hardif_neigh, rcu);
- }
-@@ -542,6 +572,34 @@ batadv_neigh_node_get(const struct batadv_orig_node *orig_node,
- 	return res;
- }
- 
-+/**
-+ * batadv_hardif_neigh_update_capa() - update hardif neighbor capabilities
-+ * @orig_node: originator object representing the neighbour
-+ * @hardif_neigh: the hardif neighbor to update
-+ *
-+ * Propagates neighbor node specific capabilities from an originator node onto a
-+ * hardif neighbor node:
-+ *
-+ * This updates the broadcast-via-unicast reception capability flag of a
-+ * neighbor node and updates the matching counter on the hard interfaces it
-+ * belongs to.
-+ */
-+void
-+batadv_hardif_neigh_update_capa(const struct batadv_orig_node *orig_node,
-+				struct batadv_hardif_neigh_node *hardif_neigh)
-+{
-+	struct batadv_hard_iface *hard_iface = hardif_neigh->if_incoming;
-+
-+	if (test_bit(BATADV_ORIG_CAPA_HAS_BCAST_URCV,
-+		     &orig_node->capabilities)) {
-+		if (atomic_add_unless(&hardif_neigh->bcast_has_urcv, 1, 1))
-+			atomic_dec(&hard_iface->num_bcast_no_urcv);
-+	} else {
-+		if (atomic_add_unless(&hardif_neigh->bcast_has_urcv, -1, 0))
-+			atomic_inc(&hard_iface->num_bcast_no_urcv);
-+	}
-+}
-+
- /**
-  * batadv_hardif_neigh_create() - create a hardif neighbour node
-  * @hard_iface: the interface this neighbour is connected to
-@@ -576,6 +634,10 @@ batadv_hardif_neigh_create(struct batadv_hard_iface *hard_iface,
- 	hardif_neigh->if_incoming = hard_iface;
- 	hardif_neigh->last_seen = jiffies;
- 
-+	atomic_set(&hardif_neigh->bcast_has_urcv, 0);
-+	atomic_inc(&hardif_neigh->if_incoming->num_bcast_no_urcv);
-+	batadv_hardif_neigh_update_capa(orig_node, hardif_neigh);
-+
- 	kref_init(&hardif_neigh->refcount);
- 
- 	if (bat_priv->algo_ops->neigh.hardif_init)
-@@ -975,6 +1037,9 @@ void batadv_originator_free(struct batadv_priv *bat_priv)
- 
- 	cancel_delayed_work_sync(&bat_priv->orig_work);
- 
-+	batadv_tvlv_container_unregister(bat_priv, BATADV_TVLV_BCAST, 1);
-+	batadv_tvlv_handler_unregister(bat_priv, BATADV_TVLV_BCAST, 1);
-+
- 	bat_priv->orig_hash = NULL;
- 
- 	for (i = 0; i < hash->size; i++) {
-diff --git a/net/batman-adv/originator.h b/net/batman-adv/originator.h
-index 3829e26f..fb22161d 100644
---- a/net/batman-adv/originator.h
-+++ b/net/batman-adv/originator.h
-@@ -30,6 +30,9 @@ batadv_hardif_neigh_get(const struct batadv_hard_iface *hard_iface,
- 			const u8 *neigh_addr);
- void
- batadv_hardif_neigh_put(struct batadv_hardif_neigh_node *hardif_neigh);
-+void
-+batadv_hardif_neigh_update_capa(const struct batadv_orig_node *orig_node,
-+				struct batadv_hardif_neigh_node *hardif_neigh);
- struct batadv_neigh_node *
- batadv_neigh_node_get_or_create(struct batadv_orig_node *orig_node,
- 				struct batadv_hard_iface *hard_iface,
 diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 30fbd073..03b4e609 100644
+index 03b4e609..99a138ae 100644
 --- a/net/batman-adv/routing.c
 +++ b/net/batman-adv/routing.c
-@@ -1198,8 +1198,11 @@ int batadv_recv_bcast_packet(struct sk_buff *skb,
+@@ -42,6 +42,40 @@
+ static int batadv_route_unicast_packet(struct sk_buff *skb,
+ 				       struct batadv_hard_iface *recv_if);
  
- 	ethhdr = eth_hdr(skb);
++/**
++ * batadv_route_update_direct_neigh_count() - update the direct neighbor counter
++ * @oldrouter: the previously selected router
++ * @newrouter: the newly selected router
++ * @orig: the originator (MAC) the router is updated for
++ *
++ * Updates to direct neighbor originator counter of the hard interface the old
++ * and new router belongs to.
++ */
++static void
++batadv_route_update_direct_neigh_count(struct batadv_neigh_node *oldrouter,
++				       struct batadv_neigh_node *newrouter,
++				       u8 *orig)
++{
++	bool oldrouter_is_direct = false;
++	bool newrouter_is_direct = false;
++	u8 *neigh_orig;
++
++	if (oldrouter) {
++		neigh_orig = oldrouter->hardif_neigh->orig;
++		oldrouter_is_direct = batadv_compare_eth(neigh_orig, orig);
++	}
++
++	if (newrouter) {
++		neigh_orig = newrouter->hardif_neigh->orig;
++		newrouter_is_direct = batadv_compare_eth(neigh_orig, orig);
++	}
++
++	if (oldrouter_is_direct && !newrouter_is_direct)
++		atomic_dec(&oldrouter->if_incoming->num_direct_orig);
++	else if (!oldrouter_is_direct && newrouter_is_direct)
++		atomic_inc(&newrouter->if_incoming->num_direct_orig);
++}
++
+ /**
+  * _batadv_update_route() - set the router for this originator
+  * @bat_priv: the bat priv with all the soft interface information
+@@ -77,6 +111,10 @@ static void _batadv_update_route(struct batadv_priv *bat_priv,
+ 	if (neigh_node)
+ 		kref_get(&neigh_node->refcount);
  
--	/* packet with broadcast indication but unicast recipient */
--	if (!is_broadcast_ether_addr(ethhdr->h_dest))
-+	/* packet with broadcast indication but unicast recipient
-+	 * which is not us
-+	 */
-+	if (!is_broadcast_ether_addr(ethhdr->h_dest) &&
-+	    !batadv_is_my_mac(bat_priv, ethhdr->h_dest))
- 		goto free_skb;
++	if (recv_if == BATADV_IF_DEFAULT)
++		batadv_route_update_direct_neigh_count(curr_router, neigh_node,
++						       orig_node->orig);
++
+ 	rcu_assign_pointer(orig_ifinfo->router, neigh_node);
+ 	spin_unlock_bh(&orig_node->neigh_list_lock);
+ 	batadv_orig_ifinfo_put(orig_ifinfo);
+diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
+index 1341b9ac..c83f14b2 100644
+--- a/net/batman-adv/send.c
++++ b/net/batman-adv/send.c
+@@ -905,6 +905,146 @@ static bool batadv_send_no_broadcast(struct batadv_priv *bat_priv,
+ 	return true;
+ }
  
- 	/* packet with broadcast/multicast sender address */
++/**
++ * batadv_forw_bcast_may_ucast() - check if a broadcast packet can be unicasted
++ * @bat_priv: the bat priv with all the soft interface information
++ * @if_out: the outgoing interface to check for
++ *
++ * Return: True if the number of 1-hop, direct neighbor originators on the given
++ * interface is smaller than or equal to the configured multicast fanout limit
++ * and all neighbor nodes support the reception of batman-adv broadcast
++ * packets with a unicast ethernet frame destination. Otherwise returns false.
++ */
++static bool batadv_forw_bcast_may_ucast(struct batadv_priv *bat_priv,
++					struct batadv_hard_iface *if_out)
++{
++	unsigned long num_direct_orig;
++	unsigned long num_bcast_no_urcv;
++
++	num_direct_orig = atomic_read(&if_out->num_direct_orig);
++	num_bcast_no_urcv = atomic_read(&if_out->num_bcast_no_urcv);
++
++	return !num_bcast_no_urcv &&
++	       (num_direct_orig <= atomic_read(&bat_priv->multicast_fanout));
++}
++
++/**
++ * batadv_forw_bcasts_via_ucasts_check() - check if a neighbor needs a unicast
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: broadcast packet to check
++ * @if_out: the outgoing interface to check for
++ * @if_neigh: the neighbor node to check for
++ * @own_packet: true if it is a self-generated broadcast packet
++ *
++ * Return: True if a packet needs to be transmitted to the given neighbor,
++ * false otherwise.
++ */
++static bool
++batadv_forw_bcasts_via_ucasts_check(struct batadv_priv *bat_priv,
++				    struct sk_buff *skb,
++				    struct batadv_hard_iface *if_out,
++				    struct batadv_hardif_neigh_node *if_neigh,
++				    bool own_packet)
++{
++	u8 *bcast_orig = ((struct batadv_bcast_packet *)skb->data)->orig;
++	struct batadv_hardif_neigh_node *neigh_node = NULL;
++	struct batadv_neigh_node *router = NULL;
++	struct batadv_orig_node *orig_node;
++	bool ret = false;
++	u8 *router_addr;
++	u8 *neigh_addr;
++	u8 *orig_neigh;
++
++	if (!own_packet) {
++		neigh_addr = eth_hdr(skb)->h_source;
++		neigh_node = batadv_hardif_neigh_get(if_out,
++						     neigh_addr);
++	}
++
++	orig_neigh = neigh_node ? neigh_node->orig : NULL;
++
++	orig_node = batadv_orig_hash_find(bat_priv, if_neigh->orig);
++	if (orig_node) {
++		router = batadv_orig_router_get(orig_node, BATADV_IF_DEFAULT);
++		router_addr = router ? router->addr : NULL;
++	}
++
++	/* is the originator -> no rebroadcast */
++	if (batadv_compare_eth(if_neigh->orig, bcast_orig)) {
++		goto out;
++	/* is the one we received from -> no rebroadcast */
++	} else if (orig_neigh &&
++		   batadv_compare_eth(if_neigh->orig, orig_neigh)) {
++		goto out;
++	/* only 1-hop, direct neighbor originators */
++	} else if (router && !batadv_compare_eth(router_addr, if_neigh->addr)) {
++		goto out;
++	}
++
++	ret = true;
++out:
++	if (router)
++		batadv_neigh_node_put(router);
++	if (orig_node)
++		batadv_orig_node_put(orig_node);
++	if (neigh_node)
++		batadv_hardif_neigh_put(neigh_node);
++
++	return ret;
++}
++
++/**
++ * batadv_forw_bcast_packet_via_ucasts() - unicast a broadcast packet
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: broadcast packet to send
++ * @own_packet: true if it is a self-generated broadcast packet
++ * @if_out: the outgoing interface to forward to
++ *
++ * Forwards a broadcast packet on the specified interface via unicast
++ * transmissions.
++ *
++ * This call clones the given skb, hence the caller needs to take into
++ * account that the data segment of the original skb might not be
++ * modifiable anymore.
++ *
++ * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
++ */
++static int batadv_forw_bcast_via_ucasts(struct batadv_priv *bat_priv,
++					struct sk_buff *skb,
++					bool own_packet,
++					struct batadv_hard_iface *if_out)
++{
++	struct batadv_hardif_neigh_node *hardif_neigh;
++	struct sk_buff *newskb;
++	int ret = NETDEV_TX_OK;
++
++	rcu_read_lock();
++	hlist_for_each_entry_rcu(hardif_neigh, &if_out->neigh_list, list) {
++		if (!kref_get_unless_zero(&hardif_neigh->refcount))
++			continue;
++
++		if (!batadv_forw_bcasts_via_ucasts_check(bat_priv, skb, if_out,
++							 hardif_neigh,
++							 own_packet)) {
++			batadv_hardif_neigh_put(hardif_neigh);
++			continue;
++		}
++
++		newskb = skb_clone(skb, GFP_ATOMIC);
++		if (!newskb) {
++			batadv_hardif_neigh_put(hardif_neigh);
++			ret = NETDEV_TX_BUSY;
++			break;
++		}
++
++		batadv_send_skb_packet(newskb, if_out, hardif_neigh->addr);
++		batadv_hardif_neigh_put(hardif_neigh);
++	}
++	rcu_read_unlock();
++
++	return ret;
++}
++
+ /**
+  * __batadv_forw_bcast_packet() - forward and queue a broadcast packet
+  * @bat_priv: the bat priv with all the soft interface information
+@@ -949,6 +1089,22 @@ static int __batadv_forw_bcast_packet(struct batadv_priv *bat_priv,
+ 			continue;
+ 		}
+ 
++		/* try individual unicasts first */
++		if (!delay && batadv_forw_bcast_may_ucast(bat_priv,
++							  hard_iface)) {
++			ret = batadv_forw_bcast_via_ucasts(bat_priv, skb,
++							   own_packet,
++							   hard_iface);
++
++			if (ret == NETDEV_TX_BUSY) {
++				batadv_hardif_put(hard_iface);
++				break;
++			}
++
++			batadv_hardif_put(hard_iface);
++			continue;
++		} /* else: transmit via broadcast */
++
+ 		ret = batadv_forw_bcast_packet_if(bat_priv, skb, delay,
+ 						  own_packet, primary_if,
+ 						  hard_iface);
 diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 74b64473..877a2762 100644
+index 877a2762..52a51861 100644
 --- a/net/batman-adv/types.h
 +++ b/net/batman-adv/types.h
-@@ -193,6 +193,13 @@ struct batadv_hard_iface {
- 	/** @rcu: struct used for freeing in an RCU-safe manner */
- 	struct rcu_head rcu;
+@@ -200,6 +200,14 @@ struct batadv_hard_iface {
+ 	 */
+ 	atomic_t num_bcast_no_urcv;
  
 +	/**
-+	 * @num_bcast_no_urcv: number of neighbor nodes on this interface which
-+	 * do not support receiving batman-adv broadcast packets with a
-+	 * unicast ethernet frame destination
++	 * @num_direct_orig: number of neighboring originators on this
++	 * interface which have a direct, 1-hop path (which is equivalent
++	 * to the number of neighbor nodes on this interface which are a
++	 * selected router)
 +	 */
-+	atomic_t num_bcast_no_urcv;
++	atomic_t num_direct_orig;
 +
  	/** @bat_iv: per hard-interface B.A.T.M.A.N. IV data */
  	struct batadv_hard_iface_bat_iv bat_iv;
  
-@@ -528,6 +535,13 @@ enum batadv_orig_capabilities {
- 	 *  (= orig node announces a tvlv of type BATADV_TVLV_MCAST)
- 	 */
- 	BATADV_ORIG_CAPA_HAS_MCAST,
-+
-+	/**
-+	 * BATADV_ORIG_CAPA_HAS_BCAST_URCV: orig node is able to receive
-+	 * batman-adv broadcast packets with a unicast ethernet frame
-+	 * destination
-+	 */
-+	BATADV_ORIG_CAPA_HAS_BCAST_URCV,
- };
- 
- /**
-@@ -600,6 +614,13 @@ struct batadv_hardif_neigh_node {
- 	/** @last_seen: when last packet via this neighbor was received */
- 	unsigned long last_seen;
- 
-+	/**
-+	 * @bcast_has_urcv: a flag indicating whether this neighbor node
-+	 * supports receiving batman-adv broadcast packets with a unicast
-+	 * ethernet frame destination
-+	 */
-+	atomic_t bcast_has_urcv;
-+
- #ifdef CONFIG_BATMAN_ADV_BATMAN_V
- 	/** @bat_v: B.A.T.M.A.N. V private data */
- 	struct batadv_hardif_neigh_node_bat_v bat_v;
 -- 
 2.20.1
 
