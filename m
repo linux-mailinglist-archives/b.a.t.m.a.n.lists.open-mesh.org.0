@@ -2,51 +2,58 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1841A936
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 11 May 2019 21:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC7F1C401
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 May 2019 09:39:18 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id DB57282528;
-	Sat, 11 May 2019 21:17:15 +0200 (CEST)
-Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id AF1F480A40
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 11 May 2019 21:17:12 +0200 (CEST)
-Received: from sven-desktop.home.narfation.org (unknown
- [IPv6:2a00:1ca0:1480:f1fc::4065])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id 4DA1D1100D9
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 11 May 2019 21:17:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1557602232; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:content-type:
+	by open-mesh.org (Postfix) with ESMTP id 18A3D81672;
+	Tue, 14 May 2019 09:39:08 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:171:314c::100:a1])
+ by open-mesh.org (Postfix) with ESMTPS id 1C47A802FA
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 May 2019 09:39:05 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1557819544; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:in-reply-to:
- references:openpgp:autocrypt; bh=wzF0i17ZNNy23DJWAnHD/h+UtkFRIQ6VT2xsjmfPKoE=; 
- b=LmQHVLwdq5hooJ7w4QA8bqcnb6yM2EACWu6k17dRVCGDIg+iaZtZnpaUXsfQ7er9OPEiCR
- lqLPsxzeQprYHyQAD/Ez7z12ytI9VHEJ2XyBUOvmzdDyOzptZpjNDUNYnU0WpeKPyARKSY
- IAItdXGFgSg8fPETf14xGXagz0T615Y=
-From: Sven Eckelmann <sven@narfation.org>
+ references:openpgp:autocrypt; bh=Yg7NKY4eyBFPeyPJE94KcAcAh2LVsjCd7t2r3uqokRM=; 
+ b=MMsLmuMdjxpk3EslwEIsdtEDlOIREEHOvIEJMH5BqXczyGU8rXCFeKNyot/j+78nt8B6K5
+ X5ZMqc7FZeEn11tG4jPsAmx9jxvWwPBkKX5kqkg9pW7MRpxw6pLq/tfHxc7A6bq3ZoLIUb
+ xvBk7FZZycXPDNTMp/wAFC8AL08E9gCGmccQVuIsvkaP9Hv0hzQ5m5ExqEyYhWcIXM9SWq
+ Yu9m004SxFlBHbfWco2vcPIfNsmN1tg1CTJfhzbX6GRtQyLuATRV8KkyOxJy3oALQgi5tw
+ TKD1k1DRiVEHAq1VDZouQqSvxd/XT7gLFTGyCDBfuPgP0tEUJaBssyK62sbSeQ==
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] batman-adv: convert stream-like files from nonseekable_open
- -> stream_open
-Date: Sat, 11 May 2019 21:17:09 +0200
-Message-Id: <20190511191709.15673-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+Subject: [PATCH 0/3] batman-adv: broadcast flooding improvements
+Date: Tue, 14 May 2019 09:38:56 +0200
+Message-Id: <20190514073859.2053-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1557602232;
- h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:content-type:
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
+ s=2018; t=1557819544; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:in-reply-to:
  references:openpgp:autocrypt;
- bh=wzF0i17ZNNy23DJWAnHD/h+UtkFRIQ6VT2xsjmfPKoE=;
- b=OjjBqyjYO5DqB/TwACC+pJRNHRvLLk7OZ7GQ4KHrtaY9WssG3deW+7BVMvnfBu0I4RRHuN
- kgZ23PqLMsoCIpnWJfH+VqxgF/i/3KhWgIIFcU0da21Hs+xJ+HR+tc0uxPoGH5zvop4jH6
- gZKobzD+FtwsYxG2RwYypVDIy5hZynI=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1557602232; a=rsa-sha256; cv=none;
- b=VXi0SVfpD9p63txnY6qlXinEM9rH6kjl1KySXGDlrjSZezIhObRIDrQEjJUioj6JzcXpBH
- X74U+HRQ366o8rr/FWGzYYJMrqHZtUOUhgVB5nLvNWVAxCrVZcxKFOZPU+hxeqiQdXG5nC
- ZKOPR1VKdmeco8qEayJ6zyWwhJXfX0o=
+ bh=Yg7NKY4eyBFPeyPJE94KcAcAh2LVsjCd7t2r3uqokRM=;
+ b=MufDsyWyTtB1HVzLpaH+fsH9xmqb/CiaJv4JBPBOp9l99FvRSxQ6bmtiC5Ww51OYje9nDk
+ PI1JHfO7MYbZ8vSTvt56Tu5aprUqmrHx+zSb4EGGRJIfUW2BS8/5WKisOxw5b/9VSXcrKV
+ c9Dy+cXxr0lhWlfKIBL65mGcnuHTIPl9fDPq74n1rPD8J8+eveXfV7wvxSa1AQ8aTGZmCT
+ g7Ztui8UgkSoRMmzho9ZSdzyrBsyD55uG40X2vwwsv+qr0kqE+8ZVgQimExmRenlbBm5xc
+ EA9YuVc6nXtqOMNcF0umNpndYy3FHopk+7FlrWzP9vtjCx0dTm9Dw/DeL0+2cQ==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1557819544; a=rsa-sha256; cv=none;
+ b=dVhiqajDimVwgjciY+UjS/M06CP285jHGc/wSZ0DRhQtX3UH7HjtWoEPAZvKFnuYGci0JR
+ 4TsnWEUSG+foWyS9t1cnu07zjVC9p/w0B1Fd3/vL9GGCITs0YRoLGAUr0SdOhtEAf/2s57
+ pjBhBEiTxTmXLH9XqYG/PRMFnEb/XgArSV4vZQjDKo+/LYc9KP9LvnDUTBStuwwiianBfQ
+ zM3j4MSdMieTUb0Mykk9LVCN/nr4LG26MOymjT1c5s4gSr5jNhnXI45vxnSOjuxp5eVITR
+ Aud80QICHV+H6Czcrw2grvF0xWKz/u/kJKWTf/T5AfvdF/wrfb9hzUrLVG3zAQ==
 ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -64,82 +71,28 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Kirill Smelkov <kirr@nexedi.com>
+Hi,
 
-Using scripts/coccinelle/api/stream_open.cocci added in 10dce8af3422
-("fs: stream_open - opener for stream-like files so that read and write
-can run simultaneously without deadlock"), search and convert to
-stream_open all in-kernel nonseekable_open users for which read and
-write actually do not depend on ppos and where there is no other methods
-in file_operations which assume @offset access.
+This patchset adds two improvements for the broadcast flooding
+algorithm:
 
-I've verified each generated change manually - that it is correct to convert -
-and each other nonseekable_open instance left - that it is either not correct
-to convert there, or that it is not converted due to current stream_open.cocci
-limitations.
+The first patch refactors/reorders the broadcast packet queueing.
+Before a broadcast packet was always queued. Now the queueing decision
+is performed on a per interface basis. Also the first broadcast is always
+transmitted immediately, without queueing now to increase performance.
 
-One can also recheck/review the patch via generating it with explanation comments included via
+Furthermore this restructuring prepares for the next two patches:
 
-	$ make coccicheck MODE=patch COCCI=scripts/coccinelle/api/stream_open.cocci SPFLAGS="-D explain"
+Patches 2 and 3 introduce a broadcast-packet-to-unicast mechanism.
+Similar to the multicast-to-unicast feature of the multicast back-end a
+broadcast packet is split into multiple unicast transmissions. The major
+difference here, for the broadcast flooding, is that it is performed on
+a per-hop instead of the initial originator node basis.
 
-Signed-off-by: Kirill Smelkov <kirr@nexedi.com>
-[sven@narfation.org: added compat code]
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
-This change is already upstream
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/patch/?id=c5bf68fe0c86a5835bd2e6aead1c49976360753f
----
- compat-include/linux/fs.h    | 11 +++++++++++
- net/batman-adv/icmp_socket.c |  2 +-
- net/batman-adv/log.c         |  2 +-
- 3 files changed, 13 insertions(+), 2 deletions(-)
+This should improve throughput and reliability in densely populated
+receiver scenarios, where the multicast back-end is not able to operate
+(the multicast back-end is more targeted at sparsely populated receiver
+scenarios so far).
 
-diff --git a/compat-include/linux/fs.h b/compat-include/linux/fs.h
-index c52e0e8e..480722f0 100644
---- a/compat-include/linux/fs.h
-+++ b/compat-include/linux/fs.h
-@@ -31,4 +31,15 @@ static inline struct dentry *batadv_file_dentry(const struct file *file)
- 
- #endif /* < KERNEL_VERSION(4, 6, 0) */
- 
-+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 2, 0)
-+
-+static inline int batadv_stream_open(struct inode *inode, struct file *filp)
-+{
-+	return nonseekable_open(inode, filp);
-+}
-+
-+#define stream_open batadv_stream_open
-+
-+#endif /* < KERNEL_VERSION(5, 2, 0) */
-+
- #endif	/* _NET_BATMAN_ADV_COMPAT_LINUX_FS_H_ */
-diff --git a/net/batman-adv/icmp_socket.c b/net/batman-adv/icmp_socket.c
-index de81b5ec..0a91c866 100644
---- a/net/batman-adv/icmp_socket.c
-+++ b/net/batman-adv/icmp_socket.c
-@@ -65,7 +65,7 @@ static int batadv_socket_open(struct inode *inode, struct file *file)
- 
- 	batadv_debugfs_deprecated(file, "");
- 
--	nonseekable_open(inode, file);
-+	stream_open(inode, file);
- 
- 	socket_client = kmalloc(sizeof(*socket_client), GFP_KERNEL);
- 	if (!socket_client) {
-diff --git a/net/batman-adv/log.c b/net/batman-adv/log.c
-index 60ce11e1..f79ebd5b 100644
---- a/net/batman-adv/log.c
-+++ b/net/batman-adv/log.c
-@@ -90,7 +90,7 @@ static int batadv_log_open(struct inode *inode, struct file *file)
- 	batadv_debugfs_deprecated(file,
- 				  "Use tracepoint batadv:batadv_dbg instead\n");
- 
--	nonseekable_open(inode, file);
-+	stream_open(inode, file);
- 	file->private_data = inode->i_private;
- 	return 0;
- }
--- 
-2.20.1
+Regards, Linus
 
