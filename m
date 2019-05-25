@@ -1,52 +1,52 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1D22A3E5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 25 May 2019 12:24:47 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60212A3EC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 25 May 2019 12:53:26 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 615AC824D3;
-	Sat, 25 May 2019 12:24:43 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 168F582540;
+	Sat, 25 May 2019 12:53:20 +0200 (CEST)
 Received: from v3-1039.vlinux.de (narfation.org [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id BE03D8101D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 25 May 2019 12:24:40 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id 7E67A80A47
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 25 May 2019 12:53:17 +0200 (CEST)
 Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id 781971100D9;
- Sat, 25 May 2019 12:24:40 +0200 (CEST)
+ by v3-1039.vlinux.de (Postfix) with ESMTPSA id 2568D1100D9;
+ Sat, 25 May 2019 12:53:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1558779880;
+ s=20121; t=1558781597;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=G4JgQYbmaqygKOWAZ1xMa0WU9VpRoXFVGvWn6E+Gl54=;
- b=svHo3HfumkN3kmaYVZFrR3oV5ARWq7pZxooTDd6QcLM2BLbxUHvRSretD6+WZsOlPYdZaI
- sNL79SjgQs/NmSuTzNVJ2NSK0bvCNfEZDQLsdg4BpjBt66ZWey+3JNIE9R8BqYakn+hk72
- zCY8aq33PodcrOtGl4FZ6pd5gE5SLno=
+ bh=QoSSontN5RtlLB+UXXI4mIO3JW/a5kj/3uovr3Fz7ak=;
+ b=fSzlcKuSZ366+MEiXnQf/PvhBPcb57SiyaAB4FLUe+whPc9e8UQqFLQYJMDKlkhEyFpgaM
+ Q+oiXr5ElkqKJGSIlkHVFAKQycWVzF2phf12ZPGZJJZbMUFho/7W/TZk1xweTTNyI2hMVV
+ +D7n4Jfln8Jr7vT9lEaULxgOEHd3B4c=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Subject: Re: [PATCH 2/3] batman-adv: allow broadcast packet type with unicast
  destination
-Date: Sat, 25 May 2019 12:24:38 +0200
-Message-ID: <1643666.5vcEtJMyOp@sven-edge>
+Date: Sat, 25 May 2019 12:53:13 +0200
+Message-ID: <3815968.0aduZrHPgI@sven-edge>
 In-Reply-To: <20190514073859.2053-3-linus.luessing@c0d3.blue>
 References: <20190514073859.2053-1-linus.luessing@c0d3.blue>
  <20190514073859.2053-3-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4191173.OOtPebQO1S";
+Content-Type: multipart/signed; boundary="nextPart2243799.1lEaUpPoxr";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1558779880;
+ s=20121; t=1558781597;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=G4JgQYbmaqygKOWAZ1xMa0WU9VpRoXFVGvWn6E+Gl54=;
- b=QfaYPx6oD1p6ohWEy0wUEzFKd1OdJezg6te2cp0kySDFi4fryx4p0/w461BxSkfWKvy6P9
- lF9Dq3fEHm9jeiKE9uKRzBrCFG3iGA29sU0NmmK8UXHYIIB89rujEbXKCPuLdsuoGZ5HCl
- 5xXtAHR8sGea7ghRVRpuePtT0mfX86g=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1558779880; a=rsa-sha256; cv=none;
- b=bW+vok4pEpM/F8W02Ca4IUP26I+YqmUbNr71zw+8ffrFSogTe5HSEQ6vhoPig+pYG5RX6e
- 0FJi08Gst6jIfdS0P7cMKuNzfPLerYUCm2Qf24lesX9i2f1G3gMOBr2LV+rIBCcQDJNQh1
- mmeL0HeCMYPBQuu15zGB0ORjkN/IDxs=
+ bh=QoSSontN5RtlLB+UXXI4mIO3JW/a5kj/3uovr3Fz7ak=;
+ b=ysyFNGHKMABipKee7ZLBMKSKJDw7iNKCY1ou7O5cOitTXtz0T9ZW6qo48+jcNgeyUAWfYC
+ KRhOJoMfABIOFftORHAPkO4zHAyDDbcGV0ajZVZCjFpL+gOuxAeWgqCrWt8SvrvmLzrIsE
+ wnMvCBgfI9aauMvoA3UBDZsGdiNdDSQ=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1558781597; a=rsa-sha256; cv=none;
+ b=jWbVUZlP1OsDjHnjU4GFLK3mgRE+XmIMUUC1d+czW2qdJ/GJCXW5bywEeK7ujBr/lkWPIS
+ 9V7vYtUut0RYqNuqcbmgQlUWQE+hbZ8Kp9hBxMM4jMezJxRXX2zCxiqL0mC8VsRHUuSjAw
+ voZhnghio9x2+NskoacHxkZGQB5Nk6s=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -66,76 +66,52 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart4191173.OOtPebQO1S
+--nextPart2243799.1lEaUpPoxr
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
 
 On Tuesday, 14 May 2019 09:38:58 CEST Linus L=FCssing wrote:
-[...]
-> +/**
-> + * batadv_orig_bcast_tvlv_ogm_handler() - process incoming broadcast tvlv
-> + * @bat_priv: the bat priv with all the soft interface information
-> + * @orig: the orig_node of the ogm
-> + * @flags: flags indicating the tvlv state (see batadv_tvlv_handler_flag=
-s)
-> + * @tvlv_value: tvlv buffer containing the multicast data
-> + * @tvlv_value_len: tvlv buffer length
-> + */
-> +static void batadv_orig_bcast_tvlv_ogm_handler(struct batadv_priv *bat_p=
-riv,
-> +                                              struct batadv_orig_node *o=
-rig,
-> +                                              u8 flags,
-> +                                              void *tvlv_value,
-> +                                              u16 tvlv_value_len)
-> +{
-> +       if (flags & BATADV_TVLV_HANDLER_OGM_CIFNOTFND)
-> +               clear_bit(BATADV_ORIG_CAPA_HAS_BCAST_URCV, &orig->capabil=
-ities);
-> +       else
-> +               set_bit(BATADV_ORIG_CAPA_HAS_BCAST_URCV, &orig->capabilit=
-ies);
-> +}
 > +
+> +       /**
+> +        * BATADV_ORIG_CAPA_HAS_BCAST_URCV: orig node is able to receive
+> +        * batman-adv broadcast packets with a unicast ethernet frame
+> +        * destination
+> +        */
+> +       BATADV_ORIG_CAPA_HAS_BCAST_URCV,
+>  };
 
-Bitops require #include <linux/bitops.h>
+Here is a minor problem with the kerneldoc syntax:
 
->  /**
->   * batadv_originator_init() - Initialize all originator structures
->   * @bat_priv: the bat priv with all the soft interface information
-> @@ -215,6 +236,12 @@ int batadv_originator_init(struct batadv_priv *bat_p=
-riv)
->         batadv_hash_set_lock_class(bat_priv->orig_hash,
->                                    &batadv_orig_hash_lock_class_key);
-> =20
-> +       batadv_tvlv_container_register(bat_priv, BATADV_TVLV_BCAST, 1, NU=
-LL, 0);
+    ./net/batman-adv/types.h:550: warning: Incorrect use of kernel-doc form=
+at:          * BATADV_ORIG_CAPA_HAS_BCAST_URCV: orig node is able to receive
+    ./net/batman-adv/types.h:555: warning: Enum value 'BATADV_ORIG_CAPA_HAS=
+_BCAST_URCV' not described in enum 'batadv_orig_capabilities'
 
-BATADV_TVLV_BCAST requires #include <uapi/linux/batadv_packet.h>
-
---nextPart4191173.OOtPebQO1S
+Kind regards,
+	Sven
+--nextPart2243799.1lEaUpPoxr
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzpF+YACgkQXYcKB8Em
-e0bUyg//Srrmpgc9QEtn4KifFeCQleLnc/tCdoPqHHFZ0b8b+lsPXrakVdmGXNag
-5eA5BhNWhR6X67iKUndCoW4+Q6oF+y91LOJOvibcH8l03cRKPOB4rWcvXcpkjxKh
-/Ej85TEVWXt85mFP7uljvvIEL8uxNa2On+Sm4FTRy8bIb9yPPtrU/g1Xdy0Bg7C3
-jR6OuzEnUOEHBPtsI3+vbQ2N2hEywt4rnfkvEzIs1Eer4d63loiLlyivbxdpYUR3
-aYJMjFWqyTFehjUEeShsuyZeCaoYUy7eDnSoSuhejIOTGBRWatgLcwM+GZ3tAd6Q
-u+F/T5jTTQeRUc4pbQw8L+5c8Bn0kZo361uevH0hYJ8iPx93kHyuUiqEbNkRYIFD
-8DrOTe6Rc16S9X+fFA08AfkcUl3HsD8xjEpU1uMPFnZymJJBpTfYtSms83z41iIA
-BzmyzSW7x18urFODMBTBkf8nCLqpu7h8woxN5NfWlsRYgF2juJrPzPBvkUgnxvdw
-WvnwoPE9PHjs8vjfpCSYk3eysFSLBRSzfuhG7QXL2VBuF9YGZ464biY/D/7FyXuz
-FkFNuw1DrusJuVJavWcLtugCoIRJIwnkQOU1vEU4BzoujqHkzi6ZdnbQ9ostMAzB
-A3Vg5Avb+nUuahxHDaaD18hZbwChKxN2vjcxJvSEIqmuivchOac=
-=ruvL
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzpHpkACgkQXYcKB8Em
+e0ZiNA//ZQ1XKgpCSaaaiQgsbCc3i4xZIgU65jABztlm3YYJTQY4NkyKTdszVOI3
+dW+PIqMhKxSxezXEQIKoceH6PjyA0MTI5gvanaaH194o1a/z5TV3qFt2dudx+M6v
+YCM8r1OufxNsJIMSL7GVUUmQCIfHmMn1X69Jl5s0sxDoxcN4+ErGPIETwPTRw6uK
+iWiB6PJiItfad3I+M1D/3fzMZM95E6w0o6oBIZZgrP4HGug29haWimBzs+Zd4ECk
+wtVVNyiuP+/jfIh8M/MD6nkb4iUONDMOn+5FgTu8RLiYXvWJIczCtc75alAc9HR/
+6HDfcUk9QDUGKzzIyVDyW4QBFPvFAM60Sg6HM08fH3BGwmp1xLCqz5MtoZ28eskc
+VWeRV/E65oPtXyYEddd5mOK3j1HOP6BxgK9kkTokJ00VVRmDyq11mcHG3FTaRajd
+RffosVxrGw3z9vAWqEPIfd8wS3iNU9vv8JUt3mIKHklr8IdKJJLveNYPB/HwdXy5
+qtPsN8j0fSRxOqguobY3fEidny3zCYiqjePEz+Ptg2pEgJ8n8puWVG5FttdIfTq3
+NTTx7MYaFR5r+5MI8477KFgyqgJPrrVJP9c6N8Koi7IAN1l3DY7HZ+HclwMN9l5W
+GJanrlLrzDpCouSDIODranSLf3db++rEDJCxJqI4DnT8b8jTsgA=
+=2z1C
 -----END PGP SIGNATURE-----
 
---nextPart4191173.OOtPebQO1S--
+--nextPart2243799.1lEaUpPoxr--
 
 
 
