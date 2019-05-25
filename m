@@ -2,51 +2,51 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B9A2A3DE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 25 May 2019 12:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA232A3E3
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 25 May 2019 12:21:20 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id ED676820E9;
-	Sat, 25 May 2019 12:06:08 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 3C9C6821DA;
+	Sat, 25 May 2019 12:21:17 +0200 (CEST)
 Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 305AF800D3
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 25 May 2019 12:06:05 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id ACF0A8101D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 25 May 2019 12:21:14 +0200 (CEST)
 Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id D72B41100D9;
- Sat, 25 May 2019 12:06:02 +0200 (CEST)
+ by v3-1039.vlinux.de (Postfix) with ESMTPSA id 6367B1100D9;
+ Sat, 25 May 2019 12:21:14 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1558778762;
+ s=20121; t=1558779674;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=zbTe2O/sCeWZcouK75bunrxM0zNjKgsW3Glr/TCEg1c=;
- b=XQQGUWsBJ39HFW7Zs2dn3sOv6hjHVPFilj5ygch0wiEbx6BuRVccPSS3wMoG1IcFvlomv7
- 94NJkRYUv2zxhGfRDsG9AV5slbbht5tzAVKMIyze6s8i6Orow4jE6OGAvuT0oqn1dqWaX8
- b/aBgffoEC7WExHiT4H0rYtbAtL49BI=
+ bh=23rSUjFps7tWWXk0jCDBkfJ0AmtP4fC+8uqnwbAqJbQ=;
+ b=1aJ34GmQAfX664m+8ImrXgFrV6ekYjlQMRfC60+y/8rFljmRyvzrLlp6dHNJw8DgGQfOTX
+ yHKloyuOJZRVqi8PgcjB8OqbvkH3wlrcF/HnXQ44g2KSgIb3NN53HpmlCy2hIDjv6Gzofa
+ i21WugWKrfmou89xmtkrPde9OBHk1C8=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v2 1/2] batman-adv: mcast: detect,
- distribute and maintain multicast router presence
-Date: Sat, 25 May 2019 12:06:00 +0200
-Message-ID: <259819773.qqnsgro9p8@sven-edge>
-In-Reply-To: <20190507042004.4219-2-linus.luessing@c0d3.blue>
-References: <20190507042004.4219-1-linus.luessing@c0d3.blue>
- <20190507042004.4219-2-linus.luessing@c0d3.blue>
+Subject: Re: [PATCH 3/3] batman-adv: forward broadcast packets via unicast
+ transmissions
+Date: Sat, 25 May 2019 12:21:11 +0200
+Message-ID: <11000634.v2cH04sJFL@sven-edge>
+In-Reply-To: <20190514073859.2053-4-linus.luessing@c0d3.blue>
+References: <20190514073859.2053-1-linus.luessing@c0d3.blue>
+ <20190514073859.2053-4-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5219242.DDDBTUVtlx";
+Content-Type: multipart/signed; boundary="nextPart2206477.k6HNqMgy6z";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1558778764;
+ s=20121; t=1558779674;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=zbTe2O/sCeWZcouK75bunrxM0zNjKgsW3Glr/TCEg1c=;
- b=mik55q558u5hpdYBdDHPkWEFiQ3RajBghgRN0B3MNoGBD/n/pcI6zaI7JtgX5X4wrh0J/V
- S5REQgD5DKRj2gxBLxG3eu6cG+FFdzZDcnSjluLkdYAv1ljIn52LUiANsvmXHDY6/gM7wW
- m8ZO65khD3uAxJFZ5EQnXYGZ87wqo3I=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1558778764; a=rsa-sha256; cv=none;
- b=AbiQsLpRy8g9kdTvE6ASe8hECuXwrox2MuHh+2M91ftXpXXwYGgynkEgxtOLJU8Ye6S9Nk
- Wmpitah4sjrZVgA0e9Eg2FvR04NADxntlBjjCszxuUrmsY4sc1jBlF3CzsE4kBh8NCC083
- WGpEbPLIW+JfJ0oY+tYpLa4INMrjqaY=
+ bh=23rSUjFps7tWWXk0jCDBkfJ0AmtP4fC+8uqnwbAqJbQ=;
+ b=tDPc192zot1nAxuc2bKcpkU6GVoOZZI0hPT8HOBClL098DzB0nDXuvDC0rBB4KlC7HuBuI
+ L66n13YvqK05EjqvVHH3cJpmFnrTVypJkTGp54WRkFRWTzNzWEGVRCPtLMQiZPHk3uNGFh
+ Oj6jjCcI1CzrYyr9oeG9ww8YyVHFkBU=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1558779674; a=rsa-sha256; cv=none;
+ b=HR4HvL3RRDKsxGOz3rK+0tETYObPSKrlLPu0GcNW42jt/wv4AF9RT5IIZDijlJyKRoHrDL
+ 9+nhloMsXf42Qx1iVfPBxZyezViJ24YMUrMZp6rAF5oYLQnXa3psN2nXgxqjPAc8vtmiDe
+ aADu3Z+bLIucM3yY+GipeqXYkKs0MQY=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -66,75 +66,67 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart5219242.DDDBTUVtlx
+--nextPart2206477.k6HNqMgy6z
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="UTF-8"
 
-On Tuesday, 7 May 2019 06:20:03 CEST Linus L=FCssing wrote:
-> +static u8 batadv_mcast_mla_rtr_flags_softif_get(struct batadv_priv *bat_=
-priv,
-> +                                               struct net_device *bridge)
+On Tuesday, 14 May 2019 09:38:59 CEST Linus L=C3=BCssing wrote:
+> +static bool batadv_forw_bcast_may_ucast(struct batadv_priv *bat_priv,
+> +                                       struct batadv_hard_iface *if_out)
 > +{
-> +       struct net_device *dev =3D bridge ? bridge : bat_priv->soft_iface;
-> +       u8 flags =3D BATADV_NO_FLAGS;
-> +       struct inet6_dev *in6_dev;
-> +       struct in_device *in_dev;
+> +       unsigned long num_direct_orig;
+> +       unsigned long num_bcast_no_urcv;
 > +
-> +       rcu_read_lock();
-> +       in_dev =3D __in_dev_get_rcu(dev);
-> +       if (in_dev && IN_DEV_MFORWARD(in_dev))
-> +               flags |=3D BATADV_MCAST_WANT_ALL_RTR4;
+> +       num_direct_orig =3D atomic_read(&if_out->num_direct_orig);
+> +       num_bcast_no_urcv =3D atomic_read(&if_out->num_bcast_no_urcv);
 > +
-> +       in6_dev =3D __in6_dev_get(dev);
-> +       if (in6_dev && in6_dev->cnf.mc_forwarding)
-> +               flags |=3D BATADV_MCAST_WANT_ALL_RTR6;
-> +       rcu_read_unlock();
-> +
-> +       return flags;
+> +       return !num_bcast_no_urcv &&
+> +              (num_direct_orig <=3D atomic_read(&bat_priv->multicast_fan=
+out));
 > +}
 
-=46ails to build on Linux 5.1 with:
-
-/home/sven/tmp/qemu-batman/batman-adv/net/batman-adv/multicast.c: In functi=
-on 'batadv_mcast_mla_rtr_flags_softif_get':
-/home/sven/tmp/qemu-batman/batman-adv/net/batman-adv/multicast.c:130:30: er=
-ror: 'struct ipv6_devconf' has no member named 'mc_forwarding'; did you mea=
-n 'forwarding'?
-  if (in6_dev && in6_dev->cnf.mc_forwarding)
-                              ^~~~~~~~~~~~~
-                              forwarding
-
-See=20
-https://git.open-mesh.org/build_test.git/blob/HEAD:/generate_linux_headers.=
-sh=20
-for the configuration.
+ecsv/pu|sparse linux-3.16.66 cfg: BLA=3Dy DAT=3Dy DEBUGFS=3Dn DEBUG=3Dy TRA=
+CING=3Dy NC=3Dn MCAST=3Dn BATMAN_V=3Dy SYSFS=3Dy|/home/build_test/build_env=
+/tmp.I4uiDZgE1M/net/batman-adv/send.c:928:57: error: no member 'multicast_f=
+anout' in struct batadv_priv
+/home/build_test/build_env/tmp.I4uiDZgE1M/net/batman-adv/send.c:928:47: war=
+ning: call with no type!
+/home/build_test/build_env/tmp.I4uiDZgE1M/net/batman-adv/send.c: In functio=
+n =E2=80=98batadv_forw_bcast_may_ucast=E2=80=99:
+/home/build_test/build_env/tmp.I4uiDZgE1M/net/batman-adv/send.c:928:50: err=
+or: =E2=80=98struct batadv_priv=E2=80=99 has no member named =E2=80=98multi=
+cast_fanout=E2=80=99
+         (num_direct_orig <=3D atomic_read(&bat_priv->multicast_fanout));
+                                                  ^~
+/home/build_test/build_env/tmp.I4uiDZgE1M/net/batman-adv/send.c:929:1: warn=
+ing: control reaches end of non-void function [-Wreturn-type]
+ }
 
 Kind regards,
 	Sven
-
---nextPart5219242.DDDBTUVtlx
+--nextPart2206477.k6HNqMgy6z
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzpE4gACgkQXYcKB8Em
-e0YEQhAAke9rLTiLs/15NDuZL67VwV8vheK98mfO0KvblDNWlD8UY+LkUpXKRWoK
-pDADo+BccuwHyskDiYvMJpkQtUzqQH+OLrRSmZZGMykkcpE35i9BHfmdHL8N8QyN
-BkWeRhlvY5G+rSzanCwfrMziD6oES+h4XHIkxIedkuzj9/xIjW+Lnb3oxp6b3Jma
-BkC72+d5NnBkduapnq3T+1H+wMQTBx9XUkzwQjf3D+0wBktf0ACNuBUxaFTJvjgu
-8jkny6DcCTwx9dcqT1nB1T0Bw60kDzY1xflKFS/JC2KoVirohpLSzjO+mnFa54X/
-A7AJCuLHBt6MsplUrj32+UbXq8vRgRIjvHhWsd4wL4lgTIlgEZLtXYVYd9DeJq2R
-6fAtWNXfTZB13/bfAWwPziQZEPkQ0+A13VOA/f0DEPucjw4vPQCwRf26uCP9F3b8
-KKU85wa0YG50qA2TdSL88nUXYeesHbilvlFpl6HRf/QisjBQParcdNQHZkU3Lt1Y
-9h1jQbjMU+BRC59pmknE6SVhzf+uDfoCA3tirODTuSPfUcgOb+T4oY83sWumsgpd
-mSWEWiIXYDWEFWtBsmfKW6cV0QC12BXaAA5yaiKQZHAVWRA0boTfQwjpMmeltGKr
-coow9omvjP0U63K4Kei+ervDD6tiNOP/CT1I+XLB9mmwL+3VAPg=
-=fUqP
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlzpFxcACgkQXYcKB8Em
+e0as6RAAmw7/0yVx8jCVUulQY1DzAL0MXntLbwTPUdWMpiRRH9+xC4XfpfGxcJmM
+QYpnIIYjc/y2+ATM02Cnh8AlX6nhbadsg6woRxY7rNezb9OAH1LxDoNHJyNHK8ix
+LiamWPqPvzc5jEEgz1QHsKtvin/DX9eruWJf6UR3cI9kFpdtdRZKWXTStpB/qzcT
+Y/2voBN344Ipo0Js5zNQ9Ib6qA5nhMpc+K1LgkesCx+GB3SJiuTxd7iLNHSL7CIc
+F9BQKkoB2PhUyRqrfL+UCWXLx4TWtUNGISuo71Nzk0gbokI9Z4CwfJYiQuOL5sAP
+IMPIGpXig9JV3WHK0CsRjLyi55wgL7NXn6qJAzOGkwMO4vX1G8k0QQaOxVFKAP/T
+3P8CNW96JbBboUS0iOoZlE0YlMP28wwHCKjEzkqvnRK2JtdOs7bjVngRRhLyr+0s
+hNFB8qCbwF594zS1CB7zDFnkCYXf7RkjfP7dSS6as05Tr5YUn1vM6xlURyQ+e/Pu
+IoxfIZy2cdHmkbHgWY94fykSGQpISsJ7LN5dpsjANPmnfx841bNGtLwDDpkgrPGG
+bGrrsgkDKjYhN2e/yop1ll3p0Sm7b2poaW+XjSRifGNeeo4GeMrNiknVEYhnhNEg
+ZoxEfhl1lt40nP9HIuObvyIREJa4G4FInIH3cnJkmxeJ03dVWNw=
+=haM7
 -----END PGP SIGNATURE-----
 
---nextPart5219242.DDDBTUVtlx--
+--nextPart2206477.k6HNqMgy6z--
 
 
 
