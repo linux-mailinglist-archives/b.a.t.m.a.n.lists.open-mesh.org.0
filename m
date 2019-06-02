@@ -2,49 +2,49 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F972322CD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jun 2019 11:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D6B322DB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jun 2019 11:52:00 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 70BBA81290;
-	Sun,  2 Jun 2019 11:19:51 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 4F0D48198C;
+	Sun,  2 Jun 2019 11:51:56 +0200 (CEST)
 Received: from v3-1039.vlinux.de (narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id F275F80BCC
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jun 2019 11:19:47 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id BB3DF8060C
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jun 2019 11:51:53 +0200 (CEST)
 Received: from sven-desktop.home.narfation.org (unknown
  [IPv6:2a00:1ca0:1480:f1fc::4065])
- by v3-1039.vlinux.de (Postfix) with ESMTPSA id 86D8F1100E2;
- Sun,  2 Jun 2019 11:19:46 +0200 (CEST)
+ by v3-1039.vlinux.de (Postfix) with ESMTPSA id C40371100E2;
+ Sun,  2 Jun 2019 11:51:52 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1559467186;
+ s=20121; t=1559469112;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=rXN2jECWiSLL557WAdXcrJtgE88KqC8i30jiZqF/hmQ=;
- b=0hZ8cu3i8GOX8o1UsqTb3QNrgXDvpQ83QtHo4kD1wFOE9+YCiBSYhlgFYPCtFtw877gGEE
- RKt834RXqTT4gCOLHLJbaA9e0ozSD4t0aeM0RLh1KEKvoAVPwhB02+8R1b7fbDAqx9x5U8
- cFT7MXbPGgfDmObKdk18S4Nem4781Ik=
+ bh=/Ypcrm2FW54amPe79jfgCHrpP+pQoOWQgZzSrxGvvtg=;
+ b=kIJF4pQ4eiF68G5CERdEQ3CgzRiUeSjZ+RBVyTJNi7Z3TTyU5nb23Am3BLxK7oh1cCfhpb
+ /D62IOEYCF2FYSEfDKn30vpDVOhL7qczl77Mneuk3/sH1t2uptzPzBTeje0xZXUaayfx5t
+ UNBSHHmaFhcV90qfcl7NPtsS4B+VqUk=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH maint] batman-adv: Fix duplicated OGMs on NETDEV_UP
-Date: Sun,  2 Jun 2019 11:19:40 +0200
-Message-Id: <20190602091940.10515-1-sven@narfation.org>
+Subject: [PATCH maint v2] batman-adv: Fix duplicated OGMs on NETDEV_UP
+Date: Sun,  2 Jun 2019 11:51:35 +0200
+Message-Id: <20190602095135.15604-1-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1559467187;
+ s=20121; t=1559469113;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=rXN2jECWiSLL557WAdXcrJtgE88KqC8i30jiZqF/hmQ=;
- b=biuiQ12i6YjO9Yc0sBQrhisCVlu8cugkwTZcJ+0ON8PhAxlK+tm18pyaeSGZkyLxjMRxXW
- 8eUq9KysCQldZrT2zZ4OelsloTfE+WxAGtMRL6AZgnsU4RgmNp4LWV9sAJPUzsphxGB3OT
- F7q0FgrbeqcAu8En2ik4HLPTxofTjNI=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1559467187; a=rsa-sha256; cv=none;
- b=YVf9pYYM0jnMdD78KfRD5gU467bXczFqVKBRmrnEJMEJM0gcT8XblBTD7LI8Gw65JyhE5W
- IVpi/+CquxT4/iJy6KUkYgqtyPaI+G1f7FB+jrF+B3PLzkaaNvAYHdkjIB2bX0XqGMd8dN
- hpzq87JOZX28E5xFYb4Ygfmfk6qIPD4=
+ bh=/Ypcrm2FW54amPe79jfgCHrpP+pQoOWQgZzSrxGvvtg=;
+ b=MVfZ8zZ7B/8LvYZx7PpjECKOXSajlQ6UD6hIkO9tQw5omodcY3yltUlQAfAaZBn8X9xYK+
+ uindBvFFATURbLD+v+Xe8RS0I54Rdh0nZdBpUmCdEn5I8P9FDEYoiG8Q7Ugey+PnRv+uDC
+ WVcS6A+p3TJpUGYk27GUgkWalnJP3hI=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1559469113; a=rsa-sha256; cv=none;
+ b=cbOJd8TtdANPFaTdKW7asJIE7hazUUxctIlt3r80IyDjQ8lDUYdk0ZlrRBAU+8yfOBqF88
+ yQ8ZwtB5ZsQP9/qhIRRDvPcSBgIyM0/KGd9c/VJo0yeT1whuBYSl5CABFRC4gpb5AkzqAU
+ 0yaubL12nSoCskKfWyrmBRmR5eigLVY=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -86,11 +86,18 @@ Fixes: 0d8468553c3c ("batman-adv: remove ogm_emit and ogm_schedule API calls")
 Reported-by: Linus Lüssing <linus.luessing@c0d3.blue>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-I will backport this patch to LEDE 17.01 and OpenWrt 18.06 for further testing
-in gluon.
-
 Cc: Antonio Quartulli <a@unstable.cc>
 Cc: Marek Lindner <mareklindner@neomailbox.ch>
+
+v2:
+* added "(optional)" mark to kerneldoc of enabled function pointer
+
+Here are the backports:
+
+* 2019.2 backport: https://github.com/openwrt-routing/packages/pull/475
+* 2018.1 backport: https://github.com/openwrt-routing/packages/pull/474
+* 2016.5 backport: https://github.com/openwrt-routing/packages/pull/473
+
 
  net/batman-adv/bat_iv_ogm.c     | 4 ++--
  net/batman-adv/hard-interface.c | 3 +++
@@ -135,14 +142,14 @@ index 79d1731b..3719cfd0 100644
  	return 0;
  
 diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 74b64473..486f8aa6 100644
+index 74b64473..e0b25104 100644
 --- a/net/batman-adv/types.h
 +++ b/net/batman-adv/types.h
 @@ -2129,6 +2129,9 @@ struct batadv_algo_iface_ops {
  	/** @enable: init routing info when hard-interface is enabled */
  	int (*enable)(struct batadv_hard_iface *hard_iface);
  
-+	/** @enabled: notification when hard-interface was enabled */
++	/** @enabled: notification when hard-interface was enabled (optional) */
 +	void (*enabled)(struct batadv_hard_iface *hard_iface);
 +
  	/** @disable: de-init routing info when hard-interface is disabled */
