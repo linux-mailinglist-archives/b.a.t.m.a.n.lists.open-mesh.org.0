@@ -2,24 +2,63 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 354EF322EB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jun 2019 12:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E7F32309
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jun 2019 12:52:54 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 5DF9781B20;
-	Sun,  2 Jun 2019 12:16:53 +0200 (CEST)
-Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
- by open-mesh.org (Postfix) with ESMTPS id BA91A80851
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jun 2019 12:16:49 +0200 (CEST)
-From: Marek Lindner <mareklindner@neomailbox.ch>
-To: b.a.t.m.a.n@lists.open-mesh.org
+	by open-mesh.org (Postfix) with ESMTP id 81CF381B7B;
+	Sun,  2 Jun 2019 12:52:48 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:171:314c::100:a1])
+ by open-mesh.org (Postfix) with ESMTPS id 0ED7080597
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jun 2019 12:52:45 +0200 (CEST)
+Date: Sun, 2 Jun 2019 12:52:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1559472765;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=dmtovcdyDk1jGr+PJz0wfak9NrV7VhH0fJF83Q0zjBM=;
+ b=H8+QougqM7xJLp8dIK1ewvX8pwWpoPsBFOGn9D5reQEiFSscGz+UBSNdkp5hhPN+OFJD0c
+ gG+t0bshXkSzCcJ4hJtasEL538wML3htugnU/VXjNMnQHsH8ERCM9KS2oW0PpH0gkVQ4kW
+ Iw01OsFPmHfJ+2Br7qmS75/TK83Ew//F3gkO/TBBWbIs+ue9cnUgZ21gkwHJ4NXx1nDqvx
+ VVKw5rAq6eo0ejFfxS1INT7+7RiBaZnM83ffabvFAvOCljvdM1lpp659KAVJJ6mYoZFgC/
+ sSXfRxB/HBzamQFgFUIPx0xWEFvJucoPQxLM2lde6iMd+mvbCLSb1hpJsauyCA==
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>
 Subject: Re: [PATCH maint v2] batman-adv: Fix duplicated OGMs on NETDEV_UP
-Date: Sun, 02 Jun 2019 18:16:36 +0800
-Message-ID: <5199258.49RjUs2h3V@rousseau>
-In-Reply-To: <20190602095135.15604-1-sven@narfation.org>
+Message-ID: <20190602105241.GB2995@otheros>
 References: <20190602095135.15604-1-sven@narfation.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2142912.qmWHnJAY8H";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190602095135.15604-1-sven@narfation.org>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
+ s=2018; t=1559472765;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=dmtovcdyDk1jGr+PJz0wfak9NrV7VhH0fJF83Q0zjBM=;
+ b=jDK/Gm5tFuFW1JeTkSkhHxdJfEw6eo0dHJCF96uK0Ljwu3VKm6UjxTLantPD2mkc7U0cBD
+ JOQzop5541NhJgtphUq5KKNrEzggKeQYYGTs32T2/9lA09ep+R9ptJDvjWsQMHWWj4Qvnq
+ Nt6tRFg0hhiwPDeHZum13wSRMWR3W/fp22z94DbYjtrQRoOSWpvLtZ1Qq8n+X6/bPPviS7
+ r7v+Or5w2vBDdOO0sLi9ITMEihsVh2MgS4A4JjF5A81wfr2tzmHllhEtmryAdR1lBa/0O3
+ tb0hbXlc3nuL2HA3UVTFEcPuk6OEHYkOAYvoJNTGFefmRlvm0PsT2qPP3R/vAg==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1559472765; a=rsa-sha256; cv=none;
+ b=N3ScBCjYyiaKj53hsINGIfX2tKL2GISAZvViKwcmvJf4V35TI9TIXH7/Iuibm/ElXIu2K9
+ 0td/NUVLN7GmPzQjobAE/AqVBaEsa5f4FRz2dv6IVn6JvBjytW6I9JYBGDlcyKSo4Zbz1N
+ bMRecyp2wj9/curJ+T+Zsq1iIQ7FKW5icely5rHF2KMvjWcTEIYQcq1HzqgJwLHDd5Xz1Z
+ M7nY3bhwJUCxGCiOBGM3+6ZAY9VT1a0rlXnYAnBN5VKP0prwJNgaX+Ab7gP0g/d7aBt5Jp
+ LL0ACvhXCS40jGouIXSEXRN8p+1VDdczcGtVCeld64g9sS2QK+z6D5z9NaNdXA==
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -34,25 +73,20 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Antonio Quartulli <a@unstable.cc>
+Cc: Antonio Quartulli <a@unstable.cc>,
+ Marek Lindner <mareklindner@neomailbox.ch>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart2142912.qmWHnJAY8H
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-
-On Sunday, 2 June 2019 17:51:35 HKT Sven Eckelmann wrote:
+On Sun, Jun 02, 2019 at 11:51:35AM +0200, Sven Eckelmann wrote:
 > The state of slave interfaces are handled differently depending on whether
 > the interface is up or not. All active interfaces (IFF_UP) will transmit
 > OGMs. But for B.A.T.M.A.N. IV, also non-active interfaces are scheduling
 > (low TTL) OGMs on active interfaces. The code which setups and schedules
-> the OGMs must therefore already be called when the interfaces gets added =
-as
-> slave interface and the transmit function must then check whether it has =
-to
+> the OGMs must therefore already be called when the interfaces gets added as
+> slave interface and the transmit function must then check whether it has to
 > send out the OGM or not on the specific slave interface.
->=20
+> 
 > But the commit 0d8468553c3c ("batman-adv: remove ogm_emit and ogm_schedule
 > API calls") moved the setup code from the enable function to the activate
 > function. The latter is called either when the added slave was already up
@@ -60,36 +94,9 @@ to
 > NETDEV_UP event was received for this slave interfac. As result, each
 > NETDEV_UP would schedule a new OGM worker for the interface and thus OGMs
 > would be send a lot more than expected.
->=20
-> Fixes: 0d8468553c3c ("batman-adv: remove ogm_emit and ogm_schedule API
-> calls") Reported-by: Linus L=FCssing <linus.luessing@c0d3.blue>
+> 
+> Fixes: 0d8468553c3c ("batman-adv: remove ogm_emit and ogm_schedule API calls")
+> Reported-by: Linus Lüssing <linus.luessing@c0d3.blue>
 > Signed-off-by: Sven Eckelmann <sven@narfation.org>
 
-
-Acked-by: Marek Lindner <mareklindner@neomailbox.ch>
-
-Cheers,
-Marek
-
-
---nextPart2142912.qmWHnJAY8H
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAlzzogQACgkQU1VOj+62
-HMBKIQf+N0wNHeUdxY7QOPkxXs/ff4Xm73Y499u4tAvkGd+LTxGYoxnLK6eTYT0V
-EidnsepSIm5di+el5Dbj/U9827DdyFOX1668jyp6zGz/ClANIdxdJLSt/C7nnopG
-t9xGJ47stOkrIbcPIN01V/8r3SmrRp+iGzJdrxMd/et/z+c89cmB3aackj03nLmM
-re73ziDShwdqL2wvUHzJ5zYlyM2ZbqeWk0xgdx1USb3EuFqX6m5iv76rG8HXCJUY
-dEgqBtwdY29Xl8sBHHvUBr1r/eOiJZR7yQW6N5Jw0uREarJmPS9P0p27ptz+ZCts
-Lbkn+QG20TBnWnOMLEj1oCYc8JHhVg==
-=tOh1
------END PGP SIGNATURE-----
-
---nextPart2142912.qmWHnJAY8H--
-
-
-
+Tested-by: Linus Lüssing <linus.luessing@c0d3.blue>
