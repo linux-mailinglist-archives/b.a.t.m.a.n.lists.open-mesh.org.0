@@ -1,50 +1,54 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A66A3A80E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  9 Jun 2019 18:57:08 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5573A821
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  9 Jun 2019 18:57:15 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 3347782153;
-	Sun,  9 Jun 2019 18:57:03 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org
- [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id CD7DE80516
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  9 Jun 2019 18:56:59 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id E8716824D3;
+	Sun,  9 Jun 2019 18:57:06 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
+ by open-mesh.org (Postfix) with ESMTPS id 2B9B3821DA
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  9 Jun 2019 18:57:04 +0200 (CEST)
 Received: from sven-desktop.home.narfation.org (unknown
  [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id 279081100D0;
- Sun,  9 Jun 2019 18:56:59 +0200 (CEST)
+ by durin.narfation.org (Postfix) with ESMTPSA id CC9DD1100D0;
+ Sun,  9 Jun 2019 18:57:01 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1560099419;
+ s=20121; t=1560099421;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=q/v3vjZJUd5ys1W0wnVkG0D5K39V7PnrwbeiMY34P7Y=;
- b=vprZ6Ndnrx9vVaAC7vFwWhSt2ewlWMQx+AWXlJye5N6asr8Xw54TaoDMErclvpwI6x/8DH
- 2Ko4H7RmDEP/Xxt4IaM9YE2yhPY+R0mPXkohz8/rVouujsd+dv2j2NzkA3HCxXtJ1QKOmH
- SR156SyAkkzqSpcZfYQgKd3t1hePDTY=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=kXoLtvJNISlefRQ1aQfx7ffdnhPYbLQ0VeqAQN5TVQg=;
+ b=on0rM7d36m5gLm1ipiClvNbBLYzeSkv09qDpkIksUyNy6rmXraLnWsVf9TPPlJVNA2c4cC
+ hxF6B0OVG3eDy99RGRRAyYdLvIPACA+Ce7Vh8xWo2PA3EorIM975aqLI120EfQX2BMcpcC
+ 5zyEhlWRQV0vjh/xJ0Y1FlG9moH694c=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 0/3] batctl: tcpdump: Add support to identify missing packets
-Date: Sun,  9 Jun 2019 18:56:49 +0200
-Message-Id: <20190609165652.12841-1-sven@narfation.org>
+Subject: [PATCH 1/3] batctl: tcpdump: Add support for MCAST TVLV
+Date: Sun,  9 Jun 2019 18:56:50 +0200
+Message-Id: <20190609165652.12841-2-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190609165652.12841-1-sven@narfation.org>
+References: <20190609165652.12841-1-sven@narfation.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1560099419;
+ s=20121; t=1560099423;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=q/v3vjZJUd5ys1W0wnVkG0D5K39V7PnrwbeiMY34P7Y=;
- b=qL5UaQNracx56IIGONoZZ2hEVg67E+GVasFTLxa9kT1+qNhMmUp7qX6nn25MKCJNMR3ygE
- kSSBNcOKSHrAwk7DnIyPORleX+3JLr+V0SBdLHgvXqctxWquk6DOfBhcFpLrkCM4JFpNiA
- wOnS3LfJ9R77v3UCCPYwtoZjyv906yA=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1560099419; a=rsa-sha256; cv=none;
- b=bqjm45By1NJZZhXRP8jyUJltDZQ5yuDHEZZ2tOBiuE3l+Po1UKzjj/QuAqjrgkC2KjMka/
- vp696/3zLSBVGDxX/R19+Vh+FZakBlP+reZL4mWYNDgViXcDsGoD5uSecx/7GF32+7FKb7
- KxqFGOG+ztTSr2CBISLdy6nlwGnHxeU=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=kXoLtvJNISlefRQ1aQfx7ffdnhPYbLQ0VeqAQN5TVQg=;
+ b=qw5FQ0ZQ5Y3buhNH3qZshem6xEQ9R9yaLJUI2C0baiQ2MXK+vbDVDK/Ua7x0GbEGJUvOkn
+ i1S/k0dOKZKODjleUb20wuXWM/nfcIpWa4nw5c11DT8fGNyt9vyyb8pwF4GjL16hQ1UIer
+ gecPy+gHSvpIJWqMSwmnmD1HwmOTEEg=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560099423; a=rsa-sha256; cv=none;
+ b=q8o5vWnevtZaNzSPfYhL4s/q7wi46NrKxSeMjl5wqKQF5oVEPW53pCrmGipQSxqT/ew8ii
+ eQIB+guEmjxalRdMxIFIDEDODTzu+LeqRhRAukgZxX846ciQdsTIjO0b/PSwqk7xu6mIb3
+ duamnD16lITtk7msUbct28MuY3s4gbc=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -64,35 +68,88 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hi,
+The multicast support in batman-adv was introduced in commit 77ec494490d6
+("batman-adv: Announce new capability via multicast TVLV") but the tcpdump
+parser was not updated to parse this TVLV container.
 
-when running batctl's tcpdump today on a normal batman-adv slave interface,
-you will see warnings like:
+The parser requires support of parsing the current TVLV container (v2) and
+the pre-bridging implementation (v1) to correctly show all TVLVs of OGMs
+(and related packets).
 
-  Warning - packet contains unknown batman packet type: 0x41
-  Warning - packet contains unknown batman packet type: 0x02
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+Cc: Linus Lüssing <linus.luessing@c0d3.blue>
 
-This is caused by missing dumping routinges in the tcpdump implementation.
-Since these packets (coded, fragmented) cannot be decoded/reassembled
-easily these packets are only identified and some basic header informations
-are shown.
+ tcpdump.c | 49 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-Also not all TVLVs in the header were shown. The mcast part was dropped and
-thus the debugging of the new mcast feature flags was not possible with
-batctl.
-
-Kind regards,
-	Sven
-
-Sven Eckelmann (3):
-  batctl: tcpdump: Add support for MCAST TVLV
-  batctl: tcpdump: Add support for unicast fragmentation
-  batctl: tcpdump: Add support for coded packets
-
- tcpdump.c | 110 +++++++++++++++++++++++++++++++++++++++++++++++++++++-
- tcpdump.h |   1 +
- 2 files changed, 110 insertions(+), 1 deletion(-)
-
+diff --git a/tcpdump.c b/tcpdump.c
+index 8106a64..9153fc4 100644
+--- a/tcpdump.c
++++ b/tcpdump.c
+@@ -196,6 +196,45 @@ static void batctl_tvlv_parse_roam_v1(void *buff, ssize_t buff_len)
+ 	       BATADV_PRINT_VID(ntohs(tvlv->vid)));
+ }
+ 
++static void batctl_tvlv_parse_mcast_v1(void *buff __maybe_unused,
++				       ssize_t buff_len)
++{
++	struct batadv_tvlv_mcast_data *tvlv = buff;
++	uint8_t flags;
++
++	if (buff_len != sizeof(*tvlv)) {
++		fprintf(stderr, "Warning - dropping received %s packet as it is not the correct size (%zu): %zu\n",
++			"TVLV MCASTv1", sizeof(*tvlv), buff_len);
++		return;
++	}
++
++	flags = tvlv->flags;
++
++	printf("\tTVLV MCASTv1: [%c%c%c]\n",
++	       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
++	       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
++	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.');
++}
++
++static void batctl_tvlv_parse_mcast_v2(void *buff, ssize_t buff_len)
++{
++	struct batadv_tvlv_mcast_data *tvlv = buff;
++	uint8_t flags;
++
++	if (buff_len != sizeof(*tvlv)) {
++		fprintf(stderr, "Warning - dropping received %s packet as it is not the correct size (%zu): %zu\n",
++			"TVLV MCASTv2", sizeof(*tvlv), buff_len);
++		return;
++	}
++
++	flags = tvlv->flags;
++
++	printf("\tTVLV MCASTv2: [%c%c%c]\n",
++	       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
++	       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
++	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.');
++}
++
+ typedef void (*batctl_tvlv_parser_t)(void *buff, ssize_t buff_len);
+ 
+ static batctl_tvlv_parser_t tvlv_parser_get(uint8_t type, uint8_t version)
+@@ -241,6 +280,16 @@ static batctl_tvlv_parser_t tvlv_parser_get(uint8_t type, uint8_t version)
+ 			return NULL;
+ 		}
+ 
++	case BATADV_TVLV_MCAST:
++		switch (version) {
++		case 1:
++			return batctl_tvlv_parse_mcast_v1;
++		case 2:
++			return batctl_tvlv_parse_mcast_v2;
++		default:
++			return NULL;
++		}
++
+ 	default:
+ 		return NULL;
+ 	}
 -- 
 2.20.1
 
