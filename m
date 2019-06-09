@@ -1,34 +1,35 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5573A821
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  9 Jun 2019 18:57:15 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB873A824
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  9 Jun 2019 18:57:22 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id E8716824D3;
-	Sun,  9 Jun 2019 18:57:06 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 2B9B3821DA
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  9 Jun 2019 18:57:04 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 65E2C8266E;
+	Sun,  9 Jun 2019 18:57:16 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org
+ [IPv6:2001:4d88:2000:7::2])
+ by open-mesh.org (Postfix) with ESMTPS id 03F3482540
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  9 Jun 2019 18:57:12 +0200 (CEST)
 Received: from sven-desktop.home.narfation.org (unknown
  [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id CC9DD1100D0;
- Sun,  9 Jun 2019 18:57:01 +0200 (CEST)
+ by durin.narfation.org (Postfix) with ESMTPSA id 07FB21100D0;
+ Sun,  9 Jun 2019 18:57:11 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1560099421;
+ s=20121; t=1560099431;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=kXoLtvJNISlefRQ1aQfx7ffdnhPYbLQ0VeqAQN5TVQg=;
- b=on0rM7d36m5gLm1ipiClvNbBLYzeSkv09qDpkIksUyNy6rmXraLnWsVf9TPPlJVNA2c4cC
- hxF6B0OVG3eDy99RGRRAyYdLvIPACA+Ce7Vh8xWo2PA3EorIM975aqLI120EfQX2BMcpcC
- 5zyEhlWRQV0vjh/xJ0Y1FlG9moH694c=
+ bh=JjNXFA8zWg1IHa5NTP+hN0Wm6uNUnF/RnL7cAoHkeUI=;
+ b=Krgi52okNW/G7qhNnx3M7Tta1sPzi2fHMz0Uc51t+7/R2b4ogHKlRpCad97n8UGOU4Vb1E
+ ptQFhTkRVqHLcKXIBYbcF/3xmc+HCUKyOexl8mJ/Ltieuh4ajLecEFf2k3LmmKlHqDRp77
+ EDV6C2eQ9IcBvU2q7yDZM0yJllg+29E=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 1/3] batctl: tcpdump: Add support for MCAST TVLV
-Date: Sun,  9 Jun 2019 18:56:50 +0200
-Message-Id: <20190609165652.12841-2-sven@narfation.org>
+Subject: [PATCH 2/3] batctl: tcpdump: Add support for unicast fragmentation
+Date: Sun,  9 Jun 2019 18:56:51 +0200
+Message-Id: <20190609165652.12841-3-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190609165652.12841-1-sven@narfation.org>
 References: <20190609165652.12841-1-sven@narfation.org>
@@ -36,19 +37,19 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1560099423;
+ s=20121; t=1560099431;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=kXoLtvJNISlefRQ1aQfx7ffdnhPYbLQ0VeqAQN5TVQg=;
- b=qw5FQ0ZQ5Y3buhNH3qZshem6xEQ9R9yaLJUI2C0baiQ2MXK+vbDVDK/Ua7x0GbEGJUvOkn
- i1S/k0dOKZKODjleUb20wuXWM/nfcIpWa4nw5c11DT8fGNyt9vyyb8pwF4GjL16hQ1UIer
- gecPy+gHSvpIJWqMSwmnmD1HwmOTEEg=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1560099423; a=rsa-sha256; cv=none;
- b=q8o5vWnevtZaNzSPfYhL4s/q7wi46NrKxSeMjl5wqKQF5oVEPW53pCrmGipQSxqT/ew8ii
- eQIB+guEmjxalRdMxIFIDEDODTzu+LeqRhRAukgZxX846ciQdsTIjO0b/PSwqk7xu6mIb3
- duamnD16lITtk7msUbct28MuY3s4gbc=
+ bh=JjNXFA8zWg1IHa5NTP+hN0Wm6uNUnF/RnL7cAoHkeUI=;
+ b=PHZT69dqF5sdR6raoaA19koKMnbRJHOB1GVNx1cTcua5qghhX0Zm5n0WtnosqNbbhKgJKz
+ jlA3x7Cue+AAgCrSgZQjHBGC+ywmYMTWmOG6IWUuuqhxoabmedAfHuK2niqOH+fbzKCX3z
+ vt1mWLNU0mHqorD743OJFfd3sb2kleA=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560099431; a=rsa-sha256; cv=none;
+ b=OcImqairPJoLbyY20FvimutdSV623LzMceBmR+DkNCpRByQ2DnCoPD6LLd6Ry0cUEIWLX3
+ 0TM3MbHWFBHsAJ54VTBJGHgoJJocOeRjM6X49CLNco2KEY392WAQERwfCRqvCtYRHyncHK
+ AgljdfzSDdixg3IHFXqPvTwAcgh6868=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -65,91 +66,71 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: =?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@hundeboll.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The multicast support in batman-adv was introduced in commit 77ec494490d6
-("batman-adv: Announce new capability via multicast TVLV") but the tcpdump
-parser was not updated to parse this TVLV container.
+The support for unicast fragmentation was implemented in commit
+9b3eab61754d ("batman-adv: Receive fragmented packets and merge"). The
+support to identify such packets by batctl's tcpdump was never implemented.
 
-The parser requires support of parsing the current TVLV container (v2) and
-the pre-bridging implementation (v1) to correctly show all TVLVs of OGMs
-(and related packets).
+This minimal implementation allows to identify these packets but is not
+able to reassemble the packets. Wireshark should be used when this advanced
+feature is required.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-Cc: Linus Lüssing <linus.luessing@c0d3.blue>
+Cc: Martin Hundebøll <martin@hundeboll.net>
 
- tcpdump.c | 49 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ tcpdump.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 diff --git a/tcpdump.c b/tcpdump.c
-index 8106a64..9153fc4 100644
+index 9153fc4..7d04dd5 100644
 --- a/tcpdump.c
 +++ b/tcpdump.c
-@@ -196,6 +196,45 @@ static void batctl_tvlv_parse_roam_v1(void *buff, ssize_t buff_len)
- 	       BATADV_PRINT_VID(ntohs(tvlv->vid)));
+@@ -930,6 +930,30 @@ static void dump_batman_ucast(unsigned char *packet_buff, ssize_t buff_len, int
+ 		      read_opt, time_printed);
  }
  
-+static void batctl_tvlv_parse_mcast_v1(void *buff __maybe_unused,
-+				       ssize_t buff_len)
++static void dump_batman_ucast_frag(unsigned char *packet_buff, ssize_t buff_len, int read_opt, int time_printed)
 +{
-+	struct batadv_tvlv_mcast_data *tvlv = buff;
-+	uint8_t flags;
++	struct batadv_frag_packet *frag_packet;
++	struct ether_header *ether_header;
 +
-+	if (buff_len != sizeof(*tvlv)) {
-+		fprintf(stderr, "Warning - dropping received %s packet as it is not the correct size (%zu): %zu\n",
-+			"TVLV MCASTv1", sizeof(*tvlv), buff_len);
-+		return;
-+	}
++	LEN_CHECK((size_t)buff_len - sizeof(*ether_header),
++		  sizeof(*frag_packet), "BAT UCAST FRAG");
 +
-+	flags = tvlv->flags;
++	ether_header = (struct ether_header *)packet_buff;
++	frag_packet = (struct batadv_frag_packet *)(packet_buff + sizeof(*ether_header));
 +
-+	printf("\tTVLV MCASTv1: [%c%c%c]\n",
-+	       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
-+	       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
-+	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.');
++	if (!time_printed)
++		time_printed = print_time();
++
++	printf("BAT %s > ",
++	       get_name_by_macaddr((struct ether_addr *)ether_header->ether_shost,
++				   read_opt));
++
++	printf("%s: UCAST FRAG, seqno %d, no %d, ttl %hhu\n",
++	       get_name_by_macaddr((struct ether_addr *)frag_packet->dest,
++				   read_opt),
++	       frag_packet->seqno, frag_packet->no, frag_packet->ttl);
 +}
 +
-+static void batctl_tvlv_parse_mcast_v2(void *buff, ssize_t buff_len)
-+{
-+	struct batadv_tvlv_mcast_data *tvlv = buff;
-+	uint8_t flags;
-+
-+	if (buff_len != sizeof(*tvlv)) {
-+		fprintf(stderr, "Warning - dropping received %s packet as it is not the correct size (%zu): %zu\n",
-+			"TVLV MCASTv2", sizeof(*tvlv), buff_len);
-+		return;
-+	}
-+
-+	flags = tvlv->flags;
-+
-+	printf("\tTVLV MCASTv2: [%c%c%c]\n",
-+	       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
-+	       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
-+	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.');
-+}
-+
- typedef void (*batctl_tvlv_parser_t)(void *buff, ssize_t buff_len);
- 
- static batctl_tvlv_parser_t tvlv_parser_get(uint8_t type, uint8_t version)
-@@ -241,6 +280,16 @@ static batctl_tvlv_parser_t tvlv_parser_get(uint8_t type, uint8_t version)
- 			return NULL;
- 		}
- 
-+	case BATADV_TVLV_MCAST:
-+		switch (version) {
-+		case 1:
-+			return batctl_tvlv_parse_mcast_v1;
-+		case 2:
-+			return batctl_tvlv_parse_mcast_v2;
-+		default:
-+			return NULL;
-+		}
-+
- 	default:
- 		return NULL;
- 	}
+ static void dump_batman_bcast(unsigned char *packet_buff, ssize_t buff_len, int read_opt, int time_printed)
+ {
+ 	struct ether_header *ether_header;
+@@ -1041,6 +1065,10 @@ static void parse_eth_hdr(unsigned char *packet_buff, ssize_t buff_len, int read
+ 			if (dump_level & DUMP_TYPE_BATUCAST)
+ 				dump_batman_ucast(packet_buff, buff_len, read_opt, time_printed);
+ 			break;
++		case BATADV_UNICAST_FRAG:
++			if (dump_level & DUMP_TYPE_BATFRAG)
++				dump_batman_ucast_frag(packet_buff, buff_len, read_opt, time_printed);
++			break;
+ 		case BATADV_BCAST:
+ 			if (dump_level & DUMP_TYPE_BATBCAST)
+ 				dump_batman_bcast(packet_buff, buff_len, read_opt, time_printed);
 -- 
 2.20.1
 
