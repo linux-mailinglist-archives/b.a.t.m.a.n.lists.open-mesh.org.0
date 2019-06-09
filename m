@@ -1,66 +1,59 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F94C39D3C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  8 Jun 2019 13:27:17 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 159803A4AC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  9 Jun 2019 12:19:50 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 787D3815F1;
-	Sat,  8 Jun 2019 13:27:09 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:171:314c::100:a1])
- by open-mesh.org (Postfix) with ESMTPS id B83BC80688
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  8 Jun 2019 13:27:04 +0200 (CEST)
-Date: Sat, 8 Jun 2019 13:26:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1559993224;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iy9m8JZHZQwnXmtCWq+GNOSeZqVjJSw252XHZfah+JU=;
- b=rZzsoo9jIOEFdDciqeWSZxpedkQNI6qteA4aW3Vr/PX8Mk///3DH9KYwDe1vdLeWy9p/MA
- 0JQz6B0SCzHPyW+IKgA/TaCsPKVIy0yfXBmGqcFx29FrR3GdP2cpPgaskYVo2UOE4GgOGL
- CqDYzeXRSxKDj6nX7VhmUcwzZrJIBu9ZIum+qLLYk0I06+9R7/uM7l5pbDwNbIghEAYEpN
- duNm2Qh/zd/XL6Xn97LCsv3cM2xIPDj50ByKiMF7SvfV3MX+2dBzaGXkzc9SR6rBN4nWf5
- 790pcCOv87fqydPAUxUi3kqw0hJ3rp0FQai9uykDyjmgbzgx0ZnK3QgvxWSKpA==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH v3 1/2] batman-adv: mcast: detect, distribute and
- maintain multicast router presence
-Message-ID: <20190608112656.GA2503@otheros>
-References: <20190526164829.4247-1-linus.luessing@c0d3.blue>
- <20190526164829.4247-2-linus.luessing@c0d3.blue>
- <3461137.lo7lFcuFkP@bentobox>
+	by open-mesh.org (Postfix) with ESMTP id E211C81B10;
+	Sun,  9 Jun 2019 12:19:44 +0200 (CEST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by open-mesh.org (Postfix) with ESMTPS id 9934E80559
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  9 Jun 2019 12:19:41 +0200 (CEST)
+Received: by mail-wr1-x442.google.com with SMTP id f9so6226576wre.12
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 09 Jun 2019 03:19:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=measite-de.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=sWNktgib+NZMOE87hgdiLg2IFDO4afeYaZHiHo/bews=;
+ b=hdVtp2PyxAckDIEHvaFpbW+KqSxnMIsC7gsGHQgTY4YbrLhJn+kP7uBXhKGozTVFfA
+ VZvr5MWfLwOONTTn0L6d2HpuojkiE2Y0fnXxPkZ7nq6DNGuPhd1ML5TDTavztP+U+bMs
+ zfvtQFGslAhXuRHBjVqgnDqJTgP18jgWPTQLF4IR0AQuYxgyp+R8xKP4fQSO6+ZPWWGc
+ tsPHo1wGm77Y8CVAygsJU+TeRrz5WXC7BH0GcWv130Ia2ynLUju28sX4HUeFu8BjBEt+
+ Aj8VhPsRlCN2E7Lq8hzEUYrL9F510nVzSNJQMjKGKRH39epeZ1VSGmHeuNoobgSPA0zd
+ 6R0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=sWNktgib+NZMOE87hgdiLg2IFDO4afeYaZHiHo/bews=;
+ b=aF3NXvuOXvSEj9sPsOpc98KZEcytRKGR8VNqqvrVMa4nl2iVDBnE36+K2IiXz2bupl
+ S90C2gnG3qXxf/9+ItqZY/cQkSXxRT/1v0B26UVIWCeyOHN3S8yR4lSK57lZXs7LTWf9
+ eTYAOfeL2FisYp9JMsCOF4me4OD0mhgARQ5f5sf0piSzyP+BE2E0y8SMVSknaznJXhOg
+ FtCfQXLLsG7Nz/Yq3Ry266On2S9EkpR6FaGZPK0o37mniiHzQ+WoNkuH0sYg5sd2M91K
+ muRtajcRc9lQKoShHEAf8yH2v+NVJlTXf8f1ZY2AhPeKo770fBa+cWNw4UErwYE6f6NM
+ 5VgQ==
+X-Gm-Message-State: APjAAAVxWRG42nmxKvZhFY7ANnQwZmT81os++ZD/DbgNtdjEVFh2gSKC
+ E1a6/71vY9Hnq3vVEMlTsFc+jAlSXQMedw==
+X-Google-Smtp-Source: APXvYqx6AWId7uBh2caoc/YPgeVnQ/FZ7ObhYOZt28VgviqaxRVxk9sRsOUdmXDgoYBOdHZyshzSpg==
+X-Received: by 2002:a5d:4cc3:: with SMTP id c3mr14255248wrt.259.1560075580942; 
+ Sun, 09 Jun 2019 03:19:40 -0700 (PDT)
+Received: from mactel.dhcp.home.measite.de (p4FCA28A2.dip0.t-ipconnect.de.
+ [79.202.40.162])
+ by smtp.gmail.com with ESMTPSA id u12sm6686371wrt.13.2019.06.09.03.19.40
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Sun, 09 Jun 2019 03:19:40 -0700 (PDT)
+From: =?UTF-8?q?Ren=C3=A9=20Treffer?= <treffer@measite.de>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
+Date: Sun,  9 Jun 2019 12:19:22 +0200
+Message-Id: <20190609101922.2366-1-treffer@measite.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3461137.lo7lFcuFkP@bentobox>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1559993224;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iy9m8JZHZQwnXmtCWq+GNOSeZqVjJSw252XHZfah+JU=;
- b=Wr4HNozsdK+d4SwQVw3V5iZlhIlAoY6N9zcTkWMq+ITydPwW7VzmT7NVymofObMOlo6ozX
- rC9M00FH2rWHWfmIXJxG4dzs+ZFmLaHySk1gFfTPOM3pxey3jAp23pQNfYbTyiS5D2vdQ9
- 9/dcVbW/k5FUOXWphP7+SrgDPJ3mm47HNkKckTG82SrKVck8tiZcO/YBDj0hx5548ziwRl
- t0tvDwD6cDypZQIny12thZFCoxxvIk2Nuz5j1SqwmI9U4asDeGj7mFccFyDEcPjxXLLj8v
- GoJqhOpqzg4xWFXrqQnd5cApyZE0XHj56sPQ3ZVEPF8Q8DMfk5MXv8i0Yv1UlA==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1559993224; a=rsa-sha256; cv=none;
- b=iDF1vrWPaESqHBUVq3O4FjYY3tIVW48iV3KIMydZv6+2cShZ/n6Pu1MzJEH5xYpPMqSPrr
- EUQ0WtZCCCPHtwdMyq+XUYQ3mpTGadtuQsCUoiocPFPmtUSDoDXs608v99KRsoAYiJO8k3
- pBr3gLwmdvBRsyxO5eaDv6xsShi6yKCukIrg0M4x7AaJETehqBnubby+f5WG0fHAi1yCin
- cvTcQOalAp/ElmNz6fEOyEFKiz32hOoM7O8YydGoiqRnksx5uwil4Wc9cc5iQ0GGiDu4On
- oYnHXeTgKu1ZLMUf7Eq4F/6HFL2fhjxzqX5PCT2g+sB66Mn28fnrhbQMoBmtRQ==
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,47 +68,62 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Thu, Jun 06, 2019 at 05:48:32PM +0200, Sven Eckelmann wrote:
-> On Sunday, 26 May 2019 18:48:28 CEST Linus Lüssing wrote:
-> > If a multicast router is detected then this is signalized via the new
-> > BATADV_MCAST_WANT_ALL_RTR4 and BATADV_MCAST_WANT_ALL_RTR6
-> > multicast tvlv flags (which are sent flipped over the wire for backwards
-> > compatibility - so that old nodes will always have them "set").
-> [...]
-> > @@ -691,7 +868,12 @@ batadv_mcast_mla_flags_update(struct batadv_priv 
-> *bat_priv,
-> >         batadv_mcast_bridge_log(bat_priv, flags);
-> >         batadv_mcast_flags_log(bat_priv, flags->tvlv_flags);
-> >  
-> > +       /* toggle WANT_ALL_RTR flags as they are sent flipped on the
-> > +        * wire for backwards compatibility
-> > +        */
-> >         mcast_data.flags = flags->tvlv_flags;
-> > +       mcast_data.flags ^= BATADV_MCAST_WANT_ALL_RTR4;
-> > +       mcast_data.flags ^= BATADV_MCAST_WANT_ALL_RTR6;
-> >         memset(mcast_data.reserved, 0, sizeof(mcast_data.reserved));
-> 
-> Ehrm, this sounds like it is a good way to confuse people. Have a packet field 
-> which is called BATADV_MCAST_WANT_ALL_RTR4 but it actually means that it 
-> doesn't have BATADV_MCAST_WANT_ALL_RTR4. So maybe we should call this 
-> differently in batadv_packet.h's enum batadv_mcast_flags. 
-> BATADV_MCAST_WANT_ALL_RTR4 -> BATADV_MCAST_WANT_NO_RTR4? And then switch the 
-> logic in batadv_mcast_mla_rtr_flags_softif_get_ipv*, 
-> batadv_mcast_mla_rtr_flags_bridge_get, batadv_mcast_mla_rtr_flags_bridge_get, 
-> batadv_mcast_mla_softif_get_ipv*, ....
-> 
-> Or is it really necessary to have this enabled for older nodes?
+From: rtreffer <treffer@measite.de>
 
-No, I can swap that. Then we'd just need to make sure we really
-and correctly swap the logic every else (which I initially wanted
-to avoid, to be able to reuse as much code unmodified as possible as used
-by the WANT_ALL_IPV{4,6} flags).
+Some wifi drivers (e.g. ath10k) provide per-station rx/tx values but no
+estimated throughput. Setting a better estimate than the default 1MBit
+makes these devices work well with BATMAN V.
 
-But you are right, when looking at things on the wire (through
-Wireshark/tcpdump etc.) it might be confusing for the user to have the
-bit flipped. I'll give the WANT_NO_RTR{4,6} a try to so we can
-compare.
+Signed-off-by: René Treffer <treffer@measite.de>
+---
+ net/batman-adv/bat_v_elp.c | 23 +++++++++++++++++++----
+ 1 file changed, 19 insertions(+), 4 deletions(-)
+
+diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
+index 2614a9ca..ce3b52f1 100644
+--- a/net/batman-adv/bat_v_elp.c
++++ b/net/batman-adv/bat_v_elp.c
+@@ -68,7 +68,7 @@ static u32 batadv_v_elp_get_throughput(struct batadv_hardif_neigh_node *neigh)
+ 	struct ethtool_link_ksettings link_settings;
+ 	struct net_device *real_netdev;
+ 	struct station_info sinfo;
+-	u32 throughput;
++	u32 throughput, rx, tx;
+ 	int ret;
+ 
+ 	/* if the user specified a customised value for this interface, then
+@@ -107,10 +107,25 @@ static u32 batadv_v_elp_get_throughput(struct batadv_hardif_neigh_node *neigh)
+ 		}
+ 		if (ret)
+ 			goto default_throughput;
+-		if (!(sinfo.filled & BIT(NL80211_STA_INFO_EXPECTED_THROUGHPUT)))
+-			goto default_throughput;
+ 
+-		return sinfo.expected_throughput / 100;
++		if (sinfo.filled & BIT(NL80211_STA_INFO_EXPECTED_THROUGHPUT)) {
++			return sinfo.expected_throughput / 100;
++		}
++
++		// try to estimate en expected throughput based on reported rx/tx rates
++		// 1/3 of tx or 1/3 of the average of rx and tx, whichever is smaller
++		if (sinfo.filled & BIT(NL80211_STA_INFO_TX_BITRATE)) {
++			tx = cfg80211_calculate_bitrate(&sinfo.txrate);
++			if (sinfo.filled & BIT(NL80211_STA_INFO_RX_BITRATE)) {
++				rx = cfg80211_calculate_bitrate(&sinfo.rxrate);
++				if (rx < tx) {
++					return (rx + tx) / 6;
++				}
++			}
++			return tx / 3;
++		}
++
++		goto default_throughput;
+ 	}
+ 
+ 	/* if not a wifi interface, check if this device provides data via
+-- 
+2.20.1
+
