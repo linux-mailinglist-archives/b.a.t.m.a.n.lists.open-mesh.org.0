@@ -1,27 +1,55 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC493ADA2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 Jun 2019 05:32:09 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19F113AEA6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 Jun 2019 07:39:35 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id AC1CA8269B;
-	Mon, 10 Jun 2019 05:32:05 +0200 (CEST)
-Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
- by open-mesh.org (Postfix) with ESMTPS id 0391E805C2
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jun 2019 05:32:02 +0200 (CEST)
-From: Marek Lindner <mareklindner@neomailbox.ch>
+	by open-mesh.org (Postfix) with ESMTP id C58D4826C5;
+	Mon, 10 Jun 2019 07:39:30 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org
+ [IPv6:2001:4d88:2000:7::2])
+ by open-mesh.org (Postfix) with ESMTPS id 796B880A68
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jun 2019 07:39:27 +0200 (CEST)
+Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by durin.narfation.org (Postfix) with ESMTPSA id C24EC11004F;
+ Mon, 10 Jun 2019 07:39:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1560145167;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=yHWdxzrEPKNVNYYk/mFiu0NNiKoNtDAwVRHrKE6wprI=;
+ b=K/NfQfLK/8OtaulFgioDLmSfwE9SDTSDfmOEcVQVC+4P1mJnSjM6Epu/uSYXZG2+r2ZkNA
+ 7iJCNWnYTZd6mcNCb836wlw6Un53AptC4w4elw9ozjK9hosZuZ9AlMt1UBtOvL+6ULPveC
+ OsHlQkPgxUAc8QczBMFm53etMIQPu74=
+From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
-Date: Mon, 10 Jun 2019 11:31:48 +0800
-Message-ID: <4907494.lMUJSmCnaO@rousseau>
-In-Reply-To: <accc8852-ded3-188b-b72e-313d1b462d18@measite.de>
-References: <20190609101922.2366-1-treffer@measite.de>
- <3224708.U1DPrJmi8S@rousseau>
- <accc8852-ded3-188b-b72e-313d1b462d18@measite.de>
+Subject: Re: [PATCH v4 1/2] batman-adv: mcast: detect,
+ distribute and maintain multicast router presence
+Date: Mon, 10 Jun 2019 07:39:17 +0200
+Message-ID: <4372099.eJBBBCqJL5@sven-edge>
+In-Reply-To: <20190610004535.13725-2-linus.luessing@c0d3.blue>
+References: <20190610004535.13725-1-linus.luessing@c0d3.blue>
+ <20190610004535.13725-2-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4743461.LzJaxbTVtE";
+Content-Type: multipart/signed; boundary="nextPart2073850.6bWSJXWb6U";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1560145167;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=yHWdxzrEPKNVNYYk/mFiu0NNiKoNtDAwVRHrKE6wprI=;
+ b=UuMj0xE6REw+t8//KTqB2a9RNupMO4VJ27k0vEUw2HoXW2oSlTyhrdKwfFwpB0qbpUfc3y
+ 2RJA6qIOnrV4Tn4Hr+TLTZgzpDSyAsywVvjx95H1Z4e/C0wWpr/bANhRPuUJ0juq/YUtom
+ 8bDXb0XaTyA63iaBrkpR7uA83Jurwq4=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560145167; a=rsa-sha256; cv=none;
+ b=dKiBH0thlJRIAiYnQyc98BWh1aDbMRhIdbkCOuQj4W+AHKORypEwDKqHq2krL+JpQbgISu
+ yewju0wlvQsNN/HUphCvp8/o31vW5cj9yjqNotfQpPjrZCg0OaPWW0TXAd2iD+OAWX4Kk3
+ 1DoPIGo3X8Mk4ier8ss0xUPQ0jFx6nE=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,95 +67,69 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart4743461.LzJaxbTVtE
+--nextPart2073850.6bWSJXWb6U
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
 
-On Sunday, 9 June 2019 20:45:06 HKT Ren=E9 Treffer wrote:
-> I am testing this on devices with ath9k (2.4GHz) and ath10k (5GHz), so I
-> was looking at the estimates I get from ath9k. Here is a dump from my
->=20
-> home network on 2.4GHz/ath9k and what rx/3 would give us:
-> > signal  tx     rx     expect  tx/3    min(tx/3,(rx+tx)/2/3)
-> > -77     13.0   43.3   6.682   4.333
-> > -57     130.0  117.0  44.677  43.333  41.166
-> > -53     117.0  130.0  42.388  39.0
-> > -82     43.3   6.5    13.366  14.433  8.3      (!!!)
-> > -63     52.0   86.7   26.733  17.333
-> > -58     130.0  173.3  29.21   43.333            !!!
-> > -82     6.5    43.3   2.197   2.166
-> > -48     104.0  65.0   40.191  34.666  28.166
-> > -69     57.8   13.0   20.49   19.266  11.8
-> > -58     86.7   52.0   33.507  28.9    23.116
-> > -58     52.0   1.0    37.994  17.333  8.833
-> > -56     115.6  144.4  29.21   38.533            !!!
+On Monday, 10 June 2019 02:45:34 CEST Linus L=FCssing wrote:
+> If a multicast router is detected then this is signalized via the new
+> BATADV_MCAST_WANT_ALL_RTR4 and BATADV_MCAST_WANT_ALL_RTR6
+> multicast tvlv flags (which are sent flipped over the wire for backwards
+> compatibility - so that old nodes will always have them "set").
+
+This doesn't seem to match the code (see below).
+
+> diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/bata=
+dv_packet.h
+> index 4ebc2135..23a43043 100644
+> --- a/include/uapi/linux/batadv_packet.h
+> +++ b/include/uapi/linux/batadv_packet.h
+> @@ -107,12 +107,20 @@ enum batadv_icmp_packettype {
+>   * @BATADV_MCAST_WANT_ALL_UNSNOOPABLES: we want all packets destined for
+>   *  224.0.0.0/24 or ff02::1
+>   * @BATADV_MCAST_WANT_ALL_IPV4: we want all IPv4 multicast packets
+> + *  (both link-local and routeable ones)
+>   * @BATADV_MCAST_WANT_ALL_IPV6: we want all IPv6 multicast packets
+> + *  (both link-local and routable ones)
+> + * @BATADV_MCAST_WANT_NO_RTR4: we have no IPv4 multicast router and ther=
+efore
+> + * only need routeable IPv4 multicast packets we signed up for explicitly
+> + * @BATADV_MCAST_WANT_NO_RTR6: we have no IPv6 multicast router and ther=
+efore
+> + * only need routeable IPv6 multicast packets we signed up for explicitly
+>   */
+>  enum batadv_mcast_flags {
+>         BATADV_MCAST_WANT_ALL_UNSNOOPABLES      =3D 1UL << 0,
+>         BATADV_MCAST_WANT_ALL_IPV4              =3D 1UL << 1,
+>         BATADV_MCAST_WANT_ALL_IPV6              =3D 1UL << 2,
+> +       BATADV_MCAST_WANT_NO_RTR4               =3D 1UL << 3,
+> +       BATADV_MCAST_WANT_NO_RTR6               =3D 1UL << 4,
+>  };
 
 
-To confirm my understanding: What this table shows are raw tx/rx link estim=
-ated=20
-values ? None of these numbers compares to Minstrel HT expected throughput =
-or=20
-actual throughput ?
-
-
-> Cases where the rx/tx estimate would be higher are marked with !!!.
-
-I also don't quite understand what the '!!!' thing is trying to indicate. W=
-hat=20
-is being compared ? But it may be due to my misunderstandings above.=20
-
-In my small test setup with one ath10k device meshing with ath9k over 2.4GH=
-z,=20
-your tx / 3 formula seems to be quite accurate (had removed the rx part).=20
-
-# batctl o (your magic formula)
-* ac:86:74:00:38:06    0.930s (       45.7)  ac:86:74:00:38:06 [    mesh24]
-
-# batctl tp ac:86:74:00:38:06 (actual throughput)
-Test duration 10440ms.
-Sent 58393512 Bytes.
-Throughput: 5.33 MB/s (44.75 Mbps)
-
-What would be interesting is how the numbers produced by 'tx / 3' compare t=
-o=20
-either the actual throughput (can easily be tested with the throughput mete=
-r)=20
-or Minstrel expected throughput.=20
-
-
-> Why bother and look at rx at all? Asymmetric routing should already
-> work. I was bit concerned about highly asymmetric links, especially
-> those where the path back might not work. It might not be worth it though.
-
-Generally, the return path might be entirely different. Batman-adv does not=
-=20
-enforce or even endorse symetric paths. If there is better path for the ret=
-urn=20
-route, batman-adv will choose the better path based on tx from the sender a=
-nd=20
-if only one return path exists, we don't care anyway ..
-
-Cheers,
-Marek
-
---nextPart4743461.LzJaxbTVtE
+--nextPart2073850.6bWSJXWb6U
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAlz9zyQACgkQU1VOj+62
-HMARWAf/Vu6xQeXiQVmH3c4NMilFan+ZoBEpsChJlH4wz/rh8M7BtuGn05Stj8tr
-i9hEZXZ+vUpZbds13yIgNImWuaovif1705yDpIdqhyE/wVDiED6c5xF5qgYjdRQV
-zAwLXnbrGTbXmZ3WpOgPIC9Pc5vWNVj+rT3cZhAmFnXWzskuE3K2hdKEmCY0w7G/
-MfyhXtTT6EnUl5ILaSFi15O+SO9qr9kSsZPElvtWbixMNowHvspQnGCMegHpoAEc
-l5r1Z9GSij40YdjsXtSj5cEkFZP2gO0qNloQgiDJ/wexKT08MbC3hi1zXZ2Fj36X
-MS+5U2cXFdu8MVscy1RGrmL2XZ1xdw==
-=mmhe
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlz97QUACgkQXYcKB8Em
+e0ajqxAAnU7cPbmhTh56EHb81ORS2v7JPlkh6/XgEBnM4a2kuOo6vWBmd14X85gc
+NVH1ui1ZoE6DndJrwWzhko22l7rdjmwVlooTL8CZWlVQ/nB72OkZO/lYaLOvKL5A
+3i9KvB8w9Ouf1zKSuL8yEFTR5jivj0meTZsBxyW0TPuMOTogpSMTb7RwxScgNxT3
+06BVvMg7FoAUKan2XjpTpqCcWm49WAmL7l8eoCfeac8nbJ+a5TPg+Zy803WTEPlJ
+MyYfw/F3UrJF/TMqNNEytAEXLROS/rHz1TMMnBMKk7b1KA0TUYPIR6N2+V90SYqc
+htJxkL/6o0Vrjf9z3iv9ylXtZAasK/Ls9amdvL74RCeNyYwetyEl1ZbjPHx3Wb/s
+bV+UzFev60iadaz+VuIhAbAmNoJNM6ExaTJKjoFwb9Wur+b+0BudEg/Yhb/8s+xj
+1lgRQyhFOg04P3Oqof0aHPc0i4qc+4uZnxH5GlKLF3Volcs5/zLDfsWKYbmsCoF5
+qIkaF8r5lJN9+ct98XQkEFk99WhT3EcIaInJWi6f/SuvqNEkuv/NPBNyOsBWWk5l
+sNpOfIub+Hjp0w0Cl7O4LusMbsr8UON/WlRg3pQwmRmJ6Vt2lK0dV1bqz9YvFRcs
+Qs08kIaTOLhYntPb4poxzgQqFCMw2o40ofBh+i2zN5qzEV91SEM=
+=oRbX
 -----END PGP SIGNATURE-----
 
---nextPart4743461.LzJaxbTVtE--
+--nextPart2073850.6bWSJXWb6U--
 
 
 
