@@ -1,59 +1,68 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA64F3AFC8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 Jun 2019 09:37:42 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2413B2B8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 Jun 2019 12:06:32 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id DC4D6826FD;
-	Mon, 10 Jun 2019 09:37:39 +0200 (CEST)
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com
- [IPv6:2607:f8b0:4864:20::341])
- by open-mesh.org (Postfix) with ESMTPS id 09B4780A35
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jun 2019 09:37:37 +0200 (CEST)
-Received: by mail-ot1-x341.google.com with SMTP id z24so7436376oto.1
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jun 2019 00:37:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :content-transfer-encoding;
- bh=E0zAd1IUXz5g+5Rct4kr7YCrYCFj9+u9BAIWwRhn1r4=;
- b=PnlVyP0ZJ0YAN7jcdxwJRhOOZq8aPzqWnVXrH7cFA9GrD6G6Qdm7EB++eh4K8Yf49L
- 6phVnqpTN9WDJ+Ru0udkT+ZAYRncVOiT5RxEGA02dW2XX2oyyKTRreieYHgySWAXQCL8
- 5Z/Delr2JYaY8rcovggsGq4KdNoKvY+6lOgWnWlSOQPg/gWfEkAlJXjigubsSJZim8hU
- lSb4sDe1fVM0GX0flAzi7y53l7zPkIuaMao9v2fOSgf/yQDRjVY53oYwdcqrwg5B/ZlX
- aegwqBktzrS7W4Lh4EJHJCtdRu/hZpJXj3XuKdc0V9S7M95c0fxEdxEtV5CcJTGAqOMt
- QprA==
+	by open-mesh.org (Postfix) with ESMTP id 0300B82700;
+	Mon, 10 Jun 2019 12:06:28 +0200 (CEST)
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by open-mesh.org (Postfix) with ESMTPS id 97ADD80A68
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jun 2019 12:06:25 +0200 (CEST)
+Received: by mail-wm1-x343.google.com with SMTP id s15so5108520wmj.3
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jun 2019 03:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=measite-de.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=adHWU59yE0TZidT9gra+cBI4ozd2IIBzQZ77GcgEF90=;
+ b=13tMN9+/ETQqPf6AmPqupq8+4Th/bhYFoT6cQJkkUrPCTdxkQm/DyGeG5xnv6vT3vV
+ 1UjSd2GfvEI7TklYV3h6m+mpSv6GV3voc6HxiQ2Zpq71ge2+3EHtm0QzSr4Y6H4+Sdgh
+ egqLttAWdw42fsFgpMQzpT6gpFdUJ4I1MwUFLW5VklPqO8CdpdwOw/fAPqQ+giFwJS02
+ KRBb8x8Dg5a5MRlmlg6jOsMxDSGxPXzRNxh/9rorfh4wMj0MDzrlIjcl538BfNC4ofX4
+ XJNB2TbSC8eYZCqLnnM5u1X7+1nfD+ZMhQVE3/IJ2wnPQ3s4VqdyInN7WRh4mEvy+BM1
+ UcLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:content-transfer-encoding;
- bh=E0zAd1IUXz5g+5Rct4kr7YCrYCFj9+u9BAIWwRhn1r4=;
- b=qjYWcASsXuLCB6ez1M3uowg+6rDfd1jphTiJJVg2oCs92ZWZQ82tWtTlDGHm/GIvY+
- 8HTMMp0J2x2H0jqGL6pR46rgkh+x0KkmcLP0pVDylTpHyKfWRWlSZiYi3aFcISxZOrdU
- cdCjI3E0aUm158SzO1399qx++r6jJ3+G2M+/zQyWuXYyzSm4A5Z2QOIACZash/gNdjnV
- h+w8LsvDGWb/OVMlSMTLOH9VZ8egUiwA18q2RVfF8mJoBLiTJbk53JK8Duqm7/IPoxOM
- MBDUQfpk3AyKq81lsF16hEzHiq8Ux4PWi/y1dohtJ4PTNQhXmcJ90ZVTSsj7tMs+lfvn
- 1DFQ==
-X-Gm-Message-State: APjAAAVb8NwICdMljkuDbFDjI4Pn9szD3XQ4AMkcriRLHDAW0MYSTaYO
- Il7OHESjnbc4nlDBrueK38mSuxebViCXxYOIOV15hO0jMV4=
-X-Google-Smtp-Source: APXvYqw3SiZtKGzYK446fxrf9MeSZRkp6dMJvKMy6TdwzXbo3gEDYTwqy+qyYXdegCCBI0GrWTF36QvZhU/sAn6S+8M=
-X-Received: by 2002:a05:6830:1558:: with SMTP id
- l24mr23285228otp.352.1560152255510; 
- Mon, 10 Jun 2019 00:37:35 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=adHWU59yE0TZidT9gra+cBI4ozd2IIBzQZ77GcgEF90=;
+ b=f6+2VT4/OLK0y4pF5j+gRln+r9n5+b7F68z/JJdl1fYUqHwQTCJOE2ZOmiIIEsN66z
+ 7BOczAHXSIF0D/JoUzprmM/SEwXmgARsv0GVf/nPtI5aB/qSp1hdx3Jb3H3ytitGsy8U
+ zbmiNFG2SbtKbEJq//HayWNjLwClfyYDKHzmbR+Ch6tfUuYECt2F/Q3fQGCNvES7Ox1C
+ pNrptckYHsyCrH36H4v+tyPh9jF4bxCuNTz5I+N8LX5p32j17imy/FiMgkYnGLlSm29h
+ K92gIElRPul9hcS3qZ6A72FAzD2jrgE1IkDYggCE+lApXJeMILua2w0lk1HcvIzsOdIH
+ w0bQ==
+X-Gm-Message-State: APjAAAVBUxNF4/6Ii3/5v6mhuzNpmmm4rYYSkwgsV3LZLFJFwraHwLBZ
+ 6Kc1uB5ApiuGyFQH4S5wF4xltwua15Fg91fM
+X-Google-Smtp-Source: APXvYqxeGkEJu0oygxECY0lSNFBDMK7vtOAj/SSpQkJsTEU3VPwxI30ywWJlWpsLAjHyxbmLfUFYPQ==
+X-Received: by 2002:a1c:a544:: with SMTP id o65mr13015948wme.84.1560161184673; 
+ Mon, 10 Jun 2019 03:06:24 -0700 (PDT)
+Received: from ?IPv6:2003:d2:63c5:a600:cd48:d9da:7c1e:dd5d?
+ (p200300D263C5A600CD48D9DA7C1EDD5D.dip0.t-ipconnect.de.
+ [2003:d2:63c5:a600:cd48:d9da:7c1e:dd5d])
+ by smtp.gmail.com with ESMTPSA id a81sm4772851wmh.3.2019.06.10.03.06.23
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 10 Jun 2019 03:06:24 -0700 (PDT)
+Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
+To: Marek Lindner <mareklindner@neomailbox.ch>, b.a.t.m.a.n@lists.open-mesh.org
 References: <20190609101922.2366-1-treffer@measite.de>
  <3224708.U1DPrJmi8S@rousseau>
  <accc8852-ded3-188b-b72e-313d1b462d18@measite.de>
  <4907494.lMUJSmCnaO@rousseau>
+From: =?UTF-8?Q?Ren=c3=a9_Treffer?= <treffer@measite.de>
+Message-ID: <8c0c76dc-5c6b-da84-8e11-700222641db8@measite.de>
+Date: Mon, 10 Jun 2019 12:06:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
 In-Reply-To: <4907494.lMUJSmCnaO@rousseau>
-From: =?UTF-8?B?0JrQuNGA0LjQu9C7INCb0YPQutC+0L3QuNC9?= <klukonin@gmail.com>
-Date: Mon, 10 Jun 2019 12:37:08 +0500
-Message-ID: <CALYz8yoqh8X3hZcafrZAauFT4OZtQZ9r92G+9zW9__ir4m5How@mail.gmail.com>
-Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -71,213 +80,99 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hello, colleagues.
 
-I have a working solution for this problem. It is not batman-related,
-but I decided to share it with you right here.
-Please let me clarify some  details.
-
-1) Some ath10k firmwares (10.2) do not export tx bitrate. So we can't
-rely on it.
-2) Throughput estimation is better to inject from userspace, rather
-than make batman estimate it from unreliable sources.
-3) Here is the patch for mac80211 We made for ath10k and such drivers
-that do not export expected throughput value.
-
-I also think it's a better way because a lot of drivers do not work
-with mac80211 (wil6210). And all driver-dependent math can be easily
-changed on-the-fly.
-
-
-Here is simple patch that make possible this expected throughput injection.
-
---- a/net/mac80211/debugfs_sta.c
-+++ b/net/mac80211/debugfs_sta.c
-@@ -12,6 +12,7 @@
-
- #include <linux/debugfs.h>
- #include <linux/ieee80211.h>
-+#include <net/mac80211.h>
- #include "ieee80211_i.h"
- #include "debugfs.h"
- #include "debugfs_sta.h"
-@@ -20,6 +21,8 @@
-
- /* sta attributtes */
-
-+#define DEF_THR_BUFF_SIZE sizeof("4294967295")
-+
- #define STA_READ(name, field, format_string)                \
- static ssize_t sta_ ##name## _read(struct file *file,            \
-                    char __user *userbuf,        \
-@@ -490,6 +493,60 @@ static ssize_t sta_vht_capa_read(struct
- STA_OPS(vht_capa);
-
-
-+static ssize_t sta_def_thr_read(struct file *file, char __user *userbuf,
-+                 size_t count, loff_t *ppos)
-+{
-+    int ret =3D 0;
-+    char buf[DEF_THR_BUFF_SIZE] =3D { 0 };
-+    struct sta_info *sta =3D file->private_data;
-+
-+    rcu_read_lock();
-+
-+    // Access synchronization to struct sta_info is documented in
-net/mac80211/sta_info.c:34
-+    ret =3D snprintf(buf, DEF_THR_BUFF_SIZE - 1, "%u", sta->def_thr);
-+
-+    rcu_read_unlock();
-+
-+    if(ret >=3D DEF_THR_BUFF_SIZE)
-+        return -EFAULT;
-+
-+    buf[DEF_THR_BUFF_SIZE - 1] =3D '\0';
-+
-+    return simple_read_from_buffer(userbuf, count, ppos, buf, ret);
-+}
-+
-+static ssize_t sta_def_thr_write(struct file *file, const char __user *use=
-rbuf,
-+                 size_t count, loff_t *ppos)
-+{
-+    u32 thr =3D 0;
-+    int ret =3D 0;
-+    char buf[DEF_THR_BUFF_SIZE] =3D { 0 };
-+    struct sta_info *sta =3D file->private_data;
-+
-+    if(count >=3D DEF_THR_BUFF_SIZE)
-+        return -EINVAL;
-+
-+    if (copy_from_user(buf, userbuf, count))
-+        return -EFAULT;
-+
-+    buf[DEF_THR_BUFF_SIZE - 1] =3D '\0';
-+
-+    ret =3D sscanf(buf, "%u", &thr);
-+    if(ret !=3D 1)
-+        return -EINVAL;
-+
-+    rcu_read_lock();
-+
-+    // Access synchronization to struct sta_info is documented in
-net/mac80211/sta_info.c:34
-+    sta->def_thr =3D thr;
-+    ieee80211_sta_set_expected_throughput(&sta->sta, thr);
-+
-+    rcu_read_unlock();
-+
-+    return count;
-+}
-+STA_OPS_RW(def_thr);
-+
- #define DEBUGFS_ADD(name) \
-     debugfs_create_file(#name, 0400, \
-         sta->debugfs_dir, sta, &sta_ ##name## _ops);
-@@ -534,6 +591,7 @@ void ieee80211_sta_debugfs_add(struct st
-     DEBUGFS_ADD(agg_status);
-     DEBUGFS_ADD(ht_capa);
-     DEBUGFS_ADD(vht_capa);
-+    DEBUGFS_ADD(def_thr);
-
-     DEBUGFS_ADD_COUNTER(rx_duplicates, rx_stats.num_duplicates);
-     DEBUGFS_ADD_COUNTER(rx_fragments, rx_stats.fragments);
---- a/net/mac80211/sta_info.c
-+++ b/net/mac80211/sta_info.c
-@@ -2305,6 +2305,9 @@ u32 sta_get_expected_throughput(struct s
-     else
-         thr =3D drv_get_expected_throughput(local, sta);
-
-+    if(thr =3D=3D 0 && sta->def_thr !=3D 0)
-+        thr =3D sta->def_thr;
-+
-     return thr;
- }
-
---- b/net/mac80211/sta_info.h
-+++ a/net/mac80211/sta_info.h
-@@ -509,6 +509,7 @@
-     struct work_struct drv_deliver_wk;
-
-     u16 listen_interval;
-+    u32 def_thr;
-
-     bool dead;
-     bool removed;
-
-
-
-Best Regards,
-Lukonin Kirill
-
-=D0=BF=D0=BD, 10 =D0=B8=D1=8E=D0=BD. 2019 =D0=B3. =D0=B2 08:32, Marek Lindn=
-er <mareklindner@neomailbox.ch>:
+On 10.06.19 05:31, Marek Lindner wrote:
+> On Sunday, 9 June 2019 20:45:06 HKT René Treffer wrote:
+>> I am testing this on devices with ath9k (2.4GHz) and ath10k (5GHz), so I
+>> was looking at the estimates I get from ath9k. Here is a dump from my
+>>
+>> home network on 2.4GHz/ath9k and what rx/3 would give us:
+>>> signal  tx     rx     expect  tx/3    min(tx/3,(rx+tx)/2/3)
+>>> -77     13.0   43.3   6.682   4.333
+>>> -57     130.0  117.0  44.677  43.333  41.166
+>>> -53     117.0  130.0  42.388  39.0
+>>> -82     43.3   6.5    13.366  14.433  8.3      (!!!)
+>>> -63     52.0   86.7   26.733  17.333
+>>> -58     130.0  173.3  29.21   43.333            !!!
+>>> -82     6.5    43.3   2.197   2.166
+>>> -48     104.0  65.0   40.191  34.666  28.166
+>>> -69     57.8   13.0   20.49   19.266  11.8
+>>> -58     86.7   52.0   33.507  28.9    23.116
+>>> -58     52.0   1.0    37.994  17.333  8.833
+>>> -56     115.6  144.4  29.21   38.533            !!!
 >
-> On Sunday, 9 June 2019 20:45:06 HKT Ren=C3=A9 Treffer wrote:
-> > I am testing this on devices with ath9k (2.4GHz) and ath10k (5GHz), so =
-I
-> > was looking at the estimates I get from ath9k. Here is a dump from my
-> >
-> > home network on 2.4GHz/ath9k and what rx/3 would give us:
-> > > signal  tx     rx     expect  tx/3    min(tx/3,(rx+tx)/2/3)
-> > > -77     13.0   43.3   6.682   4.333
-> > > -57     130.0  117.0  44.677  43.333  41.166
-> > > -53     117.0  130.0  42.388  39.0
-> > > -82     43.3   6.5    13.366  14.433  8.3      (!!!)
-> > > -63     52.0   86.7   26.733  17.333
-> > > -58     130.0  173.3  29.21   43.333            !!!
-> > > -82     6.5    43.3   2.197   2.166
-> > > -48     104.0  65.0   40.191  34.666  28.166
-> > > -69     57.8   13.0   20.49   19.266  11.8
-> > > -58     86.7   52.0   33.507  28.9    23.116
-> > > -58     52.0   1.0    37.994  17.333  8.833
-> > > -56     115.6  144.4  29.21   38.533            !!!
->
->
-> To confirm my understanding: What this table shows are raw tx/rx link est=
-imated
-> values ? None of these numbers compares to Minstrel HT expected throughpu=
-t or
+> To confirm my understanding: What this table shows are raw tx/rx link estimated 
+> values ? None of these numbers compares to Minstrel HT expected throughput or 
 > actual throughput ?
+
+Ah sorry, _expect_ is the current ath9k expected throughput and that
+should be minstrel, right? I pulled data from my ath9k devices, e.g.
+
+> # iw dev wlan1 station dump
+> Station e8:de:27:70:0e:bd (on wlan1)
+>         [...]
+>         signal:         -56 [-59, -59, -80] dBm
+>         tx bitrate:     117.0 MBit/s MCS 20
+>         rx bitrate:     144.4 MBit/s MCS 15 short GI
+>         expected throughput:    42.388Mbps
+>         [...]
+Those are the potential inputs (-56, 117, 144.4) and a desired output
+(42.388), or as a table
+
+> signal  tx     rx     expect
+> -56     117.0  144.4  42.388
+I then computed manually the tx/3 (39.0) which is lower than
+(rx+tx)/2/3. The full line would be
+
+> signal  tx     rx     expect  tx/3    min(tx/3,(rx+tx)/2/3)
+> -56     117.0  144.4  42.388  39.0
+I hope this makes sense now. I wanted to get close to the current
+throughput estimation with worse inputs.
+I would be happy to check more inputs, but the tx/3 turned out to be
+pretty close and usually slightly lower.
+
 >
 >
-> > Cases where the rx/tx estimate would be higher are marked with !!!.
+>> Cases where the rx/tx estimate would be higher are marked with !!!.
+> I also don't quite understand what the '!!!' thing is trying to indicate. What 
+> is being compared ? But it may be due to my misunderstandings above. 
+
+I haven't done an actual throughput test, and I would expect the outputs
+of my heuristic to be worse.
+So I wanted to give slightly lower values than the expected throughput.
+
+The other way to think about it: if you were to replace the
+expected_throughput input where would you over-estimate the link quality
+now?
+
 >
-> I also don't quite understand what the '!!!' thing is trying to indicate.=
- What
-> is being compared ? But it may be due to my misunderstandings above.
->
-> In my small test setup with one ath10k device meshing with ath9k over 2.4=
-GHz,
-> your tx / 3 formula seems to be quite accurate (had removed the rx part).
+> In my small test setup with one ath10k device meshing with ath9k over 2.4GHz, 
+> your tx / 3 formula seems to be quite accurate (had removed the rx part). 
 >
 > # batctl o (your magic formula)
-> * ac:86:74:00:38:06    0.930s (       45.7)  ac:86:74:00:38:06 [    mesh2=
-4]
+> * ac:86:74:00:38:06    0.930s (       45.7)  ac:86:74:00:38:06 [    mesh24]
 >
 > # batctl tp ac:86:74:00:38:06 (actual throughput)
 > Test duration 10440ms.
 > Sent 58393512 Bytes.
 > Throughput: 5.33 MB/s (44.75 Mbps)
 >
-> What would be interesting is how the numbers produced by 'tx / 3' compare=
- to
-> either the actual throughput (can easily be tested with the throughput me=
-ter)
-> or Minstrel expected throughput.
+> What would be interesting is how the numbers produced by 'tx / 3' compare to 
+> either the actual throughput (can easily be tested with the throughput meter) 
+> or Minstrel expected throughput. 
+
+Comparing with actual throughput sounds like a good idea, I'll do that next.
+Right now I don't know how well estimates on both radios hold and how
+well they are comparable.
+
 >
 >
-> > Why bother and look at rx at all? Asymmetric routing should already
-> > work. I was bit concerned about highly asymmetric links, especially
-> > those where the path back might not work. It might not be worth it thou=
-gh.
->
-> Generally, the return path might be entirely different. Batman-adv does n=
-ot
-> enforce or even endorse symetric paths. If there is better path for the r=
-eturn
-> route, batman-adv will choose the better path based on tx from the sender=
- and
+>> Why bother and look at rx at all? Asymmetric routing should already
+>> work. I was bit concerned about highly asymmetric links, especially
+>> those where the path back might not work. It might not be worth it though.
+> Generally, the return path might be entirely different. Batman-adv does not 
+> enforce or even endorse symetric paths. If there is better path for the return 
+> route, batman-adv will choose the better path based on tx from the sender and 
 > if only one return path exists, we don't care anyway ..
 >
 > Cheers,
