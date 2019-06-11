@@ -2,58 +2,50 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3683CE29
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 Jun 2019 16:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E5624167C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 Jun 2019 22:58:54 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 5E79982722;
-	Tue, 11 Jun 2019 16:12:20 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 02832820CE;
+	Tue, 11 Jun 2019 22:58:49 +0200 (CEST)
 Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by open-mesh.org (Postfix) with ESMTPS id 1FC4B80729
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 11 Jun 2019 16:12:17 +0200 (CEST)
-Date: Tue, 11 Jun 2019 16:12:14 +0200
+ by open-mesh.org (Postfix) with ESMTPS id 357EA80851
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 11 Jun 2019 22:58:46 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1560262336;
+ t=1560286725;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=hYFMPW/tLADA5zDcEbXUu+KUT0MtjoTU1dtFEbPNvP8=;
- b=M+R52z12zVdURnMOfiNyVg/w0t7KqoUI7ENRE55c3Tyh4u5Dfbco85Tym6le4mppdn3IIF
- 3wmz59pXH59q4OW/P15S+Zj+xRy+XKp3J9DkDy2B4epfdRaIZOqMfhBbhYqESl/pbNq3tc
- g1xUHdg3GdBxPOUJxlOjCQLox+sQzY1PStJJEyF2XmHSxeR5KcS1bOuZLSOnSPbKmAf5dn
- 7ehfJGhiS3E4ZTm2HoSG5LU4PfHsj/ni3s1oLceO7ehVaJlcS/zVM0gJGy6+RUTc6rFwNw
- SPV+gTq6EeekgXC7Y5kjyvzOhxx1PectNvHgrJV1XY//YBlSWLdSAWOwFzjF2w==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH v4 1/2] batman-adv: mcast: detect, distribute and
- maintain multicast router presence
-Message-ID: <20190611141214.GA2877@otheros>
-References: <20190610004535.13725-1-linus.luessing@c0d3.blue>
- <1984348.Q8u5oXqQmF@sven-edge> <20190610231414.GA10498@otheros>
- <1705254.clgQh6sisM@sven-edge>
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=cxKOoPytEs6edWb+W29h1M7ESx4o+g0++YGWf0zk+jQ=;
+ b=I2CCeCQjPnyEMz6g7btaYILUtAZ0G8IGWt0/Vzwq4Shep6lvicFqvY7RxxiAXZk4Wghs+v
+ hG3DsW7apthcWPBV6yvYhchmgG0XJGozNjum65KZRxwieh016M7Yp8EsEiI28MLOFBCHD7
+ alT3f+DGpCO58UqmnWmq3g8jso7uIQV/EJQKOmhFOH/jAhaMQKdtzMGnhGxWPtT3K1Zfax
+ jqnfelY62oPAXvXUPy5yRPQfBzomCdrxO+Q81TM3ZzxZxVqk0tZbrae7ef8fxO1oAXREHT
+ nVkjdSN7eP90su+NvyP9eerGrF1KWqDCYJoLb9emXUKXVcYTL/XTEErUhLXX+A==
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH v5 0/2] batman-adv: Add routable multicast optimizations
+Date: Tue, 11 Jun 2019 22:58:39 +0200
+Message-Id: <20190611205841.5841-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1705254.clgQh6sisM@sven-edge>
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1560262336;
+ s=2018; t=1560286726;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=hYFMPW/tLADA5zDcEbXUu+KUT0MtjoTU1dtFEbPNvP8=;
- b=Ces+jlEyBtd8zPWLZNZUKFJ/Y9D3AiduJDt+mZ1aGpqGHtpi337v94rHmgDj9KYmejCV8j
- hyzAg9/nXDkLM+7hP3qkN2lUhP1Lpejpl3xcomZUYlhzseGNrcXNz91FKbWZNSDs00rxGK
- oAeHXq956AjS+BfF2VM1lXYS5YgpQy+7jG0uo8qoXo8/vpOeOiN2vDKslgxjw8n7p7vWaw
- SbbZpJSL6Ttum3QgiGyMWx8jv5UD0BA0mZTNAo5DjmNaDwoeUH2hiwQguEuPn74UIeDEOT
- gwMHt4FKgSKX3xdYd3GNqrmS9U72sIWG8yMKo60fgOIhrvyddzUXm4YQxjFprQ==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1560262336; a=rsa-sha256; cv=none;
- b=HqwUo1ubBBDDKLttjkJZbd8VbjH4xnha8jzaPw9iz0pghbwoffBmpFzmGXZklErMYFzs2c
- r6RFnzgDnLk6yWnHMDeVe2CzZVPSJT+fWszIHNckYxIdBHtMQbIzssJvksO8BDWBPcNQyB
- 5tMjnl75pHqwZNPFr3EwSePdi2e6uscoNxmB00Hy5H/JwU2fTOsJI2jRFLhGuUlg4Eq7ww
- 5Jq2GFhTzsO7UqCBzDfyHDo+ZfwIw7wg1KeD9CstE97J3bT2Eb4HeQsFlp+9ZRJ3aP21Cl
- VLki/xYcBYvUv6KxzqUC7tsWHKBkobQHyxszetpfVZ55gJZSNNnLwBhBs/koeA==
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=cxKOoPytEs6edWb+W29h1M7ESx4o+g0++YGWf0zk+jQ=;
+ b=YdaQmnNSECoPNPYizoua+HMMW9Sk85OeTdmM7IIBsKZBGnulS2BaAc96SI6x6VV1FpzjyD
+ OZRRTMwlCuW9CU51BhTs+KQ4WW804fkLqo7x2nx5c0QBZtd1UMF2B7yZOQ8JoAhEujjMk9
+ iPuLtYx7ICWQE/32OZZDf6jMWB4yjYA3jIiNH9LNbT0eP824iIcncMfYzmPcxYD55BL6dG
+ ONh3Ib+MCeAX2U7tMagAOKTDNRiAC837ZncNG61RcYDksNsUodlRAtqAhrli7Kyb/joZnd
+ 6/tlSSL0nvkNyi15oFSSQbJkaWdU8rpwsgCNnau1GBbc7VhhlSU/w81ih6Uj3g==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1560286726; a=rsa-sha256; cv=none;
+ b=eiFjsoADBXE1rWXxICHefYQ2n18mZAeHORxtcsHbG/Sm8N1VvDBxltMsXBQPCFyTEesCdx
+ E3wiEEm9PRS66fcFd0O9UcPjojosGc8HWsbg3DXbAMdzLqcqY9ax4XFWVkBJCRwo0Mo310
+ qe0dE5fLigLU5DLJGBtc74Ny78T0a772MPiLQniwzoccxh68xlovNHwJkAZxuv4eYdjAZG
+ HV+pdZn9k7l6efi2yR/tUqoEfAamjfhVvZCvtjBe0glAAtAeo3ljEV/MsQInIpO618/LZ8
+ pUlGG4bgerd/84d9inne8b+qJLGTdDU2Mrc2s3PHrVd5eUc6i0H5gSwi908Nlw==
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=linus.luessing@c0d3.blue
  smtp.mailfrom=linus.luessing@c0d3.blue
@@ -74,36 +66,88 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Tue, Jun 11, 2019 at 07:44:12AM +0200, Sven Eckelmann wrote:
-> On Tuesday, 11 June 2019 01:14:14 CEST Linus Lüssing wrote:
-> > I'm currently unsure when we would need that. Are you suggesting
-> > to interpret it that way, just in case we might need it some day?
-> > 
-> > Note that this would also be a "soft compatibility break". So old
-> > nodes would still interpret 0x1f the same way as 0x07, meaning
-> > they would send all multicast traffic to nodes announcing either
-> > 0x1f or 0x07. It'd be a "soft break" because it wouldn't cause
-> > packet loss, old nodes would just overestimate.
-> 
-> I am just unsure how we could/would interpret this in the future. Not that we 
-> need support for it in the first version.
+The following patchset fills the next gaps in the multicast address
+rules page by adding support for group-aware optimizations for
+multicast addresses of scope greater than link-local. So far, only
+link-local addresses were optimized as packets with routable
+addresses not only need to be forwarded to local multicast listeners
+but also multicast routers.
 
-Ah, okay. Yes, then I think I would prefer to interpret WANT_ALL_IPV{4,6} +
-WANT_NO_RTR{4,6} as WANT_ALL_LL{4,6} in the future (just, but all
-link-local).
+"Handling rules depending on multicast address:" [0]
 
-I'll change the code in PATCH 1/2 to always unset WANT_NO_RTR{4,6}
-in the transmitted TVLV if WANT_ALL_IPV{4,6} is set for now, to allow to
-reuse and interpret it that way in the future.
+Before:
+
+* Ipv4, link-local: supported without bridges
+* IPv6, link-local: supported
+* IPv4, routable: support planned.
+* IPv6, routable: support planned.
+
+After:
+
+* Ipv4, link-local: supported without bridges
+* IPv6, link-local: supported
+* IPv4, routable: supported without bridges.
+* IPv6, routable: supported.
+
+Patch 1 adds the detection of multicast routers and announces
+them via two new flags in its multicast TVLV. TVLV receivers will
+memorize this and fill lists similar to how we already do for the
+WANT_ALL_IPV4/IPV6 flags. Currently the detection for bridged-in
+IPv6 multicast routers is not quite what the RFC for multicast router
+discovery suggests. But once the MRD implementation in the Linux bridge
+has matured a bit, I'm going to swap this simplified approach with
+tapping into the bridge once more, asking the bridge for the presence of
+multicast routers on the link. (This will then also add support for
+"IPv4, routable, with bridges")
+
+Then patch 2 implements the changes to the forwarding plane,
+utilizing the new information we have gathered with the second patch.
+
+Regards, Linus
+
+[0]:
+https://www.open-mesh.org/projects/batman-adv/wiki/Multicast-optimizations-tech#Handling-rules-depending-on-multicast-address
+
+---
+
+Changelog v5:
+
+* updated commit message of [PATCH 1/2] with
+  BATADV_MCAST_WANT_ALL_RTR{4,6} -> BATADV_MCAST_WANT_NO_RTR{4,6}
+* now unsetting BATADV_MCAST_WANT_NO_RTR{4,6} in own tvlv flags
+  (batadv_mcast_mla_flags_get() ) if BATADV_MCAST_WANT_ALL_IPV{4,6}
+  is already set, to be able to reuse this combination to signalize
+  want-all-link-local in the future - [PATCH 1/2]
+* "routeable" -> "routable"
+
+Changelog v4:
+
+* rebased to master
+* BATADV_MCAST_WANT_ALL_RTR{4,6} -> BATADV_MCAST_WANT_NO_RTR{4,6}
+  => swapped the name of this flag and according logic in the code in
+[PATCH 1/2]
+  => swapped the name in the kerneldoc in [PATCH 2/2]
+
+Changelog v3:
+
+* rebased to master + routeable multicast preparations v4
+* fixed build errors with CONFIG_IPV6_MROUTE disabled
+* fixed build errors with CONFIG_IPV6 disabled
+
+Changelog v2:
+
+* rebased to master
+* split patchset in two with the intention to ease reviewing
+  (no code changes, just the last two patches here)
+
+* removed unncessarilly added newline in batadv_mcast_flags_log()
+  [PATCH 5/6] / [PATCH v2 1/2]
+* kerneldoc: @BATADV_MCAST_NO_WANT_ALL_RTR6 -> -"NO_"
+  in enum batadv_mcast_flags [PATCH 5/6] / [PATCH v2 1/2]
 
 
-(An alternative would have been to keep it as is and adding
-another flag in the future if the use case for all-link-local-only
-came up. The advantage of transmitting WANT_NO_RTR{4,6} independent of
-WANT_ALL_IPV{4,6} would have been some additional (debug) information.
-But on the other hand, adding yet another flag in the future would just
-get more messy/confusing.)
+
+
