@@ -1,57 +1,52 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8EF4311F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2019 22:51:20 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF5B44BD7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Jun 2019 21:12:32 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 2CB5782738;
-	Wed, 12 Jun 2019 22:51:16 +0200 (CEST)
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by open-mesh.org (Postfix) with ESMTPS id 8945680170
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jun 2019 22:51:12 +0200 (CEST)
-Received: by mail-oi1-x244.google.com with SMTP id w196so12751777oie.7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jun 2019 13:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=FfoWc8pTZFhsqGZ336HM4vszbOYBO4sNKNKV17QtewE=;
- b=pm7JT0MVrhQ3R/XM4jgHs0FYYnxRlmFKREEujXd6VKeBUGsJTh/m+gy9UCLmpZXYNe
- Hlwuf/cL4jQlDAJq1GxaohmubJzsFmPSMICHzSXMOeMXpl8XE9ghKerdXXbKIMK9mvWE
- oyU6t1ksbGsAvLoude7FO35stgtO03OUJeoptz6G6goskGg8/37sEwtFmujzipJyNYw1
- /qFUDdS5wPHZiFzRhzsptAZc1ZIaG95uEIZgACaWU8SGAsNTg2HhY22tW6bRLYhhCsTw
- uurGyHB/UUwrPr1tqvBioCeN3eyk4ScINTMsyM9O+/vHRbNkC4GQT3iA785NMOJPkXUE
- tuEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=FfoWc8pTZFhsqGZ336HM4vszbOYBO4sNKNKV17QtewE=;
- b=F+lSR0gSJRyTB022Ak7rE4uhSBW1H+sCyqtg4rCVGyuzwn9drwYllu74o9EKO1Mxc1
- OdSJ7u78EJv9PGRr9dIV98QGucVxaqMReLQZzfQ/wc5HUOiMvEyEa0wHTbBbvhPUFHef
- KBj1G1+dxp3IyX5W+p8vycB59yyFSa8niew6O8VeU5QwkMT5wyZlmxxILsE8A8C/PE/I
- +HdFu3P37c386Lx665Vq/2et+W/ETbnt9B5mzOdR3R3064iPIWhHhk67W6fYQEgfj/I1
- J6+7YJI/oGyYgECqcDctpzLBbAt7/qhwTudxThB13nC/9Iid0m9obLRCvR/YoVE8K68X
- 7eEQ==
-X-Gm-Message-State: APjAAAXauRQhmSrikEBinzzh1daeDR9Y5Acnpv+xooGQp69ihp65KJ2z
- QuiJkDHWNGTH8kstvD+iWqSpPJzMffDpj29kxclfk7j/3Ww=
-X-Google-Smtp-Source: APXvYqxYmq/iMrJDtvFq9lhwwN8fTZecnoMXzv1mophKcTLqmfHSCimRpBfza3H8Rv0johM8ndLxKS9reFJ0ey5wUxE=
-X-Received: by 2002:aca:36c5:: with SMTP id d188mr748445oia.39.1560372671182; 
- Wed, 12 Jun 2019 13:51:11 -0700 (PDT)
+	by open-mesh.org (Postfix) with ESMTP id 11854818CF;
+	Thu, 13 Jun 2019 21:12:25 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org
+ [IPv6:2001:4d88:2000:7::2])
+ by open-mesh.org (Postfix) with ESMTPS id 89BAA802FC
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Jun 2019 21:12:21 +0200 (CEST)
+Received: from sven-desktop.home.narfation.org (unknown
+ [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by durin.narfation.org (Postfix) with ESMTPSA id E870C1100B2;
+ Thu, 13 Jun 2019 21:12:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1560453141;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=GdQFv5FA9vi0A/+v5NqpTs+vG5PZq2MF40ZOE7SPLvM=;
+ b=JLzGt/TOXcxZkzkxuLCIydmf6xXAl6wqfF43IWa/fBhye16JEZrgC6QFDvrtbhxZNpZ1pD
+ iLA/1n6/mEVxgtUymtPUCjvTMcMFGE5uBTASb6TCKA6AH+fEN4W+0K51x0fyOWumk6EhBp
+ SSEjUtqRxiQUBkfAGJrPGUzb0jujV6k=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH 0/4] batctl: Add vid support and hardif settings
+Date: Thu, 13 Jun 2019 21:12:13 +0200
+Message-Id: <20190613191217.28139-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190609101922.2366-1-treffer@measite.de>
- <4907494.lMUJSmCnaO@rousseau>
- <CALYz8yoqh8X3hZcafrZAauFT4OZtQZ9r92G+9zW9__ir4m5How@mail.gmail.com>
- <3147211.nMDzSnZuI7@rousseau>
-In-Reply-To: <3147211.nMDzSnZuI7@rousseau>
-From: =?UTF-8?B?0JrQuNGA0LjQu9C7INCb0YPQutC+0L3QuNC9?= <klukonin@gmail.com>
-Date: Thu, 13 Jun 2019 01:50:44 +0500
-Message-ID: <CALYz8yoj0E1MDoh7ztThK_q_ew0EHa=2vbuwxQFNwUfDvsEGiA@mail.gmail.com>
-Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
-To: Marek Lindner <mareklindner@neomailbox.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1560453141;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=GdQFv5FA9vi0A/+v5NqpTs+vG5PZq2MF40ZOE7SPLvM=;
+ b=PzBMJWBOt2QXe//tjXxkCendU26skWfVXKDwBeXMIvALLccMbjT1/Mai4gdg3OmcHh8tSt
+ fZIwzUjV3b3fiyC7nM+XuTZY9+TID6wCqluOwokwqujGCiHsatZZG3nUKVLRqI8JiXIDfM
+ HXRUo65amlph5wj9HjERfdXRLQwrydc=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560453141; a=rsa-sha256; cv=none;
+ b=gdxznboa62X1cOYbQu52soow/EQH09000iXJLNOE0xPUG9+ra5OV2CXrL4ARmkIbUue/eS
+ XHpY+0WctYU5jYWxYm/1NMzSXVSJolvAZ2HnJhC4l+gadbUohD+P3RIjvYGG3sny6BjXLl
+ O+VwK5zMPeFee+C9ZnWgUcdbPvDJ8Kc=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -66,79 +61,73 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-=D1=81=D1=80, 12 =D0=B8=D1=8E=D0=BD. 2019 =D0=B3. =D0=B2 11:39, Marek Lindn=
-er <mareklindner@neomailbox.ch>:
->
-> Hi,
->
-> > I have a working solution for this problem. It is not batman-related,
-> > but I decided to share it with you right here.
-> > Please let me clarify some  details.
-> >
-> > 1) Some ath10k firmwares (10.2) do not export tx bitrate. So we can't
-> > rely on it.
-> > 2) Throughput estimation is better to inject from userspace, rather
-> > than make batman estimate it from unreliable sources.
-> > 3) Here is the patch for mac80211 We made for ath10k and such drivers
-> > that do not export expected throughput value.
->
-> you are very right about those issues. However, your patch only provides =
-a
-> quick way to push an arbitrary throughput metric into the batman-adv kern=
-el
-> module. The current discussion is about how such metric could be best der=
-ived
-> in an automated fashion.
->
-> Would you mind sharing your approach to obtaining such a metric that addr=
-esses
-> the problems mentioned above ?
->
-> Thanks,
-> Marek
->
+Hi,
 
-Yes, sure.
+I've asked a quite while back for some ideas regarding the support for hard
+interface settings in batctl [1]. But I got no feedback at all. So I've
+decided to just implement the first option and use it as chance to improve
+the vlan settings.
 
-I can't share a source code because it partially belongs to one
-commercial company.
-But I want and I can share my ideas with empirical evidence.
-Also I will be very glad to help Batman-avd mesh community and become
-a part of it.
+vlan settings
+=============
 
-So here is the algorithm. It has a structure we call matryoshka.
-ET - Expected_throughput.
+The requirement to have a VLAN master device on top of the batadv mesh
+interface is artificially limiting the capabilities of batctl. Not all
+master devices in linux which register a VLAN are from type "vlan" and are
+only registering a single VLAN.
 
-1) ET =3D TX_bitrate * Transmit_probability * Overhead_coefficient
-Transmit_probability is always less than 1 so Expected throughput
-can't be equal to the TX_bitrate. Overhead_coefficient is also should
-be less than 1
+For example VLAN aware bridges can create multiple VLANs. These require
+that the VLAN is identified using the VID and not the vlan device.
 
-2) Transmit_probability =3D 1 - Retry_probability - Error_probability
+It is now possible to specify the vlan using:
 
-3) Retry_probability =3D TX_retries / TX_packets
-
-4) Error_probability =3D TX_errors / TX_packets
-
-5) Overhead_coefficient for 802.11 is fair enough to be 0.65, but can
-be changed after additional testing.
+  $ batctl vlan bat0.8 ap_isolation enable
+  $ batctl -m bat0 vid 8 ap_isolation enable
 
 
-ET =3D TX_bitrate * (1 - (TX_retries + TX_errors) / TX_packets) * 0.65
-Such technique has very large hysteresis which is good to avoid
-flapping between different nodes.
-In my MESH lab this formula works quite well.
-Please ask any questions and feel free to criticize.
+hardif settings
+===============
+
+The infrastructure for the new vlan/vid prefix of commands can now be used
+to introduce another prefix: "hardif".
+
+B.A.T.M.A.N. V introduced two additional settings which are hard (slave)
+interface specific. These can can finally be implemented in batctl. This
+will allow to change/read these settings when sysfs support is not enabled
+in the kernel.
+
+  $ batctl hardif eth0 throughput_override 15mbit
+  $ batctl hardif eth0 elp_interval
+
+Kind regards,
+	Sven
 
 
-Also please note that ath10k tx_bitrate can be fetched from ath10k
-firmware debugfs statistics. Even with 10.2 firmware.
+[1] https://www.open-mesh.org/issues/373
 
+Sven Eckelmann (4):
+  batctl: Make vlan setting explicit
+  batctl: Integrate hardif setting framework
+  batctl: Add elp_interval setting command
+  batctl: Add throughput_override setting command
 
-Best Regards,
-Lukonin Kirill
+ Makefile              |   2 +
+ README.rst            |  33 +++++++++
+ ap_isolation.c        |   5 ++
+ elp_interval.c        | 111 +++++++++++++++++++++++++++++
+ main.c                | 160 +++++++++++++++++++++++++++++++++++-------
+ main.h                |  10 ++-
+ man/batctl.8          |  12 +++-
+ sys.c                 |  57 ++++++++++++---
+ sys.h                 |   5 +-
+ throughput_override.c | 113 +++++++++++++++++++++++++++++
+ 10 files changed, 470 insertions(+), 38 deletions(-)
+ create mode 100644 elp_interval.c
+ create mode 100644 throughput_override.c
+
+-- 
+2.20.1
+
