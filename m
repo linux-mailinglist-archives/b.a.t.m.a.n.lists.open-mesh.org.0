@@ -1,50 +1,54 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF5B44BD7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Jun 2019 21:12:32 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id E187544BD8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Jun 2019 21:12:47 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 11854818CF;
-	Thu, 13 Jun 2019 21:12:25 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id E0F5782754;
+	Thu, 13 Jun 2019 21:12:28 +0200 (CEST)
 Received: from durin.narfation.org (durin.narfation.org
  [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id 89BAA802FC
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Jun 2019 21:12:21 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id CCECB8272B
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Jun 2019 21:12:25 +0200 (CEST)
 Received: from sven-desktop.home.narfation.org (unknown
  [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id E870C1100B2;
- Thu, 13 Jun 2019 21:12:20 +0200 (CEST)
+ by durin.narfation.org (Postfix) with ESMTPSA id 780161100B2;
+ Thu, 13 Jun 2019 21:12:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1560453141;
+ s=20121; t=1560453145;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=GdQFv5FA9vi0A/+v5NqpTs+vG5PZq2MF40ZOE7SPLvM=;
- b=JLzGt/TOXcxZkzkxuLCIydmf6xXAl6wqfF43IWa/fBhye16JEZrgC6QFDvrtbhxZNpZ1pD
- iLA/1n6/mEVxgtUymtPUCjvTMcMFGE5uBTASb6TCKA6AH+fEN4W+0K51x0fyOWumk6EhBp
- SSEjUtqRxiQUBkfAGJrPGUzb0jujV6k=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=viwT4YNcKiJJ+bbqSy9H11OPo6/wGlLmxC1PivPWkA8=;
+ b=sNektW2xiej9WaKnxj0kZJGYMKB2ebU7UZiuIqqfLSDarFtyeS53aABzLylFIHOatKy5sG
+ kXHSyyTLn76AbyU1ZGY/0fQZ9pngnTfBxzY71ZlrMnEE7m7aXFt8Lgm8xIkXg+dFaHVt+Y
+ kl6tUeFKyWLbDgpT9LyO/ht+7sbOWKQ=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 0/4] batctl: Add vid support and hardif settings
-Date: Thu, 13 Jun 2019 21:12:13 +0200
-Message-Id: <20190613191217.28139-1-sven@narfation.org>
+Subject: [PATCH 1/4] batctl: Make vlan setting explicit
+Date: Thu, 13 Jun 2019 21:12:14 +0200
+Message-Id: <20190613191217.28139-2-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190613191217.28139-1-sven@narfation.org>
+References: <20190613191217.28139-1-sven@narfation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1560453141;
+ s=20121; t=1560453145;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=GdQFv5FA9vi0A/+v5NqpTs+vG5PZq2MF40ZOE7SPLvM=;
- b=PzBMJWBOt2QXe//tjXxkCendU26skWfVXKDwBeXMIvALLccMbjT1/Mai4gdg3OmcHh8tSt
- fZIwzUjV3b3fiyC7nM+XuTZY9+TID6wCqluOwokwqujGCiHsatZZG3nUKVLRqI8JiXIDfM
- HXRUo65amlph5wj9HjERfdXRLQwrydc=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1560453141; a=rsa-sha256; cv=none;
- b=gdxznboa62X1cOYbQu52soow/EQH09000iXJLNOE0xPUG9+ra5OV2CXrL4ARmkIbUue/eS
- XHpY+0WctYU5jYWxYm/1NMzSXVSJolvAZ2HnJhC4l+gadbUohD+P3RIjvYGG3sny6BjXLl
- O+VwK5zMPeFee+C9ZnWgUcdbPvDJ8Kc=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=viwT4YNcKiJJ+bbqSy9H11OPo6/wGlLmxC1PivPWkA8=;
+ b=035qPayW6jduMSnp2FQuiGSTs+hi7o/Tm4yr0t86SEL1TnpGvS7eZykpxyNbW2p/Ua+Wtr
+ Wax/d31b4wAK4wBuy1gxrt7Ou6WgnQx39hKraHFF38Q1k0vsA8XJJ03wXJlX50ngnM7P9w
+ 7oO/Zqyw3FFMU+KLmP15vmnkFfVPBH4=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560453145; a=rsa-sha256; cv=none;
+ b=sWFHxSEziCCrJLJw0F0GXReg1SJsUceTHt5ROPzSl0UVGeHV+ZynU3f3efp2TmNfDJICBt
+ 3gFLQZamc7HLYuCeVlxRs7a/f5/akFU3+e/HPDfvsdDSHKIGqe/kHdgj0KQiOgZ8LG/A9r
+ 1yN9wGbLa7i89G+Yh/yoAGXaIYu7Sv0=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -64,16 +68,6 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hi,
-
-I've asked a quite while back for some ideas regarding the support for hard
-interface settings in batctl [1]. But I got no feedback at all. So I've
-decided to just implement the first option and use it as chance to improve
-the vlan settings.
-
-vlan settings
-=============
-
 The requirement to have a VLAN master device on top of the batadv mesh
 interface is artificially limiting the capabilities of batctl. Not all
 master devices in linux which register a VLAN are from type "vlan" and are
@@ -82,52 +76,323 @@ only registering a single VLAN.
 For example VLAN aware bridges can create multiple VLANs. These require
 that the VLAN is identified using the VID and not the vlan device.
 
-It is now possible to specify the vlan using:
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ ap_isolation.c |   5 ++
+ main.c         | 133 ++++++++++++++++++++++++++++++++++++++++---------
+ main.h         |   7 +--
+ man/batctl.8   |   2 +-
+ sys.c          |  32 ++++++++++--
+ 5 files changed, 148 insertions(+), 31 deletions(-)
 
-  $ batctl vlan bat0.8 ap_isolation enable
-  $ batctl -m bat0 vid 8 ap_isolation enable
-
-
-hardif settings
-===============
-
-The infrastructure for the new vlan/vid prefix of commands can now be used
-to introduce another prefix: "hardif".
-
-B.A.T.M.A.N. V introduced two additional settings which are hard (slave)
-interface specific. These can can finally be implemented in batctl. This
-will allow to change/read these settings when sysfs support is not enabled
-in the kernel.
-
-  $ batctl hardif eth0 throughput_override 15mbit
-  $ batctl hardif eth0 elp_interval
-
-Kind regards,
-	Sven
-
-
-[1] https://www.open-mesh.org/issues/373
-
-Sven Eckelmann (4):
-  batctl: Make vlan setting explicit
-  batctl: Integrate hardif setting framework
-  batctl: Add elp_interval setting command
-  batctl: Add throughput_override setting command
-
- Makefile              |   2 +
- README.rst            |  33 +++++++++
- ap_isolation.c        |   5 ++
- elp_interval.c        | 111 +++++++++++++++++++++++++++++
- main.c                | 160 +++++++++++++++++++++++++++++++++++-------
- main.h                |  10 ++-
- man/batctl.8          |  12 +++-
- sys.c                 |  57 ++++++++++++---
- sys.h                 |   5 +-
- throughput_override.c | 113 +++++++++++++++++++++++++++++
- 10 files changed, 470 insertions(+), 38 deletions(-)
- create mode 100644 elp_interval.c
- create mode 100644 throughput_override.c
-
+diff --git a/ap_isolation.c b/ap_isolation.c
+index 71dcd00..7c34649 100644
+--- a/ap_isolation.c
++++ b/ap_isolation.c
+@@ -81,3 +81,8 @@ COMMAND_NAMED(SUBCOMMAND, ap_isolation, "ap", handle_sys_setting,
+ 	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
+ 	      &batctl_settings_ap_isolation,
+ 	      "[0|1]             \tdisplay or modify ap_isolation setting");
++
++COMMAND_NAMED(SUBCOMMAND_VID, ap_isolation, "ap", handle_sys_setting,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_settings_ap_isolation,
++	      "[0|1]             \tdisplay or modify ap_isolation setting for vlan device or id");
+diff --git a/main.c b/main.c
+index 278683c..6ca13ac 100644
+--- a/main.c
++++ b/main.c
+@@ -28,48 +28,75 @@ extern const struct command *__stop___command[];
+ 
+ static void print_usage(void)
+ {
+-	enum command_type type[] = {
+-		SUBCOMMAND,
+-		DEBUGTABLE,
++	struct {
++		const char *label;
++		uint32_t types;
++	} type[] = {
++		{
++			.label = "commands:\n",
++			.types = BIT(SUBCOMMAND) |
++				 BIT(SUBCOMMAND_VID),
++		},
++		{
++			.label = "debug tables:                                   \tdisplay the corresponding debug table\n",
++			.types = BIT(DEBUGTABLE),
++		},
++	};
++	const char *default_prefixes[] = {
++		"",
++		NULL,
++	};
++	const char *vlan_prefixes[] = {
++		"vlan <vdev> ",
++		"vid <vid> ",
++		NULL,
+ 	};
+ 	const struct command **p;
+-	char buf[32];
++	const char **prefixes;
++	const char **prefix;
++	char buf[64];
+ 	size_t i;
+ 
+ 	fprintf(stderr, "Usage: batctl [options] command|debug table [parameters]\n");
+ 	fprintf(stderr, "options:\n");
+-	fprintf(stderr, " \t-m mesh interface or VLAN created on top of a mesh interface (default 'bat0')\n");
++	fprintf(stderr, " \t-m mesh interface (default 'bat0')\n");
+ 	fprintf(stderr, " \t-h print this help (or 'batctl <command|debug table> -h' for the parameter help)\n");
+ 	fprintf(stderr, " \t-v print version\n");
+ 
+ 	for (i = 0; i < sizeof(type) / sizeof(*type); i++) {
+ 		fprintf(stderr, "\n");
+ 
+-		switch (type[i]) {
+-		case SUBCOMMAND:
+-			fprintf(stderr, "commands:\n");
+-			break;
+-		case DEBUGTABLE:
+-			fprintf(stderr, "debug tables:                                   \tdisplay the corresponding debug table\n");
+-			break;
+-		}
++		fprintf(stderr, "%s", type[i].label);
+ 
+ 		for (p = __start___command; p < __stop___command; p++) {
+ 			const struct command *cmd = *p;
+ 
+-			if (cmd->type != type[i])
++			if (!(BIT(cmd->type) & type[i].types))
+ 				continue;
+ 
+ 			if (!cmd->usage)
+ 				continue;
+ 
+-			if (strcmp(cmd->name, cmd->abbr) == 0)
+-				snprintf(buf, sizeof(buf), "%s", cmd->name);
+-			else
+-				snprintf(buf, sizeof(buf), "%s|%s", cmd->name,
+-					 cmd->abbr);
++			switch (cmd->type) {
++			case SUBCOMMAND_VID:
++				prefixes = vlan_prefixes;
++				break;
++			default:
++				prefixes = default_prefixes;
++				break;
++			}
++
++			for (prefix = &prefixes[0]; *prefix; prefix++) {
++				if (strcmp(cmd->name, cmd->abbr) == 0)
++					snprintf(buf, sizeof(buf), "%s%s",
++						 *prefix, cmd->name);
++				else
++					snprintf(buf, sizeof(buf), "%s%s|%s",
++						 *prefix, cmd->name, cmd->abbr);
+ 
+-			fprintf(stderr, " \t%-27s%s\n", buf, cmd->usage);
++				fprintf(stderr, " \t%-35s%s\n", buf,
++					cmd->usage);
++			}
+ 		}
+ 	}
+ }
+@@ -93,13 +120,19 @@ static void version(void)
+ 	exit(EXIT_SUCCESS);
+ }
+ 
+-static const struct command *find_command(const char *name)
++static const struct command *find_command(struct state *state, const char *name)
+ {
+ 	const struct command **p;
+ 
+ 	for (p = __start___command; p < __stop___command; p++) {
+ 		const struct command *cmd = *p;
+ 
++		if (state->vid >= 0 && cmd->type != SUBCOMMAND_VID)
++			continue;
++
++		if (state->vid < 0 && cmd->type == SUBCOMMAND_VID)
++			continue;
++
+ 		if (strcmp(cmd->name, name) == 0)
+ 			return cmd;
+ 
+@@ -110,6 +143,51 @@ static const struct command *find_command(const char *name)
+ 	return NULL;
+ }
+ 
++static int parse_dev_args(struct state *state, int argc, char *argv[])
++{
++	unsigned long vid;
++	char *endptr;
++
++	/* not enough arguments to parse */
++	if (argc < 2) {
++		translate_mesh_iface(state);
++		return 0;
++	}
++
++	if (strcmp(argv[0], "vid") == 0) {
++		if (argv[1] == '\0') {
++			fprintf(stderr, "Error - unparsable vid\n");
++			return -EINVAL;
++		}
++
++		vid = strtoul(argv[1], &endptr, 0);
++		if (!endptr || *endptr != '\0') {
++			fprintf(stderr, "Error - unparsable vid\n");
++			return -EINVAL;
++		}
++
++		if (vid > 4095) {
++			fprintf(stderr, "Error - too large vid (max 4095)\n");
++			return -ERANGE;
++		}
++
++		/* get mesh interface and overwrite vid afterwards */
++		translate_mesh_iface(state);
++		state->vid = vid;
++
++		return 2;
++	} else if (strcmp(argv[0], "vlan") == 0) {
++		state->arg_iface = argv[1];
++		translate_mesh_iface(state);
++
++		return 2;
++	} else {
++		/* parse vlan as part of -m parameter */
++		translate_mesh_iface(state);
++		return 0;
++	}
++}
++
+ int main(int argc, char **argv)
+ {
+ 	const struct command *cmd;
+@@ -117,6 +195,7 @@ int main(int argc, char **argv)
+ 		.arg_iface = mesh_dfl_iface,
+ 		.cmd = NULL,
+ 	};
++	int dev_arguments;
+ 	int opt;
+ 	int ret;
+ 
+@@ -152,7 +231,15 @@ int main(int argc, char **argv)
+ 	argc -= optind;
+ 	optind = 0;
+ 
+-	cmd = find_command(argv[0]);
++	/* parse arguments to identify vlan, ... */
++	dev_arguments = parse_dev_args(&state, argc, argv);
++	if (dev_arguments < 0)
++		goto err;
++
++	argv += dev_arguments;
++	argc -= dev_arguments;
++
++	cmd = find_command(&state, argv[0]);
+ 	if (!cmd) {
+ 		fprintf(stderr,
+ 			"Error - no valid command or debug table specified: %s\n",
+@@ -162,8 +249,6 @@ int main(int argc, char **argv)
+ 
+ 	state.cmd = cmd;
+ 
+-	translate_mesh_iface(&state);
+-
+ 	if (cmd->flags & COMMAND_FLAG_MESH_IFACE &&
+ 	    check_mesh_iface(&state) < 0) {
+ 		fprintf(stderr,
+diff --git a/main.h b/main.h
+index 1a47015..1d95261 100644
+--- a/main.h
++++ b/main.h
+@@ -58,6 +58,7 @@ enum command_flags {
+ 
+ enum command_type {
+ 	SUBCOMMAND,
++	SUBCOMMAND_VID,
+ 	DEBUGTABLE,
+ };
+ 
+@@ -84,7 +85,7 @@ struct command {
+ };
+ 
+ #define COMMAND_NAMED(_type, _name, _abbr, _handler, _flags, _arg, _usage) \
+-	static const struct command command_ ## _name = { \
++	static const struct command command_ ## _name ## _ ## _type = { \
+ 		.type = (_type), \
+ 		.name = (#_name), \
+ 		.abbr = _abbr, \
+@@ -93,8 +94,8 @@ struct command {
+ 		.arg = (_arg), \
+ 		.usage = (_usage), \
+ 	}; \
+-	static const struct command *__command_ ## _name \
+-	__attribute__((__used__)) __attribute__ ((__section__ ("__command"))) = &command_ ## _name
++	static const struct command *__command_ ## _name ## _ ## _type \
++	__attribute__((__used__)) __attribute__ ((__section__ ("__command"))) = &command_ ## _name ## _ ## _type
+ 
+ #define COMMAND(_type, _handler, _abbr, _flags, _arg, _usage) \
+ 	COMMAND_NAMED(_type, _handler, _abbr, _handler, _flags, _arg, _usage)
+diff --git a/man/batctl.8 b/man/batctl.8
+index 0b43031..acb4288 100644
+--- a/man/batctl.8
++++ b/man/batctl.8
+@@ -68,7 +68,7 @@ free all attached interfaces and remove batman-adv interface.
+ If no parameter is given the current originator interval setting is displayed otherwise the parameter is used to set the
+ originator interval. The interval is in units of milliseconds.
+ .br
+-.IP "\fBap_isolation\fP|\fBap\fP [\fB0\fP|\fB1\fP]"
++.IP "[\fBvlan <vdev>\fP|\fBvid <vid>\fP] \fBap_isolation\fP|\fBap\fP [\fB0\fP|\fB1\fP]"
+ If no parameter is given the current ap isolation setting is displayed. Otherwise the parameter is used to enable or
+ disable ap isolation. This command can be used in conjunction with "\-m" option to target per VLAN configurations.
+ .br
+diff --git a/sys.c b/sys.c
+index 39123db..f19719c 100644
+--- a/sys.c
++++ b/sys.c
+@@ -141,9 +141,35 @@ int sys_simple_print_boolean(struct nl_msg *msg, void *arg,
+ 
+ static void settings_usage(struct state *state)
+ {
+-	fprintf(stderr, "Usage: batctl [options] %s|%s [parameters] %s\n",
+-		state->cmd->name, state->cmd->abbr,
+-		state->cmd->usage ? state->cmd->usage : "");
++	const char *default_prefixes[] = {
++		"",
++		NULL,
++	};
++	const char *vlan_prefixes[] = {
++		"vlan <vdev> ",
++		"vid <vid> ",
++		NULL,
++	};
++	const char *linestart = "Usage:";
++	const char **prefixes;
++	const char **prefix;
++
++	switch (state->cmd->type) {
++	case SUBCOMMAND_VID:
++		prefixes = vlan_prefixes;
++		break;
++	default:
++		prefixes = default_prefixes;
++		break;
++	}
++
++	for (prefix = &prefixes[0]; *prefix; prefix++) {
++		fprintf(stderr, "%s batctl [options] %s%s|%s [parameters] %s\n",
++			linestart, *prefix, state->cmd->name, state->cmd->abbr,
++			state->cmd->usage ? state->cmd->usage : "");
++
++		linestart = "      ";
++	}
+ 
+ 	fprintf(stderr, "parameters:\n");
+ 	fprintf(stderr, " \t -h print this help\n");
 -- 
 2.20.1
 
