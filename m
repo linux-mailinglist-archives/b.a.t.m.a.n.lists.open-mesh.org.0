@@ -1,52 +1,50 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3506B46744
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 14 Jun 2019 20:17:05 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F4E467A8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 14 Jun 2019 20:37:32 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 0289B81965;
-	Fri, 14 Jun 2019 20:16:59 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org
- [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id 45C9380A0A
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 Jun 2019 20:16:51 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id F2B6581A54;
+	Fri, 14 Jun 2019 20:37:28 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
+ by open-mesh.org (Postfix) with ESMTPS id EC47380445
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 Jun 2019 20:37:18 +0200 (CEST)
 Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id E74BA1100D8;
- Fri, 14 Jun 2019 20:16:48 +0200 (CEST)
+ by durin.narfation.org (Postfix) with ESMTPSA id A05F51100D8;
+ Fri, 14 Jun 2019 20:37:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1560536209;
+ s=20121; t=1560537432;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=F5G3VkvtYPSsd+sdBGqxQzxBtZnfYQhWTNcGK4IIYS8=;
- b=zvCw443YHixYI2GKxeo/ICf1shdEkrszewwJ0wQy3MqMj1G9sxtxqBFPejf3Zn/SBlD+l/
- mHwB+8E3jXVso9VhPzRNT8BT+3ywOBAYjFqDtQSexdv/bm+qQU0IXQwXKFRcckoGrvJEYP
- IcDTZrkZJSgy1igPvATIwRb4ODkuMtk=
+ bh=fs2zZKVzxmLZfZFMBfKyuPgvbcmQCla1P1fY/qbGQ3g=;
+ b=F/f5QAGv/brRU0ukRa+HJqFBcE3uwwvelNg/+YUFU1/aSnQSOc535QUFjuWyGry+8B9vOq
+ aLfP9PnBV2fekUMipgXfKJ75UAD59VUjQd+rviEcsYPFNHPwGDVZFZQgjPW1OoQgQkrLdt
+ KAWGcclizKdBHHu5OV1cVKJtCukEg30=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH] batman-adv: no need to check return value of
- debugfs_create functions
-Date: Fri, 14 Jun 2019 20:16:45 +0200
-Message-ID: <2060405.LLBHa7GSGR@sven-edge>
-In-Reply-To: <20190614071123.GA2922@kroah.com>
-References: <20190614071123.GA2922@kroah.com>
+Subject: Re: [PATCH v5 0/2] batman-adv: Add routable multicast optimizations
+Date: Fri, 14 Jun 2019 20:37:09 +0200
+Message-ID: <2692232.m69ynxnPBa@sven-edge>
+In-Reply-To: <20190611205841.5841-1-linus.luessing@c0d3.blue>
+References: <20190611205841.5841-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3167038.yAbhmPq4Nh";
+Content-Type: multipart/signed; boundary="nextPart15006818.2MCXt2l35v";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1560536210;
+ s=20121; t=1560537432;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=F5G3VkvtYPSsd+sdBGqxQzxBtZnfYQhWTNcGK4IIYS8=;
- b=IUKsaa8h0XvjmNwOTlHd54p6mqdKbV6MR6busA426ZPhcqPgbJPlafdmDJCi58kqHuKKh2
- eXkr8RX+2pznCLr3Q0lUqZAtZa2oGQ7w5XATC7fa7sf8iA1UH6Kmn6atXDI1VzilPv0JHT
- eufwiCL5/EwAJ9UoD6NQBJnCB1jBh3I=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1560536210; a=rsa-sha256; cv=none;
- b=KWGS03Lwgp4oVX5sRdlKZ9YNpyo+amhy4sBvnuhZRNql23tsjT3Oz28EQo0HKVnJbe3xkm
- JOg7oBpZZvktD4UPdyVT0K9LFsbCcfPot6E4+io75wFX/PH+ynfZL0I9jdvtdQqIWdR4Oy
- XNf3qp1fEuNVK1win6TiaoP8KmKiHrU=
+ bh=fs2zZKVzxmLZfZFMBfKyuPgvbcmQCla1P1fY/qbGQ3g=;
+ b=R2pWR8Bo2QR8xkkCUbLjpQJOjNZZFnBCiVmzm045/Pd8l1TkYp9JawI9KMEc7cUpO+NyLa
+ 5JMCHVyDf1rRoNGTsY4hbV+JV0/qkg2i5eSE1ajFyija2pJK2tjyaQl1eaz2fLDql9JFo6
+ 7sJ9Rfzutqu8rAKIQQp0rilFhGxaKus=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560537432; a=rsa-sha256; cv=none;
+ b=y72Lsx4Qetzljqv4EqRvWUu5nH94ccgWJEZhM6/Z3z0QMTQ4KEtC5jsPqk8alqY/xD8Dlc
+ +dIHFlMHJHR3pbD73Jf63AKLrOyll+zT6XdN4PJk8igY8YpZmWP3eOaFxkKTBRZU3M0Aej
+ 8Czfv6LdJ3drjup52xsxuVmjrhMOSro=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -63,96 +61,54 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Marek Lindner <mareklindner@neomailbox.ch>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Antonio Quartulli <a@unstable.cc>, netdev@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart3167038.yAbhmPq4Nh
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+--nextPart15006818.2MCXt2l35v
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Friday, 14 June 2019 09:11:23 CEST Greg Kroah-Hartman wrote:
-> When calling debugfs functions, there is no need to ever check the
-> return value.  The function can work or not, but the code logic should
-> never do something different based on this.
-> 
-> Because we don't care if debugfs works or not, this trickles back a bit
-> so we can clean things up by making some functions return void instead
-> of an error value that is never going to fail.
-> 
-> Cc: Marek Lindner <mareklindner@neomailbox.ch>
-> Cc: Simon Wunderlich <sw@simonwunderlich.de>
-> Cc: Antonio Quartulli <a@unstable.cc>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: b.a.t.m.a.n@lists.open-mesh.org
-> Cc: netdev@vger.kernel.org
-> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> ---
+On Tuesday, 11 June 2019 22:58:39 CEST Linus L=FCssing wrote:
+> The following patchset fills the next gaps in the multicast address
+> rules page by adding support for group-aware optimizations for
+> multicast addresses of scope greater than link-local. So far, only
+> link-local addresses were optimized as packets with routable
+> addresses not only need to be forwarded to local multicast listeners
+> but also multicast routers.
 
-Applied with minor modifications
+Applied. But please don't forget about the missing changes in the related=20
+tools:
 
+* https://www.open-mesh.org/issues/390
+* https://www.open-mesh.org/issues/391
+* https://www.open-mesh.org/issues/392
 
->  /**
-> @@ -333,42 +315,24 @@ void batadv_debugfs_destroy(void)
->   * batadv_debugfs_add_hardif() - creates the base directory for a hard interface
->   *  in debugfs.
->   * @hard_iface: hard interface which should be added.
-> - *
-> - * Return: 0 on success or negative error number in case of failure
->   */
-> -int batadv_debugfs_add_hardif(struct batadv_hard_iface *hard_iface)
-> +void batadv_debugfs_add_hardif(struct batadv_hard_iface *hard_iface)
->  {
->  	struct net *net = dev_net(hard_iface->net_dev);
->  	struct batadv_debuginfo **bat_debug;
->  	struct dentry *file;
-
-
-The file variable should be removed here (it is now unused).
-
-> @@ -421,42 +382,28 @@ int batadv_debugfs_add_meshif(struct net_device *dev)
->         struct net *net = dev_net(dev);
->         struct dentry *file;
-
-
-Same here
-
-> --- a/net/batman-adv/log.c
-> +++ b/net/batman-adv/log.c
-> @@ -192,25 +192,16 @@ int batadv_debug_log_setup(struct batadv_priv *bat_priv)
->  {
->         struct dentry *d;
-
-Same here
-
-Thanks,
+Kind regards,=09
 	Sven
---nextPart3167038.yAbhmPq4Nh
+
+--nextPart15006818.2MCXt2l35v
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0D5I0ACgkQXYcKB8Em
-e0YXEhAAp0mV/u+w8uWC64czNeI7fb0U7mUY4n9g5uPWtnrRO7CMZv7y5Xvo2hUM
-1oDKB8sP6vdP5QnKKMqBH7UDctB+YqsqzM8Fel3yjnVjaKtdftQMXc+pTgT4zflI
-1IW4XWa8OfNlr7km5wRwnTM4cZtVpdV7mtuOtc2+QHKKjtqRjsElrdIw0HeRXX3u
-vhdNGFRgFjW2ihYGrgFH1ZFBXU8Onx2bbZl8wc6M+BHLO/etbd87HlCNeAeEdjPd
-/UIEvPGF4iI3IsKbt4yimXTn6kqA9q6VG+DkBLVwcLDTixEgYtt7rYWBAq9haSud
-0yeltXJ1eeWSG392LVPp8+8ZCEKOTsbclSDYtQUEiJZLhPuTWy7brkbbgnU0aiBd
-mfjVDZ7lyTWoM0jtahUDa5zezq+5aG8+80ZLZ+6Vcg0qln8dNT7cN00wSRX3C4Zc
-A21eMvDx3YqpNC4svA3/ZIw1RnBea77F4xgZ/JXismLIwm4XbukoGgP9J2F4LK4G
-U3wV5ea8IHLi2+Su0UKuGNg9QpgjHW5WwyJ2E7GoRug1t5f/jwDp0f1p3t1dGSuo
-MwS+H2eWsD9BJdw6xc/c7uXbp8L1abE001aroi3zzLvUw0iUbfcbHOUVr1FvTfJr
-i5Qy8gO9WgyOYhYpR1r5to92QuueKH/BQh53xVYKT/uMZNcZW0E=
-=9ifG
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0D6VUACgkQXYcKB8Em
+e0bhPQ//SJ3EBFAGywKTQeQvfFhCke3U5q1vKzV4hMh11h18488Z284UCYdIj/VS
+PmqsXwX5zDlsfKX2ly31jPY5iJ/VJJuwugbMsKdvmQCs7Dhj2hZ0lGIGlZcwRoov
+AAbwlKbd1PA918wwZCH/o6gLi9MZDTebqDK7gDnw7KCL6twqNZK2D44gHPskMTg4
+QsaAHNSO54uBAJ6bCFRBUwuK9996ufWqjGvKLM0wBZnWxTV3Y+2jeIRJXQ1IAXot
+YctCSe8nHy8M3AMa35DtnKSG4+olF3i5P2FABuuHLlzzvyVQOwJxKHPmoYGq5QSs
+MpE7yHJMFCM8GDTfYVTtoYTBot/Vn63I//fLIR8Syvua/tO8WKec/vv/QKEXmhmp
+Apx6OZnfiATkLgO4H15RX4bk3edAot9umnwqT628y/NVCXeb1WkRYB+IyEgghSbd
+B21Vr7V3XeQUJxpB+E1V4K7yddc0RxsEBACrN5Wd9rC/HUTJIO+eY7GYvlrx6loO
+e7jzdZFNa/QQjyDlZGyX+2xlg3rZKt1RzzcZvILRiVyoWZc2ncEphzYciUxfapj/
+oqqaG5fGivNXI+yDFKfa7iNmfbC1ZBpwt5+IUsY5zbOvT3iHtyYS5pSn/6lEqMc/
+kb1HjEKW1/Q0sTodEVSnz387zaRzsU6kOEbNXmhClTBlR7pbdl8=
+=Aihh
 -----END PGP SIGNATURE-----
 
---nextPart3167038.yAbhmPq4Nh--
+--nextPart15006818.2MCXt2l35v--
 
 
 
