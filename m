@@ -2,51 +2,61 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6F4E467A8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 14 Jun 2019 20:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C9A147553
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Jun 2019 16:53:28 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id F2B6581A54;
-	Fri, 14 Jun 2019 20:37:28 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id EC47380445
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 Jun 2019 20:37:18 +0200 (CEST)
-Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id A05F51100D8;
- Fri, 14 Jun 2019 20:37:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1560537432;
+	by open-mesh.org (Postfix) with ESMTP id 2EFD7815AA;
+	Sun, 16 Jun 2019 16:53:22 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:171:314c::100:a1])
+ by open-mesh.org (Postfix) with ESMTPS id 354E8806A8
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Jun 2019 16:53:18 +0200 (CEST)
+Date: Sun, 16 Jun 2019 16:53:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1560696797;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=fs2zZKVzxmLZfZFMBfKyuPgvbcmQCla1P1fY/qbGQ3g=;
- b=F/f5QAGv/brRU0ukRa+HJqFBcE3uwwvelNg/+YUFU1/aSnQSOc535QUFjuWyGry+8B9vOq
- aLfP9PnBV2fekUMipgXfKJ75UAD59VUjQd+rviEcsYPFNHPwGDVZFZQgjPW1OoQgQkrLdt
- KAWGcclizKdBHHu5OV1cVKJtCukEg30=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v5 0/2] batman-adv: Add routable multicast optimizations
-Date: Fri, 14 Jun 2019 20:37:09 +0200
-Message-ID: <2692232.m69ynxnPBa@sven-edge>
-In-Reply-To: <20190611205841.5841-1-linus.luessing@c0d3.blue>
-References: <20190611205841.5841-1-linus.luessing@c0d3.blue>
+ bh=fxPviMC/XJtempb8rwPsuhzYwXVhr/IQ7VmnG9S0Md0=;
+ b=knMCDU6SWnKRRjKCivN9ogcrJpKAZUq0v7Xv071kRxKeKHC3Peg2Y19k3ZacZk7njgtBBi
+ c03HQsAD0HThjZ+SpjYdprAVHJ1cCK+sejLeWvT+rj44UlGoME45sJ6g6BRCnvKKOVvQRn
+ HZGkxXnazUY4BBjhCrZue+0S60m8R484jDWfYub+n9iQobgSiMg+yn97cV8N1VpAm4TLgy
+ oDS6qkCZg28447Kp6VDJ3O5tYREA6ROgnogf422vakfs7Sn8WCVCZsw8wwZSzz0Nig9vv0
+ U346zej8Ujq/VKwjGtteKvt1tYcQ3KswWIL5OR6IliTfiixH5tYfsAdmIkebZw==
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>
+Subject: Re: [PATCH 2/4] batctl: Integrate hardif setting framework
+Message-ID: <20190616145316.GB2727@otheros>
+References: <20190613191217.28139-1-sven@narfation.org>
+ <20190613191217.28139-3-sven@narfation.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart15006818.2MCXt2l35v";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1560537432;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190613191217.28139-3-sven@narfation.org>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
+ s=2018; t=1560696797;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=fs2zZKVzxmLZfZFMBfKyuPgvbcmQCla1P1fY/qbGQ3g=;
- b=R2pWR8Bo2QR8xkkCUbLjpQJOjNZZFnBCiVmzm045/Pd8l1TkYp9JawI9KMEc7cUpO+NyLa
- 5JMCHVyDf1rRoNGTsY4hbV+JV0/qkg2i5eSE1ajFyija2pJK2tjyaQl1eaz2fLDql9JFo6
- 7sJ9Rfzutqu8rAKIQQp0rilFhGxaKus=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1560537432; a=rsa-sha256; cv=none;
- b=y72Lsx4Qetzljqv4EqRvWUu5nH94ccgWJEZhM6/Z3z0QMTQ4KEtC5jsPqk8alqY/xD8Dlc
- +dIHFlMHJHR3pbD73Jf63AKLrOyll+zT6XdN4PJk8igY8YpZmWP3eOaFxkKTBRZU3M0Aej
- 8Czfv6LdJ3drjup52xsxuVmjrhMOSro=
+ bh=fxPviMC/XJtempb8rwPsuhzYwXVhr/IQ7VmnG9S0Md0=;
+ b=ul8dR+uzNycGizkQAb7vR1MFK8v5YEKcXp/44U+SmMtg+82NMZBR9wg+Stfj+SeBjS6d3g
+ uar2nQokHdqUMpxYwNApTBkCUE6FrDR7Iik6/JSLXvmpWsrU1MaiQNbsD/wMcGeIVfcrzO
+ fza97iA6fOo2DKSd5TeMRaeOlAJtiYd7KcGCHAA4PwZYo1XBTAHAkZk7AP2XikMYOmsrrk
+ NQQHqLyvYAjxAtC0u2K18awe6k+IHA0pVAzpx+eVp/JMlZj+gUALQQ6bP34GqFgWWkrzo1
+ qhcM2ZMdqPddKiur6mZ17Ov/c+dzeUE6pjdPgOtEzlRRvN5o5efCBlmr+VCDjw==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1560696797; a=rsa-sha256; cv=none;
+ b=s5Ud/FUYtU0kUI6S85WSEIZHLLkPFd62thEOkzHxcAXWkXj0qSp36p7bG0NAZGmVB2Jkm5
+ YW5xDuYZMc9KTAElFnDuVfLKvOL+w03+GsqYgdGsHs66/oBVTEiKH9+UNYUbvlr94vshUw
+ kJHjV0xH2w0k0WzbWxTOOQAN8uu79XXLTS2SWKxgYsBc8vyyMTTnOV5klGTe0NvaFyNrce
+ ihWBcLJ+DckmaTt1YGl3ZC8WobvBgIoDEAa5CL2jWj44wayR/i8fR5FKdQ6tascpdXzUeS
+ qDcdpznHN0ZuSg93/emcNL6xYRutFfWwsBWRhJiUSuMyxRPbUREbO4lGwJMmpw==
 ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -64,51 +74,40 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart15006818.2MCXt2l35v
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+On Thu, Jun 13, 2019 at 09:12:15PM +0200, Sven Eckelmann wrote:
+> batctl currently supports settings which are either mesh interface or vlan
+> specific. But B.A.T.M.A.N. V introduced two additional settings which are
+> hard (slave) interface specific.
+> 
+> To support these, an additional command prefix called hardif is implemented
+> for some sysfs commands:
+> 
+>   $ batctl -m bat0 hardif eth0 ...
+> 
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+> ---
 
-On Tuesday, 11 June 2019 22:58:39 CEST Linus L=FCssing wrote:
-> The following patchset fills the next gaps in the multicast address
-> rules page by adding support for group-aware optimizations for
-> multicast addresses of scope greater than link-local. So far, only
-> link-local addresses were optimized as packets with routable
-> addresses not only need to be forwarded to local multicast listeners
-> but also multicast routers.
+Three thoughts/questions:
 
-Applied. But please don't forget about the missing changes in the related=20
-tools:
+Currently we do not allow adding a hard-interface to two meshes,
+right? So the "-m bat0" here is redundant?
 
-* https://www.open-mesh.org/issues/390
-* https://www.open-mesh.org/issues/391
-* https://www.open-mesh.org/issues/392
+Have we used the terminology "hard interface" in UI and
+documentation before? Maybe it's just me, but I'm wondering
+whether the terms "soft interface" and "hard interface" might be a
+bit confusing to users, as these days people not only add
+hardware interfaces but also virtual ones. And these terms are not
+used in other projects (afaik). Maybe just stick to the more commonly
+used term "slave interface" and keep "hard" and "soft" interface as
+internal?
 
-Kind regards,=09
-	Sven
+I'm wondering how it would look like if we were having settings
+both applicable to a soft and hard interface. What about using a
+"-s <slave-iface>", similar to the "-m <mesh-iface>" instead of
+the "hardif" command prefix? So that you could do things like:
 
---nextPart15006818.2MCXt2l35v
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+$ batctl [-m <mesh-iface>|-s <slave-iface>] multicast_fanout <int>
 
------BEGIN PGP SIGNATURE-----
+in the future, for instance.
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0D6VUACgkQXYcKB8Em
-e0bhPQ//SJ3EBFAGywKTQeQvfFhCke3U5q1vKzV4hMh11h18488Z284UCYdIj/VS
-PmqsXwX5zDlsfKX2ly31jPY5iJ/VJJuwugbMsKdvmQCs7Dhj2hZ0lGIGlZcwRoov
-AAbwlKbd1PA918wwZCH/o6gLi9MZDTebqDK7gDnw7KCL6twqNZK2D44gHPskMTg4
-QsaAHNSO54uBAJ6bCFRBUwuK9996ufWqjGvKLM0wBZnWxTV3Y+2jeIRJXQ1IAXot
-YctCSe8nHy8M3AMa35DtnKSG4+olF3i5P2FABuuHLlzzvyVQOwJxKHPmoYGq5QSs
-MpE7yHJMFCM8GDTfYVTtoYTBot/Vn63I//fLIR8Syvua/tO8WKec/vv/QKEXmhmp
-Apx6OZnfiATkLgO4H15RX4bk3edAot9umnwqT628y/NVCXeb1WkRYB+IyEgghSbd
-B21Vr7V3XeQUJxpB+E1V4K7yddc0RxsEBACrN5Wd9rC/HUTJIO+eY7GYvlrx6loO
-e7jzdZFNa/QQjyDlZGyX+2xlg3rZKt1RzzcZvILRiVyoWZc2ncEphzYciUxfapj/
-oqqaG5fGivNXI+yDFKfa7iNmfbC1ZBpwt5+IUsY5zbOvT3iHtyYS5pSn/6lEqMc/
-kb1HjEKW1/Q0sTodEVSnz387zaRzsU6kOEbNXmhClTBlR7pbdl8=
-=Aihh
------END PGP SIGNATURE-----
-
---nextPart15006818.2MCXt2l35v--
-
-
-
+Regards, Linus
