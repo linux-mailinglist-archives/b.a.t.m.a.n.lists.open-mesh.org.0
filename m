@@ -2,61 +2,52 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9A147553
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Jun 2019 16:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 242B6475EC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Jun 2019 18:29:05 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 2EFD7815AA;
-	Sun, 16 Jun 2019 16:53:22 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:171:314c::100:a1])
- by open-mesh.org (Postfix) with ESMTPS id 354E8806A8
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Jun 2019 16:53:18 +0200 (CEST)
-Date: Sun, 16 Jun 2019 16:53:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1560696797;
+	by open-mesh.org (Postfix) with ESMTP id 5831781C39;
+	Sun, 16 Jun 2019 18:29:02 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
+ by open-mesh.org (Postfix) with ESMTPS id 3F08C8130C
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Jun 2019 18:28:59 +0200 (CEST)
+Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by durin.narfation.org (Postfix) with ESMTPSA id A0E2A1100E2;
+ Sun, 16 Jun 2019 18:28:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1560702538;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=fxPviMC/XJtempb8rwPsuhzYwXVhr/IQ7VmnG9S0Md0=;
- b=knMCDU6SWnKRRjKCivN9ogcrJpKAZUq0v7Xv071kRxKeKHC3Peg2Y19k3ZacZk7njgtBBi
- c03HQsAD0HThjZ+SpjYdprAVHJ1cCK+sejLeWvT+rj44UlGoME45sJ6g6BRCnvKKOVvQRn
- HZGkxXnazUY4BBjhCrZue+0S60m8R484jDWfYub+n9iQobgSiMg+yn97cV8N1VpAm4TLgy
- oDS6qkCZg28447Kp6VDJ3O5tYREA6ROgnogf422vakfs7Sn8WCVCZsw8wwZSzz0Nig9vv0
- U346zej8Ujq/VKwjGtteKvt1tYcQ3KswWIL5OR6IliTfiixH5tYfsAdmIkebZw==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>
+ bh=BPZrIQ/BCaYc6TeScNL9yGSPIb95fBhxxS+xeifMghQ=;
+ b=pOkCWI6Jeya+SNHT10q8Jtn/vRW0z5tMq6kWV9/ZwETZUfUOxmbYV1V0XH0AaxHzEt2e2K
+ XFzoE/kVhnGDHrbMj31cnDyMLNnV/h3xEvOkRzgepx4wR7iH0S4Ue2zQ89wBYmcJbgHP8I
+ kl/vRmnmN7rkVQLCsGYK/UqTAS5wwXs=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
 Subject: Re: [PATCH 2/4] batctl: Integrate hardif setting framework
-Message-ID: <20190616145316.GB2727@otheros>
+Date: Sun, 16 Jun 2019 18:28:50 +0200
+Message-ID: <27871339.pAZbgkbM92@sven-edge>
+In-Reply-To: <20190616145316.GB2727@otheros>
 References: <20190613191217.28139-1-sven@narfation.org>
- <20190613191217.28139-3-sven@narfation.org>
+ <20190613191217.28139-3-sven@narfation.org> <20190616145316.GB2727@otheros>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190613191217.28139-3-sven@narfation.org>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1560696797;
+Content-Type: multipart/signed; boundary="nextPart2875872.j8hLqmcBA4";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1560702538;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=fxPviMC/XJtempb8rwPsuhzYwXVhr/IQ7VmnG9S0Md0=;
- b=ul8dR+uzNycGizkQAb7vR1MFK8v5YEKcXp/44U+SmMtg+82NMZBR9wg+Stfj+SeBjS6d3g
- uar2nQokHdqUMpxYwNApTBkCUE6FrDR7Iik6/JSLXvmpWsrU1MaiQNbsD/wMcGeIVfcrzO
- fza97iA6fOo2DKSd5TeMRaeOlAJtiYd7KcGCHAA4PwZYo1XBTAHAkZk7AP2XikMYOmsrrk
- NQQHqLyvYAjxAtC0u2K18awe6k+IHA0pVAzpx+eVp/JMlZj+gUALQQ6bP34GqFgWWkrzo1
- qhcM2ZMdqPddKiur6mZ17Ov/c+dzeUE6pjdPgOtEzlRRvN5o5efCBlmr+VCDjw==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1560696797; a=rsa-sha256; cv=none;
- b=s5Ud/FUYtU0kUI6S85WSEIZHLLkPFd62thEOkzHxcAXWkXj0qSp36p7bG0NAZGmVB2Jkm5
- YW5xDuYZMc9KTAElFnDuVfLKvOL+w03+GsqYgdGsHs66/oBVTEiKH9+UNYUbvlr94vshUw
- kJHjV0xH2w0k0WzbWxTOOQAN8uu79XXLTS2SWKxgYsBc8vyyMTTnOV5klGTe0NvaFyNrce
- ihWBcLJ+DckmaTt1YGl3ZC8WobvBgIoDEAa5CL2jWj44wayR/i8fR5FKdQ6tascpdXzUeS
- qDcdpznHN0ZuSg93/emcNL6xYRutFfWwsBWRhJiUSuMyxRPbUREbO4lGwJMmpw==
+ bh=BPZrIQ/BCaYc6TeScNL9yGSPIb95fBhxxS+xeifMghQ=;
+ b=RrWmZegzrzpvUYOE9s1XLnPSV5RHZVdxTSsBnEOs9rSCixjzpCpW0CLeN5dXzsuURZaZnK
+ LbDNcpCSp6zJX1uE+1+R2h7P0SJZkM2QEXDZTA4GDjOxKTvAIvvXiS/rLNcOOX+6JIHsRt
+ coTLQYWz0ovecqy0t0TyTJk40SV98X4=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560702538; a=rsa-sha256; cv=none;
+ b=Ox+NH+EAmmof8ej+NCt6fvKoMjplkcWRVGXFExzxMU9qk1KkNECflT5haW75/mJXZlPTYy
+ yZOI8Pi5H7fJblstFwwIT5Via0F8jTTNQ/zSKDPnjR6phAJ+oTpkqM9ERm015H+N+DXE+U
+ Rsjl1f/EZZ4B010zUX+R4u5ehT2EA0A=
 ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -74,40 +65,190 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Thu, Jun 13, 2019 at 09:12:15PM +0200, Sven Eckelmann wrote:
-> batctl currently supports settings which are either mesh interface or vlan
-> specific. But B.A.T.M.A.N. V introduced two additional settings which are
-> hard (slave) interface specific.
-> 
-> To support these, an additional command prefix called hardif is implemented
-> for some sysfs commands:
-> 
->   $ batctl -m bat0 hardif eth0 ...
-> 
-> Signed-off-by: Sven Eckelmann <sven@narfation.org>
-> ---
+--nextPart2875872.j8hLqmcBA4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Three thoughts/questions:
+On Sunday, 16 June 2019 16:53:16 CEST Linus L=FCssing wrote:
+> On Thu, Jun 13, 2019 at 09:12:15PM +0200, Sven Eckelmann wrote:
+> > batctl currently supports settings which are either mesh interface or v=
+lan
+> > specific. But B.A.T.M.A.N. V introduced two additional settings which a=
+re
+> > hard (slave) interface specific.
+> >=20
+> > To support these, an additional command prefix called hardif is impleme=
+nted
+> > for some sysfs commands:
+> >=20
+> >   $ batctl -m bat0 hardif eth0 ...
+> >=20
+> > Signed-off-by: Sven Eckelmann <sven@narfation.org>
+> > ---
+>=20
+> Three thoughts/questions:
+>=20
+> Currently we do not allow adding a hard-interface to two meshes,
+> right? So the "-m bat0" here is redundant?
 
-Currently we do not allow adding a hard-interface to two meshes,
-right? So the "-m bat0" here is redundant?
+Yes and no. This is also the way how the netlink interface is addressing th=
+e=20
+device. But implementation wise - this should be rather easy. I've already=
+=20
+added the code to query_rtnl_link_single a while back. See
+check_mesh_iface_ownership_netlink as an example.
 
-Have we used the terminology "hard interface" in UI and
-documentation before? Maybe it's just me, but I'm wondering
-whether the terms "soft interface" and "hard interface" might be a
-bit confusing to users, as these days people not only add
-hardware interfaces but also virtual ones. And these terms are not
-used in other projects (afaik). Maybe just stick to the more commonly
-used term "slave interface" and keep "hard" and "soft" interface as
-internal?
+So it is now a question of how many magic we want to implement at the=20
+beginning. We already had the problem that the old vlan selection logic (-m=
+)=20
+could be used to run weird commands which you shouldn't be able to run that=
+=20
+way. Because of this I would ask to deprecate the '-m' parameter in favor o=
+f=20
+an optional(?) meshif selector prefix. And show this selector prefix for vi=
+d=20
+and for all meshif specific commands.
 
-I'm wondering how it would look like if we were having settings
-both applicable to a soft and hard interface. What about using a
-"-s <slave-iface>", similar to the "-m <mesh-iface>" instead of
-the "hardif" command prefix? So that you could do things like:
+> Have we used the terminology "hard interface" in UI and
+> documentation before? Maybe it's just me, but I'm wondering
+> whether the terms "soft interface" and "hard interface" might be a
+> bit confusing to users, as these days people not only add
+> hardware interfaces but also virtual ones. And these terms are not
+> used in other projects (afaik). Maybe just stick to the more commonly
+> used term "slave interface" and keep "hard" and "soft" interface as
+> internal?
 
-$ batctl [-m <mesh-iface>|-s <slave-iface>] multicast_fanout <int>
+We are using hardif for example in the OpenWrt config integration.
+And the netlink stuff is called this way. Also the event parser=20
+already print events out as "hardif" events (for hardif related events only=
+ of=20
+course).
 
-in the future, for instance.
+And yes, this was then also used in the documentation.
 
-Regards, Linus
+> I'm wondering how it would look like if we were having settings
+> both applicable to a soft and hard interface. What about using a
+> "-s <slave-iface>", similar to the "-m <mesh-iface>" instead of
+> the "hardif" command prefix? So that you could do things like:
+>=20
+> $ batctl [-m <mesh-iface>|-s <slave-iface>] multicast_fanout <int>
+
+Just do it like you do it for ap_isolation - which is for both vlan and=20
+meshif:
+
+   batctl ap_isolation
+   batctl vid 1 ap_isolation
+
+Using these selector prefixes instead of -parameter value things allows us=
+=20
+to correctly filter the commands and to provide an overview of commands wit=
+h=20
+the information for which object type it can be used. Something like the st=
+uff
+we are doing for ap_isolation with this patchset:
+
+        ap_isolation|ap                    [0|1]                display or =
+modify ap_isolation setting
+        vlan <vdev> ap_isolation|ap        [0|1]                display or =
+modify ap_isolation setting for vlan device or id
+        vid <vid> ap_isolation|ap          [0|1]                display or =
+modify ap_isolation setting for vlan device or id
+
+And I tend to have problems with -parameters when the order is too importan=
+t=20
+and not really clear. For example following would work:
+
+   batctl -m bat0 ping 01:23:45:67:89:af
+
+But not following:
+
+   batctl ping -m bat0 01:23:45:67:89:af=20
+
+While you can learn to handle this correctly, it seems to more intuitive to=
+=20
+have it tree structured from the start. Simply to make it clear on what you
+are operating now. Something more like:
+
+    [meshif <dev>]   aggregation|ag              [0|1]                displ=
+ay or modify aggregation setting
+    [meshif <dev>]   ap_isolation|ap             [0|1]                displ=
+ay or modify ap_isolation setting
+    vlan <vdev>      ap_isolation|ap             [0|1]                displ=
+ay or modify ap_isolation setting for vlan device or id
+    [meshif <dev>] vid <vid> ap_isolation|ap     [0|1]                displ=
+ay or modify ap_isolation setting for vlan device or id
+    [meshif <dev>]   bonding|b                   [0|1]                displ=
+ay or modify bonding setting
+    [meshif <dev>]   bridge_loop_avoidance|bl    [0|1]                displ=
+ay or modify bridge_loop_avoidance setting
+    [meshif <dev>]   distributed_arp_table|dat   [0|1]                displ=
+ay or modify distributed_arp_table setting
+    hardif <netdev>  elp_interval|et             [interval]           displ=
+ay or modify elp_interval setting
+    event|e                                                           displ=
+ay events from batman-adv
+    [meshif <dev>]   fragmentation|f             [0|1]                displ=
+ay or modify fragmentation setting
+    [meshif <dev>]   gw_mode|gw                  [mode]               displ=
+ay or modify the gateway mode
+    [meshif <dev>]   hop_penalty|hp              [penalty]            displ=
+ay or modify hop_penalty setting
+    [meshif <dev>]   interface|if                [add|del iface(s)]   displ=
+ay or modify the interface settings
+    [meshif <dev>]   isolation_mark|mark         [mark]               displ=
+ay or modify isolation_mark setting
+    [meshif <dev>]   loglevel|ll                 [level]              displ=
+ay or modify the log level
+    [meshif <dev>]   multicast_fanout|mo         [fanout]             displ=
+ay or modify multicast_fanout setting
+    [meshif <dev>]   multicast_forceflood|mff    [0|1]                displ=
+ay or modify multicast_forceflood setting
+    [meshif <dev>]   network_coding|nc           [0|1]                displ=
+ay or modify network_coding setting
+    [meshif <dev>]   orig_interval|it            [interval]           displ=
+ay or modify orig_interval setting
+    [meshif <dev>]   ping|p                      <destination>        ping =
+another batman adv host via layer 2
+    routing_algo|ra                              [mode]               displ=
+ay or modify the routing algorithm
+    [meshif <dev>]   statistics|s                                     print=
+ mesh statistics
+    [meshif <dev>]   tcpdump|td                  <interface>          tcpdu=
+mp layer 2 traffic on the given interface
+    hardif <netdev>  throughput_override|to      [mbit]               displ=
+ay or modify throughput_override setting
+    [meshif <dev>]   throughputmeter|tp          <destination>        start=
+ a throughput measurement
+    [meshif <dev>]   traceroute|tr               <destination>        trace=
+route another batman adv host via layer 2
+    [meshif <dev>]   translate|t                 <destination>        trans=
+late a destination to the originator responsible for it
+
+Kind regards,
+	Sven
+--nextPart2875872.j8hLqmcBA4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0GbkIACgkQXYcKB8Em
+e0b6IRAAsK3RCAHt7ufiB6e4L29j2RyH8iey5vWywzSiNszU1aPot6ueofJIB5yN
+aamn9/8fzyGAejA/n9OPCzcG59dDQByIP/Vl3C3MAFdXq9oLDYTThnlZD9b5sMed
+jg1UtjcT6axRMqQekb2O0aEzTzvEbTZmafTgD7q5tfh9lX8sBUD7ZP+5612QL3fB
+lTYPVl8++1Ef8mW9vQGwxRoPmHf/35VhBEPkqshtprqKLtwBbAb5ZEIkTzxT4h2p
+VB9dpjsURX82ph88UtVcdKt6apC5VYKQb9NE2gCgAqoeHsxFUpDAtHybWBaIeWI9
+3G1ZhGIm1YUIL4ehaFKeCmjy3HutnPyxdorqrP4lhke0pTKYzQ4VeHi9V6MQpESg
+Kj4wRPSHTzd9NcC15iRaKMm4iob0zSmpMWz9NXf0Yg85rH3uVI/J8e8Gj1NWPLbM
+ao62WLbY/Xyb576AVJyOeRGQkAcBqcDvK5Q9E65JJ5zGG9PvtnIUNaPqa40hiK+F
+gu+ZiCcqF7LYbeOaVvuzmziTb+f5E1zXNTdu4YhUD4FLJ0u/Dhs/squ2tsA3qak1
+6OsxXEOsGImE84N+tyKNxi3E+jmeCoyuO58TRfKRfcmwGA1POMy5TgAK1CLv0g+k
+BpTcyfoPpg7SxVRILNzdhcmaVAtpmvyn2uF1z1/bqtg3G7veJ8Y=
+=0j7m
+-----END PGP SIGNATURE-----
+
+--nextPart2875872.j8hLqmcBA4--
+
+
+
