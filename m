@@ -2,49 +2,53 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC954C196
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 19 Jun 2019 21:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A7A4C197
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 19 Jun 2019 21:38:28 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 80A2A81A54;
-	Wed, 19 Jun 2019 21:38:16 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id C441A81C33;
+	Wed, 19 Jun 2019 21:38:22 +0200 (CEST)
 Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 348088060C
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 19 Jun 2019 21:38:14 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id A009181B29
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 19 Jun 2019 21:38:19 +0200 (CEST)
 Received: from sven-desktop.home.narfation.org (unknown
  [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id 7E57511010D;
- Wed, 19 Jun 2019 21:38:13 +0200 (CEST)
+ by durin.narfation.org (Postfix) with ESMTPSA id D9BDE11010D;
+ Wed, 19 Jun 2019 21:38:18 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1560973093;
+ s=20121; t=1560973099;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Q2vDs0O2eHmFruXEMrMZRtxOYj3Yvk1VUtFc6KrdHxc=;
- b=OdDOMMrDo0CEqwGrO49qT0atooaehcLBEi/m4Ckt63zn52WWT/a2lsolt/xhMgRqQ3KaQ4
- AlAa14uLSZBWW/C1WEbk9cFOvUBsSRONL/K+Mbw/GU826YUe89ajeoxtMQwrPe/hnc9tMg
- yCbwGjVFiVN9QLCEYDBKUlghd5Ogvas=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=77ID1N5s8oEaEDGAk2m7PcuX3ZPavN66/Lg1zwjTNg8=;
+ b=noWowgbuywCyOh7v+cWVOv3bWznsQKHyju4kA98rHhTCMBFtiOB8s2Np3iyNOhG4pY0QBW
+ ByvxuYstkiv9KicaZdKlyX0t7NKseFiy7+73xHuOOJsPd1VvYNXnOUIYHr35g2TiBXhBjp
+ ASO1/uRTWPaByYx0jCrNu5uHgS8Dg1s=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 1/2] alfred: vis: Use rtnl to query list of hardifs of meshif
-Date: Wed, 19 Jun 2019 21:38:09 +0200
-Message-Id: <20190619193810.16698-1-sven@narfation.org>
+Subject: [PATCH 2/2] alfred: vis: Retrieve hardif status via generic netlink
+Date: Wed, 19 Jun 2019 21:38:10 +0200
+Message-Id: <20190619193810.16698-2-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190619193810.16698-1-sven@narfation.org>
+References: <20190619193810.16698-1-sven@narfation.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1560973093;
+ s=20121; t=1560973099;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Q2vDs0O2eHmFruXEMrMZRtxOYj3Yvk1VUtFc6KrdHxc=;
- b=uFjMsaaMRrX4CJQIFfixY/6xwgIEDr1QZp1bXy2uR8fRJszVAGF2qlzF2o5KDDopt4Lef3
- ybPTR6eV4DOmLBciqqjQaMjC7C4qzMvGOGyi4mUDmo0PiEUApbaw2YQkClzLFsBgujL7vV
- BG9+u8cwXRAqCDimtnbpP29hGCKexQ0=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1560973093; a=rsa-sha256; cv=none;
- b=kBoXU4xEiZ/zK9QVLvy3xaBH2N8trC8kqbyuBlKrbuZuohVXOSn5Z62V9/mqccWknb2R7S
- aQA+S1N4qlOyikhLRl1xccYcCpV2A3rp1PPJwPMbuf7s6/9R4A0pLSZ3GWszQMpTKqyuu0
- zf5xnHTdiVrdjE1zy15cYp198kmBIm0=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=77ID1N5s8oEaEDGAk2m7PcuX3ZPavN66/Lg1zwjTNg8=;
+ b=yJWzX0gAJjweTt9YQ0BnT11T0a9bQ09rDdCcl4YGEgBhHgoxEXdrcmlioR75P8V+W+7H5C
+ P/gEM6rAb7Hz2lEhaI3/Hqc4g3o5x8JHNOOsvWL5Bf+F814+e/SRcS3qifI/mtpdPG6H1a
+ GibnY9amPMZFmeXvjVfmwGQstfvj770=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1560973099; a=rsa-sha256; cv=none;
+ b=UHhOLhzIon/NtYQRYTl7wLD4trwCbTPLxeCVD/p63PgsnfBv3Q0GsZfAvxzPwHVsavEqa+
+ Cs9US5a4gkP4Nn3B54MVBLpHTUnXy3Zv6uRzniJ9gR4OD6gfqpapxO5Ok5ctnx3abk4T50
+ q3lWfKQeqOIS43eK9ZJVaB+74j2dpOM=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -64,236 +68,204 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The normal way of network related programs to query the state of interfaces
-is to use the rtnetlink. Most of these data can also be queried via sysfs
-but it is better to use the same way for both retrieving the list of
-interfaces and modifying the list of interfaces.
+The batman-adv kernel module can now be compiled without support for sysfs.
+But the batadv-vis interface retriever can only get the status via the per
+hardif sysfs file iface_status. To still have some information, use
+BATADV_CMD_GET_HARDIF to retrieve the status and fall back to sysfs when
+the status could not retrieved via generic netlink.
 
-Also the sysfs files are deprecated and cause warnings when access:
+This also solved the warning about deprecated sysfs file access
 
-  batman_adv: [Deprecated]: batadv-vis (pid 832) Use of sysfs file "mesh_iface".
+  batman_adv: [Deprecated]: batadv-vis (pid 1365) Use of sysfs file "iface_status".
   Use batadv genl family instead
-
-In worst case, the file doesn't even exist when batman-adv was compiled
-without sysfs support.
 
 Reported-by: Linus Lüssing <linus.luessing@c0d3.blue>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- vis/vis.c | 170 +++++++++++++++++++++++++++++++++++++++---------------
- vis/vis.h |   1 -
- 2 files changed, 123 insertions(+), 48 deletions(-)
+ vis/vis.c | 144 ++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 128 insertions(+), 16 deletions(-)
 
 diff --git a/vis/vis.c b/vis/vis.c
-index beaeca1..37956b1 100644
+index 37956b1..9474563 100644
 --- a/vis/vis.c
 +++ b/vis/vis.c
-@@ -372,70 +372,146 @@ static void clear_lists(struct globals *globals)
- 	}
+@@ -27,6 +27,8 @@
+ #include "netlink.h"
+ #include "debugfs.h"
+ 
++#define IFACE_STATUS_LEN 256
++
+ static struct globals vis_globals;
+ 
+ struct vis_netlink_opts {
+@@ -435,6 +437,131 @@ err_free_sock:
+ 	return err;
  }
  
--static int register_interfaces(struct globals *globals)
-+static int query_rtnl_link(int ifindex, nl_recvmsg_msg_cb_t func, void *arg)
- {
--	DIR *iface_base_dir;
--	struct dirent *iface_dir;
--	char *path_buff, *file_content;
--	char *content_newline;
-+	struct ifinfomsg rt_hdr = {
-+		.ifi_family = IFLA_UNSPEC,
-+	};
++static int get_iface_status_netlink_parse(struct nl_msg *msg, void *arg)
++{
++	struct nlattr *attrs[NUM_BATADV_ATTR];
++	struct nlmsghdr *nlh = nlmsg_hdr(msg);
++	char *iface_status = arg;
++	struct genlmsghdr *ghdr;
++
++	if (!genlmsg_valid_hdr(nlh, 0))
++		return NL_OK;
++
++	ghdr = nlmsg_data(nlh);
++	if (ghdr->cmd != BATADV_CMD_GET_HARDIF)
++		return NL_OK;
++
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy))
++		return NL_OK;
++
++	if (attrs[BATADV_ATTR_ACTIVE])
++		strncpy(iface_status, "active\n", IFACE_STATUS_LEN);
++	else
++		strncpy(iface_status, "inactive\n", IFACE_STATUS_LEN);
++
++	iface_status[IFACE_STATUS_LEN - 1] = '\0';
++
++	return NL_STOP;
++}
++
++static char *get_iface_status_netlink(unsigned int meshif, unsigned int hardif,
++				      char *iface_status)
++{
++	char *ret_status = NULL;
 +	struct nl_sock *sock;
 +	struct nl_msg *msg;
++	int batadv_family;
 +	struct nl_cb *cb;
-+	int err = 0;
 +	int ret;
- 
--	path_buff = malloc(PATH_BUFF_LEN);
--	if (!path_buff) {
--		perror("Error - could not allocate path buffer");
--		goto err;
++
++	iface_status[0] = '\0';
++
 +	sock = nl_socket_alloc();
 +	if (!sock)
-+		return -ENOMEM;
++		return NULL;
 +
-+	ret = nl_connect(sock, NETLINK_ROUTE);
-+	if (ret < 0) {
-+		err = -ENOMEM;
++	ret = genl_connect(sock);
++	if (ret < 0)
 +		goto err_free_sock;
- 	}
- 
--	iface_base_dir = opendir(SYS_IFACE_PATH);
--	if (!iface_base_dir) {
--		fprintf(stderr, "Error - the directory '%s' could not be read: %s\n",
--		       SYS_IFACE_PATH, strerror(errno));
--		fprintf(stderr, "Is the batman-adv module loaded and sysfs mounted ?\n");
--		goto err_buff;
++
++	batadv_family = genl_ctrl_resolve(sock, BATADV_NL_NAME);
++	if (batadv_family < 0)
++		goto err_free_sock;
++
 +	cb = nl_cb_alloc(NL_CB_DEFAULT);
-+	if (!cb) {
-+		err = -ENOMEM;
++	if (!cb)
 +		goto err_free_sock;
- 	}
- 
--	while ((iface_dir = readdir(iface_base_dir)) != NULL) {
--		snprintf(path_buff, PATH_BUFF_LEN, SYS_MESH_IFACE_FMT, iface_dir->d_name);
--		file_content = read_file(path_buff);
--		if (!file_content)
--			continue;
-+	nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, func, arg);
- 
--		if (file_content[strlen(file_content) - 1] == '\n')
--			file_content[strlen(file_content) - 1] = '\0';
-+	msg = nlmsg_alloc_simple(RTM_GETLINK, NLM_F_REQUEST | NLM_F_DUMP);
-+	if (!msg) {
-+		err = -ENOMEM;
++
++	nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, get_iface_status_netlink_parse,
++		iface_status);
++
++	msg = nlmsg_alloc();
++	if (!msg)
 +		goto err_free_cb;
-+	}
- 
--		if (strcmp(file_content, "none") == 0)
--			goto free_line;
-+	ret = nlmsg_append(msg, &rt_hdr, sizeof(rt_hdr), NLMSG_ALIGNTO);
-+	if (ret < 0) {
-+		err = -ENOMEM;
-+		goto err_free_msg;
-+	}
- 
--		if (strcmp(file_content, globals->interface) != 0)
--			goto free_line;
-+	ret = nla_put_u32(msg, IFLA_MASTER, ifindex);
-+	if (ret < 0) {
-+		err = -ENOMEM;
-+		goto err_free_msg;
-+	}
- 
--		free(file_content);
--		file_content = NULL;
++
++	genlmsg_put(msg, NL_AUTO_PID, NL_AUTO_SEQ, batadv_family,
++		    0, 0, BATADV_CMD_GET_HARDIF, 1);
++
++	nla_put_u32(msg, BATADV_ATTR_MESH_IFINDEX, meshif);
++	nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX, hardif);
++
 +	ret = nl_send_auto_complete(sock, msg);
 +	if (ret < 0)
 +		goto err_free_msg;
- 
--		snprintf(path_buff, PATH_BUFF_LEN, SYS_IFACE_STATUS_FMT, iface_dir->d_name);
--		file_content = read_file(path_buff);
--		if (!file_content)
--			continue;
++
 +	nl_recvmsgs(sock, cb);
- 
--		content_newline = strstr(file_content, "\n");
--		if (content_newline)
--			*content_newline = '\0';
++
++	if (strlen(iface_status) > 0)
++		ret_status = iface_status;
++
 +err_free_msg:
 +	nlmsg_free(msg);
 +err_free_cb:
 +	nl_cb_put(cb);
 +err_free_sock:
 +	nl_socket_free(sock);
- 
--		if (strcmp(file_content, "active") == 0)
--			get_if_index_byname(globals, iface_dir->d_name);
-+	return err;
++
++	return ret_status;
 +}
- 
--free_line:
--		free(file_content);
--		file_content = NULL;
--	}
-+struct register_interfaces_rtnl_arg {
-+	struct globals *globals;
-+	int ifindex;
-+};
- 
--	free(path_buff);
--	closedir(iface_base_dir);
--	return EXIT_SUCCESS;
-+static struct nla_policy link_policy[IFLA_MAX + 1] = {
-+	[IFLA_IFNAME] = { .type = NLA_STRING, .maxlen = IFNAMSIZ },
-+	[IFLA_MASTER] = { .type = NLA_U32 },
-+};
 +
-+static int register_interfaces_rtnl_parse(struct nl_msg *msg, void *arg)
++static bool interface_active(unsigned int meshif, unsigned int hardif,
++			     const char *ifname)
 +{
-+	struct register_interfaces_rtnl_arg *register_arg = arg;
-+	struct nlattr *attrs[IFLA_MAX + 1];
++	char iface_status[IFACE_STATUS_LEN];
 +	char path_buff[PATH_BUFF_LEN];
-+	struct ifinfomsg *ifm;
++	char *file_content = NULL;
 +	char *content_newline;
-+	char *file_content;
-+	char *ifname;
-+	int master;
-+	int ret;
++	bool active = false;
++	char *status;
 +
-+	ifm = nlmsg_data(nlmsg_hdr(msg));
-+	ret = nlmsg_parse(nlmsg_hdr(msg), sizeof(*ifm), attrs, IFLA_MAX,
-+			  link_policy);
-+	if (ret < 0)
-+		goto err;
++	status = get_iface_status_netlink(meshif, hardif, iface_status);
++	if (!status) {
++		snprintf(path_buff, sizeof(path_buff), SYS_IFACE_STATUS_FMT,
++			 ifname);
++		file_content = read_file(path_buff);
++		if (!file_content)
++			return false;
 +
-+	if (!attrs[IFLA_IFNAME])
-+		goto err;
++		status = file_content;
++	}
 +
-+	if (!attrs[IFLA_MASTER])
-+		goto err;
-+
-+	ifname = nla_get_string(attrs[IFLA_IFNAME]);
-+	master = nla_get_u32(attrs[IFLA_MASTER]);
-+
-+	/* required on older kernels which don't prefilter the results */
-+	if (master != register_arg->ifindex)
-+		goto err;
-+
-+	snprintf(path_buff, PATH_BUFF_LEN, SYS_IFACE_STATUS_FMT, ifname);
-+	file_content = read_file(path_buff);
-+	if (!file_content)
-+		goto free_file;
-+
-+	content_newline = strstr(file_content, "\n");
++	content_newline = strstr(status, "\n");
 +	if (content_newline)
 +		*content_newline = '\0';
 +
-+	if (strcmp(file_content, "active") != 0)
-+		goto err;
++	if (strcmp(status, "active") != 0)
++		goto free_file;
 +
-+	get_if_index_byname(register_arg->globals, ifname);
- 
--err_buff:
--	free(path_buff);
++	active = true;
++
 +free_file:
 +	free(file_content);
 +	file_content = NULL;
- err:
--	return EXIT_FAILURE;
-+	return NL_OK;
++
++	return active;
 +}
 +
-+static int register_interfaces(struct globals *globals)
-+{
-+	struct register_interfaces_rtnl_arg register_arg = {
-+		.globals = globals,
-+	};
-+
-+	register_arg.ifindex = if_nametoindex(globals->interface);
-+	if (!globals->interface)
-+		return EXIT_FAILURE;
-+
-+
-+	query_rtnl_link(register_arg.ifindex, register_interfaces_rtnl_parse,
-+			&register_arg);
-+
-+	return EXIT_SUCCESS;
+ struct register_interfaces_rtnl_arg {
+ 	struct globals *globals;
+ 	int ifindex;
+@@ -449,10 +576,7 @@ static int register_interfaces_rtnl_parse(struct nl_msg *msg, void *arg)
+ {
+ 	struct register_interfaces_rtnl_arg *register_arg = arg;
+ 	struct nlattr *attrs[IFLA_MAX + 1];
+-	char path_buff[PATH_BUFF_LEN];
+ 	struct ifinfomsg *ifm;
+-	char *content_newline;
+-	char *file_content;
+ 	char *ifname;
+ 	int master;
+ 	int ret;
+@@ -476,23 +600,11 @@ static int register_interfaces_rtnl_parse(struct nl_msg *msg, void *arg)
+ 	if (master != register_arg->ifindex)
+ 		goto err;
+ 
+-	snprintf(path_buff, PATH_BUFF_LEN, SYS_IFACE_STATUS_FMT, ifname);
+-	file_content = read_file(path_buff);
+-	if (!file_content)
+-		goto free_file;
+-
+-	content_newline = strstr(file_content, "\n");
+-	if (content_newline)
+-		*content_newline = '\0';
+-
+-	if (strcmp(file_content, "active") != 0)
++	if (!interface_active(master, ifm->ifi_index, ifname))
+ 		goto err;
+ 
+ 	get_if_index_byname(register_arg->globals, ifname);
+ 
+-free_file:
+-	free(file_content);
+-	file_content = NULL;
+ err:
+ 	return NL_OK;
  }
- 
- static const int parse_orig_list_mandatory[] = {
-diff --git a/vis/vis.h b/vis/vis.h
-index 178406c..36bdecc 100644
---- a/vis/vis.h
-+++ b/vis/vis.h
-@@ -25,7 +25,6 @@
- 
- #define SYS_IFACE_PATH				"/sys/class/net"
- #define DEBUG_BATIF_PATH_FMT			"%s/batman_adv/%s"
--#define SYS_MESH_IFACE_FMT			SYS_IFACE_PATH"/%s/batman_adv/mesh_iface"
- #define SYS_IFACE_STATUS_FMT			SYS_IFACE_PATH"/%s/batman_adv/iface_status"
- 
- 
 -- 
 2.20.1
 
