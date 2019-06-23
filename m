@@ -2,53 +2,53 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8484FBB8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 23 Jun 2019 15:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 707284FBB9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 23 Jun 2019 15:08:24 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 3652382115;
-	Sun, 23 Jun 2019 15:07:55 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 66E5282669;
+	Sun, 23 Jun 2019 15:07:58 +0200 (CEST)
 Received: from durin.narfation.org (durin.narfation.org
  [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id 3EBEA81C5D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 23 Jun 2019 15:07:51 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id 2BD0281FEF
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 23 Jun 2019 15:07:54 +0200 (CEST)
 Received: from sven-desktop.home.narfation.org (unknown
  [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id E71ED1100D0;
- Sun, 23 Jun 2019 15:07:50 +0200 (CEST)
+ by durin.narfation.org (Postfix) with ESMTPSA id 5701A1100D0;
+ Sun, 23 Jun 2019 15:07:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1561295271;
+ s=20121; t=1561295273;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=S+XxO6k1OJETIhm7ilCn6BdRSoMWSu9ndPczOOkjWMA=;
- b=NaxBVGxvc4ZIckpVMjTOyWkbkQ0QveuPqOcpyf6esp7RFgZBGFbbrpmORCAyPFuOZZ18fY
- 72pmw9SDLwwVzumm+0F485J3mXJCgCXlP4X7ZTCqZ7xAWPXi/zTD7i0ZmW3OWsY/IA/HrI
- wNgh8THvwjBXvuew6CJ4TnEcsUSP90U=
+ bh=FJvYY5rPcJTkyxSxXLb+jsUXnS2/1+4mZu+uRKVGQiQ=;
+ b=XT/mlJTk+S2X1vX3cGpeuXcdSbHUK9uzUxXSRPYBI09HkeeE3kOkM0T/Qwfqn3zUE9pVq0
+ tKlPt9buUZH4npsOEFIct15um+KqmToFwLNtC1BxLPrGqcRGHyqT68ci8ySTH/jxRRBtVl
+ iHCqKRsMSivnLG2ItBZmTwTdzHtFnJA=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH v2 2/6] batctl: Integrate hardif setting framework
-Date: Sun, 23 Jun 2019 15:07:05 +0200
-Message-Id: <20190623130709.24751-3-sven@narfation.org>
+Subject: [PATCH v2 3/6] batctl: Add elp_interval setting command
+Date: Sun, 23 Jun 2019 15:07:06 +0200
+Message-Id: <20190623130709.24751-4-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190623130709.24751-1-sven@narfation.org>
 References: <20190623130709.24751-1-sven@narfation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1561295271;
+ s=20121; t=1561295273;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=S+XxO6k1OJETIhm7ilCn6BdRSoMWSu9ndPczOOkjWMA=;
- b=P4J20Xq005KOxa9/n9eTBm482AWcATktYn0JlIpi19eZbxbM3Q+YBhN2s7JsMyP+tIsH9L
- yPQWSsouTHcP3hl0WnRiF1Pt4KaP9q+Vt+e7R7RoIbpXpzLnEef2it66+GwjvQ8oaPBFpq
- 0u2UfY3GiBL0yJD+oUUu/b4b9m39rjw=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1561295271; a=rsa-sha256; cv=none;
- b=QwX6lutajkdSHh/krbGOyJMQOe9Mpit4QGAyOaE5/5eN5MQXal5M8FDa9Soqq3+cWtBKNV
- lkfbRyUEOIKoetKtFS1w2EcHLBQo8p5v3eOoOBQmemNqB2VerKC3jbz9B6OSjojtWEvzoC
- CW7Wd2QeykQofL5b6Dj3okI/I2id1cA=
+ bh=FJvYY5rPcJTkyxSxXLb+jsUXnS2/1+4mZu+uRKVGQiQ=;
+ b=fSzFI81hkK8yenmfOl2Cdc/JDXUpArMu27ygrQr2omEIXw9qAHG53w59CiVgOch7RoKmCB
+ gBpzWR0rwydkrflcH6U0ovz+ZUvAWXZeOxbyLeIlMmHNjZ+0S4z+44CYJhSOsspyc/XCLa
+ zfHfbozmt/Q00VRYru32TV/2qotiqyk=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1561295273; a=rsa-sha256; cv=none;
+ b=Zeu9MzRzDhYXXpXJUzSBQtP1QkLVdnDb9LYel6hVilVbBnFhdMfsei/Ehp0/w2lMNMr8lk
+ 6L50vN2rtxy9xYMJd1+kZNhiRO8WWDnZ/4Ycbh8haI6x8sHvHTLRpysxZ7co7A9R7kq7GA
+ Cq8Psn4AxQWRPpVKg0KY6AqReEv0y1M=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -68,235 +68,190 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-batctl currently supports settings which are either mesh interface or vlan
-specific. But B.A.T.M.A.N. V introduced two additional settings which are
-hard (slave) interface specific.
-
-To support these, an additional command prefix called hardif is implemented
-for some sysfs commands:
-
-  $ batctl hardif eth0 ...
-
-Alternative form is to use the prefix selector "slave"
-
-  $ batctl slave eth0 ...
+B.A.T.M.A.N. V introduced a hard interface specific setting called
+elp_interval. It defines the interval in milliseconds in which batman-adv
+emits probing packets for neighbor sensing (ELP).
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- functions.c | 22 ++++++++++++++++++++++
- functions.h |  1 +
- main.c      | 27 ++++++++++++++++++++++++++-
- main.h      |  8 +++++++-
- sys.c       | 15 +++++++++++++++
- sys.h       |  5 +++--
- 6 files changed, 74 insertions(+), 4 deletions(-)
+ Makefile       |   1 +
+ README.rst     |  16 +++++++
+ elp_interval.c | 111 +++++++++++++++++++++++++++++++++++++++++++++++++
+ man/batctl.8   |   4 ++
+ 4 files changed, 132 insertions(+)
+ create mode 100644 elp_interval.c
 
-diff --git a/functions.c b/functions.c
-index 61ea487..4ffa86c 100644
---- a/functions.c
-+++ b/functions.c
-@@ -998,6 +998,28 @@ int translate_vid(struct state *state, const char *vidstr)
- 	return 0;
- }
+diff --git a/Makefile b/Makefile
+index b7bd545..f071da2 100755
+--- a/Makefile
++++ b/Makefile
+@@ -45,6 +45,7 @@ $(eval $(call add_command,bridge_loop_avoidance,y))
+ $(eval $(call add_command,claimtable,y))
+ $(eval $(call add_command,dat_cache,y))
+ $(eval $(call add_command,distributed_arp_table,y))
++$(eval $(call add_command,elp_interval,y))
+ $(eval $(call add_command,event,y))
+ $(eval $(call add_command,fragmentation,y))
+ $(eval $(call add_command,gateways,y))
+diff --git a/README.rst b/README.rst
+index bc54412..92983aa 100644
+--- a/README.rst
++++ b/README.rst
+@@ -386,6 +386,22 @@ Example::
+   1000
  
-+int translate_hard_iface(struct state *state, const char *hardif)
+ 
++batctl elp interval
++===================
++
++display or modify the elp interval in ms for hard interface
++
++Usage::
++
++  batctl hardif $hardif elp_interval|et [interval]
++
++Example::
++
++  $ batctl hardif eth0 elp_interval 200
++  $ batctl hardif eth0 elp_interval
++  200
++
++
+ batctl loglevel
+ ===============
+ 
+diff --git a/elp_interval.c b/elp_interval.c
+new file mode 100644
+index 0000000..0a5e989
+--- /dev/null
++++ b/elp_interval.c
+@@ -0,0 +1,111 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (C) 2009-2019  B.A.T.M.A.N. contributors:
++ *
++ * Marek Lindner <mareklindner@neomailbox.ch>
++ *
++ * License-Filename: LICENSES/preferred/GPL-2.0
++ */
++
++#include <errno.h>
++#include <stddef.h>
++#include <stdint.h>
++#include <string.h>
++
++#include "main.h"
++#include "sys.h"
++
++static struct elp_interval_data {
++	uint32_t elp_interval;
++} elp_interval;
++
++static int parse_elp_interval(struct state *state, int argc, char *argv[])
 +{
-+	struct rtnl_link_iface_data link_data;
-+	unsigned int arg_ifindex;
++	struct settings_data *settings = state->cmd->arg;
++	struct elp_interval_data *data = settings->data;
++	char *endptr;
 +
-+	arg_ifindex = if_nametoindex(hardif);
-+	if (arg_ifindex == 0)
-+		return -ENODEV;
++	if (argc != 2) {
++		fprintf(stderr, "Error - incorrect number of arguments (expected 1)\n");
++		return -EINVAL;
++	}
 +
-+	query_rtnl_link_single(arg_ifindex, &link_data);
-+	if (!link_data.master_found)
-+		return -ENOLINK;
-+
-+	if (!if_indextoname(link_data.master, state->mesh_iface))
-+		return -ENOLINK;
-+
-+	state->hif = arg_ifindex;
-+	state->selector = SP_HARDIF;
++	data->elp_interval = strtoul(argv[1], &endptr, 0);
++	if (!endptr || *endptr != '\0') {
++		fprintf(stderr, "Error - the supplied argument is invalid: %s\n", argv[1]);
++		return -EINVAL;
++	}
 +
 +	return 0;
 +}
 +
- static int check_mesh_iface_netlink(struct state *state)
- {
- 	struct rtnl_link_iface_data link_data;
-diff --git a/functions.h b/functions.h
-index 7474c40..0a08870 100644
---- a/functions.h
-+++ b/functions.h
-@@ -53,6 +53,7 @@ int netlink_simple_request(struct nl_msg *msg);
- int translate_mesh_iface_vlan(struct state *state, const char *vlandev);
- int translate_vlan_iface(struct state *state, const char *vlandev);
- int translate_vid(struct state *state, const char *vidstr);
-+int translate_hard_iface(struct state *state, const char *hardif);
- int get_algoname(const char *mesh_iface, char *algoname, size_t algoname_len);
- int check_mesh_iface(struct state *state);
- int check_mesh_iface_ownership(struct state *state, char *hard_iface);
-diff --git a/main.c b/main.c
-index 3090877..f81109b 100644
---- a/main.c
-+++ b/main.c
-@@ -35,7 +35,8 @@ static void print_usage(void)
- 		{
- 			.label = "commands:\n",
- 			.types = BIT(SUBCOMMAND) |
--				 BIT(SUBCOMMAND_VID),
-+				 BIT(SUBCOMMAND_VID) |
-+				 BIT(SUBCOMMAND_HIF),
- 		},
- 		{
- 			.label = "debug tables:                                   \tdisplay the corresponding debug table\n",
-@@ -51,6 +52,10 @@ static void print_usage(void)
- 		"vid <vid> ",
- 		NULL,
- 	};
-+	const char *hardif_prefixes[] = {
-+		"hardif <netdev> ",
-+		NULL,
-+	};
- 	const struct command **p;
- 	const char **prefixes;
- 	const char **prefix;
-@@ -81,6 +86,9 @@ static void print_usage(void)
- 			case SUBCOMMAND_VID:
- 				prefixes = vlan_prefixes;
- 				break;
-+			case SUBCOMMAND_HIF:
-+				prefixes = hardif_prefixes;
-+				break;
- 			default:
- 				prefixes = default_prefixes;
- 				break;
-@@ -153,6 +161,9 @@ static const struct command *find_command(struct state *state, const char *name)
- 	case SP_VLAN:
- 		types = BIT(SUBCOMMAND_VID);
- 		break;
-+	case SP_HARDIF:
-+		types = BIT(SUBCOMMAND_HIF);
-+		break;
- 	default:
- 		return NULL;
- 	}
-@@ -171,6 +182,10 @@ static int detect_selector_prefix(int argc, char *argv[],
- 	if (strcmp(argv[0], "vlan") == 0) {
- 		*selector = SP_VLAN;
- 		return 2;
-+	} else if (strcmp(argv[0], "hardif") == 0 ||
-+		   strcmp(argv[0], "slave") == 0) {
-+		*selector = SP_HARDIF;
-+		return 2;
- 	}
- 
- 	return 0;
-@@ -197,7 +212,17 @@ static int parse_meshif_args(struct state *state, int argc, char *argv[])
- 				dev_arg, strerror(-ret));
- 			return ret;
- 		}
-+		return parsed_args;
-+	case SP_HARDIF:
-+		ret = translate_hard_iface(state, dev_arg);
-+		if (ret < 0) {
-+			fprintf(stderr, "Error - invalid hardif %s: %s\n",
-+				dev_arg, strerror(-ret));
-+			return ret;
-+		}
- 
-+		snprintf(state->hard_iface, sizeof(state->hard_iface), "%s",
-+			 dev_arg);
- 		return parsed_args;
- 	case SP_NONE_OR_MESHIF:
- 		/* not allowed - see detect_selector_prefix */
-diff --git a/main.h b/main.h
-index 846efed..e3a95b5 100644
---- a/main.h
-+++ b/main.h
-@@ -59,11 +59,13 @@ enum command_flags {
- enum selector_prefix {
- 	SP_NONE_OR_MESHIF,
- 	SP_VLAN,
-+	SP_HARDIF,
- };
- 
- enum command_type {
- 	SUBCOMMAND,
- 	SUBCOMMAND_VID,
-+	SUBCOMMAND_HIF,
- 	DEBUGTABLE,
- };
- 
-@@ -72,7 +74,11 @@ struct state {
- 	enum selector_prefix selector;
- 	char mesh_iface[IF_NAMESIZE];
- 	unsigned int mesh_ifindex;
--	int vid;
-+	char hard_iface[IF_NAMESIZE];
-+	union {
-+		unsigned int hif;
-+		int vid;
-+	};
- 	const struct command *cmd;
- 
- 	struct nl_sock *sock;
-diff --git a/sys.c b/sys.c
-index 61a314d..b9555ee 100644
---- a/sys.c
-+++ b/sys.c
-@@ -150,6 +150,10 @@ static void settings_usage(struct state *state)
- 		"vid <vid> ",
- 		NULL,
- 	};
-+	const char *hardif_prefixes[] = {
-+		"hardif <netdev> ",
-+		NULL,
-+	};
- 	const char *linestart = "Usage:";
- 	const char **prefixes;
- 	const char **prefix;
-@@ -158,6 +162,9 @@ static void settings_usage(struct state *state)
- 	case SUBCOMMAND_VID:
- 		prefixes = vlan_prefixes;
- 		break;
-+	case SUBCOMMAND_HIF:
-+		prefixes = hardif_prefixes;
-+		break;
- 	default:
- 		prefixes = default_prefixes;
- 		break;
-@@ -271,6 +278,14 @@ int handle_sys_setting(struct state *state, int argc, char **argv)
- 		snprintf(path_buff, PATH_BUFF_LEN, SYS_VLAN_PATH,
- 			 state->mesh_iface, state->vid);
- 		break;
-+	case SP_HARDIF:
-+		/* if a hard interface was specified then change the path to
-+		 * point to the proper ${hardif}/batman-adv path in the sysfs
-+		 * tree.
-+		 */
-+		snprintf(path_buff, PATH_BUFF_LEN, SYS_HARDIF_PATH,
-+			 state->hard_iface);
-+		break;
- 	}
- 
- 	if (argc == 1) {
-diff --git a/sys.h b/sys.h
-index d4f2fcf..b6f0f90 100644
---- a/sys.h
-+++ b/sys.h
-@@ -21,8 +21,9 @@
- #define SYS_BATIF_PATH_FMT	"/sys/class/net/%s/mesh/"
- #define SYS_IFACE_PATH		"/sys/class/net"
- #define SYS_IFACE_DIR		SYS_IFACE_PATH"/%s/"
--#define SYS_MESH_IFACE_FMT	SYS_IFACE_PATH"/%s/batman_adv/mesh_iface"
--#define SYS_IFACE_STATUS_FMT	SYS_IFACE_PATH"/%s/batman_adv/iface_status"
-+#define SYS_HARDIF_PATH		SYS_IFACE_DIR "batman_adv/"
-+#define SYS_MESH_IFACE_FMT	SYS_HARDIF_PATH "mesh_iface"
-+#define SYS_IFACE_STATUS_FMT	SYS_HARDIF_PATH "iface_status"
- #define SYS_VLAN_PATH		SYS_IFACE_PATH"/%s/mesh/vlan%d/"
- #define SYS_ROUTING_ALGO_FMT	SYS_IFACE_PATH"/%s/mesh/routing_algo"
- #define VLAN_ID_MAX_LEN		4
++static int print_elp_interval(struct nl_msg *msg, void *arg)
++{
++	struct nlattr *attrs[BATADV_ATTR_MAX + 1];
++	struct nlmsghdr *nlh = nlmsg_hdr(msg);
++	struct genlmsghdr *ghdr;
++	int *result = arg;
++
++	if (!genlmsg_valid_hdr(nlh, 0))
++		return NL_OK;
++
++	ghdr = nlmsg_data(nlh);
++
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy)) {
++		return NL_OK;
++	}
++
++	if (!attrs[BATADV_ATTR_ELP_INTERVAL])
++		return NL_OK;
++
++	printf("%u\n", nla_get_u32(attrs[BATADV_ATTR_ELP_INTERVAL]));
++
++	*result = 0;
++	return NL_STOP;
++}
++
++static int get_attrs_elp_interval(struct nl_msg *msg, void *arg)
++{
++	struct state *state = arg;
++
++	nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX, state->hif);
++
++	return 0;
++}
++
++static int get_elp_interval(struct state *state)
++{
++	return sys_simple_nlquery(state, BATADV_CMD_GET_HARDIF,
++				  get_attrs_elp_interval, print_elp_interval);
++}
++
++static int set_attrs_elp_interval(struct nl_msg *msg, void *arg)
++{
++	struct state *state = arg;
++	struct settings_data *settings = state->cmd->arg;
++	struct elp_interval_data *data = settings->data;
++
++	nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX, state->hif);
++	nla_put_u32(msg, BATADV_ATTR_ELP_INTERVAL, data->elp_interval);
++
++	return 0;
++}
++
++static int set_elp_interval(struct state *state)
++{
++	return sys_simple_nlquery(state, BATADV_CMD_SET_HARDIF,
++				  set_attrs_elp_interval, NULL);
++}
++
++static struct settings_data batctl_settings_elp_interval = {
++	.sysfs_name = "elp_interval",
++	.data = &elp_interval,
++	.parse = parse_elp_interval,
++	.netlink_get = get_elp_interval,
++	.netlink_set = set_elp_interval,
++};
++
++COMMAND_NAMED(SUBCOMMAND_HIF, elp_interval, "et", handle_sys_setting,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_settings_elp_interval,
++	      "[interval]        \tdisplay or modify elp_interval setting");
+diff --git a/man/batctl.8 b/man/batctl.8
+index a5656cf..eef7cd8 100644
+--- a/man/batctl.8
++++ b/man/batctl.8
+@@ -97,6 +97,10 @@ the bonding mode.
+ batctl will monitor for events from the netlink kernel interface of batman-adv. The local timestamp of the event will be printed
+ when parameter \fB\-t\fP is specified. Parameter \fB\-r\fP will do the same but with relative timestamps.
+ .br
++.IP "\fBhardif <hardif>\fP \fBelp_interval\fP|\fBet\fP [\fBinterval\fP]"
++If no parameter is given the current ELP interval setting of the hard interface is displayed otherwise the parameter is used to set the
++ELP interval. The interval is in units of milliseconds.
++.br
+ .IP "\fBfragmentation\fP|\fBf\fP [\fB0\fP|\fB1\fP]"
+ If no parameter is given the current fragmentation mode setting is displayed. Otherwise the parameter is used to enable or
+ disable fragmentation.
 -- 
 2.20.1
 
