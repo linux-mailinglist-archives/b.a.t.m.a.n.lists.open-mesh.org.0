@@ -1,46 +1,27 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D35526A2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 25 Jun 2019 10:29:23 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 639D352683
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 25 Jun 2019 10:26:51 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id D843181B7B;
-	Tue, 25 Jun 2019 10:29:20 +0200 (CEST)
-Received: from mail26.lwspanel.com (mail26.lwspanel.com [91.216.107.40])
- by open-mesh.org (Postfix) with ESMTPS id 63F6A8041A
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 25 Jun 2019 10:21:43 +0200 (CEST)
-Received: from mail26.lwspanel.com (localhost.localdomain [127.0.0.1])
- by filter2.mynetwork.local (Postfix) with ESMTP id E3BD2123B6C7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 25 Jun 2019 10:21:42 +0200 (CEST)
-Received: from mail26.lwspanel.com (localhost.localdomain [127.0.0.1])
- by filter1.mynetwork.local (Postfix) with ESMTP id 1F963123B530
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 25 Jun 2019 10:21:41 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail26.lwspanel.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=ALL_TRUSTED,BAYES_05
- autolearn=ham autolearn_force=no version=3.4.2
-X-Spam-Virus: No
-X-Spam-Virus-Status: No
-X-Envelope-From: <faycel.benhajkhalifa@eisox.com>
-Received: from mail26.lwspanel.com (localhost.localdomain [127.0.0.1])
- (Authenticated sender: faycel.benhajkhalifa@eisox.com)
- by mail26.lwspanel.com (Postfix) with ESMTPSA id 17754123B8A3
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 25 Jun 2019 10:21:40 +0200 (CEST)
-Received: from v/BYOiJcLDziyAl79qSUCUKOF524933Y by mail26.lwspanel.com
- with HTTP (HTTP/1.1 POST); Tue, 25 Jun 2019 10:21:40 +0200
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Tue, 25 Jun 2019 10:21:40 +0200
-From: faycel.benhajkhalifa@eisox.com
+	by open-mesh.org (Postfix) with ESMTP id 311D881A04;
+	Tue, 25 Jun 2019 10:26:47 +0200 (CEST)
+Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
+ by open-mesh.org (Postfix) with ESMTPS id B26CF81481
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 25 Jun 2019 10:26:42 +0200 (CEST)
+From: Marek Lindner <mareklindner@neomailbox.ch>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Problem with routing table
-Message-ID: <22df3eaaaf123e7eb767ec7c0959cbfd@eisox.com>
-X-Sender: faycel.benhajkhalifa@eisox.com
-User-Agent: Roundcube Webmail/1.3.9
-X-Mailman-Approved-At: Tue, 25 Jun 2019 10:29:17 +0200
+Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
+Date: Tue, 25 Jun 2019 16:26:32 +0800
+Message-ID: <2561263.F3lYGfnSHf@rousseau>
+In-Reply-To: <CALYz8yoj0E1MDoh7ztThK_q_ew0EHa=2vbuwxQFNwUfDvsEGiA@mail.gmail.com>
+References: <20190609101922.2366-1-treffer@measite.de>
+ <3147211.nMDzSnZuI7@rousseau>
+ <CALYz8yoj0E1MDoh7ztThK_q_ew0EHa=2vbuwxQFNwUfDvsEGiA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart6284923.q8cz3GkGWU";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -58,20 +39,62 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hello
-I have a problem with setting up the routing table
-the use case
-I have 4 node with batman batctl 2018.1 [batman-adv: 2018.1] on openwrt 
-18.06.1
-2 nodes that serve the internet (connected directly with cable)
-when a node that shares the internet is dead the other node can't ping 
-the internet  unless the dead node no longer exists in its database 
-neighbors (it does not appear in the results of batctl o and batctl n ) 
-on average it takes a little more than 200 s to reconnect to the 
-internet.
-my questions are:
-   Is it possible to update the routing table faster?
-   Does it have anything to do with 200s to detect that a node and dead ?
-thank you
-cordially
-faycel bhk
+--nextPart6284923.q8cz3GkGWU
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+On Thursday, 13 June 2019 04:50:44 HKT =D0=9A=D0=B8=D1=80=D0=B8=D0=BB=D0=BB=
+ =D0=9B=D1=83=D0=BA=D0=BE=D0=BD=D0=B8=D0=BD wrote:
+> So here is the algorithm. It has a structure we call matryoshka.
+> ET - Expected_throughput.
+>=20
+> 1) ET =3D TX_bitrate * Transmit_probability * Overhead_coefficient
+> Transmit_probability is always less than 1 so Expected throughput
+> can't be equal to the TX_bitrate. Overhead_coefficient is also should
+> be less than 1
+>=20
+> 2) Transmit_probability =3D 1 - Retry_probability - Error_probability
+>=20
+> 3) Retry_probability =3D TX_retries / TX_packets
+>=20
+> 4) Error_probability =3D TX_errors / TX_packets
+>=20
+> 5) Overhead_coefficient for 802.11 is fair enough to be 0.65, but can
+> be changed after additional testing.
+>=20
+>=20
+> ET =3D TX_bitrate * (1 - (TX_retries + TX_errors) / TX_packets) * 0.65
+> Such technique has very large hysteresis which is good to avoid
+> flapping between different nodes.
+> In my MESH lab this formula works quite well.
+
+This looks like an interesting approach. Which chips / environments did you=
+=20
+test this formula with and how did the result compare to the actual TCP=20
+throughput ?
+
+Thanks,
+Marek
+
+
+--nextPart6284923.q8cz3GkGWU
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAl0R2rgACgkQU1VOj+62
+HMCBpAgAmVLStNzASYBVy5GluiHgYWziImCZx0fOWzH7yYcY5j2HwJ3QSyjL87F0
+84ADyazp2J7bm4ckrpyN+bdYPqn365e/hmch6+7Do4apgiXBM3nmZ6+2QTpx+wEJ
+6GI8yYmceAedYR+OXQ5zv0Vgpi5oQkWMB4SjOyQg6rlPNk9MCdKsgSUtlC7/0rze
+J72cKCvGX0Mxd+WwQQ4U8bJtEvnHwH/0Zuqjp18PwdMJ1ZFmwWOiZa0v4YFAkwPs
+u3JWFq/hxxaYVweQpUEKmlezXIq+FoGDJ8rro1ZJzRGq7Gzda9YWHsS0QnW5vLwa
+MsVd0wYLkkEbZ6nwdCkTRX08yBegOA==
+=6k+X
+-----END PGP SIGNATURE-----
+
+--nextPart6284923.q8cz3GkGWU--
+
+
+
