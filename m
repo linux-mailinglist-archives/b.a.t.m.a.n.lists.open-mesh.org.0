@@ -2,26 +2,30 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 639D352683
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 25 Jun 2019 10:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A084F5806E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Jun 2019 12:31:38 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 311D881A04;
-	Tue, 25 Jun 2019 10:26:47 +0200 (CEST)
-Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
- by open-mesh.org (Postfix) with ESMTPS id B26CF81481
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 25 Jun 2019 10:26:42 +0200 (CEST)
-From: Marek Lindner <mareklindner@neomailbox.ch>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
-Date: Tue, 25 Jun 2019 16:26:32 +0800
-Message-ID: <2561263.F3lYGfnSHf@rousseau>
-In-Reply-To: <CALYz8yoj0E1MDoh7ztThK_q_ew0EHa=2vbuwxQFNwUfDvsEGiA@mail.gmail.com>
-References: <20190609101922.2366-1-treffer@measite.de>
- <3147211.nMDzSnZuI7@rousseau>
- <CALYz8yoj0E1MDoh7ztThK_q_ew0EHa=2vbuwxQFNwUfDvsEGiA@mail.gmail.com>
+	by open-mesh.org (Postfix) with ESMTP id 8A10081F50;
+	Thu, 27 Jun 2019 12:31:29 +0200 (CEST)
+Received: from mail.mail.packetmixer.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id B073C80A35
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Jun 2019 12:31:25 +0200 (CEST)
+Received: from kero.packetmixer.de (ip-109-41-128-179.web.vodafone.de
+ [109.41.128.179])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 3616962059;
+ Thu, 27 Jun 2019 12:31:25 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: davem@davemloft.net
+Subject: [PATCH 0/2] pull request for net: batman-adv 2019-06-27
+Date: Thu, 27 Jun 2019 12:31:17 +0200
+Message-Id: <20190627103119.6969-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6284923.q8cz3GkGWU";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -36,65 +40,47 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart6284923.q8cz3GkGWU
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Hi David,
 
-On Thursday, 13 June 2019 04:50:44 HKT =D0=9A=D0=B8=D1=80=D0=B8=D0=BB=D0=BB=
- =D0=9B=D1=83=D0=BA=D0=BE=D0=BD=D0=B8=D0=BD wrote:
-> So here is the algorithm. It has a structure we call matryoshka.
-> ET - Expected_throughput.
->=20
-> 1) ET =3D TX_bitrate * Transmit_probability * Overhead_coefficient
-> Transmit_probability is always less than 1 so Expected throughput
-> can't be equal to the TX_bitrate. Overhead_coefficient is also should
-> be less than 1
->=20
-> 2) Transmit_probability =3D 1 - Retry_probability - Error_probability
->=20
-> 3) Retry_probability =3D TX_retries / TX_packets
->=20
-> 4) Error_probability =3D TX_errors / TX_packets
->=20
-> 5) Overhead_coefficient for 802.11 is fair enough to be 0.65, but can
-> be changed after additional testing.
->=20
->=20
-> ET =3D TX_bitrate * (1 - (TX_retries + TX_errors) / TX_packets) * 0.65
-> Such technique has very large hysteresis which is good to avoid
-> flapping between different nodes.
-> In my MESH lab this formula works quite well.
+here are some bugfixes which we would like to have integrated into net.
 
-This looks like an interesting approach. Which chips / environments did you=
-=20
-test this formula with and how did the result compare to the actual TCP=20
-throughput ?
+Please pull or let me know of any problem!
 
-Thanks,
-Marek
+Thank you,
+      Simon
 
+The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
 
---nextPart6284923.q8cz3GkGWU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+  Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
 
------BEGIN PGP SIGNATURE-----
+are available in the git repository at:
 
-iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAl0R2rgACgkQU1VOj+62
-HMCBpAgAmVLStNzASYBVy5GluiHgYWziImCZx0fOWzH7yYcY5j2HwJ3QSyjL87F0
-84ADyazp2J7bm4ckrpyN+bdYPqn365e/hmch6+7Do4apgiXBM3nmZ6+2QTpx+wEJ
-6GI8yYmceAedYR+OXQ5zv0Vgpi5oQkWMB4SjOyQg6rlPNk9MCdKsgSUtlC7/0rze
-J72cKCvGX0Mxd+WwQQ4U8bJtEvnHwH/0Zuqjp18PwdMJ1ZFmwWOiZa0v4YFAkwPs
-u3JWFq/hxxaYVweQpUEKmlezXIq+FoGDJ8rro1ZJzRGq7Gzda9YWHsS0QnW5vLwa
-MsVd0wYLkkEbZ6nwdCkTRX08yBegOA==
-=6k+X
------END PGP SIGNATURE-----
+  git://git.open-mesh.org/linux-merge.git tags/batadv-net-for-davem-20190627
 
---nextPart6284923.q8cz3GkGWU--
+for you to fetch changes up to 9e6b5648bbc4cd48fab62cecbb81e9cc3c6e7e88:
 
+  batman-adv: Fix duplicated OGMs on NETDEV_UP (2019-06-02 13:33:48 +0200)
 
+----------------------------------------------------------------
+Here are some batman-adv bugfixes:
 
+ - fix a leaked TVLV handler which wasn't unregistered, by Jeremy Sowden
+
+ - fix duplicated OGMs when interfaces are set UP, by Sven Eckelmann
+
+----------------------------------------------------------------
+Jeremy Sowden (1):
+      batman-adv: fix for leaked TVLV handler.
+
+Sven Eckelmann (1):
+      batman-adv: Fix duplicated OGMs on NETDEV_UP
+
+ net/batman-adv/bat_iv_ogm.c        | 4 ++--
+ net/batman-adv/hard-interface.c    | 3 +++
+ net/batman-adv/translation-table.c | 2 ++
+ net/batman-adv/types.h             | 3 +++
+ 4 files changed, 10 insertions(+), 2 deletions(-)
