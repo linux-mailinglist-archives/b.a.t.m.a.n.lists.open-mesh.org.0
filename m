@@ -1,34 +1,36 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E9459D66
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jun 2019 15:57:48 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A7DB5A144
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jun 2019 18:46:00 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 62E818282B;
-	Fri, 28 Jun 2019 15:56:48 +0200 (CEST)
-Received: from mail.mail.packetmixer.de (packetmixer.de
- [IPv6:2001:4d88:2000:24::c0de])
- by open-mesh.org (Postfix) with ESMTPS id 8E84681B75
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Jun 2019 15:56:09 +0200 (CEST)
-Received: from kero.packetmixer.de (p4FD57BD9.dip0.t-ipconnect.de
- [79.213.123.217])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 4A0FD62077;
- Fri, 28 Jun 2019 15:56:09 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: davem@davemloft.net
-Subject: [PATCH 10/10] batman-adv: mcast: apply optimizations for routable
- packets, too
-Date: Fri, 28 Jun 2019 15:56:04 +0200
-Message-Id: <20190628135604.11581-11-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190628135604.11581-1-sw@simonwunderlich.de>
-References: <20190628135604.11581-1-sw@simonwunderlich.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	by open-mesh.org (Postfix) with ESMTP id A0D0281C5D;
+	Fri, 28 Jun 2019 18:45:56 +0200 (CEST)
+Received: from shards.monkeyblade.net (shards.monkeyblade.net
+ [IPv6:2620:137:e000::1:9])
+ by open-mesh.org (Postfix) with ESMTPS id 8144780524
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Jun 2019 18:45:51 +0200 (CEST)
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 09A4914E03B20;
+ Fri, 28 Jun 2019 09:45:49 -0700 (PDT)
+Date: Fri, 28 Jun 2019 09:45:48 -0700 (PDT)
+Message-Id: <20190628.094548.1754133209530237004.davem@davemloft.net>
+To: sw@simonwunderlich.de
+Subject: Re: [PATCH 0/2] pull request for net: batman-adv 2019-06-27
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20190627103119.6969-1-sw@simonwunderlich.de>
+References: <20190627103119.6969-1-sw@simonwunderlich.de>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [149.20.54.216]);
+ Fri, 28 Jun 2019 09:45:49 -0700 (PDT)
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,412 +49,11 @@ Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Linus Lüssing <linus.luessing@c0d3.blue>
+From: Simon Wunderlich <sw@simonwunderlich.de>
+Date: Thu, 27 Jun 2019 12:31:17 +0200
 
-Now that we not only track the presence of multicast listeners but also
-multicast routers we can safely apply group-aware multicast-to-unicast
-forwarding to packets with a destination address of scope greater than
-link-local as well.
+> here are some bugfixes which we would like to have integrated into net.
+> 
+> Please pull or let me know of any problem!
 
-Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/multicast.c | 259 +++++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 241 insertions(+), 18 deletions(-)
-
-diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index 80d5f3c892cb..67d7f83009ae 100644
---- a/net/batman-adv/multicast.c
-+++ b/net/batman-adv/multicast.c
-@@ -980,6 +980,7 @@ static bool batadv_mcast_is_report_ipv4(struct sk_buff *skb)
-  * @bat_priv: the bat priv with all the soft interface information
-  * @skb: the IPv4 packet to check
-  * @is_unsnoopable: stores whether the destination is snoopable
-+ * @is_routable: stores whether the destination is routable
-  *
-  * Checks whether the given IPv4 packet has the potential to be forwarded with a
-  * mode more optimal than classic flooding.
-@@ -989,7 +990,8 @@ static bool batadv_mcast_is_report_ipv4(struct sk_buff *skb)
-  */
- static int batadv_mcast_forw_mode_check_ipv4(struct batadv_priv *bat_priv,
- 					     struct sk_buff *skb,
--					     bool *is_unsnoopable)
-+					     bool *is_unsnoopable,
-+					     int *is_routable)
- {
- 	struct iphdr *iphdr;
- 
-@@ -1002,16 +1004,13 @@ static int batadv_mcast_forw_mode_check_ipv4(struct batadv_priv *bat_priv,
- 
- 	iphdr = ip_hdr(skb);
- 
--	/* TODO: Implement Multicast Router Discovery (RFC4286),
--	 * then allow scope > link local, too
--	 */
--	if (!ipv4_is_local_multicast(iphdr->daddr))
--		return -EINVAL;
--
- 	/* link-local multicast listeners behind a bridge are
- 	 * not snoopable (see RFC4541, section 2.1.2.2)
- 	 */
--	*is_unsnoopable = true;
-+	if (ipv4_is_local_multicast(iphdr->daddr))
-+		*is_unsnoopable = true;
-+	else
-+		*is_routable = ETH_P_IP;
- 
- 	return 0;
- }
-@@ -1046,6 +1045,7 @@ static bool batadv_mcast_is_report_ipv6(struct sk_buff *skb)
-  * @bat_priv: the bat priv with all the soft interface information
-  * @skb: the IPv6 packet to check
-  * @is_unsnoopable: stores whether the destination is snoopable
-+ * @is_routable: stores whether the destination is routable
-  *
-  * Checks whether the given IPv6 packet has the potential to be forwarded with a
-  * mode more optimal than classic flooding.
-@@ -1054,7 +1054,8 @@ static bool batadv_mcast_is_report_ipv6(struct sk_buff *skb)
-  */
- static int batadv_mcast_forw_mode_check_ipv6(struct batadv_priv *bat_priv,
- 					     struct sk_buff *skb,
--					     bool *is_unsnoopable)
-+					     bool *is_unsnoopable,
-+					     int *is_routable)
- {
- 	struct ipv6hdr *ip6hdr;
- 
-@@ -1067,10 +1068,7 @@ static int batadv_mcast_forw_mode_check_ipv6(struct batadv_priv *bat_priv,
- 
- 	ip6hdr = ipv6_hdr(skb);
- 
--	/* TODO: Implement Multicast Router Discovery (RFC4286),
--	 * then allow scope > link local, too
--	 */
--	if (IPV6_ADDR_MC_SCOPE(&ip6hdr->daddr) != IPV6_ADDR_SCOPE_LINKLOCAL)
-+	if (IPV6_ADDR_MC_SCOPE(&ip6hdr->daddr) < IPV6_ADDR_SCOPE_LINKLOCAL)
- 		return -EINVAL;
- 
- 	/* link-local-all-nodes multicast listeners behind a bridge are
-@@ -1078,6 +1076,8 @@ static int batadv_mcast_forw_mode_check_ipv6(struct batadv_priv *bat_priv,
- 	 */
- 	if (ipv6_addr_is_ll_all_nodes(&ip6hdr->daddr))
- 		*is_unsnoopable = true;
-+	else if (IPV6_ADDR_MC_SCOPE(&ip6hdr->daddr) > IPV6_ADDR_SCOPE_LINKLOCAL)
-+		*is_routable = ETH_P_IPV6;
- 
- 	return 0;
- }
-@@ -1087,6 +1087,7 @@ static int batadv_mcast_forw_mode_check_ipv6(struct batadv_priv *bat_priv,
-  * @bat_priv: the bat priv with all the soft interface information
-  * @skb: the multicast frame to check
-  * @is_unsnoopable: stores whether the destination is snoopable
-+ * @is_routable: stores whether the destination is routable
-  *
-  * Checks whether the given multicast ethernet frame has the potential to be
-  * forwarded with a mode more optimal than classic flooding.
-@@ -1095,7 +1096,8 @@ static int batadv_mcast_forw_mode_check_ipv6(struct batadv_priv *bat_priv,
-  */
- static int batadv_mcast_forw_mode_check(struct batadv_priv *bat_priv,
- 					struct sk_buff *skb,
--					bool *is_unsnoopable)
-+					bool *is_unsnoopable,
-+					int *is_routable)
- {
- 	struct ethhdr *ethhdr = eth_hdr(skb);
- 
-@@ -1105,13 +1107,15 @@ static int batadv_mcast_forw_mode_check(struct batadv_priv *bat_priv,
- 	switch (ntohs(ethhdr->h_proto)) {
- 	case ETH_P_IP:
- 		return batadv_mcast_forw_mode_check_ipv4(bat_priv, skb,
--							 is_unsnoopable);
-+							 is_unsnoopable,
-+							 is_routable);
- 	case ETH_P_IPV6:
- 		if (!IS_ENABLED(CONFIG_IPV6))
- 			return -EINVAL;
- 
- 		return batadv_mcast_forw_mode_check_ipv6(bat_priv, skb,
--							 is_unsnoopable);
-+							 is_unsnoopable,
-+							 is_routable);
- 	default:
- 		return -EINVAL;
- 	}
-@@ -1142,6 +1146,29 @@ static int batadv_mcast_forw_want_all_ip_count(struct batadv_priv *bat_priv,
- }
- 
- /**
-+ * batadv_mcast_forw_rtr_count() - count nodes with a multicast router
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @protocol: the ethernet protocol type to count multicast routers for
-+ *
-+ * Return: the number of nodes which want all routable IPv4 multicast traffic
-+ * if the protocol is ETH_P_IP or the number of nodes which want all routable
-+ * IPv6 traffic if the protocol is ETH_P_IPV6. Otherwise returns 0.
-+ */
-+
-+static int batadv_mcast_forw_rtr_count(struct batadv_priv *bat_priv,
-+				       int protocol)
-+{
-+	switch (protocol) {
-+	case ETH_P_IP:
-+		return atomic_read(&bat_priv->mcast.num_want_all_rtr4);
-+	case ETH_P_IPV6:
-+		return atomic_read(&bat_priv->mcast.num_want_all_rtr6);
-+	default:
-+		return 0;
-+	}
-+}
-+
-+/**
-  * batadv_mcast_forw_tt_node_get() - get a multicast tt node
-  * @bat_priv: the bat priv with all the soft interface information
-  * @ethhdr: the ether header containing the multicast destination
-@@ -1263,6 +1290,84 @@ batadv_mcast_forw_unsnoop_node_get(struct batadv_priv *bat_priv)
- }
- 
- /**
-+ * batadv_mcast_forw_rtr4_node_get() - get a node with an ipv4 mcast router flag
-+ * @bat_priv: the bat priv with all the soft interface information
-+ *
-+ * Return: an orig_node which has the BATADV_MCAST_WANT_NO_RTR4 flag unset and
-+ * increases its refcount.
-+ */
-+static struct batadv_orig_node *
-+batadv_mcast_forw_rtr4_node_get(struct batadv_priv *bat_priv)
-+{
-+	struct batadv_orig_node *tmp_orig_node, *orig_node = NULL;
-+
-+	rcu_read_lock();
-+	hlist_for_each_entry_rcu(tmp_orig_node,
-+				 &bat_priv->mcast.want_all_rtr4_list,
-+				 mcast_want_all_rtr4_node) {
-+		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
-+			continue;
-+
-+		orig_node = tmp_orig_node;
-+		break;
-+	}
-+	rcu_read_unlock();
-+
-+	return orig_node;
-+}
-+
-+/**
-+ * batadv_mcast_forw_rtr6_node_get() - get a node with an ipv6 mcast router flag
-+ * @bat_priv: the bat priv with all the soft interface information
-+ *
-+ * Return: an orig_node which has the BATADV_MCAST_WANT_NO_RTR6 flag unset
-+ * and increases its refcount.
-+ */
-+static struct batadv_orig_node *
-+batadv_mcast_forw_rtr6_node_get(struct batadv_priv *bat_priv)
-+{
-+	struct batadv_orig_node *tmp_orig_node, *orig_node = NULL;
-+
-+	rcu_read_lock();
-+	hlist_for_each_entry_rcu(tmp_orig_node,
-+				 &bat_priv->mcast.want_all_rtr6_list,
-+				 mcast_want_all_rtr6_node) {
-+		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
-+			continue;
-+
-+		orig_node = tmp_orig_node;
-+		break;
-+	}
-+	rcu_read_unlock();
-+
-+	return orig_node;
-+}
-+
-+/**
-+ * batadv_mcast_forw_rtr_node_get() - get a node with an ipv4/ipv6 router flag
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @ethhdr: an ethernet header to determine the protocol family from
-+ *
-+ * Return: an orig_node which has no BATADV_MCAST_WANT_NO_RTR4 or
-+ * BATADV_MCAST_WANT_NO_RTR6 flag, depending on the provided ethhdr, set and
-+ * increases its refcount.
-+ */
-+static struct batadv_orig_node *
-+batadv_mcast_forw_rtr_node_get(struct batadv_priv *bat_priv,
-+			       struct ethhdr *ethhdr)
-+{
-+	switch (ntohs(ethhdr->h_proto)) {
-+	case ETH_P_IP:
-+		return batadv_mcast_forw_rtr4_node_get(bat_priv);
-+	case ETH_P_IPV6:
-+		return batadv_mcast_forw_rtr6_node_get(bat_priv);
-+	default:
-+		/* we shouldn't be here... */
-+		return NULL;
-+	}
-+}
-+
-+/**
-  * batadv_mcast_forw_mode() - check on how to forward a multicast packet
-  * @bat_priv: the bat priv with all the soft interface information
-  * @skb: The multicast packet to check
-@@ -1280,8 +1385,11 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 	bool is_unsnoopable = false;
- 	unsigned int mcast_fanout;
- 	struct ethhdr *ethhdr;
-+	int is_routable = 0;
-+	int rtr_count = 0;
- 
--	ret = batadv_mcast_forw_mode_check(bat_priv, skb, &is_unsnoopable);
-+	ret = batadv_mcast_forw_mode_check(bat_priv, skb, &is_unsnoopable,
-+					   &is_routable);
- 	if (ret == -ENOMEM)
- 		return BATADV_FORW_NONE;
- 	else if (ret < 0)
-@@ -1294,8 +1402,9 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 	ip_count = batadv_mcast_forw_want_all_ip_count(bat_priv, ethhdr);
- 	unsnoop_count = !is_unsnoopable ? 0 :
- 			atomic_read(&bat_priv->mcast.num_want_all_unsnoopables);
-+	rtr_count = batadv_mcast_forw_rtr_count(bat_priv, is_routable);
- 
--	total_count = tt_count + ip_count + unsnoop_count;
-+	total_count = tt_count + ip_count + unsnoop_count + rtr_count;
- 
- 	switch (total_count) {
- 	case 1:
-@@ -1305,6 +1414,9 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 			*orig = batadv_mcast_forw_ip_node_get(bat_priv, ethhdr);
- 		else if (unsnoop_count)
- 			*orig = batadv_mcast_forw_unsnoop_node_get(bat_priv);
-+		else if (rtr_count)
-+			*orig = batadv_mcast_forw_rtr_node_get(bat_priv,
-+							       ethhdr);
- 
- 		if (*orig)
- 			return BATADV_FORW_SINGLE;
-@@ -1476,6 +1588,111 @@ batadv_mcast_forw_want_all(struct batadv_priv *bat_priv,
- }
- 
- /**
-+ * batadv_mcast_forw_want_all_rtr4() - forward to nodes with want-all-rtr4
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: the multicast packet to transmit
-+ * @vid: the vlan identifier
-+ *
-+ * Sends copies of a frame with multicast destination to any node with a
-+ * BATADV_MCAST_WANT_NO_RTR4 flag unset. A transmission is performed via a
-+ * batman-adv unicast packet for each such destination node.
-+ *
-+ * Return: NET_XMIT_DROP on memory allocation failure, NET_XMIT_SUCCESS
-+ * otherwise.
-+ */
-+static int
-+batadv_mcast_forw_want_all_rtr4(struct batadv_priv *bat_priv,
-+				struct sk_buff *skb, unsigned short vid)
-+{
-+	struct batadv_orig_node *orig_node;
-+	int ret = NET_XMIT_SUCCESS;
-+	struct sk_buff *newskb;
-+
-+	rcu_read_lock();
-+	hlist_for_each_entry_rcu(orig_node,
-+				 &bat_priv->mcast.want_all_rtr4_list,
-+				 mcast_want_all_rtr4_node) {
-+		newskb = skb_copy(skb, GFP_ATOMIC);
-+		if (!newskb) {
-+			ret = NET_XMIT_DROP;
-+			break;
-+		}
-+
-+		batadv_send_skb_unicast(bat_priv, newskb, BATADV_UNICAST, 0,
-+					orig_node, vid);
-+	}
-+	rcu_read_unlock();
-+	return ret;
-+}
-+
-+/**
-+ * batadv_mcast_forw_want_all_rtr6() - forward to nodes with want-all-rtr6
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: The multicast packet to transmit
-+ * @vid: the vlan identifier
-+ *
-+ * Sends copies of a frame with multicast destination to any node with a
-+ * BATADV_MCAST_WANT_NO_RTR6 flag unset. A transmission is performed via a
-+ * batman-adv unicast packet for each such destination node.
-+ *
-+ * Return: NET_XMIT_DROP on memory allocation failure, NET_XMIT_SUCCESS
-+ * otherwise.
-+ */
-+static int
-+batadv_mcast_forw_want_all_rtr6(struct batadv_priv *bat_priv,
-+				struct sk_buff *skb, unsigned short vid)
-+{
-+	struct batadv_orig_node *orig_node;
-+	int ret = NET_XMIT_SUCCESS;
-+	struct sk_buff *newskb;
-+
-+	rcu_read_lock();
-+	hlist_for_each_entry_rcu(orig_node,
-+				 &bat_priv->mcast.want_all_rtr6_list,
-+				 mcast_want_all_rtr6_node) {
-+		newskb = skb_copy(skb, GFP_ATOMIC);
-+		if (!newskb) {
-+			ret = NET_XMIT_DROP;
-+			break;
-+		}
-+
-+		batadv_send_skb_unicast(bat_priv, newskb, BATADV_UNICAST, 0,
-+					orig_node, vid);
-+	}
-+	rcu_read_unlock();
-+	return ret;
-+}
-+
-+/**
-+ * batadv_mcast_forw_want_rtr() - forward packet to nodes in a want-all-rtr list
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: the multicast packet to transmit
-+ * @vid: the vlan identifier
-+ *
-+ * Sends copies of a frame with multicast destination to any node with a
-+ * BATADV_MCAST_WANT_NO_RTR4 or BATADV_MCAST_WANT_NO_RTR6 flag unset. A
-+ * transmission is performed via a batman-adv unicast packet for each such
-+ * destination node.
-+ *
-+ * Return: NET_XMIT_DROP on memory allocation failure or if the protocol family
-+ * is neither IPv4 nor IPv6. NET_XMIT_SUCCESS otherwise.
-+ */
-+static int
-+batadv_mcast_forw_want_rtr(struct batadv_priv *bat_priv,
-+			   struct sk_buff *skb, unsigned short vid)
-+{
-+	switch (ntohs(eth_hdr(skb)->h_proto)) {
-+	case ETH_P_IP:
-+		return batadv_mcast_forw_want_all_rtr4(bat_priv, skb, vid);
-+	case ETH_P_IPV6:
-+		return batadv_mcast_forw_want_all_rtr6(bat_priv, skb, vid);
-+	default:
-+		/* we shouldn't be here... */
-+		return NET_XMIT_DROP;
-+	}
-+}
-+
-+/**
-  * batadv_mcast_forw_send() - send packet to any detected multicast recpient
-  * @bat_priv: the bat priv with all the soft interface information
-  * @skb: the multicast packet to transmit
-@@ -1508,6 +1725,12 @@ int batadv_mcast_forw_send(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 		return ret;
- 	}
- 
-+	ret = batadv_mcast_forw_want_rtr(bat_priv, skb, vid);
-+	if (ret != NET_XMIT_SUCCESS) {
-+		kfree_skb(skb);
-+		return ret;
-+	}
-+
- 	consume_skb(skb);
- 	return ret;
- }
--- 
-2.11.0
-
+Pulled, thanks Simon.
