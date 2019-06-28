@@ -1,54 +1,31 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169FA58945
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Jun 2019 19:48:46 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F7959D52
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jun 2019 15:56:18 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id C0EF7827B6;
-	Thu, 27 Jun 2019 19:48:42 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org
- [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id 86CF78041A
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Jun 2019 19:48:39 +0200 (CEST)
-Received: from sven-edge.localnet (unknown [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id 4315E1100B2
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Jun 2019 19:48:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1561657719;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=j/4QeeKT+dYt0Xx/A9I29T/JT5TCgn5r8I0dq6kU35U=;
- b=zgb6jrnCsvK17BEkkjA4R5eg0YHUzpUkDk61DxTLjv9fOaTZHpMzca3o/ikIs/paJH7Fdl
- D5dTeTTvLCAmrXIkGjSCQ8F9YMrviPXT6v9OLOr/AA593vRAz4+jOsA6zSLu4AreT5fNI7
- W1CD3dFnOLm8spJC9CsFwM8q5Qx9+gA=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v2] batman-adv: Get inet(6) device inside RCU protected
- region
-Date: Thu, 27 Jun 2019 19:48:35 +0200
-Message-ID: <12109360.nt3nhxKV5M@sven-edge>
-In-Reply-To: <20190627172206.22683-1-sven@narfation.org>
-References: <20190627172206.22683-1-sven@narfation.org>
+	by open-mesh.org (Postfix) with ESMTP id 462B681B29;
+	Fri, 28 Jun 2019 15:56:10 +0200 (CEST)
+Received: from mail.mail.packetmixer.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id 1B7E380610
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Jun 2019 15:56:06 +0200 (CEST)
+Received: from kero.packetmixer.de (p4FD57BD9.dip0.t-ipconnect.de
+ [79.213.123.217])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 9047462053;
+ Fri, 28 Jun 2019 15:56:05 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: davem@davemloft.net
+Subject: [PATCH 00/10] pull request for net-next: batman-adv 2019-06-27 v2
+Date: Fri, 28 Jun 2019 15:55:54 +0200
+Message-Id: <20190628135604.11581-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart12109360.yDq7mgzNbW";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1561657719;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=j/4QeeKT+dYt0Xx/A9I29T/JT5TCgn5r8I0dq6kU35U=;
- b=k8ZhGxqO6d5C6DHxA/0/WICtLwiRnPjZkg3WmP4CI7/xuzg/5Lhg3qqX1JWt1jjlBL0FYC
- bc3QqyyL3BjIXfMpnBW2fsDgqAKVSMRf4MbrSyf66Nk/phDwz7Jto5elg+E6f/QqgrGMBb
- RYKpHmOB2cfNcd8G6k40qBbyS73hAg4=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1561657719; a=rsa-sha256; cv=none;
- b=IkMHvXr700gBy2veQ4GGZxsjraebqQeJV1ofK0c66PlYoDGAsbFn5IS0Ujica3ek1RZj9U
- 8LeBzGr/T03WqCMDpAG+TsD2OiUXPkAeXV2XusPu+PiEUlAIjh+XkyzkmIpqA0tQiSIls0
- wz2mV9K/EXh9Ye7g3f0WqnzxolEJMVg=
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,49 +40,107 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart12109360.yDq7mgzNbW
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Hi David,
 
-On Thursday, 27 June 2019 19:22:06 CEST Sven Eckelmann wrote:
-> It is not necessary to get the inet(6)_dev outside of the rcu protected
-> region by using reference counting. Instead, the in(6)_dev_get can be
-> replaced by the non-refcnt function and everything can be moved inside the
-> rcu protected region.
-> 
-> Fixes: 0a7733468f95 ("batman-adv: mcast: detect, distribute and maintain multicast router presence")
+here is the updated feature/cleanup pull request of batman-adv for net-next
+from yesterday. Your change suggestions have been integrated into Patch 6
+of the series, everything else is unchanged.
 
+Please pull or let me know of any problem!
 
-Fixes: 2b0f11124aad ("batman-adv: mcast: collect softif listeners from IP lists instead")
+Thank you,
+      Simon
 
-Kind regards,
-	Sven
---nextPart12109360.yDq7mgzNbW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
 
------BEGIN PGP SIGNATURE-----
+  Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0VAXMACgkQXYcKB8Em
-e0bPPxAAyFPMCruRqDsrf9Igju9g54IJJattqrJHRgcEhG33ad6YAE3eeY0Km5pz
-ohwLnJs3zMB2U9VHHf4sfzTjLOEjAcmbpjbMWDcnq0VytRl7+TbycHzZB06yYKzU
-NfQ0ZEgw78nFFYlf+6931vUEkW3iOjIdXO99cL5LHKddWibig9T3vNyhCXYoy8Ed
-CqDrbBSd1gPX4aV/RYFPr4NmF7j+O+ISZjlxjvQqnhKCoo/gIreTezjXI6mKHqvF
-wIs9fIDKXpUn8Ek7GtnoQc1QsVr+BKR72DxgrECCqx/styLXxz26iNqfP3QGquJz
-/ACJs+vbs8sVPNM3XWWH8JkjuZQAfX4gfklO/n1BMCbGpF9XIVr7s237I3u39eM6
-QyVfQW3UaoOxAIw5JbT8tpwnfaIVItczG0Sb4UPQv64QG5Oc5Dkm81zF+kWvB946
-/6dO4Uk1Re8hpLy33y0vkl4/ihLdWC6nEj0z2/fNOnQlQBSL03XKkWBeREVbkdZv
-MToqm3qQJBoPvxTVy0x9MAWhh+p3h/JbMrzOjcFp/JBzzG0ZFhGwfj6c152pqrFS
-iZI3Jv4LUdq3oSu8nG8RGWP/3YAK3UEg80/V4OpwPnr/OqrQfO5nKRrJFeuMIiD+
-bOrucE/alNyxEDtTyN4chlVmPtgPz2fQFM4TjyY6/EOFrRwW3i8=
-=8jvX
------END PGP SIGNATURE-----
+are available in the git repository at:
 
---nextPart12109360.yDq7mgzNbW--
+  git://git.open-mesh.org/linux-merge.git tags/batadv-next-for-davem-20190627v2
 
+for you to fetch changes up to 11d458c1cb9b24ac899b1ec6284676f6b1914305:
 
+  batman-adv: mcast: apply optimizations for routable packets, too (2019-06-27 19:25:05 +0200)
 
+----------------------------------------------------------------
+This feature/cleanup patchset includes the following patches:
+
+ - bump version strings, by Simon Wunderlich
+
+ - fix includes for _MAX constants, atomic functions and fwdecls,
+   by Sven Eckelmann (3 patches)
+
+ - shorten multicast tt/tvlv worker spinlock section, by Linus Luessing
+
+ - routeable multicast preparations: implement MAC multicast filtering,
+   by Linus Luessing (2 patches, David Millers comments integrated)
+
+ - remove return value checks for debugfs_create, by Greg Kroah-Hartman
+
+ - add routable multicast optimizations, by Linus Luessing (2 patches)
+
+----------------------------------------------------------------
+Greg Kroah-Hartman (1):
+      batman-adv: no need to check return value of debugfs_create functions
+
+Linus Lüssing (5):
+      batman-adv: mcast: shorten multicast tt/tvlv worker spinlock section
+      batman-adv: mcast: collect softif listeners from IP lists instead
+      batman-adv: mcast: avoid redundant multicast TT entries with bridges
+      batman-adv: mcast: detect, distribute and maintain multicast router presence
+      batman-adv: mcast: apply optimizations for routable packets, too
+
+Simon Wunderlich (1):
+      batman-adv: Start new development cycle
+
+Sven Eckelmann (3):
+      batman-adv: Fix includes for *_MAX constants
+      batman-adv: Add missing include for atomic functions
+      batman-adv: Use includes instead of fwdecls
+
+ include/uapi/linux/batadv_packet.h     |    8 +
+ net/batman-adv/bat_algo.h              |    7 +-
+ net/batman-adv/bat_v.c                 |    3 +-
+ net/batman-adv/bat_v_elp.h             |    4 +-
+ net/batman-adv/bat_v_ogm.h             |    3 +-
+ net/batman-adv/bridge_loop_avoidance.h |    9 +-
+ net/batman-adv/debugfs.c               |   99 +--
+ net/batman-adv/debugfs.h               |    9 +-
+ net/batman-adv/distributed-arp-table.h |    7 +-
+ net/batman-adv/fragmentation.h         |    3 +-
+ net/batman-adv/gateway_client.h        |    9 +-
+ net/batman-adv/gateway_common.c        |    1 +
+ net/batman-adv/gateway_common.h        |    3 +-
+ net/batman-adv/hard-interface.c        |    7 +-
+ net/batman-adv/hard-interface.h        |    5 +-
+ net/batman-adv/hash.h                  |    3 +-
+ net/batman-adv/icmp_socket.c           |   20 +-
+ net/batman-adv/icmp_socket.h           |    5 +-
+ net/batman-adv/log.c                   |   17 +-
+ net/batman-adv/log.h                   |    1 +
+ net/batman-adv/main.h                  |   12 +-
+ net/batman-adv/multicast.c             | 1092 +++++++++++++++++++++++++-------
+ net/batman-adv/multicast.h             |    6 +-
+ net/batman-adv/netlink.c               |    4 +-
+ net/batman-adv/netlink.h               |    3 +-
+ net/batman-adv/network-coding.c        |   29 +-
+ net/batman-adv/network-coding.h        |   14 +-
+ net/batman-adv/originator.c            |    4 +-
+ net/batman-adv/originator.h            |    7 +-
+ net/batman-adv/routing.h               |    3 +-
+ net/batman-adv/send.h                  |    3 +-
+ net/batman-adv/soft-interface.c        |    6 +-
+ net/batman-adv/soft-interface.h        |    7 +-
+ net/batman-adv/sysfs.c                 |    1 +
+ net/batman-adv/sysfs.h                 |    5 +-
+ net/batman-adv/tp_meter.c              |    1 +
+ net/batman-adv/tp_meter.h              |    3 +-
+ net/batman-adv/translation-table.h     |    9 +-
+ net/batman-adv/tvlv.h                  |    3 +-
+ net/batman-adv/types.h                 |   69 +-
+ 40 files changed, 1041 insertions(+), 463 deletions(-)
