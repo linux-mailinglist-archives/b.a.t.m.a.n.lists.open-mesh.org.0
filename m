@@ -2,52 +2,48 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD185A1A7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jun 2019 19:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6585A995
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 29 Jun 2019 10:28:39 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id A8FD682687;
-	Fri, 28 Jun 2019 19:01:48 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org
- [IPv6:2001:4d88:2000:7::2])
- by open-mesh.org (Postfix) with ESMTPS id 3C9A280728
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Jun 2019 19:01:46 +0200 (CEST)
-Received: from sven-edge.localnet (unknown
- [IPv6:2a00:1ca0:1480:f100:6112:16df:1e13:517c])
- by durin.narfation.org (Postfix) with ESMTPSA id 3BC8B1100D8;
- Fri, 28 Jun 2019 19:01:45 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 851BE826FE;
+	Sat, 29 Jun 2019 10:28:28 +0200 (CEST)
+Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
+ by open-mesh.org (Postfix) with ESMTPS id 8895D80A11
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 29 Jun 2019 10:28:23 +0200 (CEST)
+Received: from sven-desktop.home.narfation.org (unknown
+ [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by durin.narfation.org (Postfix) with ESMTPSA id 21205110115;
+ Sat, 29 Jun 2019 10:28:23 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1561741305;
+ s=20121; t=1561796903;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=cZWKqRBiG7hH9XjuE1HQhSsx7qKGEPG9IaanPbzB1Q4=;
- b=nzuq/g6d4iNpvtkIYDRgclfC7lzwC18m0H9nF64Mxk0Wnz/pAHTN1G8C7whbr7Z32uLlgk
- TwGFkkqpOod49YJZUlCbYdtxVt8U/TupjKDuUP9i4FLzQVI5p/mqV0P3PPv85GLf/Oymmo
- 6ILQwG6hH4iUI+q5ZVZiz5ueYJBvWUY=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xaoG+1z5bmyHuo/2rdCV1wGJG1Rko59PBV3HHGsY4GA=;
+ b=as0oG0/BegRF3wbovrOx0/C3mX6UL0d37QsPtLAKXwnVumGXW0E750YZ5QaAxv8YjwQoDR
+ jcCNb6HfnpfMYLmOzhPuvY81vCx/Mtj+mipQcDPApwShvO8b26yzoNgBKjCT41uRjDwBrO
+ bT2r16kPS+HemAe5afENZbEPmifoRzI=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH 00/10] pull request for net-next: batman-adv 2019-06-27 v2
-Date: Fri, 28 Jun 2019 19:01:41 +0200
-Message-ID: <5314018.Pl9QOMrv0R@sven-edge>
-In-Reply-To: <20190628.094905.1673194288384587104.davem@davemloft.net>
-References: <20190628135604.11581-1-sw@simonwunderlich.de>
- <20190628.094905.1673194288384587104.davem@davemloft.net>
+Subject: [PATCH 1/2] batctl: tcpdump: Add support for MCASTv2 RTR(4|6) flags
+Date: Sat, 29 Jun 2019 10:28:17 +0200
+Message-Id: <20190629082818.29466-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart12596660.8597IJa787";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1561741305;
+ s=20121; t=1561796903;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=cZWKqRBiG7hH9XjuE1HQhSsx7qKGEPG9IaanPbzB1Q4=;
- b=wRf0ruUNLNMe/aZVr1bSIsLVMWnbLJ1L7+4jv0Z9OJuXTHod+48YG8e9bhAFJnWkgiu6rv
- LHixtBw/+IVNAK+OpradxEWphImol48yzVnj02dYS3vBwS4efT6jxOQbd5oMquRMpKd3ap
- qdGeYu94TEwWZfc6L0QgSVjbk4gpJxg=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1561741305; a=rsa-sha256; cv=none;
- b=ONTWeXrTIgWHu8qM8CUfxiyrw7sJygTYK1UH/w70J6qcEhwgt4Azj+Ltx4IaGMUoDWD+Xq
- ln2exC6HVA7b8mJEDCaC2fxnPC4l/f26ZZKnDcveSQHfC2eZfINEHVFGlZ+loBOexgMyQl
- kOMYCbBpNKLderXB0K7YS6JXyMoBL7M=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xaoG+1z5bmyHuo/2rdCV1wGJG1Rko59PBV3HHGsY4GA=;
+ b=nL06M5Kr+qoSSprBZM8yB8BWw4ByKKSh9e3+YaOfXHaWnDfctsY6lY8zbWnaxV71GV6odG
+ 3Qzhr/ckChJSUDzHt1nKZXswahfcAv0we+nkmQxLlxRyHSFmWXyHkCaDd4qdGv19EmJ0i1
+ Y9vz+YX3+5/kZ6iKHdY9m7OHIWcT36A=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1561796903; a=rsa-sha256; cv=none;
+ b=e6u4xDSBLkOQyz2/NawjFW62Nr53oThapOsWiWHytp6CRz9MjDbkEJiLTLB/6CFhD7GvX9
+ 3w5KsiX2wMPXKxqo35jXp0pKwsz5Qx8TN/cIZ1Agzv7mCXsC4dA7enxs/fgx13QE5qpKcG
+ NzRhufm8LSlY0lwOW6wNlYaSb7vHfFw=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -64,55 +60,41 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: netdev@vger.kernel.org, David Miller <davem@davemloft.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart12596660.8597IJa787
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+The batman-adv commit 0a7733468f95 ("batman-adv: mcast: detect, distribute
+and maintain multicast router presence") added support for two new flags
+BATADV_MCAST_WANT_NO_RTR4 and BATADV_MCAST_WANT_NO_RTR6. These are
+announced in IV_OGM and OGMv2.
 
-On Friday, 28 June 2019 18:49:05 CEST David Miller wrote:
-[...]
-> I think that when you have the read_lock held, RCU is not necessary in order
-> to use __in6_dev_get() but I may be mistaken.  Just FYI...
+batctl's tcpdump requires support for it to make debugging of
+router-to-router multicast problems in networks easier.
 
-Problem is that the read_lock() can only be used after the __in6_dev_get() 
-finished sucessfully. Because the read_lock's lock is stored in the inet6_dev 
-object which was retrieved via __in6_dev_get. And the __in6_dev_get kerneldoc 
-states [1] that you either have to hold RTNL or RCU (see also the 
-rcu_dereference_rtnl call inside this function).
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ tcpdump.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-So we can only drop the rcu_read_lock when RTNL lock is held . I would guess 
-now that this is not the case here - Linus' might want to correct me.
-
-Kind regards,
-	Sven
-
-[1] https://lxr.missinglinkelectronics.com/linux/include/net/addrconf.h#L335
---nextPart12596660.8597IJa787
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0WR/UACgkQXYcKB8Em
-e0ZNUQ//Q5B0cDiKqBKCEmIJewmh45xzefWAbE5/RtSsXKdPbxkj+AlB32tgWfmd
-guxcArwDB5A8WYXead8dbMMiRRsBHQ4ZtfI+1DlfJMOPlCQVevYtlsf+or2eujc7
-5WvaihO4igWfFnQd9YAGePaxFsUfYXLonF/VW1iclZKnwYkFFuyT3YYm+JmtTzXE
-TFU734So4SCAF/osZwMtRkqS5G1mIOmSRYwb4rzC0Q8LpBy3QCmE+ho335vGVa+i
-4Z2f1JeFECjJCKs54WrEwa1QsPUy1XuvZvqPNNU5g23gFiH9jvHoyhUIIn5iUaQF
-N5HzOq3njEL11Zl8HC/wotjnZPxiLtF0Wvur91H54Xi9c+q5/nnYRTiUWUL6e2aB
-3J8ryb2syZiOoTsxrqr0Sfz7Buv/nVQF96M3RKw9KpN4VJsFtmmFpyAswcIVrKp6
-mHPEgCmq7wwmzPv8QJv0jhTt/XLOSjj+LRVp+YdeKElIG7HPG3hmjF5bFvhbz1ES
-iXaxMy7NTtTxwbP267z9TRZNXsYJ/cqBUiSf5UjcYHKR3WC/Zh1RLb6t5NQRdXeR
-rM6X142fcVi78FQhHQNZWLuOzCto1bYW1RgWr5V59jhI8xLByf93lOzlANFXfttL
-wDj1ywSo7pL0qmgesw3q3iXo2UBQHDCFpn7xJuk7yqW+rWCukCk=
-=nszJ
------END PGP SIGNATURE-----
-
---nextPart12596660.8597IJa787--
-
-
+diff --git a/tcpdump.c b/tcpdump.c
+index 158b82e..0e2ae8e 100644
+--- a/tcpdump.c
++++ b/tcpdump.c
+@@ -230,10 +230,12 @@ static void batctl_tvlv_parse_mcast_v2(void *buff, ssize_t buff_len)
+ 
+ 	flags = tvlv->flags;
+ 
+-	printf("\tTVLV MCASTv2: [%c%c%c]\n",
++	printf("\tTVLV MCASTv2: [%c%c%c%s%s]\n",
+ 	       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
+ 	       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
+-	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.');
++	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.',
++	       !(flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
++	       !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ");
+ }
+ 
+ typedef void (*batctl_tvlv_parser_t)(void *buff, ssize_t buff_len);
+-- 
+2.20.1
 
