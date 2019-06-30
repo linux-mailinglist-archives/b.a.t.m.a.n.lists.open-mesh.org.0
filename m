@@ -2,55 +2,47 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC355A996
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 29 Jun 2019 10:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 371155AFAC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 30 Jun 2019 12:43:36 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 4D0A1827C8;
-	Sat, 29 Jun 2019 10:28:32 +0200 (CEST)
-Received: from durin.narfation.org (durin.narfation.org [79.140.41.39])
- by open-mesh.org (Postfix) with ESMTPS id 228BD80729
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 29 Jun 2019 10:28:26 +0200 (CEST)
-Received: from sven-desktop.home.narfation.org (unknown
- [IPv6:2a00:1ca0:1480:f1fc::4065])
- by durin.narfation.org (Postfix) with ESMTPSA id D2E2F110115;
- Sat, 29 Jun 2019 10:28:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1561796905;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=hZW0KB0OzN7gJOOo57JPeUK+7ZdCH2MuXCdtTcp5mfw=;
- b=P43S25wah4t3yJy7eGdQQJ21iA1L7yg5subd7RSBLTpRHPQIieMaOivy3KPcgCLR8Il+A0
- Gv3T+CYh9ISfa+9eNocf6rWAgmZQduovyuYCK0GM11gd7Tk3aKktLgKbOcI3ILduUcRgIX
- 71Ukz9HutkvfWjR/OUdk5gpxtEGbLPI=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 2/2] batctl: mcast_flags: Add support for MCASTv2 RTR(4|6)
- flags
-Date: Sat, 29 Jun 2019 10:28:18 +0200
-Message-Id: <20190629082818.29466-2-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190629082818.29466-1-sven@narfation.org>
-References: <20190629082818.29466-1-sven@narfation.org>
+	by open-mesh.org (Postfix) with ESMTP id 053D081812;
+	Sun, 30 Jun 2019 12:43:32 +0200 (CEST)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69]) by open-mesh.org (Postfix) with ESMTPS id EF01C80DCE
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 30 Jun 2019 12:40:01 +0200 (CEST)
+Received: by mail-io1-f69.google.com with SMTP id h3so12023877iob.20
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 30 Jun 2019 03:40:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=eziCMEFtU+C3qoNYfJHsPKHY2FKR9JngSHlmZZHqzFo=;
+ b=mevIDTRohNMMfRzXynr9NTbOZTyY9DZQS9hl0NFxZrJG4lanlbG1XKoIw596vsMTpA
+ W+958hQSG6/bS5qdEiK54K9vgfgTl83TUJ74ACrOT99RSrfRRt39nxvkVPVWqIPqTYIH
+ C4PlxIBFc5bH+D7gG1X80akgOjzqF9UOpfJPwX3hyEHj1VUWk7nMDCcLFCU43RL5lLIe
+ jYA8gYIkQ22uQilpQnqJaeBchfEQOBb7E9NcKmzvrXQ1GkW/MeM9ZT5JaD4BGkxO5cSC
+ Cnb/7UzrJGjCJ8bVhvS55KhzHjQdOdPK1/6UxmepNqIhwPXwqCe6xzJyCjY2JOfvV9Lx
+ GnVg==
+X-Gm-Message-State: APjAAAXIdFTEP3tLf9vKC+z3LfvOwOKxieXQ4vkS/fr58fn1n+oq8+Jr
+ fHIgG4cm3Nqo8xp5LB4VH+8b6mScQ8H6Fut5OEuO0lfyHG2y
+X-Google-Smtp-Source: APXvYqwc7jNxeDwuXuaVmtRV4iFyubee59JJU/yaTue7FDuw9a59U5XBHdkSI5CIzX3MUpYnDTjMD5X25A8OGVnPI50yMEKLHG28
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1561796905;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=hZW0KB0OzN7gJOOo57JPeUK+7ZdCH2MuXCdtTcp5mfw=;
- b=iSDpdqhrTEjr6LWxaxu4FebvaFV4859GYSyN7wcaGaLKrpOLHsx1lr4Unz5Yz/Q1oxMkFN
- MaHI8qcKNo668ZNKjzASO4Cx7/rlGXosA99L2CHFf8fkDtSsACR7Z9j+R0gI6+wXJgoB0p
- JzLTHKJ5jjXlhSNfl1qZGaF4nUTIYmI=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1561796905; a=rsa-sha256; cv=none;
- b=aS7NOHJCe0/wLjsQp/JKk+C5vXBQtBBgehjgvY4Y43sl9b2Q0UNeW0SQnBZDR3oawadsDr
- sUpYqt20fQ9pghQlP+oiqRg4yODv+f4XzanpAWlDb+ybCLyFTg8zIcWc8iTLHZnL+VS74T
- 3vogrZS+EbfQTJjr1SZ6eCviM0jjEuI=
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+X-Received: by 2002:a02:c6a9:: with SMTP id o9mr10128962jan.90.1561891200769; 
+ Sun, 30 Jun 2019 03:40:00 -0700 (PDT)
+Date: Sun, 30 Jun 2019 03:40:00 -0700
+In-Reply-To: <0000000000003ec128058c7624ec@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000003326c1058c8822c7@google.com>
+Subject: Re: WARNING in kernfs_create_dir_ns
+From: syzbot <syzbot+38f5d5cf7ae88c46b11a@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
+ gregkh@linuxfoundation.org, hongjiefang@asrmicro.com, 
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ mareklindner@neomailbox.ch, netdev@vger.kernel.org, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com, tj@kernel.org, ulf.hansson@linaro.org
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+X-Mailman-Approved-At: Sun, 30 Jun 2019 12:43:28 +0200
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -68,56 +60,26 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The batman-adv commit 0a7733468f95 ("batman-adv: mcast: detect, distribute
-and maintain multicast router presence") added support for two new flags
-BATADV_MCAST_WANT_NO_RTR4 and BATADV_MCAST_WANT_NO_RTR6. These are
-announced in IV_OGM and OGMv2.
+syzbot has bisected this bug to:
 
-The mcast_flags debug table requires support for it to make debugging of
-router-to-router multicast problems in networks easier.
+commit 7f38abf220e2c800a2c451372e9f07ed5fd0ea49
+Author: Hongjie Fang <hongjiefang@asrmicro.com>
+Date:   Tue Jul 31 02:55:09 2018 +0000
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- mcast_flags.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+     mmc: core: improve reasonableness of bus width setting for HS400es
 
-diff --git a/mcast_flags.c b/mcast_flags.c
-index a1fdf31..6af544b 100644
---- a/mcast_flags.c
-+++ b/mcast_flags.c
-@@ -80,10 +80,12 @@ static int mcast_flags_callback(struct nl_msg *msg, void *arg)
- 	if (attrs[BATADV_ATTR_MCAST_FLAGS]) {
- 		flags = nla_get_u32(attrs[BATADV_ATTR_MCAST_FLAGS]);
- 
--		printf("[%c%c%c]\n",
-+		printf("[%c%c%c%s%s]\n",
- 		       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
- 		       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
--		       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.');
-+		       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.',
-+		       !(flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
-+		       !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ");
- 	} else {
- 		printf("-\n");
- 	}
-@@ -124,7 +126,7 @@ static int netlink_print_mcast_flags(struct state *state, char *orig_iface,
-         }
- 
- 	ret = asprintf(&header,
--		"Multicast flags (own flags: [%c%c%c])\n"
-+		"Multicast flags (own flags: [%c%c%c%s%s])\n"
- 		 "* Bridged [U]\t\t\t\t%c\n"
- 		 "* No IGMP/MLD Querier [4/6]:\t\t%c/%c\n"
- 		 "* Shadowing IGMP/MLD Querier [4/6]:\t%c/%c\n"
-@@ -133,6 +135,8 @@ static int netlink_print_mcast_flags(struct state *state, char *orig_iface,
- 		 (mcast_flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES) ? 'U' : '.',
- 		 (mcast_flags & BATADV_MCAST_WANT_ALL_IPV4) ? '4' : '.',
- 		 (mcast_flags & BATADV_MCAST_WANT_ALL_IPV6) ? '6' : '.',
-+	         !(mcast_flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
-+	         !(mcast_flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ",
- 		 bridged ? 'U' : '.',
- 		 querier4, querier6, shadowing4, shadowing6,
- 		 "Originator", "Flags");
--- 
-2.20.1
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=129d6755a00000
+start commit:   72825454 Merge branch 'x86-urgent-for-linus' of git://git...
+git tree:       upstream
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=119d6755a00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=169d6755a00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=9a31528e58cc12e2
+dashboard link: https://syzkaller.appspot.com/bug?extid=38f5d5cf7ae88c46b11a
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12a6c439a00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1353c323a00000
 
+Reported-by: syzbot+38f5d5cf7ae88c46b11a@syzkaller.appspotmail.com
+Fixes: 7f38abf220e2 ("mmc: core: improve reasonableness of bus width  
+setting for HS400es")
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
