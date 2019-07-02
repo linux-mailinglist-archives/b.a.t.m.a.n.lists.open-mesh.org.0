@@ -2,64 +2,31 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387D95B0C6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 30 Jun 2019 18:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813805CC21
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  2 Jul 2019 10:40:21 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 6A1AC81B7B;
-	Sun, 30 Jun 2019 18:58:58 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by open-mesh.org (Postfix) with ESMTPS id 670668062F
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 30 Jun 2019 18:56:09 +0200 (CEST)
-Date: Sun, 30 Jun 2019 18:56:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1561913769;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=9nZ5bd9iTq8RpWHvycQewtEibB8Vs6Ksz9SsR8axNpk=;
- b=SjbnyvSc0ajFOTxwOiKUkhrFU+IUsDibQAmSQ2HdYNNuKFGix8F6SXPlZRM+PJlm2RZetV
- lJNW6GJQpVIkjXsHN0gJihlDzVfXyDAis1XTevoCZRmf11B6Xey9VjvmGhA/VUaUbWC7QE
- 1TU/9kaf74lTF97kCWkdZIE7MGub/XJYsu6GXYgY4jrUZzufDQXV1AHwyIecXeDCE+U8i4
- wcvcWu0k/g4gmeq27SDAEMoNr0WDktO6jSncQ5mBgKlvAn8x1qKk2QALroJBiJlyCc2dvP
- 1eZdtOYL92se5qLHbmIwUAtgtHcjaXZ/4mH7Yyx33wx5RfzUgOnGZokQY4LU3A==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Ido Schimmel <idosch@idosch.org>
-Subject: Re: [RFC net-next] net: dsa: add support for MC_DISABLED attribute
-Message-ID: <20190630165601.GC2500@otheros>
-References: <20190620235639.24102-1-vivien.didelot@gmail.com>
- <5d653a4d-3270-8e53-a5e0-88ea5e7a4d3f@gmail.com>
- <20190621172952.GB9284@t480s.localdomain>
- <20190623070949.GB13466@splinter>
- <20190623072605.2xqb56tjydqz2jkx@shell.armlinux.org.uk>
- <20190623074427.GA21875@splinter> <20190629162945.GB17143@splinter>
+	by open-mesh.org (Postfix) with ESMTP id AEBF381B6C;
+	Tue,  2 Jul 2019 10:40:16 +0200 (CEST)
+Received: from mail2.phoenixcontact.com (mail2.phoenixcontact.com
+ [62.157.123.121])
+ by open-mesh.org (Postfix) with ESMTPS id 8A80080170
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jul 2019 10:40:12 +0200 (CEST)
+In-Reply-To: <1725789.MhpV6G9eb2@sven-edge>
+References: <20170428202610.27022-1-sw@simonwunderlich.de>
+ <38318850.GE51cWUxAf@prime>
+ <OFB68BD388.DE1C34EE-ONC125811C.001DD4CD-C125811C.001FA9C9@phoenixcontact.com>
+ <1725789.MhpV6G9eb2@sven-edge>
+To: Sven Eckelmann <sven@narfation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190629162945.GB17143@splinter>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1561913769;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=9nZ5bd9iTq8RpWHvycQewtEibB8Vs6Ksz9SsR8axNpk=;
- b=lVY+yKgzhX9+r0f2sUgNnf/PUQWxdyP2yh1F/fPmkwO2NcWrdI5QVvyEBrinK5iRXltDdP
- DOKTF+J7E7b2vy8gTiuKMAxGk7AIf176ZSy+7gTbvYa+KCwGCXJUe35hejztT6KfcOlDrM
- WQsb82FCz27zSLUc7Y30b6pGNSb+dSCxldLYuPsutpEwCSUleldw2/eSwVUf40MwoFa8Y6
- DUhqhrKzrh1xvcz4VfhWDlw3bGPiFT2NH/Ua3MlLoNHbaV9uNSa47AgJ0UKKRP7FfkfavW
- 7RicO77vs+uV2Yu7dWPf0+4dBuky/ymQ0Q1mdbSwLjNAwmSIlxg1hxatZA/KkQ==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1561913769; a=rsa-sha256; cv=none;
- b=ge2BtxmItJwG7WxbzHoIzjwBFuBGzhBUdE30N8rA9fI7JZTWWnrom5HBSju1VFlH++TM5d
- bAsm+ROHLi4AMN8Oul3ZLAjASd1FYfAAjc6Zf0lsECdf62MAWWDLcEgIgZK961d3so8p0i
- i8lUR/txFQJ82bTLWUEz56kLFeO+ZtCRWjdV5wMHUU4qh1x45PQwOnsFyuMf4+l2An1/up
- 29N6RE6QOPzjBWdnWBcogLPFNI3/B8p7S8NOMeV3PZ/tipyil1f6OrL12t60oVSzhlAVme
- YCkuOn1s4EZA4bmIb5NLBnkxkr4mdI9AHpFGKU6xFDFK9AJRrJBSX3SqJ2hDYA==
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-X-Mailman-Approved-At: Sun, 30 Jun 2019 18:58:55 +0200
+Subject: Antwort: Re: [B.A.T.M.A.N.] Antwort: Re: [PATCH] batman-adv: handle
+ race condition for claims also in batadv_bla_rx
+X-KeepSent: B8426900:4E038D61-C125842B:002EFBE3;
+ type=4; name=$KeepSent
+From: Andreas Pape <APape@phoenixcontact.com>
+Message-ID: <OFB8426900.4E038D61-ONC125842B.002EFBE3-C125842B.002F85CC@phoenixcontact.com>
+Date: Tue, 2 Jul 2019 10:39:04 +0200
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -74,74 +41,70 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- b.a.t.m.a.n@lists.open-mesh.org, nikolay@cumulusnetworks.com,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- bridge@lists.linux-foundation.org,
- Russell King - ARM Linux admin <linux@armlinux.org.uk>,
- "davem@davemloft.net" <davem@davemloft.net>,
- Ido Schimmel <idosch@mellanox.com>, Vivien Didelot <vivien.didelot@gmail.com>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Sat, Jun 29, 2019 at 07:29:45PM +0300, Ido Schimmel wrote:
-> I would like to avoid having drivers take the querier state into account
-> as it will only complicate things further.
+Hi Sven,
 
-I absolutely share your pain. Initially in the early prototypes of
-multicast awareness in batman-adv we did not consider the querier state.
-And doing so later did indeed complicate the code a good bit in batman-adv
-(together with the IGMP/MLD suppression issues). I would have loved to
-avoid that.
+sorry for my late reply, but I finally found some time for testing. I used=
+=20
+batman-adv version 2017.2
+without this patch and I do not see any negative effects on the way bla=20
+works in my testsetup.
+Therefore this patch doesn't seem to make sense anymore.
 
+Sven Eckelmann <sven@narfation.org> schrieb am 09.06.2019 13:28:24:
 
-> Is there anything we can do about it? Enable the bridge querier if no
-> other querier was detected? Commit c5c23260594c ("bridge: Add
-> multicast_querier toggle and disable queries by default") disabled
-> queries by default, but I'm only suggesting to turn them on if no other
-> querier was detected on the link. Do you think it's still a problem?
+> Von: Sven Eckelmann <sven@narfation.org>
+> An: b.a.t.m.a.n@lists.open-mesh.org
+> Kopie: andreas pape <apape@phoenixcontact.com>, simon wunderlich=20
+> <sw@simonwunderlich.de>
+> Datum: 09.06.2019 13:28
+> Betreff: Re: [B.A.T.M.A.N.] Antwort: Re: [PATCH] batman-adv: handle=20
+> race condition for claims also in batadv_bla_rx
+>=20
+> On Wednesday, 10 May 2017 07:45:50 CEST Andreas Pape wrote:
+> [...]
+> > I have to admit that I did not retest this with the current master or
+> > version 2017.0.1. I simply
+> > integrated the patch and I can at least confirm that bla works as=20
+reliable
+> > as in the 2014.4 case with
+> > this patch. I agree that this is no proof that this patch is still=20
+really
+> > needed. I think I'll remove it
+> > from my test setup and come back with my results.
+>=20
+> What is the state of the tests?
+>=20
+> Kind regards,
+>    Sven[Anhang "signature.asc" gel=F6scht von Andreas Pape/Pyr/DE/
+> Phoenix Contact]=20
 
-As soon as you start becoming the querier, you will not be able to reliably
-detect anymore whether you are the only querier candidate.
-
-If any random Linux host using a bridge device were potentially becoming
-a querier, that would cause quite some trouble when this host is
-behind some bad, bottleneck connection. This host will receive
-all multicast traffic, not just IGMP/MLD reports. And with a
-congested connection and then unreliable IGMP/MLD, multicast would
-become unreliable overall in this domain. So it's important that
-your querier is not running in the "dark, remote, dusty closet" of
-your network (topologically speaking).
-
-> On Sun, Jun 23, 2019 at 10:44:27AM +0300, Ido Schimmel wrote:
-> > See commit b00589af3b04 ("bridge: disable snooping if there is no
-> > querier"). I think that's unfortunate behavior that we need because
-> > multicast snooping is enabled by default. If it weren't enabled by
-> > default, then anyone enabling it would also make sure there's a querier
-> > in the network.
-
-I do not quite understand that point. In a way, that's what we
-have right now, isn't it? By default it's disabled, because by
-default there is no querier on the link. So anyone wanting to use
-multicast snooping will need to make sure there's a querier in the
-network.
+Kind regards,
+Andreas
 
 
-Overall I think the querier (election) mechanism in the standards could
-need an update. While the lowest-address first might have
-worked well back then, in uniform, fully wired networks where the
-position of the querier did not matter, this is not a good
-solution anymore in networks involving wireless, dynamic connections.
-Especially in wireless mesh networks this is a bit of an issue for
-us. Ideally, the querier mechanism were dismissed in favour of simply
-unsolicited, periodic IGMP/MLD reports...
 
-But of course, updating IETF standards is no solution for now. 
+..................................................................
+PHOENIX CONTACT ELECTRONICS GmbH
 
-While more complicated, it would not be impossible to consider the
-querier state, would it? I mean you probably already need to
-consider the case of a user disabling multicast snooping during
-runtime, right? So similarly, you could react to appearing or
-disappearing queriers?
-
-Cheers, Linus
+Sitz der Gesellschaft / registered office of the company: 31812 Bad Pyrmont
+USt-Id-Nr.: DE811742156
+Amtsgericht Hannover HRB 100528 / district court Hannover HRB 100528
+Gesch=E4ftsf=FChrer / Executive Board: Ulrich Leidecker, Christoph Leifer
+__________________________________________________________________
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FC=
+mlich erhalten haben, informieren Sie bitte sofort den Absender und vernich=
+ten Sie diese Mail. Das unerlaubte Kopieren, jegliche anderweitige Verwendu=
+ng sowie die unbefugte Weitergabe dieser Mail ist nicht gestattet.
+---------------------------------------------------------------------------=
+-------------------------
+This e-mail may contain confidential and/or privileged information. If you =
+are not the intended recipient (or have received this e-mail in error) plea=
+se notify the sender immediately and destroy this e-mail. Any unauthorized =
+copying, disclosure, distribution or other use of the material or parts the=
+reof is strictly forbidden.
+___________________________________________________________________
