@@ -1,66 +1,103 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844CA5DDCD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  3 Jul 2019 07:45:54 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3597608CA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  5 Jul 2019 17:11:30 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 8B4BF826E2;
-	Wed,  3 Jul 2019 07:45:49 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by open-mesh.org (Postfix) with ESMTPS id A334F80C11
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  3 Jul 2019 01:13:13 +0200 (CEST)
-Date: Wed, 3 Jul 2019 01:13:08 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1562109193;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LoksQgMuk2Kt4j2B5li4KJCxEkwEChyK4NytrrYLJM0=;
- b=Iqv5pj9XwiKR2p5lOawMUFRwc1opH1IlECd+4FMHaJFhM5WSe3XO4/94//FDQFKNLXhxHP
- 8ax+nnciW8IOALXXh6gy9RdPB9qZDKumLnbd86RF4QAPhFmxr2rKQOuo2J4ZBEHCLgyw4L
- dlg7J5ddPmdXEfQV1PQF13JFBboIsMa1N1AwVg35Jzzh7kIs1oZNb2UqWXM6rrrfTHtJ+D
- sTNalTQO+ncEaaIpSDpJmQAX+vkuAUMAHIq1IuTK4u0FUqDgWR7CRiQHC98BlmciwPaqVm
- 2uVf6aLxnjLqigUypqCBzyKOhdu30SO/6PSw5+CCk0+dRoj8SjmA8OnU/W3/nw==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Ido Schimmel <idosch@idosch.org>
-Subject: Re: [RFC net-next] net: dsa: add support for MC_DISABLED attribute
-Message-ID: <20190702231308.GA2414@otheros>
-References: <20190620235639.24102-1-vivien.didelot@gmail.com>
- <5d653a4d-3270-8e53-a5e0-88ea5e7a4d3f@gmail.com>
- <20190621172952.GB9284@t480s.localdomain>
- <20190623070949.GB13466@splinter>
- <20190623072605.2xqb56tjydqz2jkx@shell.armlinux.org.uk>
- <20190623074427.GA21875@splinter> <20190629162945.GB17143@splinter>
- <20190630165601.GC2500@otheros> <20190702171158.GA7182@splinter>
+	by open-mesh.org (Postfix) with ESMTP id 22DF180C26;
+	Fri,  5 Jul 2019 17:11:24 +0200 (CEST)
+Received: from mout-xforward.web.de (mout-xforward.web.de [82.165.159.34])
+ by open-mesh.org (Postfix) with ESMTPS id 67F5B80A2D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  5 Jul 2019 17:11:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1562339480;
+ bh=1Y9aV8gfrw7uoMHpXLoTzE66CJYxGSXSxLoLGC+dn2I=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=ML/GqMeQMZBR8BvAraNBCYW2caH/StI9+f/+GCRNZlvEzm+6AJ9q8jEWQ1CK2eGEW
+ 3vNYo4Bf2edCxkNCFyPs8dOjUBxpAA93np803PU/U9Nt0N7Qf9/3jeBkELabBlbR5t
+ 7bHRl10efm28UIu0K0w3NToF/TubYdNcK+AQbPaE=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.178.102] ([83.97.23.29]) by smtp.web.de (mrweb101
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MN4Gi-1hcpzC1RiC-006ifa for
+ <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jul 2019 16:51:18 +0200
+To: b.a.t.m.a.n@lists.open-mesh.org
+From: Moritz Warning <moritzwarning@web.de>
+Subject: Unknown symbol cfg80211_get_station
+Openpgp: preference=signencrypt
+Autocrypt: addr=moritzwarning@web.de; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <cef22736-91db-6a22-6da4-35a4d53a4adc@web.de>
+Date: Fri, 5 Jul 2019 16:51:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190702171158.GA7182@splinter>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1562109193;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LoksQgMuk2Kt4j2B5li4KJCxEkwEChyK4NytrrYLJM0=;
- b=a9gS49Yb9weEfHppeepZG2yMIdjpwfv0Ueb/TV/GxSyhyTiC5oe7bDAoL1rIx/dIpHkuoU
- PqORwd+LIp762cLa4VZ6AzPq5vl4BIBqs2PR/VIKpkgxwBodvJSodDP+HKfpi21hHW34qu
- u0r8KUIk69pFiCCPAu7e/a/WWLEYXZkqsmXr/uBGpGzeiUL5PRG1O2yIYD+ZkVI4SPnBbK
- hY/bU0LImkp6Z0/6pSbfnwDmELNJM8xiZ0dEe2y5w8j4+of64aleIgBNMgnnoqim6hGHmD
- 4wLD4hIVtTUc9DUgsoWLcNzcvuIaA9oAUYOF+OPwjPGHi3R2IFI1/6zN3/d/DA==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1562109193; a=rsa-sha256; cv=none;
- b=MtuRRV7GjdMQEWsuR6RxU2DEJs6i7+QsB7805P0xNg7lxugQoGNk1fClJGngHjoa4crcPC
- NpBPrGF2RIvY4k8dqYlS7wbAHd89hjPJVmkFX9eMnfwJeScxhwuS9CxFhvUmR4jn7yK1Jy
- jkyPjd/luymSNtSuhPZA9OoKZVwA3MYqq6Tfp5xiQVQgcEfYWuQ/6+URv3cH/pbChPCu9Y
- 3KLnYeoDBfrL53+p5QBXMM/h2twuql9erZiY8h+Nlq/EyzSzAr19kcO1g9srYWuA5AoZ1m
- 7dsNNCtLHojxv/p53ZSy6FrCh5EFHTrCAP3Ktx5Ch20HuvCxd6dkkngbpREewQ==
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-X-Mailman-Approved-At: Wed, 03 Jul 2019 07:45:46 +0200
+Content-Language: en-IE
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:gHQNsteLLFFJgMvjcTKqpMa63Mm8gFr8ZhZLYOUSwbxAAZg/TzN
+ Yf+Bm7Y6BMu61t4sD2YdwYmi10fyN5SyuLL8EcIjRDaviKJFZFxnPT9QTaZhck9CPO+e1AV
+ HQp4Kv9PqZOU+xSXausENyvItgqD5UZOWPaC7QddM4AnIzmcNyNCF3js90+gkwkJk7oRWjv
+ p5LGmUG6sepE8CSrudbcA==
+X-Spam-Flag: YES
+X-UI-Out-Filterresults: junk:10;V03:K0:brvw/XwtMj4=:P/tZnkq2hl7bZpbpi6E8G55r
+ cw5phj5jfiP9odqhBK1Khh51cp+WxmFcrOsUY8EoU4opsfTH13L2yUwBI4tI4EoZ/4m2zsTbF
+ RQ4MUn9y5rpaV+yjqe02cI5+WQP9xH3EoyfEb9DccPdDKyjv32DxAskTYKAhCn1K5v5kMLpe7
+ UjYCc4YMzTNs9+/rbQJHKFWstyCqGDR6nhcIBsg+GwfDTER4oFxKWvD9uMDfLgti7UGZWnzhA
+ engNzJA3ZOMjh6c4KuK0FjWWcx9XCVhjhcN19Jicdu0xxadTmuzxrcOgez/pstYboEylbhVG2
+ NeJGrX0WpVQXP/5FAOOA6PEoUEQ3+y7Coo7zlr/eztzfJPCAxO/+ywaC9nrQRtmZQYW8/KDLq
+ qnKGp1BsLoSxyuZptv/7zaca2ywX4xaN+a6WggwfuiO2DDIiTjctPfmsTYTDRmhJinc3Bny/2
+ GCTrWmMM7QWlg30N5qI8kKMtYlSrGukAvk8afcL+Gz0nRFjFz1z322bj/PG47Wm3lGg+CLNaK
+ Bv2jPGv9cKdwnyjWLNoBZ1Xsel0RNGPz7C37JICUAg55/Pd3WVoSFR1RjUwbPdVpNRQm/D2a2
+ zULDBMoT+rSHE4oTCZm7Kf78+nUnLX7vyoj7YcQ0ZRsOOmnYdqMUxtvIqUdA17KNrKmU1RmE3
+ e4D+8svLh05wdpdRBVmTTlr6E1+Eqm750gwK4T9ZvPOyeK/UT8zh0I1MHmxm09IpLVz3Sh+Ls
+ zaUpxxoh4NUD2PNgV11qm+XKHpUeqBK0FfkIKygmgTC0VzNuC9lF37kY3CqIGlFbbVVFNnpz1
+ WwW8lQvPaxAaXsZQSPi/sE/Rehvfs9djVDDykX/LhO9QapK2B1TLUpqKywhVEPA9cjX6xehw0
+ dsMmZgKRqcO5nhnZ8M5uS8xN9/svBWq26eF4XE9IixHu6vJsHD7mo9j4GFLm1euZehjC1xEg0
+ h/damPNo1MV5Lhb+BCh3rTAeH6L/HpMBnjaU08Di1CqBm049Eqe8WUomyeok8LWEMyrtOgEOM
+ 6CmfvMJaQGRIFW6VjNoynb5F4nfWrWoKNNdn3JsIcSAdvBfiIGd2LCbWJaE78uyIF4FfmUlbl
+ NdQ5r8An9PmWVTGkwb611f/9gyKjgSthBQzE5Ii/UmOhtDpPv5lZIUg==
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,72 +112,17 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- b.a.t.m.a.n@lists.open-mesh.org, nikolay@cumulusnetworks.com,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- bridge@lists.linux-foundation.org,
- Russell King - ARM Linux admin <linux@armlinux.org.uk>,
- Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@mellanox.com>,
- "davem@davemloft.net" <davem@davemloft.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hi Ido,
+Hi,
 
-> Do you differentiate between IPv4 and IPv6 in batman-adv?
+on an AWS server I get this error:
 
-For most things, yes: The querier state is kept separately for
-IPv4 and IPv6. And we do have something like a "router node"
-flag to signalize that a node needs all multicast traffic, which
-is split into IPv4 and IPv6.
+$ modprobe batman-adv
+$ dmesg
+...
+[ 1310.125438] batman_adv: Unknown symbol cfg80211_get_station (err 0)
 
-The "MDB" equivalent in batman-adv (multicast entries in our "TT",
-translation table) are on MAC address base right now, not on an IP
-address base yet, so that sounds similar to what you do in mlxsw?
-
-Regarding querier state, we periodically ask the
-bridge via "br_multicast_has_querier_anywhere(dev, ETH_P_IP)"
-and "br_multicast_has_querier_anywhere(dev, ETH_P_IPV6)".
-
-(Something more event based with handler functions would probably
-be nicer, but this was the easier thing to start with.)
-
-
-> 1. All the IPv6 MDB entries need to be removed from the device. At least
-> in mlxsw, we do not have a way to ignore only IPv6 entries. From the
-> device's perspective, an MDB entry is just a multicast DMAC with a
-> bitmap of ports packets should be replicated to.
-
-Ah, I see, yes. We had a similar "issue". Initially we just always
-added any multicast entry into our translation table offered by
-the IP stack or bridge, no matter what a querier state or "router
-node" state said. Which would have led to a node receiving two
-copies of a multicast packet if it were both a querier or router
-and were also having a listener announced via IGMP/MLD.
-
-So there we also just recently changed that, to filter out
-IPv6 multicast TT entries if this node were also announcing itself as
-an MLD querier or IPv6 router. And same, independently for
-IPv4/IGMP.
-
-> 2. We need to split the flood tables used for IPv4 and IPv6 unregistered
-> multicast packets. For IPv4, packets should only be flooded to mrouter
-> ports whereas for IPv6 packets should be flooded to all the member
-> ports.
-
-This one I do not fully understand yet. Why don't you apply the
-"flood to all ports" (in the no IGMP querier present case)
-for IPv4, too?
-
-Sure, for IPv4 nothing "essential" will break, as IPv4 unicast
-does not rely on multicast (contrary to IPv6, due to NDP, as you
-mentioned). But still there would be potential multicast packet loss
-for a 239.x.x.x listener on the local link, for instance, wouldn't
-there?
-
-
-If I'm not mistaken, we do not apply differing behaviour for IPv4
-vs. IPv6 in the bridge either and would flood on all ports for IPv4
-with no querier present, too.
-
-Regards, Linus
+$ uname -a
+Linux ip-172-31-47-217 4.15.0-1032-aws #34-Ubuntu SMP Thu Jan 17 15:18:09 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
