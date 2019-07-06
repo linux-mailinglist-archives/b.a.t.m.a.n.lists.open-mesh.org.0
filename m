@@ -1,51 +1,106 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12017610BF
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  6 Jul 2019 15:06:08 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AA9611DA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  6 Jul 2019 17:21:31 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 1C2128130E;
-	Sat,  6 Jul 2019 15:06:03 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id 31C4F805C9
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  6 Jul 2019 15:05:59 +0200 (CEST)
-Received: from sven-desktop.home.narfation.org (unknown
- [IPv6:2a00:1ca0:1480:f1fc::4065])
- by dvalin.narfation.org (Postfix) with ESMTPSA id B6B6C1FFA5;
- Sat,  6 Jul 2019 13:05:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1562418358;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=6I6ZqaIE2uEL7yukG5GESlEIUmMd29peUfc5A1GFGgE=;
- b=zN8LpdMI6PD+R9inUdi2UQel8+iCEZBI9xI6wmMyqK/riIfCqJQgr8P67cYgIMKpoefZXg
- PAQezIHi0yyucSOvl7V7rTeiB6hk5N3vHMwt2GOjjCjccVE2DdnjMfe13i2WGMgEdP/yzX
- SgwDxcqPXGtheBLOt9eAV/DhfnP0ABo=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] batman-adv: Replace usage of strlcpy with strscpy
-Date: Sat,  6 Jul 2019 15:05:55 +0200
-Message-Id: <20190706130555.13343-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+	by open-mesh.org (Postfix) with ESMTP id E26008158D;
+	Sat,  6 Jul 2019 17:21:28 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by open-mesh.org (Postfix) with ESMTPS id AB17A808E3
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  6 Jul 2019 17:21:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1562426482;
+ bh=AfG9DYZIF0h7PeW1TAWVUl51IlOCQiJvZ4GF2A8fV+k=;
+ h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+ b=XYOzcpDZCn0LRmgZILBGFYodnGOzEFX/Bil8HMEJKZpV1Q9BF1F4znCJ+CVMcpko7
+ DEVOyngcHl0GZxIJGaE8tqYTZVpxiOfoqiW71S4Lhd7n+24k7JBVEBIi51A1nvMcNk
+ U7PDHeq2nf9TSx7g9X1PiysYfEYvklTbHNmkvGBU=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.2.133] ([91.3.172.83]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MOipW-1hpoNI39Gg-006AoK; Sat, 06
+ Jul 2019 17:21:22 +0200
+Subject: Re: Unknown symbol cfg80211_get_station
+To: Sven Eckelmann <sven@narfation.org>, b.a.t.m.a.n@lists.open-mesh.org
+References: <cef22736-91db-6a22-6da4-35a4d53a4adc@web.de>
+ <1875314.jOPAOSbl7z@sven-edge>
+From: Moritz Warning <moritzwarning@web.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=moritzwarning@web.de; prefer-encrypt=mutual; keydata=
+ mQINBFkwTWMBEAC9ueChNwq5Tg92XSgZeCKrMQMifZ7x8dnm23kDMwfXdNoicm18xi2XmZbP
+ 6DcRid7zC0XttwJfooAeu+xt8HuXW0ZPoXYdI0AOuTulougJWTN8Nhp81bSDsvDpZwrYZBVm
+ 3Lu5yWLLv4WcI1gA0A6xYi3swE6QWLQzEhnLk2CBQZAYyvPRIFJeKPPkn+vVNiu4w+smyXUq
+ 0CqOODvNUmCBl3uqXTDE2CGC9rf8jSsSoOfV6U3WNnKyRjnrnwe3gh7VKJm+sM+c3yAi5RVT
+ OiAWzG85AOiM81D4I45XcHl2URwt/qXO4iFPYW8mwNy5nNB399Ua2/vtqx9kGMcvs7ne5pIC
+ hYZvTBaDFmkF/+UCoXI6u6ONvjDDMQ70oTP5/Y6/kkS3CWW2GgZQtf3sYb3quRp2Pr5fWmFK
+ ErTsX4luzfWTxMXkOrDWs6P4zV88BewJLqV8t8hDh7NdsFcZwMRNvfH02pQyiiCVc+18I3Of
+ pCTqdzpvwMlszoUnjUkGWVGqdtVwUAZMbqDZlLqoTmJ5KVZMYPpsPPWqIP7C/lEq7f8hPiiR
+ GznSKjqmKU6x58b9hLO87FrjQJ89q5wlPyuTNzg7BjWy3rR5aDfV3ENengDOb6g9joiweeh1
+ mE6BeCalhvrOSqA6jC2Lb0Ttke5jtQa0Mdoh5/NYHDyT1LNziQARAQABtCVNb3JpdHogV2Fy
+ bmluZyA8bW9yaXR6d2FybmluZ0B3ZWIuZGU+iQJUBBMBCAA+AhsjBQkJZgGAAh4BAheAFiEE
+ BtNBFtOYRL0Whm9U5yAWyf8FrDwFAl0gs00FCwkIBwIGFQoJCAsCBBYCAwEACgkQ5yAWyf8F
+ rDxdxRAAryLXcTBQQpUkQ0NncyahvFQUBSDFDKkjMs8eOpOWLFvL3JVa86qZMvjowRg9E6wU
+ MF0lk9isogNfwVinAtZevYxgjcIJy3Q6CWM3t686tKXwuAZpD71cuvMpSxXdGWc7pQ7EJqm4
+ mSnbLAaYvH2YmKtEdcGYMgb/8doNnuWQToID3FnAKB0vYTjX46nevjYZ2Ku2ltKOU3B2KIU5
+ a9xtSFTUUqwxeYS5nGGP+kIXp07zsxfRSLS3kj25xkOU9aO0K58Na6E8q2zIwmHK22x9gGT/
+ VreppFHx9Cgf9/4usde+R7VbMFtE56B8f2LheNq4uBtmblRBsCuOYMqB9hTMauRIderv3+qN
+ dwZRObNiX2SXBBcj6RppEumos9JuxhRBNEenF1WNtQLd5xiDHDJDRPglXlmtf/IczuJnOS8a
+ fK3UhPEVV/3ZJENkaMMu42ylrVVfLw8pcnTbL92ptjBgxWwrkw3ZEYVzaJ2igGvgBxOjq4he
+ 9fXunp+2LqbupXVZRmAeMMPd4wVLzw6m4/a7KMjjxXxM+jB/beAgxgwM6E0/BBKuZJk1LbNA
+ ZN5Pylw3x44+BgGrcLWA7aS8D4LBBvIungULPvENuMPaTZ2jEVNEvAm5kR4a4tYq8ZSu7Frv
+ nV5LWp5FxyRZI9vayKzhysl4rzT6tDeBefhnofWZrBq5Ag0EWTBNYwEQAKL1e73+THWopVqD
+ BhUuGtpqupLFjTFEoT/PNs0oJw+EHmkqS0+sK2lN1kFOl1nVfdfsBCe2KhVygVuefAlN6W+m
+ UbYfJhjZr63gUg5nCezLM4p5WumUl7bciReJv5n33fPEr+hszYkb347NN+oIKQzflpvYdxhf
+ d1zbQP4PaskSSvud1C6Uv+7cJh3YuLlFW9UXPJ7Q4jaNP1FfmaiXrOyY4OyRSUH05Z1JN4RC
+ lF4TLsZvP7B14B5dbXglYHlxAv3DKrg5ps7G9Vo8jf3RaU2JE1yhzQWyCJji8P9IEcT7yeUU
+ TEf0uuNa6G1JbKGBBqrbjLVZs4Sv1jvSHa8cD+G96rxpqgRsfEW3TqSY9Uab/Gr9HR/FNaX3
+ FG9W0BpPuJsuJ1frOyhJEfbQQFljNX2C46WhMAnCW16Ni30Y/6h5If/MKlhgl23ubRd16ngU
+ PMU0Zof530TQg/Ez3rmXP+thpCRbEx9+rslugnEqXJm5gIdIV+Iy8ovFkWPfMjktMkAIselq
+ IidMYORhkzF7SZNVmrD/S6NITB6torSs7/q+WMRDSUVCEWwm+amz9kvRL/MRwJqJFy9aMNki
+ CnSL75mRTKZgYZQxmrTMw8OSd0CC6kqaJbVSW1Uk29x8XFtNaZKH5c1k1fclRXV8NPStsXm3
+ lpoYv3Bmhsdx6HPzJGgpABEBAAGJAiUEGAEIAA8FAlkwTWMCGwwFCQlmAYAACgkQ5yAWyf8F
+ rDyRAg/9HwbQyu5i7kptQM38SVYdcFUCILd48oJFey4lVdCmoXFiXVHaDPK8cmRvoaNCVH+5
+ ay5aegzpEjxtpN4MUh8pJV5+D/aODF5VHxRK1g18SPKFK/0L+4ivyQ/P1aERa5qmjCtkHx+j
+ wd5vCP3eVy1I53F3duuI2+z4T7RlgTaKM+sqtV/0F3d6Xri3BaSVKpcdiATS6qkwLgjbjoXU
+ Csxi1LhMTvuHykEgOXqumwFgND3S9w4o839uS6ywC39yN15ps9/cNE+0gp0MIUngWLYp9RbN
+ +6yoVsLr+5ApeJyIIwUJ1v96+sPdV7S51A1NC9ApVqUF+R/h7V1T8WaL9rCQqqxc6FpJpSSO
+ aKaEBztXpyky2LuD7x7fw7pdXFdoQbLG792QYNGwq99XQA6rtAs4/FALgrvSwdEjubwOQ+tb
+ ZCEwTgTNdPrYmnlgsoQC98FS14hf82Xg3+8ZhWcJTJH+EHCaTomrmfeXsvZgXVwRD4yxNnZh
+ Yw8wPJ8HGXa7SIZIUx2dUWa0i7zyyJoawxDYPHIvhqmigYSnG+v9gkd75hCmnSxwclPcBEuH
+ rJ23zOgOciEX+/47sXKwDif2H9Bg0FAGi1R4UrG6WJ4rFpLdX75Bn7OusclIegdprghOXB5E
+ t74W9PCWeEjvrDf4NtkU5VlZeVyQ1pCdEJI9+cFIEzY=
+Message-ID: <7eadb3ab-1b51-e248-6122-a7c3c73383c9@web.de>
+Date: Sat, 6 Jul 2019 17:22:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1562418358;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=6I6ZqaIE2uEL7yukG5GESlEIUmMd29peUfc5A1GFGgE=;
- b=hrc5HSIZcN1Mun+8s5IFnFNN7+dzZgiA9cnDaPTWAPqkJWHMuEVQjAcfVYG9R8Fcchw1mY
- bUsHca+MJ2GPRnZUlgsDoeku5DBjCFayEi8JrOnukgjWjxflsTz9Nr0h3FrCNpN/L2mfsz
- Re1mjOJUoYUkSaErMz9plHYb+PAKo6s=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1562418358; a=rsa-sha256; cv=none;
- b=a16WEhBS/w9TQAdWoP+9RNO3NaHSh1s5BYKZ7lDtJ2EhR+sRe5mrCPRJQ3lenQu5D88ElX
- oVCeV2xA5Qceh2eIcTAKbK7uQmc472dVkH9ZjM7XxXuVQ0VNLxmrvQuUJlR0kke4VPpQ9T
- Kz1Xcc/AO7YMxRIMwBdss0r7q5a5AEI=
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+In-Reply-To: <1875314.jOPAOSbl7z@sven-edge>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-IE
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1mFEQUidKn6HcLGP8oP5IJU3OKUaOXf2JS4s6/9bFGn4BX+uixu
+ qLOocWtLkFrE+rMQOUR9bBtqIHpf0NSYoVmceIcZVFWElCQoU29UPP4Pj+4Qm85cxoEOc0U
+ 00ZbjFCpA004Nc6LwUmf2+k+kduoE5EQDEgQnXK/us4qugLqQjiC3XSOEFbO1yfdBIsY8vS
+ v7ymy7R2SrBxgszYnLVGA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:D6Jv9U+e++k=:jHG5EnWML2XzdHv9G6b6bi
+ vD9wdOB/FufycWKli+heQZrMu1HqMy32IvDCjo+JvcEOwdgcyi4Wj9mbV16BYz+y0zdUXiYR2
+ P7ryVYvOJX1dCtnlsjpNUmAWzJCNGAEHqATmyvyZ6FYnLcmmw3po3pLNp1JsraAvVx8bPnhJK
+ b43KfssPU9abEYawAX8mURmGBUhKEaDYGPcZ162K5CxL4Kxwm4mBw0DD1CHjsg6RvTzotd9LK
+ vOt/B0TwQ2hXQwlsabIA5bbJzxg65M4JLTxtyyMHoM2TcBFWWn6MfVIh2aFa17Qq7cNzOzgr5
+ u7c1UpNuc48NQQpyoXCuElaZ4yCalfQ/vwmO7zxRTSyXWGcazmCQCAsF769OnI+EgqfeXfy32
+ xX1inLy3ewM5hnDnn2V8iBN0Huz7bmvlpIKcIrSaApb3QIbJH2fqS87Y7DuW2KTMYxJp7NoiM
+ qMh9UOfi785oPp7wFOYi/edLlsjdVkau7HxRPxj3CXvMN5EsbbuL35UlkHDFV0NQVjdp7SddF
+ 7l3/98m4v6l7Yxzy2zdHLQVEZElxOEGdPUITc3sWY6Tq2acyewN5hUxX/I7YS0QXq5/KWOR39
+ gb/0gYszmxnIBpLbRsXjFQGK5u31WAZ1bO2pjIdfqSMqNWht/QRwpb2Su/k1jTv37irOiD6wW
+ Y/4k+BjO4UANnC8d9cglmmFmLqroZtGeOtsdMuet0fNPcUeTjVoTHVJzIVqgRQW5gmF0p301Z
+ PFTiXtSv2aMd+p6QaH1LajflIu3b0YRsoIdUeuoXmr+dk28VcQ7JF60KBrXT2w3zmJQh5FPdQ
+ C+RC+m1mIkpio1B+Q2sWsvXR0/fyMsyqVJNriIRIseDyclU9dZTRnGvTeAGbp6bwEQH87GLzg
+ B31nrOJL6U34zf3w6qAPh2gChqsCJOfFat9SizOMQ36wtuWiuugd4CQ3WEuTKMilZiyaHJwwo
+ cf3dSiKFEiiXe8BW64x4E0c5YArv+bkKfIAxLunzGrHR15sLVJGlM/JCoFl/4T2jwz8Nf1RUv
+ xzA4Dj812bn+sehRpSDq20K6ofUGpP9Qp2V3UnXB+/P0UIjfH9uF9eXkogrNLVMPJ1zKll0Mk
+ GspifwKsB5Y6/z0GXKYyVEdBltZ1j0WC8Hs
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,121 +115,101 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The strscpy was introduced to fix some API problems around strlcpy. And
-checkpatch started to report recently that strlcpy is deprecated and
-strscpy is preferred.
+Thanks Sven for having a good look.
 
-The functionality introduced in commi 30035e45753b ("string: provide
-strscpy()") improves following points compared to strlcpy:
+There is no cfg80211 module present on the system (find /lib/modules/4.15.=
+0-1032-aws/ -name *80211*).
+Package linux-modules-4.15.0-1032-aws is installed.
 
-* it doesn't read from memory beyond (src + size)
-* provides an easy way to check for destination buffer overflow
-* robust against asynchronous source buffer changes
+The module linux-modules-extra-4.15.0-1032 installs the following files:
 
-Since batman-adv doesn't depend on any of the previously mentioned behavior
-changes, the usage of strlcpy can simply be replaced by strscpy to silence
-checkpatch.
+/lib/modules/4.15.0-1032-gcp/kernel/net/wireless/cfg80211.ko
+/lib/modules/4.15.0-1032-gke/kernel/net/wireless/cfg80211.ko
+/lib/modules/4.15.0-1032-azure/kernel/net/wireless/cfg80211.ko
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- compat-include/linux/string.h   | 51 +++++++++++++++++++++++++++++++++
- net/batman-adv/soft-interface.c |  8 +++---
- net/batman-adv/sysfs.c          |  2 +-
- 3 files changed, 56 insertions(+), 5 deletions(-)
- create mode 100644 compat-include/linux/string.h
+But this is not in the *-aws path.
 
-diff --git a/compat-include/linux/string.h b/compat-include/linux/string.h
-new file mode 100644
-index 00000000..36ec689e
---- /dev/null
-+++ b/compat-include/linux/string.h
-@@ -0,0 +1,51 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Copyright (C) 2015  Chris Metcalf <cmetcalf@ezchip.com>
-+ *
-+ * This file contains macros for maintaining compatibility with older versions
-+ * of the Linux kernel.
-+ */
-+
-+#ifndef _NET_BATMAN_ADV_COMPAT_LINUX_STRING_H_
-+#define _NET_BATMAN_ADV_COMPAT_LINUX_STRING_H_
-+
-+#include <linux/version.h>
-+#include_next <linux/string.h>
-+#include <asm-generic/errno-base.h>
-+
-+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 3, 0)
-+
-+#ifndef __HAVE_ARCH_STRSCPY
-+
-+static inline ssize_t batadv_strscpy(char *dest, const char *src, size_t count)
-+{
-+	long res = 0;
-+
-+	if (count == 0)
-+		return -E2BIG;
-+
-+	while (count) {
-+		char c;
-+
-+		c = src[res];
-+		dest[res] = c;
-+		if (!c)
-+			return res;
-+		res++;
-+		count--;
-+	}
-+
-+	/* Hit buffer length without finding a NUL; force NUL-termination. */
-+	if (res)
-+		dest[res-1] = '\0';
-+
-+	return -E2BIG;
-+}
-+
-+#define strscpy(_dest, _src, _count) \
-+	batadv_strscpy((_dest), (_src), (_count))
-+
-+#endif
-+
-+#endif /* < KERNEL_VERSION(4, 3, 0) */
-+
-+#endif	/* _NET_BATMAN_ADV_COMPAT_LINUX_STRING_H_ */
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interface.c
-index c7a2e77c..a1146cb1 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -943,10 +943,10 @@ static const struct net_device_ops batadv_netdev_ops = {
- static void batadv_get_drvinfo(struct net_device *dev,
- 			       struct ethtool_drvinfo *info)
- {
--	strlcpy(info->driver, "B.A.T.M.A.N. advanced", sizeof(info->driver));
--	strlcpy(info->version, BATADV_SOURCE_VERSION, sizeof(info->version));
--	strlcpy(info->fw_version, "N/A", sizeof(info->fw_version));
--	strlcpy(info->bus_info, "batman", sizeof(info->bus_info));
-+	strscpy(info->driver, "B.A.T.M.A.N. advanced", sizeof(info->driver));
-+	strscpy(info->version, BATADV_SOURCE_VERSION, sizeof(info->version));
-+	strscpy(info->fw_version, "N/A", sizeof(info->fw_version));
-+	strscpy(info->bus_info, "batman", sizeof(info->bus_info));
- }
- 
- /* Inspired by drivers/net/ethernet/dlink/sundance.c:1702
-diff --git a/net/batman-adv/sysfs.c b/net/batman-adv/sysfs.c
-index 1efcb970..e5bbc28e 100644
---- a/net/batman-adv/sysfs.c
-+++ b/net/batman-adv/sysfs.c
-@@ -1070,7 +1070,7 @@ static ssize_t batadv_store_mesh_iface(struct kobject *kobj,
- 	dev_hold(net_dev);
- 	INIT_WORK(&store_work->work, batadv_store_mesh_iface_work);
- 	store_work->net_dev = net_dev;
--	strlcpy(store_work->soft_iface_name, buff,
-+	strscpy(store_work->soft_iface_name, buff,
- 		sizeof(store_work->soft_iface_name));
- 
- 	queue_work(batadv_event_workqueue, &store_work->work);
--- 
-2.20.1
+On 7/6/19 2:16 PM, Sven Eckelmann wrote:
+> On Friday, 5 July 2019 16:51:56 CEST Moritz Warning wrote:
+>> on an AWS server I get this error:
+>>
+>> $ modprobe batman-adv
+>> $ dmesg
+>> ...
+>> [ 1310.125438] batman_adv: Unknown symbol cfg80211_get_station (err 0)
+>>
+>> $ uname -a
+>> Linux ip-172-31-47-217 4.15.0-1032-aws #34-Ubuntu SMP Thu Jan 17 15:18:=
+09 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+>>
+>
+> I have downloaded the headers [1] and they have following defined in
+> include/config/cfg80211.h:
+>
+>     #if IS_ENABLED(CONFIG_CFG80211)
+>     /**
+>      * cfg80211_get_station - retrieve information about a given station
+>      * @dev: the device where the station is supposed to be connected to
+>      * @mac_addr: the mac address of the station of interest
+>      * @sinfo: pointer to the structure to fill with the information
+>      *
+>      * Returns 0 on success and sinfo is filled with the available infor=
+mation
+>      * otherwise returns a negative error code and the content of sinfo =
+has to be
+>      * considered undefined.
+>      */
+>     int cfg80211_get_station(struct net_device *dev, const u8 *mac_addr,
+>     			 struct station_info *sinfo);
+>     #else
+>     static inline int cfg80211_get_station(struct net_device *dev,
+>     				       const u8 *mac_addr,
+>     				       struct station_info *sinfo)
+>     {
+>     	return -ENOENT;
+>     }
+>     #endif
+>
+> So this function should be always defined by the kernel. Either through =
+this
+> header or through the cfg80211 module (which can be part of the kernel b=
+inary
+> itself).
+>
+> I have then downloaded the config deb [2]. It has the .config file inclu=
+ded
+>
+>     $ grep CONFIG_CFG80211 usr/src/linux-headers-4.15.0-1032-aws/.config
+>     CONFIG_CFG80211=3Dm
+>     # CONFIG_CFG80211_DEVELOPER_WARNINGS is not set
+>     # CONFIG_CFG80211_CERTIFICATION_ONUS is not set
+>     CONFIG_CFG80211_REQUIRE_SIGNED_REGDB=3Dy
+>     CONFIG_CFG80211_USE_KERNEL_REGDB_KEYS=3Dy
+>     CONFIG_CFG80211_DEFAULT_PS=3Dy
+>     CONFIG_CFG80211_DEBUGFS=3Dy
+>     CONFIG_CFG80211_CRDA_SUPPORT=3Dy
+>     CONFIG_CFG80211_WEXT=3Dy
+>
+> So it is enabled as a module. So please load this module. And if it is n=
+ot
+> included in any package (what I am currently suspecting), please contact=
+ the
+> maintainers [3]. They either have to ship the modules or disable any mod=
+ules
+> in their build. But building them and not shipping is breaking the
+> dependencies of other modules (as shown by you).
+>
+> Kind regards,
+> 	Sven
+>
+> [1] http://mirrors.kernel.org/ubuntu/pool/main/l/linux-aws/linux-aws-hea=
+ders-4.15.0-1032_4.15.0-1032.34_all.deb
+> [2] http://mirrors.kernel.org/ubuntu/pool/main/l/linux-aws/linux-headers=
+-4.15.0-1032-aws_4.15.0-1032.34_amd64.deb
+> [3] https://bugs.launchpad.net/ubuntu/+source/linux-aws/+filebug
+>
 
