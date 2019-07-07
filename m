@@ -2,65 +2,52 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD9F61489
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  7 Jul 2019 11:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB516176A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  7 Jul 2019 22:19:35 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 473338152A;
-	Sun,  7 Jul 2019 11:18:51 +0200 (CEST)
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
- [66.111.4.224]) by open-mesh.org (Postfix) with ESMTPS id B978C80894
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  7 Jul 2019 11:07:52 +0200 (CEST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id 9889F1BF8;
- Sun,  7 Jul 2019 05:07:51 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Sun, 07 Jul 2019 05:07:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:content-type
- :date:from:in-reply-to:message-id:mime-version:references
- :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm3; bh=x8lXpDRZEO+kJnbsaHqRuaESgj+i+FFLo/tF3IYSR
- vQ=; b=tHjTbQAi+jz81QV1JPIpp4++7BmunyQYQ+Q8cBbZSdC8Uu+abNjabLBo/
- VE0rbxSGDvwLzkUPpXzAl4ASX2U7G6Sc6/nmfa//+/F1IFrGh+aSUwe9GTvMAfOv
- yF84RP3NQIABOStFJEjghqPxaMapj90YPu12SuHNFbJZHQdlREunqUYPyS9DbNjM
- kYQeIlPa5DlPl93g4uQrry30lq8GlzTfkGrZKxB4ZvwRmHHDskq09GN9UBP/umoV
- JUVw06tAM15CEy3gv3tj9vaoUyGnVWIjFon6lWytR7OJo6X2W7M7k00L3xWOdXbM
- QaZBD0S2AF7zBGzqPRM1zesamI5cQ==
-X-ME-Sender: <xms:ZrYhXYPw0z2rnT66RKMUGTTgyDcykg9cbouav93bmY4LP_jj-DlH8Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrfeekgddugecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggugfgjfgesthekredttderudenucfhrhhomhepkfguohcu
- ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecukfhppedule
- efrdegjedrudeihedrvdehudenucfrrghrrghmpehmrghilhhfrhhomhepihguohhstghh
- sehiughoshgthhdrohhrghenucevlhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:ZrYhXXZ02lgDir9yc_8DqrmpiJnMKGPq635Uj5hHEGGfnWFc0ruZJg>
- <xmx:ZrYhXfsJW65dZThNzZnmrRSQbwftd7UFQxxQUxoH7KGRdgxkuhXW7Q>
- <xmx:ZrYhXRORlEvRVvqpwwN6LydixRDKPGEtF2PeM5D13LFNWOmBQzcDMg>
- <xmx:Z7YhXf-O8T1mlp0auM5yct2qPDqhqraX17BMLBGulSdd2P5nOeHntw>
-Received: from localhost (unknown [193.47.165.251])
- by mail.messagingengine.com (Postfix) with ESMTPA id 902FA8005C;
- Sun,  7 Jul 2019 05:07:49 -0400 (EDT)
-Date: Sun, 7 Jul 2019 12:07:47 +0300
-From: Ido Schimmel <idosch@idosch.org>
-To: Linus =?iso-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Subject: Re: [RFC net-next] net: dsa: add support for MC_DISABLED attribute
-Message-ID: <20190707090747.GA5516@splinter>
-References: <20190620235639.24102-1-vivien.didelot@gmail.com>
- <5d653a4d-3270-8e53-a5e0-88ea5e7a4d3f@gmail.com>
- <20190621172952.GB9284@t480s.localdomain>
- <20190623070949.GB13466@splinter>
- <20190623072605.2xqb56tjydqz2jkx@shell.armlinux.org.uk>
- <20190623074427.GA21875@splinter> <20190629162945.GB17143@splinter>
- <20190630165601.GC2500@otheros> <20190702171158.GA7182@splinter>
- <20190702231308.GA2414@otheros>
+	by open-mesh.org (Postfix) with ESMTP id DF18F803CC;
+	Sun,  7 Jul 2019 22:19:32 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by open-mesh.org (Postfix) with ESMTPS id 6DA1D8050D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  7 Jul 2019 22:19:27 +0200 (CEST)
+Received: from sven-desktop.home.narfation.org (unknown
+ [IPv6:2a00:1ca0:1480:f1fc::4065])
+ by dvalin.narfation.org (Postfix) with ESMTPSA id CAA7B1FDDF;
+ Sun,  7 Jul 2019 20:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1562530766;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=XxKaVVIW5zByT04RGtm3DqxVJrTF78BKxwGgN23dFjI=;
+ b=BgJMrg6TswQQK/0EEHTkbVrIK7JkbKLfh898GHh+3Dshe9k+0eoRKpiLA3qAvScP33kcct
+ w74WAfdJQaVxUZzQlqShHPQfQxYdlwdni8e3GThHuUoK6voIrVeNBjHsBv5MehJfBDXM8K
+ VLg1LdarRoxrd59FluOu5RYTZiU8Yow=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH maint] batman-adv: Fix netlink dumping of all mcast_flags
+ buckets
+Date: Sun,  7 Jul 2019 22:19:22 +0200
+Message-Id: <20190707201922.13997-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190702231308.GA2414@otheros>
-User-Agent: Mutt/1.11.3 (2019-02-01)
-X-Mailman-Approved-At: Sun, 07 Jul 2019 11:18:49 +0200
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1562530766;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=XxKaVVIW5zByT04RGtm3DqxVJrTF78BKxwGgN23dFjI=;
+ b=B/UPqUHr+QKDvcFvOCtIPrs/mFV3sFqHbhu4iwsJGadoyL8/oLjciPpRozlmZNEykaizRC
+ NeyRLUVyvABVJu9FTf/84BPlBytdy7/llex8eMzMcEoFALKP1/Ob1yxPa4TBaK418iljr8
+ ip5F9ChiR7H54epS1RJDQHaxRr/2tFY=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1562530766; a=rsa-sha256; cv=none;
+ b=gvHwV33bIzGcmm2n795Ghv/bH+aYlr/8BAXSkXFWumLPoxykHvEgF0v94P5A/wLHPBRj2V
+ CWtEX1U/XwnEP7FCSAydfg588WyLzkJ/A+akluPGumSQnSbJ2m7vvUzCb1VRV4TE2Jlonm
+ zd1VIwIkeY72luI03c1b6k/Vcj6G9ws=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,109 +62,35 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- b.a.t.m.a.n@lists.open-mesh.org, nikolay@cumulusnetworks.com,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- bridge@lists.linux-foundation.org,
- Russell King - ARM Linux admin <linux@armlinux.org.uk>,
- Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@mellanox.com>,
- "davem@davemloft.net" <davem@davemloft.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Wed, Jul 03, 2019 at 01:13:08AM +0200, Linus Lüssing wrote:
-> Hi Ido,
-> 
-> > Do you differentiate between IPv4 and IPv6 in batman-adv?
-> 
-> For most things, yes: The querier state is kept separately for
-> IPv4 and IPv6. And we do have something like a "router node"
-> flag to signalize that a node needs all multicast traffic, which
-> is split into IPv4 and IPv6.
-> 
-> The "MDB" equivalent in batman-adv (multicast entries in our "TT",
-> translation table) are on MAC address base right now, not on an IP
-> address base yet, so that sounds similar to what you do in mlxsw?
+The bucket variable is only updated outside the loop over the mcast_flags
+buckets. It will only be updated during a dumping run when the dumping has
+to be interrupted and a new message has to be started.
 
-Yes.
+This could result in repeated or missing entries when the multicast flags
+are dumped to userspace.
 
-> Regarding querier state, we periodically ask the
-> bridge via "br_multicast_has_querier_anywhere(dev, ETH_P_IP)"
-> and "br_multicast_has_querier_anywhere(dev, ETH_P_IPV6)".
-> 
-> (Something more event based with handler functions would probably
-> be nicer, but this was the easier thing to start with.)
+Fixes: 06c82b7b15b1 ("batman-adv: Add inconsistent multicast netlink dump detection")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/multicast.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks for the reference. Will check the code. I believe that we will
-add switchdev notifications for querier state change, so it might be
-useful for you as well.
+diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
+index 67d7f830..a3488cfb 100644
+--- a/net/batman-adv/multicast.c
++++ b/net/batman-adv/multicast.c
+@@ -2303,7 +2303,7 @@ __batadv_mcast_flags_dump(struct sk_buff *msg, u32 portid,
+ 
+ 	while (bucket_tmp < hash->size) {
+ 		if (batadv_mcast_flags_dump_bucket(msg, portid, cb, hash,
+-						   *bucket, &idx_tmp))
++						   bucket_tmp, &idx_tmp))
+ 			break;
+ 
+ 		bucket_tmp++;
+-- 
+2.20.1
 
-> > 1. All the IPv6 MDB entries need to be removed from the device. At least
-> > in mlxsw, we do not have a way to ignore only IPv6 entries. From the
-> > device's perspective, an MDB entry is just a multicast DMAC with a
-> > bitmap of ports packets should be replicated to.
-> 
-> Ah, I see, yes. We had a similar "issue". Initially we just always
-> added any multicast entry into our translation table offered by
-> the IP stack or bridge, no matter what a querier state or "router
-> node" state said. Which would have led to a node receiving two
-> copies of a multicast packet if it were both a querier or router
-> and were also having a listener announced via IGMP/MLD.
-> 
-> So there we also just recently changed that, to filter out
-> IPv6 multicast TT entries if this node were also announcing itself as
-> an MLD querier or IPv6 router. And same, independently for
-> IPv4/IGMP.
-
-This is actually not a problem with mlxsw. The ports a packet should be
-replicated to are represented using a bitmap. It does not matter if we
-set the bit because it has an MDB entry or because it is an mrouter
-port. And obviously it does not matter if we set it twice :)
-
-> > 2. We need to split the flood tables used for IPv4 and IPv6 unregistered
-> > multicast packets. For IPv4, packets should only be flooded to mrouter
-> > ports whereas for IPv6 packets should be flooded to all the member
-> > ports.
-> 
-> This one I do not fully understand yet. Why don't you apply the
-> "flood to all ports" (in the no IGMP querier present case)
-> for IPv4, too?
-> 
-> Sure, for IPv4 nothing "essential" will break, as IPv4 unicast
-> does not rely on multicast (contrary to IPv6, due to NDP, as you
-> mentioned). But still there would be potential multicast packet loss
-> for a 239.x.x.x listener on the local link, for instance, wouldn't
-> there?
-> 
-> 
-> If I'm not mistaken, we do not apply differing behaviour for IPv4
-> vs. IPv6 in the bridge either and would flood on all ports for IPv4
-> with no querier present, too.
-
-I think I was not clear, so I will explain again. I was referring to a
-situation where IPv4 has a querier, but IPv6 does not. In this case, the
-bridge will flood IPv4 unregistered multicast packets to mrouter ports
-only. On the other hand, IPv6 unregistered multicast packets will be
-flooded to all the ports. Based on my reading of the code, this is
-controlled by 'mcast_hit' in br_handle_frame_finish().
-
-In mlxsw, each packet type (e.g., unknown unicast, IPvX unregistered
-multicast) is associated with a flood table (basically a huge matrix,
-where row corresponds to VLAN and column corresponds to a port). If we
-are to handle the case where IPv4 unregistered multicast packets need to
-be flooded to mrouter ports only, whereas IPv6 unregistered multicast
-packets need to be flooded to all the ports, then we need to use a
-separate flood table for each.
-
-Alternatively, we can use the same flood table, but flood to all the
-ports if IPv4 or IPv6 querier is missing. I do not think anything will
-break, it is just very efficient. This seems to be allowed by RFC 4541
-(Section 2.1.2):
-
-"If a switch receives an unregistered packet, it must forward that
-packet on all ports to which an IGMP router is attached. A switch may
-default to forwarding unregistered packets on all ports."
-
-> Regards, Linus
-
-Linus, thanks a lot for the great feedback. I really appreciate it!
