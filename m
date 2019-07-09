@@ -1,63 +1,34 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9BA617BE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  7 Jul 2019 23:47:53 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7993638BD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  9 Jul 2019 17:36:47 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id AD76B817E1;
-	Sun,  7 Jul 2019 23:47:48 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by open-mesh.org (Postfix) with ESMTPS id D04AE80A39
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  7 Jul 2019 23:47:45 +0200 (CEST)
-Date: Sun, 7 Jul 2019 23:47:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1562536065;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=WZPLpJi42xm9vnzi45SZ1zPvvpjKTa189YnVLxT4MLY=;
- b=OfWRL0z436TkJKOwWfb9GdY8pwL2eJNW0gKtJrIO8OD34WZ3h6iIiZTAnMOyrT7eD2fumU
- 2Ncrx4qVC0wk7IdmO0A5PRxGV9tNm4bZaJ4kltWhkGWTEcoAcrSCHWaFygTXo3Et3+YwiE
- RO9z0gTGb/f2kP1jzdxbCFJUOMOnp9UCdhL+/SYkDevTCmWVD9//33nFhlLBlfueK3YwF2
- rDlyW9nazKM/xtef0SD5bixSSxJIKJh1L5NhEpLLDY6oWdKyznqTuNyIFjbTDDdFDsn5jz
- pxHfxmaHNDCY4kKMoC3WQipRf4gQpNdx3GVUhVJxxCJsX6dRbpZtdSXnWMbwMw==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: [PATCH] batman-adv: Fix deletion of RTR(4|6) mcast list entries
-Message-ID: <20190707214743.GA2466@otheros>
-References: <20190707210457.20892-1-sven@narfation.org>
+	by open-mesh.org (Postfix) with ESMTP id 695CF8169F;
+	Tue,  9 Jul 2019 17:36:43 +0200 (CEST)
+Received: from mail.mail.packetmixer.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id C00CD8060C
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  9 Jul 2019 17:36:40 +0200 (CEST)
+Received: from prime.localnet
+ (p200300C5972EEF001C41967A8D7249C5.dip0.t-ipconnect.de
+ [IPv6:2003:c5:972e:ef00:1c41:967a:8d72:49c5])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 289186206C;
+ Tue,  9 Jul 2019 17:36:40 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: [PATCH v2 0/6] batctl: Add vid support and hardif settings
+Date: Tue, 09 Jul 2019 17:36:36 +0200
+Message-ID: <2853563.THXLFkejgW@prime>
+User-Agent: KMail/5.2.3 (Linux/4.19.0-0.bpo.5-amd64; KDE/5.28.0; x86_64; ; )
+In-Reply-To: <20190623130709.24751-1-sven@narfation.org>
+References: <20190623130709.24751-1-sven@narfation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190707210457.20892-1-sven@narfation.org>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1562536065;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=WZPLpJi42xm9vnzi45SZ1zPvvpjKTa189YnVLxT4MLY=;
- b=oxxr0Rs7EmuyvdIdeJJ/MVh7TLh+Uw5kTqQsM/goqxLIVAhIa3aXQJgEE51LkSMVym7TIy
- 522bZ3iZIIc4FIV10u6oyJZ+pzM4/RpxOig08PlqQW8tuORXmYoCna3TN43lVfsjcoUMWW
- 1Js1bGXGriPuynPdRZmFrpVZCsI+hFkz/G7hABiAW2GBTMm8Iv75nyqtUo3rTeQnxXfHu4
- wF/2MQIWfROwVkpG0ck2CDXkVWFAzQA8D0bXr2K3wt2sHI9bdnl60ooDIKEwIz47anHPKB
- Ary4gGJP936ql432Ye6NVCJxh00PYqVjlRutCzvc9fjeyoQWJd2Y5fw4idazDA==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1562536065; a=rsa-sha256; cv=none;
- b=dKd4Y4ssVO5VlLJ4j+471E+W6XUQVV1vO/zuYGHMe5k1rxZ8g4uWflr16Lp2gxnMfeDbtK
- 84KbddQaqA0zM3t2WVwQ4GbyupVGYEjxQ+Mawb04Umz6x2b/NxAGPbZDnsSks3deLSDWPG
- Eay1lyFYbMLm9SrgbrTLPdVSL5eRoctw0bXrjn4iLxFuntIXW7WvNBxuNrxWB4g/fyZhCC
- pgO0ViVupmQWWEw5Rio0xadDtC1abcng3WQK8BRJ4t43dPaJereEjAklYSY5yR2KeWgQwr
- wpvcLghL3VzoMYEug8Fs9j5fI1fIml3RtYRsbPxHmNE4S5lHj510o733DT/Ulg==
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
+Content-Type: multipart/signed; boundary="nextPart2417226.ZZ80AUtYkC";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,28 +46,97 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Sun, Jul 07, 2019 at 11:04:57PM +0200, Sven Eckelmann wrote:
-> The multicast code uses the lists bat_priv->mcast.want_all_rtr*_list to
-> store all all originator nodes which don't have the flag no-RTR4 or no-RTR6
-> set. When an originator is purged, it has to be removed from these lists.
-> 
-> Since all entries without the BATADV_MCAST_WANT_NO_RTR4/6 are stored in
-> these lists, they have to be handled like entries which have these flags
-> set to force the update routines to remove them from the lists when purging
-> the originator.
-> 
-> Not doing so will leave a pointer to a freed memory region inside the list.
-> Trying to operate on these lists will then cause an use-after-free error:
-> 
->   BUG: KASAN: use-after-free in batadv_mcast_want_rtr4_update+0x335/0x3a0 [batman_adv]
->   Write of size 8 at addr ffff888007b41a38 by task swapper/0/0
-> 
-> Fixes: 0a7733468f95 ("batman-adv: mcast: detect, distribute and maintain multicast router presence")
-> Signed-off-by: Sven Eckelmann <sven@narfation.org>
-> ---
-> Cc: Linus Lüssing <linus.luessing@c0d3.blue>
-> 
-> See https://www.open-mesh.org/issues/395
-> ---
+--nextPart2417226.ZZ80AUtYkC
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Acked-by: Linus Lüssing <linus.luessing@c0d3.blue>
+Hi,
+
+overall I think this is a good idea. Please see below:
+
+On Sunday, June 23, 2019 3:07:03 PM CEST Sven Eckelmann wrote:
+> Hi,
+> 
+> I've asked a quite while back for some ideas regarding the support for hard
+> interface settings in batctl [1]. The current consensus seems to be that
+> a more iw-like interface is prefered.
+> 
+> vlan settings
+> =============
+> 
+> The requirement to have a VLAN master device on top of the batadv mesh
+> interface is artificially limiting the capabilities of batctl. Not all
+> master devices in linux which register a VLAN are from type "vlan" and are
+> only registering a single VLAN.
+> 
+> For example VLAN aware bridges can create multiple VLANs. These require
+> that the VLAN is identified using the VID and not the vlan device.
+> 
+> It is now possible to specify the vlan using:
+> 
+>   $ batctl vlan bat0.8 ap_isolation enable
+>   $ batctl meshif bat0 vid 8 ap_isolation enable
+> 
+> 
+> hardif settings
+> ===============
+> 
+> The infrastructure for the new vlan/vid prefix of commands can now be used
+> to introduce another prefix: "hardif".
+> 
+> B.A.T.M.A.N. V introduced two additional settings which are hard (slave)
+> interface specific. These can can finally be implemented in batctl. This
+> will allow to change/read these settings when sysfs support is not enabled
+> in the kernel.
+> 
+>   $ batctl hardif eth0 throughput_override 15mbit
+>   $ batctl hardif eth0 elp_interval
+> 
+> 
+> Changes
+> =======
+> 
+> v2
+> --
+> 
+> * replaced (while still being compatible) -m option with "meshif"/"dev"
+> prefix * added alternative "slave" for "hardif" prefix
+
+I'd drop those alternative names "slave" and "dev". If we want to change the 
+naming, we have to do it everywhere. If we don't change the naming, then I 
+would say we shouldn't even advertise an alternative naming to not confuse 
+users and keep everything consistent. And if don't advertise, there is no good 
+reason to parse it and bloat the code.
+
+That's my take, at least. :)
+
+In general, I really like the tree like structure in favor of an unituitive 
+option parsing.
+
+Cheers,
+       Simon
+
+--nextPart2417226.ZZ80AUtYkC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAl0ktIQACgkQoSvjmEKS
+nqFapQ//XqgnZgr1hJ7pUqZsv8zAEZAiGrv2py0PKmfejCdf2bF5bZN7b0nD0u34
+Y3n5QLsYSuNsiENEUnzvV2m+Y/NvaQxlZcETkV5PuKICCj418k+qZKZ8rXHcQFz1
+5d7QOQAtMWvuqW1h47l6qaCk95oULEE2hjCQTYAT0K4lNomUr8MuRbk3Kl2mGzk+
+QPdi27/C4dDWVe4Ms9kk2LZf7eOUZuZfJC8afeDCBRZx7+wX22c06HgpHDvNAM6L
+jkiOO5kHfjGKHykgrnWAhMKhizGViklPvu+cqxvAW5JrtsjTyDzlJRRTF+3y7f4q
+0LyJQktQdm/jO8pBT68DSbySD+dBh9YCgrREooSCtkgA+Cm2T8DXAZAynCARjKx1
+7x1Sux+iZQwAADzXiwoEQmUkdhLWwdsB3U2kak7ceWEb9/ILjDa3hFtkjhEYk50R
+yF6+V+fDCGmgUcJ3CGb+KZYYY5GIxZrqk/dPZWIH+HA7D3tVSX/gzGALaVxHUjFa
+yYjaxrmIrONv91pkGFHXR+roJDbLODANljeybJnfZ7Ub13a++fYTfhGMwwGNJU9w
+Y4c4YQf2zo0iV0ADp+IyfycU1iVNgG1Pd2zojF63wblA2qlAsG0wM5bBG4GkTNys
+SWR7SIXsLNpJS1W3mla/kksG27LgCmim2s5hnsQAoKdf0DBLY0Y=
+=Rayc
+-----END PGP SIGNATURE-----
+
+--nextPart2417226.ZZ80AUtYkC--
+
