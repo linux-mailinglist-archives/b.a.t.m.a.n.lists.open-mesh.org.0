@@ -1,34 +1,52 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7993638BD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  9 Jul 2019 17:36:47 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BAE63A25
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  9 Jul 2019 19:27:19 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 695CF8169F;
-	Tue,  9 Jul 2019 17:36:43 +0200 (CEST)
-Received: from mail.mail.packetmixer.de (packetmixer.de
- [IPv6:2001:4d88:2000:24::c0de])
- by open-mesh.org (Postfix) with ESMTPS id C00CD8060C
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  9 Jul 2019 17:36:40 +0200 (CEST)
-Received: from prime.localnet
- (p200300C5972EEF001C41967A8D7249C5.dip0.t-ipconnect.de
- [IPv6:2003:c5:972e:ef00:1c41:967a:8d72:49c5])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 289186206C;
- Tue,  9 Jul 2019 17:36:40 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
+	by open-mesh.org (Postfix) with ESMTP id C60B281F2D;
+	Tue,  9 Jul 2019 19:27:03 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by open-mesh.org (Postfix) with ESMTPS id 085CA80D96
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  9 Jul 2019 19:26:56 +0200 (CEST)
+Received: from sven-desktop.home.narfation.org (unknown
+ [IPv6:2a00:1ca0:1480:f9fc::4065])
+ by dvalin.narfation.org (Postfix) with ESMTPSA id 244B61FDB9;
+ Tue,  9 Jul 2019 17:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1562693216;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HMj2YgpSjiO4+j9jQuHRQrb2MJ5d/Y6V1sYgP5L7OL4=;
+ b=MtNVtVLGeNlzWHZnIwQ3Lj67TQ2icoOPECp4aP5eHKN5ZtzDn98KUQ18IumW1dpLw4sStg
+ jNVJHRq/B20CCfF+AGEQSXcFwP8eQeKDNuJp1kpCBkkp3TPdyRyUbH4nJFZVHGjDJ6EkLY
+ BTAgnrqVZYRZ6G3iNteHAZqcbKo/Ecs=
+From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v2 0/6] batctl: Add vid support and hardif settings
-Date: Tue, 09 Jul 2019 17:36:36 +0200
-Message-ID: <2853563.THXLFkejgW@prime>
-User-Agent: KMail/5.2.3 (Linux/4.19.0-0.bpo.5-amd64; KDE/5.28.0; x86_64; ; )
-In-Reply-To: <20190623130709.24751-1-sven@narfation.org>
-References: <20190623130709.24751-1-sven@narfation.org>
+Subject: [PATCH v3 0/6] batctl: Add vid support and hardif settings
+Date: Tue,  9 Jul 2019 19:26:45 +0200
+Message-Id: <20190709172651.5869-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2417226.ZZ80AUtYkC";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1562693216;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HMj2YgpSjiO4+j9jQuHRQrb2MJ5d/Y6V1sYgP5L7OL4=;
+ b=IwjkKEvUZBnDQ5cMIrFamwz8XHImwf+E8s0dNSC0aeEeRLrxbcp9KXEuvtIfxojipnmo/P
+ Dl+tx9uGrSlEdc4Dv6eOA6rKW8a49QizuWwAREardsqFrMvGWQTFUB6v7vUgYDdrvFtN88
+ rmwM17INSriKaGaXhWSSaPcj/oFJVPA=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1562693216; a=rsa-sha256; cv=none;
+ b=EQpkTtD9pUp2+/8B9s373oiUTOnhMhqnNG03P3dWm1upckOMG3MBp5/gnNfH/g0mUAyixo
+ 7Fj7rpOOtpPgQC7RnguVdoiYuBMvlTUCeWbJW7CqR4ayv+C1bgr2wvMjNtpWwno0iowHNP
+ VfsCkaisBOOBgSxP1RVNMYszf4Kn0AM=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,97 +64,117 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart2417226.ZZ80AUtYkC
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
 Hi,
 
-overall I think this is a good idea. Please see below:
+I've asked a quite while back for some ideas regarding the support for hard
+interface settings in batctl [1]. The current consensus seems to be that
+a more iw-like interface is prefered.
 
-On Sunday, June 23, 2019 3:07:03 PM CEST Sven Eckelmann wrote:
-> Hi,
-> 
-> I've asked a quite while back for some ideas regarding the support for hard
-> interface settings in batctl [1]. The current consensus seems to be that
-> a more iw-like interface is prefered.
-> 
-> vlan settings
-> =============
-> 
-> The requirement to have a VLAN master device on top of the batadv mesh
-> interface is artificially limiting the capabilities of batctl. Not all
-> master devices in linux which register a VLAN are from type "vlan" and are
-> only registering a single VLAN.
-> 
-> For example VLAN aware bridges can create multiple VLANs. These require
-> that the VLAN is identified using the VID and not the vlan device.
-> 
-> It is now possible to specify the vlan using:
-> 
->   $ batctl vlan bat0.8 ap_isolation enable
->   $ batctl meshif bat0 vid 8 ap_isolation enable
-> 
-> 
-> hardif settings
-> ===============
-> 
-> The infrastructure for the new vlan/vid prefix of commands can now be used
-> to introduce another prefix: "hardif".
-> 
-> B.A.T.M.A.N. V introduced two additional settings which are hard (slave)
-> interface specific. These can can finally be implemented in batctl. This
-> will allow to change/read these settings when sysfs support is not enabled
-> in the kernel.
-> 
->   $ batctl hardif eth0 throughput_override 15mbit
->   $ batctl hardif eth0 elp_interval
-> 
-> 
-> Changes
-> =======
-> 
-> v2
-> --
-> 
-> * replaced (while still being compatible) -m option with "meshif"/"dev"
-> prefix * added alternative "slave" for "hardif" prefix
+vlan settings
+=============
 
-I'd drop those alternative names "slave" and "dev". If we want to change the 
-naming, we have to do it everywhere. If we don't change the naming, then I 
-would say we shouldn't even advertise an alternative naming to not confuse 
-users and keep everything consistent. And if don't advertise, there is no good 
-reason to parse it and bloat the code.
+The requirement to have a VLAN master device on top of the batadv mesh
+interface is artificially limiting the capabilities of batctl. Not all
+master devices in linux which register a VLAN are from type "vlan" and are
+only registering a single VLAN.
 
-That's my take, at least. :)
+For example VLAN aware bridges can create multiple VLANs. These require
+that the VLAN is identified using the VID and not the vlan device.
 
-In general, I really like the tree like structure in favor of an unituitive 
-option parsing.
+It is now possible to specify the vlan using:
 
-Cheers,
-       Simon
+  $ batctl vlan bat0.8 ap_isolation enable
+  $ batctl meshif bat0 vid 8 ap_isolation enable
 
---nextPart2417226.ZZ80AUtYkC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
 
------BEGIN PGP SIGNATURE-----
+hardif settings
+===============
 
-iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAl0ktIQACgkQoSvjmEKS
-nqFapQ//XqgnZgr1hJ7pUqZsv8zAEZAiGrv2py0PKmfejCdf2bF5bZN7b0nD0u34
-Y3n5QLsYSuNsiENEUnzvV2m+Y/NvaQxlZcETkV5PuKICCj418k+qZKZ8rXHcQFz1
-5d7QOQAtMWvuqW1h47l6qaCk95oULEE2hjCQTYAT0K4lNomUr8MuRbk3Kl2mGzk+
-QPdi27/C4dDWVe4Ms9kk2LZf7eOUZuZfJC8afeDCBRZx7+wX22c06HgpHDvNAM6L
-jkiOO5kHfjGKHykgrnWAhMKhizGViklPvu+cqxvAW5JrtsjTyDzlJRRTF+3y7f4q
-0LyJQktQdm/jO8pBT68DSbySD+dBh9YCgrREooSCtkgA+Cm2T8DXAZAynCARjKx1
-7x1Sux+iZQwAADzXiwoEQmUkdhLWwdsB3U2kak7ceWEb9/ILjDa3hFtkjhEYk50R
-yF6+V+fDCGmgUcJ3CGb+KZYYY5GIxZrqk/dPZWIH+HA7D3tVSX/gzGALaVxHUjFa
-yYjaxrmIrONv91pkGFHXR+roJDbLODANljeybJnfZ7Ub13a++fYTfhGMwwGNJU9w
-Y4c4YQf2zo0iV0ADp+IyfycU1iVNgG1Pd2zojF63wblA2qlAsG0wM5bBG4GkTNys
-SWR7SIXsLNpJS1W3mla/kksG27LgCmim2s5hnsQAoKdf0DBLY0Y=
-=Rayc
------END PGP SIGNATURE-----
+The infrastructure for the new vlan/vid prefix of commands can now be used
+to introduce another prefix: "hardif".
 
---nextPart2417226.ZZ80AUtYkC--
+B.A.T.M.A.N. V introduced two additional settings which are hard (slave)
+interface specific. These can can finally be implemented in batctl. This
+will allow to change/read these settings when sysfs support is not enabled
+in the kernel.
+
+  $ batctl hardif eth0 throughput_override 15mbit
+  $ batctl hardif eth0 elp_interval
+
+
+Changes
+=======
+
+v3
+--
+
+* drop prefix "dev" and "slave"
+
+v2
+--
+
+* replaced (while still being compatible) -m option with "meshif"/"dev" prefix
+* added alternative "slave" for "hardif" prefix
+* automatically detect meshif for "hardif"/"slave"
+* introduced enum selector_prefix to make code to select correct
+  subcommands/code paths better readable
+* add helper to automatically guess the type of netdev to allow omission of
+  meshif/slave/vlan/... in some situations
+
+v1
+--
+
+* initial version
+
+[1] https://www.open-mesh.org/issues/373
+
+Kind regards,
+        Sven
+
+Sven Eckelmann (6):
+  batctl: Make vlan setting explicit
+  batctl: Integrate hardif setting framework
+  batctl: Add elp_interval setting command
+  batctl: Add throughput_override setting command
+  batctl: Replace '-m meshif' option with selector prefix
+  batctl: Allow to omit explicit prefix name
+
+ Makefile                |   2 +
+ README.rst              |  33 +++++
+ aggregation.c           |   2 +-
+ ap_isolation.c          |  15 ++-
+ bonding.c               |   2 +-
+ bridge_loop_avoidance.c |   2 +-
+ distributed_arp_table.c |   2 +-
+ elp_interval.c          | 111 ++++++++++++++++
+ fragmentation.c         |   2 +-
+ functions.c             | 119 +++++++++++++++---
+ functions.h             |   8 +-
+ gw_mode.c               |   2 +-
+ hop_penalty.c           |   2 +-
+ interface.c             |   2 +-
+ isolation_mark.c        |   2 +-
+ loglevel.c              |   2 +-
+ main.c                  | 271 ++++++++++++++++++++++++++++++++++++----
+ main.h                  |  23 +++-
+ man/batctl.8            |  60 +++++----
+ multicast_fanout.c      |   2 +-
+ multicast_forceflood.c  |   2 +-
+ multicast_mode.c        |   2 +-
+ network_coding.c        |   2 +-
+ orig_interval.c         |   2 +-
+ ping.c                  |   2 +-
+ statistics.c            |   2 +-
+ sys.c                   |  73 +++++++++--
+ sys.h                   |   5 +-
+ throughput_override.c   | 113 +++++++++++++++++
+ throughputmeter.c       |   2 +-
+ traceroute.c            |   2 +-
+ translate.c             |   2 +-
+ 32 files changed, 770 insertions(+), 103 deletions(-)
+ create mode 100644 elp_interval.c
+ create mode 100644 throughput_override.c
+
+-- 
+2.20.1
 
