@@ -2,53 +2,48 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2315644C0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jul 2019 11:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E716B650AC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 11 Jul 2019 05:44:29 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 7A0508165E;
-	Wed, 10 Jul 2019 11:56:28 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id 609178050D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 10 Jul 2019 11:56:24 +0200 (CEST)
-Received: from bentobox.localnet (p5DD32C03.dip0.t-ipconnect.de [93.211.44.3])
- by dvalin.narfation.org (Postfix) with ESMTPSA id 0A50C2010B;
- Wed, 10 Jul 2019 09:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1562752584;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=7qYODw3UzGdZajz+oG5ewhVhBEefdmyxRt4CUhSrjzI=;
- b=Pe0mBaiPcZg8hUXLUPnA1fcLM6gYwLtXC29swXmZxgLTjaA7vrnDDTpBhzZ3VaTE7p5v00
- n+wVdygR+juT9kLRKit8NZqqWo3lCnb/wwaAv1VbM9bnFtKe6VU8KqJMx/0Pm72JZgHu9q
- hSNrvqp2mNwR4bGjb8zT8xVuPxIFH/k=
-From: Sven Eckelmann <sven@narfation.org>
-To: Stefan Bader <stefan.bader@canonical.com>
-Subject: Re: Unknown symbol cfg80211_get_station
-Date: Wed, 10 Jul 2019 11:56:18 +0200
-Message-ID: <10352586.3EjdGBoHHf@bentobox>
-In-Reply-To: <e8205d24-56d7-14fd-6cd8-367791c2c003@canonical.com>
-References: <cef22736-91db-6a22-6da4-35a4d53a4adc@web.de>
- <91929546.yq5N1g86sx@bentobox>
- <e8205d24-56d7-14fd-6cd8-367791c2c003@canonical.com>
+	by open-mesh.org (Postfix) with ESMTP id 7799981621;
+	Thu, 11 Jul 2019 05:44:23 +0200 (CEST)
+Received: from mail-yw1-xc29.google.com (mail-yw1-xc29.google.com
+ [IPv6:2607:f8b0:4864:20::c29])
+ by open-mesh.org (Postfix) with ESMTPS id 218A880F49
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 11 Jul 2019 05:44:20 +0200 (CEST)
+Received: by mail-yw1-xc29.google.com with SMTP id m16so1537970ywh.12
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 10 Jul 2019 20:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=rPdGlQRWso0fLFIg9VJvO8vYTtVsI4jCjAXm57aLuXI=;
+ b=hFLwZG0Y8Hf8nWhumUo9dQg9It7FbAlWkvG5OTPZdqkaI2GGxuTNAof9wtwj5oFx1F
+ SHVlTMF/Q8R+rZjkD7MDi6KwMVLt20/KXFppi4imRY9mIxzca5ngS+KJhOCQOx3paFGp
+ ddGu+C1iazSzywo6fysgW69Pc1MYQpZ9fHyp7JjX/w32s8kFsPhL7m/IwCNsStVt8mUt
+ cndJc7Ae3yHBX+eOlBRFEzmqH8xyFva8p4hZpwWV5+PQwM0XP8m+V1z7P1hUFSer+BE0
+ 2XRQyygdmFAG0d0u5pDH34xnbC3hiMiDSWrdtc+gXOGFzMcftYgsWZfVJPUR7eXPnUv6
+ oVVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=rPdGlQRWso0fLFIg9VJvO8vYTtVsI4jCjAXm57aLuXI=;
+ b=CGKy82NSIC+pQOACTSJjs4uCcCwdkXFjiVIrwOIRH69Hii/HPe5hgB2mfPskOm5c8P
+ Ib9eACJkme+D1GZMCaznZkvGGycG6UuuZwQzuE/KYh68NXOBJqapEYgp871L5c8Qee9E
+ vTFRq5S++adPpmNuAbZjgPUMsOUDopRUbr2GMux9+oHLNYiQkbcQWX7evYCCSN9UD3KI
+ jxECRzcHOOe32YIKXsHePn9MNtC2mjIAuVLBWF5wq9+Htiv6pbAmBQrYyValUqGqzcaI
+ 2d4/ICVhhgzNlEvQyw9rG10KaONNaPmK0Qwkdd+tPvDIu7bWbs27UgBfSi3WEyecvysD
+ NbsQ==
+X-Gm-Message-State: APjAAAXX65V4J4g06iZqJiUWyX6o+58dKo4eE1IkrbCDPC2Q1jfUAOjk
+ 91NNaqIImzVDk18DYiHjJ+XGbM8wSGnnaz2aQ+nyud4C
+X-Google-Smtp-Source: APXvYqyNFxnFqLQtx8oqJZ4nq7BNeMQJQBgjyTAZGvH/edf4YYn/xy6FARSsgWQm9csdyllk0iLn/CP+qSB3QpQgeaM=
+X-Received: by 2002:a81:6d8a:: with SMTP id i132mr650487ywc.304.1562816658548; 
+ Wed, 10 Jul 2019 20:44:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2860183.0W94i3AjuZ";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1562752584;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=7qYODw3UzGdZajz+oG5ewhVhBEefdmyxRt4CUhSrjzI=;
- b=ujL/0+dWYseZJSXh06UsaMfYMVrv+DbaOQIMl4+lRA6rfaGmJ6CCkS7+UjjANanldXNLMT
- SOFGROqvwGl/sxw13AhFk69YSnQE0xKDM/+eVf0ceaIwlUJq8Y9HtGaqOfU3igsCV7js3G
- 85Mq0XHFNHvP8vw1uQThC/Y5Y5RypEo=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1562752584; a=rsa-sha256; cv=none;
- b=bkcCwnZ6Msr+Rpr8z0kdZkCeQRnNhesF30m5GGdJ33/m/UCXrfLPxFOa59NQLWEOlu+BJG
- 1BFpaT14JgabprF0939GbhCIrerJfh/juVX1wcaffH1ICQpY2wOghhpEIDoJaurl57hqJN
- cJix+d7fjMsX/oPgaLeTGy2wIYfS9XQ=
-ARC-Authentication-Results: i=1; dvalin.narfation.org;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+From: Ricardo Cerrato <kurschev@gmail.com>
+Date: Wed, 10 Jul 2019 22:44:07 -0500
+Message-ID: <CAH-WULkD2g8KvzWT0=CxcvF5ja54p3qW_OZukM52gtoTkQXb_w@mail.gmail.com>
+Subject: How to run batman-adv on interfaces in AP / Station mode?
+To: b.a.t.m.a.n@lists.open-mesh.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,70 +58,56 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>,
- b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart2860183.0W94i3AjuZ
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Hello all!
 
-On Wednesday, 10 July 2019 10:56:36 CEST Stefan Bader wrote:
-[...]
-> >> As Jens pointed out the missing modules are in linux-modules-extra not in
-> >> linux-modules (the former is not installed by default).
-> > 
-> > Who is Jens and where did he point something out?
-> > 
-> > On Saturday, 6 July 2019 17:22:01 CEST Moritz Warning wrote:
-> >> The module linux-modules-extra-4.15.0-1032 installs the following files:
-> 
-> Sorry, I meant Moritz ^
+I recently configured a mesh with two nodes running Debian and
+batman-adv and two wireless adapters TP-LINK TL-WN422G configured in
+IBSS mode, and to allow non-mesh clients (like my cellphone) to use
+the mesh I had to use another wireless adapter (same TL-WN422G)
+configured in AP mode and bridged to the mesh interface (bat0).
+Recently I found in the FAQ:
 
-But he said something else. Or maybe I misunderstood him.
+"Can batman-adv run on interfaces in AP / Station / etc mode ?
+Q: Can BATMAN advanced run on interfaces in AP / Station mode?
+A: Yes, because batman-adv doesn't know anything about stuff below the
+ethernet interface. So you could also use it over layer 2 ethernet
+tunnels, wifi ap, wifi sta, wifi adhoc, ethernet or even write a
+virtual interface which prints everything on paper and scans the paper
+on the remote machine (but you should be fast or increase the ogm
+interval)."
 
-I think Moritz meant that he didn't find the cfg80211.ko for his kernel. And 
-thus cannot run batman-adv due to the missing dependency (which was introduced 
-because the kernel was compiled with cfg80211 but the cfg80211.ko was then not 
-shipped).
+I guess it is possible use the same adapter as AP and mesh client..
+I my tests I found the AP mode and IBSS modes are mutually exclusive,
+but I didn't find examples on how to create a mesh without IBSS...
 
-I also just tried to find linux-modules-extra-4.15.0-1032 but there are only 
-following packages in bionic:
+Could you provide and example of configuration or some information
+about how to do this?
 
-* linux-modules-extra-4.15.0-1032-azure
-* linux-modules-extra-4.15.0-1032-gcp
-* linux-modules-extra-4.15.0-1032-gke
+I would like to create a mesh and allow non-mesh clients (like any
+mobile) to connect and use a messenger service that will run over that
+mesh and it would be great if every node of the mesh (using one
+TL-WN422G adapter) can be also an AP for any client.
 
-There is none which looks like it is for aws (something like 
-linux-modules-extra-4.15.0-1032-aws).
+The adapters have the following supported modes and combinations:
 
-Kind regards,
-	Sven
+Supported interface modes:
+ * IBSS
+ * managed
+ * AP
+ * AP/VLAN
+ * monitor
+ * mesh point
+ * P2P-client
+ * P2P-GO
+ * outside context of a BSS
 
---nextPart2860183.0W94i3AjuZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+valid interface combinations:
+ * #{ managed, P2P-client } <= 2, #{ AP, mesh point, P2P-GO } <= 2,
+   total <= 2, #channels <= 1
 
------BEGIN PGP SIGNATURE-----
+I'm using Debian Stretch on the nodes
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0ltkIACgkQXYcKB8Em
-e0aAfRAApXem234OPMx1XoX9WsdRYNAfSGntheief8N8q7jEsdu+iHoh8KTNHaCu
-yFFN2VmYHtxukhRxLeCeYvHLZ45NMgX9qsGRAcq/sB+R2ZrxGmHE1g5QHe+maY0J
-NuCm0EN7Xh66tRtm5O4sNYJ4ioer2I4GCAkPPO8RI4ZwNHgr69WOK4VNNtKKvd2M
-3SG7a+XW27eSuPfdN5D9vOiYwoNFV/5YcVgZthk3YV20WJpQWUXhtlCx2D9LcQgh
-V92YB3kWzqLaadD42R9J4AH2SiGCIVBW4oLno6+2+BEeE+PoKfUvyanMACDJn+u5
-1j7PRm1Yo4E1AI3QO5/DYcBeaWFJ5mwjj0t3Ox2ICkhoUMHiT4ayUfJNCD/unEJj
-oi+mpMy/poip8bBRT7uoubYf8FHNz0itAGJY8THaFekgFixV3ZjyROUf5xKDeCpn
-6pR5nanovPj1Tujk3A6jA2VLckW4k4u6dH6XYE06C7XcnDjNxBL1WnOgbT77FmRA
-JDtYYqnfMhDROlTpcaNpCTr8zfHT3s8GSOJY7WeWBjGV6oM2o92N7U3h7V1a1VP2
-HgcoxInN1jgGfRj4UxcfG5YU1jypraH48orPUISUD1Dein5Vp8Fxwe8Xic683ael
-DSuD5cd54ZCd1fxVmBiXsrs9aTSTDoEqTZF3PoRoNS69kuopWbk=
-=bCeB
------END PGP SIGNATURE-----
-
---nextPart2860183.0W94i3AjuZ--
-
-
-
+Thanks in advance!
