@@ -1,56 +1,104 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD91680AA8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 12:54:06 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ADC380B10
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 15:03:17 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 0E8308222E;
-	Sun,  4 Aug 2019 12:54:04 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id D3D73802FA
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 12:54:00 +0200 (CEST)
-Received: from sven-edge.localnet
- (p200300CA6F2191007D683EA4D59D38D5.dip0.t-ipconnect.de
- [IPv6:2003:ca:6f21:9100:7d68:3ea4:d59d:38d5])
- by dvalin.narfation.org (Postfix) with ESMTPSA id 708021FFFB;
- Sun,  4 Aug 2019 10:54:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1564916040;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=AzQnqS15NPYy+PfcGu4VNaC5fnNdj39LdY7F5bP8eD4=;
- b=oqKVsTzuj1R7mokzQVL6utmyP6JCPIkySuehS5RSA02shyUqxyn3q20d2h3B7yUNi1rL6S
- wHPj19srlkFJGBZlKmlFPG25qKwBwgSRQEEqhH4XH350Ry82FFh4njnQIUjbWEdRrXAW2B
- 32+K0eYPy5oxmw+iRB0e5TnDdSZxLM4=
-From: Sven Eckelmann <sven@narfation.org>
+	by open-mesh.org (Postfix) with ESMTP id C72A5822B7;
+	Sun,  4 Aug 2019 15:03:13 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [217.72.192.78])
+ by open-mesh.org (Postfix) with ESMTPS id 78A8E80610
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 15:03:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1564923791;
+ bh=q22eDvJegcc1IrF8Kcg0WSjGCSxbErlo4gkwevIAhXE=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=VSnmQHElGzkIWhIf2aktWfzzgzAMApxOk/MFqufC2Z/FUvKybjj7N/I1Nm4nKjWRb
+ 1wO1nRbPBWAi8NKrIvUA7Ocs9irjk/OxNZBjsUE/q9/zINnBEZXm8xa8bTDbYPb+Va
+ XOHHS/HQNFK0nNwvYK7VDzArg98TgiM9ggSBUba0=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.2.154] ([79.218.129.226]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MTy9d-1hlhTb49xJ-00QhOX for
+ <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 04 Aug 2019 15:03:11 +0200
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH 1/2] batman-adv: BATMAN_V: introduce per hard-iface OGMv2
- queues
-Date: Sun, 04 Aug 2019 12:53:51 +0200
-Message-ID: <2816600.2h39cV733O@sven-edge>
-In-Reply-To: <20190804042855.29327-2-linus.luessing@c0d3.blue>
-References: <20190804042855.29327-1-linus.luessing@c0d3.blue>
- <20190804042855.29327-2-linus.luessing@c0d3.blue>
+From: Moritz Warning <moritzwarning@web.de>
+Subject: netlink error with openwrt-19.07 branch
+Openpgp: preference=signencrypt
+Autocrypt: addr=moritzwarning@web.de; prefer-encrypt=mutual; keydata=
+ mQINBFkwTWMBEAC9ueChNwq5Tg92XSgZeCKrMQMifZ7x8dnm23kDMwfXdNoicm18xi2XmZbP
+ 6DcRid7zC0XttwJfooAeu+xt8HuXW0ZPoXYdI0AOuTulougJWTN8Nhp81bSDsvDpZwrYZBVm
+ 3Lu5yWLLv4WcI1gA0A6xYi3swE6QWLQzEhnLk2CBQZAYyvPRIFJeKPPkn+vVNiu4w+smyXUq
+ 0CqOODvNUmCBl3uqXTDE2CGC9rf8jSsSoOfV6U3WNnKyRjnrnwe3gh7VKJm+sM+c3yAi5RVT
+ OiAWzG85AOiM81D4I45XcHl2URwt/qXO4iFPYW8mwNy5nNB399Ua2/vtqx9kGMcvs7ne5pIC
+ hYZvTBaDFmkF/+UCoXI6u6ONvjDDMQ70oTP5/Y6/kkS3CWW2GgZQtf3sYb3quRp2Pr5fWmFK
+ ErTsX4luzfWTxMXkOrDWs6P4zV88BewJLqV8t8hDh7NdsFcZwMRNvfH02pQyiiCVc+18I3Of
+ pCTqdzpvwMlszoUnjUkGWVGqdtVwUAZMbqDZlLqoTmJ5KVZMYPpsPPWqIP7C/lEq7f8hPiiR
+ GznSKjqmKU6x58b9hLO87FrjQJ89q5wlPyuTNzg7BjWy3rR5aDfV3ENengDOb6g9joiweeh1
+ mE6BeCalhvrOSqA6jC2Lb0Ttke5jtQa0Mdoh5/NYHDyT1LNziQARAQABtCVNb3JpdHogV2Fy
+ bmluZyA8bW9yaXR6d2FybmluZ0B3ZWIuZGU+iQJUBBMBCAA+AhsjBQkJZgGAAh4BAheAFiEE
+ BtNBFtOYRL0Whm9U5yAWyf8FrDwFAl1C47EFCwkIBwIGFQoJCAsCBBYCAwEACgkQ5yAWyf8F
+ rDzObw//akWL1AXlLtuTVxNNlt55t17SdGT5+WqOp4t63stugXMaBp01/QJ4MGiJQN0w4LAy
+ KpXqMz0CHbCgNpiyASSgguqr4B1wU1RjIhSA9aoJ7YWTcanvQQBI/eZ3+fPRxqpPaYBopk8G
+ JjCPtrBCQ0LkJ7POB8DY5wFCcZxxHZkzzL7lUd5/r0aBLRT4YvoHiBCkmmMup3cdc9PnWTyO
+ xuNdsk/uX9BnUBerh9zihRD1Ddnolyhcx9icb/zHQcW/2elVcLfhQCi3mGjX/4EOPji3miVD
+ CnzHxPrH0+risqPbzVzPN2kFF0sCXZiBRv4DiCn2d7p9QyBoFxZawVu3o3/JhJcKoaSXp0tX
+ jtVjfGMt3pT3+ic8GNOaa86o3wh4oYlkuGb6lAElLQvq18/IKZGyTBdgl7amDZDXH1hdn4rP
+ k7o3ebBiIJ5gC/IXyjEfbHcZ+l0LESHEuzNjDiOs+n4YA7hn9z542/gFauoDjOKATahRJ3qP
+ kgP5F3X+LE3W0Q+5uodK0djE9TtnhQ/GKajIztVe9tZR+W8V5xe72FYgygNqOBv6DK+oaGsb
+ NkpTFXSCx5A9RtwTWIMLZG3kVR7pBHwEz7Fww2wc3G/NRrsniDnnHSswm9u6rB7W/4aviVHo
+ OeqrEYwq18vEA9EvX0SnTuUNQI4ZpZpY4S3/gQGsI/y5Ag0EWTBNYwEQAKL1e73+THWopVqD
+ BhUuGtpqupLFjTFEoT/PNs0oJw+EHmkqS0+sK2lN1kFOl1nVfdfsBCe2KhVygVuefAlN6W+m
+ UbYfJhjZr63gUg5nCezLM4p5WumUl7bciReJv5n33fPEr+hszYkb347NN+oIKQzflpvYdxhf
+ d1zbQP4PaskSSvud1C6Uv+7cJh3YuLlFW9UXPJ7Q4jaNP1FfmaiXrOyY4OyRSUH05Z1JN4RC
+ lF4TLsZvP7B14B5dbXglYHlxAv3DKrg5ps7G9Vo8jf3RaU2JE1yhzQWyCJji8P9IEcT7yeUU
+ TEf0uuNa6G1JbKGBBqrbjLVZs4Sv1jvSHa8cD+G96rxpqgRsfEW3TqSY9Uab/Gr9HR/FNaX3
+ FG9W0BpPuJsuJ1frOyhJEfbQQFljNX2C46WhMAnCW16Ni30Y/6h5If/MKlhgl23ubRd16ngU
+ PMU0Zof530TQg/Ez3rmXP+thpCRbEx9+rslugnEqXJm5gIdIV+Iy8ovFkWPfMjktMkAIselq
+ IidMYORhkzF7SZNVmrD/S6NITB6torSs7/q+WMRDSUVCEWwm+amz9kvRL/MRwJqJFy9aMNki
+ CnSL75mRTKZgYZQxmrTMw8OSd0CC6kqaJbVSW1Uk29x8XFtNaZKH5c1k1fclRXV8NPStsXm3
+ lpoYv3Bmhsdx6HPzJGgpABEBAAGJAiUEGAEIAA8FAlkwTWMCGwwFCQlmAYAACgkQ5yAWyf8F
+ rDyRAg/9HwbQyu5i7kptQM38SVYdcFUCILd48oJFey4lVdCmoXFiXVHaDPK8cmRvoaNCVH+5
+ ay5aegzpEjxtpN4MUh8pJV5+D/aODF5VHxRK1g18SPKFK/0L+4ivyQ/P1aERa5qmjCtkHx+j
+ wd5vCP3eVy1I53F3duuI2+z4T7RlgTaKM+sqtV/0F3d6Xri3BaSVKpcdiATS6qkwLgjbjoXU
+ Csxi1LhMTvuHykEgOXqumwFgND3S9w4o839uS6ywC39yN15ps9/cNE+0gp0MIUngWLYp9RbN
+ +6yoVsLr+5ApeJyIIwUJ1v96+sPdV7S51A1NC9ApVqUF+R/h7V1T8WaL9rCQqqxc6FpJpSSO
+ aKaEBztXpyky2LuD7x7fw7pdXFdoQbLG792QYNGwq99XQA6rtAs4/FALgrvSwdEjubwOQ+tb
+ ZCEwTgTNdPrYmnlgsoQC98FS14hf82Xg3+8ZhWcJTJH+EHCaTomrmfeXsvZgXVwRD4yxNnZh
+ Yw8wPJ8HGXa7SIZIUx2dUWa0i7zyyJoawxDYPHIvhqmigYSnG+v9gkd75hCmnSxwclPcBEuH
+ rJ23zOgOciEX+/47sXKwDif2H9Bg0FAGi1R4UrG6WJ4rFpLdX75Bn7OusclIegdprghOXB5E
+ t74W9PCWeEjvrDf4NtkU5VlZeVyQ1pCdEJI9+cFIEzY=
+Message-ID: <9e7c2d2d-0dab-f03d-1868-d8a3a59f781c@web.de>
+Date: Sun, 4 Aug 2019 15:03:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2266715.SzqnETc6SI";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1564916040;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=AzQnqS15NPYy+PfcGu4VNaC5fnNdj39LdY7F5bP8eD4=;
- b=jS0atGpsupoOqmo32DKgcQEtvb8svEUy9ehVeLUzJItSsVoPJsmvzA0Jz1+xRhBcI2pJBx
- VIJvMsnRVQEJ4vf9n7oqkmiHYSRuK8Znj4q17LZ8C5AlfQ0UOSE3sNiiXSrmfu+kX0HZt9
- VCHhEdAjgvRApI+/gtuntIVE2z94OQA=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1564916040; a=rsa-sha256; cv=none;
- b=L5WXtak1kp7d1XFC6PWt7u8wxusA8gA03oBy1+LmP56jxnsJLLor4DSnxqslAC+dnjuuJ1
- a27FdqmGIs8Nkq71efwyxauSQRJ4R10U5t0qDXj7Qe2ZC/3peFdUxVWVuuXzWruOHi3dKV
- ldY/JcBIxwnMV7OlLMj3SQrIJB8AdMo=
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-IE
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:2wOG3melxNTJSBuWaHtYA3QbaxDjjt+/+GMpSMSLnXXhe8Lz0dH
+ InfW/WmYDcmFhLMaCIqyQ26vY5uJv7CLbo/fANasKs6+0wHcs8x3bLOJ7yYx5pmQnjkbVAA
+ gERLSqiXSFJXqVy/hCkjfWgqChNnymRyeJ6byaRk04/xv1oNWmQ5zaUnxj4fesMZKJAlhDJ
+ WhmSvnn6ccPhTRguIeeLQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:O2kPVljtl2U=:cyoFKf+TVS3KnNjgvmnmrJ
+ Fo7Y0U4UNIjwcG6NURAzVKpivdZToNgXlx2DDO5bYoD4/Zs9U+qmeYW83I8D9f9gvNt7cQIOa
+ r9nZT1Bx9bHV9mw2j6wGSaBEtAmZ8ZAtVuTcZ1LJAyedh4AewJ8fBivAowK85sQAxczQK8/Q8
+ ZIx//z5u7Bl2HF3t3QXaMCyuC2ZaseQpzdfXZFFW8SCCS5KyR4jOam+P8enB7uED/4kNDSwFb
+ M0nwRVGbHr/tboTzWK7rwxq+GDjeGyTZm1Uw/6eMH+X8wPc/ZTTGuEEXDaZvj7EFW3GUN0y8z
+ q0TC9MKvL0/fEeki+hCCHxhzHLirjz8zwQbrH83dtw9YQE+QxiJ5gf/NJ5ypmYc1r9Ovt3DYD
+ E654pGZRC+kXacVt9jSniFBfjsZ8NKUf0ILpgXdcVav8KOj74dF4QNXubb4YRWGzoerrdOYCE
+ yLjiG74132KBhWIfj6VZ6OXH5txKMTaM1gFramFb/oR2nJDiBM4x5XxnLzQM+v+Rt8xkKMdCk
+ xmJ25egOMOwNZ52tqTysuaUD6yLYZTIx+pvL45vpaPOOi4ZYum5C2IjCagQV1fI4xYkmcHDmr
+ TiL2bDKd0wjP1SD3ZBTZrK6+TEuDErPDKcaJUSxhQ5voX84l8mekSm0xCGqTAtfEaayXikhFT
+ 6so/YO6xq4Lu2qnNxwamWcZUQxvLkqZx3vv5H+2bNRRhZN9ZQ7BrKhvkQDXb1BcgWkWXb35QQ
+ xrLZuKwXFWrspnp4LfnukV538Sunuf3B+2GHDiObZmdbtB8j/wrt4bg8ZJV9t57p1PxmxDiA9
+ SN/QGbk/FdPYx4cFSG+NJiui6W4G1Hhxgz7kdOny1PyVjbIq9OUw7Fou4lAtqSMBdUaoS71Rx
+ aw7SbrXz92xomPiZbn5ZBZwJCFgq3V3m+JrEg7Vk6AKy5BwQaf7Lua6ic/tZaaqnAoQwtaTWA
+ ExUQuy2W0LiWvW0euC8HTwMP03A0c6Tn4D0Vsq4SODGSnYGBSNbuELw3uUFyYB3aa1J+V/yQf
+ n+WmKQqgaHvZuX8BWRbtwNVuedtuRwbCtoR4pctxhdBDUVqpFI7/pysyN11nbQwsySWk4GH5M
+ yYHzynHBfzDf4FftSn21qNnbxhw/LHOZW5FOYs1Mhpgh8bvigL9+u9jvVMrRZd6OLuCbwfRmO
+ Ps82k=
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -68,52 +116,25 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart2266715.SzqnETc6SI
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+hi,
 
-On Sunday, 4 August 2019 06:28:54 CEST Linus L=FCssing wrote:
-[...]
-> +static bool batadv_v_ogm_queue_left(struct sk_buff *skb,
-> +                                   struct batadv_hard_iface *hard_iface)
-> +{
-[...]
-> +static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_i=
-face)
-> +{
-[...]
-> +static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
-> +{
+the OpenWrt branch openwrt-19.07 uses linux-4.14.134 and batman-adv 2019.2 (package release 4).
 
-Please add to these function an lockdep_assert_held for aggr_list_lock.
+Compiling gives me this error:
 
-Kind regards,
-	Sven
+home/user/openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/batman-adv-2019.2/net/batman-adv/netlink.c:1346:4: error: 'const struct genl_ops' has no member named 'validate'
+   .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
+    ^~~~~~~~
+/home/user/openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/batman-adv-2019.2/net/batman-adv/netlink.c:1346:15: error: 'GENL_DONT_VALIDATE_STRICT' undeclared here (not in a function); did you mean 'MACSEC_VALIDATE_STRICT'?
+   .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
+               ^~~~~~~~~~~~~~~~~~~~~~~~~
+               MACSEC_VALIDATE_STRICT
+/home/user/openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/batman-adv-2019.2/net/batman-adv/netlink.c:1346:43: error: 'GENL_DONT_VALIDATE_DUMP' undeclared here (not in a function); did you mean 'GENL_DONT_VALIDATE_STRICT'?
+   .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
+                                           ^~~~~~~~~~~~~~~~~~~~~~~
+                                           GENL_DONT_VALIDATE_STRICT
+/home/user/openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/batman-adv-2019.2/net/batman-adv/netlink.c:1353:4: error: 'const struct genl_ops' has no member named 'validate'
+   .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
 
 
---nextPart2266715.SzqnETc6SI
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl1GuT8ACgkQXYcKB8Em
-e0Y3uA/+MySn6sZeJidvvGblHqBNGITEQZ5M8KHCqhzxQb8xzF9OdsmI8hSBhZV8
-poqeRvOaK8+UQhQVPLJg8359187uk90rbMZtKsaxMTS6KOvgjT91LIsDrV5rPH+9
-Pd3Tbbx4YDVRVmIOgB88L2/MEbdkzrtkPu7tvSfug5ZGi/e4H5e1/xQ6pvusS/h7
-wOydArvbgdQmkYjyFHfQrCEDPDzu5/mo15eKiEOeoa9aC2xgmMPOwS+5YuTZR5aS
-XYz4FI1aMnS+VSVv8WwFO/jST8fFIXjbb4ZaV1BE5954AbG2UwFQ8kV1iJLJCkjo
-Nn1wtdy3TAYVHeaRQYjhhb171zzSEJk9AiBWs39IvES+g03hPSn2DVUFUocIn/2x
-hjIXis+o+OKs0QX83sX6c/Ex5TkekW0AQvga4AatUn5KzgCknr9XwXWALf1+EPlR
-rPxrjJcA9uttHHrCMbx+LdEMG7rk9sgC8xjOhPrxk7po5iDm1Zh13vfqV8/NfAWo
-zECcOXBoByGbm3ETVhpg395e8Em/Rivpctz9UY53TSbjhoYcoTDBL3AQBAOVvhm9
-+bxNPSCfxiLkQVioU7UAMLZP0FC3X4EjOMpZzIfaj5NGI2xTy4bBmV57w2gkDQr2
-850/shC1LmGXId5S/yMW7dtSo4qaSJ8X0i4HKuWlGz/UPBck0Hk=
-=89CC
------END PGP SIGNATURE-----
-
---nextPart2266715.SzqnETc6SI--
-
-
-
+Is this a known error?
