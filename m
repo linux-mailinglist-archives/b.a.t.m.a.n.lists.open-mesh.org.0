@@ -1,57 +1,55 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F4080C0F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 20:55:21 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC1F80C10
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 20:55:29 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 345C1827AD;
-	Sun,  4 Aug 2019 20:55:12 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:171:314c::100:a1])
- by open-mesh.org (Postfix) with ESMTPS id 6E335826F8
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 20:55:08 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 2DC72826F8;
+	Sun,  4 Aug 2019 20:55:14 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+ by open-mesh.org (Postfix) with ESMTPS id 0A15B826FD
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 20:55:10 +0200 (CEST)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1564944908;
+ t=1564944909;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=6BgXNIKN2InwaWL27agE4PPnR8BBfOtAkgTn+afeJC4=;
- b=WrRyW8rQb6uap9DrOnNuXcKbkYFS9wznES2kctv/+GuJH0ayijACg1qETHbhs9O0TeL3eX
- HwhUYbs3gL/TZR7XOtKAgtPY63577Cyz+0vQL1/tZr7Rh1pcmP7scsFCJTWXGTbQKQ0yHa
- oZufWvkZPKVxzHHHlXjsnfVTUSu5IUF8/QMknBPguTC1FxnMWwNaYA/ZXKxzyCHiQyjKSw
- bxRaTSOzCOOa/QF0a0NM61T9L0Ux/DeezI5R5AvQE4+Kk2s17Ql+Rmok99u1pgYZ39Cctl
- IShwqGZC0+70L7NbMN50OpgIL+fjkpm/KiW1njJ3kDn0FAbp2Bc5xQ5QXO3qsQ==
+ bh=ScZCLpDPZHAgfEzoHIqS/KtkEgELHgPsilMoqdKhrr0=;
+ b=ZO/715jy6wM+M1GofDxfbUI8EnYDI8synWXlYQnonuupLOIF5FUX+j9jvzO5Sb0FZeyXjr
+ kH1i39+WBzyJpVZ89rOp0KJw3nCsHvrzQjeXbS5MRtx5OTOTYOpWtlqpBJO/n68ISEcw+F
+ b9yp1mWj66KoIqZkxAeaNNjhyfNWVFB7NV/E+GrCKmk1+f/hvekI6pxbJEa3GC9UyP6t0m
+ xVgxU/HU4akRVHmAkSRP3tgt/Ex3RkSzBdV8ytL4qLmFmt8tm9lVDm9ToPfVmR0Viy5qrX
+ snEoBS+dNVSmVBpMtVi3lboLZ2IQU9MZj1OBk19W1Kyg0ea63s1iJ6m9bhNrdw==
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH v3 1/2] batman-adv: BATMAN_V: introduce per hard-iface OGMv2
- queues
-Date: Sun,  4 Aug 2019 20:54:53 +0200
-Message-Id: <20190804185454.975-2-linus.luessing@c0d3.blue>
+Subject: [PATCH v3 2/2] batman-adv: BATMAN_V: aggregate OGMv2 packets
+Date: Sun,  4 Aug 2019 20:54:54 +0200
+Message-Id: <20190804185454.975-3-linus.luessing@c0d3.blue>
 In-Reply-To: <20190804185454.975-1-linus.luessing@c0d3.blue>
 References: <20190804185454.975-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
- s=2018; t=1564944908;
+ s=2018; t=1564944909;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=6BgXNIKN2InwaWL27agE4PPnR8BBfOtAkgTn+afeJC4=;
- b=PIYxJWrH8Ls0EBmsO3BxTOMfgsoW/DQjEQP7Z00jU12rdAtNrReNybsVz0en1al1gF+43O
- 8I2E4IS2tkWowflEFkLgVOMEwFIMFTs4L50jBtJmO+rDyZXjtQiQXt9wU97Aef78KC+zLL
- BQlDHpCH8ra/u87R/uw5nU6fh+hJMMrdOEMin+KRligprs24PGUeDItyWjBV58G5y/WLU8
- APO7pTpe4kQGydC0XEB/JSHAajI412kvYruEvtAu0CGMXfxVJ/ctYgfmFpdSDHfR+NXAfm
- TEAfnEq5tTl0UWFRXMqi6A/4iIOmwnLpnZLQG1bQGOBpAGjpNjUNKYy7vrtVsw==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1564944908; a=rsa-sha256; cv=none;
- b=Own2i3RWpWEkDzdYwbOqTdT5D70fUtDu7O6nL7CfjGInYW4yyTgTKprmz0XNvADd+giVb7
- LmgOwMZUT4/z6fxcZGzXhUQuqq16I5Y1tbDizRMws5ZS7auCvGrA7AMqd00TJXjns1pj78
- WQSV6/FOSOisqF0se/aGvzFlBQ9uSVeZyo66w5HTlYFzHDFeO9del+//5Sv3P1KueDFyv4
- r0zmirthxY+tyQthWh/U8y7Qhu+fPsAKsozYiqiA+5D5WMjdUkWdS/GXUPE7NYDjt/ANBi
- LAQKhX+NqaBIdEx4rWOctR8Y+YuBX+Nu/k8KYvaNZpnR1nDj+EBN72qYWp8pSg==
+ bh=ScZCLpDPZHAgfEzoHIqS/KtkEgELHgPsilMoqdKhrr0=;
+ b=K1XHBKu9gipyKPEvM1MBt/n9CkcaQYHsvACkR6fjQJZNtYuc5lPY+4hNUAImJCoxs/qBd1
+ wdg5P3Cl+JECS5N0ul2/9MV19coJJdSuS7W1nHYSb3zDRKoK0st+75xfAB6dLHQjb/6MDo
+ rnE11T4UYkohgBFmL04Xc/7Ufjd+sxEqbSTgvKxL8vpib15z6WG+k+1yeBSWU8jFieGPLw
+ e/c2blmHfqAiEel5KJbRaVxIAis2ZqibOAlMBxOtseFoSXAu1ggY/DYBBcU0UDCYa/pnPh
+ YEzuQc18rrN9mwH46WLnJIch2p3GucmbFQQK+mH+dYov+tQSkAQq+eZucpOxSQ==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1564944909; a=rsa-sha256; cv=none;
+ b=lI3l4TEqFro2O98+bSbT3ilbAl/cxN4Aug4fk/b4HGqSyKgmVdOhyk4lEqOnKygVgsRtmD
+ KRzf88u2Rm8YtOCAvNxBOjXr4UqF1ERSq7cmLMUByReJVlquXFVJE6GNLyLjbjykf2iGlR
+ UzM+EuJJzUna2qxzz0HPz58r7ks0xx/pocVUKQ7ghCDao35PAnATdO5esPBslbaDNiEvy7
+ kmKGF5b5UBRFAh82sywoDX0LgFz9WbaZR6hwUsoOMWnH+SKXeuyzWpWTdCD3U5QxllswYb
+ bdvi6QKQwT5RKZGJiYkh8+Ss7Z8oEiIQazO8ormlBJ+bDwLxXfhAujk7dC/eEg==
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=linus.luessing@c0d3.blue
  smtp.mailfrom=linus.luessing@c0d3.blue
@@ -75,304 +73,68 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-In preparation for the OGMv2 packet aggregation, hold OGMv2 packets for
-up to BATADV_MAX_AGGREGATION_MS milliseconds (100ms) on per
-hard-interface queues, before transmitting.
+Instead of transmitting individual OGMv2 packets from the aggregation
+queue merge those OGMv2 packets into a single one and transmit this
+aggregate instead.
 
-This allows us to later squash multiple OGMs into a single frame
-and transmission for reduced overhead.
+This reduces overhead as it saves an ethernet header and a transmission
+per aggregated OGMv2 packet.
 
 Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
 ---
- net/batman-adv/bat_v.c     |   7 ++
- net/batman-adv/bat_v_ogm.c | 153 ++++++++++++++++++++++++++++++++++++-
- net/batman-adv/bat_v_ogm.h |   3 +
- net/batman-adv/types.h     |  12 +++
- 4 files changed, 173 insertions(+), 2 deletions(-)
+ net/batman-adv/bat_v_ogm.c | 28 +++++++++++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/net/batman-adv/bat_v.c b/net/batman-adv/bat_v.c
-index 22672cb3..64054edc 100644
---- a/net/batman-adv/bat_v.c
-+++ b/net/batman-adv/bat_v.c
-@@ -79,6 +79,7 @@ static int batadv_v_iface_enable(struct batadv_hard_iface *hard_iface)
- 
- static void batadv_v_iface_disable(struct batadv_hard_iface *hard_iface)
- {
-+	batadv_v_ogm_iface_disable(hard_iface);
- 	batadv_v_elp_iface_disable(hard_iface);
- }
- 
-@@ -1081,6 +1082,12 @@ void batadv_v_hardif_init(struct batadv_hard_iface *hard_iface)
- 	 */
- 	atomic_set(&hard_iface->bat_v.throughput_override, 0);
- 	atomic_set(&hard_iface->bat_v.elp_interval, 500);
-+
-+	hard_iface->bat_v.aggr_len = 0;
-+	skb_queue_head_init(&hard_iface->bat_v.aggr_list);
-+	spin_lock_init(&hard_iface->bat_v.aggr_list_lock);
-+	INIT_DELAYED_WORK(&hard_iface->bat_v.aggr_wq,
-+			  batadv_v_ogm_aggr_work);
- }
- 
- /**
 diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index fad95ef6..f517423a 100644
+index f517423a..1d540504 100644
 --- a/net/batman-adv/bat_v_ogm.c
 +++ b/net/batman-adv/bat_v_ogm.c
-@@ -17,12 +17,14 @@
- #include <linux/kernel.h>
- #include <linux/kref.h>
- #include <linux/list.h>
-+#include <linux/lockdep.h>
- #include <linux/netdevice.h>
- #include <linux/random.h>
- #include <linux/rculist.h>
- #include <linux/rcupdate.h>
- #include <linux/skbuff.h>
- #include <linux/slab.h>
-+#include <linux/spinlock.h>
- #include <linux/stddef.h>
- #include <linux/string.h>
- #include <linux/types.h>
-@@ -76,6 +78,20 @@ struct batadv_orig_node *batadv_v_ogm_orig_get(struct batadv_priv *bat_priv,
- 	return orig_node;
- }
+@@ -191,18 +191,44 @@ static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
+  * batadv_v_ogm_aggr_send() - flush & send aggregation queue
+  * @hard_iface: the interface with the aggregation queue to flush
+  *
++ * Aggregates all OGMv2 packets currently in the aggregation queue into a
++ * single OGMv2 packet and transmits this aggregate.
++ *
++ * The aggregation queue is empty after this call.
++ *
+  * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
+  */
+ static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
+ {
++	unsigned int aggr_len = hard_iface->bat_v.aggr_len;
++	struct sk_buff *skb_aggr;
++	unsigned int ogm_len;
+ 	struct sk_buff *skb;
  
-+/**
-+ * batadv_v_ogm_start_queue_timer() - restart the OGM aggregation timer
-+ * @hard_iface: the interface to use to send the OGM
-+ */
-+static void batadv_v_ogm_start_queue_timer(struct batadv_hard_iface *hard_iface)
-+{
-+	unsigned int msecs = BATADV_MAX_AGGREGATION_MS * 1000;
-+
-+	/* msecs * [0.9, 1.1] */
-+	msecs += prandom_u32() % (msecs / 5) - (msecs / 10);
-+	queue_delayed_work(batadv_event_workqueue, &hard_iface->bat_v.aggr_wq,
-+			   msecs_to_jiffies(msecs / 1000));
-+}
-+
- /**
-  * batadv_v_ogm_start_timer() - restart the OGM sending timer
-  * @bat_priv: the bat priv with all the soft interface information
-@@ -115,6 +131,104 @@ static void batadv_v_ogm_send_to_if(struct sk_buff *skb,
- 	batadv_send_broadcast_skb(skb, hard_iface);
- }
+ 	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
  
-+/**
-+ * batadv_v_ogm_len() - OGMv2 packet length
-+ * @skb: the OGM to check
-+ *
-+ * Return: Length of the given OGMv2 packet, including tvlv length, excluding
-+ * ethernet frame length.
-+ */
-+static unsigned int batadv_v_ogm_len(struct sk_buff *skb)
-+{
-+	struct batadv_ogm2_packet *ogm_packet;
++	if (!aggr_len)
++		return;
 +
-+	ogm_packet = (struct batadv_ogm2_packet *)skb->data;
-+	return BATADV_OGM2_HLEN + ntohs(ogm_packet->tvlv_len);
-+}
-+
-+/**
-+ * batadv_v_ogm_queue_left() - check if given OGM still fits aggregation queue
-+ * @skb: the OGM to check
-+ * @hard_iface: the interface to use to send the OGM
-+ *
-+ * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
-+ *
-+ * Return: True, if the given OGMv2 packet still fits, false otherwise.
-+ */
-+static bool batadv_v_ogm_queue_left(struct sk_buff *skb,
-+				    struct batadv_hard_iface *hard_iface)
-+{
-+	unsigned int max = min_t(unsigned int, hard_iface->net_dev->mtu,
-+				 BATADV_MAX_AGGREGATION_BYTES);
-+	unsigned int ogm_len = batadv_v_ogm_len(skb);
-+
-+	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
-+
-+	return hard_iface->bat_v.aggr_len + ogm_len <= max;
-+}
-+
-+/**
-+ * batadv_v_ogm_aggr_list_free - free all elements in an aggregation queue
-+ * @hard_iface: the interface holding the aggregation queue
-+ *
-+ * Empties the OGMv2 aggregation queue and frees all the skbs it contained.
-+ *
-+ * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
-+ */
-+static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
-+{
-+	struct sk_buff *skb;
-+
-+	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
-+
-+	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list)))
-+		kfree_skb(skb);
-+
-+	hard_iface->bat_v.aggr_len = 0;
-+}
-+
-+/**
-+ * batadv_v_ogm_aggr_send() - flush & send aggregation queue
-+ * @hard_iface: the interface with the aggregation queue to flush
-+ *
-+ * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
-+ */
-+static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
-+{
-+	struct sk_buff *skb;
-+
-+	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
-+
-+	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list))) {
-+		hard_iface->bat_v.aggr_len -= batadv_v_ogm_len(skb);
-+		batadv_v_ogm_send_to_if(skb, hard_iface);
-+	}
-+}
-+
-+/**
-+ * batadv_v_ogm_queue_on_if() - queue a batman ogm on a given interface
-+ * @skb: the OGM to queue
-+ * @hard_iface: the interface to queue the OGM on
-+ */
-+static void batadv_v_ogm_queue_on_if(struct sk_buff *skb,
-+				     struct batadv_hard_iface *hard_iface)
-+{
-+	struct batadv_priv *bat_priv = netdev_priv(hard_iface->soft_iface);
-+
-+	if (!atomic_read(&bat_priv->aggregated_ogms)) {
-+		batadv_v_ogm_send_to_if(skb, hard_iface);
++	skb_aggr = dev_alloc_skb(aggr_len + ETH_HLEN + NET_IP_ALIGN);
++	if (!skb_aggr) {
++		batadv_v_ogm_aggr_list_free(hard_iface);
 +		return;
 +	}
 +
-+	spin_lock_bh(&hard_iface->bat_v.aggr_list_lock);
-+	if (!batadv_v_ogm_queue_left(skb, hard_iface))
-+		batadv_v_ogm_aggr_send(hard_iface);
++	skb_reserve(skb_aggr, ETH_HLEN + NET_IP_ALIGN);
++	skb_reset_network_header(skb_aggr);
 +
-+	hard_iface->bat_v.aggr_len += batadv_v_ogm_len(skb);
-+	skb_queue_tail(&hard_iface->bat_v.aggr_list, skb);
-+	spin_unlock_bh(&hard_iface->bat_v.aggr_list_lock);
-+}
+ 	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list))) {
+ 		hard_iface->bat_v.aggr_len -= batadv_v_ogm_len(skb);
+-		batadv_v_ogm_send_to_if(skb, hard_iface);
 +
- /**
-  * batadv_v_ogm_send() - periodic worker broadcasting the own OGM
-  * @work: work queue item
-@@ -210,7 +324,7 @@ static void batadv_v_ogm_send(struct work_struct *work)
- 			break;
- 		}
- 
--		batadv_v_ogm_send_to_if(skb_tmp, hard_iface);
-+		batadv_v_ogm_queue_on_if(skb_tmp, hard_iface);
- 		batadv_hardif_put(hard_iface);
++		ogm_len = batadv_v_ogm_len(skb);
++		skb_put_data(skb_aggr, skb->data, ogm_len);
++
++		consume_skb(skb);
  	}
- 	rcu_read_unlock();
-@@ -223,6 +337,27 @@ static void batadv_v_ogm_send(struct work_struct *work)
- 	return;
++
++	batadv_v_ogm_send_to_if(skb_aggr, hard_iface);
  }
  
-+/**
-+ * batadv_v_ogm_aggr_work() - OGM queue periodic task per interface
-+ * @work: work queue item
-+ *
-+ * Emits aggregated OGM message in regular intervals.
-+ */
-+void batadv_v_ogm_aggr_work(struct work_struct *work)
-+{
-+	struct batadv_hard_iface_bat_v *batv;
-+	struct batadv_hard_iface *hard_iface;
-+
-+	batv = container_of(work, struct batadv_hard_iface_bat_v, aggr_wq.work);
-+	hard_iface = container_of(batv, struct batadv_hard_iface, bat_v);
-+
-+	spin_lock_bh(&hard_iface->bat_v.aggr_list_lock);
-+	batadv_v_ogm_aggr_send(hard_iface);
-+	spin_unlock_bh(&hard_iface->bat_v.aggr_list_lock);
-+
-+	batadv_v_ogm_start_queue_timer(hard_iface);
-+}
-+
  /**
-  * batadv_v_ogm_iface_enable() - prepare an interface for B.A.T.M.A.N. V
-  * @hard_iface: the interface to prepare
-@@ -235,11 +370,25 @@ int batadv_v_ogm_iface_enable(struct batadv_hard_iface *hard_iface)
- {
- 	struct batadv_priv *bat_priv = netdev_priv(hard_iface->soft_iface);
- 
-+	batadv_v_ogm_start_queue_timer(hard_iface);
- 	batadv_v_ogm_start_timer(bat_priv);
- 
- 	return 0;
- }
- 
-+/**
-+ * batadv_v_ogm_iface_disable() - release OGM interface private resources
-+ * @hard_iface: interface for which the resources have to be released
-+ */
-+void batadv_v_ogm_iface_disable(struct batadv_hard_iface *hard_iface)
-+{
-+	cancel_delayed_work_sync(&hard_iface->bat_v.aggr_wq);
-+
-+	spin_lock_bh(&hard_iface->bat_v.aggr_list_lock);
-+	batadv_v_ogm_aggr_list_free(hard_iface);
-+	spin_unlock_bh(&hard_iface->bat_v.aggr_list_lock);
-+}
-+
- /**
-  * batadv_v_ogm_primary_iface_set() - set a new primary interface
-  * @primary_iface: the new primary interface
-@@ -382,7 +531,7 @@ static void batadv_v_ogm_forward(struct batadv_priv *bat_priv,
- 		   if_outgoing->net_dev->name, ntohl(ogm_forward->throughput),
- 		   ogm_forward->ttl, if_incoming->net_dev->name);
- 
--	batadv_v_ogm_send_to_if(skb, if_outgoing);
-+	batadv_v_ogm_queue_on_if(skb, if_outgoing);
- 
- out:
- 	if (orig_ifinfo)
-diff --git a/net/batman-adv/bat_v_ogm.h b/net/batman-adv/bat_v_ogm.h
-index 2a50df7f..bf16d040 100644
---- a/net/batman-adv/bat_v_ogm.h
-+++ b/net/batman-adv/bat_v_ogm.h
-@@ -11,10 +11,13 @@
- 
- #include <linux/skbuff.h>
- #include <linux/types.h>
-+#include <linux/workqueue.h>
- 
- int batadv_v_ogm_init(struct batadv_priv *bat_priv);
- void batadv_v_ogm_free(struct batadv_priv *bat_priv);
-+void batadv_v_ogm_aggr_work(struct work_struct *work);
- int batadv_v_ogm_iface_enable(struct batadv_hard_iface *hard_iface);
-+void batadv_v_ogm_iface_disable(struct batadv_hard_iface *hard_iface);
- struct batadv_orig_node *batadv_v_ogm_orig_get(struct batadv_priv *bat_priv,
- 					       const u8 *addr);
- void batadv_v_ogm_primary_iface_set(struct batadv_hard_iface *primary_iface);
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 6ae139d7..be7c02aa 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -117,6 +117,18 @@ struct batadv_hard_iface_bat_v {
- 	/** @elp_wq: workqueue used to schedule ELP transmissions */
- 	struct delayed_work elp_wq;
- 
-+	/** @aggr_wq: workqueue used to transmit queued OGM packets */
-+	struct delayed_work aggr_wq;
-+
-+	/** @aggr_list: queue for to be aggregated OGM packets */
-+	struct sk_buff_head aggr_list;
-+
-+	/** @aggr_len: size of the OGM aggregate (excluding ethernet header) */
-+	unsigned int aggr_len;
-+
-+	/** @aggr_list_lock: protects aggr_list */
-+	spinlock_t aggr_list_lock;
-+
- 	/**
- 	 * @throughput_override: throughput override to disable link
- 	 *  auto-detection
 -- 
 2.22.0
 
