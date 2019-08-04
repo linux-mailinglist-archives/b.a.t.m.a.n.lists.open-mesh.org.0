@@ -2,50 +2,56 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F197ECB7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  2 Aug 2019 08:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF67A80943
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 06:29:23 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id A747481EE7;
-	Fri,  2 Aug 2019 08:36:00 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id 22A61808E0
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  2 Aug 2019 08:35:57 +0200 (CEST)
-Received: from sven-desktop.home.narfation.org (unknown
- [IPv6:2a00:1ca0:1480:f9fc:eddf:ecf4:8861:c186])
- by dvalin.narfation.org (Postfix) with ESMTPSA id AA2F620045;
- Fri,  2 Aug 2019 06:35:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1564727756;
+	by open-mesh.org (Postfix) with ESMTP id 7915882002;
+	Sun,  4 Aug 2019 06:29:13 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+ by open-mesh.org (Postfix) with ESMTPS id 86A488065C
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 06:29:09 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1564892949;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=gVhkNRXMzFndo/1VM3w1PbpgG3Y1ZEtQwQqkOfJOa+U=;
- b=oaKm32H5OtIvQ41K4lcuRx6t0ZfLMVhy/hl5lISSjAkGXYB6XMVZ7f1VjIuD8SOHxFSXII
- PXN2GfK9ziCZfgAfp7KzjGIQhGMf3UrCSRdW5idTNWtegLXSlbhWZGamj/W3s1d4VZebdr
- RPCoTUDyJ27mcj9k4dH2qBA+P2UV3Ew=
-From: Sven Eckelmann <sven@narfation.org>
+ bh=sGcPVOdHf1YQNg/8JWJbKJYHZeV/+g92ffg2cSh1HDY=;
+ b=i0yfX1Os6IHvGJUWCoNqYRXwz4f1Yqab9kMoZgZDA7ATO6+HzmtqEnUSccwFC7HiRYGig/
+ bPCbSsJ79pygcoDxUC2I25kE25NpwSW+20qoTN4aBzlPA5EXgDKdJ4d9eSpq6AHHD74FAV
+ ghnkw4bAp3PgsHb7jU3qgTzNj73JJ58ehaAHFG98IuXanAwmk3FwWMM7Z4RLEZT31LsQou
+ iWPCFso50oPcBPQfnxoCwaPoBDjwkPkh7k6VDBWIGJhGL8dg/y9tNFJ6o1MAX1siej7Wok
+ /dG+1RweB41zFNSdysXuKg5Mx4an/Boi5C1LEd6hxI9jVTA9JIR/xUF7FB6v0w==
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] alfred: vis: Fix ifindex check when registering interface
-Date: Fri,  2 Aug 2019 08:35:53 +0200
-Message-Id: <20190802063553.5666-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+Subject: [PATCH 0/2] batman-adv: BATMAN_V: OGMv2 packet aggregation
+Date: Sun,  4 Aug 2019 06:28:53 +0200
+Message-Id: <20190804042855.29327-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1564727756;
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
+ s=2018; t=1564892949;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=gVhkNRXMzFndo/1VM3w1PbpgG3Y1ZEtQwQqkOfJOa+U=;
- b=N+wMiW/lvxV9e7oxjnjBSld7BMuoavsSAAVQf1x1hoNEwqGcLiV6cXY2u95q8oIyP3vtBd
- wlflokc2T7E4tuzspE0DN9syFKXiGTzRzKIKAfwHewmFPUQmxMg8HCoU4xrpw27B4w5C6J
- FwauvoVq+SC8lWrtDV+iEyaiINg0TrA=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1564727756; a=rsa-sha256; cv=none;
- b=qEWkhOiZvmNpBUKBaILKJYhCbgke88S5VWrulXwygIbCRMdvVYvVlEB8YzN7hlSHyF/KxY
- jLXQQuIGkyBktJxvsycpd2RKihVGG34hs3S2WVS+U5+mmCY6eMdFhe4aumhPCZG1ZlQRaH
- u/fM32XzyZ8PJoPTzuQvob7fDzUqQqg=
+ bh=sGcPVOdHf1YQNg/8JWJbKJYHZeV/+g92ffg2cSh1HDY=;
+ b=b7e/bRzb6Fr4ZVK/B4qD38YUJLQRw5y7EZ1vKhS6kLJaAl0GZML6dtKjpJRILuetc9npit
+ uDjsBPqpo/2g+IzREku/tKnbilkHF8etnWVCrh4ctMEQxXH6hZzL0/aMaAafmmFkdo00GP
+ qrp/8l0dONSwhvMrlWZ5mxirfRD9Priv2gtCKuSgCgFA/juIlKZDw5tUSBg2GFbW4HCxzL
+ rHdmUGcdX57D6QreIi2B//6lJNYNie0SCAst4c2qb5aTncg+FvEaH/Kc6526ddJxjCnve5
+ 7kclKNnKfjobiVryQUE9BWukkQP5EiW08SWf03ZrCIEcpBMuDaOly0BpGYi6uQ==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1564892949; a=rsa-sha256; cv=none;
+ b=fE2M7cGZsxwJ0Og963aGbZgF3vF/NJ5M0nECIBn6WUSUN/CUJpoPV+wTq0a6SgLhUMOr2q
+ mZjDY98qeMwUlslVmOKlWP/AP5JbFUfE0zqZbqQ3BYI6YJba+phXYjpAXODWwvfEWJuHWK
+ RBgQSVMyz9ikITGems3jZhNcbDMZclQR+F/GCCEFlzCkExutIirmtAEZMiHzIUB30f7K+q
+ 618kQmHo/apBPkQ5UY8YnI+qwmRTaG4/70/duLW53a7jZPLFowG9LrBywEhRx6YeovpMBF
+ eLK0jjN4rmpzmZbbNWiz4LJUD4onRCiOfT9kEKLcpnSLfmTzk5WWIpjd6mFJEQ==
 ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,29 +69,35 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The return value of if_nametoindex should be checked before the rtnl query
-is send to the kernel. Otherwise we might try to operate on an ifindex
-which doesn't exist in the kernel - which will never register any interface.
+Hi,
 
-Fixes: a34f044de561 ("alfred: vis: Use rtnl to query list of hardifs of meshif")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- vis/vis.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This small patchset implements the transmission side for the OGMv2
+packet aggregation in BATMAN_V. The receiver part was already
+implemented and seems to work nicely.
 
-diff --git a/vis/vis.c b/vis/vis.c
-index 8df3056..cdc5524 100644
---- a/vis/vis.c
-+++ b/vis/vis.c
-@@ -617,7 +617,7 @@ static int register_interfaces(struct globals *globals)
- 	};
- 
- 	register_arg.ifindex = if_nametoindex(globals->interface);
--	if (!globals->interface)
-+	if (!register_arg.ifindex)
- 		return EXIT_FAILURE;
- 
- 
--- 
-2.20.1
+The first patch implements the necessary queueing mechanism, utilizing
+skb queues.
+
+The second patch then implements the actual OGMv2 packet aggregation for
+the queued packets.
+
+
+Opportunities for later improvements (left out on purpose, to keep this
+patchset simple):
+
+* Reset queue timer on full queue / if flushing in batadv_v_ogm_queue_on_if():
+  -> to avoid sending small aggregates in the worker afterwards
+* Remove BATADV_MAX_AGGREGATION_BYTES (512 bytes) limitation:
+  -> not needed for BATMAN_V, would break compatibility though...
+(* Increase BATADV_MAX_AGGREGATION_MS (100ms):
+   -> BATMAN_V has less averaging, therefore could use slower OGM intervals
+      and therefore slightly larger aggregtion time window)
+
+Regards, Linus
+
+
+Ref./obsolete: Previous, generic aggregation patchset:
+https://patchwork.open-mesh.org/patch/17013/
+
+
 
