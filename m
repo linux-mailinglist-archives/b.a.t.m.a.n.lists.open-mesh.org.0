@@ -1,55 +1,55 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2AC80BFD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 20:27:25 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C5580BFE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  4 Aug 2019 20:29:14 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 7D925826A2;
-	Sun,  4 Aug 2019 20:27:21 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id BC5BF826C6;
+	Sun,  4 Aug 2019 20:29:09 +0200 (CEST)
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
- by open-mesh.org (Postfix) with ESMTPS id 5F1C880B7E
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 20:27:19 +0200 (CEST)
+ by open-mesh.org (Postfix) with ESMTPS id 637E980B7E
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  4 Aug 2019 20:29:07 +0200 (CEST)
 Received: from sven-edge.localnet
  (p200300CA6F2191007D683EA4D59D38D5.dip0.t-ipconnect.de
  [IPv6:2003:ca:6f21:9100:7d68:3ea4:d59d:38d5])
- by dvalin.narfation.org (Postfix) with ESMTPSA id 1A941201DA;
- Sun,  4 Aug 2019 18:27:19 +0000 (UTC)
+ by dvalin.narfation.org (Postfix) with ESMTPSA id 035441FDD1;
+ Sun,  4 Aug 2019 18:29:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1564943239;
+ s=20121; t=1564943347;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=2yUnZLxiDxLO5WFkREjrp4TvzLPdV4Cm8eOBFyECYqY=;
- b=S9oaaKREaB1/90xDMj/+fl/PruUx/Tq42tu0HLnPH1ywn2VERw6kF6AMR8cd072GMIH/Lo
- c1w5wMWAdkgffGWUA0Lkfncf3gmlAhFnbXTbOmVGKe+2mIHgLQa+wbj0kPf+WWc8G0bm9a
- jET6AN3NlTtvVFgNQCJPDl2kYXCKIiw=
+ bh=M29kLRLsUrnmxPwpNK7V4m5ed6wri7woZ635TCUxwno=;
+ b=h3W8BSxBtwnITyDQIM67PVqV2VNjzrzaDxAW0TyMeBqGPCM/zE6AOSOvMuXVqOe9I1Sm1g
+ iJRHBSTx4aYACn5bo8VdqAiQ/cG62udSatIV7l/vXgT4W9FWUCTEwN95Bub60ZX2jIgWOa
+ RYHrTl1NT9AnCQlz+61h71djQuzVdb4=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Subject: Re: [PATCH v2 1/2] batman-adv: BATMAN_V: introduce per hard-iface
  OGMv2 queues
-Date: Sun, 04 Aug 2019 20:27:16 +0200
-Message-ID: <10365865.hbHWKprCQR@sven-edge>
+Date: Sun, 04 Aug 2019 20:29:04 +0200
+Message-ID: <10033691.AcQlIsoWXg@sven-edge>
 In-Reply-To: <20190804180632.489-2-linus.luessing@c0d3.blue>
 References: <20190804180632.489-1-linus.luessing@c0d3.blue>
  <20190804180632.489-2-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart195619907.GGMvD3etR4";
+Content-Type: multipart/signed; boundary="nextPart65207975.omPGRG4tHD";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1564943239;
+ s=20121; t=1564943347;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=2yUnZLxiDxLO5WFkREjrp4TvzLPdV4Cm8eOBFyECYqY=;
- b=FChjBvLf3Tlo+vUHZSQb6f7lfyOivGBiZSx5ZwEmlciovCI5WF3V1o6C8jjrZz7JRIi1Zu
- GWSEU5REhAqQuulHe0+I+BHoMS4jMZNfqJYcueeUXkNaFoU4GJgWV31ORFeL2j4THzp9Pj
- 3ghiwlRyAZLvAYqueLxK0Z1Ues0dsoA=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1564943239; a=rsa-sha256; cv=none;
- b=HmESV3uDxw4XGylLD37JJgVpmAfM+UFMUvU0HF4Xv6ffM1uGPFk1BInpGQ9VhnbQ4K4oR+
- zX/KJJkkNXdGKTqUuMVzsr2AbJEms9FFDmYQmhL9B3P8TKjzhsF8yIo7cTSS4cuaGtTuSg
- TJ/3GLSYe5UaYWak6ruMujPBWQyYn80=
+ bh=M29kLRLsUrnmxPwpNK7V4m5ed6wri7woZ635TCUxwno=;
+ b=g00p8kdNc/XqsM9brAh+G9rwf4732/E3+l1JlzK4GhtRDWgtPRNahkklUGnwEBuA65qRl8
+ xvjG0dSbvV32WbLVKMCl1WtX7YpO5x8yfHBKXf9a90lwrTL63U4bbnaT8ycgfpw1O3ZZrQ
+ wzT7D31WPHEwAtlYZKH4SY+X+93tA88=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1564943347; a=rsa-sha256; cv=none;
+ b=XnwJNESy5GhtndjyJfJzEhZXiuEyJfsMRkZLUQEvxmr5ZLhxn7rV5UuzYppTYMQrOZZ0Mc
+ zjV7BWjOgpJ5xrZX5ergyFmdRy9x9ksYQdYVHW1g3DNfVDJsbdbieKmwyKB7FZKIYjd9sC
+ 2N21BphuRWQIGoRolUgWNbrjAt4pdHg=
 ARC-Authentication-Results: i=1; ORIGINATING;
  auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
@@ -69,52 +69,41 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart195619907.GGMvD3etR4
+--nextPart65207975.omPGRG4tHD
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
 
 On Sunday, 4 August 2019 20:06:31 CEST Linus L=FCssing wrote:
-[...]
-> diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-> index fad95ef6..c33041f6 100644
-> --- a/net/batman-adv/bat_v_ogm.c
-> +++ b/net/batman-adv/bat_v_ogm.c
-> @@ -23,6 +23,7 @@
->  #include <linux/rcupdate.h>
->  #include <linux/skbuff.h>
->  #include <linux/slab.h>
-> +#include <linux/spinlock.h>
->  #include <linux/stddef.h>
->  #include <linux/string.h>
->  #include <linux/types.h>
+> +static inline unsigned int batadv_v_ogm_len(struct sk_buff *skb)
+> +{
 
-Please also include the <linux/lockdep.h> for lockdep_assert_held(...)
+Please drop the inline here.
 
 Kind regards,
 	Sven
---nextPart195619907.GGMvD3etR4
+--nextPart65207975.omPGRG4tHD
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl1HI4QACgkQXYcKB8Em
-e0bGrw/9FYmEoJ2nV0G9EkWI5Co5Jg88prauB1/p55JSXua7kxM9aQN79/mi1GGG
-ckADE+tsFX6dgW60aYga6TlJpB7Ef+vYuVoFpEyMEfjcFT7j5lnhe1wkP42DhKaC
-p701ssuuKmQMkmLf2W3FLLt0En3FkmWVvS9dWXN+3xj1c7gDrTEOiGk4U+AH96FH
-yWI1y0A5RZqjOOwAjOOPuD2DwfaQvIVw4ChuZ1lfmCrxJdVNhrVXUcthgAmOGgy1
-oncE4mH3a6OgjzlD6API0tcy+dF8tQDOZnW9kNJCjWd5bEuqQlTDVqLKa1+BbzCU
-KUdZBxaZYXno0+8o3rOh+6PflPV3aF+0a/n9Xrbx9jYIbu6Xuvu/OVoDCWxb6l8Z
-rMPCf8DSbU+u3LvkuCJCu5UQIMglzLQGCeuAe+o5vbR8NbNJVah+qz6MgNMatHtF
-rLOQl98UAe4rD84L4Mbfpk/n4NWYAJMdl9WdvCi7BMOMAMz9V2F5VYL6j0wAA1hX
-YvCbgjnylg2hjgrYhygHmDTCUS1vxvpCUlVPWorwlD9KDGYaaoRfqqioWCVluFDh
-IaKfBmy4poI5K7olGt6rWEs6M6H+Ph8JEDwpDPZ49jVhNXnVvJuM9wSTTJfIwAKO
-oIYJ/O3rS9ndpp5bEtSnsYHtZ81gDChnxw/BJvIpxPm1YaBszt0=
-=/42/
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl1HI/AACgkQXYcKB8Em
+e0bQVRAAwX8zbHEGy5luT1IP5rR0NpYfo7r4UY699FMUNdQe2zpgo4szzY3MhVtP
+GK5Zu6LytyaagXxb9SuwaMeo1YWqGEMPU8nmE3Ay+uxLuHYksqMcPI3KbYyQO+mT
+ogU77hxv1/7+mrd1T6kc2i+7eAoeVpV3v2Qqq4zQYLxv5ZVKKD/FxCUbcL6c7OF2
+1lQf5LVqf3kiaTKboF5FKgVmZ9bKUVik92cunVWnshwxquwjK7yBs62fiXBriDqW
+dU1oHkLsruVMY3SVrTX90SrRQE/0liU5ynpg1RfwVLk8uGe0gL0gSuSFNuZMen0f
+hCKNWK96ZuU597Ufw8Jp/3nefZX+UA2oXMxI83NM5gtaILH2Er2IJRgl55Daxa2D
+O9hM/NPLZ9Ypo0Hx4m0tye/poDLEgP4QeDzoJbemJovjnUNGrgmCeXvXCrkYJ74I
+PpBdJCtTsuC8Jwx8Fy1wDs49DcNrc0o5kJo61z9vMEvrKs7BYQdRVUQOiTrCJ3kQ
+JoF+lo+7FMoeXBiaZMmLNvB9R4c2lJbdWII5Kg+GVgIT4zpzT+stmQ7//OlCMTk2
+5oWHQh6E1KbL9+8N4RT+/mR8givV0UTFylMD6zhkxll2UQskHLjQ8de3Z7GxHbpu
+RbVpklxwEceMMyPQ3lq34e/jSmfOTsEfy1L1KlhlTJ9OvxpCmhY=
+=0X7u
 -----END PGP SIGNATURE-----
 
---nextPart195619907.GGMvD3etR4--
+--nextPart65207975.omPGRG4tHD--
 
 
 
