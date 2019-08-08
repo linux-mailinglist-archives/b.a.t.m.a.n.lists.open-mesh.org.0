@@ -2,32 +2,35 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED4A8629E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Aug 2019 15:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6AA0868BA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Aug 2019 20:26:45 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 4C5CF827AE;
-	Thu,  8 Aug 2019 15:06:33 +0200 (CEST)
-Received: from mail.mail.packetmixer.de (packetmixer.de [79.140.42.25])
- by open-mesh.org (Postfix) with ESMTPS id 0DE3D81CE3
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Aug 2019 15:06:23 +0200 (CEST)
-Received: from kero.packetmixer.de
- (p200300C5971AA600E0A7EA13A3520353.dip0.t-ipconnect.de
- [IPv6:2003:c5:971a:a600:e0a7:ea13:a352:353])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.mail.packetmixer.de (Postfix) with ESMTPSA id C9D8A6207A;
- Thu,  8 Aug 2019 15:06:22 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: davem@davemloft.net
-Subject: [PATCH 4/4] batman-adv: BATMAN_V: aggregate OGMv2 packets
-Date: Thu,  8 Aug 2019 15:06:19 +0200
-Message-Id: <20190808130619.4481-5-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190808130619.4481-1-sw@simonwunderlich.de>
-References: <20190808130619.4481-1-sw@simonwunderlich.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	by open-mesh.org (Postfix) with ESMTP id C8060827C6;
+	Thu,  8 Aug 2019 20:26:42 +0200 (CEST)
+Received: from shards.monkeyblade.net (shards.monkeyblade.net
+ [IPv6:2620:137:e000::1:9])
+ by open-mesh.org (Postfix) with ESMTPS id 98DFD80BF9
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Aug 2019 20:26:39 +0200 (CEST)
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 6A35D154FA00B;
+ Thu,  8 Aug 2019 11:26:37 -0700 (PDT)
+Date: Thu, 08 Aug 2019 11:26:36 -0700 (PDT)
+Message-Id: <20190808.112636.698040063448774208.davem@davemloft.net>
+To: sw@simonwunderlich.de
+Subject: Re: [PATCH 0/2] pull request for net: batman-adv 2019-08-08
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20190808130208.2124-1-sw@simonwunderlich.de>
+References: <20190808130208.2124-1-sw@simonwunderlich.de>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [149.20.54.216]);
+ Thu, 08 Aug 2019 11:26:37 -0700 (PDT)
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,72 +49,11 @@ Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Linus Lüssing <linus.luessing@c0d3.blue>
+From: Simon Wunderlich <sw@simonwunderlich.de>
+Date: Thu,  8 Aug 2019 15:02:06 +0200
 
-Instead of transmitting individual OGMv2 packets from the aggregation
-queue merge those OGMv2 packets into a single one and transmit this
-aggregate instead.
+> here are some bugfixes which we would like to have integrated into net.
+> 
+> Please pull or let me know of any problem!
 
-This reduces overhead as it saves an ethernet header and a transmission
-per aggregated OGMv2 packet.
-
-Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/bat_v_ogm.c | 28 +++++++++++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
-
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 52c990b54de5..319249f0f85f 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
-@@ -191,18 +191,44 @@ static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
-  * batadv_v_ogm_aggr_send() - flush & send aggregation queue
-  * @hard_iface: the interface with the aggregation queue to flush
-  *
-+ * Aggregates all OGMv2 packets currently in the aggregation queue into a
-+ * single OGMv2 packet and transmits this aggregate.
-+ *
-+ * The aggregation queue is empty after this call.
-+ *
-  * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
-  */
- static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
- {
-+	unsigned int aggr_len = hard_iface->bat_v.aggr_len;
-+	struct sk_buff *skb_aggr;
-+	unsigned int ogm_len;
- 	struct sk_buff *skb;
- 
- 	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
- 
-+	if (!aggr_len)
-+		return;
-+
-+	skb_aggr = dev_alloc_skb(aggr_len + ETH_HLEN + NET_IP_ALIGN);
-+	if (!skb_aggr) {
-+		batadv_v_ogm_aggr_list_free(hard_iface);
-+		return;
-+	}
-+
-+	skb_reserve(skb_aggr, ETH_HLEN + NET_IP_ALIGN);
-+	skb_reset_network_header(skb_aggr);
-+
- 	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list))) {
- 		hard_iface->bat_v.aggr_len -= batadv_v_ogm_len(skb);
--		batadv_v_ogm_send_to_if(skb, hard_iface);
-+
-+		ogm_len = batadv_v_ogm_len(skb);
-+		skb_put_data(skb_aggr, skb->data, ogm_len);
-+
-+		consume_skb(skb);
- 	}
-+
-+	batadv_v_ogm_send_to_if(skb_aggr, hard_iface);
- }
- 
- /**
--- 
-2.20.1
-
+Pulled.
