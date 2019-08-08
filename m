@@ -1,30 +1,32 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA0E86286
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Aug 2019 15:02:22 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id F26CA86287
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Aug 2019 15:02:35 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 3C77681963;
-	Thu,  8 Aug 2019 15:02:16 +0200 (CEST)
-Received: from mail.mail.packetmixer.de (packetmixer.de [79.140.42.25])
- by open-mesh.org (Postfix) with ESMTPS id 7F29980116
+	by open-mesh.org (Postfix) with ESMTP id 1335C814BB;
+	Thu,  8 Aug 2019 15:02:26 +0200 (CEST)
+Received: from mail.mail.packetmixer.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id D613D81014
  for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Aug 2019 15:02:10 +0200 (CEST)
 Received: from kero.packetmixer.de
  (p200300C5971AA600F539B63C8CCC72B7.dip0.t-ipconnect.de
  [IPv6:2003:c5:971a:a600:f539:b63c:8ccc:72b7])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 0AC9762056;
+ by mail.mail.packetmixer.de (Postfix) with ESMTPSA id 5A3426205B;
  Thu,  8 Aug 2019 15:02:10 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: davem@davemloft.net
-Subject: [PATCH 0/2] pull request for net: batman-adv 2019-08-08
-Date: Thu,  8 Aug 2019 15:02:06 +0200
-Message-Id: <20190808130208.2124-1-sw@simonwunderlich.de>
+Subject: [PATCH 1/2] batman-adv: Fix netlink dumping of all mcast_flags buckets
+Date: Thu,  8 Aug 2019 15:02:07 +0200
+Message-Id: <20190808130208.2124-2-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190808130208.2124-1-sw@simonwunderlich.de>
+References: <20190808130208.2124-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
@@ -44,38 +46,35 @@ Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hi David,
+From: Sven Eckelmann <sven@narfation.org>
 
-here are some bugfixes which we would like to have integrated into net.
+The bucket variable is only updated outside the loop over the mcast_flags
+buckets. It will only be updated during a dumping run when the dumping has
+to be interrupted and a new message has to be started.
 
-Please pull or let me know of any problem!
+This could result in repeated or missing entries when the multicast flags
+are dumped to userspace.
 
-Thank you,
-      Simon
+Fixes: d2d489b7d851 ("batman-adv: Add inconsistent multicast netlink dump detection")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+---
+ net/batman-adv/multicast.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The following changes since commit 5f9e832c137075045d15cd6899ab0505cfb2ca4b:
+diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
+index 67d7f83009ae..a3488cfb3d1e 100644
+--- a/net/batman-adv/multicast.c
++++ b/net/batman-adv/multicast.c
+@@ -2303,7 +2303,7 @@ __batadv_mcast_flags_dump(struct sk_buff *msg, u32 portid,
+ 
+ 	while (bucket_tmp < hash->size) {
+ 		if (batadv_mcast_flags_dump_bucket(msg, portid, cb, hash,
+-						   *bucket, &idx_tmp))
++						   bucket_tmp, &idx_tmp))
+ 			break;
+ 
+ 		bucket_tmp++;
+-- 
+2.20.1
 
-  Linus 5.3-rc1 (2019-07-21 14:05:38 -0700)
-
-are available in the Git repository at:
-
-  git://git.open-mesh.org/linux-merge.git tags/batadv-net-for-davem-20190808
-
-for you to fetch changes up to f7af86ccf1882084293b11077deec049fd01da63:
-
-  batman-adv: Fix deletion of RTR(4|6) mcast list entries (2019-07-22 21:34:58 +0200)
-
-----------------------------------------------------------------
-Here are some batman-adv bugfixes:
-
- - Fix netlink dumping of all mcast_flags buckets, by Sven Eckelmann
-
- - Fix deletion of RTR(4|6) mcast list entries, by Sven Eckelmann
-
-----------------------------------------------------------------
-Sven Eckelmann (2):
-      batman-adv: Fix netlink dumping of all mcast_flags buckets
-      batman-adv: Fix deletion of RTR(4|6) mcast list entries
-
- net/batman-adv/multicast.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
