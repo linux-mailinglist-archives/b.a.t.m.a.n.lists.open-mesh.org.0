@@ -1,104 +1,27 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B808748F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  9 Aug 2019 10:48:21 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27E2891B5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 11 Aug 2019 14:50:59 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 6F6D1821C6;
-	Fri,  9 Aug 2019 10:48:17 +0200 (CEST)
+	by open-mesh.org (Postfix) with ESMTP id 57942815E2;
+	Sun, 11 Aug 2019 14:50:51 +0200 (CEST)
 Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
- by open-mesh.org (Postfix) with ESMTPS id 36CF180901
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  9 Aug 2019 10:48:15 +0200 (CEST)
-Subject: Re: batman_v default throughput
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>, Sven Eckelmann <sven@narfation.org>
-References: <dc998970-a36c-cbb5-8de5-2ed2a3833d57@web.de>
- <44509c82-e60d-c94c-e686-faf08e0ec875@unstable.cc>
- <2467054.VIeW2bLlCS@sven-edge>
-From: Antonio Quartulli <a@unstable.cc>
-Openpgp: preference=signencrypt
-Autocrypt: addr=a@unstable.cc; prefer-encrypt=mutual; keydata=
- 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
- Zr/o+Bj7j3NTN4WgbBNAsEeuVVpPG0I=
-Message-ID: <900e6d8e-d6f3-2e94-477e-6eb3f4377cc4@unstable.cc>
-Date: Fri, 9 Aug 2019 10:46:26 +0200
+ by open-mesh.org (Postfix) with ESMTPS id CD6FF80B6C
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 11 Aug 2019 14:50:46 +0200 (CEST)
+From: Marek Lindner <mareklindner@neomailbox.ch>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: [PATCH] batman-adv: Use wifi rx/tx as fallback throughput
+Date: Sun, 11 Aug 2019 20:50:38 +0800
+Message-ID: <2541950.y14E6QPJ2z@rousseau>
+In-Reply-To: <8c0c76dc-5c6b-da84-8e11-700222641db8@measite.de>
+References: <20190609101922.2366-1-treffer@measite.de>
+ <4907494.lMUJSmCnaO@rousseau>
+ <8c0c76dc-5c6b-da84-8e11-700222641db8@measite.de>
 MIME-Version: 1.0
-In-Reply-To: <2467054.VIeW2bLlCS@sven-edge>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="aBi8Yjz6aceOIzhQv3Emn5UjGnihUiZj1"
+Content-Type: multipart/signed; boundary="nextPart2656540.9Z6To5SbFb";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -116,90 +39,64 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---aBi8Yjz6aceOIzhQv3Emn5UjGnihUiZj1
-Content-Type: multipart/mixed; boundary="3iZN24GisRr7kNAOE8XxuEdO9bUh08TX0";
- protected-headers="v1"
-From: Antonio Quartulli <a@unstable.cc>
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>, Sven Eckelmann <sven@narfation.org>
-Message-ID: <900e6d8e-d6f3-2e94-477e-6eb3f4377cc4@unstable.cc>
-Subject: Re: batman_v default throughput
-References: <dc998970-a36c-cbb5-8de5-2ed2a3833d57@web.de>
- <44509c82-e60d-c94c-e686-faf08e0ec875@unstable.cc>
- <2467054.VIeW2bLlCS@sven-edge>
-In-Reply-To: <2467054.VIeW2bLlCS@sven-edge>
-
---3iZN24GisRr7kNAOE8XxuEdO9bUh08TX0
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
+--nextPart2656540.9Z6To5SbFb
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hi,
-
-On 09/08/2019 10:45, Sven Eckelmann wrote:
-> On Friday, 9 August 2019 10:26:24 CEST Antonio Quartulli wrote:
->> As also mentioned at WBMv10, Marek and I had worked on a patchset that=
-
->> enables the tp_meter to measure the speed of a link, when no other
->> throughput is available (i.e. for VPN or other virtual links). The
->> patchset is still pending here [1].
+On Monday, 10 June 2019 18:06:23 HKT Ren=E9 Treffer wrote:
+> > I also don't quite understand what the '!!!' thing is trying to indicat=
+e.
+> > What is being compared ? But it may be due to my misunderstandings abov=
+e.
+>
+> I haven't done an actual throughput test, and I would expect the outputs
+> of my heuristic to be worse.
+> So I wanted to give slightly lower values than the expected throughput.
 >=20
-> It isn't pending. All patches of this series [1] are marked as "changes=
+> The other way to think about it: if you were to replace the
+> expected_throughput input where would you over-estimate the link quality
+> now?
+
+Sorry, I don't follow that train of thought. Due to the lack of numbers=20
+comparing the magic formula (tx /3) with actual throughput we (Antonio and =
+I)=20
+ran a few tests on ath10k devices using your patch. Surprising to us, this=
 =20
-> requested" since almost a year.
->=20
+approach worked quite well.=20
 
-You're right - I used the wrong word.
-When I said "pending" I meant that some $work was done, patches are now
-idling. Hence my call for "a motivational email" on that thread :)
+I will re-post your patch as RFC to encourage others to test the resulting=
+=20
+B.A.T.M.A.N. V routing decisions. If you happen to have tested more on your=
+=20
+end, please share your results.
 
-Thanks for the clarification though!
+Also, why considering rx on top of tx still isn't clear. Could you explain=
+=20
+some more ?
 
-> The only pending patches are the ones you didn't review yet [2].
->=20
-
-oh, thanks for the reminder!
-
-
-Cheers,
+Thanks,
+Marek
 
 
-> Kind regards,
-> 	Sven
->=20
-> [1] https://patchwork.open-mesh.org/project/b.a.t.m.a.n./list/?series=3D=
-157&submitter=3D&state=3D*&q=3D&archive=3Dboth&delegate=3D
-> [2] https://patchwork.open-mesh.org/project/b.a.t.m.a.n./list/?series=3D=
-&submitter=3D&state=3D&q=3D&archive=3Dboth&delegate=3D7
->=20
 
---=20
-Antonio Quartulli
-
-
---3iZN24GisRr7kNAOE8XxuEdO9bUh08TX0--
-
---aBi8Yjz6aceOIzhQv3Emn5UjGnihUiZj1
+--nextPart2656540.9Z6To5SbFb
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE3o8ejP0lUW4GTX3J9FVsWUWDDm0FAl1NMuIACgkQ9FVsWUWD
-Dm1LHQ//aXpOy5ClbvX96VDPDalT97Kq+wwh6gN944R7pmNOU5elruNJAxr6ICR3
-qSHoPCZ807f035/uFUZV5p0XI/g/AoROjVUDwHptt0Zs8wefEF8Hzi2QL4Q5pIQB
-sfUwslVmr4bik+LThWp6mNrw4js9BsrxHaMrbBGnDTbz82e6YvOZHGQdPecs9ug5
-qLF3XBgJnn23RiG5/ZOE74r2ki4+LyJJBo4yrI6VLR8XBv/xpAwE9gKHk3e/JRT3
-mcTXTbVR5gVZC5VUqrDLe2juR0NXimHPVzz8uDjKca/7/h2vYa6dM1gMlD+wPvEY
-opouagd08Cka8FvFE+NxKXlnoDcpAL9xrrveKQ+N7NFPjU43KMe97xjYE0keC+Pd
-+Tyd1VkGNNiYpgPHT906QOaXsSj0GK6i3ihJpNVHYHithL74O4/0FtxpnpBWW7aC
-RKmhg52VLcd0ajWrLHqiU/apYy1hqGuNvdbSS5FBOa3xQmR873ET5nD4oPQeCZBT
-jte73ai9pgAJC6UQwkibJVaNiYhulurZTQpUQoELfeQFx5TjBbTVtw/S9ltdM/64
-7bamUR1bKEjZUzFN2rzWe4jL1y7KzRlBXlYAj0c2xgFQpbNBOUufymon528I1+oy
-PTp87kitoIb1YL2VhvVgSHCeBp/zkVjhyzRI0NzVCX8RHAs6H6I=
-=0nKF
+iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAl1QDx4ACgkQU1VOj+62
+HMBmnAf+JaF3IDMS3Rl7xwTEYlsJI9Ppp/XMxw0Clp4Xs2YkBJv84ea/NxUuv+uQ
+zFwp79epkDuYvKh4+yag3MtzVFfDtH2uhjwTQNuV32I6vF52O2PQABismMKvoiv+
+OrGLA9/fem2mZ+LFjluNB8krhOYuFlwvVQkNIBtJoWV+oHiWvaWbE+utB+7QyBAt
+wX331mT3BcFMf4KtSMrNa8fktjesvM2lZfhptU0CQg2qDM1PYxUtZUu0vty/qlxO
+ZhPJsE0P57RUcC/GBKYZln85zbm5hUSE6fQLVIDUWkcmcfINtDiEyDKBnDHuSmLx
+aEyaQNXROxctJa1lsIMxUt2IgUkxiw==
+=7Z7W
 -----END PGP SIGNATURE-----
 
---aBi8Yjz6aceOIzhQv3Emn5UjGnihUiZj1--
+--nextPart2656540.9Z6To5SbFb--
+
+
+
