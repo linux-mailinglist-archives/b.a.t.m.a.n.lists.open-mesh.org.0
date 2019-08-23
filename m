@@ -2,55 +2,102 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECECC9AF9D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 23 Aug 2019 14:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 254039B460
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 23 Aug 2019 18:19:06 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id C040D823C1;
-	Fri, 23 Aug 2019 14:35:04 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id 7B1858129D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 23 Aug 2019 14:35:00 +0200 (CEST)
-Received: from sven-desktop.home.narfation.org (unknown
- [IPv6:2a00:1ca0:1480:f900:6112:16df:1e13:517c])
- by dvalin.narfation.org (Postfix) with ESMTPSA id 250C31FE29;
- Fri, 23 Aug 2019 12:35:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1566563700;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=61318wGHRRboaebwob1NvttQO48Un5z1nDa7sAFGl9k=;
- b=ZoDepX0edQaUfP9spKoSkl12asq9iHEPIKA87k4p0c+TIPY7jD/k4EMnbEsAZiRvXMiIS7
- xtrl8MChhlTkYJbxIm2Ym0zGhRKWYp8N31X61BFo5kh3jZxHaFrWNMhwrva0eBIe2SkoZs
- 419JHL5sBNK1na5kymiWyplObp9zCP0=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH v2 2/2] batman-adv: Only read OGM2 tvlv_len after buffer len
- check
-Date: Fri, 23 Aug 2019 14:34:28 +0200
-Message-Id: <20190823123428.8076-2-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190823123428.8076-1-sven@narfation.org>
+	by open-mesh.org (Postfix) with ESMTP id 5F15F8236E;
+	Fri, 23 Aug 2019 18:19:02 +0200 (CEST)
+Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
+ by open-mesh.org (Postfix) with ESMTPS id 6781980626
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 23 Aug 2019 18:18:58 +0200 (CEST)
+Subject: Re: [PATCH v2 1/2] batman-adv: Only read OGM tvlv_len after buffer
+ len check
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>, Sven Eckelmann <sven@narfation.org>
 References: <20190823123428.8076-1-sven@narfation.org>
+From: Antonio Quartulli <a@unstable.cc>
+Openpgp: preference=signencrypt
+Autocrypt: addr=a@unstable.cc; prefer-encrypt=mutual; keydata=
+ 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
+ Zr/o+Bj7j3NTN4WgbBNAsEeuVVpPG0I=
+Message-ID: <9dfd127f-fff4-228f-2607-5fa23ac9654d@unstable.cc>
+Date: Fri, 23 Aug 2019 18:16:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
- s=20121; t=1566563700;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=61318wGHRRboaebwob1NvttQO48Un5z1nDa7sAFGl9k=;
- b=fhJuIEyfh5e+yhztjOG0gIbXU+Jsz1Z2Ma1iPWkpj/PF6NdDdR48SlxW3Hwinhj/s3xgQr
- YeePv5MWs9SzGDlUo8Y6sFswRmmUXc6nk27gAg39FdBm+038uz0VdhFGI+9DQilUJdzbqv
- cOpqxzPUFrErjy76qr8Z3qWQdtsIjm4=
-ARC-Seal: i=1; s=20121; d=narfation.org; t=1566563700; a=rsa-sha256; cv=none;
- b=BmcAX0VJ4mwg8zeBZOFNMAD5GNqolo/yX4vjxbaiHJfmZGOfgi0nPgbDkhpJ/OF1v7Db7V
- dbq8ghq3o0/ja8quMWwk2iR1/w7uVK0UgWWODjH/KGunY5SV3dJKUAhZZQooYqdebpohTd
- N3vtnFTmpjTAOUnBJyImrA3rKz7rv4Y=
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
+In-Reply-To: <20190823123428.8076-1-sven@narfation.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="IV7n8BnOgbCDlHxUjEqN2Gki97598xkh2"
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -65,68 +112,79 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: syzbot+355cab184197dbbfa384@syzkaller.appspotmail.com
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Multiple batadv_ogm2_packet can be stored in an skbuff. The functions
-batadv_v_ogm_send_to_if() uses batadv_v_ogm_aggr_packet() to check if there
-is another additional batadv_ogm2_packet in the skb or not before they
-continue processing the packet.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--IV7n8BnOgbCDlHxUjEqN2Gki97598xkh2
+Content-Type: multipart/mixed; boundary="8rJH72LJMMtQLFRLlEf4bNk0UEY8Pza8M";
+ protected-headers="v1"
+From: Antonio Quartulli <a@unstable.cc>
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>, Sven Eckelmann <sven@narfation.org>
+Cc: syzbot+355cab184197dbbfa384@syzkaller.appspotmail.com
+Message-ID: <9dfd127f-fff4-228f-2607-5fa23ac9654d@unstable.cc>
+Subject: Re: [PATCH v2 1/2] batman-adv: Only read OGM tvlv_len after buffer
+ len check
+References: <20190823123428.8076-1-sven@narfation.org>
+In-Reply-To: <20190823123428.8076-1-sven@narfation.org>
 
-The length for such an OGM2 is BATADV_OGM2_HLEN +
-batadv_ogm2_packet->tvlv_len. The check must first check that at least
-BATADV_OGM2_HLEN bytes are available before it accesses tvlv_len (which is
-part of the header. Otherwise it might try read outside of the currently
-available skbuff to get the content of tvlv_len.
+--8rJH72LJMMtQLFRLlEf4bNk0UEY8Pza8M
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 667996ebeab4 ("batman-adv: OGMv2 - implement originators logic")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- net/batman-adv/bat_v_ogm.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+Hi,
 
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 319249f0..dc4f7430 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
-@@ -806,17 +806,23 @@ batadv_v_ogm_process_per_outif(struct batadv_priv *bat_priv,
-  * batadv_v_ogm_aggr_packet() - checks if there is another OGM aggregated
-  * @buff_pos: current position in the skb
-  * @packet_len: total length of the skb
-- * @tvlv_len: tvlv length of the previously considered OGM
-+ * @ogm2_packet: potential OGM2 in buffer
-  *
-  * Return: true if there is enough space for another OGM, false otherwise.
-  */
--static bool batadv_v_ogm_aggr_packet(int buff_pos, int packet_len,
--				     __be16 tvlv_len)
-+static bool
-+batadv_v_ogm_aggr_packet(int buff_pos, int packet_len,
-+			 const struct batadv_ogm2_packet *ogm2_packet)
- {
- 	int next_buff_pos = 0;
- 
--	next_buff_pos += buff_pos + BATADV_OGM2_HLEN;
--	next_buff_pos += ntohs(tvlv_len);
-+	/* check if there is enough space for the header */
-+	next_buff_pos += buff_pos + sizeof(*ogm2_packet);
-+	if (next_buff_pos > packet_len)
-+		return false;
-+
-+	/* check if there is enough space for the optional TVLV */
-+	next_buff_pos += ntohs(ogm2_packet->tvlv_len);
- 
- 	return (next_buff_pos <= packet_len) &&
- 	       (next_buff_pos <= BATADV_MAX_AGGREGATION_BYTES);
-@@ -993,7 +999,7 @@ int batadv_v_ogm_packet_recv(struct sk_buff *skb,
- 	ogm_packet = (struct batadv_ogm2_packet *)skb->data;
- 
- 	while (batadv_v_ogm_aggr_packet(ogm_offset, skb_headlen(skb),
--					ogm_packet->tvlv_len)) {
-+					ogm_packet)) {
- 		batadv_v_ogm_process(skb, ogm_offset, if_incoming);
- 
- 		ogm_offset += BATADV_OGM2_HLEN;
--- 
-2.20.1
+On 23/08/2019 14:34, Sven Eckelmann wrote:
+> Multiple batadv_ogm_packet can be stored in an skbuff. The functions
+> batadv_iv_ogm_send_to_if()/batadv_iv_ogm_receive() use
+> batadv_iv_ogm_aggr_packet() to check if there is another additional
+> batadv_ogm_packet in the skb or not before they continue processing the=
 
+> packet.
+>=20
+> The length for such an OGM is BATADV_OGM_HLEN +
+> batadv_ogm_packet->tvlv_len. The check must first check that at least
+> BATADV_OGM_HLEN bytes are available before it accesses tvlv_len (which =
+is
+> part of the header. Otherwise it might try read outside of the currentl=
+y
+> available skbuff to get the content of tvlv_len.
+>=20
+> Fixes: 0b6aa0d43767 ("batman-adv: tvlv - basic infrastructure")
+> Reported-by: syzbot+355cab184197dbbfa384@syzkaller.appspotmail.com
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+
+Acked-by: Antonio Quartulli <a@unstable.cc>
+
+--=20
+Antonio Quartulli
+
+
+--8rJH72LJMMtQLFRLlEf4bNk0UEY8Pza8M--
+
+--IV7n8BnOgbCDlHxUjEqN2Gki97598xkh2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEE3o8ejP0lUW4GTX3J9FVsWUWDDm0FAl1gEXMACgkQ9FVsWUWD
+Dm3Rsw/+Miu9BLOSfl8YIm/UsbqhxSbLq1hylH7/q70LDOc8o8e0iRr86hFeOsY7
+uKA/4tTSpDX/5LzWOvJ3QtSpUHbgvnd50q3kvsDoK5oy4B+Bk1zEhVwCSuFkPS7G
+nREBYkvHoU8p6keVZASB/6F6zX+iK3Kih5ZNSz08HI6jBgfIGQ4jipWOufe56bxP
+0AwCEVeMKMlQ3sZNoF5V9P2L8qfKEV9ZHxlrss9aLuHElgptQjMdqk/BFGSLXwaX
+kWoq1KK8AZziLbMDrQcuVfblmvT0xK/TSbo39Q+/WGUb828/9XxyTOlbrXObKXex
+9MEL8EUQ4iIg/T4CRCWyx8fX8a1iVa8eTytEuJx9fYFzKfmoM/AAydJ3zMbGDCIQ
+13ErpoLvw291At/V7tR52Yo5eTIJAKlm+Ukmj/xDbY5Rq6FNnH4rRo4mFAaN3g7y
+en+bvLI1pK2Vk0Mq883VXVLD3lUaNJYWRVaYh2Hfa1OEDLgcW42W52td6JObpAoz
+KcY71ms/3it6kF2WRekar28m0DQ+wRVUGuv9LDJms50cERiWC6MWUGGZ4E835SiI
+G04dE7VniJfQaciexrG7HsZd4oRKiWZUq7cPFbacNxxujFxQCGUg1nPGgys8RrjE
+ddnFtYgfkZWhDTDD65+QJlTrA0Ego9bpjqc7z+R9qsJ227xfZdA=
+=IUwu
+-----END PGP SIGNATURE-----
+
+--IV7n8BnOgbCDlHxUjEqN2Gki97598xkh2--
