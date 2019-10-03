@@ -2,44 +2,47 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F3AFC2CF3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Oct 2019 07:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD914CA5A1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  3 Oct 2019 18:44:20 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 113138059F;
-	Tue,  1 Oct 2019 07:36:07 +0200 (CEST)
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
- [209.85.166.72]) by open-mesh.org (Postfix) with ESMTPS id D3E1180037
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Oct 2019 05:17:29 +0200 (CEST)
-Received: by mail-io1-f72.google.com with SMTP id w8so35583873iol.20
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 30 Sep 2019 20:17:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
- bh=JLXTCXDRkGgctb2xPnmJD2LK8JwJzPu9ZPbIig+sy3g=;
- b=VMLOUMx1lZM2zm5h+/A3uNV7QU9TXPcCPUwfNOrmkfk+j2B0OUabKfD8nhhYilO3kM
- o9BdaTPWBtcLpnMNL1g/BltYWga9ANPr1OS3V6HgbdpOyHDPN/+KqFQNF9LXKcTpFPS3
- JPovtqZwE4tKaySlvdN1PRNWFTTGbh/ohC1VYCqlZha+Hic7jseYVcDq9Guljy69W6Iq
- WbvY2KFpBkA1qFKafGm6HjRLd/zPywgSoJyvEITnVTSU00xS3e5wXTShmQUe87+NCPNa
- TlqlUyN+Qr0PYIIK3M6h4ko4psyoK+g9u8TZeKTPQXJIjFaxLRETRCprzxYKygZYx1Hl
- motA==
-X-Gm-Message-State: APjAAAWwJDc4ts+h0cx35nY03/mjfO4TIa8QmXlP44gGIiZant+f/7Vk
- LfFHt9rh7KpnOUzXSW/wtKOYQZivVvxY/PEAoxSKa59MUVtb
-X-Google-Smtp-Source: APXvYqy/wDCuSBR5dewA+ROX+rSiu1eGY5t9YhJeuT2SwMfJ20WRn+0DDAFhGaLDN2WUk9sD8ON2xqmx8WPFsZsfXjRnqYQ5Ymge
+	by open-mesh.org (Postfix) with ESMTP id E878680012;
+	Thu,  3 Oct 2019 18:44:10 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+ by open-mesh.org (Postfix) with ESMTPS id 42C8E80162
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  3 Oct 2019 18:43:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1570121037;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=3edw67EmbB+O7xoYQir07L/ETezyucEvZwra6DiC6v4=;
+ b=GyTkgex1KQ3pT/BgT5Y5y331VtHg0o1HKzbvhzNcrbqU55ykTjoJqnorBxxvMv4B69kMup
+ deoi62EejQzLrLL/CWHsPVC8smyfr7SJT1GYTQvn0OPBnqYZvAX0EVQ7jVKHGAc3+6cbvF
+ QlBQtkmgruF8Ro5kUx/a7Xen1kjnDIc=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH maint 1/2] batman-adv: Avoid free/alloc race when handling
+ OGM2 buffer
+Date: Thu,  3 Oct 2019 18:43:52 +0200
+Message-Id: <20191003164353.14095-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Received: by 2002:a92:844f:: with SMTP id l76mr22421313ild.218.1569899347902; 
- Mon, 30 Sep 2019 20:09:07 -0700 (PDT)
-Date: Mon, 30 Sep 2019 20:09:07 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000f70cb20593d0ace6@google.com>
-Subject: KASAN: use-after-free Read in batadv_iv_ogm_queue_add
-From: syzbot <syzbot+0cc629f19ccb8534935b@syzkaller.appspotmail.com>
-To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
- linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, 
- netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-X-Mailman-Approved-At: Tue, 01 Oct 2019 07:36:03 +0200
+Content-Transfer-Encoding: 8bit
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org; 
+ s=20121; t=1570121037;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=3edw67EmbB+O7xoYQir07L/ETezyucEvZwra6DiC6v4=;
+ b=kiy7RG2jLmhgCqmWD+2M/sPeZSmbzqgOxN/qzUroMgBxxbTKEHcy9rGrovqNs/XZawIGk9
+ lr2YgsoTWCNVSxD47vaq81lw9yNrNQt2CtOetnH85hVrpOnxENceJvsTt+8XGD2eUjClhF
+ 08kSCSrdPxwWMOlX0zC8rqD7bchM5zc=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1570121037; a=rsa-sha256; cv=none;
+ b=zIjucK26MJRBHDtSRkwRxLeB81xDIm4IWiczNlPQ8k8GBvaENk7aa6SD9/cOQ5uMi4ik1Q
+ MWNPbEzmknxGoTlQ4ZCc+dGHhPzW6Z7keTzdheJsAEbuAoLxqr+azJAgDnEonoDpdwjf7f
+ Nc00ZuzXTlJjlR/ao2BXXmbFrJc0dZw=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,137 +60,122 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hello,
+A B.A.T.M.A.N. V virtual interface has an OGM2 packet buffer which is
+initialized using data from the RTNL protected netdevice notifier and other
+rtnetlink related hooks. It is sent regularly via various slave interfaces
+of the batadv virtual interface and in this process also modified
+(realloced) to integrate additional state information via TVLV containers.
 
-syzbot found the following crash on:
+It must be avoided that the worker item is executed without a common lock
+with the netdevice notifier/rtnetlink helpers. Otherwise it can either
+happen that half modified data is sent out or the functions modifying the
+OGM2 buffer try to access already freed memory regions.
 
-HEAD commit:    faeacb6d net: tap: clean up an indentation issue
-git tree:       net
-console output: https://syzkaller.appspot.com/x/log.txt?x=1241cbd3600000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=6c210ff0b9a35071
-dashboard link: https://syzkaller.appspot.com/bug?extid=0cc629f19ccb8534935b
-compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
-
-Unfortunately, I don't have any reproducer for this crash yet.
-
-IMPORTANT: if you fix the bug, please add the following tag to the commit:
-Reported-by: syzbot+0cc629f19ccb8534935b@syzkaller.appspotmail.com
-
-==================================================================
-BUG: KASAN: use-after-free in memcpy include/linux/string.h:359 [inline]
-BUG: KASAN: use-after-free in batadv_iv_ogm_aggregate_new  
-net/batman-adv/bat_iv_ogm.c:544 [inline]
-BUG: KASAN: use-after-free in batadv_iv_ogm_queue_add+0x31d/0x1120  
-net/batman-adv/bat_iv_ogm.c:640
-Read of size 24 at addr ffff888099112740 by task kworker/u4:2/2025
-
-CPU: 1 PID: 2025 Comm: kworker/u4:2 Not tainted 5.3.0+ #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS  
-Google 01/01/2011
-Workqueue: bat_events batadv_iv_send_outstanding_bat_ogm_packet
-Call Trace:
-  __dump_stack lib/dump_stack.c:77 [inline]
-  dump_stack+0x172/0x1f0 lib/dump_stack.c:113
-  print_address_description.cold+0xd4/0x306 mm/kasan/report.c:351
-  __kasan_report.cold+0x1b/0x36 mm/kasan/report.c:482
-  kasan_report+0x12/0x17 mm/kasan/common.c:618
-  check_memory_region_inline mm/kasan/generic.c:185 [inline]
-  check_memory_region+0x134/0x1a0 mm/kasan/generic.c:192
-  memcpy+0x24/0x50 mm/kasan/common.c:122
-  memcpy include/linux/string.h:359 [inline]
-  batadv_iv_ogm_aggregate_new net/batman-adv/bat_iv_ogm.c:544 [inline]
-  batadv_iv_ogm_queue_add+0x31d/0x1120 net/batman-adv/bat_iv_ogm.c:640
-  batadv_iv_ogm_schedule+0x783/0xe50 net/batman-adv/bat_iv_ogm.c:797
-  batadv_iv_send_outstanding_bat_ogm_packet+0x580/0x730  
-net/batman-adv/bat_iv_ogm.c:1675
-  process_one_work+0x9af/0x1740 kernel/workqueue.c:2269
-  worker_thread+0x98/0xe40 kernel/workqueue.c:2415
-  kthread+0x361/0x430 kernel/kthread.c:255
-  ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
-
-Allocated by task 9774:
-  save_stack+0x23/0x90 mm/kasan/common.c:69
-  set_track mm/kasan/common.c:77 [inline]
-  __kasan_kmalloc mm/kasan/common.c:493 [inline]
-  __kasan_kmalloc.constprop.0+0xcf/0xe0 mm/kasan/common.c:466
-  kasan_kmalloc+0x9/0x10 mm/kasan/common.c:507
-  kmem_cache_alloc_trace+0x158/0x790 mm/slab.c:3550
-  kmalloc include/linux/slab.h:552 [inline]
-  batadv_iv_ogm_iface_enable+0x123/0x320 net/batman-adv/bat_iv_ogm.c:201
-  batadv_hardif_enable_interface+0x276/0x950  
-net/batman-adv/hard-interface.c:761
-  batadv_softif_slave_add+0x8f/0x100 net/batman-adv/soft-interface.c:892
-  do_set_master net/core/rtnetlink.c:2369 [inline]
-  do_set_master+0x1ca/0x230 net/core/rtnetlink.c:2343
-  do_setlink+0xa85/0x3520 net/core/rtnetlink.c:2504
-  rtnl_setlink+0x273/0x3d0 net/core/rtnetlink.c:2763
-  rtnetlink_rcv_msg+0x463/0xb00 net/core/rtnetlink.c:5223
-  netlink_rcv_skb+0x177/0x450 net/netlink/af_netlink.c:2477
-  rtnetlink_rcv+0x1d/0x30 net/core/rtnetlink.c:5241
-  netlink_unicast_kernel net/netlink/af_netlink.c:1302 [inline]
-  netlink_unicast+0x531/0x710 net/netlink/af_netlink.c:1328
-  netlink_sendmsg+0x8a5/0xd60 net/netlink/af_netlink.c:1917
-  sock_sendmsg_nosec net/socket.c:637 [inline]
-  sock_sendmsg+0xd7/0x130 net/socket.c:657
-  sock_write_iter+0x27c/0x3e0 net/socket.c:989
-  call_write_iter include/linux/fs.h:1880 [inline]
-  do_iter_readv_writev+0x5f8/0x8f0 fs/read_write.c:693
-  do_iter_write fs/read_write.c:970 [inline]
-  do_iter_write+0x184/0x610 fs/read_write.c:951
-  vfs_writev+0x1b3/0x2f0 fs/read_write.c:1015
-  do_writev+0x15b/0x330 fs/read_write.c:1058
-  __do_sys_writev fs/read_write.c:1131 [inline]
-  __se_sys_writev fs/read_write.c:1128 [inline]
-  __x64_sys_writev+0x75/0xb0 fs/read_write.c:1128
-  do_syscall_64+0xfa/0x760 arch/x86/entry/common.c:290
-  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-
-Freed by task 7:
-  save_stack+0x23/0x90 mm/kasan/common.c:69
-  set_track mm/kasan/common.c:77 [inline]
-  __kasan_slab_free+0x102/0x150 mm/kasan/common.c:455
-  kasan_slab_free+0xe/0x10 mm/kasan/common.c:463
-  __cache_free mm/slab.c:3425 [inline]
-  kfree+0x10a/0x2c0 mm/slab.c:3756
-  batadv_iv_ogm_iface_disable+0x39/0x80 net/batman-adv/bat_iv_ogm.c:220
-  batadv_hardif_disable_interface.cold+0x4b4/0x87b  
-net/batman-adv/hard-interface.c:875
-  batadv_softif_destroy_netlink+0xa9/0x130  
-net/batman-adv/soft-interface.c:1146
-  default_device_exit_batch+0x25c/0x410 net/core/dev.c:9830
-  ops_exit_list.isra.0+0xfc/0x150 net/core/net_namespace.c:175
-  cleanup_net+0x4e2/0xa60 net/core/net_namespace.c:594
-  process_one_work+0x9af/0x1740 kernel/workqueue.c:2269
-  worker_thread+0x98/0xe40 kernel/workqueue.c:2415
-  kthread+0x361/0x430 kernel/kthread.c:255
-  ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
-
-The buggy address belongs to the object at ffff888099112740
-  which belongs to the cache kmalloc-32 of size 32
-The buggy address is located 0 bytes inside of
-  32-byte region [ffff888099112740, ffff888099112760)
-The buggy address belongs to the page:
-page:ffffea0002644480 refcount:1 mapcount:0 mapping:ffff8880aa4001c0  
-index:0xffff888099112fc1
-flags: 0x1fffc0000000200(slab)
-raw: 01fffc0000000200 ffffea0002995848 ffffea00029e8bc8 ffff8880aa4001c0
-raw: ffff888099112fc1 ffff888099112000 000000010000003a 0000000000000000
-page dumped because: kasan: bad access detected
-
-Memory state around the buggy address:
-  ffff888099112600: fb fb fb fb fc fc fc fc fb fb fb fb fc fc fc fc
-  ffff888099112680: 00 fc fc fc fc fc fc fc fb fb fb fb fc fc fc fc
-> ffff888099112700: 00 00 00 fc fc fc fc fc fb fb fb fb fc fc fc fc
-                                            ^
-  ffff888099112780: fb fb fb fb fc fc fc fc fb fb fb fb fc fc fc fc
-  ffff888099112800: fb fb fb fb fc fc fc fc fb fb fb fb fc fc fc fc
-==================================================================
-
-
+Fixes: 632835348e65 ("batman-adv: OGMv2 - add basic infrastructure")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-This bug is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+ net/batman-adv/bat_v_ogm.c | 32 +++++++++++++++++++++++++-------
+ net/batman-adv/types.h     |  4 ++--
+ 2 files changed, 27 insertions(+), 9 deletions(-)
 
-syzbot will keep track of this bug report. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index dc4f7430..24d00a97 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -22,6 +22,7 @@
+ #include <linux/random.h>
+ #include <linux/rculist.h>
+ #include <linux/rcupdate.h>
++#include <linux/rtnetlink.h>
+ #include <linux/skbuff.h>
+ #include <linux/slab.h>
+ #include <linux/spinlock.h>
+@@ -256,14 +257,12 @@ static void batadv_v_ogm_queue_on_if(struct sk_buff *skb,
+ }
+ 
+ /**
+- * batadv_v_ogm_send() - periodic worker broadcasting the own OGM
+- * @work: work queue item
++ * batadv_v_ogm_send_softif() - periodic worker broadcasting the own OGM
++ * @bat_priv: the bat priv with all the soft interface information
+  */
+-static void batadv_v_ogm_send(struct work_struct *work)
++static void batadv_v_ogm_send_softif(struct batadv_priv *bat_priv)
+ {
+ 	struct batadv_hard_iface *hard_iface;
+-	struct batadv_priv_bat_v *bat_v;
+-	struct batadv_priv *bat_priv;
+ 	struct batadv_ogm2_packet *ogm_packet;
+ 	struct sk_buff *skb, *skb_tmp;
+ 	unsigned char *ogm_buff;
+@@ -271,8 +270,7 @@ static void batadv_v_ogm_send(struct work_struct *work)
+ 	u16 tvlv_len = 0;
+ 	int ret;
+ 
+-	bat_v = container_of(work, struct batadv_priv_bat_v, ogm_wq.work);
+-	bat_priv = container_of(bat_v, struct batadv_priv, bat_v);
++	ASSERT_RTNL();
+ 
+ 	if (atomic_read(&bat_priv->mesh_state) == BATADV_MESH_DEACTIVATING)
+ 		goto out;
+@@ -363,6 +361,22 @@ static void batadv_v_ogm_send(struct work_struct *work)
+ 	return;
+ }
+ 
++/**
++ * batadv_v_ogm_send() - periodic worker broadcasting the own OGM
++ * @work: work queue item
++ */
++static void batadv_v_ogm_send(struct work_struct *work)
++{
++	struct batadv_priv_bat_v *bat_v;
++	struct batadv_priv *bat_priv;
++
++	rtnl_lock();
++	bat_v = container_of(work, struct batadv_priv_bat_v, ogm_wq.work);
++	bat_priv = container_of(bat_v, struct batadv_priv, bat_v);
++	batadv_v_ogm_send_softif(bat_priv);
++	rtnl_unlock();
++}
++
+ /**
+  * batadv_v_ogm_aggr_work() - OGM queue periodic task per interface
+  * @work: work queue item
+@@ -424,6 +438,8 @@ void batadv_v_ogm_primary_iface_set(struct batadv_hard_iface *primary_iface)
+ 	struct batadv_priv *bat_priv = netdev_priv(primary_iface->soft_iface);
+ 	struct batadv_ogm2_packet *ogm_packet;
+ 
++	ASSERT_RTNL();
++
+ 	if (!bat_priv->bat_v.ogm_buff)
+ 		return;
+ 
+@@ -1032,6 +1048,8 @@ int batadv_v_ogm_init(struct batadv_priv *bat_priv)
+ 	unsigned char *ogm_buff;
+ 	u32 random_seqno;
+ 
++	ASSERT_RTNL();
++
+ 	bat_priv->bat_v.ogm_buff_len = BATADV_OGM2_HLEN;
+ 	ogm_buff = kzalloc(bat_priv->bat_v.ogm_buff_len, GFP_ATOMIC);
+ 	if (!ogm_buff)
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index be7c02aa..bb7b4ab1 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -1530,10 +1530,10 @@ struct batadv_softif_vlan {
+  * struct batadv_priv_bat_v - B.A.T.M.A.N. V per soft-interface private data
+  */
+ struct batadv_priv_bat_v {
+-	/** @ogm_buff: buffer holding the OGM packet */
++	/** @ogm_buff: buffer holding the OGM packet. rtnl protected */
+ 	unsigned char *ogm_buff;
+ 
+-	/** @ogm_buff_len: length of the OGM packet buffer */
++	/** @ogm_buff_len: length of the OGM packet buffer. rtnl protected */
+ 	int ogm_buff_len;
+ 
+ 	/** @ogm_seqno: OGM sequence number - used to identify each OGM */
+-- 
+2.20.1
+
