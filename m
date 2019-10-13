@@ -1,54 +1,64 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DD5D579F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 13 Oct 2019 21:13:04 +0200 (CEST)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ECB9D5B80
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 14 Oct 2019 08:40:08 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id A780E807CE;
-	Sun, 13 Oct 2019 21:12:48 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id B6B5180049
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 13 Oct 2019 21:12:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1570993457;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Rt8KZpzPjawzkHWyH6Ws7kj7Svcr8epO/xdxfLioKLU=;
- b=a65kyld3Jrc50iei1fWKuiIlk+G+zhTYQOr0ZW5IzxHHJCCT8d3s49957K7GLOcZfUzulg
- bnRu/XpAGhs0rgY4zT7jRZEt5qrwBKDiyPQ+/jxsvg7Up1TfsWXoXkxt2Als8+Jc55U9FX
- wAMFEO52U3GMXoaB7QMxHZN4GojwF5g=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH maint 2/2] batman-adv: Avoid OGM workqueue synchronous cancel
- deadlock
-Date: Sun, 13 Oct 2019 21:03:07 +0200
-Message-Id: <20191013190307.11796-2-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191013190307.11796-1-sven@narfation.org>
-References: <20191013190307.11796-1-sven@narfation.org>
+	by open-mesh.org (Postfix) with ESMTP id 4783D807E4;
+	Mon, 14 Oct 2019 08:39:57 +0200 (CEST)
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200])
+ by open-mesh.org (Postfix) with ESMTPS id B4C1380170
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 13 Oct 2019 23:02:19 +0200 (CEST)
+Received: by mail-qt1-f200.google.com with SMTP id 59so15994479qtc.5
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 13 Oct 2019 14:02:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=zhDjj24S80iGMjvukKDlOLStu3vUnLHYlWHFoMmucEo=;
+ b=mhO8vteMRFaLxnKS6mEocJPc7lRevQ82S+tBarMzIvsHiuDrRxKuCs5LdxvQ0HAJJX
+ ltVenm5jmkSawF29WRsq3mYiRuuRZgKwj/onf46+NOFAAN+MAolrv2fossPFy5+qMHYG
+ ak5jvRjoqhgxzXrtWlTvZlGVlYK5K5leF3fn/TE3Br8i9v5+1ypSki5aEKWrxcpl2w6Q
+ tOyYMBTgx/Ahm5XPXI2+T1TTQRUCogoov8aBClogfNCUH8lRQeIiVL3BNspJkXKc3gv6
+ tyt3/3thwlmsYssFIzxchC42kIkB9/pldzdIN4GVHyF0Bv7+7hC/voC0Y5KIe4kY9m3/
+ Ug/g==
+X-Gm-Message-State: APjAAAWCS5NNuuE90YgkvK6hQe2LgPPn7wqrdrDeBvT5cbGs1+k+8RAS
+ YyfwS9kycQUUerd3FEYZyxPzKfHmkxCRjOCzJMKgdKBGvKwQ
+X-Google-Smtp-Source: APXvYqz0WjRImbT8SyTkaSHDJnUm1/KIj6wfqSNyNsrgmspeG/zdV/BEREv3xTA//bGaaWOosDUe5Y+pK15m5vTa/h8enfhdUoGK
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Received: by 2002:a02:698d:: with SMTP id
+ e135mr34071295jac.128.1571000107511; 
+ Sun, 13 Oct 2019 13:55:07 -0700 (PDT)
+Date: Sun, 13 Oct 2019 13:55:07 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000059b6d40594d0f776@google.com>
+Subject: WARNING in batadv_iv_send_outstanding_bat_ogm_packet
+From: syzbot <syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
+ linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, 
+ netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1570993956;
+ s=20121; t=1571000539;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=Rt8KZpzPjawzkHWyH6Ws7kj7Svcr8epO/xdxfLioKLU=;
- b=VRHTP16bISZzYeLjVDrD+H2N/v6C3q7DNBH1BK2HBY4AziwCOQTiaw+2+oKlLEnyw/z4Kk
- 5K86Nkv84I37EA6Svfw1DaucsbQWP4orIh4feJckmWx1dhg60dDSkzNu34QkegqNAwZ5ha
- 8szzu0blPlna/7u1hiwhdtYjR5kHmMI=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1570993956; a=rsa-sha256; cv=none;
- b=ZbxGJGBUOLEmns0bKVJ5n47C+BkKUKdZcRGgqIo0im2Q0Xmf7mZJABcnzAlOZi9IyXreTl
- qEGbaejuDTAEww44Khu6BpVXz1X1WRK4QDuR4AnggkUlldgrBBt9MzELbmbHBMcc77ZgVm
- 5TiCMIou9LJxX5bk50EmdigyzE2pGOQ=
-ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=a65kyld3;
- spf=pass (open-mesh.org: domain of sven@narfation.org designates 213.160.73.56
- as permitted sender) smtp.mailfrom=sven@narfation.org
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=zhDjj24S80iGMjvukKDlOLStu3vUnLHYlWHFoMmucEo=;
+ b=qarAC/O80appbfZZ1gGp13TDsAZlVOSaIs0uz0Y+mhwpqjA3HsV2Dr3vIGa6q2jQHQQ8Bh
+ QCyRx/Kn4Ut2DxX/R35a5Vno0wlKcfCkGurCJmuT/bZO9AH4alp5zVoMfyOeU0+ag7UWcw
+ 1dM6bBAem799ATN0XuguJJ3uANnEeFI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1571000539; a=rsa-sha256; cv=none;
+ b=cokKeS5qIqBX8du0y9raRxi4xUWBZVZ00+KJZuRTbKQwMzDUqtCc1T6ozyeV5UIXM3e9kw
+ tNTQsai96sZ1jv+IA+SEVDVVruXDr0OyFOa7qgH7ITzfk8mpwVZodyby8JWiPdaq+FbaDH
+ /g5I/H9zwyxGwxPYLmLV5aJamJNHiYs=
+ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
+ spf=pass (open-mesh.org: domain of
+ 3K4-jXQkbAMo8EF0q11u7q55yt.w44w1uA8u7s439u39.s42@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.160.200 as permitted sender)
+ smtp.mailfrom=3K4-jXQkbAMo8EF0q11u7q55yt.w44w1uA8u7s439u39.s42@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Mon, 14 Oct 2019 08:39:54 +0200
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,268 +76,70 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-batadv_forw_packet_list_free can be called when an interface is being
-disabled. Under this circumstance, the rntl_lock will be held and while it
-calls cancel_delayed_work_sync.
+Hello,
 
-cancel_delayed_work_sync will stop the execution of the current context
-when the work item is currently processed. It can now happen that the
-cancel_delayed_work_sync was called when rtnl_lock was already called in
-batadv_iv_send_outstanding_bat_ogm_packet or when it was in the process of
-calling it. In this case, batadv_iv_send_outstanding_bat_ogm_packet waits
-for the lock and cancel_delayed_work_sync (which holds the rtnl_lock) is
-waiting for batadv_iv_send_outstanding_bat_ogm_packet to finish.
+syzbot found the following crash on:
 
-This can only be avoided by not using (conflicting) blocking locks while
-cancel_delayed_work_sync is called. It also has the benefit that the
-ogm scheduling functionality can avoid unnecessary delays which can be
-introduced by a global lock.
+HEAD commit:    da940012 Merge tag 'char-misc-5.4-rc3' of git://git.kernel..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=13ffd808e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=2d2fd92a28d3e50
+dashboard link: https://syzkaller.appspot.com/bug?extid=c0b807de416427ff3dd1
+compiler:       clang version 9.0.0 (/home/glider/llvm/clang  
+80fee25776c2fb61e74c1ecb1a523375c2500b69)
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=141ffd77600000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=11edd580e00000
 
-Fixes: 9b8ceef26c69 ("batman-adv: Avoid free/alloc race when handling OGM buffer")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com
+
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 30 at net/batman-adv/bat_iv_ogm.c:382  
+batadv_iv_ogm_emit net/batman-adv/bat_iv_ogm.c:382 [inline]
+WARNING: CPU: 1 PID: 30 at net/batman-adv/bat_iv_ogm.c:382  
+batadv_iv_send_outstanding_bat_ogm_packet+0x6b4/0x770  
+net/batman-adv/bat_iv_ogm.c:1663
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 30 Comm: kworker/u4:2 Not tainted 5.4.0-rc2+ #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS  
+Google 01/01/2011
+Workqueue: bat_events batadv_iv_send_outstanding_bat_ogm_packet
+Call Trace:
+  __dump_stack lib/dump_stack.c:77 [inline]
+  dump_stack+0x1d8/0x2f8 lib/dump_stack.c:113
+  panic+0x264/0x7a9 kernel/panic.c:221
+  __warn+0x20e/0x210 kernel/panic.c:582
+  report_bug+0x1b6/0x2f0 lib/bug.c:195
+  fixup_bug arch/x86/kernel/traps.c:179 [inline]
+  do_error_trap+0xd7/0x440 arch/x86/kernel/traps.c:272
+  do_invalid_op+0x36/0x40 arch/x86/kernel/traps.c:291
+  invalid_op+0x23/0x30 arch/x86/entry/entry_64.S:1028
+RIP: 0010:batadv_iv_ogm_emit net/batman-adv/bat_iv_ogm.c:382 [inline]
+RIP: 0010:batadv_iv_send_outstanding_bat_ogm_packet+0x6b4/0x770  
+net/batman-adv/bat_iv_ogm.c:1663
+Code: 66 05 00 eb 05 e8 9c 48 23 fa 48 83 c4 68 5b 41 5c 41 5d 41 5e 41 5f  
+5d c3 e8 88 48 23 fa 0f 0b e9 34 ff ff ff e8 7c 48 23 fa <0f> 0b e9 28 ff  
+ff ff 89 d9 80 e1 07 80 c1 03 38 c1 0f 8c c1 f9 ff
+RSP: 0018:ffff8880a9abfc48 EFLAGS: 00010293
+RAX: ffffffff874fe8a4 RBX: ffff888094160870 RCX: ffff8880a9ab2080
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 0000000000000002
+RBP: ffff8880a9abfcd8 R08: ffffffff874fe28e R09: ffffed10123e6969
+R10: ffffed10123e6969 R11: 0000000000000000 R12: ffff888091f34000
+R13: dffffc0000000000 R14: ffff8880a80c5000 R15: ffff8880a4481400
+  process_one_work+0x7ef/0x10e0 kernel/workqueue.c:2269
+  worker_thread+0xc01/0x1630 kernel/workqueue.c:2415
+  kthread+0x332/0x350 kernel/kthread.c:255
+  ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
+Kernel Offset: disabled
+Rebooting in 86400 seconds..
+
+
 ---
- net/batman-adv/bat_iv_ogm.c     | 86 +++++++++++++++++++++------------
- net/batman-adv/hard-interface.c |  2 +
- net/batman-adv/types.h          |  7 ++-
- 3 files changed, 61 insertions(+), 34 deletions(-)
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index e20c3813..5b0b20e6 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -22,6 +22,8 @@
- #include <linux/kernel.h>
- #include <linux/kref.h>
- #include <linux/list.h>
-+#include <linux/lockdep.h>
-+#include <linux/mutex.h>
- #include <linux/netdevice.h>
- #include <linux/netlink.h>
- #include <linux/pkt_sched.h>
-@@ -29,7 +31,6 @@
- #include <linux/random.h>
- #include <linux/rculist.h>
- #include <linux/rcupdate.h>
--#include <linux/rtnetlink.h>
- #include <linux/seq_file.h>
- #include <linux/skbuff.h>
- #include <linux/slab.h>
-@@ -194,7 +195,7 @@ static int batadv_iv_ogm_iface_enable(struct batadv_hard_iface *hard_iface)
- 	unsigned char *ogm_buff;
- 	u32 random_seqno;
- 
--	ASSERT_RTNL();
-+	mutex_lock(&hard_iface->bat_iv.ogm_buff_mutex);
- 
- 	/* randomize initial seqno to avoid collision */
- 	get_random_bytes(&random_seqno, sizeof(random_seqno));
-@@ -202,8 +203,10 @@ static int batadv_iv_ogm_iface_enable(struct batadv_hard_iface *hard_iface)
- 
- 	hard_iface->bat_iv.ogm_buff_len = BATADV_OGM_HLEN;
- 	ogm_buff = kmalloc(hard_iface->bat_iv.ogm_buff_len, GFP_ATOMIC);
--	if (!ogm_buff)
-+	if (!ogm_buff) {
-+		mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
- 		return -ENOMEM;
-+	}
- 
- 	hard_iface->bat_iv.ogm_buff = ogm_buff;
- 
-@@ -215,41 +218,59 @@ static int batadv_iv_ogm_iface_enable(struct batadv_hard_iface *hard_iface)
- 	batadv_ogm_packet->reserved = 0;
- 	batadv_ogm_packet->tq = BATADV_TQ_MAX_VALUE;
- 
-+	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
-+
- 	return 0;
- }
- 
- static void batadv_iv_ogm_iface_disable(struct batadv_hard_iface *hard_iface)
- {
--	ASSERT_RTNL();
-+	mutex_lock(&hard_iface->bat_iv.ogm_buff_mutex);
- 
- 	kfree(hard_iface->bat_iv.ogm_buff);
- 	hard_iface->bat_iv.ogm_buff = NULL;
-+
-+	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
- }
- 
- static void batadv_iv_ogm_iface_update_mac(struct batadv_hard_iface *hard_iface)
- {
- 	struct batadv_ogm_packet *batadv_ogm_packet;
--	unsigned char *ogm_buff = hard_iface->bat_iv.ogm_buff;
-+	void *ogm_buff;
- 
--	ASSERT_RTNL();
-+	mutex_lock(&hard_iface->bat_iv.ogm_buff_mutex);
- 
--	batadv_ogm_packet = (struct batadv_ogm_packet *)ogm_buff;
-+	ogm_buff = hard_iface->bat_iv.ogm_buff;
-+	if (!ogm_buff)
-+		goto unlock;
-+
-+	batadv_ogm_packet = ogm_buff;
- 	ether_addr_copy(batadv_ogm_packet->orig,
- 			hard_iface->net_dev->dev_addr);
- 	ether_addr_copy(batadv_ogm_packet->prev_sender,
- 			hard_iface->net_dev->dev_addr);
-+
-+unlock:
-+	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
- }
- 
- static void
- batadv_iv_ogm_primary_iface_set(struct batadv_hard_iface *hard_iface)
- {
- 	struct batadv_ogm_packet *batadv_ogm_packet;
--	unsigned char *ogm_buff = hard_iface->bat_iv.ogm_buff;
-+	void *ogm_buff;
- 
--	ASSERT_RTNL();
-+	mutex_lock(&hard_iface->bat_iv.ogm_buff_mutex);
- 
--	batadv_ogm_packet = (struct batadv_ogm_packet *)ogm_buff;
-+	ogm_buff = hard_iface->bat_iv.ogm_buff;
-+	if (!ogm_buff)
-+		goto unlock;
-+
-+	batadv_ogm_packet = ogm_buff;
- 	batadv_ogm_packet->ttl = BATADV_TTL;
-+
-+unlock:
-+	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
- }
- 
- /* when do we schedule our own ogm to be sent */
-@@ -751,7 +772,11 @@ batadv_iv_ogm_slide_own_bcast_window(struct batadv_hard_iface *hard_iface)
- 	}
- }
- 
--static void batadv_iv_ogm_schedule(struct batadv_hard_iface *hard_iface)
-+/**
-+ * batadv_iv_ogm_schedule_buff() - schedule submission of hardif ogm buffer
-+ * @hard_iface: interface whose ogm buffer should be transmitted
-+ */
-+static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
- {
- 	struct batadv_priv *bat_priv = netdev_priv(hard_iface->soft_iface);
- 	unsigned char **ogm_buff = &hard_iface->bat_iv.ogm_buff;
-@@ -762,11 +787,7 @@ static void batadv_iv_ogm_schedule(struct batadv_hard_iface *hard_iface)
- 	u16 tvlv_len = 0;
- 	unsigned long send_time;
- 
--	ASSERT_RTNL();
--
--	if (hard_iface->if_status == BATADV_IF_NOT_IN_USE ||
--	    hard_iface->if_status == BATADV_IF_TO_BE_REMOVED)
--		return;
-+	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
- 
- 	/* the interface gets activated here to avoid race conditions between
- 	 * the moment of activating the interface in
-@@ -834,6 +855,17 @@ static void batadv_iv_ogm_schedule(struct batadv_hard_iface *hard_iface)
- 		batadv_hardif_put(primary_if);
- }
- 
-+static void batadv_iv_ogm_schedule(struct batadv_hard_iface *hard_iface)
-+{
-+	if (hard_iface->if_status == BATADV_IF_NOT_IN_USE ||
-+	    hard_iface->if_status == BATADV_IF_TO_BE_REMOVED)
-+		return;
-+
-+	mutex_lock(&hard_iface->bat_iv.ogm_buff_mutex);
-+	batadv_iv_ogm_schedule_buff(hard_iface);
-+	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
-+}
-+
- /**
-  * batadv_iv_orig_ifinfo_sum() - Get bcast_own sum for originator over iterface
-  * @orig_node: originator which reproadcasted the OGMs directly
-@@ -1654,12 +1686,16 @@ static void batadv_iv_ogm_process(const struct sk_buff *skb, int ogm_offset,
- 	batadv_orig_node_put(orig_node);
- }
- 
--static void
--batadv_iv_send_outstanding_forw_packet(struct batadv_forw_packet *forw_packet)
-+static void batadv_iv_send_outstanding_bat_ogm_packet(struct work_struct *work)
- {
-+	struct delayed_work *delayed_work;
-+	struct batadv_forw_packet *forw_packet;
- 	struct batadv_priv *bat_priv;
- 	bool dropped = false;
- 
-+	delayed_work = to_delayed_work(work);
-+	forw_packet = container_of(delayed_work, struct batadv_forw_packet,
-+				   delayed_work);
- 	bat_priv = netdev_priv(forw_packet->if_incoming->soft_iface);
- 
- 	if (atomic_read(&bat_priv->mesh_state) == BATADV_MESH_DEACTIVATING) {
-@@ -1688,20 +1724,6 @@ batadv_iv_send_outstanding_forw_packet(struct batadv_forw_packet *forw_packet)
- 		batadv_forw_packet_free(forw_packet, dropped);
- }
- 
--static void batadv_iv_send_outstanding_bat_ogm_packet(struct work_struct *work)
--{
--	struct delayed_work *delayed_work;
--	struct batadv_forw_packet *forw_packet;
--
--	delayed_work = to_delayed_work(work);
--	forw_packet = container_of(delayed_work, struct batadv_forw_packet,
--				   delayed_work);
--
--	rtnl_lock();
--	batadv_iv_send_outstanding_forw_packet(forw_packet);
--	rtnl_unlock();
--}
--
- static int batadv_iv_ogm_receive(struct sk_buff *skb,
- 				 struct batadv_hard_iface *if_incoming)
- {
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index c90e4734..afb52282 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -18,6 +18,7 @@
- #include <linux/kref.h>
- #include <linux/limits.h>
- #include <linux/list.h>
-+#include <linux/mutex.h>
- #include <linux/netdevice.h>
- #include <linux/printk.h>
- #include <linux/rculist.h>
-@@ -929,6 +930,7 @@ batadv_hardif_add_interface(struct net_device *net_dev)
- 	INIT_LIST_HEAD(&hard_iface->list);
- 	INIT_HLIST_HEAD(&hard_iface->neigh_list);
- 
-+	mutex_init(&hard_iface->bat_iv.ogm_buff_mutex);
- 	spin_lock_init(&hard_iface->neigh_list_lock);
- 	kref_init(&hard_iface->refcount);
- 
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index eded9167..aa038b91 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -74,14 +74,17 @@ enum batadv_dhcp_recipient {
-  * struct batadv_hard_iface_bat_iv - per hard-interface B.A.T.M.A.N. IV data
-  */
- struct batadv_hard_iface_bat_iv {
--	/** @ogm_buff: buffer holding the OGM packet. rtnl protected */
-+	/** @ogm_buff: buffer holding the OGM packet */
- 	unsigned char *ogm_buff;
- 
--	/** @ogm_buff_len: length of the OGM packet buffer. rtnl protected */
-+	/** @ogm_buff_len: length of the OGM packet buffer */
- 	int ogm_buff_len;
- 
- 	/** @ogm_seqno: OGM sequence number - used to identify each OGM */
- 	atomic_t ogm_seqno;
-+
-+	/** @ogm_buff_mutex: lock protecting ogm_buff and ogm_buff_len */
-+	struct mutex ogm_buff_mutex;
- };
- 
- /**
--- 
-2.20.1
-
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+syzbot can test patches for this bug, for details see:
+https://goo.gl/tpsmEJ#testing-patches
