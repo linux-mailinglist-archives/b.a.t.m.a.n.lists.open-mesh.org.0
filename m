@@ -2,89 +2,48 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F255CF26E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Oct 2019 08:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF38AD57A1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 13 Oct 2019 21:13:20 +0200 (CEST)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id CD18E806A1;
-	Tue,  8 Oct 2019 08:06:02 +0200 (CEST)
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
- [IPv6:2607:f8b0:4864:20::841])
- by open-mesh.org (Postfix) with ESMTPS id 6D6858002A
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Oct 2019 05:58:44 +0200 (CEST)
-Received: by mail-qt1-x841.google.com with SMTP id o12so23027182qtf.3
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 07 Oct 2019 20:58:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=NnpEw+ywvJZXpSWAjbLOxSA4dq8mRh5pItXnVvgA3l4=;
- b=V2IDqiE0T9d511JQSQZkcowC2XRBL+V4+hRschXqKWQ95cRLbm8WSF/2BHP5fmvyw9
- GDIkAh5wjj+mcp8Z156/5K4tFRYjpTI3LNKG08fNueWfZRS4TeSTbKVCszL2Ht8hCEun
- MEyome+VmfpvUNyj2w/QRL6Mt2YjBZNDdL/zlvowdXXG9feCnkdYyMWoZ1qSuRkh5Vp+
- tak1k201xQCHixXeEG/kHkdggMeFwr3e4KJx4RdUm2mWKSNDhI8mzy1YTX81kPP8eIOY
- gbEnDhtCZj8VsveUYBA8TLimA/Fq36PpgSU2c82kuj5sphd82YWypucQUxK/DBDbyVUl
- xeMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=NnpEw+ywvJZXpSWAjbLOxSA4dq8mRh5pItXnVvgA3l4=;
- b=ZCdoOya1e+h0WBtMSb10RMWvAL209ZaEDwiFrx0DSmcDSXqPpLU2MSAdj+AY4DpCUv
- 6ytllk0HjKow0MUuuHzM9WZyBO+WMUmZ+u7ICRWwdh8KGNi4njwlmUNa816PgTanU24Q
- QuXuaTaad/GNjdJD58hFkitdHi51QfYyOXQ6v1Z9nhrsW0hhtFbBRpJEpyIit35aXZPF
- O7EBCNlei/LEmIrFDr4J9IjUvXFzgMOHl86yy8voWQJ0SYJukw7hh5STP+6d/M9SeDf1
- p7ZM7zVwfQK22fRxjIMP2Egg6iD7agDEGUjsHfPa3dVA9VXlC6uKsbKtrMAY8QII1a0W
- Yisg==
-X-Gm-Message-State: APjAAAVnboGDUQElhfqS4nlYYj0bpVNh6G388NV7X0Lz+EoEGRnPLOxe
- Fq1qNe9MctpeJPqcJDM6rbQ=
-X-Google-Smtp-Source: APXvYqyWL+nwojqL562qUMKTJ29D7lryw+OOnC4v6FJ3I+blfxV5xGyIJd05ajIxTKf3tYCBWBBGYQ==
-X-Received: by 2002:ac8:388e:: with SMTP id f14mr34730246qtc.167.1570507123112; 
- Mon, 07 Oct 2019 20:58:43 -0700 (PDT)
-Received: from auth2-smtp.messagingengine.com (auth2-smtp.messagingengine.com.
- [66.111.4.228])
- by smtp.gmail.com with ESMTPSA id n65sm8749744qkb.19.2019.10.07.20.58.41
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Oct 2019 20:58:42 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailauth.nyi.internal (Postfix) with ESMTP id 0598C21BBA;
- Mon,  7 Oct 2019 23:58:41 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Mon, 07 Oct 2019 23:58:41 -0400
-X-ME-Sender: <xms:bwmcXTJnspn-UefsV2CiORveZZ-iblwvwo0UCFlp2GCJmDhqyYtTEw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrheekgdejhecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggujggfsehgtderredtredvnecuhfhrohhmpeeuohhquhhn
- ucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilhdrtghomheqnecukfhppedutd
- durdekiedrgeefrddvtdeinecurfgrrhgrmhepmhgrihhlfhhrohhmpegsohhquhhnodhm
- vghsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeigedqudejjeekhe
- ehhedvqdgsohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihigmhgvrdhnrghm
- vgenucevlhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:bwmcXS5GR1LACr8GTpI7fK1pTyVUuMSChTEnEIbLP5-rnMvXg3S4Ow>
- <xmx:bwmcXUS1_KfNxtv0k-gixKlhVmHNeU1Tc59z17a2HOq2rkQT_-IUTw>
- <xmx:bwmcXdh7sqDKpQYHPYHQDe7I3RdmNHgPmwv3z6q_gGRV6Re_b-wO3w>
- <xmx:cQmcXawAe7FP52wi5yZrtu3FdKs1U_P7caIUgJsx2i6cG1uPOQC7AdPutr0>
-Received: from localhost (unknown [101.86.43.206])
- by mail.messagingengine.com (Postfix) with ESMTPA id 7C24680061;
- Mon,  7 Oct 2019 23:58:38 -0400 (EDT)
-Date: Tue, 8 Oct 2019 11:58:34 +0800
-From: Boqun Feng <boqun.feng@gmail.com>
-To: "Paul E. McKenney" <paulmck@kernel.org>
-Subject: Re: KCSAN: data-race in find_next_bit / rcu_report_exp_cpu_mult
-Message-ID: <20191008035834.GB2609633@tardis>
-References: <000000000000604e8905944f211f@google.com>
- <CANpmjNNmSOagbTpffHr4=Yedckx9Rm2NuGqC9UqE+AOz5f1-ZQ@mail.gmail.com>
- <20191007134304.GA2609633@tardis>
- <20191008001131.GB255532@google.com>
- <20191008021233.GD2689@paulmck-ThinkPad-P72>
- <20191008025056.GA2701514@tardis>
- <20191008033353.GK2689@paulmck-ThinkPad-P72>
+	by open-mesh.org (Postfix) with ESMTP id 9EB94807D7;
+	Sun, 13 Oct 2019 21:13:07 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+ by open-mesh.org (Postfix) with ESMTPS id B9FA68076F
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 13 Oct 2019 21:12:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1570993454;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=thS6RASQg5jrdIK/YzzkxXqLNznYAexqF8y70HFoUU0=;
+ b=LTVOy4v6i6IVfZ/QHjMaudAXhepAkxgUMMJDLDR8ZLvzjffZMgJqbElJ7nj0WA1UoYwXRy
+ 8msMZ8Cm225gowc8cf7MwkSyCtN8E8gc4HhYic5SALKmovDdhNQmmlCOBUXq3T4wj9FjjJ
+ axLtlm8pk2OHRDa+atL9KJ4tzkPwzTs=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH 1/2] batman-adv: Introduce own OGM2 buffer mutex
+Date: Sun, 13 Oct 2019 21:03:06 +0200
+Message-Id: <20191013190307.11796-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="wRRV7LY7NUeQGEoC"
-Content-Disposition: inline
-In-Reply-To: <20191008033353.GK2689@paulmck-ThinkPad-P72>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Mailman-Approved-At: Tue, 08 Oct 2019 08:05:47 +0200
+Content-Transfer-Encoding: 8bit
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1570993956;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=thS6RASQg5jrdIK/YzzkxXqLNznYAexqF8y70HFoUU0=;
+ b=pbw+kqpaehGgvjU7ck7ugDRL3M2dPdKkFH2SyiE7HiRfgRutmEZ74DtrCs3h48oTYmwsic
+ 7tpJdqeZjs2vopv1EV5wyoUdPdOpg7FWXRrKQLYOpZxlr7HbvsaJP2mCXkpfKgW0emErl5
+ Xss8knTUe+OYkMysWEXTAdB1+VAVTVk=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1570993957; a=rsa-sha256; cv=none;
+ b=VS02EqYZkUmXSLg2Jbzi0qYqx2O1gUxG/oNrojp+4qppO0IAKBTXOVLe7siR9hazQLPgLr
+ jouyWoEsJxqiHgSmKe8KkHkNYe+9yZbsQJ5v1v8xfF3a3KE6Ipju0hrWq4f1Lw/L76gcCQ
+ 6rWJvB/DMWK5PKCPC0pHOmKnXUDsxtQ=
+ARC-Authentication-Results: i=1; open-mesh.org;
+ dkim=pass header.d=narfation.org header.s=20121 header.b=LTVOy4v6;
+ spf=pass (open-mesh.org: domain of sven@narfation.org designates 213.160.73.56
+ as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,108 +58,145 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Marco Elver <elver@google.com>, mareklindner@neomailbox.ch,
- syzbot <syzbot+134336b86f728d6e55a0@syzkaller.appspotmail.com>, a@unstable.cc,
- b.a.t.m.a.n@lists.open-mesh.org, jiangshanlai@gmail.com, josh@joshtriplett.org,
- rostedt@goodmis.org, LKML <linux-kernel@vger.kernel.org>, rcu@vger.kernel.org,
- mathieu.desnoyers@efficios.com, netdev@vger.kernel.org,
- Joel Fernandes <joel@joelfernandes.org>, syzkaller-bugs@googlegroups.com,
- davem@davemloft.net
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
+Only a single function is currently automatically locked by the rtnl_lock
+because (unlike B.A.T.M.A.N. IV) the OGM2 buffer is independent of the hard
+interfaces on which it will be transmitted. A private mutex can be used
+instead to avoid unnecessary delays which would have been introduced by the
+global lock.
 
---wRRV7LY7NUeQGEoC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/bat_v_ogm.c | 26 +++++++++++++++++---------
+ net/batman-adv/types.h     |  8 ++++++--
+ 2 files changed, 23 insertions(+), 11 deletions(-)
 
-On Mon, Oct 07, 2019 at 08:33:53PM -0700, Paul E. McKenney wrote:
-[...]
-> > ---
-> >  kernel/rcu/tree_exp.h | 17 +++++++----------
-> >  1 file changed, 7 insertions(+), 10 deletions(-)
-> >=20
-> > diff --git a/kernel/rcu/tree_exp.h b/kernel/rcu/tree_exp.h
-> > index af7e7b9c86af..fb51752ac9a6 100644
-> > --- a/kernel/rcu/tree_exp.h
-> > +++ b/kernel/rcu/tree_exp.h
-> > @@ -372,12 +372,10 @@ static void sync_rcu_exp_select_node_cpus(struct =
-work_struct *wp)
-> >  	raw_spin_unlock_irqrestore_rcu_node(rnp, flags);
-> > =20
-> >  	/* IPI the remaining CPUs for expedited quiescent state. */
-> > -	for_each_leaf_node_cpu_mask(rnp, cpu, rnp->expmask) {
-> > +	for_each_leaf_node_cpu_mask(rnp, cpu, mask_ofl_ipi) {
-> >  		unsigned long mask =3D leaf_node_cpu_bit(rnp, cpu);
-> >  		struct rcu_data *rdp =3D per_cpu_ptr(&rcu_data, cpu);
-> > =20
-> > -		if (!(mask_ofl_ipi & mask))
-> > -			continue;
-> >  retry_ipi:
-> >  		if (rcu_dynticks_in_eqs_since(rdp, rdp->exp_dynticks_snap)) {
-> >  			mask_ofl_test |=3D mask;
->=20
-> This part I have already on -rcu branch "dev".
->=20
-> > @@ -389,10 +387,10 @@ static void sync_rcu_exp_select_node_cpus(struct =
-work_struct *wp)
-> >  		}
-> >  		ret =3D smp_call_function_single(cpu, rcu_exp_handler, NULL, 0);
-> >  		put_cpu();
-> > -		if (!ret) {
-> > -			mask_ofl_ipi &=3D ~mask;
-> > +		/* the CPU responses the IPI, and it will report QS itself */
-> > +		if (!ret)
-> >  			continue;
-> > -		}
-> > +
-> >  		/* Failed, raced with CPU hotplug operation. */
-> >  		raw_spin_lock_irqsave_rcu_node(rnp, flags);
-> >  		if ((rnp->qsmaskinitnext & mask) &&
-> > @@ -403,13 +401,12 @@ static void sync_rcu_exp_select_node_cpus(struct =
-work_struct *wp)
-> >  			schedule_timeout_uninterruptible(1);
-> >  			goto retry_ipi;
-> >  		}
-> > -		/* CPU really is offline, so we can ignore it. */
-> > -		if (!(rnp->expmask & mask))
-> > -			mask_ofl_ipi &=3D ~mask;
-> > +		/* CPU really is offline, and we need its QS. */
-> > +		if (rnp->expmask & mask)
-> > +			mask_ofl_test |=3D mask;
-> >  		raw_spin_unlock_irqrestore_rcu_node(rnp, flags);
-> >  	}
-> >  	/* Report quiescent states for those that went offline. */
-> > -	mask_ofl_test |=3D mask_ofl_ipi;
-> >  	if (mask_ofl_test)
-> >  		rcu_report_exp_cpu_mult(rnp, mask_ofl_test, false);
-> >  }
->=20
-> Would you be willing to port this optimization on top of current -rcu
-> branch "dev" with an suitably modified commit message?
->=20
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index 034bdc5e..74452e93 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -17,11 +17,12 @@
+ #include <linux/kernel.h>
+ #include <linux/kref.h>
+ #include <linux/list.h>
++#include <linux/lockdep.h>
++#include <linux/mutex.h>
+ #include <linux/netdevice.h>
+ #include <linux/random.h>
+ #include <linux/rculist.h>
+ #include <linux/rcupdate.h>
+-#include <linux/rtnetlink.h>
+ #include <linux/skbuff.h>
+ #include <linux/slab.h>
+ #include <linux/stddef.h>
+@@ -130,7 +131,7 @@ static void batadv_v_ogm_send_softif(struct batadv_priv *bat_priv)
+ 	u16 tvlv_len = 0;
+ 	int ret;
+ 
+-	ASSERT_RTNL();
++	lockdep_assert_held(&bat_priv->bat_v.ogm_buff_mutex);
+ 
+ 	if (atomic_read(&bat_priv->mesh_state) == BATADV_MESH_DEACTIVATING)
+ 		goto out;
+@@ -230,11 +231,12 @@ static void batadv_v_ogm_send(struct work_struct *work)
+ 	struct batadv_priv_bat_v *bat_v;
+ 	struct batadv_priv *bat_priv;
+ 
+-	rtnl_lock();
+ 	bat_v = container_of(work, struct batadv_priv_bat_v, ogm_wq.work);
+ 	bat_priv = container_of(bat_v, struct batadv_priv, bat_v);
++
++	mutex_lock(&bat_priv->bat_v.ogm_buff_mutex);
+ 	batadv_v_ogm_send_softif(bat_priv);
+-	rtnl_unlock();
++	mutex_unlock(&bat_priv->bat_v.ogm_buff_mutex);
+ }
+ 
+ /**
+@@ -263,13 +265,15 @@ void batadv_v_ogm_primary_iface_set(struct batadv_hard_iface *primary_iface)
+ 	struct batadv_priv *bat_priv = netdev_priv(primary_iface->soft_iface);
+ 	struct batadv_ogm2_packet *ogm_packet;
+ 
+-	ASSERT_RTNL();
+-
++	mutex_lock(&bat_priv->bat_v.ogm_buff_mutex);
+ 	if (!bat_priv->bat_v.ogm_buff)
+-		return;
++		goto unlock;
+ 
+ 	ogm_packet = (struct batadv_ogm2_packet *)bat_priv->bat_v.ogm_buff;
+ 	ether_addr_copy(ogm_packet->orig, primary_iface->net_dev->dev_addr);
++
++unlock:
++	mutex_unlock(&bat_priv->bat_v.ogm_buff_mutex);
+ }
+ 
+ /**
+@@ -873,8 +877,6 @@ int batadv_v_ogm_init(struct batadv_priv *bat_priv)
+ 	unsigned char *ogm_buff;
+ 	u32 random_seqno;
+ 
+-	ASSERT_RTNL();
+-
+ 	bat_priv->bat_v.ogm_buff_len = BATADV_OGM2_HLEN;
+ 	ogm_buff = kzalloc(bat_priv->bat_v.ogm_buff_len, GFP_ATOMIC);
+ 	if (!ogm_buff)
+@@ -893,6 +895,8 @@ int batadv_v_ogm_init(struct batadv_priv *bat_priv)
+ 	atomic_set(&bat_priv->bat_v.ogm_seqno, random_seqno);
+ 	INIT_DELAYED_WORK(&bat_priv->bat_v.ogm_wq, batadv_v_ogm_send);
+ 
++	mutex_init(&bat_priv->bat_v.ogm_buff_mutex);
++
+ 	return 0;
+ }
+ 
+@@ -904,7 +908,11 @@ void batadv_v_ogm_free(struct batadv_priv *bat_priv)
+ {
+ 	cancel_delayed_work_sync(&bat_priv->bat_v.ogm_wq);
+ 
++	mutex_lock(&bat_priv->bat_v.ogm_buff_mutex);
++
+ 	kfree(bat_priv->bat_v.ogm_buff);
+ 	bat_priv->bat_v.ogm_buff = NULL;
+ 	bat_priv->bat_v.ogm_buff_len = 0;
++
++	mutex_unlock(&bat_priv->bat_v.ogm_buff_mutex);
+ }
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index 282a4650..eded9167 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -17,6 +17,7 @@
+ #include <linux/if.h>
+ #include <linux/if_ether.h>
+ #include <linux/kref.h>
++#include <linux/mutex.h>
+ #include <linux/netdevice.h>
+ #include <linux/netlink.h>
+ #include <linux/sched.h> /* for linux/wait.h */
+@@ -1518,15 +1519,18 @@ struct batadv_softif_vlan {
+  * struct batadv_priv_bat_v - B.A.T.M.A.N. V per soft-interface private data
+  */
+ struct batadv_priv_bat_v {
+-	/** @ogm_buff: buffer holding the OGM packet. rtnl protected */
++	/** @ogm_buff: buffer holding the OGM packet */
+ 	unsigned char *ogm_buff;
+ 
+-	/** @ogm_buff_len: length of the OGM packet buffer. rtnl protected */
++	/** @ogm_buff_len: length of the OGM packet buffer */
+ 	int ogm_buff_len;
+ 
+ 	/** @ogm_seqno: OGM sequence number - used to identify each OGM */
+ 	atomic_t ogm_seqno;
+ 
++	/** @ogm_buff_mutex: lock protecting ogm_buff and ogm_buff_len */
++	struct mutex ogm_buff_mutex;
++
+ 	/** @ogm_wq: workqueue used to schedule OGM transmissions */
+ 	struct delayed_work ogm_wq;
+ };
+-- 
+2.20.1
 
-Sure, will do ;-)
-
-Regards,
-Boqun
-
-> 							Thanx, Paul
-
---wRRV7LY7NUeQGEoC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEEj5IosQTPz8XU1wRHSXnow7UH+rgFAl2cCWYACgkQSXnow7UH
-+rhz7Af+Nij364bAg8HkjALb5BhcfB+hJC9AgMEcFVjStzO0s8BnctHvtlQeh0nM
-DKIuwC+YwUX4c1uwWWtI4EQlCwseOQJLFaC3QP7sdyqIzziLeUeL4QEhinAONiAA
-nlp9qS/qChRQ21B0RsvxFhT/SoWrpCf7x78rVTjpi2lOc7fopFEX52CeGwwioWLL
-o7gfkrBtGhSTwkYI9OCJOiOrzmFLxvkSwKqlYuvC8T5IUSV5LQKWEyEo8bCwEAzs
-fNZo4Svq/PhE5nIBOzvy2P/Wfc3VK5MAbe977ptBzV1rEpvnZl/6MA0yp18YwuKC
-v0op9RMzpBPyNhZeacKMGigiNyq9lA==
-=+lHp
------END PGP SIGNATURE-----
-
---wRRV7LY7NUeQGEoC--
