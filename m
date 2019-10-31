@@ -1,79 +1,48 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39CA7E8B26
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 29 Oct 2019 15:47:38 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5A1FEAB24
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 31 Oct 2019 08:53:11 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id E6E638058D;
-	Tue, 29 Oct 2019 15:47:32 +0100 (CET)
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
- [209.85.166.198])
- by open-mesh.org (Postfix) with ESMTPS id BAF6A80223
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 29 Oct 2019 15:17:07 +0100 (CET)
-Received: by mail-il1-f198.google.com with SMTP id i74so9431771ild.13
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 29 Oct 2019 07:17:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=ZXDP0wwnNkRnGcZ/hxzyUBVhVAKO5MP3N/7b/HrN89M=;
- b=UYxG6jCgKqBHCuOAF1FCm+8DYxP9iMxiZdqmDmqxZidYcMK5h/Z8RG0VjfqrY6EkRN
- iJ9/qGZiD+rSgae2A7Bmd0xeXPyJ0R9SJYrvTV9VwvISnWzyYjyzOv//jlMoNsPqjklH
- by5grtXFBrNO+HLcsO3i+ojsVHeuNr4z23tkx9UP9jH9isPrOATN8gIEWtQP1EypToKf
- isG92zfbMLvlVtdEd3kRWBlpXCmih/jcaTfE+ZBnhyRDdquTb0jT2Tm5Afm5VXwNDN2I
- SLjgjiiQrjFo6b/V2BgQP+7/i8LjGmWr8rDJl/pcVp2R7tzIb7KE+AAeIjTbvBGZimvt
- leQA==
-X-Gm-Message-State: APjAAAUVpWqbXQExctZDN85uJJiXck640/hEM4Tn17NOugNsYv9kCm2T
- dULIBqH7kY/bXcCd/+I6vUD7XXTbs6GNyil7W/r+iYnSwJ0o
-X-Google-Smtp-Source: APXvYqyEO6WTdX2TT1MAC5wh+aMxnQAZiQ9NAP9Ue+ASML0EMHR89Lk5xJp5JZTyc5Ij4tXWW9iYcXeag4DdS0UpQCxA/Rt7L8JZ
+	by open-mesh.org (Postfix) with ESMTP id 1B1598087D;
+	Thu, 31 Oct 2019 08:53:01 +0100 (CET)
+Received: from smtp.smtpout.orange.fr (smtp10.smtpout.orange.fr
+ [80.12.242.132]) by open-mesh.org (Postfix) with ESMTP id 27F2F800A1
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 31 Oct 2019 08:50:43 +0100 (CET)
+Received: from localhost.localdomain ([93.23.12.90]) by mwinf5d87 with ME
+ id L7j9210091waAWt037j9B8; Thu, 31 Oct 2019 08:43:12 +0100
+X-ME-Helo: localhost.localdomain
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Thu, 31 Oct 2019 08:43:12 +0100
+X-ME-IP: 93.23.12.90
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: davem@davemloft.net, mareklindner@neomailbox.ch, sw@simonwunderlich.de,
+ a@unstable.cc, sven@narfation.org
+Subject: [PATCH] batman-adv: Simplify 'batadv_v_ogm_aggr_list_free()'
+Date: Thu, 31 Oct 2019 08:42:55 +0100
+Message-Id: <20191031074255.3234-1-christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Received: by 2002:a92:8394:: with SMTP id p20mr28056667ilk.73.1572358141217; 
- Tue, 29 Oct 2019 07:09:01 -0700 (PDT)
-Date: Tue, 29 Oct 2019 07:09:01 -0700
-In-Reply-To: <0000000000009ea5720595dc03a3@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000007792ff05960d289d@google.com>
-Subject: Re: BUG: MAX_LOCKDEP_KEYS too low!
-From: syzbot <syzbot+692f39f040c1f415567b@syzkaller.appspotmail.com>
-To: a@unstable.cc, alex.aring@gmail.com, allison@lohutok.net, andrew@lunn.ch, 
- andy@greyhouse.net, ap420073@gmail.com, aroulin@cumulusnetworks.com, 
- ast@domdv.de, b.a.t.m.a.n@lists.open-mesh.org, 
- bridge@lists.linux-foundation.org, cleech@redhat.com, daniel@iogearbox.net, 
- davem@davemloft.net, dcaratti@redhat.com, dsa@cumulusnetworks.com, 
- edumazet@google.com, f.fainelli@gmail.com, fw@strlen.de, 
- gregkh@linuxfoundation.org, gustavo@embeddedor.com, gvaradar@cisco.com, 
- haiyangz@microsoft.com, idosch@mellanox.com, info@metux.net, 
- ivan.khoronzhuk@linaro.org, j.vosburgh@gmail.com, j@w1.fi, 
- jakub.kicinski@netronome.com, jhs@mojatatu.com, jiri@mellanox.com, 
- jiri@resnulli.us, johan.hedberg@gmail.com, johannes.berg@intel.com, 
- john.hurley@netronome.com, jwi@linux.ibm.com, kstewart@linuxfoundation.org, 
- kvalo@codeaurora.org, kys@microsoft.com, lariel@mellanox.com, 
- linmiaohe@huawei.com, linux-bluetooth@vger.kernel.org, 
- linux-hams@vger.kernel.org, linux-hyperv@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-ppp@vger.kernel.org, 
- linux-wireless@vger.kernel.org, linux-wpan@vger.kernel.org, 
- liuhangbin@gmail.com, marcel@holtmann.org, mareklindner@neomailbox.ch
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1572358627;
+ s=20121; t=1572508243;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=ZXDP0wwnNkRnGcZ/hxzyUBVhVAKO5MP3N/7b/HrN89M=;
- b=uX0mEJ1hhf7tYNJNLa9hCLsQxISd9op6Il6sZfiU7ZVBmO2j15LUcsOa28AFbIaFE3fOD9
- E9wpdS6xKA3ZiLd6IJUdKRbB2nQi59BwMFrSuicBKmfGwxuHfteFqXC8Y2AoRkkdswmYwA
- 7Boc6k2/R8dmE7hHST0/8CL4ArdO+DM=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1572358627; a=rsa-sha256; cv=none;
- b=W/HMIbVA10TACf5IaRvLgsLYztGr0PQxhR5uQaUQQrrr+Lug/ywQBgmdDgzsNi7uRdDse5
- QgLpNicmPFAMWBgJ0PrXFQFpQLSSbsjOnDqpwd2/I1Xza4/dHCIY19/LG2oa57k84p8M8O
- SvfUsje41x1bhd08PP601iN4Voob9pE=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=/TqoFnjC6QGrXp43uRC7YW3e0C+d8hcxNrpcrOte4RE=;
+ b=UM29rUw/Wca99poU2o2RWcwZFNu36pY8HZrzcSFBKwZSSxZRkBzC2QjDzhqxLsY+QOJRCM
+ WKOB/iBjsJBg0216wAKQuEl7pucV66WZj/nkocMXzA5SKETt5IpMnABXq0Y2Gmcz/MKasP
+ kwbKMf2jmhplQGie1innpiVgUHDs5/Q=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1572508243; a=rsa-sha256; cv=none;
+ b=b8RFFR6I6rDz4ieEg5eD7SBjBPTffjQzG6C+LzTv8x7jCueUBHJLlgRnfQ7Is6qQF7BnmY
+ WcdY39dKR04LzJ35wpbKADCG+mSK2BoOqFjIR00wMlAwmd3yRE8s0Az/NnDPpXsxHmM1LT
+ j7yavpT5yAOZUxm2N6jEVZwDP/M7YZQ=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of
- 3_Ue4XQkbAGISYZKALLERAPPID.GOOGLEUSERCONTENT.COM@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.198 as permitted sender)
- smtp.mailfrom=3_Ue4XQkbAGISYZKALLERAPPID.GOOGLEUSERCONTENT.COM@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Tue, 29 Oct 2019 15:47:30 +0100
+ spf=none (open-mesh.org: domain of christophe.jaillet@wanadoo.fr has no SPF
+ policy when checking 80.12.242.132)
+ smtp.mailfrom=christophe.jaillet@wanadoo.fr
+X-Mailman-Approved-At: Thu, 31 Oct 2019 08:52:58 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,27 +57,55 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot has bisected this bug to:
+Use 'skb_queue_purge()' instead of re-implementing it.
 
-commit ab92d68fc22f9afab480153bd82a20f6e2533769
-Author: Taehee Yoo <ap420073@gmail.com>
-Date:   Mon Oct 21 18:47:51 2019 +0000
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+BTW, I don't really see the need of 'aggr_list_lock'. I think that the code
+could be refactored to drop 'aggr_list_lock' and use the already existing
+'aggr_list.lock'.
+This would require to use the lock-free __skb_... variants when working on
+'aggr_list'.
 
-     net: core: add generic lockdep keys
+As far as I understand, the use of 'aggr_list' and 'aggr_list_lock' is
+limited to bat_v_ogm.c'. So the impact would be limited.
+This would avoid a useless locking that never fails, so the performance
+gain should be really limited.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12e05224e00000
-start commit:   60c1769a Add linux-next specific files for 20191028
-git tree:       linux-next
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=11e05224e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=16e05224e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=cb86688f30db053d
-dashboard link: https://syzkaller.appspot.com/bug?extid=692f39f040c1f415567b
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=10be9ed0e00000
+So, I'm not sure this would be more readable and/or future proof, so
+I just note it here to open the discussion.
 
-Reported-by: syzbot+692f39f040c1f415567b@syzkaller.appspotmail.com
-Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
+If interested, I have a (compiled tested only) patch that implements this
+change.
+---
+ net/batman-adv/bat_v_ogm.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index dc4f7430cb5a..b841c83d9c3b 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -177,13 +177,9 @@ static bool batadv_v_ogm_queue_left(struct sk_buff *skb,
+  */
+ static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
+ {
+-	struct sk_buff *skb;
+-
+ 	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
+ 
+-	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list)))
+-		kfree_skb(skb);
+-
++	skb_queue_purge(&hard_iface->bat_v.aggr_list);
+ 	hard_iface->bat_v.aggr_len = 0;
+ }
+ 
+-- 
+2.20.1
+
