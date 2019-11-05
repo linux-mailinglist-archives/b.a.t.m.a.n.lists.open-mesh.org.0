@@ -2,26 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id A754DEF9DC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  5 Nov 2019 10:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF20EF9DA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  5 Nov 2019 10:45:42 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 9E45280C26;
-	Tue,  5 Nov 2019 10:45:30 +0100 (CET)
-Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
- by open-mesh.org (Postfix) with ESMTPS id 7D9EB80697
+	by open-mesh.org (Postfix) with ESMTP id 460D98085A;
+	Tue,  5 Nov 2019 10:45:27 +0100 (CET)
+Received: from simonwunderlich.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id 87D6F807EE
  for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  5 Nov 2019 10:45:22 +0100 (CET)
 Received: from kero.packetmixer.de
  (p200300C5970F5D00F0ACF07C9CF9C7D8.dip0.t-ipconnect.de
  [IPv6:2003:c5:970f:5d00:f0ac:f07c:9cf9:c7d8])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by simonwunderlich.de (Postfix) with ESMTPSA id 502526205B;
+ by simonwunderlich.de (Postfix) with ESMTPSA id A80C16205C;
  Tue,  5 Nov 2019 10:35:34 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: davem@davemloft.net
-Subject: [PATCH 2/5] batman-adv: Simplify 'batadv_v_ogm_aggr_list_free()'
-Date: Tue,  5 Nov 2019 10:35:28 +0100
-Message-Id: <20191105093531.11398-3-sw@simonwunderlich.de>
+Subject: [PATCH 3/5] batman-adv: Axe 'aggr_list_lock'
+Date: Tue,  5 Nov 2019 10:35:29 +0100
+Message-Id: <20191105093531.11398-4-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191105093531.11398-1-sw@simonwunderlich.de>
 References: <20191105093531.11398-1-sw@simonwunderlich.de>
@@ -33,17 +34,18 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=dcFd0+bMe4y+b6WnewGGkpJ65nzVFgPPZSRwZo0+R38=;
- b=b76nWN4w7wZS35WQ6f4ZTxT6NhzozmhSEeccgyyEkWQ728zeri5EMje3IvtPxmLdJogyF7
- DDaV75wEBL2kuQ4FDJLpH9O3KmMKLAouB/34mRMjNYa5SWLmcGDPVRS8L0XZQbCGpgtlVB
- fOH30OY5Sw6nQtw37ljC5dPAfVZ6ql8=
+ bh=y2+lyqZdkgBogiXYKLXkgD1CtslUwSmTXtzYx5LzgnI=;
+ b=I6ctfGacZq7f6lcEptjZGgF+cnVD28N4DSDzyauA7bbhV3h57+ycOBjPGjCWmRxpfrEZ1W
+ eZvQ0htbt1GaSeNi5U+MVrXPIgjxYl0vdjp4HcJ7Z5Zcqr9bxLd9Hj1dfoZ9olws3JE8Pt
+ wq1U5M4rJvM/iV5rGgU8cO3OynrhV38=
 ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1572947122; a=rsa-sha256; cv=none;
- b=3HqyPQ5wxLQ9n98wshkWotkx6aRx/2S6AIUr1WzdKxh7EVIeILycf9pUjN1d0AQt5bUDW/
- vv4yuYivx09l71cMHTRhErjOWPYdAOB+CN7qOmDmS3p/XD7UJjy9kWQTyRnjglgNqSqiXU
- JdaL11A2aW2b51ody/PNSgzP64YQHVc=
+ b=sgtbvy7W3298xnaBv1JL1+zs2MnD720gn7TWnDyqUIoKNPOzqmmHNnO9nunKmGWGJcwOG1
+ M9h5if3gElwMood/Z+zOxM/sdJaglZsztA9ZdLb7vQNNIu/sXAeKdlt0OFTAEXrK26s/zy
+ wSWXeZgijoXPsVD0K+6DC5mMoUYVq2A=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
  spf=pass (open-mesh.org: domain of sw@simonwunderlich.de designates
- 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+ 2001:4d88:2000:24::c0de as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,34 +67,156 @@ Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
 From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 
-Use 'skb_queue_purge()' instead of re-implementing it.
+'aggr_list.lock' can safely be used in place of another explicit spinlock
+when access to 'aggr_list' has to be guarded.
+
+This avoids to take 2 locks, knowing that the 2nd one is always successful.
+
+Now that the 'aggr_list.lock' is handled explicitly, the lock-free
+__sbk_something() variants should be used when dealing with 'aggr_list'.
 
 Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/bat_v_ogm.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ net/batman-adv/bat_v.c     |  1 -
+ net/batman-adv/bat_v_ogm.c | 30 +++++++++++++++---------------
+ net/batman-adv/types.h     |  3 ---
+ 3 files changed, 15 insertions(+), 19 deletions(-)
 
+diff --git a/net/batman-adv/bat_v.c b/net/batman-adv/bat_v.c
+index 64054edc2e3c..4ff6cf1ecae7 100644
+--- a/net/batman-adv/bat_v.c
++++ b/net/batman-adv/bat_v.c
+@@ -1085,7 +1085,6 @@ void batadv_v_hardif_init(struct batadv_hard_iface *hard_iface)
+ 
+ 	hard_iface->bat_v.aggr_len = 0;
+ 	skb_queue_head_init(&hard_iface->bat_v.aggr_list);
+-	spin_lock_init(&hard_iface->bat_v.aggr_list_lock);
+ 	INIT_DELAYED_WORK(&hard_iface->bat_v.aggr_wq,
+ 			  batadv_v_ogm_aggr_work);
+ }
 diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 8033f24f506c..76b732e2f31c 100644
+index 76b732e2f31c..714ce56cfcc8 100644
 --- a/net/batman-adv/bat_v_ogm.c
 +++ b/net/batman-adv/bat_v_ogm.c
-@@ -178,13 +178,9 @@ static bool batadv_v_ogm_queue_left(struct sk_buff *skb,
+@@ -152,7 +152,7 @@ static unsigned int batadv_v_ogm_len(struct sk_buff *skb)
+  * @skb: the OGM to check
+  * @hard_iface: the interface to use to send the OGM
+  *
+- * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
++ * Caller needs to hold the hard_iface->bat_v.aggr_list.lock.
+  *
+  * Return: True, if the given OGMv2 packet still fits, false otherwise.
+  */
+@@ -163,7 +163,7 @@ static bool batadv_v_ogm_queue_left(struct sk_buff *skb,
+ 				 BATADV_MAX_AGGREGATION_BYTES);
+ 	unsigned int ogm_len = batadv_v_ogm_len(skb);
+ 
+-	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
++	lockdep_assert_held(&hard_iface->bat_v.aggr_list.lock);
+ 
+ 	return hard_iface->bat_v.aggr_len + ogm_len <= max;
+ }
+@@ -174,13 +174,13 @@ static bool batadv_v_ogm_queue_left(struct sk_buff *skb,
+  *
+  * Empties the OGMv2 aggregation queue and frees all the skbs it contained.
+  *
+- * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
++ * Caller needs to hold the hard_iface->bat_v.aggr_list.lock.
   */
  static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
  {
--	struct sk_buff *skb;
--
- 	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
+-	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
++	lockdep_assert_held(&hard_iface->bat_v.aggr_list.lock);
  
--	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list)))
--		kfree_skb(skb);
--
-+	skb_queue_purge(&hard_iface->bat_v.aggr_list);
+-	skb_queue_purge(&hard_iface->bat_v.aggr_list);
++	__skb_queue_purge(&hard_iface->bat_v.aggr_list);
  	hard_iface->bat_v.aggr_len = 0;
  }
  
+@@ -193,7 +193,7 @@ static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
+  *
+  * The aggregation queue is empty after this call.
+  *
+- * Caller needs to hold the hard_iface->bat_v.aggr_list_lock.
++ * Caller needs to hold the hard_iface->bat_v.aggr_list.lock.
+  */
+ static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
+ {
+@@ -202,7 +202,7 @@ static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
+ 	unsigned int ogm_len;
+ 	struct sk_buff *skb;
+ 
+-	lockdep_assert_held(&hard_iface->bat_v.aggr_list_lock);
++	lockdep_assert_held(&hard_iface->bat_v.aggr_list.lock);
+ 
+ 	if (!aggr_len)
+ 		return;
+@@ -216,7 +216,7 @@ static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
+ 	skb_reserve(skb_aggr, ETH_HLEN + NET_IP_ALIGN);
+ 	skb_reset_network_header(skb_aggr);
+ 
+-	while ((skb = skb_dequeue(&hard_iface->bat_v.aggr_list))) {
++	while ((skb = __skb_dequeue(&hard_iface->bat_v.aggr_list))) {
+ 		hard_iface->bat_v.aggr_len -= batadv_v_ogm_len(skb);
+ 
+ 		ogm_len = batadv_v_ogm_len(skb);
+@@ -243,13 +243,13 @@ static void batadv_v_ogm_queue_on_if(struct sk_buff *skb,
+ 		return;
+ 	}
+ 
+-	spin_lock_bh(&hard_iface->bat_v.aggr_list_lock);
++	spin_lock_bh(&hard_iface->bat_v.aggr_list.lock);
+ 	if (!batadv_v_ogm_queue_left(skb, hard_iface))
+ 		batadv_v_ogm_aggr_send(hard_iface);
+ 
+ 	hard_iface->bat_v.aggr_len += batadv_v_ogm_len(skb);
+-	skb_queue_tail(&hard_iface->bat_v.aggr_list, skb);
+-	spin_unlock_bh(&hard_iface->bat_v.aggr_list_lock);
++	__skb_queue_tail(&hard_iface->bat_v.aggr_list, skb);
++	spin_unlock_bh(&hard_iface->bat_v.aggr_list.lock);
+ }
+ 
+ /**
+@@ -388,9 +388,9 @@ void batadv_v_ogm_aggr_work(struct work_struct *work)
+ 	batv = container_of(work, struct batadv_hard_iface_bat_v, aggr_wq.work);
+ 	hard_iface = container_of(batv, struct batadv_hard_iface, bat_v);
+ 
+-	spin_lock_bh(&hard_iface->bat_v.aggr_list_lock);
++	spin_lock_bh(&hard_iface->bat_v.aggr_list.lock);
+ 	batadv_v_ogm_aggr_send(hard_iface);
+-	spin_unlock_bh(&hard_iface->bat_v.aggr_list_lock);
++	spin_unlock_bh(&hard_iface->bat_v.aggr_list.lock);
+ 
+ 	batadv_v_ogm_start_queue_timer(hard_iface);
+ }
+@@ -421,9 +421,9 @@ void batadv_v_ogm_iface_disable(struct batadv_hard_iface *hard_iface)
+ {
+ 	cancel_delayed_work_sync(&hard_iface->bat_v.aggr_wq);
+ 
+-	spin_lock_bh(&hard_iface->bat_v.aggr_list_lock);
++	spin_lock_bh(&hard_iface->bat_v.aggr_list.lock);
+ 	batadv_v_ogm_aggr_list_free(hard_iface);
+-	spin_unlock_bh(&hard_iface->bat_v.aggr_list_lock);
++	spin_unlock_bh(&hard_iface->bat_v.aggr_list.lock);
+ }
+ 
+ /**
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index 4d7f1baee7b7..47718a82eaf2 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -130,9 +130,6 @@ struct batadv_hard_iface_bat_v {
+ 	/** @aggr_len: size of the OGM aggregate (excluding ethernet header) */
+ 	unsigned int aggr_len;
+ 
+-	/** @aggr_list_lock: protects aggr_list */
+-	spinlock_t aggr_list_lock;
+-
+ 	/**
+ 	 * @throughput_override: throughput override to disable link
+ 	 *  auto-detection
 -- 
 2.20.1
 
