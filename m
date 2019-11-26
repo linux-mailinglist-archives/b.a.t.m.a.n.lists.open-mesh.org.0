@@ -1,36 +1,40 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FDAC1097D0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 Nov 2019 03:28:24 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C131097D4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 Nov 2019 03:30:06 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 481898063B;
-	Tue, 26 Nov 2019 03:28:16 +0100 (CET)
+	by open-mesh.org (Postfix) with ESMTP id 53EF880668;
+	Tue, 26 Nov 2019 03:29:58 +0100 (CET)
 Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
- by open-mesh.org (Postfix) with ESMTPS id AD25C800A6
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 26 Nov 2019 03:28:09 +0100 (CET)
+ by open-mesh.org (Postfix) with ESMTPS id A81AC800C3
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 26 Nov 2019 03:29:54 +0100 (CET)
 From: Marek Lindner <mareklindner@neomailbox.ch>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] batman-adv: ELP - use wifi tx bitrate as fallback throughput
-Date: Tue, 26 Nov 2019 10:27:38 +0800
-Message-Id: <20191126022738.29214-1-mareklindner@neomailbox.ch>
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>
+Subject: Re: [PATCH] batman-adv: ELP - use wifi tx bitrate as fallback
+ throughput
+Date: Tue, 26 Nov 2019 10:29:43 +0800
+Message-ID: <4586508.ZjQXdf9tYs@rousseau>
+In-Reply-To: <20191126022738.29214-1-mareklindner@neomailbox.ch>
+References: <20191126022738.29214-1-mareklindner@neomailbox.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="nextPart9271938.pX6P5OlBZX";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1574735290;
+ s=20121; t=1574735395;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ZniTxe4WJpRQUMwl8azakqGBnczUN9JsgEi7iHM4IW8=;
- b=U7VGGaGlzF5qn6DdGVzJlC/6mfpxrCm+8CjjBV2ciHGoG4AzHT+qq5Hby5It+bwEZSqRXQ
- 2p7RnhlJFlfYn93qCBZYS/aqcscSqiHc66CHDv+UmvWmcIfAQj48l86AZxDEYC/4J0qDO2
- Dk8KVnEJ2ccPHR12KpKA4Gs19I6KT2Y=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574735290; a=rsa-sha256; cv=none;
- b=tbbVZEXVUpkq5bxZjaCzhsvhIy8xQbKCJpDO2+FccU/52hevLFF4bbQGI+iy8R4TPgq8KG
- ccR75EZYwNAwbMUv1UonWNf1Q+rJ2QM0iQCdCIdhmJoTgcxh9r8saZOBzrmhsgIGTIKgd/
- 5nrTkpGsLO6VzBP8lUtULaHLNl5EFEk=
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZNvS4n7TjFiMGHSmULJfEbsn5t3d35D+B7PaB8c0sak=;
+ b=Qgq0/6MfFUWducOqY1n0OnuomBC1SveBS3XrjCdYnGCK9XxYRW5RN/LRacPxcQfLTPGr4V
+ uKahjKxebVLO3r2nWcB6dH/68s6McqT7RPBpIrBcYUPlhwAtRDtlB6qerL9Gm1ahqauPHu
+ 9wvt6z1JOaf4NSO7+OV47yck4NjGSAc=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574735395; a=rsa-sha256; cv=none;
+ b=bwhTk0GxWwTHDWXeyk4hTuzVfx+5Z1lAFnx7wsymq6agk17vCUwsxCH5aQ+4SIRfZxD2w7
+ AEZlU/ppGL2r8l2rZ/tdw6tYJJ1WCs6hfvsRcTuu5VEvJKVqFetY8++4ekM6h2Hqi6Xz00
+ PPYrKRxWQtWG+GEXYH7UEqiUeaQY4UE=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
  spf=pass (open-mesh.org: domain of mareklindner@neomailbox.ch designates
  5.148.176.60 as permitted sender) smtp.mailfrom=mareklindner@neomailbox.ch
@@ -48,45 +52,42 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Marek Lindner <mareklindner@neomailbox.ch>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: René Treffer <treffer@measite.de>
+--nextPart9271938.pX6P5OlBZX
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Some wifi drivers (e.g. ath10k) provide per-station rx/tx values but no
-estimated throughput. Setting a better estimate than the default 1 MBit
-makes these devices work well with B.A.T.M.A.N. V.
+On Tuesday, 26 November 2019 10:27:38 HKT Marek Lindner wrote:
+> Some wifi drivers (e.g. ath10k) provide per-station rx/tx values but no
+> estimated throughput. Setting a better estimate than the default 1 MBit
+> makes these devices work well with B.A.T.M.A.N. V.
 
-Signed-off-by: René Treffer <treffer@measite.de>
-Signed-off-by: Marek Lindner <mareklindner@neomailbox.ch>
----
- net/batman-adv/bat_v_elp.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+I have been testing this patch for 2-3 months in production setups and while 
+the approach isn't perfect, it produced acceptable results.
 
-diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
-index 2614a9ca..1e852d4b 100644
---- a/net/batman-adv/bat_v_elp.c
-+++ b/net/batman-adv/bat_v_elp.c
-@@ -107,10 +107,15 @@ static u32 batadv_v_elp_get_throughput(struct batadv_hardif_neigh_node *neigh)
- 		}
- 		if (ret)
- 			goto default_throughput;
--		if (!(sinfo.filled & BIT(NL80211_STA_INFO_EXPECTED_THROUGHPUT)))
--			goto default_throughput;
- 
--		return sinfo.expected_throughput / 100;
-+		if (sinfo.filled & BIT(NL80211_STA_INFO_EXPECTED_THROUGHPUT))
-+			return sinfo.expected_throughput / 100;
-+
-+		/* try to estimate en expected throughput based on reported tx rates */
-+		if (sinfo.filled & BIT(NL80211_STA_INFO_TX_BITRATE))
-+			return cfg80211_calculate_bitrate(&sinfo.txrate) / 3;
-+
-+		goto default_throughput;
- 	}
- 
- 	/* if not a wifi interface, check if this device provides data via
--- 
-2.23.0
+Cheers,
+Marek
+
+--nextPart9271938.pX6P5OlBZX
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAl3cjhcACgkQU1VOj+62
+HMA94wgAhqqbtzaqWaR1M17CtS20V0vtaQE2s33uowouckDdFHPrWBHBiNbutiSe
+GxXS9Jrwp7wbiMm532w8jTmscmy1/dV2SRr9tVTaEg83TWbzfOc9XpYbB20urA2L
+g8Qzmj2aRd9IVzrZFG3T7v/0rC5M4/CvLn4ht+cCsdAB/fp+G6hpl8UoWnuWCfy0
+K0divCZDmTvDLf279hQ1zFIF6mBPH9E+oeGayhDBXYXlvKiKin2/dU5aKj+wVzwd
+1Agc6xIIQ89bvyskiE04xZrfSVYM3zZfnpHr4BZ8SI7YWyXsGC+6ISqztBmm6w8M
+jphHnCePYaXd3AB4mXrH2dOFCuRH1Q==
+=cmOV
+-----END PGP SIGNATURE-----
+
+--nextPart9271938.pX6P5OlBZX--
+
+
 
