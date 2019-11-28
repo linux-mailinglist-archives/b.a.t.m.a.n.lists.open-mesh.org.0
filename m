@@ -2,42 +2,66 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C131097D4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 Nov 2019 03:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8EE910C424
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 07:59:51 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 53EF880668;
-	Tue, 26 Nov 2019 03:29:58 +0100 (CET)
-Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
- by open-mesh.org (Postfix) with ESMTPS id A81AC800C3
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 26 Nov 2019 03:29:54 +0100 (CET)
-From: Marek Lindner <mareklindner@neomailbox.ch>
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: [PATCH] batman-adv: ELP - use wifi tx bitrate as fallback
- throughput
-Date: Tue, 26 Nov 2019 10:29:43 +0800
-Message-ID: <4586508.ZjQXdf9tYs@rousseau>
-In-Reply-To: <20191126022738.29214-1-mareklindner@neomailbox.ch>
-References: <20191126022738.29214-1-mareklindner@neomailbox.ch>
+	by open-mesh.org (Postfix) with ESMTP id F1C3480569;
+	Thu, 28 Nov 2019 07:59:39 +0100 (CET)
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
+ [209.85.166.199])
+ by open-mesh.org (Postfix) with ESMTPS id 6A9C4800E5
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 03:07:24 +0100 (CET)
+Received: by mail-il1-f199.google.com with SMTP id o185so20864395ila.8
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 27 Nov 2019 18:07:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=DYCoVBntiKkpTeX6a8KJneZkYAcva9u1pdG4zXgpO64=;
+ b=QI2pWJm0nSdnBBJDxzGeh0fmybQxB/WOq4e4W7/9NsTnhTrs/YvDrSr1e5ztyhYptb
+ AH4pO5UNkXU6WyDVUk26rynrIVZNMQcyTp5RYgbWvnE2yFTFuKEcQBA9M/O1zPzC9TG8
+ ZiaNBF72AyNiQurz3AyiDD8bnNjEQC0VSh3I8n6rfoevNmrOBffo6ncejkZKu3tNr8Al
+ SKY5v4wdOI+eRj2+xr8mmsYx0BOf5OVnbmPPDfv5BTe2/0KYQ4N73wiKtfuXuvmvxoZR
+ +WTbbVSFOmrLMs6bBi3/mSF+k8KbuRkbaW0zgu822EY3Re/l5i3H9evOgCrUTQ5yclB1
+ TpGQ==
+X-Gm-Message-State: APjAAAV4TdqeS2EMWWflSIZ93ceRdrveBL+U/QrPYL8tuAtDB1R9Og2c
+ tCMFd7FocGwdA0W7pMwH1Wv7N5NcyPgT0WADJES8c3ped74a
+X-Google-Smtp-Source: APXvYqxa6cVqXVISZzxW/NS5ndS0aUKG+LFds1IRmdw/COM4lIqUf7ADeUv9oT1zbWREBSImJJDTBYinlwECS+K++PZEc9N9rGqG
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart9271938.pX6P5OlBZX";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Received: by 2002:a92:461d:: with SMTP id t29mr49468857ila.100.1574906401298; 
+ Wed, 27 Nov 2019 18:00:01 -0800 (PST)
+Date: Wed, 27 Nov 2019 18:00:01 -0800
+In-Reply-To: <00000000000038b5c205983c2df4@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000009aa32205985e78b6@google.com>
+Subject: Re: WARNING in mark_lock (3)
+From: syzbot <syzbot+a229d8d995b74f8c4b6c@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
+ jakub.kicinski@netronome.com, jhs@mojatatu.com, jiri@resnulli.us, 
+ linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, 
+ netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com, vinicius.gomes@intel.com, 
+ wang.yi59@zte.com.cn, xiyou.wangcong@gmail.com
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1574735395;
+ s=20121; t=1574906844;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZNvS4n7TjFiMGHSmULJfEbsn5t3d35D+B7PaB8c0sak=;
- b=Qgq0/6MfFUWducOqY1n0OnuomBC1SveBS3XrjCdYnGCK9XxYRW5RN/LRacPxcQfLTPGr4V
- uKahjKxebVLO3r2nWcB6dH/68s6McqT7RPBpIrBcYUPlhwAtRDtlB6qerL9Gm1ahqauPHu
- 9wvt6z1JOaf4NSO7+OV47yck4NjGSAc=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574735395; a=rsa-sha256; cv=none;
- b=bwhTk0GxWwTHDWXeyk4hTuzVfx+5Z1lAFnx7wsymq6agk17vCUwsxCH5aQ+4SIRfZxD2w7
- AEZlU/ppGL2r8l2rZ/tdw6tYJJ1WCs6hfvsRcTuu5VEvJKVqFetY8++4ekM6h2Hqi6Xz00
- PPYrKRxWQtWG+GEXYH7UEqiUeaQY4UE=
+ in-reply-to:in-reply-to; bh=DYCoVBntiKkpTeX6a8KJneZkYAcva9u1pdG4zXgpO64=;
+ b=oDjJ0tz1EikmAtO71quJMg6exXl5yF/KtAEQv3mZkigTeQ7Pgi5PPId5RPgyzfdY2d502h
+ Wtehwdv/ugVdch81mFHRXBo1mOJpLsFC0SwfIejR5J1Bqm3jKbtdiqqENOlXUvTZKz7W00
+ O0ZWksjAp67f+w08AKwQaXrTqhQBF2E=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574906844; a=rsa-sha256; cv=none;
+ b=vOoTslGl8ifb7JdYi83ITZQA2SJvnxH6nsWLr286KnU0p4wacFSb6IF+alKApHJMZ2mojC
+ 4Oe/aroaA0rGgWdDkT3EDWWMi+9DwctaT39cTTVcPlhnyIVD7EcXyzZKfb/yJDg3vRgelR
+ UzI5Xv9SL3ZlzZhspF1uFW+bYODQkOU=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of mareklindner@neomailbox.ch designates
- 5.148.176.60 as permitted sender) smtp.mailfrom=mareklindner@neomailbox.ch
+ spf=pass (open-mesh.org: domain of
+ 3ISrfXQkbAOYaghSITTMZIXXQL.OWWOTMcaMZKWVbMVb.KWU@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.199 as permitted sender)
+ smtp.mailfrom=3ISrfXQkbAOYaghSITTMZIXXQL.OWWOTMcaMZKWVbMVb.KWU@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Thu, 28 Nov 2019 07:59:36 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,39 +79,26 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart9271938.pX6P5OlBZX
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+syzbot has bisected this bug to:
 
-On Tuesday, 26 November 2019 10:27:38 HKT Marek Lindner wrote:
-> Some wifi drivers (e.g. ath10k) provide per-station rx/tx values but no
-> estimated throughput. Setting a better estimate than the default 1 MBit
-> makes these devices work well with B.A.T.M.A.N. V.
+commit d665c1281bc89ac85b8b0c058c22a3f94640a1d6
+Author: Yi Wang <wang.yi59@zte.com.cn>
+Date:   Mon Oct 21 23:57:42 2019 +0000
 
-I have been testing this patch for 2-3 months in production setups and while 
-the approach isn't perfect, it produced acceptable results.
+     net: sched: taprio: fix -Wmissing-prototypes warnings
 
-Cheers,
-Marek
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=132ee536e00000
+start commit:   89d57ddd Merge tag 'media/v5.5-1' of git://git.kernel.org/..
+git tree:       upstream
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=10aee536e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=172ee536e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=595c15c951695d1b
+dashboard link: https://syzkaller.appspot.com/bug?extid=a229d8d995b74f8c4b6c
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1511af5ee00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=16e0f17ae00000
 
---nextPart9271938.pX6P5OlBZX
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Reported-by: syzbot+a229d8d995b74f8c4b6c@syzkaller.appspotmail.com
+Fixes: d665c1281bc8 ("net: sched: taprio: fix -Wmissing-prototypes  
+warnings")
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAl3cjhcACgkQU1VOj+62
-HMA94wgAhqqbtzaqWaR1M17CtS20V0vtaQE2s33uowouckDdFHPrWBHBiNbutiSe
-GxXS9Jrwp7wbiMm532w8jTmscmy1/dV2SRr9tVTaEg83TWbzfOc9XpYbB20urA2L
-g8Qzmj2aRd9IVzrZFG3T7v/0rC5M4/CvLn4ht+cCsdAB/fp+G6hpl8UoWnuWCfy0
-K0divCZDmTvDLf279hQ1zFIF6mBPH9E+oeGayhDBXYXlvKiKin2/dU5aKj+wVzwd
-1Agc6xIIQ89bvyskiE04xZrfSVYM3zZfnpHr4BZ8SI7YWyXsGC+6ISqztBmm6w8M
-jphHnCePYaXd3AB4mXrH2dOFCuRH1Q==
-=cmOV
------END PGP SIGNATURE-----
-
---nextPart9271938.pX6P5OlBZX--
-
-
-
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
