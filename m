@@ -2,66 +2,52 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8EE910C424
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 07:59:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E093410C46A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 08:43:38 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id F1C3480569;
-	Thu, 28 Nov 2019 07:59:39 +0100 (CET)
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199])
- by open-mesh.org (Postfix) with ESMTPS id 6A9C4800E5
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 03:07:24 +0100 (CET)
-Received: by mail-il1-f199.google.com with SMTP id o185so20864395ila.8
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 27 Nov 2019 18:07:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=DYCoVBntiKkpTeX6a8KJneZkYAcva9u1pdG4zXgpO64=;
- b=QI2pWJm0nSdnBBJDxzGeh0fmybQxB/WOq4e4W7/9NsTnhTrs/YvDrSr1e5ztyhYptb
- AH4pO5UNkXU6WyDVUk26rynrIVZNMQcyTp5RYgbWvnE2yFTFuKEcQBA9M/O1zPzC9TG8
- ZiaNBF72AyNiQurz3AyiDD8bnNjEQC0VSh3I8n6rfoevNmrOBffo6ncejkZKu3tNr8Al
- SKY5v4wdOI+eRj2+xr8mmsYx0BOf5OVnbmPPDfv5BTe2/0KYQ4N73wiKtfuXuvmvxoZR
- +WTbbVSFOmrLMs6bBi3/mSF+k8KbuRkbaW0zgu822EY3Re/l5i3H9evOgCrUTQ5yclB1
- TpGQ==
-X-Gm-Message-State: APjAAAV4TdqeS2EMWWflSIZ93ceRdrveBL+U/QrPYL8tuAtDB1R9Og2c
- tCMFd7FocGwdA0W7pMwH1Wv7N5NcyPgT0WADJES8c3ped74a
-X-Google-Smtp-Source: APXvYqxa6cVqXVISZzxW/NS5ndS0aUKG+LFds1IRmdw/COM4lIqUf7ADeUv9oT1zbWREBSImJJDTBYinlwECS+K++PZEc9N9rGqG
-MIME-Version: 1.0
-X-Received: by 2002:a92:461d:: with SMTP id t29mr49468857ila.100.1574906401298; 
- Wed, 27 Nov 2019 18:00:01 -0800 (PST)
-Date: Wed, 27 Nov 2019 18:00:01 -0800
-In-Reply-To: <00000000000038b5c205983c2df4@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000009aa32205985e78b6@google.com>
-Subject: Re: WARNING in mark_lock (3)
-From: syzbot <syzbot+a229d8d995b74f8c4b6c@syzkaller.appspotmail.com>
-To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
- jakub.kicinski@netronome.com, jhs@mojatatu.com, jiri@resnulli.us, 
- linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, 
- netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com, vinicius.gomes@intel.com, 
- wang.yi59@zte.com.cn, xiyou.wangcong@gmail.com
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1574906844;
+	by open-mesh.org (Postfix) with ESMTP id 1FEA780668;
+	Thu, 28 Nov 2019 08:43:32 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by open-mesh.org (Postfix) with ESMTPS id 1742180157
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 08:34:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1574925941;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=DYCoVBntiKkpTeX6a8KJneZkYAcva9u1pdG4zXgpO64=;
- b=oDjJ0tz1EikmAtO71quJMg6exXl5yF/KtAEQv3mZkigTeQ7Pgi5PPId5RPgyzfdY2d502h
- Wtehwdv/ugVdch81mFHRXBo1mOJpLsFC0SwfIejR5J1Bqm3jKbtdiqqENOlXUvTZKz7W00
- O0ZWksjAp67f+w08AKwQaXrTqhQBF2E=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574906844; a=rsa-sha256; cv=none;
- b=vOoTslGl8ifb7JdYi83ITZQA2SJvnxH6nsWLr286KnU0p4wacFSb6IF+alKApHJMZ2mojC
- 4Oe/aroaA0rGgWdDkT3EDWWMi+9DwctaT39cTTVcPlhnyIVD7EcXyzZKfb/yJDg3vRgelR
- UzI5Xv9SL3ZlzZhspF1uFW+bYODQkOU=
-ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of
- 3ISrfXQkbAOYaghSITTMZIXXQL.OWWOTMcaMZKWVbMVb.KWU@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.199 as permitted sender)
- smtp.mailfrom=3ISrfXQkbAOYaghSITTMZIXXQL.OWWOTMcaMZKWVbMVb.KWU@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Thu, 28 Nov 2019 07:59:36 +0100
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=tdlxNmPjYz+T53Gzjo5bSd5rvu0/U9sFpAzZUIpHTf4=;
+ b=bNjezSZJ4+JfYhaLI6ZHByOzf/g/QwZJrhzY1luZJRIUCRBZ5fFTBWQW4eOZ70YZwWOw76
+ 7t/tJfWXDW5VZuQ2/0duk63Hq6ooQnBIseefJO9PPpPPCGXY9s/BcjGsKdOIVujxzR83DA
+ /T1n7uJiSOlcEUfqYivGmhB+b036rFQ=
+From: Sven Eckelmann <sven@narfation.org>
+To: syzbot <syzbot+a229d8d995b74f8c4b6c@syzkaller.appspotmail.com>
+Subject: Re: WARNING in mark_lock (3)
+Date: Thu, 28 Nov 2019 08:25:34 +0100
+Message-ID: <2825703.dkhYCMB3mh@sven-edge>
+In-Reply-To: <0000000000009aa32205985e78b6@google.com>
+References: <0000000000009aa32205985e78b6@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart2024983.uInpGIOpHj";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1574926499;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:dkim-signature;
+ bh=tdlxNmPjYz+T53Gzjo5bSd5rvu0/U9sFpAzZUIpHTf4=;
+ b=s7wyyrPbatvOfScbGZleApL2cX/+O7hk940NjzDX9UNfyz1Pw+TX98PjnSfYOFS/TDx/5f
+ LUh9HqAJduAsaJR/k0HrGKa739cbUxV8ojUgVpyTWPl9atFLkwEDGx970C1tDZaCElbhIg
+ Q6h1nZkw7yTvjAlw9N5rQwAq8lIS9ag=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574926499; a=rsa-sha256; cv=none;
+ b=tb4ScaSImasJ7CU2SgsdY4v3G2Z0mVIG6SX0C6UVv8zlcBPzkky2J5BICkKM1X547/YQrf
+ 5UQTKK4hMzTmD4AiJRwurVU3zJFV8lkofDDLWJfchHwiMl+o9m+PKFY2pg+LORhUDYhHGH
+ 6BH2tuavxdU2LmdB1TCzCABg3LUDM/Y=
+ARC-Authentication-Results: i=1; open-mesh.org;
+ dkim=pass header.d=narfation.org header.s=20121 header.b=bNjezSZJ;
+ spf=pass (open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+X-Mailman-Approved-At: Thu, 28 Nov 2019 08:43:29 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,29 +62,55 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: wang.yi59@zte.com.cn, jiri@resnulli.us, mareklindner@neomailbox.ch,
+ vinicius.gomes@intel.com, netdev@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc, jhs@mojatatu.com,
+ linux-kernel@vger.kernel.org, syzkaller-bugs@googlegroups.com,
+ xiyou.wangcong@gmail.com, jakub.kicinski@netronome.com, davem@davemloft.net
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot has bisected this bug to:
+--nextPart2024983.uInpGIOpHj
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-commit d665c1281bc89ac85b8b0c058c22a3f94640a1d6
-Author: Yi Wang <wang.yi59@zte.com.cn>
-Date:   Mon Oct 21 23:57:42 2019 +0000
+On Thursday, 28 November 2019 03:00:01 CET syzbot wrote:
+[...]
+> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=132ee536e00000
+> start commit:   89d57ddd Merge tag 'media/v5.5-1' of git://git.kernel.org/..
+> git tree:       upstream
+> final crash:    https://syzkaller.appspot.com/x/report.txt?x=10aee536e00000
 
-     net: sched: taprio: fix -Wmissing-prototypes warnings
+Can the syzbot infrastructure be told to ignore this crash in the bisect run? 
+Because this should be an unrelated crash which is (hopefully) fixed in 
+40e220b4218b ("batman-adv: Avoid free/alloc race when handling OGM buffer").
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=132ee536e00000
-start commit:   89d57ddd Merge tag 'media/v5.5-1' of git://git.kernel.org/..
-git tree:       upstream
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=10aee536e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=172ee536e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=595c15c951695d1b
-dashboard link: https://syzkaller.appspot.com/bug?extid=a229d8d995b74f8c4b6c
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1511af5ee00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=16e0f17ae00000
+Kind regards,
+	Sven
 
-Reported-by: syzbot+a229d8d995b74f8c4b6c@syzkaller.appspotmail.com
-Fixes: d665c1281bc8 ("net: sched: taprio: fix -Wmissing-prototypes  
-warnings")
+--nextPart2024983.uInpGIOpHj
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl3fdm4ACgkQXYcKB8Em
+e0Yhpg//TkD4LZe2QORpdzTJdAdLlx2bM1EYIhwWq2VPr+a/w89xre7Z0vpXmHHe
+CBG+X/XCYev7EAJhDE7HQU/Jo4WRl0ukTNPprzHn0jcq8VcEIAl3qoqHg1ZhSImU
+I242iP55uYzCcLfzj04hnlfgHHr5p8K4YMXUuSihL0SK2GGMdfMViRqb8mHXMwxi
+vFaDAfI4mu0gmVm0MTo5ehel9e5VLVnmOJoBsReXXeXjLhjR70liSC1gzOKPQztk
+oPiK8Ena8ZFDa6yEPPcB5sQQQfM0haPy1z3fmCFvIzAA9lnsYnJxIpWOBuzf2WfW
+6hSeX6+zvXRGDV9R0cVsGpkRaslfHgl+B/gwVMdw2XtVkwUvX3GW4ugLe/4Yw3WK
+jyzibIP1XunENnfUYwdPIMYXgMJxiJsZlS8ERWxBXG6fYlzTsKV5uKLYP3GfGuS2
+/7cFTBC5xT7rCgiJ89CWhYRabfDJLUNpvi01s1jUBIG0AXyjev8xEHXwLV6qG8Ht
+M6qzNcjrOnmOP80xzJrMvIr+lEawY3P5Gn3E/Ro6PoQzOs7zaVMV/Cg5VyTRyjQw
+jPJ9bZmvGjw3zB/4mdYzSeDN8ZR1/bbv65OeI5IOo9Y+s4b8/reptZVROpXF2N7Y
+CkO9awr7QYeRmeOHCtt+Adg5A6mJNz5LGUisgW1ZQJQzTLbOzVM=
+=GMnl
+-----END PGP SIGNATURE-----
+
+--nextPart2024983.uInpGIOpHj--
+
+
+
