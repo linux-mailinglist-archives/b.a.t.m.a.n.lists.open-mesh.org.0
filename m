@@ -2,30 +2,29 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B96B10C82B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 12:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8EA510C849
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 12:58:59 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id C4A468075F;
-	Thu, 28 Nov 2019 12:46:59 +0100 (CET)
+	by open-mesh.org (Postfix) with ESMTP id F023D819A9;
+	Thu, 28 Nov 2019 12:57:45 +0100 (CET)
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
- by open-mesh.org (Postfix) with ESMTPS id 97ACC80098
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 12:44:15 +0100 (CET)
+ by open-mesh.org (Postfix) with ESMTPS id 9A1B4800FC
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 12:56:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1574941453;
+ s=20121; t=1574942169;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding;
- bh=sjjECqFHxzyH1Yy2J2X/GI/jvBj5iq3BjqeN/IyYquY=;
- b=wc/gw99TYJg5hRirnnntaqyg1tTxCySmxpwCobmx+8+Ac7td/X1tY7sm9jLjMLX+yJyESk
- yz7X2EypzOIqd2yyU/f1UErGG4v1sia3ywIeARbLnzTKAeXSh5d1xRnawrpo2aUeKiFE3q
- PE1uzytR6o5iZKM4GBoVKZert99XQFc=
+ bh=SY8YinyWkZoES+wKiYpSx+mWymhCny8U8uHWjzMpGkU=;
+ b=p8/gSg4K/Kt4tBlROeMq9iwkMEjj9xryQSMLezW+jS8LLzPogaGbz2zQNK6+WIgc89WHE0
+ QCR1uzZOjqfwqpekGSAs2+mhE0v09RpcQsBttk49Bcgiv8B+7MfF+I48knljX6l6jET6av
+ CFZ5lk9VhzCx82AhPVu/mGAoDwhXnJw=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH maint] batman-adv: Fix DAT candidate selection on little
- endian systems
-Date: Thu, 28 Nov 2019 12:43:49 +0100
-Message-Id: <20191128114349.7794-1-sven@narfation.org>
+Subject: [PATCH] batman-adv: Annotate bitwise integer pointer casts
+Date: Thu, 28 Nov 2019 12:55:58 +0100
+Message-Id: <20191128115558.9435-1-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -46,43 +45,65 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The distributed arp table is using a DHT to store and retrieve MAC address
-information for an IP address. This is done using unicast messages to
-selected peers. The potential peers are looked up using the IP address and
-the VID.
+The sparse commit 6002ded74587 ("add a flag to warn on casts to/from
+bitwise pointers") introduced a check for non-direct casts from/to
+restricted datatypes (when -Wbitwise-pointer is enabled).
 
-While the IP address is always stored in big endian byte order, it is not
-the case of the VID. It can (depending on the host system) either be big
-endian or little endian. The host must therefore always convert it to big
-endian to ensure that all devices calculate the same peers for the same
-lookup data.
+This triggered various warnings in batman-adv when some (already big
+endian) buffer content was casted to/from the corresponding big endian
+integer data types. But these were correct and can therefore be marked with
+__force to signalize sparse an intended cast from/to a bitwise type.
 
-Fixes: 3e26722bc9f2 ("batman-adv: make the Distributed ARP Table vlan aware")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/distributed-arp-table.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ net/batman-adv/bridge_loop_avoidance.c | 2 +-
+ net/batman-adv/distributed-arp-table.c | 8 +++++---
+ 2 files changed, 6 insertions(+), 4 deletions(-)
 
+diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
+index 663a53b6..0eff3358 100644
+--- a/net/batman-adv/bridge_loop_avoidance.c
++++ b/net/batman-adv/bridge_loop_avoidance.c
+@@ -844,7 +844,7 @@ static bool batadv_handle_announce(struct batadv_priv *bat_priv, u8 *an_addr,
+ 
+ 	/* handle as ANNOUNCE frame */
+ 	backbone_gw->lasttime = jiffies;
+-	crc = ntohs(*((__be16 *)(&an_addr[4])));
++	crc = ntohs(*((__force __be16 *)(&an_addr[4])));
+ 
+ 	batadv_dbg(BATADV_DBG_BLA, bat_priv,
+ 		   "%s(): ANNOUNCE vid %d (sent by %pM)... CRC = %#.4x\n",
 diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
-index 5004e38f..581b3181 100644
+index b0af3a11..5004e38f 100644
 --- a/net/batman-adv/distributed-arp-table.c
 +++ b/net/batman-adv/distributed-arp-table.c
-@@ -287,6 +287,7 @@ static u32 batadv_hash_dat(const void *data, u32 size)
- 	u32 hash = 0;
- 	const struct batadv_dat_entry *dat = data;
+@@ -246,7 +246,7 @@ static u8 *batadv_arp_hw_src(struct sk_buff *skb, int hdr_size)
+  */
+ static __be32 batadv_arp_ip_src(struct sk_buff *skb, int hdr_size)
+ {
+-	return *(__be32 *)(batadv_arp_hw_src(skb, hdr_size) + ETH_ALEN);
++	return *(__force __be32 *)(batadv_arp_hw_src(skb, hdr_size) + ETH_ALEN);
+ }
+ 
+ /**
+@@ -270,7 +270,9 @@ static u8 *batadv_arp_hw_dst(struct sk_buff *skb, int hdr_size)
+  */
+ static __be32 batadv_arp_ip_dst(struct sk_buff *skb, int hdr_size)
+ {
+-	return *(__be32 *)(batadv_arp_hw_src(skb, hdr_size) + ETH_ALEN * 2 + 4);
++	u8 *dst = batadv_arp_hw_src(skb, hdr_size) + ETH_ALEN * 2 + 4;
++
++	return *(__force __be32 *)dst;
+ }
+ 
+ /**
+@@ -287,7 +289,7 @@ static u32 batadv_hash_dat(const void *data, u32 size)
  	const unsigned char *key;
-+	__be16 vid;
  	u32 i;
  
- 	key = (__force const unsigned char *)&dat->ip;
-@@ -296,7 +297,8 @@ static u32 batadv_hash_dat(const void *data, u32 size)
- 		hash ^= (hash >> 6);
- 	}
- 
--	key = (const unsigned char *)&dat->vid;
-+	vid = htons(dat->vid);
-+	key = (__force const unsigned char *)&vid;
- 	for (i = 0; i < sizeof(dat->vid); i++) {
+-	key = (const unsigned char *)&dat->ip;
++	key = (__force const unsigned char *)&dat->ip;
+ 	for (i = 0; i < sizeof(dat->ip); i++) {
  		hash += key[i];
  		hash += (hash << 10);
 -- 
