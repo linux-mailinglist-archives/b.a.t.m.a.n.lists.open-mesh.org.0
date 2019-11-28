@@ -2,53 +2,47 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8BC410C599
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 10:04:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8BD10C64C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Nov 2019 11:01:40 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id CCEB780E9A;
-	Thu, 28 Nov 2019 10:03:41 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by open-mesh.org (Postfix) with ESMTPS id 801EA80092
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 10:03:18 +0100 (CET)
+	by open-mesh.org (Postfix) with ESMTP id C458880EB5;
+	Thu, 28 Nov 2019 11:01:33 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by open-mesh.org (Postfix) with ESMTPS id 6A2FB80034
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Nov 2019 11:01:30 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1574931798;
+ s=20121; t=1574935288;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=NrOadlV/ly7FreKTOQxgRCOUZAeZYFuDY0qoRN8icgo=;
- b=cDgC2CAdf2rhtq7hEdWN7O6A53wGbKZtVnG7HANS56jXbJDlbuy4WBQ6tB4iITPMinNWTz
- 8ufAeJhojywWlqfMM3ThtQ7p76e0n8Sj8L24AyTXsWhh6j9yKnLRF3K4dLr/DCAK8TyW4I
- Yv0u0zLnBVZ7HdnC57anmxMMBMsSSdc=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=eSJfAwdFbcNlJdQGyYUFb5sUC5cqQQw0q1CAtyR52Us=;
+ b=muN5kOoTjxihyZ3QQ+VcvOk7g1U1fafV5aQysOjeF3UWtdZ64bMU1ZawQnBit6pumWRIaD
+ 83TsZYNoLXY9A6gLeVYk9JsNKIJsD61E54k9GUhUez/DUWGGys7u4za3jbbhJ/tDBLHzUr
+ MU+YU2u01ejPdVZpwZ6q8xLOOikYUkQ=
 From: Sven Eckelmann <sven@narfation.org>
-To: Dmitry Vyukov <dvyukov@google.com>
-Subject: Re: WARNING in mark_lock (3)
-Date: Thu, 28 Nov 2019 10:03:13 +0100
-Message-ID: <3691620.GRZi0niZ3p@sven-edge>
-In-Reply-To: <CACT4Y+abQSWfiN16BwXFOBi+d3CFGk53oj+5+zZwQPbcYu-Rew@mail.gmail.com>
-References: <0000000000009aa32205985e78b6@google.com>
- <1809369.KjlzdqruN6@sven-edge>
- <CACT4Y+abQSWfiN16BwXFOBi+d3CFGk53oj+5+zZwQPbcYu-Rew@mail.gmail.com>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Host endianness dependent DHT lookup
+Date: Thu, 28 Nov 2019 11:01:24 +0100
+Message-ID: <1815609.duLnqLk4gF@sven-edge>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3339975.5L7NHtn4j8";
+Content-Type: multipart/signed; boundary="nextPart2061994.47J4SoBXhB";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1574931798;
+ s=20121; t=1574935291;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=NrOadlV/ly7FreKTOQxgRCOUZAeZYFuDY0qoRN8icgo=;
- b=0VgIsH48pQJefbDJe/TEZaGh3h7GGIgII/M1I+biY1NMip4t3TdMlgFfSytgg4WIpPGLBK
- +5QXefzbxLYidyeVQAJV1DbFmRz4CyaSooxWn/ApSabO4/shjrvyDtGcyp9GWGwkWfEt3j
- kLzGg02mlyQJdjGsXTt60j04CZs6L6Q=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574931798; a=rsa-sha256; cv=none;
- b=tjuQ59j9EDDoKZJ0d7rwgnfWYAs0ZLEVkPaQIZqfNqSCuxhhPeT2qyV2yoZX0eL/7O5xdD
- ncPIvjmSENq6wTL01dBPgfsIXZBKYvgc8fCa24hAmDy2Ce9PjPd/f+eAgVfn8PPn8pv9KJ
- nHDYtMizYFz6dc5vHzl1jF2L3cPa7CM=
+ dkim-signature; bh=eSJfAwdFbcNlJdQGyYUFb5sUC5cqQQw0q1CAtyR52Us=;
+ b=BRBWaMOib1wRfvfhqm+ZZs1FDJzh3s2cjVFbp1CmP9iTGGcpSA61XiUVLobac7mi8VlTQ+
+ 1SFD2GPC4rej0C2L5o2jPcMr70HqXdX9+CjZ76Z7e1bqeM1CCQtGSNtwpPbc+KKH52ATWP
+ c6ecGP09tpzMri388dQcrO7woUoMIPg=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1574935291; a=rsa-sha256; cv=none;
+ b=OGLWE3hBPnFwfxagCEmK9h3aV36iZ9INfihcnYjSWfZjEgSTg/QNpu9ykOk9ary0vCe+Ho
+ YrNbRlPVPZL4SPV0QhSthhWrBxZ+A7SiSI595TgmrCzN4VoT8zd3uog8aGGsNIzOJMWzg2
+ DFp2djUW2QpOIyxgvAj9OYWdaNgaiBs=
 ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=cDgC2CAd;
- spf=pass (open-mesh.org: domain of sven@narfation.org designates 213.160.73.56
- as permitted sender) smtp.mailfrom=sven@narfation.org
-X-Mailman-Approved-At: Thu, 28 Nov 2019 10:03:35 +0100
+ dkim=pass header.d=narfation.org header.s=20121 header.b=muN5kOoT;
+ spf=pass (open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,60 +57,57 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: wang.yi59@zte.com.cn, b.a.t.m.a.n@lists.open-mesh.org,
- Jakub Kicinski <jakub.kicinski@netronome.com>, mareklindner@neomailbox.ch,
- vinicius.gomes@intel.com, netdev <netdev@vger.kernel.org>,
- syzbot <syzbot+a229d8d995b74f8c4b6c@syzkaller.appspotmail.com>, a@unstable.cc,
- Jamal Hadi Salim <jhs@mojatatu.com>, LKML <linux-kernel@vger.kernel.org>,
- syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
- syzkaller <syzkaller@googlegroups.com>, Cong Wang <xiyou.wangcong@gmail.com>,
- =?utf-8?B?SmnFmcOtIFDDrXJrbw==?= <jiri@resnulli.us>,
- David Miller <davem@davemloft.net>
+Cc: a@unstable.cc
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart3339975.5L7NHtn4j8
+--nextPart2061994.47J4SoBXhB
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Thursday, 28 November 2019 09:54:15 CET Dmitry Vyukov wrote:
-[...]
-> > I was thinking more about rerunning the same bisect but tell it to assume
-> > "crashed: general protection fault in batadv_iv_ogm_queue_add" as OK instead
-> > of assuming that it is a crashed like the previous "crashed: WARNING in
-> > mark_lock". Just to get a non-bogus bisect result. Or try to rerun the
-> > bisect between 40e220b4218b and 89d57dddd7d319ded00415790a0bb3c954b7e386
-> 
-> But... but this done by a program. What do you mean by "tell it"?
+Hi,
 
-Sorry that I asked about what the infrastructure around syzbot can do and
-how the interaction with it looks like.
+I just saw following in batadv_hash_dat():
+
+	key = (const unsigned char *)&dat->vid;
+	for (i = 0; i < sizeof(dat->vid); i++) {
+		hash += key[i];
+		hash += (hash << 10);
+		hash ^= (hash >> 6);
+	}
+
+But the vid is in host order - not big endian like the IP part. So the 
+batadv_dat_select_candidates will select different candidates depending on 
+whether it is a little or big endian system, right?
+
+If this is a correct assumption, then we would have this problem since 
+3e26722bc9f2 ("batman-adv: make the Distributed ARP Table vlan aware")
 
 Kind regards,
 	Sven
---nextPart3339975.5L7NHtn4j8
+--nextPart2061994.47J4SoBXhB
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl3fjVEACgkQXYcKB8Em
-e0ajQhAAvetvCCehY5SmHsrLLKW7/YkVm3Ez3oqtbu/VCn8TEvau5PVt48ojQYmu
-zOIZAs05i4JRI1WHZXyrAzPF3CI4juDdFCwOibiPDzCU2C3qD5s2AsZfxK22iPUt
-dkBhW19Cq115ZgcOmerAor0nLkRkglYwoAEg6j+edtXUU3JYQG6PSGICN1NMGhmY
-Q1jcXAGR1Hm+2SbR1sBBCflQHt8E6/wURkeqrvV82AcRSO3sPqQBWSEZ7QzIe3mc
-oh0v4o5xZQMqppDByKmS9kZ5kRPH0yQid9l/KU4yGAQ8IDIZRKJGSHbpdOSGHNB4
-9Wc3SR04lmn8WhwRBE8vpB/6n8cAq0mAv/kTa6pEYzjY499z8BjEkkAh9ggOuxLQ
-AOb4dpu0L+wyXP/vLhUKJI+KWAJ+OOJoAVxNXh6HvhQRpShpTN/7+o1AVyRXLlBZ
-bdjxVh3McRWvn8KYat3DtkON90uQRCZ9ufyTXcIPKkTiqQuT/UpwY0fNe3kjYfpK
-pd5dyM86JWGxd39ramOhFSBQyNUAmJ+9pY2uVypbSABbbyIlqerGqzRSvgxoynNN
-UrrZN3MVBCouMxM9+ES7L63jUg8JQQdAwr4RoisEyGLSPsstEnOd6PWYdsk6WYA2
-kDoKPp9EjAeGEb7qH+IbXSm73qP2xX+rBBjfcTn/1CHCkgAPvTg=
-=lHZm
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl3fmvQACgkQXYcKB8Em
+e0aLIg/+PF29YIOfDRsKe19X2mQUEfd0xyAnfZysdI2y96JJ9Qj481P/KlszUkTD
+/GwyiOQG/trh8KTNqnYd1xzYGALfURIENE8N/4yp73RJG25v3jpdfzi8qoV/FLpD
+24lppW2aVuBGR3vvL9oUszLpUsgH8zbf9Ng0JAqCGVka2FBVXRCAA/hcbeazZ9OO
+0pMgXWeR4x+sgadboOGqruBq+dRSdexC25fW/S3DQViMeU+HKTtn8bFcQeTtyrCL
+vdOkffUvoEA42z7k3q8w6ziVp5kYdwzGdTeCfbkAAOydP9LcndroG2HE1/rp1BeX
+5+5zTVvrr+YY/2OErtzQ3+zbO2tzoVhp6m6NZ9kUqhTnj/tCctUyK5CHKjUuVFn7
+7qUTpktV45lQTB627pH4OyviikfQ1CBxCrBGR9LofT9JGIPjNJD5BSQzv0in/Zx3
+hWrDyTrZWxf6yFs9MhfxfCeInFMx0WrFyYUlPik2+feUmICH+9rfIK2J+xgrl3K5
+QbFf/neXNb0MRyje5xlvwPjrLzd+WGMODlzUcuokVNzgaDhNApedPZwlxrPCYRrU
+JV4qJuMj3zv0e8sE/Sk/isKImWjUeyOdiwIxnnlqvdtsADOH/BPc8G25lB5kGzG0
+5hQ3pDYDrWjfmWQcBpBNo6szkR1btrbIqwEKUFyLS4Adh1am3r8=
+=iTzo
 -----END PGP SIGNATURE-----
 
---nextPart3339975.5L7NHtn4j8--
+--nextPart2061994.47J4SoBXhB--
 
 
 
