@@ -1,68 +1,51 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A10129F5C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 24 Dec 2019 09:46:18 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB59D129F87
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 24 Dec 2019 10:03:25 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id D42F4806E2;
-	Tue, 24 Dec 2019 09:46:06 +0100 (CET)
-Received: from qq.com (smtpbg458.qq.com [59.36.132.13])
- by open-mesh.org (Postfix) with ESMTPS id C2FC4801EB
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 24 Dec 2019 09:37:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1577176634; bh=ISngcmpzQWdiT4oNl66T5SJsbKHr4ZEcqhBhoQPPlFo=;
- h=From:To:Subject:Mime-Version:Date:Message-ID;
- b=d8Qxe00L6hFrfCrBD5JsJvdFrV0ENWDiCJFwjmxZuxYV6mhzx+SvoMoFxZCe+uAC9
- xp4hUZt+mrSw7MkqXWY6i7xi2C5OBkzK4fIfkWif17/9dm/BV5SaoC1E+iVEv7Oml/
- 9kUY4V4mEFlU3S2mU7cSjl6tpInLNN2k3TorOoJc=
-X-QQ-FEAT: OmmVAYxKzJudpa67c0zEqPVRZZn0IzhqD42q06VkWVphTu9/f1l89TO2UYYvZ
- ONlM+9T9zlsZs3X33CL4FfvMbdXLKbfMVgJppmNMWEsa1g7InrgxsLu1vsV0pCkhpmnFwmJ
- RVkX8qsyc7EqrnO/YW1a74hb2BRQGxOdPSWMXRCOKPCaQyMns2fllEvdR8fU6j0jLSi2LwY
- qCQGEA4+h6hug/p/OYkSygXTf8ISye2se5FkcWYgnoNu/uc/t/9Rkw967nLfK4adSqSN1Vl
- 2erA==
-X-QQ-SSF: 000000000000002000000000000000A
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 219.140.30.57
-X-QQ-STYLE: 
-X-QQ-mid: webmail308t1577176633t2939626
-From: "=?gb18030?B?1cXF9A==?=" <1805692831@qq.com>
-To: "=?gb18030?B?Yi5hLnQubS5hLm4=?=" <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: openwrt batman-adv
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="gb18030"
-Content-Transfer-Encoding: base64
-Date: Tue, 24 Dec 2019 16:37:12 +0800
-X-Priority: 3
-Message-ID: <tencent_01E5105A2CC20B1B047FF188EFCF47E55D08@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-QQ-SENDSIZE: 520
-Received: from qq.com (unknown [127.0.0.1]) by smtp.qq.com (ESMTP) with SMTP
- id ; Tue, 24 Dec 2019 16:37:13 +0800 (CST)
-Feedback-ID: webmail:qq.com:bgforeign:bgforeign11
-X-QQ-Bgrelay: 1
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1577176654;
+	by open-mesh.org (Postfix) with ESMTP id A81C180721;
+	Tue, 24 Dec 2019 10:03:18 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+ by open-mesh.org (Postfix) with ESMTPS id F33048009D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 24 Dec 2019 10:03:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1577178193;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:dkim-signature;
- bh=ISngcmpzQWdiT4oNl66T5SJsbKHr4ZEcqhBhoQPPlFo=;
- b=MC0qTTK2MNSeNvkouj0UeXRPvlkXSpDQ3fMkSvLaEUjkgM3Uq6n9xfbjLxRERDg29jBcMN
- 3JS13wsLHgCqwvSV71tO6bqJ/2B+kvgMtOoMuXZGSAPFB3cyjsqVfCSLbX4LyA98P4rlAL
- 2BUG3cin3c+bUWUF4QSooGJewAuJJJM=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1577176654; a=rsa-sha256; cv=none;
- b=indQHM76er7qJHTYwgIgUccLj9peV5UaSVVsWnuffSjagendH4vFwg8aBYY1CkFk88d9ph
- /SItdR9LGpmKAdqIcLnbkwG2B8M58vrd/Ft4SnKtPfk7/SI3gY2iqII8dSfLUm2sbut+fM
- oDu6Rz0P/Pl0pOgf7fNHAwrIaNABnxI=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=NOigHKevT84TnxgIVMzJGEdf/rMAFSLaJOJGe+IvJb4=;
+ b=mouOtZDz1DDycH7djGnyd3tfTRO5EEPjmjIUyDmDP/Kwqr5PxJNmv7zblYkxsWh1G2dcn8
+ gg62V0GuXkKVBIuc3bvFoZr9R0MzdT4nfgisTfhGE66gZnJPu4WBwLITHqc14jRNi9PbOt
+ hSP9mhgualJ8in56S6IrHYiQLfzNW3g=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: openwrt batman-adv
+Date: Tue, 24 Dec 2019 10:03:10 +0100
+Message-ID: <2363117.f9ZONqFbmS@sven-edge>
+In-Reply-To: <tencent_01E5105A2CC20B1B047FF188EFCF47E55D08@qq.com>
+References: <tencent_01E5105A2CC20B1B047FF188EFCF47E55D08@qq.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart1619690.nZUtLWqyvc";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1577178194;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:dkim-signature;
+ bh=NOigHKevT84TnxgIVMzJGEdf/rMAFSLaJOJGe+IvJb4=;
+ b=zIEyK+tlRmmBvmQXTft+RAk8ScIat3kz4qFqQ4rEufSIBaYOK36ihdzUrHcmJeaA/crLJc
+ Ec8sssfjjJViP4Qr0FDmlygZCfQ8kI7eiJ8tSR489AK+7649uFJFiS7tVZT1QObNLTOKiC
+ 7bTmSAMnUQL0JJMIqWpyCCeWgaD0JC8=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1577178194; a=rsa-sha256; cv=none;
+ b=FM4ZYaPOwAOVEM3SdjjhwK1jFAD+oEae5N3eODQQ5/mokreUD7OkQ7O2O+30qchVrKEAO8
+ m4ZNykFc9vweVUtmu/TZXzQaEwq88C+qgJCFnLtj+IuEkUbTOizRlCJKtpba/PJI1e9cUp
+ oadatIrmoNgjWBGrolm+tx2T7Hen39E=
 ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=qq.com header.s=s201512 header.b=d8Qxe00L;
- spf=pass (open-mesh.org: domain of 1805692831@qq.com designates 59.36.132.13
- as permitted sender) smtp.mailfrom=1805692831@qq.com
-X-Mailman-Approved-At: Tue, 24 Dec 2019 09:46:02 +0100
+ dkim=pass header.d=narfation.org header.s=20121 header.b=mouOtZDz;
+ spf=pass (open-mesh.org: domain of sven@narfation.org designates 213.160.73.56
+ as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,15 +60,69 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: =?utf-8?B?5byg6bmP?= <1805692831@qq.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-SGksCiAgICBUaGUgcGxhdGZvcm0gSSB3b3JrIG9uIGlzIG9wZW53cnQgbWlwcywgdGhlIGtl
-cm5lbCBJIHVzZSBpcyB2ZXJzaW9uIDMuMzsgdGhlIHZlcnNpb24gdXNpbmcgYmF0bWFuIGlz
-IHJlbGF0aXZlbHkgbG93LCBhbmQgSSB3YW50IHRvIHVzZSB0aGUgbmV3ZXIgdmVyc2lvbiBi
-YXRtYW4gb24gdmVyc2lvbiAzLjMsIGJ1dCBJIGVuY291bnRlciBtYW55IHByb2JsZW1zIGR1
-cmluZyBjb21waWxhdGlvbiwgYW5kIEkgZG9uJ3Qga25vdyBpdCBXaGV0aGVyIGl0IHdvcmtz
-ID8KcGxlYXNlIGhlbHAgbWUhCnRoYW5rIHlvdSB2ZXJ5IG11Y2ggIQ==
+--nextPart1619690.nZUtLWqyvc
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+On Tuesday, 24 December 2019 09:37:12 CET =E5=BC=A0=E9=B9=8F wrote:
+> Hi,
+>     The platform I work on is openwrt mips, the kernel I use is version 3=
+=2E3; the version using batman is relatively low, and I want to use the new=
+er version batman on version 3.3, but I encounter many problems during comp=
+ilation, and I don't know it Whether it works ?
+
+We dropped the support for kernels lower than 3.16.80 a long time ago [1]. =
+It=20
+is irresponsible to still ship such an old kernel (and batman-adv) version=
+=20
+with known security problems. And the last OpenWrt version which used 3.3 w=
+as=20
+something like 12.09 (Attitude Adjustment) from 2013. It is isn't supported=
+ by=20
+OpenWrt upstream since many year.
+
+Please tell your hardware (+software) supplier to provide an up-to-date=20
+software package for your system. But since it is OpenWrt, you should just=
+=20
+grab 19.07 [2] and use it - and if it is just a OpenWrt fork and the hardwa=
+re=20
+supplier never submitted the support to the official OpenWrt then please te=
+ll=20
+your hw supplier to get the support correctly integrated in OpenWrt.
+
+Kind regards,
+	Sven
+
+[1] https://git.open-mesh.org/batman-adv.git/commit/7ab78d556b343b592aa80f4=
+d84b2dfd14019f2d8
+[2] https://downloads.openwrt.org/releases/
+--nextPart1619690.nZUtLWqyvc
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl4B1E4ACgkQXYcKB8Em
+e0bipQ/7B0uL5ox9tXATZq7NIGY97BhMIdO+8hAEuhNOKIVAYvonMkePTJdJmpG+
+l+fWnUsZcHQNNmORQUqEhr2rUTQvqzZyFatbGWS5bIcxz85gtKdzXE2ej5vSHUtH
+MjOHuE/Dp8McPnrBpTaKdE0tp7doIoRn/WLeS76Ch/lPrsikcLLXUwbz3b+okfNQ
+nE1Xtw4PMsnulqb+wXSMaRmTj+1P3yQ/on9quruwC5jEdM/Ob8m+GdHKf4Tf8x1R
+Z5ZB6lc6VrpFb1IAG794xT2UByCjwkw2/LYm0WhGEORQU6jNch9C3h1oBKhnv496
+BVzxSDOL3UuNX4zYkzX7Rr287ezryGmevfg2S7SxrEH8heAQzoZ1uV4yhwtJwVEy
+OxZ8HqWvYeEJjvgWUReIpB0mz/qA+uFZ0oOFTEcMi8vYqj2THiNcwmrDTEPzWcA8
+pC60MhHyP4hpgId9Vfw1G0ycFIJSd5pklDPANTYoDdH56eRdgYyclDTpMWEoH/+M
+iT7mhMVQ/5wi/WucJRZtk1OGi0wY28HQq7Uj/hTBVPc+AtitQvREZGPvla+6n669
+FHf8R8qfEHBHxgQHlWm9NLY1o8ek5C6l9liQKgUQnZV3wyVCHuAQ9j/iB0SrWlyV
+7JWxSuW5A6fO6BksoQUzeheEFMnm68dXZB4mZJN9HBwDpcEmao4=
+=KiKk
+-----END PGP SIGNATURE-----
+
+--nextPart1619690.nZUtLWqyvc--
 
 
 
