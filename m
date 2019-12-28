@@ -1,54 +1,67 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B500912BCC6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 28 Dec 2019 06:41:02 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE3C12BDF9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 28 Dec 2019 17:04:27 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 62D59803D6;
-	Sat, 28 Dec 2019 06:40:53 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
- by open-mesh.org (Postfix) with ESMTPS id 7F5198009F
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 28 Dec 2019 06:40:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1577511648;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=mzZTy/F8Q4/eZuw/RTrhv8sjsPIpi3cDnkxohXE6x+s=;
- b=Q87qq2qfqKugmjtBjQWSpd2QUq7VyvAKcTZ4iG5oiGDCgD230ooBaWanQxgltlZSuz3obk
- UpXmvv34sMtrrvBet5RfX8RV/fj4uZYNo5Oxme6uBkN5t6rOZ4pzdYQIMuujfpf/wBzZcA
- pwRd+GzWIgw0h8XUJd7tHKXbG4HgW4U=
-From: Sven Eckelmann <sven@narfation.org>
-To: =?utf-8?B?5byg6bmP?= <1805692831@qq.com>
-Subject: Re: =?UTF-8?B?5Zue5aSN77ya?= openwrt batman-adv
-Date: Sat, 28 Dec 2019 06:40:41 +0100
-Message-ID: <43821815.iu2yF5aFiK@sven-edge>
-In-Reply-To: <tencent_CA5610319E19CB95CA9DB432847536DEFF09@qq.com>
-References: <tencent_01E5105A2CC20B1B047FF188EFCF47E55D08@qq.com>
- <2363117.f9ZONqFbmS@sven-edge>
- <tencent_CA5610319E19CB95CA9DB432847536DEFF09@qq.com>
+	by open-mesh.org (Postfix) with ESMTP id 4FBC1806DD;
+	Sat, 28 Dec 2019 17:04:19 +0100 (CET)
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198])
+ by open-mesh.org (Postfix) with ESMTPS id 77BA080098
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 28 Dec 2019 10:11:48 +0100 (CET)
+Received: by mail-il1-f198.google.com with SMTP id s9so1611780ilk.0
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 28 Dec 2019 01:11:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=WfGb9lGFdGhSi8hZEfWk/M3G0IsGwYCNAdgm6CjQ7QI=;
+ b=tHW5o58SooDbIEl9COM6GxkMsTzcVNqM0LRJzRfmvjOFt2bwhTt36GiRjpnvZ4WsYy
+ Of2hMOUSSBjQkW7w2Jm9IMfIbkgd2aIoQzmWHI/syEukXUpq0m8E+4fom2I1zCLSUdXw
+ dM1EZ2iXyACKDZgaA0+sjAynBlMFGKun1jjnsDZl9TDhrAtVBKdAVmtEg7uSD8UEacIh
+ Pi/QQTje4SPAsNuckqLZXkPh6CTyEhDmFTjRGBMSw/LGKZd/0R/4jksAbzQvhDS6t9BM
+ 1D0GlAjjzLptnXjh2BPPC59JAWugNvxV1DOFrX05i4tz5QRa7w0fNHVRP8HmANFhE4LO
+ 9+EA==
+X-Gm-Message-State: APjAAAVH9EF+xScEAJiw61smCT5FMxGpkjKaPuZ7rrSPuIf0MHZHOvdE
+ GqoTph7mcFR2huSrWmWZPOD7LSwBpr/TAmDn7Za60yrAI7VR
+X-Google-Smtp-Source: APXvYqyJDTFrNl+ZpW3oGkoUn5Ny0lVdEe36WgM5iN4TzGysRfB97r5Zok5DVtIDafRKxTRvqHwhuE0e1QpHyIt/5WWgjBGqL612
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart40451064.sOvTPcQMsJ";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Received: by 2002:a6b:f404:: with SMTP id i4mr37323657iog.252.1577523961683; 
+ Sat, 28 Dec 2019 01:06:01 -0800 (PST)
+Date: Sat, 28 Dec 2019 01:06:01 -0800
+In-Reply-To: <0000000000004718ff059abd88ef@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000005c669c059abfebe7@google.com>
+Subject: Re: general protection fault in nf_ct_netns_do_get
+From: syzbot <syzbot+19616eedf6fd8e241e50@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, coreteam@netfilter.org, 
+ davem@davemloft.net, fw@strlen.de, hpa@zytor.com, kadlec@netfilter.org, 
+ linux-kernel@vger.kernel.org, linux@roeck-us.net, mareklindner@neomailbox.ch, 
+ mingo@redhat.com, netdev@vger.kernel.org, netfilter-devel@vger.kernel.org, 
+ pablo@netfilter.org, sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com, 
+ tglx@linutronix.de, torvalds@linux-foundation.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1577511650;
+ s=20121; t=1577524308;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=mzZTy/F8Q4/eZuw/RTrhv8sjsPIpi3cDnkxohXE6x+s=;
- b=JUJq/B3BmNyVd2Uy7DOSmk0reQh+n4ehBy1hwQ2262tS9ZCymkjBgKQdtkySh7bjmgp5I2
- 3B4xNvuKIgi+gmb3dgHKwn44gRdL1L+f6fWRQJ2y5Ev7tFBzld9/RY6oZU+BdNjXeuX+nZ
- 6VjCJrV3NtqPEd7p5egZgOf4Y02eC74=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1577511650; a=rsa-sha256; cv=none;
- b=ymYGoRKXy6hfQ0v4x/DXbASY6pVREPpgupp8BnpqEbYiANLj7lJoXTuuo1lH5KgqMNE8GB
- R6XTGhQsW5Ka8iDyap+HTHoKK/JS+oeAh4gX8DOt/ORS4LNWWA3W/Jx7lr8Kkh1hFXRYNi
- ZPKM94iZqdYBLETPaQXU7+mW+qkBDKY=
-ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=Q87qq2qf;
- spf=pass (open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=WfGb9lGFdGhSi8hZEfWk/M3G0IsGwYCNAdgm6CjQ7QI=;
+ b=kI5W2oGDi4vT3TT96r3MqWGs7Df3ETtr9MOid6j6Lou250Zsik2tGlTPk52sozOQFTRaDv
+ WVBzyh0PkghO4ncLxxIZ0fdzIfVpeCa8yRB72QqA7RlCBePCeTdtQtlQiynrBbr73E8yoj
+ WjAY93bYcHf+Yah1NPC2W4uMuerDqrI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1577524308; a=rsa-sha256; cv=none;
+ b=axU0qtABAXpLqDUHkXs70IDgD2xIjqFBR6cUGIbDXgEYsFmgDBBJ1+aMuTbGzn7pSndatn
+ FBruHp2dN9vV3JzOKNU9VEhQuDCz4KUhbE6QXHqyXvQOkx8UX23KwfgDoMDnelSl4b/mSW
+ W+0pqa/GOr74x5ajL5vXxc2yGNVcL5I=
+ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
+ spf=pass (open-mesh.org: domain of
+ 3-RoHXgkbAEIw23oeppivettmh.ksskpiywivgsrxirx.gsq@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.198 as permitted sender)
+ smtp.mailfrom=3-RoHXgkbAEIw23oeppivettmh.ksskpiywivgsrxirx.gsq@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Sat, 28 Dec 2019 17:04:16 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,53 +76,28 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart40451064.sOvTPcQMsJ
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+syzbot has bisected this bug to:
 
-On Saturday, 28 December 2019 03:32:17 CET =E5=BC=A0=E9=B9=8F wrote:
->      Thank you very much for your reply!
->      I have ported the pre-2019.2 version of batman to the 3.3 kernel and=
- it is available for doing
+commit 0a957467c5fd46142bc9c52758ffc552d4c5e2f7
+Author: Guenter Roeck <linux@roeck-us.net>
+Date:   Wed Aug 15 20:22:27 2018 +0000
 
-Please don't do this. Now you are not only having the known bugs from Linux=
-=20
-3.3 but also the known bugs [1] from the pre-2019.2 batman-adv.
+     x86: i8259: Add missing include file
 
-The correct approach is to get your used software updated to a non-EOL=20
-version.
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1579e751e00000
+start commit:   46cf053e Linux 5.5-rc3
+git tree:       upstream
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=1779e751e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=1379e751e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=ed9d672709340e35
+dashboard link: https://syzkaller.appspot.com/bug?extid=19616eedf6fd8e241e50
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=14a47ab9e00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=170f2485e00000
 
-Kind regards,
-	Sven
+Reported-by: syzbot+19616eedf6fd8e241e50@syzkaller.appspotmail.com
+Fixes: 0a957467c5fd ("x86: i8259: Add missing include file")
 
-[1] https://git.open-mesh.org/batman-adv.git/blob/HEAD:/CHANGELOG.rst
---nextPart40451064.sOvTPcQMsJ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl4G6tkACgkQXYcKB8Em
-e0YU+g//caOS3gvLRoqsieypBRrLp4g19TyXEnDDk7Pe2UVAh+zgCtXgidF9N9D+
-ntzZboPqX7mhTS3njaNVwEm7lPdUzv2Suamv71IA4itS6zp52w6DpYy4a4s0mfs5
-7k9kzaMyx05SeMoJkHRA9lHy5ImAcpAnRCqdlSKA9N+4swDffR6DDYh3FUzCkqh4
-Bj+3gWCWN+3POazuKYLRL/XSwKa5d4cTvC2OUR5BS4XM06Z1MRwksLWK1+xzHmFk
-Cknm7wgMCFq9O5nqXhlw1/OaJkxw1TR+xf1YVIg2Nczz5Dc4fcj3CH7sOOBLBz0P
-NroGDbjgCFqoQI+0o6xkhoI2LOa/m4LZO6tibXU4MXrpBgv5XYaFyq/FBrIBf7Y+
-L06h0BNzbdw80aQHZBA6ICfaJ1wuiDYQb9/FB3QECKu/lRhk52YPOmxJ9Si5i7v9
-Jakx95a3WsS5P4gKzeCev26SpjhTFWNPgWbZn9FRbTwTeq6TLYz00JCBzz6L1hrs
-XpPMyGVAUn1KwVmQ0qxz1OTHk5ZWiyEWkLZ9Nq5EvG0ivbcmtsIkTjOv+9FA1sr5
-OyMcOZ1ehHvcrNqeKIBxuC+6PdMa8qQNGtkqujGBM/oLUat7SnDmjh6JKQq9LHoB
-nw2c1F/W6JQuWM8qg38LvP743/ldO6ygLy1KTpOGLcN15OqaH7U=
-=CnE0
------END PGP SIGNATURE-----
-
---nextPart40451064.sOvTPcQMsJ--
-
-
-
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
