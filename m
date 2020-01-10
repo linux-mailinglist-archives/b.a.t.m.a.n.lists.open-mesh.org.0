@@ -2,78 +2,97 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D181130E11
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  6 Jan 2020 08:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB36136CD5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jan 2020 13:15:15 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 2A1B280593;
-	Mon,  6 Jan 2020 08:40:06 +0100 (CET)
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199])
- by open-mesh.org (Postfix) with ESMTPS id 226F480091
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon,  6 Jan 2020 00:05:33 +0100 (CET)
-Received: by mail-il1-f199.google.com with SMTP id e4so29846805ilm.7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 05 Jan 2020 15:05:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=MybccZLowdSuY610EZVsc1I89suuz7NXH7uvIv0mFvY=;
- b=QjiLu18UPZrn0o7BJGXfaNFlgCmkM1Blvyc2K20yKl7IkfYsTRboI+wVDpOzJV1AMJ
- zpzH9QyOo/Bpxd1/mWXlvhOOvcdYesxjw97YLH4N+pDAkz9dEIeMHR3gEjxUO53eqLZK
- L2iYjvotm+DJ7/qiwhElXKe8a5xF6Iw7/uwwzSRjDDmrYNXAIzsgkwI7nC/VriEdlQf2
- 1ab6r/WturXtmWaYTLlqoUXdvpftPCJhJ92nwpvakFAg3D0iYp+HcjzGMb2eVc90A/C7
- 3CadsRP3hvFWiLqucUMGft5qKQLw8OO5+S5CaKgyqbOtS7jem/H+kCwY6T8xAI3x5Rtc
- Cxvw==
-X-Gm-Message-State: APjAAAVlo3jU8OhGKOObLUo5Eg/t1FJBaO3IECGnG0QdfJvhgi1AGkyP
- ++INBV+65XU2vxzKMMdlwpd+9GJ1jLJLAW3txrCNStFEUKgz
-X-Google-Smtp-Source: APXvYqwI1kaOaU+6OhN9mHkSBgJLPiiG9E2oMRL3MMauj8xdpOQ/nYJTOKJNppAbqi17MDpHQfb0GrThss7Ve4NxONRpCk4GrB8O
+	by open-mesh.org (Postfix) with ESMTP id CCC90805ED;
+	Fri, 10 Jan 2020 13:15:07 +0100 (CET)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (mail-am6eur05olkn20811.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e1b::811])
+ by open-mesh.org (Postfix) with ESMTPS id 9394C8009F
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 10 Jan 2020 13:07:38 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZP78+jUubKc/3zAPJaIYVw6iEKJQJIK7HxMHNKMGw/FJsBaHpMVEDOl53aAI8Gt3rJmYB360j/HRksomqzjg/JPIWr0sq9kTdHlG5AKIEgFa3OZlxSSQCPaZEcpcrHXHj70Oe5396SQ0RqYAuh2v5WakwaPjWvxB8lIYgXLVlcnyG4aLoaiowDImxifdyGZY0MMmj3G76CxiZfukh89hn4Geted4k5I5QlFXhPp6jhs1HS2KcFPrpTRIwD3l5U5VPi0bKloV5iODV/Oo0rkSwNi8vMFkaTu+tDK4csW+qnM301NYJzRXA+PCROCHEMS0xuK3EN6zafdnwGR1MKrdvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tmS/ER+N1TQBR4L0Mu6ODpe9G5H7Rdqv3euBkG8IUTw=;
+ b=A5lrKv9MRMEC9IisjrNrt2aNHt/HbsqXWfNoy01+3ibAOCgnJYhXpH0G5K/y/73Ct15CLmAn7fSCnzdV+n9F3h2exUh/7jDuvlMW4TmTIPzUJD52YheWskrVxfGpAR5HY2bb8hGmBZxHn0ojHFtNx9RuZbxdNg1L15nZ+gtrgwVCQnwe5FgjoIH//Rsf1e7s433n1OAv1EDgEcER0HTbncI77C78cB6g6oxI6rGLjFSEY+JUlFIOTDjDdF3h+DoAVRyske57cbmuyJke3284zYhtkC+g+/9t8p98N9J4/x0Bubl5NcyflMsm3/RVf/Yzbyap8gk6BVxhwukxOKt/zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tmS/ER+N1TQBR4L0Mu6ODpe9G5H7Rdqv3euBkG8IUTw=;
+ b=ZMcJH+/2/hiK0yGefcUt2zQ8csppjSO3fhjHBnWxxE6BH6ATyZrDTfMlWHMCbE8lTO0YnQ9V9y/d7dOf8hYEsg9uOfNClZ9Tz+PZbV6hhMf8pYrCWEEP5J0a9iEeOtyzmJuiNaKMJyYLuflav07pnudfJLu0x4MMMXCEdunBA9qLsxRihbo0lJFIGEeC2FwE22qDYsQDU1gaj//rq5aWvnL7obhIS/8FnRSzzpyCvI9fwqrqF7Bs1GCDb6XdRSGW9/zFPfHeYNyvmGmgX++I3Bt56V9uvYMtj5RV9s5107e2qU3BtDaTaaGbHEZY9icT0CuJWeTRHa/AiJFdHOS+mA==
+Received: from AM6EUR05FT020.eop-eur05.prod.protection.outlook.com
+ (10.233.240.52) by AM6EUR05HT215.eop-eur05.prod.protection.outlook.com
+ (10.233.241.56) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2623.9; Fri, 10 Jan
+ 2020 12:07:19 +0000
+Received: from AM7PR07MB6263.eurprd07.prod.outlook.com (10.233.240.52) by
+ AM6EUR05FT020.mail.protection.outlook.com (10.233.241.105) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2623.9 via Frontend Transport; Fri, 10 Jan 2020 12:07:18 +0000
+Received: from AM7PR07MB6263.eurprd07.prod.outlook.com
+ ([fe80::a080:af8:16d9:f3c4]) by AM7PR07MB6263.eurprd07.prod.outlook.com
+ ([fe80::a080:af8:16d9:f3c4%3]) with mapi id 15.20.2644.010; Fri, 10 Jan 2020
+ 12:07:18 +0000
+From: Julian Schlenker <schlenkerjulian@outlook.com>
+To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
+Subject: Extracting topology information from batman adv
+Thread-Topic: Extracting topology information from batman adv
+Thread-Index: AdXHphxONFvwxQv5RuSX2/y3yiD59Q==
+Date: Fri, 10 Jan 2020 12:07:18 +0000
+Message-ID: <AM7PR07MB62635634B9432C2F27D81433AA380@AM7PR07MB6263.eurprd07.prod.outlook.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:6BEB74FC3480182ACB086A67B6590E23FA55E098848A45A709DEECDA0E3EE70A;
+ UpperCasedChecksum:49A13304217CF106427B2650716AFD0AEFBE60E1363783A8CA7DDBC7B621BCA2;
+ SizeAsReceived:6901; Count:42
+x-tmn: [fv3rkfOsR2fi0GwTfWl0eSr5UaPiqhIW1BpA6JuA8srDKuBpNEn1jGPuCAU4i10i]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 391912a5-9f1d-40df-d4e2-08d795c5a3dc
+x-ms-traffictypediagnostic: AM6EUR05HT215:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: WFF30OGa9H3mor2UxdZ8VdBPRYeMW9k+R7pRYwrSR75MH1DZy0JwkZ+ZKnzqI73vk7oVHCtmiqWc+wbhD7rZa+XHnTD71ypGeHAChun8YFYIjLcjXa93Wa3FkO957javcw7sets9jjoskbSdLCUZuOz324trl+oEZS0FP1ehdryt8ArnVx+T/1zGyG8Q5na9
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Received: by 2002:a92:3996:: with SMTP id h22mr81182568ilf.129.1578265080765; 
- Sun, 05 Jan 2020 14:58:00 -0800 (PST)
-Date: Sun, 05 Jan 2020 14:58:00 -0800
-In-Reply-To: <000000000000ab3f800598cec624@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000802598059b6c7989@google.com>
-Subject: Re: WARNING: bad unlock balance in sch_direct_xmit
-From: syzbot <syzbot+4ec99438ed7450da6272@syzkaller.appspotmail.com>
-To: a@unstable.cc, alex.aring@gmail.com, allison@lohutok.net, andrew@lunn.ch, 
- andy@greyhouse.net, ap420073@gmail.com, ast@domdv.de, 
- b.a.t.m.a.n@lists.open-mesh.org, bridge@lists.linux-foundation.org, 
- cleech@redhat.com, daniel@iogearbox.net, davem@davemloft.net, 
- dsa@cumulusnetworks.com, f.fainelli@gmail.com, fw@strlen.de, 
- gregkh@linuxfoundation.org, gustavo@embeddedor.com, haiyangz@microsoft.com, 
- info@metux.net, j.vosburgh@gmail.com, j@w1.fi, jakub.kicinski@netronome.com, 
- jhs@mojatatu.com, jiri@resnulli.us, johan.hedberg@gmail.com, 
- johannes.berg@intel.com, jwi@linux.ibm.com, kstewart@linuxfoundation.org, 
- kvalo@codeaurora.org, kys@microsoft.com, linmiaohe@huawei.com, 
- linux-bluetooth@vger.kernel.org, linux-hams@vger.kernel.org, 
- linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-ppp@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-wpan@vger.kernel.org, liuhangbin@gmail.com, marcel@holtmann.org, 
- mareklindner@neomailbox.ch, mkubecek@suse.cz, mmanning@vyatta.att-mail.com, 
- netdev@vger.kernel.org, nikolay@cumulusnetworks.com, 
- oss-drivers@netronome.com, paulus@samba.org, ralf@linux-mips.org, 
- roopa@cumulusnetworks.com, sashal@kernel.org
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1578265533;
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 391912a5-9f1d-40df-d4e2-08d795c5a3dc
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2020 12:07:18.5274 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6EUR05HT215
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1578658064;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=MybccZLowdSuY610EZVsc1I89suuz7NXH7uvIv0mFvY=;
- b=mDYvhgI04vm0QW8LK2dok5S7Dqxn5Mc+XtURWy9mXC66yDWpTV1lVZr9zaTJg3K5JkRJWA
- Tz5DKYlpG5bc3LGZreUhvhZYUwbokHdbhaHhpMrEZjgMcmgy9Mjd06fCFhL8mQR+eY3Hbd
- RYHqSvbpXlaY5+Stvv41aKMn27x7jJE=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1578265533; a=rsa-sha256; cv=none;
- b=yWq2MLHWd8LhpBUIweqmA3fO/SdyVPfICkfuQrQ4GruDQZbmgy7xD859voJ0rrfu5WTwYf
- Mg03Gl206IQLevFtcz0blExKVVk/YTKWZxnoJat58j7V79EU23FyMQ7gJmun7MDvSqOkhJ
- 5QNVRG9jaLV4d1En2TfrPaiaBvubcn8=
-ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of
- 3-GkSXgkbAA05BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.199 as permitted sender)
- smtp.mailfrom=3-GkSXgkbAA05BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Mon, 06 Jan 2020 08:39:59 +0100
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=tmS/ER+N1TQBR4L0Mu6ODpe9G5H7Rdqv3euBkG8IUTw=;
+ b=M6LI5BngJ9c5nzPMabzdkeuQN4aI7LMEnKCctuJdxhWWwZez4e1TzC3p0eOlQA02EPsVPg
+ RD8dDcSkeSC8aKS9qDoJLawXSpbeOX9/k/J6gTS+u1HE97qqneDcMw1ZXtwnxPnqAHAmn4
+ Npu+uAVpuMX92p6pacHXA2/p+TI9AtA=
+ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1578658064; a=rsa-sha256; cv=pass;
+ b=K/xiYzQXviz9B0+xUAkBf8ugXYzn/RShcf6sVsoHcuNn0+ZzTkwLVgP6P5srsIJCpEwXz3
+ 1Pfnu29rwkYKV85u7n5lz0ijKR1/EfZw8NXMUgjrXhPW3RlE+xQCcOh4z9uq6K83CnHk1g
+ 4MF6CXu3sthZC+2B2p59XZEBrPFquXY=
+ARC-Authentication-Results: i=2; open-mesh.org;
+ dkim=pass header.d=outlook.com header.s=selector1 header.b=ZMcJH+/2;
+ spf=pass (open-mesh.org: domain of schlenkerjulian@outlook.com designates
+ 2a01:111:f400:7e1b::811 as permitted sender)
+ smtp.mailfrom=schlenkerjulian@outlook.com; 
+ arc=pass (i=1)
+X-Mailman-Approved-At: Fri, 10 Jan 2020 13:15:02 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,25 +110,22 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot has bisected this bug to:
+Hello there,
 
-commit ab92d68fc22f9afab480153bd82a20f6e2533769
-Author: Taehee Yoo <ap420073@gmail.com>
-Date:   Mon Oct 21 18:47:51 2019 +0000
+for a project I have to start different processes on different nodes within=
+ an ad-hoc network. Besides CPU load and other factors I would like to use =
+the network information in my decision making. For example having a hop cou=
+nt would be great.
 
-     net: core: add generic lockdep keys
+I did have a look into the alfred man page, especially the "batadv-vis -f j=
+sondoc" command. This one seems to do the job although I am not sure what t=
+he "metric" stands for exactly.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=15e88ec6e00000
-start commit:   36487907 Merge branch 'akpm' (patches from Andrew)
-git tree:       upstream
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=17e88ec6e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=13e88ec6e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=f2f3ef188b7e16cf
-dashboard link: https://syzkaller.appspot.com/bug?extid=4ec99438ed7450da6272
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1722c5c1e00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=167aee3ee00000
+Or is maybe using batman, not batman adv a better fit, as I do not rely on =
+any additional Layer3 services? In addition the remapping of mac to ip both=
+ers me a bit.
 
-Reported-by: syzbot+4ec99438ed7450da6272@syzkaller.appspotmail.com
-Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
+Thanks in advance!
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+Best regards
+Julian
