@@ -1,62 +1,46 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D67138535
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 12 Jan 2020 06:51:27 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45AC313AC4A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 Jan 2020 15:26:16 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 2E4DF8016F;
-	Sun, 12 Jan 2020 06:51:13 +0100 (CET)
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197])
- by open-mesh.org (Postfix) with ESMTPS id 3942F802DB
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 12 Jan 2020 00:38:33 +0100 (CET)
-Received: by mail-il1-f197.google.com with SMTP id p8so4736507ilp.22
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 11 Jan 2020 15:38:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to:cc;
- bh=HG8PSEk+Nu2G0yzQ1sauBjh8yX4UWlbofl1tNDseMog=;
- b=LJ4zkjAZUcfcLSLxG6s5NIgLb4DAd2XB+iaLEScCzaDu3AuRafBNfiEZSa6sfUV8nI
- GzHIGOgKrpXD89LE2bD+xOAn0hOj8UA+ov4+qlcCqBvzIis63qn7k4iGEC2mkKv8aoCa
- 4GfHk4+5to5BeTTT/1XAfc4tHRV6oXJZLzEQw/FR0COwwCpZF3DsgUjVeSXWOIOv9fDk
- 4W6ChgQjUNKje5c1FSijRZUFRMidMusip/+CqixcgVY+6tDR2QjorKs48FxygH7Ohz9h
- /K/OVgUojM48Ie05k18kLVnkixHY5ln3z99LwqXoKkDnbEEwQbQJvFmZqzJC443a9t9G
- qv0w==
-X-Gm-Message-State: APjAAAUegk58+TaXHS/FXswPp/xT7aUXEIw45HaZ/xjr/4vnzV1oIhwL
- FI53wn8A1ftOonjdPvzGAZagldxcDxQfWNOqaaQczAU41EX8
-X-Google-Smtp-Source: APXvYqzY3G/r7L2fdqmCj2j/h1C1sHPcBcM4PyU4coxfrfPzxUmQUqHGDBOKiBTJVPd2Dc1kvuMmxK6iFOuHlz4BJK9Zg+ciJv/g
+	by open-mesh.org (Postfix) with ESMTP id 375FC80B87;
+	Tue, 14 Jan 2020 15:25:40 +0100 (CET)
+Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
+ by open-mesh.org (Postfix) with ESMTPS id 5F798803D6
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 Jan 2020 15:25:31 +0100 (CET)
+Received: from kero.packetmixer.de
+ (p200300C5970F1B0095082C17D9AE8553.dip0.t-ipconnect.de
+ [IPv6:2003:c5:970f:1b00:9508:2c17:d9ae:8553])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by simonwunderlich.de (Postfix) with ESMTPSA id 69C506205C;
+ Tue, 14 Jan 2020 15:16:48 +0100 (CET)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: davem@davemloft.net
+Subject: [PATCH 0/1] pull request for net: batman-adv 2020-01-14
+Date: Tue, 14 Jan 2020 15:16:45 +0100
+Message-Id: <20200114141646.23598-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Received: by 2002:a6b:c804:: with SMTP id y4mr7776396iof.210.1578785911931; 
- Sat, 11 Jan 2020 15:38:31 -0800 (PST)
-Date: Sat, 11 Jan 2020 15:38:31 -0800
-In-Reply-To: <CAM_iQpWN-SKjjrG_7EQ-x+7UMiu6foaNWMJuwQuwN0BGmayB+A@mail.gmail.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000751268059be5bdfc@google.com>
-Subject: Re: Re: WARNING: bad unlock balance in __dev_queue_xmit
-From: syzbot <syzbot+ad4ea1dd5d26131a58a6@syzkaller.appspotmail.com>
-To: Cong Wang <xiyou.wangcong@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1578785919;
+ s=20121; t=1579011931;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=HG8PSEk+Nu2G0yzQ1sauBjh8yX4UWlbofl1tNDseMog=;
- b=sNuZELGm6a3eJNANRVtCbOOCm7Z89fqVyKpPOSDJNwzKDhyRO6O+EGIMRzX0lb4waj/WP6
- AgM9oHuTOr9TEwVu7Pxiv0y2e6ezUAF7OVtvjuzgw2HjhXnYaCJRGhOq2AKrIsNnSAQC8l
- NCmyRtQXj4LFpbZKkPovFVcRco+t9UU=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1578785919; a=rsa-sha256; cv=none;
- b=ecjCORyF1UWKTKpiM/XT69TEk8yFKFBe6t+EmGXWNuIsJRvYeCRwhlpuQl6qLB3FAlk4fL
- 7cAsq6v8+5tbZbevLY8qhL373r9zHEjYmZVNFtr022QA70HJxElU1+JMie4AA1VfAoPVtJ
- 8vvpSGfMFKWZWks9DOXXAT8PQaI/U5U=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=w2TMHW0OBU4PalIb0yPcZRezCaJ/Cx6O4lamC8mBEj0=;
+ b=kgGbXsnwr0VVdqxgMtOy2Qu603OkkJjbvLlU6yoKmPiBKP6mB3x2L1wXDssZMVDtrOw0TP
+ cR7W1gCXJasbDbUjarZQcmYTa5oNxeM0ehRtGLHZuL1mh9UVvRwBk0Ytj06IdrcrLdOW4n
+ jGftXLS6t8GL267Kj5NUlX/LqY0FU5I=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579011931; a=rsa-sha256; cv=none;
+ b=dijB7vC9M0xZ/Ia5uFNXQEdv95tHtYf+mSRZ7UdJR9d5ZfDd0Y2PwGtlC7shERMZlBszM1
+ VBvR2u7rD/tN3LJw1rVBSGe6OTFu/Y9IYOytqUbVx2PAAnJi1w15FXSCm4hQ5s1Qf1I0kZ
+ hOoin0t7ayky/q3qjLHBpRhF28PU4Ao=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of
- 3d1waXgkbAJACIJ4u55yBu992x.08805yECyBw87Dy7D.w86@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.197 as permitted sender)
- smtp.mailfrom=3d1waXgkbAJACIJ4u55yBu992x.08805yECyBw87Dy7D.w86@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Sun, 12 Jan 2020 06:50:52 +0100
+ spf=pass (open-mesh.org: domain of sw@simonwunderlich.de designates
+ 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,30 +55,40 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: kstewart@linuxfoundation.org, alex.aring@gmail.com,
- jakub.kicinski@netronome.com, ast@domdv.de, linmiaohe@huawei.com,
- gustavo@embeddedor.com, oss-drivers@netronome.com,
- linux-wireless@vger.kernel.org, a@unstable.cc, linux-hyperv@vger.kernel.org,
- netdev@vger.kernel.org, paulus@samba.org, linux-hams@vger.kernel.org,
- kys@microsoft.com, andy@greyhouse.net, mareklindner@neomailbox.ch,
- f.fainelli@gmail.com, daniel@iogearbox.net, bridge@lists.linux-foundation.org,
- jwi@linux.ibm.com, linux-wpan@vger.kernel.org, kvalo@codeaurora.org,
- kuznet@ms2.inr.ac.ru, pabeni@redhat.com, nikolay@cumulusnetworks.com,
- marcel@holtmann.org, mkubecek@suse.cz, jiri@resnulli.us,
- johan.hedberg@gmail.com, johannes.berg@intel.com, j@w1.fi,
- j.vosburgh@gmail.com, haiyangz@microsoft.com, syzkaller-bugs@googlegroups.com,
- jhs@mojatatu.com, john.hurley@netronome.com, liuhangbin@gmail.com,
- dsa@cumulusnetworks.com, allison@lohutok.net, cleech@redhat.com,
- gregkh@linuxfoundation.org, b.a.t.m.a.n@lists.open-mesh.org, fw@strlen.de,
- linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- mmanning@vyatta.att-mail.com, linux-ppp@vger.kernel.org, info@metux.net,
- davem@davemloft.net, ap420073@gmail.com
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-> #syz dup: WARNING: bad unlock balance in sch_direct_xmit
+Hi David,
 
-Your 'dup:' command is accepted, but please keep  
-syzkaller-bugs@googlegroups.com mailing list in CC next time. It serves as  
-a history of what happened with each bug report. Thank you.
+here is a bugfix which we would like to have integrated into net.
 
+Please pull or let me know of any problem!
+
+Thank you,
+      Simon
+
+The following changes since commit 40e220b4218bb3d278e5e8cc04ccdfd1c7ff8307:
+
+  batman-adv: Avoid free/alloc race when handling OGM buffer (2019-10-13 21:00:07 +0200)
+
+are available in the Git repository at:
+
+  git://git.open-mesh.org/linux-merge.git tags/batadv-net-for-davem-20200114
+
+for you to fetch changes up to 4cc4a1708903f404d2ca0dfde30e71e052c6cbc9:
+
+  batman-adv: Fix DAT candidate selection on little endian systems (2019-11-28 12:48:59 +0100)
+
+----------------------------------------------------------------
+Here is a batman-adv bugfix:
+
+ - Fix DAT candidate selection on little endian systems,
+   by Sven Eckelmann
+
+----------------------------------------------------------------
+Sven Eckelmann (1):
+      batman-adv: Fix DAT candidate selection on little endian systems
+
+ net/batman-adv/distributed-arp-table.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
