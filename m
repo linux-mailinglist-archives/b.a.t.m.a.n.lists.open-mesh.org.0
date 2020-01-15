@@ -2,50 +2,49 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5630413AC42
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 Jan 2020 15:25:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8891413CDC5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 15 Jan 2020 21:10:02 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 7ADCE80A22;
-	Tue, 14 Jan 2020 15:24:15 +0100 (CET)
-Received: from simonwunderlich.de (packetmixer.de
- [IPv6:2001:4d88:2000:24::c0de])
- by open-mesh.org (Postfix) with ESMTPS id 29F12803AF
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 Jan 2020 15:23:55 +0100 (CET)
-Received: from kero.packetmixer.de
- (p200300C5970F1B0095082C17D9AE8553.dip0.t-ipconnect.de
- [IPv6:2003:c5:970f:1b00:9508:2c17:d9ae:8553])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by simonwunderlich.de (Postfix) with ESMTPSA id E97CF62072;
- Tue, 14 Jan 2020 15:23:54 +0100 (CET)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: davem@davemloft.net
-Subject: [PATCH 7/7] batman-adv: Disable CONFIG_BATMAN_ADV_SYSFS by default
-Date: Tue, 14 Jan 2020 15:23:51 +0100
-Message-Id: <20200114142351.26622-8-sw@simonwunderlich.de>
+	by open-mesh.org (Postfix) with ESMTP id 1A4B180715;
+	Wed, 15 Jan 2020 21:09:51 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by open-mesh.org (Postfix) with ESMTPS id 4C732802DB
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 15 Jan 2020 21:09:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1579118528;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=XV85c9KVq42MuhSnWOGFpYbOHDZwbLgS8+aatrqshgk=;
+ b=JwIckGPj4JyX3pstqcjRXnHoYEI8yy5sa4boRl7t5/lrAvAZH0Fq9Ugy7PUOZdgCRgpUbb
+ b069zCquIOZYkVOZjcX6/mCFo0ukBpu6BvrWcjkza7Fb1cC0QxdPFfsSa/zr9UMT7sySv4
+ nVdDbwH3v2CewLyQm7yTY+9lMO6cRyw=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH] alfred-gpsd: Fix build against gpsd ABI 9.0
+Date: Wed, 15 Jan 2020 21:01:58 +0100
+Message-Id: <20200115200158.2920-1-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200114142351.26622-1-sw@simonwunderlich.de>
-References: <20200114142351.26622-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1579011835;
+ s=20121; t=1579118983;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=E2Nxq2hOz57h0dWxULb+FbmsM7B95qR8cdxylXrSnLE=;
- b=gcA4MyEC/r5K1ePknrcEBoHTfKbyeZ0wta9qglKZn+t5C0WZ1lgAlrJ7nfJXQQu9Agt2XM
- TxxNVxxYWqhNDkbAqP+8Sm4Gg8UWnyUoSO0bwBlxWdDhtufByjW/hBdujvA/bWMVWLXeZC
- +FM0h0hD3XRNvK5qqEVTLAQicKB5Huc=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579011835; a=rsa-sha256; cv=none;
- b=I30VcgKtoBg+YhqFrdSEzCj+5ytfucWRgeVGrgVhK06Ruv1C6VrUvEOUa/kTUVOUoj/DQG
- J/rRuHPuCDenCEMId4lbkFZlGCWv2xRDVHm/Eovn1oC7nqnOxyWX5O/Zxc2d9MhuxmkjvP
- 3jk58JymZJTzu5UBBqUD+aH7RTPU1lQ=
-ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of sw@simonwunderlich.de designates
- 2001:4d88:2000:24::c0de as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=XV85c9KVq42MuhSnWOGFpYbOHDZwbLgS8+aatrqshgk=;
+ b=kGHwLX4fFwVR0cKWmBv9NwH30RrXVDv4Yo7auGXjN3ISucqMLplxbqZoIMTugBRypbJSPH
+ XDZoYc9ss0nztotGpbxbKmOtlSa7JD7v5fn2wq7nMQ9IO7Bm9wBDgIiOiiPEhq/PPhdoeg
+ s0Ruh9Gs5mPF8a/xs1wleLhYK/FfRLI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579118983; a=rsa-sha256; cv=none;
+ b=GcJIXFbgPVS3+D1L5b6Hr3AYKKDWfyVLseA2Wt4HUZJdpnTYqdz5CAp9tfILdxCdojlrYk
+ hJvL24oOvUUXnXrwhgFa7XB5ip2+iNKluFCf5Uf44oxo19JD8URLI483OYh4tNrIkSPqJ1
+ FKrPzTNP8TTTVgeNwe0wtx0NnpuBOp0=
+ARC-Authentication-Results: i=1; open-mesh.org;
+ dkim=pass header.d=narfation.org header.s=20121 header.b=JwIckGPj;
+ spf=pass (open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,39 +59,67 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+Cc: =?UTF-8?q?Steffen=20M=C3=B6ller?= <steffen_moeller@gmx.de>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
-
-The sysfs support in batman-adv is deprecated since a while and will be
-removed completely next year.
-
-All tools which were known to the batman-adv development team are
-supporting the batman-adv netlink interface since a while. Thus
-disabling CONFIG_BATMAN_ADV_SYSFS by default should not cause problems on
-most systems. It is still possible to enable it in case it is still
-required in a specific setup.
+libgpsd 3.20 removed the timestamp_t type and the function
+unix_to_iso8601(). The same release introduced the timespec_t based
+function timespec_to_iso8601().
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
+ gpsd/alfred-gpsd.c | 20 +++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
 
-diff --git a/net/batman-adv/Kconfig b/net/batman-adv/Kconfig
-index 045b2b183213..c762758a4649 100644
---- a/net/batman-adv/Kconfig
-+++ b/net/batman-adv/Kconfig
-@@ -100,7 +100,6 @@ config BATMAN_ADV_DEBUG
- config BATMAN_ADV_SYSFS
- 	bool "batman-adv sysfs entries"
- 	depends on BATMAN_ADV
--	default y
- 	help
- 	  Say Y here if you want to enable batman-adv device configuration and
- 	  status interface through sysfs attributes. It is replaced by the
+diff --git a/gpsd/alfred-gpsd.c b/gpsd/alfred-gpsd.c
+index 884bdbf..47d6a64 100644
+--- a/gpsd/alfred-gpsd.c
++++ b/gpsd/alfred-gpsd.c
+@@ -8,6 +8,8 @@
+ 
+ #include "alfred-gpsd.h"
+ 
++#include <time.h>
++
+ static struct globals gpsd_globals;
+ 
+ static int alfred_open_sock(struct globals *globals)
+@@ -64,19 +66,31 @@ static int gpsd_publish_data(struct globals *globals)
+ 	return 0;
+ }
+ 
++static void gpsd_now_to_iso8601(char *tbuf, size_t len)
++{
++#if GPSD_API_MAJOR_VERSION >= 9
++	timespec_t now;
++
++	clock_gettime(CLOCK_REALTIME, &now);
++	timespec_to_iso8601(now, tbuf, len);
++#else
++	timestamp_t now = timestamp();
++	unix_to_iso8601(now, tbuf, len);
++#endif
++}
++
+ static void gpsd_get_location(struct globals *globals)
+ {
+ 	if (globals->source == SOURCE_CMDLINE) {
+ 		char tbuf[JSON_DATE_MAX+1];
+-		timestamp_t now = timestamp();
+ 
++		gpsd_now_to_iso8601(tbuf, sizeof(tbuf));
+ 		sprintf(globals->gpsd_data->tpv,
+ 			"{\"class\":\"TPV\",\"device\":\"command line\","
+ 			"\"time\":\"%s\","
+ 			"\"lat\":%f,\"lon\":%f,\"alt\":%f,"
+ 			"\"mode\":3}",
+-			unix_to_iso8601(now, tbuf, sizeof(tbuf)),
+-			globals->lat, globals->lon, globals->alt);
++			tbuf, globals->lat, globals->lon, globals->alt);
+ 		globals->gpsd_data->tpv_len =
+ 			htonl(strlen(globals->gpsd_data->tpv) + 1);
+ 	}
 -- 
 2.20.1
 
