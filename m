@@ -1,200 +1,104 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AF8140C0E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2020 15:08:12 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F28D141D26
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 19 Jan 2020 10:42:04 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id CA15980905;
-	Fri, 17 Jan 2020 15:08:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1579270086;
-	h=from:from:sender:sender:reply-to:reply-to:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:in-reply-to:in-reply-to:
-	 references:references:list-id:list-help:list-unsubscribe:
-	 list-subscribe:list-post; bh=8KcHIh/SCQL/B6J1lgys9NSspY9sCLXj7qU+PAM2LyA=;
-	b=ZUUUaZAxIWtyemOyaRbCPpXFs3OwmTWOvwzHQGsLiSni0WoEn12dmw+Z40wdhvmV74khOQ
-	MKQzMd8GNKniqovwG0LM9LCGXgIJReym5yr6XmQoT57HycGhJh/kWLzt5vT1iQyd9LFD2R
-	8/a1iINlbhiN9c1tK0LJ/6vGJrh4X9U=
-To: Simon Wunderlich <sw@simonwunderlich.de>,
- "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-Date: Fri, 17 Jan 2020 14:07:33 +0000
-References: <mailman.6.1579205674.8101.b.a.t.m.a.n@lists.open-mesh.org>
- <2587871.AsJD0l72uE@prime>
-In-Reply-To: <2587871.AsJD0l72uE@prime>
+	by open-mesh.org (Postfix) with ESMTP id 098D6806BA;
+	Sun, 19 Jan 2020 10:41:53 +0100 (CET)
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
+ [209.85.166.200])
+ by open-mesh.org (Postfix) with ESMTPS id 7320380237
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 19 Jan 2020 10:35:03 +0100 (CET)
+Received: by mail-il1-f200.google.com with SMTP id i68so22771111ill.23
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 19 Jan 2020 01:35:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=BRczTDviaeDTYez7KOKQz91MPq0sq1Vv8zv+kc9CGFY=;
+ b=EOnyO4Fq+9GC0nC047UkLVz9aBrBoiKnspGsIq6NCQX2pE+AVRekvF8xW5tCtoHDml
+ JoMYEZ7o4qpYxG+ZQcZ29gfw9blrwPjxtDIqs5O7VcDoP68pGd6+cJwgndplV+aENg6b
+ SRI4YHqQWOedoeUfDWHdLOw3fmfeDz4tHnMtX348hNxc5/8POpiAXp51Lp5O5CuGd74S
+ +kbaOql3o7K59/OseaI9cYcRTvFXwZNHHYddPenBewqIN+eIitydvtjoBvdc3M29CsLk
+ CS+EMaY6GYtW3Sv4gaATZdIaEyBkoEXQJgBc8KWv5bVgZ01wDg3ZfeBddma14bI7YgkI
+ Hw2g==
+X-Gm-Message-State: APjAAAXJAieZgpM4rFXmv1T52yXdwOnKj6y/eoi0Ofmp6f3PZca3xg0d
+ i2agzuA03zgdYtSLyvNxDs4x5ezUSY/9UHl/RsEVUTxpVW/K
+X-Google-Smtp-Source: APXvYqxRJpvjM5JY3HPtw4SSeYYGyt3BTK2lm+dpjQSdSGFX2T4NMrq384OFBw8/ldl/wdX6vviEk7HiCqq+7oDPg/j/rBdVYNKH
 MIME-Version: 1.0
-Message-ID: <mailman.2.1579270084.32407.b.a.t.m.a.n@lists.open-mesh.org>
+X-Received: by 2002:a6b:731a:: with SMTP id e26mr36446343ioh.254.1579426501752; 
+ Sun, 19 Jan 2020 01:35:01 -0800 (PST)
+Date: Sun, 19 Jan 2020 01:35:01 -0800
+In-Reply-To: <000000000000e0ab4c059c79f014@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000095fe43059c7ae3f9@google.com>
+Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_port_ext_cleanup
+From: syzbot <syzbot+7b6206fb525c1f5ec3f8@syzkaller.appspotmail.com>
+To: a@unstable.cc, andrew@lunn.ch, b.a.t.m.a.n@lists.open-mesh.org, 
+ coreteam@netfilter.org, davem@davemloft.net, florent.fourcot@wifirst.fr, 
+ fw@strlen.de, grygorii.strashko@ti.com, j-keerthy@ti.com, jeremy@azazel.net, 
+ johannes.berg@intel.com, kadlec@netfilter.org, linux-kernel@vger.kernel.org, 
+ linux-omap@vger.kernel.org, mareklindner@neomailbox.ch, 
+ netdev@vger.kernel.org, netfilter-devel@vger.kernel.org, pablo@netfilter.org, 
+ sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1579426503;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=BRczTDviaeDTYez7KOKQz91MPq0sq1Vv8zv+kc9CGFY=;
+ b=z3Cn8IJW13guCGSnu+UakXdxQ8IZ70c428OYSUyhMVaRCJtG4DzGqjyOhgLL9UtQm8hFBb
+ 1NgKZfas+tlAEQOaizTOa/E+93Fl/IfEOKKbPP0lU06Ac2nomvJCi7Kdfgu9g4Cir5xN62
+ yE4/Bqsbd0xfwsQBHuSBrKoT5bhngzM=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579426503; a=rsa-sha256; cv=none;
+ b=U+9n4ltxW5psN61xM11NrelKzaq6BscZ5OrspuVo6JtkkoUaqnmhrv4CiidC9Sf/ipz2qq
+ y4ET8vOcQq8OKnmVqT/KG+NPpiZGJA3KE9gHBX/4pQfHE2SfgO+5VGQk7oiHCmfl0dJfb7
+ 3cyHtBfkzE/nVcyaRawEAzPzGTLv/YQ=
+ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
+ spf=pass (open-mesh.org: domain of
+ 3xSIkXgkbAJIEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.200 as permitted sender)
+ smtp.mailfrom=3xSIkXgkbAJIEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Sun, 19 Jan 2020 10:41:48 +0100
+X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
+X-Mailman-Version: 2.1.29
+Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
-List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
-From: "Martin, Jeremy J CIV USARMY CCDC C5ISR \(USA\) via B.A.T.M.A.N"
- <b.a.t.m.a.n@lists.open-mesh.org>
-Precedence: list
-Cc: "Martin,
- Jeremy J CIV USARMY CCDC C5ISR \(USA\)" <jeremy.j.martin33.civ@mail.mil>,
- "Martin, Jeremy J CIV USARMY CCDC C5ISR \(USA\) via B.A.T.M.A.N"
- <b.a.t.m.a.n@lists.open-mesh.org>
-X-Mailman-Version: 2.1.29
-X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
-List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
- <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 List-Unsubscribe: <https://lists.open-mesh.org/mm/options/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=unsubscribe>
 List-Archive: <http://lists.open-mesh.org/pipermail/b.a.t.m.a.n/>
+List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
+List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
+List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
+ <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
-Content-Type: multipart/mixed; boundary="===============3918423452337693968=="
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---===============3918423452337693968==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+syzbot has bisected this bug to:
 
-The sender domain has a DMARC Reject/Quarantine policy which disallows
-sending mailing list messages using the original "From" header.
+commit 2f9b0d93a9d3ec64558537ab5d7cff820886afa4
+Author: Keerthy <j-keerthy@ti.com>
+Date:   Mon Jun 24 05:16:19 2019 +0000
 
-To mitigate this problem, the original message has been wrapped
-automatically by the mailing list software.
---===============3918423452337693968==
-Content-Type: message/rfc822
-MIME-Version: 1.0
-Content-Disposition: inline
+    net: ethernet: ti: cpsw: Fix suspend/resume break
 
-Return-Path: <jeremy.j.martin33.civ@mail.mil>
-Received: from USAT19PA20.eemsg.mail.mil (USAT19PA20.eemsg.mail.mil [214.24.22.194])
-	by open-mesh.org (Postfix) with ESMTPS id 209B28001E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2020 15:08:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=mail.mil; i=@mail.mil; q=dns/txt; s=EEMSG2018v1a;
-  t=1579270082; x=1610806082;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=8fRQqyLeBR5wbQzVTI3szB/Qi1v39He+z6abdKveWqk=;
-  b=rkPq+zREVlc6ARsHSuZBXjAc60pTafFGOC8Ylyr1BrrsWgiZoa0vIU4P
-   vXQQf6PSzcsqO/aKBTAvgBTjtXhUX2bApZd6pRg7r2c6trnTlKaJRzQeC
-   /mDcqfDIUtcV8kMFs3DQOHFRX3pu6xhEtQSnjjHLS2r8gHaQjRARsJeV3
-   D9zhN/D5KN0vpvJ3yNZg78zJqRGGuv+0PQ7ChdhKYao8jOZ97u8z5Aemp
-   sHf7fOHxqxaWlaeLI7LmauXsxG2+D2Z9Nhzt1wq49UIYpeLZwp0LrtAaA
-   y9l8APDApqJ29lrunQqe38vVzWauTGJMhQ2zps9LHibk6hxSVJoaUKw0H
-   g==;
-X-EEMSG-check-017: 70789400|USAT19PA20_ESA_OUT01.csd.disa.mil
-X-IronPort-AV: E=Sophos;i="5.70,330,1574121600"; 
-   d="scan'208";a="70789400"
-Received: from edge-cols02.mail.mil ([131.64.104.102])
-  by USAT19PA20.eemsg.mail.mil with ESMTP; 17 Jan 2020 14:07:58 +0000
-Received: from UCOLHPMO.easf.csd.disa.mil (131.64.104.43) by
- edge-cols02.mail.mil (131.64.104.102) with Microsoft SMTP Server (TLS) id
- 14.3.468.0; Fri, 17 Jan 2020 14:07:34 +0000
-Received: from UCOLHPUH.easf.csd.disa.mil ([169.254.8.96]) by
- ucolhpmo.easf.csd.disa.mil ([131.64.104.43]) with mapi id 14.03.0468.000;
- Fri, 17 Jan 2020 14:07:34 +0000
-From: "Martin, Jeremy J CIV USARMY CCDC C5ISR (USA)"
-	<jeremy.j.martin33.civ@mail.mil>
-To: Simon Wunderlich <sw@simonwunderlich.de>,
-	"b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-CC: "Martin, Jeremy J CIV USARMY CCDC C5ISR (USA) via B.A.T.M.A.N"
-	<b.a.t.m.a.n@lists.open-mesh.org>
-Subject: RE: [Non-DoD Source] Re:
-Thread-Topic: [Non-DoD Source] Re:
-Thread-Index: AQHVzQoSZxfhBEREXku3wMYM49if4Kfu5EiA
-Date: Fri, 17 Jan 2020 14:07:33 +0000
-Message-ID: <766B88D91EC93C4C8C7E844717CBB21F0DF4B39A@UCOLHPUH.easf.csd.disa.mil>
-References: <mailman.6.1579205674.8101.b.a.t.m.a.n@lists.open-mesh.org>
- <2587871.AsJD0l72uE@prime>
-In-Reply-To: <2587871.AsJD0l72uE@prime>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [131.64.22.15]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1579270082;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=8fRQqyLeBR5wbQzVTI3szB/Qi1v39He+z6abdKveWqk=;
-	b=4D9Vwg85kxFOoJ3bQ+A58D7zf10Bk3YSxGH6MDXDnddy9inVwlzdL3ETZ6IlX5g5QNLrhb
-	usTTXRpJGdHJtpB8rOtWZS6/tyA1kTIUmH0ypISyq2TJPl/rRfuKZV/6L55jeAhHr0Pst7
-	VjaGkXDGeksmjUCM1EAw+E1wWiqyt6Q=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579270082; a=rsa-sha256;
-	cv=none;
-	b=f8rReFO7WxdsV/YVXVdXHrQtnr28AIpvrvksGLDNH7Ws57GyQtKAweChEEFgQ3fW7gIB5M
-	z6Q5ieJycCr74gvePBhu99Ss8CicNpU1dTbrMwZZAfv1gqs46BX3ro2NTqGLq3tdeG7/uR
-	gkmoJ9oJv4692zB5JRbUEjrvaf0KpyQ=
-ARC-Authentication-Results: i=1;
-	open-mesh.org;
-	dkim=pass header.d=mail.mil header.s=EEMSG2018v1a header.b=rkPq+zRE;
-	spf=pass (open-mesh.org: domain of jeremy.j.martin33.civ@mail.mil designates 214.24.22.194 as permitted sender) smtp.mailfrom=jeremy.j.martin33.civ@mail.mil
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=17fcf959e00000
+start commit:   e02d9c4c Merge branch 'bnxt_en-fixes'
+git tree:       net
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=1402f959e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=1002f959e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=7e89bd00623fe71e
+dashboard link: https://syzkaller.appspot.com/bug?extid=7b6206fb525c1f5ec3f8
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=16551cc9e00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=14a04966e00000
 
-Simon,
+Reported-by: syzbot+7b6206fb525c1f5ec3f8@syzkaller.appspotmail.com
+Fixes: 2f9b0d93a9d3 ("net: ethernet: ti: cpsw: Fix suspend/resume break")
 
-    Thank you very much for taking the time and answering my questions. Gre=
-at work on Batman, the little I've seen of it, it seems to be a very well m=
-ade routing protocol.=20
-
-Best,
-
-Jeremy Martin=20
-Office: (443)-395-7475
-Jeremy.j.martin33.civ@mail.mil
-Radio Frequency Communications Division, RF Modeling and Simulation Branch
-C5ISR Center, Space and Terrestrial Communications Directorate   =20
-
-
-
------Original Message-----
-From: Simon Wunderlich [mailto:sw@simonwunderlich.de]=20
-Sent: Friday, January 17, 2020 2:45 AM
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Martin, Jeremy J CIV USARMY CCDC C5ISR (USA) via B.A.T.M.A.N <b.a.t.m.a=
-.n@lists.open-mesh.org>; Martin, Jeremy J CIV USARMY CCDC C5ISR (USA) <jere=
-my.j.martin33.civ@mail.mil>
-Subject: [Non-DoD Source] Re:
-
-Hi Jeremy,
-
-On Thursday, January 16, 2020 9:06:50 PM CET Martin, Jeremy J CIV USARMY CC=
-DC C5ISR (USA) via B.A.T.M.A.N wrote:
-> My/My Teams intent is to have 4 radios in total, 2 on one pc and two=20
-> on another. Our plan is to have Batman take care of the switching=20
-> between which radio to use in order to transmit data between these two=20
-> PC's. One radio is high frequency radio (60 Ghz) and the other would=20
-> be a lower frequency radio and the idea is to have batman switch=20
-> between these radios once the higher frequency radio is dropping between =
-a certain TQ.
-
-BATMAN will switch by default when one link has a better TQ (towards the fi=
-nal
-destination) than the other link, so I believe this should happen by defaul=
-t.
-
-> My
-> primary questions regarding this scenario would be, 1) Are there=20
-> specific standards the radio chipsets would need to support in order=20
-> for them to work in this scenario?.
-
-Normally you would want IBSS mode or 802.11s mode work. BATMAN can also wor=
-k in AP/Sta mode, although the packet loss counting may be biased since bro=
-adcast handling works a bit different than in IBSS/11s. But for point-to- p=
-oint links it might just work.
-
-> 2) Would Batman-adv be adequate enough to be able to handle a 1Gb/s=20
-> data transmission and be able to swap accordingly to the lower=20
-> frequency radio?
-
-If your radio and CPU are powerful enough, batman-adv is able to handle it,=
- yes.
-
-Cheers,
-      Simon
-
---===============3918423452337693968==--
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
