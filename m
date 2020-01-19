@@ -1,68 +1,68 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F28D141D26
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 19 Jan 2020 10:42:04 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F1D142423
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 20 Jan 2020 08:18:57 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 098D6806BA;
-	Sun, 19 Jan 2020 10:41:53 +0100 (CET)
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200])
- by open-mesh.org (Postfix) with ESMTPS id 7320380237
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 19 Jan 2020 10:35:03 +0100 (CET)
-Received: by mail-il1-f200.google.com with SMTP id i68so22771111ill.23
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 19 Jan 2020 01:35:03 -0800 (PST)
+	by open-mesh.org (Postfix) with ESMTP id AE04680760;
+	Mon, 20 Jan 2020 08:18:44 +0100 (CET)
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
+ [209.85.166.70]) by open-mesh.org (Postfix) with ESMTPS id EF070801EF
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 19 Jan 2020 21:21:01 +0100 (CET)
+Received: by mail-io1-f70.google.com with SMTP id e13so18550416iob.17
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 19 Jan 2020 12:21:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
  :from:to;
- bh=BRczTDviaeDTYez7KOKQz91MPq0sq1Vv8zv+kc9CGFY=;
- b=EOnyO4Fq+9GC0nC047UkLVz9aBrBoiKnspGsIq6NCQX2pE+AVRekvF8xW5tCtoHDml
- JoMYEZ7o4qpYxG+ZQcZ29gfw9blrwPjxtDIqs5O7VcDoP68pGd6+cJwgndplV+aENg6b
- SRI4YHqQWOedoeUfDWHdLOw3fmfeDz4tHnMtX348hNxc5/8POpiAXp51Lp5O5CuGd74S
- +kbaOql3o7K59/OseaI9cYcRTvFXwZNHHYddPenBewqIN+eIitydvtjoBvdc3M29CsLk
- CS+EMaY6GYtW3Sv4gaATZdIaEyBkoEXQJgBc8KWv5bVgZ01wDg3ZfeBddma14bI7YgkI
- Hw2g==
-X-Gm-Message-State: APjAAAXJAieZgpM4rFXmv1T52yXdwOnKj6y/eoi0Ofmp6f3PZca3xg0d
- i2agzuA03zgdYtSLyvNxDs4x5ezUSY/9UHl/RsEVUTxpVW/K
-X-Google-Smtp-Source: APXvYqxRJpvjM5JY3HPtw4SSeYYGyt3BTK2lm+dpjQSdSGFX2T4NMrq384OFBw8/ldl/wdX6vviEk7HiCqq+7oDPg/j/rBdVYNKH
+ bh=tB8tVCfxWFIVfqWEsKuHgi0liSe9R1RZ+UBErAfoDaU=;
+ b=suNxp+/Z/fGdbxp3+Sp5koAKoVbxYGOi/fk6o2iqT89yt3IZ6iTHbAkxokVNCvWB2D
+ 7aqO6a5Lxbe0kRYI2ngSjvHS8Nn3pbXL6Q3jXboTGUjeW4hSOIX/i9WR/FsZnusHRdtk
+ gKpzWrVEmDGnB8Zz0MjTifUarDiahPJjAQc0fC8EKQaNptmc7Ya/kjH68tE1NKVyO+XA
+ m/I6yY6dfWSGoVdXC/MqGZbeRXNHb/p841pWSOUSybAbUnUQHK3daDYeFLgLcoI8vbOq
+ 9B5hRjMFIBLr+9i1PeqP4QYpRB6H+0CwV++mN378u4Zn4VopMVsEikAKngBbU/n7aiL6
+ xilw==
+X-Gm-Message-State: APjAAAU9qtKkWOWHexvYQ0MQ1/F4nuM6UNGSKP6x7Lq7wi3yb5ASyzNl
+ 6zHPFR9f79UhI9829/usMgegdscrwBq1u+JweTl0momAA5PY
+X-Google-Smtp-Source: APXvYqyBW0ANY5otx8x2mkJHYLCBShYafFG9L0jcSxJr3/w8Z3m4XgrA+Nba0kwQlcnkDJsAXjzzdqX7oGV/luxPfoRNInuKbPwk
 MIME-Version: 1.0
-X-Received: by 2002:a6b:731a:: with SMTP id e26mr36446343ioh.254.1579426501752; 
- Sun, 19 Jan 2020 01:35:01 -0800 (PST)
-Date: Sun, 19 Jan 2020 01:35:01 -0800
-In-Reply-To: <000000000000e0ab4c059c79f014@google.com>
+X-Received: by 2002:a6b:b74a:: with SMTP id h71mr15932229iof.212.1579465260652; 
+ Sun, 19 Jan 2020 12:21:00 -0800 (PST)
+Date: Sun, 19 Jan 2020 12:21:00 -0800
+In-Reply-To: <0000000000006d7b1e059c7db653@google.com>
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <00000000000095fe43059c7ae3f9@google.com>
-Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_port_ext_cleanup
-From: syzbot <syzbot+7b6206fb525c1f5ec3f8@syzkaller.appspotmail.com>
-To: a@unstable.cc, andrew@lunn.ch, b.a.t.m.a.n@lists.open-mesh.org, 
- coreteam@netfilter.org, davem@davemloft.net, florent.fourcot@wifirst.fr, 
- fw@strlen.de, grygorii.strashko@ti.com, j-keerthy@ti.com, jeremy@azazel.net, 
- johannes.berg@intel.com, kadlec@netfilter.org, linux-kernel@vger.kernel.org, 
- linux-omap@vger.kernel.org, mareklindner@neomailbox.ch, 
- netdev@vger.kernel.org, netfilter-devel@vger.kernel.org, pablo@netfilter.org, 
+Message-ID: <000000000000cbfd34059c83e917@google.com>
+Subject: Re: KASAN: use-after-free Read in bitmap_ip_ext_cleanup
+From: syzbot <syzbot+b554d01b6c7870b17da2@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, 
+ bridge@lists.linux-foundation.org, coreteam@netfilter.org, 
+ davem@davemloft.net, florent.fourcot@wifirst.fr, fw@strlen.de, 
+ jeremy@azazel.net, johannes.berg@intel.com, kadlec@netfilter.org, 
+ linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, 
+ netdev@vger.kernel.org, netfilter-devel@vger.kernel.org, 
+ nikolay@cumulusnetworks.com, pablo@netfilter.org, roopa@cumulusnetworks.com, 
  sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1579426503;
+ s=20121; t=1579465262;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=BRczTDviaeDTYez7KOKQz91MPq0sq1Vv8zv+kc9CGFY=;
- b=z3Cn8IJW13guCGSnu+UakXdxQ8IZ70c428OYSUyhMVaRCJtG4DzGqjyOhgLL9UtQm8hFBb
- 1NgKZfas+tlAEQOaizTOa/E+93Fl/IfEOKKbPP0lU06Ac2nomvJCi7Kdfgu9g4Cir5xN62
- yE4/Bqsbd0xfwsQBHuSBrKoT5bhngzM=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579426503; a=rsa-sha256; cv=none;
- b=U+9n4ltxW5psN61xM11NrelKzaq6BscZ5OrspuVo6JtkkoUaqnmhrv4CiidC9Sf/ipz2qq
- y4ET8vOcQq8OKnmVqT/KG+NPpiZGJA3KE9gHBX/4pQfHE2SfgO+5VGQk7oiHCmfl0dJfb7
- 3cyHtBfkzE/nVcyaRawEAzPzGTLv/YQ=
+ in-reply-to:in-reply-to; bh=tB8tVCfxWFIVfqWEsKuHgi0liSe9R1RZ+UBErAfoDaU=;
+ b=sVRVyTNwnfCJ4R+drJtnrULY2F6WtdStn2eZqTRCqecCljn88eYdQaMOo5a7yAYbgV5wqp
+ T4tJWKqknj2RFfQAFdK4jG5huYU2EpRWPcTiTLqf+0PVsHWLDa92O92U4LYApsysmsOzEo
+ iZgSNsF+jV07k/WjTjHcHMGW31PQwJ0=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579465262; a=rsa-sha256; cv=none;
+ b=oTlM/loJBUDUhgFI6QadqQ8ME+lIcSmQeBm3+Lq3j5RoN22vGa8LsuxDrY6FuD+fYmw9Tp
+ X0Xbg9oK6DFRg+qfwjBjVccOznywV/8hMk/gLc3jP8Xep9iGMQyIQME+MmYmcJyh1SoTh4
+ 9MTQSi3z3s2JO+zbkYmseq0VjyjaiXM=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
  spf=pass (open-mesh.org: domain of
- 3xSIkXgkbAJIEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.200 as permitted sender)
- smtp.mailfrom=3xSIkXgkbAJIEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Sun, 19 Jan 2020 10:41:48 +0100
+ 3LLokXgkbACsZfgRHSSLYHWWPK.NVVNSLbZLYJVUaLUa.JVT@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.70 as permitted sender)
+ smtp.mailfrom=3LLokXgkbACsZfgRHSSLYHWWPK.NVVNSLbZLYJVUaLUa.JVT@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Mon, 20 Jan 2020 08:18:38 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,23 +82,23 @@ Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
 syzbot has bisected this bug to:
 
-commit 2f9b0d93a9d3ec64558537ab5d7cff820886afa4
-Author: Keerthy <j-keerthy@ti.com>
-Date:   Mon Jun 24 05:16:19 2019 +0000
+commit 3d26eb8ad1e9b906433903ce05f775cf038e747f
+Author: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Date:   Tue Jul 2 12:00:20 2019 +0000
 
-    net: ethernet: ti: cpsw: Fix suspend/resume break
+    net: bridge: don't cache ether dest pointer on input
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=17fcf959e00000
-start commit:   e02d9c4c Merge branch 'bnxt_en-fixes'
-git tree:       net
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=1402f959e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=1002f959e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=7e89bd00623fe71e
-dashboard link: https://syzkaller.appspot.com/bug?extid=7b6206fb525c1f5ec3f8
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=16551cc9e00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=14a04966e00000
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=17bb1cc9e00000
+start commit:   9aaa2949 Merge branch '1GbE' of git://git.kernel.org/pub/s..
+git tree:       net-next
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=147b1cc9e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=107b1cc9e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=66d8660c57ff3c98
+dashboard link: https://syzkaller.appspot.com/bug?extid=b554d01b6c7870b17da2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=15db12a5e00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=15316faee00000
 
-Reported-by: syzbot+7b6206fb525c1f5ec3f8@syzkaller.appspotmail.com
-Fixes: 2f9b0d93a9d3 ("net: ethernet: ti: cpsw: Fix suspend/resume break")
+Reported-by: syzbot+b554d01b6c7870b17da2@syzkaller.appspotmail.com
+Fixes: 3d26eb8ad1e9 ("net: bridge: don't cache ether dest pointer on input")
 
 For information about bisection process see: https://goo.gl/tpsmEJ#bisection
