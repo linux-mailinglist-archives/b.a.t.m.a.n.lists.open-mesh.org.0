@@ -1,35 +1,35 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B07148A34
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Jan 2020 15:43:43 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C557148A33
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Jan 2020 15:43:31 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id BE47C8001E;
-	Fri, 24 Jan 2020 15:43:09 +0100 (CET)
+	by open-mesh.org (Postfix) with ESMTP id C77B480B95;
+	Fri, 24 Jan 2020 15:43:03 +0100 (CET)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by open-mesh.org (Postfix) with ESMTPS id 7A1398027A
+ by open-mesh.org (Postfix) with ESMTPS id 7D74580689
  for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 24 Jan 2020 15:30:45 +0100 (CET)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 05C3121556;
- Fri, 24 Jan 2020 14:21:58 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 6280222464;
+ Fri, 24 Jan 2020 14:22:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1579875719;
- bh=vJS8x5vAhv5+CbfqIyNvJ4Xv6cnGxwPpgEtFwP/weY0=;
+ s=default; t=1579875743;
+ bh=JndqAaWRMQuy3nm1R4jhkd9XYrsf/vtVro7uCNEVFKM=;
  h=From:To:Cc:Subject:Date:From;
- b=A5Tx7pAvIIMfrtFpFjq+MobevJOooo/HMvgQFqxumfxcnoHh/nAo7DQlUtbHLpKhg
- 7KV6dhQipuqMEty5K2GlS9PI53XoYUtrJ4YWRd52q3MqbkS6EPYr5yy78NE/Had/5a
- +iFyOrR1Upa05kWyGoDZqAxEHOR+HVurf9U+bbkM=
+ b=KI/GcPLd6KfqXV9yU5S80WXJbymr8HUI7P/pB1VyFJM3NuPllbY6Lc/0NAhhrw3MI
+ vRFRz5KND5iBuTf0b88ErKMfHU+wtPDnF0AtEDdNPFa9OiY0Of/RJ3C3ECYgpBcfTA
+ c0PNvEWIespWB5mK+7IDIbbcjktTEendDzmkPPWo=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 01/18] batman-adv: Fix DAT candidate selection on
+Subject: [PATCH AUTOSEL 4.4 1/9] batman-adv: Fix DAT candidate selection on
  little endian systems
-Date: Fri, 24 Jan 2020 09:21:40 -0500
-Message-Id: <20200124142157.30931-1-sashal@kernel.org>
+Date: Fri, 24 Jan 2020 09:22:13 -0500
+Message-Id: <20200124142221.31201-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 X-stable: review
@@ -40,16 +40,16 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:dkim-signature;
- bh=J0U/2C0mayPyLLmNKCxlrBQejm9kgvbD8Ki27oT/sn4=;
- b=FU1YPoECDGMm41OTV4egZ5U37B53OP2swU//pUntD4hmgUckl//QevipWi6BKJyJV6n+LA
- JRTuPlJnLBxepNYYvGPxXzSeAtyJj1Izn9sosIC+FqRGPMbR4pkAWgmBY0son8yon61wME
- ArhPW15EftO95HW0Fgcqp2ffQYPI9Os=
+ bh=ZxmWBtVP1QrzMTAJsP1tO9NYixg8cokCor1HWZ4IqjI=;
+ b=OQn2bLOGzd9ZwL3ctIGVdl4nHojilXvx3DqjUKUdtBPFZFra6J4JQcokdVSEgLUIcoCLfd
+ 2wwU8CDJ3katIPz9t4CeeNMrmfSszhcz2nA+8SALRxW2byrfrR+FBmAKkFlrhkdnOPLdtM
+ lQSYooTuMPR5vNj8aQmgUe4aqhb4xR0=
 ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579876245; a=rsa-sha256; cv=none;
- b=QUh+xz5xeja5zZrm3BlU6T2wCX3aq6bZdmS1oV/OuUIL+5OTZY69kKEOaPFSt/JrrnhPk7
- yScmrbnQY1edQmJScaEEBvHaDvvMmJY9eCyMBASiF2FRUONuR12R1cx8ZSzPCTCayJvq1e
- dZVpNhZ/ARM6go72z4rlNNDnTJxF1N4=
+ b=ZVd/3uLIAXmfSLfkxi6qgl3PmvLLLKuv+3Z6L07Tv58gdxsxvt4No6mXAb+vCfenTDaaRT
+ kHrShGe9dStK0ewCB9THmV1y6NceojcB9ylJoEzA79PNaKd5OijAok4H3Z4UfNQW8Z9ElJ
+ jkBh2e8y1uHK/ahqlcqRpPjZy3vBF9Y=
 ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=kernel.org header.s=default header.b=A5Tx7pAv;
+ dkim=pass header.d=kernel.org header.s=default header.b=KI/GcPLd;
  spf=pass (open-mesh.org: domain of sashal@kernel.org designates 198.145.29.99
  as permitted sender) smtp.mailfrom=sashal@kernel.org
 X-Mailman-Approved-At: Fri, 24 Jan 2020 15:42:54 +0100
@@ -96,10 +96,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
-index df7c6a0801885..3b440b8d7c052 100644
+index c2dff7c6e9607..76808c5e81836 100644
 --- a/net/batman-adv/distributed-arp-table.c
 +++ b/net/batman-adv/distributed-arp-table.c
-@@ -242,6 +242,7 @@ static u32 batadv_hash_dat(const void *data, u32 size)
+@@ -226,6 +226,7 @@ static u32 batadv_hash_dat(const void *data, u32 size)
  	u32 hash = 0;
  	const struct batadv_dat_entry *dat = data;
  	const unsigned char *key;
@@ -107,7 +107,7 @@ index df7c6a0801885..3b440b8d7c052 100644
  	u32 i;
  
  	key = (const unsigned char *)&dat->ip;
-@@ -251,7 +252,8 @@ static u32 batadv_hash_dat(const void *data, u32 size)
+@@ -235,7 +236,8 @@ static u32 batadv_hash_dat(const void *data, u32 size)
  		hash ^= (hash >> 6);
  	}
  
