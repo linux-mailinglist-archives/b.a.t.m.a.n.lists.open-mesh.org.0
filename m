@@ -1,66 +1,58 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA401478E0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Jan 2020 08:16:46 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [78.46.248.236])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE894148A32
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Jan 2020 15:43:20 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id BFE498072A;
-	Fri, 24 Jan 2020 08:16:33 +0100 (CET)
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200])
- by open-mesh.org (Postfix) with ESMTPS id 0919A80095
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 23 Jan 2020 23:22:03 +0100 (CET)
-Received: by mail-il1-f200.google.com with SMTP id h18so48126ilc.2
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 23 Jan 2020 14:22:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=U2ciZII89LyEb1jgPxE5/IJrQKEwwRWzV2RXknpTZh0=;
- b=Mjgh/cIE2VN8ehsn2kvyWXosLla6k28ROcbSuk7NKS7quZSIkT06Rwgw5Z9GPu7RQG
- NC4pZnrMIYr3Z2OXXT8WLMHlkdY+gextecF+fgjgCCLyk0kFgs+NBIdaSTBpZpp2akw/
- rVmhJNHd5TKKGOmhM51um6DfqC8Zzp06PMv8z/I1vV18prRdgehMzcVqwIic5HYgWy6W
- i/dR5wJ37JEJM09n1JeZ2APaxWQ/nTKKXS7LXxKpTb1WTRuJOvsNhh9658OyTtiL1ZzZ
- LpZhKXTlHoULdE4/o1yd1cQJapBkh/96ckp1yZbv54DO7Mcz8pJRPcYc+8nogwYDRgYK
- 4yrw==
-X-Gm-Message-State: APjAAAXS+VopkFbOI6dZAARI0m7QHLSIrLA1UgdR1LLwQstzo6hm+9fF
- iRU4w7eCssXTVDtyxgu7+/MWWqRxkCoHlyNRop9ZBaDTsYuN
-X-Google-Smtp-Source: APXvYqzaQsx9AEgaVI+glQ1AcIBsAAutP1ZctuK9ZTtYuJ4mdcopjSrfR25SqY6ZJWnqbTQIJlRs2yTGajrbtyPIUwun6yUoBqiI
+	by open-mesh.org (Postfix) with ESMTP id 5340080B50;
+	Fri, 24 Jan 2020 15:43:01 +0100 (CET)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by open-mesh.org (Postfix) with ESMTPS id 6255680689
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 24 Jan 2020 15:25:45 +0100 (CET)
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 988E72075D;
+ Fri, 24 Jan 2020 14:18:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1579875499;
+ bh=AB1xvZl4mEWRoSuHzIzu9aEpPe2Jj7wwkyBuGd+AJD8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=WVynWYLHQvx9fOTdiIrOO+E8+1qemsPUGm3WaLsN/i8dFq6vf/rcaYQAZ0KkH2btt
+ ZqN4Pk2A5c10SxvM1WXOEzif3DlLQQLxTk++zY6gAwxB/V82J4wVkhnHjUiRrlDGu+
+ DV0Y/QGEDuUPc/g0Au+Opnx4VCmjv2PTh9guTdX0=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 001/107] batman-adv: Fix DAT candidate selection
+ on little endian systems
+Date: Fri, 24 Jan 2020 09:16:31 -0500
+Message-Id: <20200124141817.28793-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Received: by 2002:a02:8587:: with SMTP id d7mr59180jai.39.1579818122597;
- Thu, 23 Jan 2020 14:22:02 -0800 (PST)
-Date: Thu, 23 Jan 2020 14:22:02 -0800
-In-Reply-To: <000000000000da7a79059caf2656@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <00000000000001df94059cd612b2@google.com>
-Subject: Re: WARNING in __proc_create (2)
-From: syzbot <syzbot+b904ba7c947a37b4b291@syzkaller.appspotmail.com>
-To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, dan.carpenter@oracle.com, 
- davem@davemloft.net, dhowells@redhat.com, info@drgreenstore.com, 
- linux-afs@lists.infradead.org, linux-kernel@vger.kernel.org, 
- mareklindner@neomailbox.ch, netdev@vger.kernel.org, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1579818124;
+ s=20121; t=1579875945;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=U2ciZII89LyEb1jgPxE5/IJrQKEwwRWzV2RXknpTZh0=;
- b=DiE6bz3/GOVswWvum4imkbYvV/gpR2PcoKoJAfFId//OpbvvxaVlIMBoCc9I958lnZaZ49
- LoXIds0HOR2Qwp//A4JZ5pyDRaBdV0jz8wuvu6GUi8w/xwr+kP1jbsbPo90hQ0i+Zhx/e9
- an/yXQcfK5kBxBiv9xc7CmQo8cEEsRg=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579818124; a=rsa-sha256; cv=none;
- b=FeXRrDU8na7qnO0YPJVu8cjlTrbITGQCq93KQW5cE+W7dto4igriKvlac3Uzsj/bmLPFrl
- tp9cyYVT/bM5bLOHIcUcyh6AGLnj7PHoyJTcl2YwO61q7FSsFvxTPfyyj627z2vCHQGE6l
- q9thf0wNTjW+CeTByjg0HUW7cqrBlCo=
-ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of
- 3ihwqXgkbAGMTZaLBMMFSBQQJE.HPPHMFVTFSDPOUFOU.DPN@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.200 as permitted sender)
- smtp.mailfrom=3ihwqXgkbAGMTZaLBMMFSBQQJE.HPPHMFVTFSDPOUFOU.DPN@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Fri, 24 Jan 2020 08:16:29 +0100
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=1SDa+d/vfwMX4EpaGr8B+I1SwyguDd04wWD/x6QJkrg=;
+ b=ry3qcQKgiETIHTWY/VA9Rzf+EqysOrgm5pVrhhf7C0JDGx9fOVU5nv2hXnmPAw1frAZMhn
+ 8hr+E6Ng1jLooTCW3NWeN1tAho0Mb+Omhlm7Rk6jWLJ/csKgxaMOwnY4mMJAcHxsthLs53
+ r+oS5vhwsHtOOaqpCJKuj7Q8Za2R/aw=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1579875945; a=rsa-sha256; cv=none;
+ b=IpBTAIc3rJcdzyf/Ovnhg7VtlpvT6rufZq8O/c1mlJ9DaBDRGMczTLGFtv6+ljdkTdVvXA
+ 0LVOPjoAsR5bKDlGuf4AP1IkkHhhGuKfNGE+vVh3Mm+n4w+FHHGZq/C/ysPdd+Hv/cmmjN
+ qHrxHy0ysjlxv1VUZDU20R1aXwfQFxQ=
+ARC-Authentication-Results: i=1; open-mesh.org;
+ dkim=pass header.d=kernel.org header.s=default header.b=WVynWYLH;
+ spf=pass (open-mesh.org: domain of sashal@kernel.org designates 198.145.29.99
+ as permitted sender) smtp.mailfrom=sashal@kernel.org
+X-Mailman-Approved-At: Fri, 24 Jan 2020 15:42:54 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,28 +67,56 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot has bisected this bug to:
+From: Sven Eckelmann <sven@narfation.org>
 
-commit f4b3526d83c40dd8bf5948b9d7a1b2c340f0dcc8
-Author: David Howells <dhowells@redhat.com>
-Date:   Thu Nov 2 15:27:48 2017 +0000
+[ Upstream commit 4cc4a1708903f404d2ca0dfde30e71e052c6cbc9 ]
 
-    afs: Connect up the CB.ProbeUuid
+The distributed arp table is using a DHT to store and retrieve MAC address
+information for an IP address. This is done using unicast messages to
+selected peers. The potential peers are looked up using the IP address and
+the VID.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1627a721e00000
-start commit:   d96d875e Merge tag 'fixes_for_v5.5-rc8' of git://git.kerne..
-git tree:       upstream
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=1527a721e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=1127a721e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=83c00afca9cf5153
-dashboard link: https://syzkaller.appspot.com/bug?extid=b904ba7c947a37b4b291
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12c96185e00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=14f859c9e00000
+While the IP address is always stored in big endian byte order, this is not
+the case of the VID. It can (depending on the host system) either be big
+endian or little endian. The host must therefore always convert it to big
+endian to ensure that all devices calculate the same peers for the same
+lookup data.
 
-Reported-by: syzbot+b904ba7c947a37b4b291@syzkaller.appspotmail.com
-Fixes: f4b3526d83c4 ("afs: Connect up the CB.ProbeUuid")
+Fixes: be1db4f6615b ("batman-adv: make the Distributed ARP Table vlan aware")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ net/batman-adv/distributed-arp-table.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
+index b0af3a11d4069..ec7bf5a4a9fc7 100644
+--- a/net/batman-adv/distributed-arp-table.c
++++ b/net/batman-adv/distributed-arp-table.c
+@@ -285,6 +285,7 @@ static u32 batadv_hash_dat(const void *data, u32 size)
+ 	u32 hash = 0;
+ 	const struct batadv_dat_entry *dat = data;
+ 	const unsigned char *key;
++	__be16 vid;
+ 	u32 i;
+ 
+ 	key = (const unsigned char *)&dat->ip;
+@@ -294,7 +295,8 @@ static u32 batadv_hash_dat(const void *data, u32 size)
+ 		hash ^= (hash >> 6);
+ 	}
+ 
+-	key = (const unsigned char *)&dat->vid;
++	vid = htons(dat->vid);
++	key = (__force const unsigned char *)&vid;
+ 	for (i = 0; i < sizeof(dat->vid); i++) {
+ 		hash += key[i];
+ 		hash += (hash << 10);
+-- 
+2.20.1
+
