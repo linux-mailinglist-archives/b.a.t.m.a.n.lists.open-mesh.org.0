@@ -2,78 +2,51 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C0D155C48
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 Feb 2020 17:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F13155C9A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 Feb 2020 18:07:54 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 514488038D;
-	Fri,  7 Feb 2020 17:59:35 +0100 (CET)
-Received: from ory.petesbox.net (ory.petesbox.net [62.210.252.27])
- by open-mesh.org (Postfix) with ESMTPS id C89C9800AD
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 Feb 2020 17:59:31 +0100 (CET)
-Received: by ory.petesbox.net (Postfix, from userid 326)
- id 5B4D040BCD; Fri,  7 Feb 2020 11:59:31 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
- t=1581094771; bh=ZTllxbT3JybwchcpOMpLtH77UjMMsCpbdI4z8Nl/hf0=;
- h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
- b=bkdMwJ/WVkj7t+bXAXbrzEbmataDnu1i3O7a+LovIZvn1xywjTj0cZcd9GaMdzY1O
- Pro/wv9n0Dg8GdIskDOATq64CK9LNv78FlVMuu74jHecHMsgC8BpRBl4gtEoR+k9ae
- GVpehcL876v507efBQQhj7igRdLnhHqADEu/PKTJbBF9xzXe7LMwLnEO86RMyTyBBn
- Ed6KaMPCec+DOi4vmJ3GKCe98ke4l+sq5AeU8eTZG/dW+7YInEsn/UYfYneZzmWe+v
- uDUcqK9U5BHa79Yb6AAeksqMpShH5uPhMSydRIPJbEqLoSZ2dm7yGv/zgBnuHMYkkz
- k9832BIxAwYBQ==
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ory.petesbox.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=4.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
- version=3.4.2
-Received: from [192.168.2.25] (unknown [38.21.217.71])
- by ory.petesbox.net (Postfix) with ESMTPSA id 0B51340326;
- Fri,  7 Feb 2020 11:59:28 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
- t=1581094769; bh=ZTllxbT3JybwchcpOMpLtH77UjMMsCpbdI4z8Nl/hf0=;
- h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
- b=eXbPicu0mvybjkG/+cbKPqeeDRo7N7iIzz/IUm7ihW8sxHg/261Btd3cjhg/l/RFJ
- gC/4Nn09zpVQ+BRCZIUpUieZvjeRo0uqxFYvKDPq2XnLU01bagMF5ve/M2kH6CnUQa
- 3BsjUA0SNd7aFx+7SyrPH20hE59sE0JgJpphMHdQA/eu8wFSIwywkw4G3xwf8nFqda
- So9P8t9jF0Q/JzlMBLldIsqyUP/KMMK5U9lNAeubZNWGTxxGWOEGVwfNNTQ0ocGNxy
- UNzcXUev4vHQGTPkXSluPs2S36UBYEW7qWelYALCjGcF01+DwJb4pi5BfBtOH+HH8D
- Dzo6DJJyrulQA==
+	by open-mesh.org (Postfix) with ESMTP id 7DAEA803B1;
+	Fri,  7 Feb 2020 18:07:46 +0100 (CET)
+Received: from simonwunderlich.de (packetmixer.de
+ [IPv6:2001:4d88:2000:24::c0de])
+ by open-mesh.org (Postfix) with ESMTPS id D8C5B800E1
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 Feb 2020 18:07:39 +0100 (CET)
+Received: from prime.localnet
+ (p200300C5970BB600893AD11B4D6E2C20.dip0.t-ipconnect.de
+ [IPv6:2003:c5:970b:b600:893a:d11b:4d6e:2c20])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by simonwunderlich.de (Postfix) with ESMTPSA id 406C662055;
+ Fri,  7 Feb 2020 18:07:39 +0100 (CET)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: srn@coolheads.com
 Subject: Re: can't find logged information
-To: Simon Wunderlich <sw@simonwunderlich.de>, b.a.t.m.a.n@lists.open-mesh.org
+Date: Fri, 07 Feb 2020 18:07:38 +0100
+Message-ID: <1851274.gzzsXW5Q3G@prime>
+In-Reply-To: <60314915-68db-93c4-c35f-0a593015c7ba@coolheads.com>
 References: <24aa48bb-8f52-78be-28df-98ec2e2a054b@coolheads.com>
- <b696db36-b9db-d31a-d8a6-0523f8a0986c@coolheads.com>
  <1594276.uRpPO4E4fP@prime>
-From: Steve Newcomb <srn@coolheads.com>
-Message-ID: <60314915-68db-93c4-c35f-0a593015c7ba@coolheads.com>
-Date: Fri, 7 Feb 2020 11:59:27 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ <60314915-68db-93c4-c35f-0a593015c7ba@coolheads.com>
 MIME-Version: 1.0
-In-Reply-To: <1594276.uRpPO4E4fP@prime>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: multipart/signed; boundary="nextPart8548500.x2kMUfdS7Y";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581094772;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=ZTllxbT3JybwchcpOMpLtH77UjMMsCpbdI4z8Nl/hf0=;
- b=reMudbmrr1XKuD83iaqigl6d4exmoQssW4Pu8v3SP+6K20Hh86UiDvgfL5wGEEgQ0ANho5
- rUBwIT+Ggo+V6vu5lhsmjpNoNijnnNxd+DDal7drsToMfYKOcpyEjo4iHN3wO+0Z1i4sxZ
- QRTnXarXMJY1o6Bq71EjyKluiac6qVs=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581094772; a=rsa-sha256; cv=none;
- b=HiLYwU7BfnXWf50/w1JG+8ZHMkRkPijJZ4u5SABM3EGAWT1woUpS8J6kKI1uMK92Gf5po3
- 1AqfqSlxTQ+yF68flt0M3LCCSl2B5LhF3CR4TiuTwOkERQmjEQ2vI+aHj4oSkP9P3GenGF
- u2j1zl3sl0Bh5k4cka8wrgpgUWQgkwo=
-ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=petesbox.net header.s=ory header.b=bkdMwJ/W;
- dkim=fail (rsa verify failed) header.d=petesbox.net header.s=ory
- header.b=eXbPicu0; 
- spf=pass (open-mesh.org: domain of srn@coolheads.com designates 62.210.252.27
- as permitted sender) smtp.mailfrom=srn@coolheads.com
+ s=20121; t=1581095263;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Slh1qMLnT5+9mgQVuKsIKR+Khgefvdz8LnsROgj3VUY=;
+ b=ABxqqHDdKDwx5edMTS3sI/bQRNB7WEcJ+eg0X4/3MUq/CarKf8ggngPADKvEfFNUN8iwyQ
+ glAkdNYGVcj69TwSVFmC8A4H2p8Tvm2/wGXIq6iYVGFWxnsJ6C8H03X8a9YHQrvALwdPjh
+ SUidx80eutU5dQt+aUWx9mxv0kjqF9Q=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581095263; a=rsa-sha256; cv=none;
+ b=gtRpjq5NGmjGA8A/HTiTMgf06GfK1/O7Fz1WjCsRAPjYpIzmABBauHaq01qWtXElzOoehj
+ FmDdkNFFn+7nEJdwgWXydclKVNf54AczwOzi1RpgVLQXf4Y/Up8/orlB+aPb+GBUTM8566
+ 4bCtz39FJByAmVRMks30xB1x5/GXZJQ=
+ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
+ spf=pass (open-mesh.org: domain of sw@simonwunderlich.de designates
+ 2001:4d88:2000:24::c0de as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,45 +59,100 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
-Reply-To: srn@coolheads.com,
- The list for a Better Approach To Mobile Ad-hoc Networking
+Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
+--nextPart8548500.x2kMUfdS7Y
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2/7/20 10:52 AM, Simon Wunderlich wrote:
->
-> Oops, you are right, we have actually removed that command in 2019.2. You can
-> use one of the two following commands:
->
-> cat /sys/kernel/debug/batman_adv/bat0/log
-The cat method works.  Thanks.  Wow, with all the debug info selected, 
-it's a torrent of stuff.  (Which I expected.)
+On Friday, February 7, 2020 5:59:27 PM CET Steve Newcomb wrote:
+> On 2/7/20 10:52 AM, Simon Wunderlich wrote:
+> > Oops, you are right, we have actually removed that command in 2019.2. You
+> > can use one of the two following commands:
+> > 
+> > cat /sys/kernel/debug/batman_adv/bat0/log
+> 
+> The cat method works.  Thanks.  Wow, with all the debug info selected,
+> it's a torrent of stuff.  (Which I expected.)
+> 
 
->
-> (will be removed in the future when debugfs support is dropped
->
->   trace-cmd stream -e batadv:batadv_dbg
-Uh, *which* of the two above commands will be dropped?  Should I add 
-trace-cmd to my menuconfig to retain access to the logs?  I haven't 
-added it yet.
+Awesome
 
- > By "works" you mean you get useful outputs where the timeout is not 
-increasing or similar? can you still "batctl ping" to one of your neighbors?
+> > (will be removed in the future when debugfs support is dropped
+> > 
+> >   trace-cmd stream -e batadv:batadv_dbg
+> 
+> Uh, *which* of the two above commands will be dropped?  Should I add
+> trace-cmd to my menuconfig to retain access to the logs?  I haven't
+> added it yet.
 
-You are far ahead of where I am.  I meant only that I was getting what 
-appears to be useful information, not that I have interpreted it.  It 
-will take me a while to figure out how to read it.  I would be grateful 
-for any hints on that, and I'm already very grateful for the help you 
-have provided.
+the /sys/kernel/debug/batman_adv/bat0/log file will be removed in the future. 
+So yes, add the trace-cmd 
+> 
+>  > By "works" you mean you get useful outputs where the timeout is not
+> 
+> increasing or similar? can you still "batctl ping" to one of your neighbors?
+> 
+> You are far ahead of where I am.  I meant only that I was getting what
+> appears to be useful information, not that I have interpreted it.  It
+> will take me a while to figure out how to read it.  I would be grateful
+> for any hints on that, and I'm already very grateful for the help you
+> have provided.
+> 
+> I haven't been using "batctl ping" to cue a reboot; I've been using
+> "ping".  I'm not sure what difference it might make to use "batctl
+> ping"; it seems to me that if I can't "ping" a node, after 3 or 4 trials
+> over a period of 15-20 seconds, I'm no longer in touch with it in any
+> usable way.  When that happens, as long as I don't reboot the gateway,
+> everything just stays offline.  So it's better to reboot.
+> 
+> By the way, at least one user is using the mesh for landline telephone
+> (Google Voice) service, so I'd really like to stabilize it if I can.
 
-I haven't been using "batctl ping" to cue a reboot; I've been using 
-"ping".  I'm not sure what difference it might make to use "batctl 
-ping"; it seems to me that if I can't "ping" a node, after 3 or 4 trials 
-over a period of 15-20 seconds, I'm no longer in touch with it in any 
-usable way.  When that happens, as long as I don't reboot the gateway, 
-everything just stays offline.  So it's better to reboot.
+So in iw station dump and and batctl neighbor table, there is a "last seen" 
+field or "inactive time". Usually those fields should be < 5 seconds or so, if 
+they rise then it means this station has been lost somehow.
 
-By the way, at least one user is using the mesh for landline telephone 
-(Google Voice) service, so I'd really like to stabilize it if I can.
+The difference between batctl ping and a regular ping is that the batctl ping 
+is actually implemented INSIDE of batman-adv, so it will be used to ping a 
+certain mesh participant. Therefore batctl ping relies on less "moving parts" 
+such as correctly configured IPs, MAC address translation, etc. If batctl ping 
+works but regular ping doesn't then we know something on the Ethernet 
+transport part is off. The other way around (batctl ping doesn't work but 
+regular ping does) is pretty much impossible unless the user does something 
+wrong. If batctl ping to a neighbor doesn't work, it's likelythe Wifi layer or 
+something else is exhibiting problems or batman-adv is not set up correctly.
+
+Cheers,
+       Simon
+
+--nextPart8548500.x2kMUfdS7Y
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAl49mVoACgkQoSvjmEKS
+nqFR0A//Qqk2RMpRlhDIO7lIhrYwKR0YTlAPTsVkF1z9JWWyS58DqY2ap/WjJA1o
+U//py/75hk8Kcudy+PzAI/jPq6bkZLuZnabG16y58Qo+IOA4LAwPtKqkLUcOtvDx
+tiY7nIXFbTXUMS1Kx4ihTJCQucFBa8UaczvmcQjFkz7kRHwXtY/crhE8FoNHMZY/
+15eORkT0OHqci5Len4JgZdzzrkca0Ukbs5nUskVr1avsl+yavErQ2gkrKMrFsZLS
+b9JUSL8sq5gUPD9f9BzOtoj7kB9mWh8qmSJFFSgB01qIoG6/2moXhKop6D+9nRJS
+Bgf+kJsqnt0jUWEgHyv1YIK4CXUcIIxE0kB3WX8q7eXJ8LAFson8ULswWhjqFXm5
+euYcZ4DBX6GUdpWZ72y7jpXrCZl9ouHb8RJOQZnfrSoZjK/u62uAi6A2btog6ffg
+iCh+fZM6etNVfWQmb4gpxlPJpq8ojhNOnfgstpMryZqSax7QUVRNudNAlOaClD61
+6ph0h86S2wHZMTITHuT4q3P/locwr7Rjh3KhU/QV1MKoQf9ZnVFUzZZJwMbtLI50
+nQaKjTBQlOg7mQs5vv+mJ4OFNEagn61amDCID75KeXX3LSMJXhQGqwOpfpe6RUSU
+fZT8XmWztfgVOLU0/Z22P8VV/y+6Jb7KB2rxusJFKOmToMgg2Us=
+=pgQK
+-----END PGP SIGNATURE-----
+
+--nextPart8548500.x2kMUfdS7Y--
+
+
+
