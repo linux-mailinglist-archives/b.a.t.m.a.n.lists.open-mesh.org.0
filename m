@@ -1,90 +1,73 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FEA7151686
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  4 Feb 2020 08:39:52 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id B20BA155913
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 Feb 2020 15:14:05 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 34C82809E6;
-	Tue,  4 Feb 2020 08:39:40 +0100 (CET)
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by open-mesh.org (Postfix) with ESMTPS id 9132A8008D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon,  3 Feb 2020 23:16:33 +0100 (CET)
-Received: by mail-wm1-x343.google.com with SMTP id g1so1020777wmh.4
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 03 Feb 2020 14:16:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=CabiIsXX7EWRJDQ4YrQ1Yjhz185qZasDPjqxyMMXa1U=;
- b=N+27466MlMfxyK3mCp8XrRFubSyG+yGfRsBhAq1ApI+1V1ZJjPrTnBybEI/I1ZmKMZ
- fM+vk13zVPCPwRiD0H/zhgvMWI2hb+MRUHnYs1uMLFyYjoLFrxr3i5QIWgDm14ATbvUZ
- 7+hWv0zi9Hm6xwlvYQ772DV6NQW/tw0s1/2+uAsy/+5lNy4C+3Mk38sctU+A1EdbZrdA
- QGwIrwKu5x/wLTcGLWrT5gAm0mZL1GdHiuh6mKzyiLemNqzuMw7gWfO24j4z6jwb7PJN
- kNMLS44GkcaeQIBWx35vE+6cIDaledOWy5Qe30ZkvZ9OsbStP938YxudKXXUn4ATWTJq
- Wn+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=CabiIsXX7EWRJDQ4YrQ1Yjhz185qZasDPjqxyMMXa1U=;
- b=Jlcnl3cgZuVrYbgsU5lruMmjyaYnAmcKq/O+FvUXR8Wb8Ei1Quw6jdkNdD2PGv8vlw
- ZjHhCJ5qeoAT+H6HqLoCL2+gWPJ5JcbjwOu2Hqf915VUmS+RSjz+qlt903fIfi/3f4H8
- aQBy0Pp4Ay0Cr0H2txp2PBd/CwUOZ4yP6Qeix1m8frFxSfdYmE77/PrsIQRY8NfBdTP5
- tYH63DK6Aw0q5l1bG8X3wGGpgjxy68/edpb1jQaH5xpHTTK/HfU0Ivz9PS/YxAdLxnqD
- IXTWglOVR1sdzvAZboF+wSjKDsz5OGzTEbmZBjx2pZAPw9dpYkMfrQCMBa3xA6K0HvMD
- gfMg==
-X-Gm-Message-State: APjAAAVuvmKfUBQY1udJaV0U0B8sAV5FX6C8Kd3P/EhrevaeY95t7KCN
- 2QkrHhWb+zwD/IeUU9u+3fw=
-X-Google-Smtp-Source: APXvYqyK30FrWzSUvIwajPP2DCYcCqzK/yqXxdIum8chVaCNtow1ihSBD15Jls+XrCtO16Pu+TmrBA==
-X-Received: by 2002:a05:600c:2187:: with SMTP id
- e7mr1123449wme.11.1580768193040; 
- Mon, 03 Feb 2020 14:16:33 -0800 (PST)
-Received: from ?IPv6:2003:ea:8f29:6000:ec63:a580:48a8:83d4?
- (p200300EA8F296000EC63A58048A883D4.dip0.t-ipconnect.de.
- [2003:ea:8f29:6000:ec63:a580:48a8:83d4])
- by smtp.googlemail.com with ESMTPSA id a8sm1018916wmc.20.2020.02.03.14.16.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Feb 2020 14:16:32 -0800 (PST)
-Subject: Re: possible deadlock in pty_write
-To: syzbot <syzbot+3118a33395397bb6b0ca@syzkaller.appspotmail.com>,
- a@unstable.cc, andrew@lunn.ch, b.a.t.m.a.n@lists.open-mesh.org,
- davem@davemloft.net, gregkh@linuxfoundation.org,
- jakub.kicinski@netronome.com, jslaby@suse.com, linux-kernel@vger.kernel.org,
- mareklindner@neomailbox.ch, netdev@vger.kernel.org, sw@simonwunderlich.de,
- syzkaller-bugs@googlegroups.com
-References: <0000000000002a13b5059db305a5@google.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <b93e20ea-c995-ed5c-c306-694394a75355@gmail.com>
-Date: Mon, 3 Feb 2020 23:16:29 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.2
+	by open-mesh.org (Postfix) with ESMTP id B730F80278;
+	Fri,  7 Feb 2020 15:13:57 +0100 (CET)
+Received: from ory.petesbox.net (ory.petesbox.net [62.210.252.27])
+ by open-mesh.org (Postfix) with ESMTPS id 94934800A2
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 Feb 2020 15:13:51 +0100 (CET)
+Received: by ory.petesbox.net (Postfix, from userid 326)
+ id 24A82406FC; Fri,  7 Feb 2020 09:13:51 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
+ t=1581084831; bh=2aYtnloKeKo0aIGH0e0wfiqep+drrQvEVBAFH3EcuIQ=;
+ h=To:Reply-To:From:Subject:Date:From;
+ b=R5e/3LIf3myLeTurwO2GRM7FNmsSkko0XtrOnsEvgXBLDwqon0CqdZRfuGnnmAXtk
+ D1nNokFEVWY/FNv+aCbiOUSp1g2lJkeUZd6BBkjE4T6Y3ep05PdUzkCtRqS62IQScc
+ zqdOtULsLLEaMJcazsiX4Djsv+Rbw3yCflTT8pJ8wjifl0qEa2g4Pxks4XIcKZ5+MG
+ n9Nc6qlXMrUJcthUqWj4SKVbLG2kuuq4QyiOp6sOFXePdgPYkdJaFu6PwFsQo3A8Vn
+ TJWBJ8nuvS3o+E65ISnHoguv8fB0A/4uwnbaKYdYdBs2L6PBVkU1ztLEYlHuGj4OXE
+ O08x4+nnB9yGA==
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ory.petesbox.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=4.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.2
+Received: from [192.168.2.25] (unknown [38.21.217.71])
+ by ory.petesbox.net (Postfix) with ESMTPSA id BF64640326
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 Feb 2020 09:13:48 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
+ t=1581084828; bh=2aYtnloKeKo0aIGH0e0wfiqep+drrQvEVBAFH3EcuIQ=;
+ h=To:Reply-To:From:Subject:Date:From;
+ b=r6Q3KbKt/6EEVs7txi6kp9vDAL8SQuu5GL1SR3yi5RfusIjZHRzDVrGvLf65EzC2f
+ /BQb0t+HFYTJ77ITCQS6+lad85rtxOhjq5OvmXSYGv3zF9i+wfwl20sEPdDrgQkgbB
+ 5fGvJ5ReYppOqfHCHQ2ORpSPFqxPzsKx8vs1LMh7a853JKiw5aXSmjQ78hp4rszQ4A
+ Re2QlpW6HqzhC0/Call+qFLFkZPweST7DlyUyWnI3wbwmBEYB/HYiQB4Ssn3QsSVmg
+ VaMkQ88n+x3X7KXAQYa3crFirmJBy6b0mFnwju+8lD95Vm/S2z+7dXEcSe/3ir7dR1
+ zr/iXVeWmzp/A==
+To: b.a.t.m.a.n@lists.open-mesh.org
+From: Steve Newcomb <srn@coolheads.com>
+Subject: can't find logged information
+Message-ID: <501bc34b-2c77-a12a-6cb0-c49903eb420b@coolheads.com>
+Date: Fri, 7 Feb 2020 09:13:47 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <0000000000002a13b5059db305a5@google.com>
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1580768193;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=CabiIsXX7EWRJDQ4YrQ1Yjhz185qZasDPjqxyMMXa1U=;
- b=wyaILR55M8kj+X1VjS4yQ+P2nwatA6vQnT2XFwM3btYEGvvGfBts6ic+zT1Bzjvi7gfFrZ
- Fl8HR9j0rImdZHOC/6LQykBVBhzj+wXF5wLrzeMAHJ2+yeekISuNz2fmU66WRtbdYBfivo
- EjQcAEMYj9bHYcFRnVECqS1GpRwuv5M=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1580768193; a=rsa-sha256; cv=none;
- b=sR654kSDvuyNEgYcrux3pFWQev00Yz7W25zMLfpRBQxhhy/VQoHYCA0yQoOyGrLtolHZ5q
- hmAhrg2QSz+EMvxPrjYwlZbZhHk+BnTE4FZE2N13ND9SnUZBH7zySjj5glD5ZHQkUAe9tE
- hDhPc4CxOlOQX1EVhL2cusv2E2bW+b0=
+ s=20121; t=1581084832;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=2aYtnloKeKo0aIGH0e0wfiqep+drrQvEVBAFH3EcuIQ=;
+ b=DvctiB49Xqr6igiyqnh6d6G54+2dAgM+jhgUla0hvWiXMB5jv5gwY3q2I9usK/Vh0+g6lN
+ WAT2rn5+EfCNg6uSXqysPq4hQpwUvHZuI42TV3D1R7zyel2rKdJWcqY1C0c9r90uUkyAzH
+ jVCtZqtTCzvEG7IftfkcOfzIrZFqQEI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581084832; a=rsa-sha256; cv=none;
+ b=Mt0z1X3Q2LM8qqi+Nrxma7rtQShRbmeBLeptAYL7xsjlS1OL4LovNCXfqftDfkDXpxb7i9
+ HlpFW6AdG5U0HNE9Ic+JY+nsIc6dD9kVP7TzPmUmRgZpAF/SBc2flCU2gS+0NEockpaR4s
+ 1ntHVIkq8yzGSXNyvYg7VjbblHDX5Kk=
 ARC-Authentication-Results: i=1; open-mesh.org;
- dkim=pass header.d=gmail.com header.s=20161025 header.b=N+27466M;
- spf=pass (open-mesh.org: domain of hkallweit1@gmail.com designates
- 2a00:1450:4864:20::343 as permitted sender)
- smtp.mailfrom=hkallweit1@gmail.com
-X-Mailman-Approved-At: Tue, 04 Feb 2020 08:39:12 +0100
+ dkim=pass header.d=petesbox.net header.s=ory header.b=R5e/3LIf;
+ dkim=fail (rsa verify failed) header.d=petesbox.net header.s=ory
+ header.b=r6Q3KbKt; 
+ spf=pass (open-mesh.org: domain of srn@coolheads.com designates 62.210.252.27
+ as permitted sender) smtp.mailfrom=srn@coolheads.com
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,247 +80,80 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
-Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
+Reply-To: srn@coolheads.com,
+ The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On 03.02.2020 22:58, syzbot wrote:
-> Hello,
-> 
-> syzbot found the following crash on:
-> 
-> HEAD commit:    ccaaaf6f Merge tag 'mpx-for-linus' of git://git.kernel.org..
-> git tree:       upstream
-> console output: https://syzkaller.appspot.com/x/log.txt?x=11bc585ee00000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=879390c6b09ccf66
-> dashboard link: https://syzkaller.appspot.com/bug?extid=3118a33395397bb6b0ca
-> compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=165bda4ee00000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1646a85ee00000
-> 
-> The bug was bisected to:
-> 
-> commit 65b27995a4ab8fc51b4adc6b4dcdca20f7a595bb
-> Author: Heiner Kallweit <hkallweit1@gmail.com>
-> Date:   Mon Aug 12 21:52:19 2019 +0000
-> 
->     net: phy: let phy_speed_down/up support speeds >1Gbps
-> 
+Here in upstate New York, USA, I'm having difficulty with 2 meshes, each 
+with 4 nodes, both meshes running BATMAN_IV. All nodes are TP-Link 
+Archer C7 or A7 routers running the latest OpenWRT trunk. All nodes are 
+stationary.  The radio environment is pretty quiet, I think.  There is 
+only one gateway in each mesh.  Nothing ever changes.  (A map of the 
+layout can be found at rosepark dot us hash map.)
 
-I don't see how this change in libphy could contribute to the reported issue.
-Most likely bisecting wasn't correct.
+Nevertheless, each mesh stops working at least once or twice per day.  
+If I reboot the gateway node of the one that stops working, the mesh 
+starts working again.  In order to keep the meshes running, sort of, 
+they now run a script I wrote that reboots them when they stop being 
+able to ping each other.  It is not a very satisfactory solution.  If I 
+could see what's going on, I might see how to make the meshes more 
+stable, but I can't find any debug messages.
+
+I compiled batctl-full and the kernel module with all options, including 
+all debug options.  Here's a portion of a "make menuconfig" screen:
+
+<*> kmod-batman-adv......................................... 
+B.A.T.M.A.N. Adv
+[*]   B.A.T.M.A.N. V protocol
+[*]   Bridge Loop Avoidance
+[*]   Distributed ARP Table
+[*]   Network Coding
+[*]   Multicast optimisation
+[*]   batman-adv debugfs entries
+[*]   B.A.T.M.A.N. debugging
+[*]   batman-adv sysfs entries
+[*]   B.A.T.M.A.N. tracing support
 
 
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1764f735e00000
-> final crash:    https://syzkaller.appspot.com/x/report.txt?x=14e4f735e00000
-> console output: https://syzkaller.appspot.com/x/log.txt?x=10e4f735e00000
-> 
-> IMPORTANT: if you fix the bug, please add the following tag to the commit:
-> Reported-by: syzbot+3118a33395397bb6b0ca@syzkaller.appspotmail.com
-> Fixes: 65b27995a4ab ("net: phy: let phy_speed_down/up support speeds >1Gbps")
-> 
-> ======================================================
-> WARNING: possible circular locking dependency detected
-> 5.5.0-syzkaller #0 Not tainted
-> ------------------------------------------------------
-> syz-executor465/10262 is trying to acquire lock:
-> ffffffff89b9f960 (console_owner){-.-.}, at: console_trylock_spinning kernel/printk/printk.c:1724 [inline]
-> ffffffff89b9f960 (console_owner){-.-.}, at: vprintk_emit+0x3fd/0x700 kernel/printk/printk.c:1995
-> 
-> but task is already holding lock:
-> ffff88808d6b7940 (&(&port->lock)->rlock){-.-.}, at: pty_write+0xff/0x200 drivers/tty/pty.c:120
-> 
-> which lock already depends on the new lock.
-> 
-> 
-> the existing dependency chain (in reverse order) is:
-> 
-> -> #2 (&(&port->lock)->rlock){-.-.}:
->        __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
->        _raw_spin_lock_irqsave+0x95/0xcd kernel/locking/spinlock.c:159
->        tty_port_tty_get+0x24/0x100 drivers/tty/tty_port.c:287
->        tty_port_default_wakeup+0x16/0x40 drivers/tty/tty_port.c:47
->        tty_port_tty_wakeup+0x57/0x70 drivers/tty/tty_port.c:387
->        uart_write_wakeup+0x46/0x70 drivers/tty/serial/serial_core.c:104
->        serial8250_tx_chars+0x495/0xaf0 drivers/tty/serial/8250/8250_port.c:1760
->        serial8250_handle_irq.part.0+0x261/0x2b0 drivers/tty/serial/8250/8250_port.c:1833
->        serial8250_handle_irq drivers/tty/serial/8250/8250_port.c:1819 [inline]
->        serial8250_default_handle_irq+0xc0/0x150 drivers/tty/serial/8250/8250_port.c:1849
->        serial8250_interrupt+0xf1/0x1a0 drivers/tty/serial/8250/8250_core.c:126
->        __handle_irq_event_percpu+0x15d/0x970 kernel/irq/handle.c:149
->        handle_irq_event_percpu+0x74/0x160 kernel/irq/handle.c:189
->        handle_irq_event+0xa7/0x134 kernel/irq/handle.c:206
->        handle_edge_irq+0x25e/0x8d0 kernel/irq/chip.c:830
->        generic_handle_irq_desc include/linux/irqdesc.h:156 [inline]
->        do_IRQ+0xde/0x280 arch/x86/kernel/irq.c:250
->        ret_from_intr+0x0/0x36
->        arch_local_irq_restore arch/x86/include/asm/paravirt.h:752 [inline]
->        __raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:160 [inline]
->        _raw_spin_unlock_irqrestore+0x90/0xe0 kernel/locking/spinlock.c:191
->        spin_unlock_irqrestore include/linux/spinlock.h:393 [inline]
->        uart_write+0x3b6/0x6f0 drivers/tty/serial/serial_core.c:613
->        process_output_block drivers/tty/n_tty.c:595 [inline]
->        n_tty_write+0x40e/0x1080 drivers/tty/n_tty.c:2333
->        do_tty_write drivers/tty/tty_io.c:962 [inline]
->        tty_write+0x496/0x7f0 drivers/tty/tty_io.c:1046
->        redirected_tty_write+0xb2/0xc0 drivers/tty/tty_io.c:1067
->        __vfs_write+0x8a/0x110 fs/read_write.c:494
->        vfs_write+0x268/0x5d0 fs/read_write.c:558
->        ksys_write+0x14f/0x290 fs/read_write.c:611
->        __do_sys_write fs/read_write.c:623 [inline]
->        __se_sys_write fs/read_write.c:620 [inline]
->        __x64_sys_write+0x73/0xb0 fs/read_write.c:620
->        do_syscall_64+0xfa/0x790 arch/x86/entry/common.c:294
->        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> 
-> -> #1 (&port_lock_key){-.-.}:
->        __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
->        _raw_spin_lock_irqsave+0x95/0xcd kernel/locking/spinlock.c:159
->        serial8250_console_write+0x253/0x9a0 drivers/tty/serial/8250/8250_port.c:3142
->        univ8250_console_write+0x5f/0x70 drivers/tty/serial/8250/8250_core.c:587
->        call_console_drivers kernel/printk/printk.c:1791 [inline]
->        console_unlock+0xb7a/0xf00 kernel/printk/printk.c:2473
->        vprintk_emit+0x2a0/0x700 kernel/printk/printk.c:1996
->        vprintk_default+0x28/0x30 kernel/printk/printk.c:2023
->        vprintk_func+0x7e/0x189 kernel/printk/printk_safe.c:386
->        printk+0xba/0xed kernel/printk/printk.c:2056
->        register_console+0x745/0xb50 kernel/printk/printk.c:2798
->        univ8250_console_init+0x3e/0x4b drivers/tty/serial/8250/8250_core.c:682
->        console_init+0x461/0x67b kernel/printk/printk.c:2884
->        start_kernel+0x653/0x8e2 init/main.c:713
->        x86_64_start_reservations+0x29/0x2b arch/x86/kernel/head64.c:490
->        x86_64_start_kernel+0x77/0x7b arch/x86/kernel/head64.c:471
->        secondary_startup_64+0xa4/0xb0 arch/x86/kernel/head_64.S:242
-> 
-> -> #0 (console_owner){-.-.}:
->        check_prev_add kernel/locking/lockdep.c:2475 [inline]
->        check_prevs_add kernel/locking/lockdep.c:2580 [inline]
->        validate_chain kernel/locking/lockdep.c:2970 [inline]
->        __lock_acquire+0x2596/0x4a00 kernel/locking/lockdep.c:3954
->        lock_acquire+0x190/0x410 kernel/locking/lockdep.c:4484
->        console_trylock_spinning kernel/printk/printk.c:1745 [inline]
->        vprintk_emit+0x43a/0x700 kernel/printk/printk.c:1995
->        vprintk_default+0x28/0x30 kernel/printk/printk.c:2023
->        vprintk_func+0x7e/0x189 kernel/printk/printk_safe.c:386
->        printk+0xba/0xed kernel/printk/printk.c:2056
->        fail_dump lib/fault-inject.c:45 [inline]
->        should_fail+0x708/0x852 lib/fault-inject.c:144
->        __should_failslab+0x121/0x190 mm/failslab.c:33
->        should_failslab+0x9/0x14 mm/slab_common.c:1811
->        slab_pre_alloc_hook mm/slab.h:567 [inline]
->        slab_alloc mm/slab.c:3306 [inline]
->        __do_kmalloc mm/slab.c:3654 [inline]
->        __kmalloc+0x71/0x770 mm/slab.c:3665
->        kmalloc include/linux/slab.h:561 [inline]
->        tty_buffer_alloc drivers/tty/tty_buffer.c:175 [inline]
->        __tty_buffer_request_room+0x1fb/0x5c0 drivers/tty/tty_buffer.c:273
->        tty_insert_flip_string_fixed_flag+0x93/0x1f0 drivers/tty/tty_buffer.c:318
->        tty_insert_flip_string include/linux/tty_flip.h:37 [inline]
->        pty_write+0x133/0x200 drivers/tty/pty.c:122
->        n_tty_write+0xb1d/0x1080 drivers/tty/n_tty.c:2356
->        do_tty_write drivers/tty/tty_io.c:962 [inline]
->        tty_write+0x496/0x7f0 drivers/tty/tty_io.c:1046
->        do_loop_readv_writev fs/read_write.c:717 [inline]
->        do_loop_readv_writev fs/read_write.c:701 [inline]
->        do_iter_write fs/read_write.c:972 [inline]
->        do_iter_write+0x4a0/0x610 fs/read_write.c:951
->        vfs_writev+0x1b3/0x2f0 fs/read_write.c:1015
->        do_writev+0x15b/0x330 fs/read_write.c:1058
->        __do_sys_writev fs/read_write.c:1131 [inline]
->        __se_sys_writev fs/read_write.c:1128 [inline]
->        __x64_sys_writev+0x75/0xb0 fs/read_write.c:1128
->        do_syscall_64+0xfa/0x790 arch/x86/entry/common.c:294
->        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> 
-> other info that might help us debug this:
-> 
-> Chain exists of:
->   console_owner --> &port_lock_key --> &(&port->lock)->rlock
-> 
->  Possible unsafe locking scenario:
-> 
->        CPU0                    CPU1
->        ----                    ----
->   lock(&(&port->lock)->rlock);
->                                lock(&port_lock_key);
->                                lock(&(&port->lock)->rlock);
->   lock(console_owner);
-> 
->  *** DEADLOCK ***
-> 
-> 5 locks held by syz-executor465/10262:
->  #0: ffff88809dca8090 (&tty->ldisc_sem){++++}, at: ldsem_down_read+0x33/0x40 drivers/tty/tty_ldsem.c:340
->  #1: ffff88809dca8118 (&tty->atomic_write_lock){+.+.}, at: tty_write_lock+0x23/0x90 drivers/tty/tty_io.c:888
->  #2: ffff88809dca82a0 (&tty->termios_rwsem){++++}, at: n_tty_write+0x1b5/0x1080 drivers/tty/n_tty.c:2316
->  #3: ffffc90007a67360 (&ldata->output_lock){+.+.}, at: n_tty_write+0xadd/0x1080 drivers/tty/n_tty.c:2355
->  #4: ffff88808d6b7940 (&(&port->lock)->rlock){-.-.}, at: pty_write+0xff/0x200 drivers/tty/pty.c:120
-> 
-> stack backtrace:
-> CPU: 0 PID: 10262 Comm: syz-executor465 Not tainted 5.5.0-syzkaller #0
-> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-> Call Trace:
->  __dump_stack lib/dump_stack.c:77 [inline]
->  dump_stack+0x197/0x210 lib/dump_stack.c:118
->  print_circular_bug.isra.0.cold+0x163/0x172 kernel/locking/lockdep.c:1684
->  check_noncircular+0x32e/0x3e0 kernel/locking/lockdep.c:1808
->  check_prev_add kernel/locking/lockdep.c:2475 [inline]
->  check_prevs_add kernel/locking/lockdep.c:2580 [inline]
->  validate_chain kernel/locking/lockdep.c:2970 [inline]
->  __lock_acquire+0x2596/0x4a00 kernel/locking/lockdep.c:3954
->  lock_acquire+0x190/0x410 kernel/locking/lockdep.c:4484
->  console_trylock_spinning kernel/printk/printk.c:1745 [inline]
->  vprintk_emit+0x43a/0x700 kernel/printk/printk.c:1995
->  vprintk_default+0x28/0x30 kernel/printk/printk.c:2023
->  vprintk_func+0x7e/0x189 kernel/printk/printk_safe.c:386
->  printk+0xba/0xed kernel/printk/printk.c:2056
->  fail_dump lib/fault-inject.c:45 [inline]
->  should_fail+0x708/0x852 lib/fault-inject.c:144
->  __should_failslab+0x121/0x190 mm/failslab.c:33
->  should_failslab+0x9/0x14 mm/slab_common.c:1811
->  slab_pre_alloc_hook mm/slab.h:567 [inline]
->  slab_alloc mm/slab.c:3306 [inline]
->  __do_kmalloc mm/slab.c:3654 [inline]
->  __kmalloc+0x71/0x770 mm/slab.c:3665
->  kmalloc include/linux/slab.h:561 [inline]
->  tty_buffer_alloc drivers/tty/tty_buffer.c:175 [inline]
->  __tty_buffer_request_room+0x1fb/0x5c0 drivers/tty/tty_buffer.c:273
->  tty_insert_flip_string_fixed_flag+0x93/0x1f0 drivers/tty/tty_buffer.c:318
->  tty_insert_flip_string include/linux/tty_flip.h:37 [inline]
->  pty_write+0x133/0x200 drivers/tty/pty.c:122
->  n_tty_write+0xb1d/0x1080 drivers/tty/n_tty.c:2356
->  do_tty_write drivers/tty/tty_io.c:962 [inline]
->  tty_write+0x496/0x7f0 drivers/tty/tty_io.c:1046
->  do_loop_readv_writev fs/read_write.c:717 [inline]
->  do_loop_readv_writev fs/read_write.c:701 [inline]
->  do_iter_write fs/read_write.c:972 [inline]
->  do_iter_write+0x4a0/0x610 fs/read_write.c:951
->  vfs_writev+0x1b3/0x2f0 fs/read_write.c:1015
->  do_writev+0x15b/0x330 fs/read_write.c:1058
->  __do_sys_writev fs/read_write.c:1131 [inline]
->  __se_sys_writev fs/read_write.c:1128 [inline]
->  __x64_sys_writev+0x75/0xb0 fs/read_write.c:1128
->  do_syscall_64+0xfa/0x790 arch/x86/entry/common.c:294
->  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> RIP: 0033:0x4437c9
-> Code: e8 0c e8 ff ff 48 83 c4 18 c3 0f 1f 80 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 0f 83 6b 09 fc ff c3 66 2e 0f 1f 84 00 00 00 00
-> RSP: 002b:00007ffe144fe178 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
-> RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00000000004437c9
-> RDX: 1000000000000252 RSI: 00000000200023c0 RDI: 0000000000000005
-> RBP: 00000000000385a4 R08: 0000000000000001 R09: 0000000000400033
-> R10: 0000000000000000 R11: 0000000000000246 R12: ffffffffffffffff
-> R13: 0000000000000006 R14: 0000000000000000 R15: 0000000000000000
-> 
-> 
-> ---
-> This bug is generated by a bot. It may contain errors.
-> See https://goo.gl/tpsmEJ for more information about syzbot.
-> syzbot engineers can be reached at syzkaller@googlegroups.com.
-> 
-> syzbot will keep track of this bug report. See:
-> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-> For information about bisection process see: https://goo.gl/tpsmEJ#bisection
-> syzbot can test patches for this bug, for details see:
-> https://goo.gl/tpsmEJ#testing-patches
-> 
+I run "batctl ll all" followed by "batctl ll" and I see:
 
+@rpc152:/tmp/log# batctl ll
+[ ] all debug output disabled (none)
+[x] messages related to routing / flooding / broadcasting (batman)
+[x] messages related to route added / changed / deleted (routes)
+[x] messages related to translation table operations (tt)
+[x] messages related to bridge loop avoidance (bla)
+[x] messages related to arp snooping and distributed arp table (dat)
+[x] messages related to network coding (nc)
+[x] messages related to multicast (mcast)
+[x] messages related to throughput meter (tp)
+
+But the only debug-related log messages I see are:
+
+@rpc152:/tmp/log# echo "$(dmesg)" | grep batman
+[   18.672978] batman_adv: B.A.T.M.A.N. advanced 2019.5-openwrt-0 
+(compatibility version 15) loaded
+[   42.067698] batman_adv: bat0: Adding interface: mesh0
+[   42.073065] batman_adv: bat0: The MTU of interface mesh0 is too small 
+(1500) to handle the transport of batman-adv packets. Packets going over 
+this interface will be fragmented on layer2 which could impact the 
+performance. Setting the MTU to 1560 would \
+solve the problem.
+[   42.098069] batman_adv: bat0: Interface activated: mesh0
+[174193.938445] batman_adv: [Deprecated]: batctl (pid 22747) Use of 
+debugfs file "nc_nodes".
+
+
+@rpc152:/tmp/log# echo "$(logread)" | grep batman
+Thu Feb  6 15:21:13 2020 kern.warn kernel: [174193.938445] batman_adv: 
+[Deprecated]: batctl (pid 22747) Use of debugfs file "nc_nodes".
+@rpc152:/tmp/log#
+
+
+What have I missed?
+
+Thanks.
+
+Steve Newcomb
