@@ -1,52 +1,63 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from open-mesh.org (open-mesh.org [78.46.248.236])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F13155C9A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 Feb 2020 18:07:54 +0100 (CET)
+Received: from open-mesh.org (open-mesh.org [IPv6:2a01:4f8:141:3341:78:46:248:236])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8945815675B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  8 Feb 2020 20:23:30 +0100 (CET)
 Received: from open-mesh.org (localhost [IPv6:::1])
-	by open-mesh.org (Postfix) with ESMTP id 7DAEA803B1;
-	Fri,  7 Feb 2020 18:07:46 +0100 (CET)
-Received: from simonwunderlich.de (packetmixer.de
- [IPv6:2001:4d88:2000:24::c0de])
- by open-mesh.org (Postfix) with ESMTPS id D8C5B800E1
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 Feb 2020 18:07:39 +0100 (CET)
-Received: from prime.localnet
- (p200300C5970BB600893AD11B4D6E2C20.dip0.t-ipconnect.de
- [IPv6:2003:c5:970b:b600:893a:d11b:4d6e:2c20])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by simonwunderlich.de (Postfix) with ESMTPSA id 406C662055;
- Fri,  7 Feb 2020 18:07:39 +0100 (CET)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: srn@coolheads.com
-Subject: Re: can't find logged information
-Date: Fri, 07 Feb 2020 18:07:38 +0100
-Message-ID: <1851274.gzzsXW5Q3G@prime>
-In-Reply-To: <60314915-68db-93c4-c35f-0a593015c7ba@coolheads.com>
-References: <24aa48bb-8f52-78be-28df-98ec2e2a054b@coolheads.com>
- <1594276.uRpPO4E4fP@prime>
- <60314915-68db-93c4-c35f-0a593015c7ba@coolheads.com>
+	by open-mesh.org (Postfix) with ESMTP id 9E3468022C;
+	Sat,  8 Feb 2020 20:23:10 +0100 (CET)
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
+ [209.85.166.199])
+ by open-mesh.org (Postfix) with ESMTPS id 3C5BD8002D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  8 Feb 2020 19:58:13 +0100 (CET)
+Received: by mail-il1-f199.google.com with SMTP id d22so2968877ild.3
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 08 Feb 2020 10:58:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=3QNUWzGFT2HuTCKJpDzCHQEdbSo8FRg4vF1vVLvHcvI=;
+ b=T6jTfbEKaAYaKf7ci3M17L0hlG+Y70m99KFgqNRAX0q4mBEVpeziToLwBfjKiNTyxh
+ hxvXdNVChDy8x+Lv1rQQZ4SjR4mCpgH+o/zs+O835FvMSMW4RcDDrXC7br51haFfrdfP
+ oyf+gm/rwDON2TzGlUTTVmhD3yfPkda4sQglbod296ZlHH2UhUT5hJxoHgKKH0lhYrcj
+ ygJNV+hAFOCcZoVtlXjh7JOJVt6Zpq8w/VtqmACcBz7OBaWcaKdHY0yn3TgsoNYviOil
+ FxXiS+ALGSmjSljUksQUgtWf4lf+vFxAIhr36p2qEl98tEH4Uiy3ysmfyXzmleCvWHIU
+ woZg==
+X-Gm-Message-State: APjAAAWFXmf9jFZcB8ty01TCs9zTA0lDDXjr6KIlDcPhb7JOVK/UsvbI
+ gE8Vl4NBtRDnMXBt1bNUeulNwtiZJmA41EeX/ibrTr73Exjw
+X-Google-Smtp-Source: APXvYqxrn896/Y9JBPR+an+UMChgcVMohGS0DsURyWZP6/T9PkTSgkMfFBbrevYRnZPHe11AG0Whm4LLlHxnQh70cn7FLrIj+Zna
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart8548500.x2kMUfdS7Y";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Received: by 2002:a92:c986:: with SMTP id y6mr5313781iln.186.1581188291971; 
+ Sat, 08 Feb 2020 10:58:11 -0800 (PST)
+Date: Sat, 08 Feb 2020 10:58:11 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000774f00059e15168f@google.com>
+Subject: general protection fault in batadv_iv_ogm_schedule
+From: syzbot <syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
+ kuba@kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, 
+ netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581095263;
+ s=20121; t=1581188293;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Slh1qMLnT5+9mgQVuKsIKR+Khgefvdz8LnsROgj3VUY=;
- b=ABxqqHDdKDwx5edMTS3sI/bQRNB7WEcJ+eg0X4/3MUq/CarKf8ggngPADKvEfFNUN8iwyQ
- glAkdNYGVcj69TwSVFmC8A4H2p8Tvm2/wGXIq6iYVGFWxnsJ6C8H03X8a9YHQrvALwdPjh
- SUidx80eutU5dQt+aUWx9mxv0kjqF9Q=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581095263; a=rsa-sha256; cv=none;
- b=gtRpjq5NGmjGA8A/HTiTMgf06GfK1/O7Fz1WjCsRAPjYpIzmABBauHaq01qWtXElzOoehj
- FmDdkNFFn+7nEJdwgWXydclKVNf54AczwOzi1RpgVLQXf4Y/Up8/orlB+aPb+GBUTM8566
- 4bCtz39FJByAmVRMks30xB1x5/GXZJQ=
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=3QNUWzGFT2HuTCKJpDzCHQEdbSo8FRg4vF1vVLvHcvI=;
+ b=08jCSooE2IAg3mBs2jlCXGa/ErWew7vmzXjv1ObW58UcfXDCJGnLY9uRLaWBmPW2sa7NwT
+ e2buNPc0s/zamW2Mb2QGtrKikiNTjJQrK5k2SfNfq3EmR+AOFb+EHBkJoZZJMm00YFpebv
+ PVycXqR3ZJPimNkNcdyYI++EZPgPEas=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581188293; a=rsa-sha256; cv=none;
+ b=RNQcLhvHsM4GTfjHq1Xh949+NpOvKhFTv65v3hxZ1UovEHJumjlIkcS7z/vcXKTmL/6RQQ
+ AIkxB43JGt3S9/GK3vL9fa92P/Ur7bU8W922421NaCP1sItQXp0dvt0YkZ1KiQTMTD4Q4T
+ GcKj+qqmDEVLWyZoXLqRLCSVVdzEOE8=
 ARC-Authentication-Results: i=1; open-mesh.org; dkim=none;
- spf=pass (open-mesh.org: domain of sw@simonwunderlich.de designates
- 2001:4d88:2000:24::c0de as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de
+ spf=pass (open-mesh.org: domain of
+ 3wwQ_XgkbAMAy45qgrrkxgvvoj.muumrk0ykxiutzktz.ius@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.199 as permitted sender)
+ smtp.mailfrom=3wwQ_XgkbAMAy45qgrrkxgvvoj.muumrk0ykxiutzktz.ius@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Sat, 08 Feb 2020 20:23:04 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,98 +72,72 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart8548500.x2kMUfdS7Y
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Hello,
 
-On Friday, February 7, 2020 5:59:27 PM CET Steve Newcomb wrote:
-> On 2/7/20 10:52 AM, Simon Wunderlich wrote:
-> > Oops, you are right, we have actually removed that command in 2019.2. You
-> > can use one of the two following commands:
-> > 
-> > cat /sys/kernel/debug/batman_adv/bat0/log
-> 
-> The cat method works.  Thanks.  Wow, with all the debug info selected,
-> it's a torrent of stuff.  (Which I expected.)
-> 
+syzbot found the following crash on:
 
-Awesome
+HEAD commit:    f7571657 Merge tag 'fuse-fixes-5.6-rc1' of git://git.kerne..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=12dddbbee00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=7f1d914a74bd6ddc
+dashboard link: https://syzkaller.appspot.com/bug?extid=ac36b6a33c28a491e929
+compiler:       clang version 10.0.0 (https://github.com/llvm/llvm-project/ c2443155a0fb245c8f17f2c1c72b6ea391e86e81)
 
-> > (will be removed in the future when debugfs support is dropped
-> > 
-> >   trace-cmd stream -e batadv:batadv_dbg
-> 
-> Uh, *which* of the two above commands will be dropped?  Should I add
-> trace-cmd to my menuconfig to retain access to the logs?  I haven't
-> added it yet.
+Unfortunately, I don't have any reproducer for this crash yet.
 
-the /sys/kernel/debug/batman_adv/bat0/log file will be removed in the future. 
-So yes, add the trace-cmd 
-> 
->  > By "works" you mean you get useful outputs where the timeout is not
-> 
-> increasing or similar? can you still "batctl ping" to one of your neighbors?
-> 
-> You are far ahead of where I am.  I meant only that I was getting what
-> appears to be useful information, not that I have interpreted it.  It
-> will take me a while to figure out how to read it.  I would be grateful
-> for any hints on that, and I'm already very grateful for the help you
-> have provided.
-> 
-> I haven't been using "batctl ping" to cue a reboot; I've been using
-> "ping".  I'm not sure what difference it might make to use "batctl
-> ping"; it seems to me that if I can't "ping" a node, after 3 or 4 trials
-> over a period of 15-20 seconds, I'm no longer in touch with it in any
-> usable way.  When that happens, as long as I don't reboot the gateway,
-> everything just stays offline.  So it's better to reboot.
-> 
-> By the way, at least one user is using the mesh for landline telephone
-> (Google Voice) service, so I'd really like to stabilize it if I can.
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
 
-So in iw station dump and and batctl neighbor table, there is a "last seen" 
-field or "inactive time". Usually those fields should be < 5 seconds or so, if 
-they rise then it means this station has been lost somehow.
-
-The difference between batctl ping and a regular ping is that the batctl ping 
-is actually implemented INSIDE of batman-adv, so it will be used to ping a 
-certain mesh participant. Therefore batctl ping relies on less "moving parts" 
-such as correctly configured IPs, MAC address translation, etc. If batctl ping 
-works but regular ping doesn't then we know something on the Ethernet 
-transport part is off. The other way around (batctl ping doesn't work but 
-regular ping does) is pretty much impossible unless the user does something 
-wrong. If batctl ping to a neighbor doesn't work, it's likelythe Wifi layer or 
-something else is exhibiting problems or batman-adv is not set up correctly.
-
-Cheers,
-       Simon
-
---nextPart8548500.x2kMUfdS7Y
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAl49mVoACgkQoSvjmEKS
-nqFR0A//Qqk2RMpRlhDIO7lIhrYwKR0YTlAPTsVkF1z9JWWyS58DqY2ap/WjJA1o
-U//py/75hk8Kcudy+PzAI/jPq6bkZLuZnabG16y58Qo+IOA4LAwPtKqkLUcOtvDx
-tiY7nIXFbTXUMS1Kx4ihTJCQucFBa8UaczvmcQjFkz7kRHwXtY/crhE8FoNHMZY/
-15eORkT0OHqci5Len4JgZdzzrkca0Ukbs5nUskVr1avsl+yavErQ2gkrKMrFsZLS
-b9JUSL8sq5gUPD9f9BzOtoj7kB9mWh8qmSJFFSgB01qIoG6/2moXhKop6D+9nRJS
-Bgf+kJsqnt0jUWEgHyv1YIK4CXUcIIxE0kB3WX8q7eXJ8LAFson8ULswWhjqFXm5
-euYcZ4DBX6GUdpWZ72y7jpXrCZl9ouHb8RJOQZnfrSoZjK/u62uAi6A2btog6ffg
-iCh+fZM6etNVfWQmb4gpxlPJpq8ojhNOnfgstpMryZqSax7QUVRNudNAlOaClD61
-6ph0h86S2wHZMTITHuT4q3P/locwr7Rjh3KhU/QV1MKoQf9ZnVFUzZZJwMbtLI50
-nQaKjTBQlOg7mQs5vv+mJ4OFNEagn61amDCID75KeXX3LSMJXhQGqwOpfpe6RUSU
-fZT8XmWztfgVOLU0/Z22P8VV/y+6Jb7KB2rxusJFKOmToMgg2Us=
-=pgQK
------END PGP SIGNATURE-----
-
---nextPart8548500.x2kMUfdS7Y--
+general protection fault, probably for non-canonical address 0xdffffc0000000002: 0000 [#1] PREEMPT SMP KASAN
+KASAN: null-ptr-deref in range [0x0000000000000010-0x0000000000000017]
+CPU: 0 PID: 465 Comm: kworker/u4:5 Not tainted 5.5.0-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Workqueue: bat_events batadv_iv_send_outstanding_bat_ogm_packet
+RIP: 0010:batadv_iv_ogm_schedule_buff net/batman-adv/bat_iv_ogm.c:814 [inline]
+RIP: 0010:batadv_iv_ogm_schedule+0x220/0xf00 net/batman-adv/bat_iv_ogm.c:865
+Code: e8 35 ef bf f9 4c 89 ad 60 ff ff ff 4d 8b 75 00 66 41 c1 c7 08 49 8d 5e 16 48 89 d8 48 c1 e8 03 49 bd 00 00 00 00 00 fc ff df <42> 8a 04 28 84 c0 0f 85 e0 0b 00 00 66 44 89 3b 4c 89 a5 78 ff ff
+RSP: 0018:ffffc90002887b78 EFLAGS: 00010203
+RAX: 0000000000000002 RBX: 0000000000000016 RCX: 1ffff11012580611
+RDX: 0000000000000000 RSI: ffff8880a80449b0 RDI: 0000000000000282
+RBP: ffffc90002887c38 R08: dffffc0000000000 R09: fffffbfff12d3605
+R10: fffffbfff12d3605 R11: 0000000000000000 R12: ffff888092c03000
+R13: dffffc0000000000 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880aea00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000000075bfd4 CR3: 0000000090ab0000 CR4: 00000000001406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ batadv_iv_send_outstanding_bat_ogm_packet+0x664/0x770 net/batman-adv/bat_iv_ogm.c:1718
+ process_one_work+0x7f5/0x10f0 kernel/workqueue.c:2264
+ worker_thread+0xbbc/0x1630 kernel/workqueue.c:2410
+ kthread+0x332/0x350 kernel/kthread.c:255
+ ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
+Modules linked in:
+---[ end trace eddf69e5e4c9f596 ]---
+RIP: 0010:batadv_iv_ogm_schedule_buff net/batman-adv/bat_iv_ogm.c:814 [inline]
+RIP: 0010:batadv_iv_ogm_schedule+0x220/0xf00 net/batman-adv/bat_iv_ogm.c:865
+Code: e8 35 ef bf f9 4c 89 ad 60 ff ff ff 4d 8b 75 00 66 41 c1 c7 08 49 8d 5e 16 48 89 d8 48 c1 e8 03 49 bd 00 00 00 00 00 fc ff df <42> 8a 04 28 84 c0 0f 85 e0 0b 00 00 66 44 89 3b 4c 89 a5 78 ff ff
+RSP: 0018:ffffc90002887b78 EFLAGS: 00010203
+RAX: 0000000000000002 RBX: 0000000000000016 RCX: 1ffff11012580611
+RDX: 0000000000000000 RSI: ffff8880a80449b0 RDI: 0000000000000282
+RBP: ffffc90002887c38 R08: dffffc0000000000 R09: fffffbfff12d3605
+R10: fffffbfff12d3605 R11: 0000000000000000 R12: ffff888092c03000
+R13: dffffc0000000000 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880aea00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000000075bfd4 CR3: 000000009c67b000 CR4: 00000000001406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
 
 
+---
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
