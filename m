@@ -2,52 +2,48 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43BDC1604C7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 17:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A91160532
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 19:07:36 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 59880807F2;
-	Sun, 16 Feb 2020 17:19:27 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id F1E878086C;
+	Sun, 16 Feb 2020 19:07:35 +0100 (CET)
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 183548008D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 17:17:43 +0100 (CET)
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id E38408010F
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 19:07:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1581869862;
+ s=20121; t=1581876049;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ycDGsIuRvIAvHC8M9jSWoOHJ+C/adZPAoQJAg4MOHh0=;
- b=zMk1rHpHJsElWdVbsSg4ZDZMx5E98D/6dpZl5fZ7/wTxbWc59OHrFcAPUL4dFRogbZ6BVR
- a2bf3WJenvnoXSI5J9ZK/6Ud5A8BUs7+CfYLzru/8x4teDCFj3+iU4/214121/5rIFYCMC
- 8hsv797rAa9Y+pWYK8gV6jiuYAOJuZ8=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=kXItcA3lNVQ6cBxnbtUHyWUBxO4mXFDbggTp29uE30g=;
+ b=U3avZH9GtMSIUuFfo4Ns3GPbFjwgCQns5m2b5OQeTWWWUALJNI+iSNiLCFElWaCYbqxEHd
+ RaH0RCQxFZx6xnIohiPgSVHyVTee7ZkKlh5lIHbaVIQaXj7ig8PsxS2aaFKb6zc8+lpaSL
+ B+BNaHREt6lk4IQiA+a+np46LVVskWs=
 From: Sven Eckelmann <sven@narfation.org>
-To: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
-Subject: Re: [PATCH] net: batman-adv: Use built-in RCU list checking
-Date: Sun, 16 Feb 2020 17:17:36 +0100
-Message-ID: <14125758.fD4hS3u3Vl@sven-edge>
-In-Reply-To: <20200216155243.GB4542@madhuparna-HP-Notebook>
-References: <20200216144718.2841-1-madhuparnabhowmik10@gmail.com>
- <1634394.jP7ydfi60B@sven-edge> <20200216155243.GB4542@madhuparna-HP-Notebook>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH] batman-adv: Avoid RCU list-traversal in spinlock
+Date: Sun, 16 Feb 2020 19:00:25 +0100
+Message-Id: <20200216180025.14271-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2027361.KDeqtIc2Nz";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581869863;
+ s=20121; t=1581876453;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=ycDGsIuRvIAvHC8M9jSWoOHJ+C/adZPAoQJAg4MOHh0=;
- b=KiZFSPYFuXmp9Z6C8TTsUcY9vGBUsCXDd0ZJ+3uqqUTYVDZNCnrlJ4G3700sAEpvuVG+Vx
- QPe34D4hQkPflgTMMP4Hoef2ye5yM3o7pSRZoBp8xD2W6xfXSy1U0+qlBLZypnQwMU3oLP
- 1+EgQpsjgD72l30yVDtPOdabBYQNklQ=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581869863; a=rsa-sha256; cv=none;
- b=urE/tC68ZzvragsL4L9jKQMtyKDQbD5RxlKdmQA4TcJjOGNNZVZ/aNYz10I0tWL63n8+Tp
- NlDiEPw5IhugV/tfq5LPTGWQZdDAlIAHQ2MVSa1UBIHFdEEL/OI98ipEKlzColsTpjCTVe
- PNNngIasmO2QfiTPCDya66tY70rU1fI=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=kXItcA3lNVQ6cBxnbtUHyWUBxO4mXFDbggTp29uE30g=;
+ b=jpn4XjqMqJwj5MwHynM/GNQgf8p2P0wb8GxTw33Em1O9VgNk1r5Hki8nzymnyZ3pvE3Jf9
+ eNZ07EWBsrjZ5+ztF22D1VMn2QEZJdrFJTr4Y468NjHhyEq6pUlkJhGX17VrlKA5XYKNU9
+ 4SLltKsoT/jVMZHC+8ytf9PAJLrKxtY=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581876453; a=rsa-sha256; cv=none;
+ b=yTgyjdWOVlXOtB72DA8UmQ4NOBd9UwVfFq1Sj0dMjMgqOKkmv2of2jb6ySuwjvoHr/gJc1
+ VQaDMZgHLKNnYPghrACV1tgh/I3G8LwSLMSg47dBszhWkbYkeyx+raDMNse7fBwpMlhyFg
+ KTHJH5gF4SpientQEFY8IlDcaqdZeoY=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=zMk1rHpH;
+ dkim=pass header.d=narfation.org header.s=20121 header.b=U3avZH9G;
  spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-X-Mailman-Approved-At: Sun, 16 Feb 2020 17:19:25 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,56 +58,65 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: mareklindner@neomailbox.ch, netdev@vger.kernel.org,
- b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc, linux-kernel@vger.kernel.org,
- frextrite@gmail.com, joel@joelfernandes.org,
- linux-kernel-mentees@lists.linuxfoundation.org, davem@davemloft.net
+Cc: joel@joelfernandes.org, Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>,
+ frextrite@gmail.com
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart2027361.KDeqtIc2Nz
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+The new CONFIG_PROVE_RCU_LIST requires a condition statement in
+(h)list_for_each_entry_rcu when the code might be executed in a non RCU
+non-reader section with the writer lock. Otherwise lockdep might cause a
+false positive warning like
 
-On Sunday, 16 February 2020 16:52:44 CET Madhuparna Bhowmik wrote:
-[...]
-> > I understand this part. I was asking how you've identified them. Did you use 
-> > any tool for that? coccinelle, sparse, ...
-> 
-> Not really, I did it manually by inspecting each occurence.
+  =============================
+  WARNING: suspicious RCU usage
+  -----------------------------
+  translation-table.c:940 RCU-list traversed in non-reader section!!
 
-In that case, I don't understand why you didn't convert the occurrences from 
-hlist_for_each_entry_rcu to hlist_for_each_entry [1]. Because a manual
-inspection should have noticed that there will always be the lock around
-these ones.
+batman-adv is (mostly) following the examples from the RCU documenation and
+is using the normal list-traversal primitives instead of the RCU
+list-traversal primitives when the writer (spin)lock is held.
 
-KInd regards,
-	Sven
+The remaining users of RCU list-traversal primitives with writer spinlock
+have to be converted to the same style as the rest of the code.
 
-[1] https://www.kernel.org/doc/html/v5.6-rc1/RCU/whatisRCU.html#analogy-with-reader-writer-locking
---nextPart2027361.KDeqtIc2Nz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Reported-by: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/translation-table.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl5JayAACgkQXYcKB8Em
-e0arqxAAs2BMDdBX1BL6F26UneTAZ8w5R8MOruf6/NJycj1OzwF9X96BeX0cyj4q
-Gnryzgqb3/LXfZPWhF2HSLjuPeVjgiJOoF5S+3n9R00k0Oitqo53gFHirNzLqFYu
-bJThufWSFbq3agNcYgrjYe15pyOe46r9Vt/aGyjVsvX+f8J/7PRFCTkznhluzo9C
-tmLWbM4tbVJu8JDUD3PY/vR9SxPShYqDOlFz45bqmzHb7Dcr2fLYZC/jlbzd5af+
-xTNCsjsk2U9pwR+te1MaIqJ6BDrIljis4HXLCdAMuL5ny1QKrNL1Hj/iS9ycxCnh
-1lUNi0HGdRtGcpXbRBIiLkykMJMiIZoep+PkP5CND2WELURBBRVrys8xvwDD3mxJ
-xdvhXKAkMv2qaJpbGIQWEf/p+UDbXQXr9Xa1UeUOOHjpC8eNm1FYtKKzTL0W74lE
-9KSt086kB2Y9pUMAGQWoIDyb1QKTxQV+jzx9YJEL2AzGO0NEwd+d0UJrxXX+qNbF
-BKd+EqdAIR/PfAp2pA4PIxAvieu9Z3jCnXkEURkhS19Rgu1G/0iBq6p8abj+CW8a
-7OBNe+13SISLc0rMoX/nbH/Pwxq9MlqRJifFr05S77mKEvdNS8tz0KwN/ZVMSfA+
-2dDdXfKzPo3BGnfSOtj7G1wgUMBWOFXVLnFytQEyYXMdlWC47Ks=
-=70Ud
------END PGP SIGNATURE-----
-
---nextPart2027361.KDeqtIc2Nz--
-
-
+diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
+index 85293283..2d52356a 100644
+--- a/net/batman-adv/translation-table.c
++++ b/net/batman-adv/translation-table.c
+@@ -862,7 +862,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
+ 	u8 *tt_change_ptr;
+ 
+ 	spin_lock_bh(&orig_node->vlan_list_lock);
+-	hlist_for_each_entry_rcu(vlan, &orig_node->vlan_list, list) {
++	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
+ 		num_vlan++;
+ 		num_entries += atomic_read(&vlan->tt.num_entries);
+ 	}
+@@ -888,7 +888,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
+ 	(*tt_data)->num_vlan = htons(num_vlan);
+ 
+ 	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(*tt_data + 1);
+-	hlist_for_each_entry_rcu(vlan, &orig_node->vlan_list, list) {
++	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
+ 		tt_vlan->vid = htons(vlan->vid);
+ 		tt_vlan->crc = htonl(vlan->tt.crc);
+ 
+@@ -937,7 +937,7 @@ batadv_tt_prepare_tvlv_local_data(struct batadv_priv *bat_priv,
+ 	int change_offset;
+ 
+ 	spin_lock_bh(&bat_priv->softif_vlan_list_lock);
+-	hlist_for_each_entry_rcu(vlan, &bat_priv->softif_vlan_list, list) {
++	hlist_for_each_entry(vlan, &bat_priv->softif_vlan_list, list) {
+ 		vlan_entries = atomic_read(&vlan->tt.num_entries);
+ 		if (vlan_entries < 1)
+ 			continue;
+-- 
+2.20.1
 
