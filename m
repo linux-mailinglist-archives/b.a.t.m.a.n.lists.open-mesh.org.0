@@ -1,49 +1,66 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A91160532
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 19:07:36 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CB2160548
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 19:20:59 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id F1E878086C;
-	Sun, 16 Feb 2020 19:07:35 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id E38408010F
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 19:07:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1581876049;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=kXItcA3lNVQ6cBxnbtUHyWUBxO4mXFDbggTp29uE30g=;
- b=U3avZH9GtMSIUuFfo4Ns3GPbFjwgCQns5m2b5OQeTWWWUALJNI+iSNiLCFElWaCYbqxEHd
- RaH0RCQxFZx6xnIohiPgSVHyVTee7ZkKlh5lIHbaVIQaXj7ig8PsxS2aaFKb6zc8+lpaSL
- B+BNaHREt6lk4IQiA+a+np46LVVskWs=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] batman-adv: Avoid RCU list-traversal in spinlock
-Date: Sun, 16 Feb 2020 19:00:25 +0100
-Message-Id: <20200216180025.14271-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id EC53480890;
+	Sun, 16 Feb 2020 19:20:53 +0100 (CET)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 1669480099
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 19:20:51 +0100 (CET)
+Received: by mail-qt1-x844.google.com with SMTP id v25so10571979qto.7
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 10:20:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=2GwTjPSP8ty1zU+vYGA0R1kvw+Rq1dPw0taVso46Z9Y=;
+ b=pSA7GxljnfcuBISiIDX1CrgQa5+JeY4T957G+XmhjYgB4xb4iqbgrmrx5cGFvVquTJ
+ aPgwLOtxNWKPtnZnN5H9/Rz+4txEKXMyMwzj/417oDR7SI++nwbQrAcG+7DSjhDZMjpU
+ yqrZEd6BMkxKEx1TlEZi3OzPErixdfkZHwP3sHn96r7PHS8YxLct+cX5cQvxuFj5xPZ9
+ 5J0RDhOoablyEmHrOjvv35EqQdh7mGCq+AapL470eRN1N8meRdeFaUe6ym7iRx/62yCP
+ 5Q7/rAx1r4Em7p75qYOe1J7vWYdAKSzuIPmh9OopLs0mt1kwfpXJzbr49DZ0DjENoJFV
+ 4ePg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=2GwTjPSP8ty1zU+vYGA0R1kvw+Rq1dPw0taVso46Z9Y=;
+ b=E1VhIhklx/g3hsdApxlbbxZJ+/L9KSxguhlBDGRfarcr6BQGNgKl5Bd9YdS85ISO1o
+ KPLzxL/rgCb+w5evUIb5AFiMfwuhB9jxWAt6dnrtsFcw2ENK73ALt8uxiptefZmNFdps
+ 2ggjsEHDhoUnN824xlZd/ZMlMnXkEVPt3HRoUieb76y4uR8ZnWWCF0yCgzsRr1QxZqap
+ zHxE6Tc7RDN3J5Ri51V+u+gbXKWAXaHtGFiJ2PjCifE3wClIi5B6TWhjigS3vKvHkIyv
+ RmtQvVDkkOOkYRcguh/Ixzz5QxmapA0iIC/Yw7ad030K7qK+MpjIMSa+1uIT7jbQ+xBJ
+ MoaQ==
+X-Gm-Message-State: APjAAAV2fnzO5MBwd25cy/eqqCKn5dO5g8aOZplvfRIM3m9Vm82q5GSB
+ xSGBM6y0AmSAE4qqhI1YWmfprHzhtiqSMhl7we+8MoeB
+X-Google-Smtp-Source: APXvYqxZpxoxEcJMxHC80Lj7IvM19ysFv9+Nf+/5EPPi4Y9r99PYx6soUF6YUDX0omfi34ehgl9NO7SO4MPW0xlVcMo=
+X-Received: by 2002:aed:2bc2:: with SMTP id e60mr10625881qtd.115.1581877249700; 
+ Sun, 16 Feb 2020 10:20:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Emilie Meyer <emiliemeyer1016@gmail.com>
+Date: Sun, 16 Feb 2020 10:20:41 -0800
+Message-ID: <CAFF9uhp7M94yAPhWnpUkBwLzQa8rgxMGdBYU2CNQ203QtJZs9g@mail.gmail.com>
+Subject: Issue with bridging LAN and mesh network
+To: b.a.t.m.a.n@lists.open-mesh.org
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581876453;
+ s=20121; t=1581877251;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:dkim-signature;
- bh=kXItcA3lNVQ6cBxnbtUHyWUBxO4mXFDbggTp29uE30g=;
- b=jpn4XjqMqJwj5MwHynM/GNQgf8p2P0wb8GxTw33Em1O9VgNk1r5Hki8nzymnyZ3pvE3Jf9
- eNZ07EWBsrjZ5+ztF22D1VMn2QEZJdrFJTr4Y468NjHhyEq6pUlkJhGX17VrlKA5XYKNU9
- 4SLltKsoT/jVMZHC+8ytf9PAJLrKxtY=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581876453; a=rsa-sha256; cv=none;
- b=yTgyjdWOVlXOtB72DA8UmQ4NOBd9UwVfFq1Sj0dMjMgqOKkmv2of2jb6ySuwjvoHr/gJc1
- VQaDMZgHLKNnYPghrACV1tgh/I3G8LwSLMSg47dBszhWkbYkeyx+raDMNse7fBwpMlhyFg
- KTHJH5gF4SpientQEFY8IlDcaqdZeoY=
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ dkim-signature; bh=2GwTjPSP8ty1zU+vYGA0R1kvw+Rq1dPw0taVso46Z9Y=;
+ b=copNS0WAuksrV9PFi8hDa2U9DpP6DnpUHKXz4D4iCag6+d5VMuOIZhsZRA8lQJH22WvRMm
+ 8FmSpO86M1D029B1f0cgGGaSp13K7eTlPdE4UWaGORQ1XHFlfOIcDqcvorrPzzxzQABaUh
+ s1NhFU7kY0WVtS+cUmQseGxPy+Yqtms=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581877251; a=rsa-sha256; cv=none;
+ b=kJweZje4XX+2DE/hipgRIsXm8S/GKgOO9+z1Y6fk5v7YmSMHyFvIkemESN092YQdkMbs8O
+ QzjiCwq84yJkHt/csBBllwhO/4mZ8GzX2GfPAt+nV0ppUm1vfNlodaxdfOu7P+9WLosyHi
+ 6wFr1ImzhBpUNLqlfLHhpVMyNfLoAKY=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=U3avZH9G;
- spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ dkim=pass header.d=gmail.com header.s=20161025 header.b=pSA7Gxlj;
+ spf=pass (diktynna.open-mesh.org: domain of emiliemeyer1016@gmail.com
+ designates 2607:f8b0:4864:20::844 as permitted sender)
+ smtp.mailfrom=emiliemeyer1016@gmail.com
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,65 +75,37 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: joel@joelfernandes.org, Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>,
- frextrite@gmail.com
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-The new CONFIG_PROVE_RCU_LIST requires a condition statement in
-(h)list_for_each_entry_rcu when the code might be executed in a non RCU
-non-reader section with the writer lock. Otherwise lockdep might cause a
-false positive warning like
+Hi all
 
-  =============================
-  WARNING: suspicious RCU usage
-  -----------------------------
-  translation-table.c:940 RCU-list traversed in non-reader section!!
+I have tried to set up a mesh network according to the following tutorial:
 
-batman-adv is (mostly) following the examples from the RCU documenation and
-is using the normal list-traversal primitives instead of the RCU
-list-traversal primitives when the writer (spin)lock is held.
+https://www.open-mesh.org/projects/batman-adv/wiki/Quick-start-guide
 
-The remaining users of RCU list-traversal primitives with writer spinlock
-have to be converted to the same style as the rest of the code.
+Everything goes well until the steps for creating a bridge between
+eth0 and bat0.
+When running the command as shown below, it fails.
 
-Reported-by: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- net/batman-adv/translation-table.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+root@OpenWrt:~# ip link set eth0 master mesh-bridge
+ip: either "dev" is duplicate, or "master" is garbage
 
-diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-index 85293283..2d52356a 100644
---- a/net/batman-adv/translation-table.c
-+++ b/net/batman-adv/translation-table.c
-@@ -862,7 +862,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
- 	u8 *tt_change_ptr;
- 
- 	spin_lock_bh(&orig_node->vlan_list_lock);
--	hlist_for_each_entry_rcu(vlan, &orig_node->vlan_list, list) {
-+	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
- 		num_vlan++;
- 		num_entries += atomic_read(&vlan->tt.num_entries);
- 	}
-@@ -888,7 +888,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
- 	(*tt_data)->num_vlan = htons(num_vlan);
- 
- 	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(*tt_data + 1);
--	hlist_for_each_entry_rcu(vlan, &orig_node->vlan_list, list) {
-+	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
- 		tt_vlan->vid = htons(vlan->vid);
- 		tt_vlan->crc = htonl(vlan->tt.crc);
- 
-@@ -937,7 +937,7 @@ batadv_tt_prepare_tvlv_local_data(struct batadv_priv *bat_priv,
- 	int change_offset;
- 
- 	spin_lock_bh(&bat_priv->softif_vlan_list_lock);
--	hlist_for_each_entry_rcu(vlan, &bat_priv->softif_vlan_list, list) {
-+	hlist_for_each_entry(vlan, &bat_priv->softif_vlan_list, list) {
- 		vlan_entries = atomic_read(&vlan->tt.num_entries);
- 		if (vlan_entries < 1)
- 			continue;
+I suspect that the ip version (BusyBox v1.28.4) I got does not support bridging?
+Sincerely hope that someone can please guide me to solve this issue.
+
+This is my HW/SW:
+HW: TP-Link TL-WR841N and Ubiquiti M2 Bullet
+OpenWrt 18.06.4, r7808-ef686b7292
+
+As you see I have not the newest HW so that's the reason why I have
+initially tried to use OpenWrt version 18.06.4 and not the newest
+version.
+Anyone that have experience with Batman on these wifi devices, please share.
+
+Many thanks in advance for your help.
+
 -- 
-2.20.1
+Regards
 
+Emilie
