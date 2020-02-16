@@ -2,81 +2,52 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD9A1604AA
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 17:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BDC1604C7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 17:19:33 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5BC7480766;
-	Sun, 16 Feb 2020 17:00:16 +0100 (CET)
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com
- [IPv6:2607:f8b0:4864:20::544])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 43014801EF
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 16:52:52 +0100 (CET)
-Received: by mail-pg1-x544.google.com with SMTP id z12so7740755pgl.4
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 07:52:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=iPFMbfU6diExASqyRYQaLYTU+lXefr7fxHQr7uWuD1Y=;
- b=dFOD3H1/B31VEchMzaUoJ9SUKJtUO6Ioafl/z7DDVOwR6NtDtBMs/13RMPQQzMJ18Y
- c5C04QkzccXncDGICuf/5t/aIGwm7HczFeWtMY+Jo3fy/YcQCQRsbKRTbmcFsW15LoeS
- 5M5xHHjjHalh62RK5nUwazqACK6SczFYM1kEOfjlJRCmKpAnWL3N2Dep6gnyRcSdCy0j
- drXeDHCcx1PHXAG2jqXie+iYrkyxLoed7F+tWrFY6O9hhTv2nZuJnslWCSQRk5+QSpNy
- sE6STD6lqxoHPqpbLU3HpctlWUYllldWX66W6Xuc8lCiNKK33NnaGyAvPFFaJicEiWcX
- AudQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=iPFMbfU6diExASqyRYQaLYTU+lXefr7fxHQr7uWuD1Y=;
- b=M9LOv3jYXZyOaI5uPEzwm6rTXyLKo3+GtjhfcFCgn2KTZ/rsEDfOyi8IRPGWixxrC5
- gRwp3HFTTfMj97bFxZ9LANpsWnD5MbmLt589jO6DcpLFlpZ5xHIp72ZFeijukQzAOLut
- Mrj8N76sQwb5RpNgCpO9Gfri2X9ToWbjn3+Ho2814vA4z9T8xpA3Gb+X3rg0ZUSOjYkf
- f7ZdCAbn1G1G3FoaVjI0dZeIYXs/6cUUXyb4ZiQQhB2UiWEtNb/CwIvyoDd72RBz/4h1
- s5TEc0JgnyUUOZitGA9FcrQOTeVLnUTgh4r6JpVlB6qu/eIn+y2+vk/7iEDpQL83ejxf
- +3ig==
-X-Gm-Message-State: APjAAAURjhVD2tfy252fI6Zf1Cmg3Iuq5Jvjfg+w8YDr/NYUdEdmE6L9
- jfSD9vo99cfutMYz/jErHg==
-X-Google-Smtp-Source: APXvYqx4ANLkD4bX8522tWsKbJuWTodQcLty70mtlhDXz7killP931Qu5hSGCSz5PkBfEfbEtN3CHw==
-X-Received: by 2002:aa7:961b:: with SMTP id q27mr12847463pfg.23.1581868370704; 
- Sun, 16 Feb 2020 07:52:50 -0800 (PST)
-Received: from madhuparna-HP-Notebook ([2402:3a80:d03:50cf:14b2:4950:fe83:57e])
- by smtp.gmail.com with ESMTPSA id c1sm13631769pfa.51.2020.02.16.07.52.46
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 16 Feb 2020 07:52:50 -0800 (PST)
-From: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
-X-Google-Original-From: Madhuparna Bhowmik <change_this_user_name@gmail.com>
-Date: Sun, 16 Feb 2020 21:22:44 +0530
-To: Sven Eckelmann <sven@narfation.org>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 59880807F2;
+	Sun, 16 Feb 2020 17:19:27 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 183548008D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 17:17:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1581869862;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ycDGsIuRvIAvHC8M9jSWoOHJ+C/adZPAoQJAg4MOHh0=;
+ b=zMk1rHpHJsElWdVbsSg4ZDZMx5E98D/6dpZl5fZ7/wTxbWc59OHrFcAPUL4dFRogbZ6BVR
+ a2bf3WJenvnoXSI5J9ZK/6Ud5A8BUs7+CfYLzru/8x4teDCFj3+iU4/214121/5rIFYCMC
+ 8hsv797rAa9Y+pWYK8gV6jiuYAOJuZ8=
+From: Sven Eckelmann <sven@narfation.org>
+To: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
 Subject: Re: [PATCH] net: batman-adv: Use built-in RCU list checking
-Message-ID: <20200216155243.GB4542@madhuparna-HP-Notebook>
+Date: Sun, 16 Feb 2020 17:17:36 +0100
+Message-ID: <14125758.fD4hS3u3Vl@sven-edge>
+In-Reply-To: <20200216155243.GB4542@madhuparna-HP-Notebook>
 References: <20200216144718.2841-1-madhuparnabhowmik10@gmail.com>
- <3655191.udZcvKk8tv@sven-edge>
- <20200216153324.GA4542@madhuparna-HP-Notebook>
- <1634394.jP7ydfi60B@sven-edge>
+ <1634394.jP7ydfi60B@sven-edge> <20200216155243.GB4542@madhuparna-HP-Notebook>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1634394.jP7ydfi60B@sven-edge>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: multipart/signed; boundary="nextPart2027361.KDeqtIc2Nz";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581868372;
+ s=20121; t=1581869863;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=iPFMbfU6diExASqyRYQaLYTU+lXefr7fxHQr7uWuD1Y=;
- b=jR11XP2H3dPJqK2USutKjbMJVoAGaEILr7Ed/xE7t71AvgVsPzKVNzDg7B1dpEQ3CCn7/J
- dFv40iCZLzzh25D8fWDS/u1S+nNegdjrYjAGfPJFiyAyhQVbAITQIGAUW29dhXoA5Wr/lF
- FBylzUIvUeda8heKfnSk2VxZcNHR8ZY=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581868372; a=rsa-sha256; cv=none;
- b=SEqQ0MviOtqRruVJX/x+Ht6t4UeMtz5AYpjDz0lMCgURMKk9do8JUftZfCMncALzgmZTKA
- vthv9Z8ahCJ5b9HMPqwETEdMCzkUcmz3moWNbGT+kzy9RLreF5Pwg7ux/+iCIkXWl5YEK9
- f8E1AbRFtpGU4y8uQ05ZCZjcm5id8uE=
+ bh=ycDGsIuRvIAvHC8M9jSWoOHJ+C/adZPAoQJAg4MOHh0=;
+ b=KiZFSPYFuXmp9Z6C8TTsUcY9vGBUsCXDd0ZJ+3uqqUTYVDZNCnrlJ4G3700sAEpvuVG+Vx
+ QPe34D4hQkPflgTMMP4Hoef2ye5yM3o7pSRZoBp8xD2W6xfXSy1U0+qlBLZypnQwMU3oLP
+ 1+EgQpsjgD72l30yVDtPOdabBYQNklQ=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581869863; a=rsa-sha256; cv=none;
+ b=urE/tC68ZzvragsL4L9jKQMtyKDQbD5RxlKdmQA4TcJjOGNNZVZ/aNYz10I0tWL63n8+Tp
+ NlDiEPw5IhugV/tfq5LPTGWQZdDAlIAHQ2MVSa1UBIHFdEEL/OI98ipEKlzColsTpjCTVe
+ PNNngIasmO2QfiTPCDya66tY70rU1fI=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=gmail.com header.s=20161025 header.b=dFOD3H1/;
- spf=pass (diktynna.open-mesh.org: domain of madhuparnabhowmik10@gmail.com
- designates 2607:f8b0:4864:20::544 as permitted sender)
- smtp.mailfrom=madhuparnabhowmik10@gmail.com
-X-Mailman-Approved-At: Sun, 16 Feb 2020 17:00:14 +0100
+ dkim=pass header.d=narfation.org header.s=20121 header.b=zMk1rHpH;
+ spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+X-Mailman-Approved-At: Sun, 16 Feb 2020 17:19:25 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,37 +64,54 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
 Cc: mareklindner@neomailbox.ch, netdev@vger.kernel.org,
  b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc, linux-kernel@vger.kernel.org,
- frextrite@gmail.com, Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>,
- joel@joelfernandes.org, linux-kernel-mentees@lists.linuxfoundation.org,
- davem@davemloft.net
+ frextrite@gmail.com, joel@joelfernandes.org,
+ linux-kernel-mentees@lists.linuxfoundation.org, davem@davemloft.net
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Sun, Feb 16, 2020 at 04:35:54PM +0100, Sven Eckelmann wrote:
-> On Sunday, 16 February 2020 16:33:24 CET Madhuparna Bhowmik wrote:
-> [...]
-> > > Can you tell us how you've identified these four hlist_for_each_entry_rcu?
-> >
-> > The other hlist_for_each_entry_rcu() are used under the protection of
-> > rcu_read_lock(). We only need to pass the cond when
-> > hlist_for_each_entry_rcu() is used under a
-> > different lock (not under rcu_red_lock()) because according to the current scheme a lockdep splat
-> > is generated when hlist_for_each_entry_rcu() is used outside of
-> > rcu_read_lock() or the lockdep condition (the cond argument) evaluates
-> > to false. So, we need to pass this cond when it is used under the
-> > protection of spinlock or mutex etc. and not required if rcu_read_lock()
-> > is used.
+--nextPart2027361.KDeqtIc2Nz
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Sunday, 16 February 2020 16:52:44 CET Madhuparna Bhowmik wrote:
+[...]
+> > I understand this part. I was asking how you've identified them. Did you use 
+> > any tool for that? coccinelle, sparse, ...
 > 
-> I understand this part. I was asking how you've identified them. Did you use 
-> any tool for that? coccinelle, sparse, ...
->
-Hi,
+> Not really, I did it manually by inspecting each occurence.
 
-Not really, I did it manually by inspecting each occurence.
-Thank you,
-Madhuparna
+In that case, I don't understand why you didn't convert the occurrences from 
+hlist_for_each_entry_rcu to hlist_for_each_entry [1]. Because a manual
+inspection should have noticed that there will always be the lock around
+these ones.
 
-> Kind regards,
-> 	Sven
+KInd regards,
+	Sven
+
+[1] https://www.kernel.org/doc/html/v5.6-rc1/RCU/whatisRCU.html#analogy-with-reader-writer-locking
+--nextPart2027361.KDeqtIc2Nz
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl5JayAACgkQXYcKB8Em
+e0arqxAAs2BMDdBX1BL6F26UneTAZ8w5R8MOruf6/NJycj1OzwF9X96BeX0cyj4q
+Gnryzgqb3/LXfZPWhF2HSLjuPeVjgiJOoF5S+3n9R00k0Oitqo53gFHirNzLqFYu
+bJThufWSFbq3agNcYgrjYe15pyOe46r9Vt/aGyjVsvX+f8J/7PRFCTkznhluzo9C
+tmLWbM4tbVJu8JDUD3PY/vR9SxPShYqDOlFz45bqmzHb7Dcr2fLYZC/jlbzd5af+
+xTNCsjsk2U9pwR+te1MaIqJ6BDrIljis4HXLCdAMuL5ny1QKrNL1Hj/iS9ycxCnh
+1lUNi0HGdRtGcpXbRBIiLkykMJMiIZoep+PkP5CND2WELURBBRVrys8xvwDD3mxJ
+xdvhXKAkMv2qaJpbGIQWEf/p+UDbXQXr9Xa1UeUOOHjpC8eNm1FYtKKzTL0W74lE
+9KSt086kB2Y9pUMAGQWoIDyb1QKTxQV+jzx9YJEL2AzGO0NEwd+d0UJrxXX+qNbF
+BKd+EqdAIR/PfAp2pA4PIxAvieu9Z3jCnXkEURkhS19Rgu1G/0iBq6p8abj+CW8a
+7OBNe+13SISLc0rMoX/nbH/Pwxq9MlqRJifFr05S77mKEvdNS8tz0KwN/ZVMSfA+
+2dDdXfKzPo3BGnfSOtj7G1wgUMBWOFXVLnFytQEyYXMdlWC47Ks=
+=70Ud
+-----END PGP SIGNATURE-----
+
+--nextPart2027361.KDeqtIc2Nz--
+
 
 
