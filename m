@@ -2,65 +2,51 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41CB2160548
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 19:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB3A16058C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 16 Feb 2020 19:39:45 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id EC53480890;
-	Sun, 16 Feb 2020 19:20:53 +0100 (CET)
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
- [IPv6:2607:f8b0:4864:20::844])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 1669480099
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 19:20:51 +0100 (CET)
-Received: by mail-qt1-x844.google.com with SMTP id v25so10571979qto.7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 10:20:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=2GwTjPSP8ty1zU+vYGA0R1kvw+Rq1dPw0taVso46Z9Y=;
- b=pSA7GxljnfcuBISiIDX1CrgQa5+JeY4T957G+XmhjYgB4xb4iqbgrmrx5cGFvVquTJ
- aPgwLOtxNWKPtnZnN5H9/Rz+4txEKXMyMwzj/417oDR7SI++nwbQrAcG+7DSjhDZMjpU
- yqrZEd6BMkxKEx1TlEZi3OzPErixdfkZHwP3sHn96r7PHS8YxLct+cX5cQvxuFj5xPZ9
- 5J0RDhOoablyEmHrOjvv35EqQdh7mGCq+AapL470eRN1N8meRdeFaUe6ym7iRx/62yCP
- 5Q7/rAx1r4Em7p75qYOe1J7vWYdAKSzuIPmh9OopLs0mt1kwfpXJzbr49DZ0DjENoJFV
- 4ePg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=2GwTjPSP8ty1zU+vYGA0R1kvw+Rq1dPw0taVso46Z9Y=;
- b=E1VhIhklx/g3hsdApxlbbxZJ+/L9KSxguhlBDGRfarcr6BQGNgKl5Bd9YdS85ISO1o
- KPLzxL/rgCb+w5evUIb5AFiMfwuhB9jxWAt6dnrtsFcw2ENK73ALt8uxiptefZmNFdps
- 2ggjsEHDhoUnN824xlZd/ZMlMnXkEVPt3HRoUieb76y4uR8ZnWWCF0yCgzsRr1QxZqap
- zHxE6Tc7RDN3J5Ri51V+u+gbXKWAXaHtGFiJ2PjCifE3wClIi5B6TWhjigS3vKvHkIyv
- RmtQvVDkkOOkYRcguh/Ixzz5QxmapA0iIC/Yw7ad030K7qK+MpjIMSa+1uIT7jbQ+xBJ
- MoaQ==
-X-Gm-Message-State: APjAAAV2fnzO5MBwd25cy/eqqCKn5dO5g8aOZplvfRIM3m9Vm82q5GSB
- xSGBM6y0AmSAE4qqhI1YWmfprHzhtiqSMhl7we+8MoeB
-X-Google-Smtp-Source: APXvYqxZpxoxEcJMxHC80Lj7IvM19ysFv9+Nf+/5EPPi4Y9r99PYx6soUF6YUDX0omfi34ehgl9NO7SO4MPW0xlVcMo=
-X-Received: by 2002:aed:2bc2:: with SMTP id e60mr10625881qtd.115.1581877249700; 
- Sun, 16 Feb 2020 10:20:49 -0800 (PST)
-MIME-Version: 1.0
-From: Emilie Meyer <emiliemeyer1016@gmail.com>
-Date: Sun, 16 Feb 2020 10:20:41 -0800
-Message-ID: <CAFF9uhp7M94yAPhWnpUkBwLzQa8rgxMGdBYU2CNQ203QtJZs9g@mail.gmail.com>
-Subject: Issue with bridging LAN and mesh network
-To: b.a.t.m.a.n@lists.open-mesh.org
-Content-Type: text/plain; charset="UTF-8"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581877251;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 818E980912;
+	Sun, 16 Feb 2020 19:39:40 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id C115780198
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 16 Feb 2020 19:39:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1581878377;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- dkim-signature; bh=2GwTjPSP8ty1zU+vYGA0R1kvw+Rq1dPw0taVso46Z9Y=;
- b=copNS0WAuksrV9PFi8hDa2U9DpP6DnpUHKXz4D4iCag6+d5VMuOIZhsZRA8lQJH22WvRMm
- 8FmSpO86M1D029B1f0cgGGaSp13K7eTlPdE4UWaGORQ1XHFlfOIcDqcvorrPzzxzQABaUh
- s1NhFU7kY0WVtS+cUmQseGxPy+Yqtms=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581877251; a=rsa-sha256; cv=none;
- b=kJweZje4XX+2DE/hipgRIsXm8S/GKgOO9+z1Y6fk5v7YmSMHyFvIkemESN092YQdkMbs8O
- QzjiCwq84yJkHt/csBBllwhO/4mZ8GzX2GfPAt+nV0ppUm1vfNlodaxdfOu7P+9WLosyHi
- 6wFr1ImzhBpUNLqlfLHhpVMyNfLoAKY=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Ewwvh2H1flXIBKC30QDwVE8ymiF2dRH3S7mmTkP3+m4=;
+ b=mWWaHbQZzd56Vi5eTQxBUuqez9e+7fnR8JWx50i4L0/Mvt3JjZFJ+Q3kJaR+LgDma0Kr3h
+ /RKoR4+6kXUnheIQXOdiC7QreZuS0XBjeOAzLGWyZdawJZmWH6iMdrhl+C0c90GWcNGLI6
+ Y2pNMgOtkiae9gSRYgx8VhKVcXWniVk=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: Issue with bridging LAN and mesh network
+Date: Sun, 16 Feb 2020 19:39:33 +0100
+Message-ID: <1873965.jgP86xNRV2@sven-edge>
+In-Reply-To: <CAFF9uhp7M94yAPhWnpUkBwLzQa8rgxMGdBYU2CNQ203QtJZs9g@mail.gmail.com>
+References: <CAFF9uhp7M94yAPhWnpUkBwLzQa8rgxMGdBYU2CNQ203QtJZs9g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart2366461.Inl0MMqdo2";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1581878377;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:dkim-signature;
+ bh=Ewwvh2H1flXIBKC30QDwVE8ymiF2dRH3S7mmTkP3+m4=;
+ b=0lCNFgMHM9mYAsiZ71IZrTzhd/BM6yLi75ohd/Ke4FF/5Sj7hcBMPEXacmEGK5CQ32Dgwr
+ V1EV360AVPFMef2MQ/f5MInSHFP2efGzqc8dWTmuKxmBuzjlJ8C+onVFuDKRgHDFlnzWRc
+ dH7Hs+HAKWhiO20zo8LcVhfMWtwVwfw=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581878377; a=rsa-sha256; cv=none;
+ b=mDdaTidl+NHRqbChVCGjNRHm56hkjr3ZTlFASuTw4NyMqzLJ/qX8VNQtAjwaA8WCfzciH9
+ 4JIyblrOzEuwW0RKFJycplWe2IhJwdqqF2ar0LW5vd8rFFmkxQELrXbQy+QUk+ki+cmvUZ
+ o0TEb76ZPsx8gIqEqe0Ze8X1RVEduE8=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=gmail.com header.s=20161025 header.b=pSA7Gxlj;
- spf=pass (diktynna.open-mesh.org: domain of emiliemeyer1016@gmail.com
- designates 2607:f8b0:4864:20::844 as permitted sender)
- smtp.mailfrom=emiliemeyer1016@gmail.com
+ dkim=pass header.d=narfation.org header.s=20121 header.b=mWWaHbQZ;
+ spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,37 +61,60 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Emilie Meyer <emiliemeyer1016@gmail.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hi all
+--nextPart2366461.Inl0MMqdo2
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-I have tried to set up a mesh network according to the following tutorial:
+On Sunday, 16 February 2020 19:20:41 CET Emilie Meyer wrote:
+[...]
+> root@OpenWrt:~# ip link set eth0 master mesh-bridge
+> ip: either "dev" is duplicate, or "master" is garbage
+[...]
+> OpenWrt 18.06.4, r7808-ef686b7292
+[...]
 
-https://www.open-mesh.org/projects/batman-adv/wiki/Quick-start-guide
+The problem here is that the networking/libiproute/iplink.c from busybox in 
+OpenWrt 18.04.x has the code for the "master" interface configuration 
+disabled. You have various options:
 
-Everything goes well until the steps for creating a bridge between
-eth0 and bat0.
-When running the command as shown below, it fails.
+* switch to the current release OpenWrt 19.07
+* switch from busybox's iplink applet to the package ip-full
+* use netifd to configure the interfaces [1]
+* use brctl to configure the bridge slave interfaces
 
-root@OpenWrt:~# ip link set eth0 master mesh-bridge
-ip: either "dev" is duplicate, or "master" is garbage
+     brctl addif mesh-bridge eth0
 
-I suspect that the ip version (BusyBox v1.28.4) I got does not support bridging?
-Sincerely hope that someone can please guide me to solve this issue.
+Kind regards,
+	Sven
 
-This is my HW/SW:
-HW: TP-Link TL-WR841N and Ubiquiti M2 Bullet
-OpenWrt 18.06.4, r7808-ef686b7292
+[1] https://www.open-mesh.org/projects/batman-adv/wiki/Batman-adv-openwrt-config#Batman-adv-201300-till-20190-2
+--nextPart2366461.Inl0MMqdo2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-As you see I have not the newest HW so that's the reason why I have
-initially tried to use OpenWrt version 18.06.4 and not the newest
-version.
-Anyone that have experience with Batman on these wifi devices, please share.
+-----BEGIN PGP SIGNATURE-----
 
-Many thanks in advance for your help.
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl5JjGUACgkQXYcKB8Em
+e0YXkg//dvj84BXzINr83MJt4ghOSeNX92qPXyj3n4UeGDdzktp3grMsZPUp2TWP
+/Pdpd0XtG5Xlvf31t665U7giViLAbHj5z80SA07uoNLKZ0JvrnjyGcudsypAgk5g
+zBHfXyMg748Z5saKL3FrTGca4KnNc6Oqr/3epAOw+tf73C3bg5I1b46MXuDQp0cT
++eMeOTNK6Wr280jcOqzAjmM+ny5VLgEnJhKocloZKDN78/LgjSkh3d0ghFSfkfm5
+Z+iODn9/v1M+BnEFibXFMG9NGcwyrOs1lLBuuyfCLpZXqXZT7ed/AyJkx46tfcUU
+rSpfAwtkqwSDTLnQeXbZxLeGJZ/t5UCLAPmBZWnwnrtBW3wU+7tXVOaYyBsthNJK
+xCY+45o1NS07S4JCsoPZYJPYcWQuAk4ymWnPEMmwL5+i09+H4JKgpOVjI7cErgJ+
+BwANQtAau7yyQgFIIbP+F4MA6cBd7F9wFfYjj1HRmcpBOESD12ww9oPuDi2qjKI3
+zy+YPFQ02TQicjHiHaW2amEYgGAHe8SPZFFqFsNUboNcyMm+vBAGEuyYjuWY5T8/
+SEPh1fd3uVvxyn918rB4XWMiDAqVup6rqkgBvhqHixe0FeTBV7i7YOhrKk3+LTzL
++BaQdiXTeMO9qGcMXwjwKtgNFhgpHk1JBkjwTQdrUtT0rppeE4o=
+=rmo+
+-----END PGP SIGNATURE-----
 
--- 
-Regards
+--nextPart2366461.Inl0MMqdo2--
 
-Emilie
+
+
