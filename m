@@ -2,49 +2,85 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98F7161470
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Feb 2020 15:22:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA107161CEB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Feb 2020 22:42:53 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B422D806E4;
-	Mon, 17 Feb 2020 15:22:42 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 0805280038
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Feb 2020 15:22:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1581949006;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=+eRxoRzo2P4E90oCPC3ECGhv26TPF2uIjGFO36Nrb00=;
- b=xAEpeKKptINzXjx251JsKgvxIdtvrLxapbl02fnk0bM1tBbwiubaZz7AtZrXL+FkBDaFT0
- GRKCp3b9R1FejbpthjjXDHd0Jy7FO89t+2uf3w7cIg9b0G/IG8wLH76/KL7mkIu5cPN5hn
- tlJXaMgRaP+FpEeOL3T0m9Knf8K1zP8=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH maint] batman-adv: Don't schedule OGM for disabled interface
-Date: Mon, 17 Feb 2020 15:16:41 +0100
-Message-Id: <20200217141641.26999-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B3C72807DE;
+	Mon, 17 Feb 2020 22:42:52 +0100 (CET)
+Received: from gateway22.websitewelcome.com (gateway22.websitewelcome.com
+ [192.185.47.79])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id C90548001B
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Feb 2020 22:40:21 +0100 (CET)
+Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
+ by gateway22.websitewelcome.com (Postfix) with ESMTP id 7199D68C0
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Feb 2020 15:40:20 -0600 (CST)
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
+ id 3o7ojw6GeAGTX3o7oj7FBG; Mon, 17 Feb 2020 15:40:20 -0600
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=embeddedor.com; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:
+ Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Up3NXkZ9MtOum0S7bVKL3huOyiNJmhlgLtMxveQ6vXs=; b=fQRsoHfiS305ia7mB6Tk7BCDh/
+ zu8WsjITjAx40ENo5SGDIPWQAysvcReMoY1px5no4omSD8BUVo+NaTDaafIhYlocD9N2uhjf129cn
+ q0LrXgtBRbkzJYjXJ5febzafT1u6lqfyUVKdIkDfNQaGdjCGxWnwYObZn+SMeBVTO+xO5+UsOgntB
+ SUD4DLY8MuqHtf5wrhfWuTpdfgHWmUnDQ8/voYHayRkfOjtIKD4VOmLHOsm1sDkVCxG/hxiIk1r7b
+ 1ZsQSv8vO8GDPS5aWRsW0yXwDR4pHyPBTbPq6F4TZltM4pCR5sOSQ6mLRLRAqxOxlL3kIdTOAInYL
+ nPOEal+w==;
+Received: from [200.68.140.26] (port=16142 helo=embeddedor)
+ by gator4166.hostgator.com with esmtpa (Exim 4.92)
+ (envelope-from <gustavo@embeddedor.com>)
+ id 1j3o7m-001GXx-EB; Mon, 17 Feb 2020 15:40:18 -0600
+Date: Mon, 17 Feb 2020 15:43:00 -0600
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+To: Marek Lindner <mareklindner@neomailbox.ch>,
+ Simon Wunderlich <sw@simonwunderlich.de>,
+ Antonio Quartulli <a@unstable.cc>, Sven Eckelmann <sven@narfation.org>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
+Subject: [PATCH][next] batman-adv: Replace zero-length array with
+ flexible-array member
+Message-ID: <20200217214300.GA14129@embeddedor>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.open-mesh.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 200.68.140.26
+X-Source-L: No
+X-Exim-ID: 1j3o7m-001GXx-EB
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (embeddedor) [200.68.140.26]:16142
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 8
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581949360;
+ s=20121; t=1581975622;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:dkim-signature;
- bh=+eRxoRzo2P4E90oCPC3ECGhv26TPF2uIjGFO36Nrb00=;
- b=Kkk7prSNOAUoDJdJuH3D6POUiK7GI0kXQ7PZUHu3GSR49CNARMwLerYT5Sw512NvuSY710
- 20QQWea7SIMBcPcSxFLOv4YYo5Y/kwk33xPpwSarKDluoA1R01Tlvema9hsNp3NhP2NJOW
- qhfdtQBsZypHZqEkNGcy0fgBlI0LXzg=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581949360; a=rsa-sha256; cv=none;
- b=VFVPnryHCQ87OR2v3lwM1qoYj1oxIIlRb/moKmk1cTunGMwPMYbN3CRU7fEtdfrI8TKyfF
- V+/vpJgiYWy5KMe4uc7pRfo+yAXXl852XJ/r0PU+Nf+jw/ez4UeePLdV4Ld9DRI2sqaVII
- /7R4f0C5cKPZV4tlZ9Ll1Zhh6uNos/o=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ dkim-signature; bh=Up3NXkZ9MtOum0S7bVKL3huOyiNJmhlgLtMxveQ6vXs=;
+ b=jNcg7L1AG+HxBMr+IZcbwX1WSN5RpOoUG0LgiZ4ft9qZUOLR6fxiF9Xo2GU0ktjwOXIvmP
+ d0D1V+VVbXyK4Wb6tFNUdZXfmVTRL5/kqX3rYR+7P/JAid29KfIrG4JRXSgNMooobgrVri
+ mbQ+yAKvZkqF5Cqb3TZnACSMOdLKCEw=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581975622; a=rsa-sha256; cv=none;
+ b=LFXSdiqo3udFQRJ5D1TYqa9vbg5IgLtta31em8ckSJMj/rG8W3EsiMT3qGd7wYL3mxLyiE
+ OVNf1fXEfYk7hiky+8MeBWw2TF8JZnhd/gGXqvC4xUmmryku4QRbfYlNdAQxjv1+iD8VKe
+ GmWi8igatSEGqeKOEIeaxzWZ6k87KWM=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=xAEpeKKp;
- spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ dkim=pass header.d=embeddedor.com header.s=default header.b=fQRsoHfi;
+ spf=pass (diktynna.open-mesh.org: domain of gustavo@embeddedor.com designates
+ 192.185.47.79 as permitted sender) smtp.mailfrom=gustavo@embeddedor.com
+X-Mailman-Approved-At: Mon, 17 Feb 2020 22:42:50 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,52 +95,57 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com,
- Hillf Danton <hdanton@sina.com>,
- syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org,
+ linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-A transmission scheduling for an interface which is currently dropped by
-batadv_iv_ogm_iface_disable could still be in progress. The B.A.T.M.A.N. V
-is simply cancelling the workqueue item in an synchronous way but this is
-not possible with B.A.T.M.A.N. IV because the OGM submissions are
-intertwined.
+The current codebase makes use of the zero-length array language
+extension to the C90 standard, but the preferred mechanism to declare
+variable-length types such as these ones is a flexible array member[1][2],
+introduced in C99:
 
-Instead it has to stop submitting the OGM when it detect that the buffer
-pointer is set to NULL.
+struct foo {
+        int stuff;
+        struct boo array[];
+};
 
-Reported-by: syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
-Reported-by: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
-Fixes: c6c8fea29769 ("net: Add batman-adv meshing protocol")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+By making use of the mechanism above, we will get a compiler warning
+in case the flexible array does not occur last in the structure, which
+will help us prevent some kind of undefined behavior bugs from being
+inadvertently introduced[3] to the codebase from now on.
+
+Also, notice that, dynamic memory allocations won't be affected by
+this change:
+
+"Flexible array members have incomplete type, and so the sizeof operator
+may not be applied. As a quirk of the original implementation of
+zero-length arrays, sizeof evaluates to zero."[1]
+
+This issue was found with the help of Coccinelle.
+
+[1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
+[2] https://github.com/KSPP/linux/issues/21
+[3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
+
+Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
 ---
-Cc: Hillf Danton <hdanton@sina.com>
+ net/batman-adv/distributed-arp-table.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I had this one in the pipeline but didn't find the time to correctly test
-it. You already send your one to syzkaller - do you want to rework your one
-(to also catch the broken submission on the same interface) and submit it?
-Or is this patch also ok for you? If it is, do you want to be mentioned in
-some way or form in this patch?
----
- net/batman-adv/bat_iv_ogm.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 5b0b20e6..bd514c36 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -789,6 +789,10 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
+diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
+index 3d21dd83f8cc..b85da4b7a77b 100644
+--- a/net/batman-adv/distributed-arp-table.c
++++ b/net/batman-adv/distributed-arp-table.c
+@@ -88,7 +88,7 @@ struct batadv_dhcp_packet {
+ 	__u8 sname[64];
+ 	__u8 file[128];
+ 	__be32 magic;
+-	__u8 options[0];
++	__u8 options[];
+ };
  
- 	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
- 
-+	/* interface already disabled in batadv_iv_ogm_iface_disable */
-+	if (!*ogm_buff)
-+		return;
-+
- 	/* the interface gets activated here to avoid race conditions between
- 	 * the moment of activating the interface in
- 	 * hardif_activate_interface() where the originator mac is set and
+ #define BATADV_DHCP_YIADDR_LEN sizeof(((struct batadv_dhcp_packet *)0)->yiaddr)
 -- 
-2.20.1
+2.25.0
 
