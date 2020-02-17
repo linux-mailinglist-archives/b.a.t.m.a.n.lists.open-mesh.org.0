@@ -2,83 +2,49 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ADA9161246
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Feb 2020 13:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A98F7161470
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Feb 2020 15:22:43 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 2E72A80742;
-	Mon, 17 Feb 2020 13:43:47 +0100 (CET)
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com
- [IPv6:2607:f8b0:4864:20::544])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id E7135801FB
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Feb 2020 13:05:35 +0100 (CET)
-Received: by mail-pg1-x544.google.com with SMTP id z7so9022527pgk.7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Feb 2020 04:05:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=E4kMIrPNCiyRmgWZhxYZuFBKw4V0voF4y3zqsgP+Bx8=;
- b=AjudUUl8bP457vmLEn8jzTV/8BjAFYLhRqQXTc79xuDnZY1eo3TRrvzB2YGEMbvLT7
- UIv4Hhl2OEVYIfYUWECPHSVBKs2rkqRl+v8qd0QPTlEUYCoMxs3BZXaCCV7htJir9cSY
- P/kY0eSDVSH+iALQRmfCw3WMbZMGTo4mQC9tEB8sy7rhWRG3A+4265uZVtAFCkzD21Ah
- 9Aoi5xP2qvwE4XSzkGgH1fn6TcBfVX2C/aBtOVd7eDyB9rObsZM2boT3jLVEgvXN/Nbq
- DIo9gfPWLL/Yh5BE6QnzQL4WTrwlJ/DOUhRyBuVqHwTaWEiDf9CJ4PA1Bug15bVIDudS
- pCYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=E4kMIrPNCiyRmgWZhxYZuFBKw4V0voF4y3zqsgP+Bx8=;
- b=NNIpcxhTb+3wg1U1ZGvioIZgA0ZDunVX0ILgv5F5I+hUDmVCHq6XozWYxSyjm/u7sZ
- yH4h7NhC8lAU8bAVqjuVsLrui3hePWs24+PYYn5KIZLbfJzkRYzP15B8/HoxBKLon9Ni
- 8q3vyrBK+E94Vk1xzHwCJROvkqwRvrf5qiLuube79ADCw59pCEdJ1whF1BQFmV8EyLqt
- j8IEEfQn1YJMJQptWigd7Q/04FV/JQzTaFITWqhT0xP7DyWsKEQ3OwpTInd8g4u3SNDm
- fI1bi0dAJP8QSzv142hLTIxLIrnN7RoTJ84kEuwu1WUXxwEzEqBOg7OR0bwliFIPyma0
- 1nvw==
-X-Gm-Message-State: APjAAAXAJF5JnctVkfMp3viP7d/yhZBtxDgUFD+ekO+QspOL3NNvEXKy
- K4fVkL+hfMYIA380/Qtv/Q==
-X-Google-Smtp-Source: APXvYqyDFaAFJ2xtas+m18JCGS6zRjMUeJs00Ho6bHth9PbfxctixNvC0pC7ga6HGg9pYbnN4j/oyA==
-X-Received: by 2002:a17:90a:bc41:: with SMTP id
- t1mr19422318pjv.137.1581941134218; 
- Mon, 17 Feb 2020 04:05:34 -0800 (PST)
-Received: from madhuparna-HP-Notebook
- ([2402:3a80:1ee0:fe92:14b2:4950:fe83:57e])
- by smtp.gmail.com with ESMTPSA id d2sm377070pjv.18.2020.02.17.04.05.28
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 17 Feb 2020 04:05:33 -0800 (PST)
-From: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
-X-Google-Original-From: Madhuparna Bhowmik <change_this_user_name@gmail.com>
-Date: Mon, 17 Feb 2020 17:35:25 +0530
-To: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH] net: batman-adv: Use built-in RCU list checking
-Message-ID: <20200217120524.GA12888@madhuparna-HP-Notebook>
-References: <20200216144718.2841-1-madhuparnabhowmik10@gmail.com>
- <1634394.jP7ydfi60B@sven-edge>
- <20200216155243.GB4542@madhuparna-HP-Notebook>
- <14125758.fD4hS3u3Vl@sven-edge>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <14125758.fD4hS3u3Vl@sven-edge>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581941135;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B422D806E4;
+	Mon, 17 Feb 2020 15:22:42 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 0805280038
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Feb 2020 15:22:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1581949006;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=E4kMIrPNCiyRmgWZhxYZuFBKw4V0voF4y3zqsgP+Bx8=;
- b=MuSVTvWRAblMXVAUiWaGU2Ic2OpnRaZRQ8WwimYsCIaYeb+U810hVHlinC3y9lBkYovxzr
- zvIUFrXQH3MIgAOOscQke5TFYAj7BDWgPOsfQxeTZG7e5AwhM6kx4BXIcl5obrlKrD3iAM
- O2S2nh4/kNDs1k4UeYaaA14AWzzlmb0=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581941135; a=rsa-sha256; cv=none;
- b=lAuBVnfD26otujIaj+iIuqtlvVTZj7MNfG+zE4T+JZNCQAU/Ofgn48i63xh1dBB/2UKH6o
- yYQrJQ+d/Wvi2Tt8DICUFHlsFMy9ozzmrWkxiuc5KnxHdB9wwIOS+S6S60LSexmK41/Esp
- K7RRgsKhcUH+VklZCCVImVFEbTxuOQI=
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=+eRxoRzo2P4E90oCPC3ECGhv26TPF2uIjGFO36Nrb00=;
+ b=xAEpeKKptINzXjx251JsKgvxIdtvrLxapbl02fnk0bM1tBbwiubaZz7AtZrXL+FkBDaFT0
+ GRKCp3b9R1FejbpthjjXDHd0Jy7FO89t+2uf3w7cIg9b0G/IG8wLH76/KL7mkIu5cPN5hn
+ tlJXaMgRaP+FpEeOL3T0m9Knf8K1zP8=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH maint] batman-adv: Don't schedule OGM for disabled interface
+Date: Mon, 17 Feb 2020 15:16:41 +0100
+Message-Id: <20200217141641.26999-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1581949360;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:dkim-signature;
+ bh=+eRxoRzo2P4E90oCPC3ECGhv26TPF2uIjGFO36Nrb00=;
+ b=Kkk7prSNOAUoDJdJuH3D6POUiK7GI0kXQ7PZUHu3GSR49CNARMwLerYT5Sw512NvuSY710
+ 20QQWea7SIMBcPcSxFLOv4YYo5Y/kwk33xPpwSarKDluoA1R01Tlvema9hsNp3NhP2NJOW
+ qhfdtQBsZypHZqEkNGcy0fgBlI0LXzg=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581949360; a=rsa-sha256; cv=none;
+ b=VFVPnryHCQ87OR2v3lwM1qoYj1oxIIlRb/moKmk1cTunGMwPMYbN3CRU7fEtdfrI8TKyfF
+ V+/vpJgiYWy5KMe4uc7pRfo+yAXXl852XJ/r0PU+Nf+jw/ez4UeePLdV4Ld9DRI2sqaVII
+ /7R4f0C5cKPZV4tlZ9Ll1Zhh6uNos/o=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=gmail.com header.s=20161025 header.b=AjudUUl8;
- spf=pass (diktynna.open-mesh.org: domain of madhuparnabhowmik10@gmail.com
- designates 2607:f8b0:4864:20::544 as permitted sender)
- smtp.mailfrom=madhuparnabhowmik10@gmail.com
-X-Mailman-Approved-At: Mon, 17 Feb 2020 13:43:39 +0100
+ dkim=pass header.d=narfation.org header.s=20121 header.b=xAEpeKKp;
+ spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,39 +59,52 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: mareklindner@neomailbox.ch, netdev@vger.kernel.org,
- b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc, linux-kernel@vger.kernel.org,
- frextrite@gmail.com, Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>,
- joel@joelfernandes.org, linux-kernel-mentees@lists.linuxfoundation.org,
- davem@davemloft.net
+Cc: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com,
+ Hillf Danton <hdanton@sina.com>,
+ syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Sun, Feb 16, 2020 at 05:17:36PM +0100, Sven Eckelmann wrote:
-> On Sunday, 16 February 2020 16:52:44 CET Madhuparna Bhowmik wrote:
-> [...]
-> > > I understand this part. I was asking how you've identified them. Did you use 
-> > > any tool for that? coccinelle, sparse, ...
-> > 
-> > Not really, I did it manually by inspecting each occurence.
-> 
-> In that case, I don't understand why you didn't convert the occurrences from 
-> hlist_for_each_entry_rcu to hlist_for_each_entry [1]. Because a manual
-> inspection should have noticed that there will always be the lock around
-> these ones.
->
-Hi Sven,
-I have been working on similar issues (passing cond argument to
-list_for_each_entry_Rcu()). That's why may be I didn't notice that in
-this case rcu variant is not required.
-Thank you for taking a closer look and fixing it the right way.
+A transmission scheduling for an interface which is currently dropped by
+batadv_iv_ogm_iface_disable could still be in progress. The B.A.T.M.A.N. V
+is simply cancelling the workqueue item in an synchronous way but this is
+not possible with B.A.T.M.A.N. IV because the OGM submissions are
+intertwined.
 
-Regards,
-Madhuparna
+Instead it has to stop submitting the OGM when it detect that the buffer
+pointer is set to NULL.
 
-> KInd regards,
-> 	Sven
-> 
-> [1] https://www.kernel.org/doc/html/v5.6-rc1/RCU/whatisRCU.html#analogy-with-reader-writer-locking
+Reported-by: syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
+Reported-by: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
+Fixes: c6c8fea29769 ("net: Add batman-adv meshing protocol")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+Cc: Hillf Danton <hdanton@sina.com>
 
+I had this one in the pipeline but didn't find the time to correctly test
+it. You already send your one to syzkaller - do you want to rework your one
+(to also catch the broken submission on the same interface) and submit it?
+Or is this patch also ok for you? If it is, do you want to be mentioned in
+some way or form in this patch?
+---
+ net/batman-adv/bat_iv_ogm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
+index 5b0b20e6..bd514c36 100644
+--- a/net/batman-adv/bat_iv_ogm.c
++++ b/net/batman-adv/bat_iv_ogm.c
+@@ -789,6 +789,10 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
+ 
+ 	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
+ 
++	/* interface already disabled in batadv_iv_ogm_iface_disable */
++	if (!*ogm_buff)
++		return;
++
+ 	/* the interface gets activated here to avoid race conditions between
+ 	 * the moment of activating the interface in
+ 	 * hardif_activate_interface() where the originator mac is set and
+-- 
+2.20.1
 
