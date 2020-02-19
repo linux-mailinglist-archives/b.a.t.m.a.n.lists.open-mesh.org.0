@@ -1,47 +1,70 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A8541621FB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 18 Feb 2020 09:03:59 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 589DB163D55
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 19 Feb 2020 07:58:56 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 43B6C8070B;
-	Tue, 18 Feb 2020 09:03:58 +0100 (CET)
-Received: from r3-20.sinamail.sina.com.cn (r3-20.sinamail.sina.com.cn
- [202.108.3.20])
- by diktynna.open-mesh.org (Postfix) with SMTP id 0EDFB8010F
- for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 18 Feb 2020 03:13:13 +0100 (CET)
-Received: from unknown (HELO localhost.localdomain)([222.131.68.206])
- by sina.com with ESMTP
- id 5E4B483300004579; Tue, 18 Feb 2020 10:13:09 +0800 (CST)
-X-Sender: hdanton@sina.com
-X-Auth-ID: hdanton@sina.com
-X-SMAIL-MID: 73265715073490
-From: Hillf Danton <hdanton@sina.com>
-To: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH maint] batman-adv: Don't schedule OGM for disabled
- interface
-Date: Tue, 18 Feb 2020 10:12:58 +0800
-Message-Id: <20200218021258.12216-1-hdanton@sina.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 56CE5805B2;
+	Wed, 19 Feb 2020 07:58:54 +0100 (CET)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id D91DE800C9
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 19 Feb 2020 03:08:02 +0100 (CET)
+Received: by mail-io1-f69.google.com with SMTP id d13so15328550ioc.3
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 18 Feb 2020 18:08:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to:content-transfer-encoding;
+ bh=4diWwWLXm7lY/GHl3gvscC/1M0a1R7YH2cSj9Fw5eHQ=;
+ b=BisKaW+1BBocv45My1YFLMGK2LsnjYm4SAlVTru7dN1zbO0Izr15UVBwfoYiANnbyz
+ gKFDU/G3itVppAIRRw4yPLOmGjqf5IQJLjgMcnIaPNF3ffz7lCNFinZvozxUc2iI4p2b
+ feSSpUdGkg/wczsoWn4nq5US/P32Xbs0HW3teC7KHQF5hOAwIuzDcbeqBCkmRugL7YTy
+ MF7wCeoqPUiDP3YI1EHpYLOp0Oow6heiYr0RWl3lZ8Oel0nGwtFwuHe5eoGOT7Ojnx8d
+ c8M1nG2PcngwIq56hINHgLxD36DFSvJhyIvQ2y4Ltb50+AjXWaTFIjLCR7Jp6ubWgs3U
+ 4Rpw==
+X-Gm-Message-State: APjAAAV9E9L5nyZQkfrP9zOPw1+R0gdKejsT7scdLzf6P3uMwNLlcc3U
+ 2Jl2vdIT8DWABUO4YS9mWqjPjLNco3DMrTtCgkVY/xNwf8Nu
+X-Google-Smtp-Source: APXvYqzdxPP1bcYe7a4xOJJ2PZvwgFfZkFkliW3rcWAp+NO+QUzOk5XyZt5pyzhMqqramXLk6gwjJUtyolpYMy0PBvZtFLrsOuX6
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Received: by 2002:a92:15c2:: with SMTP id 63mr22276770ilv.111.1582078081462; 
+ Tue, 18 Feb 2020 18:08:01 -0800 (PST)
+Date: Tue, 18 Feb 2020 18:08:01 -0800
+In-Reply-To: <000000000000bb0378059c865fdf@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000000d774c059ee442e6@google.com>
+Subject: Re: KASAN: use-after-free Read in bitmap_ip_destroy
+From: syzbot <syzbot+8b5f151de2f35100bbc5@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, coreteam@netfilter.org, 
+ davem@davemloft.net, florent.fourcot@wifirst.fr, fw@strlen.de, 
+ jeremy@azazel.net, johannes.berg@intel.com, kadlec@blackhole.kfki.hu, 
+ kadlec@netfilter.org, linux-kernel@vger.kernel.org, lipeng321@huawei.com, 
+ mareklindner@neomailbox.ch, netdev@vger.kernel.org, 
+ netfilter-devel@vger.kernel.org, pablo@netfilter.org, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com, tanhuazhong@huawei.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1581991994;
+ s=20121; t=1582078082;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=EvEk7OMlXEwMQ0W3wewQkJ1HJ3Tg2CBHf2LVN/aitd0=;
- b=b7QyVJ9jnWFtQR+GMnEsVC10LayfhiNi34S0Bgu4Nq50kKl+57cZtjCaqQEugRBdoHYfR/
- mKh+tpm9sZaoxuP+pEUgSUm2Lcu5tvVrQFwJBiaQ+N4y29N9hf5tLOvjM6pOeL6KL+J5qU
- 1qo5fhr7rFRT53RIcGEFK0Ij1AV2tvU=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1581991994; a=rsa-sha256; cv=none;
- b=MGI6VQOvu8EAWalC9UL9Ui2WV7QPa++dULZ0KihCYpDh8agiimRhoreerIOpyf1kE+/9e6
- ohv0yIoE/RKtyvFyVx9+ftiurAYVaHxBydOEDdD8iSgNIWzlSc0MYQTA3QkhqONWb6ukiS
- ZUJH3p09CiXWOnnwUUvzZ1lMpx3isAY=
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to; bh=4diWwWLXm7lY/GHl3gvscC/1M0a1R7YH2cSj9Fw5eHQ=;
+ b=W2AA4slW8yZzaXU0gePlnlrrAMGUybav21ij5CEJmeYI7ioJLND7oeqhHsnW+vTfJ9dQPf
+ C6Y/in0gnIZkCMsF5EyqxGJ4brEzjTsGcMUCVqEArYrFa7HWNBtIhrIK24YBoz2LYHtFpT
+ TSX9RQLMXZx9DIaOozjL/pWF/GKkclo=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582078082; a=rsa-sha256; cv=none;
+ b=tqWmwf6hn0ebKuMzhYr4pULETU0+KoIwU6mBI2H3ZaJ8wSge+2JKMq7KhixuiXyS53ryLj
+ WwVEVTNVx4CjT2NMqSlxieAEJisFYFd5BYU8CJRn9M5Cyp9bf7VQdq09V5ohF2X09r0BKy
+ g1RwaQC0DRX3LmB3TkCxr4VetpaGp4w=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
- spf=pass (diktynna.open-mesh.org: domain of hdanton@sina.com designates
- 202.108.3.20 as permitted sender) smtp.mailfrom=hdanton@sina.com
-X-Mailman-Approved-At: Tue, 18 Feb 2020 09:03:56 +0100
+ spf=pass (diktynna.open-mesh.org: domain of
+ 3gZhMXgkbANwQWXI8JJCP8NNGB.EMMEJCSQCPAMLRCLR.AMK@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.69 as permitted sender)
+ smtp.mailfrom=3gZhMXgkbANwQWXI8JJCP8NNGB.EMMEJCSQCPAMLRCLR.AMK@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Wed, 19 Feb 2020 07:58:52 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +79,33 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Hillf Danton <hdanton@sina.com>,
- "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>,
- "syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com"
- <syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com>,
- "syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com"
- <syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
+syzbot suspects this bug was fixed by commit:
 
-On Mon, 17 Feb 2020 22:16:59 +0800 Sven Eckelmann wrote:
-> 
-> A transmission scheduling for an interface which is currently dropped by
-> batadv_iv_ogm_iface_disable could still be in progress. The B.A.T.M.A.N. V
-> is simply cancelling the workqueue item in an synchronous way but this is
-> not possible with B.A.T.M.A.N. IV because the OGM submissions are
-> intertwined.
-> 
-> Instead it has to stop submitting the OGM when it detect that the buffer
-> pointer is set to NULL.
-> 
-> Reported-by: syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
-> Reported-by: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
-> Fixes: c6c8fea29769 ("net: Add batman-adv meshing protocol")
-> Signed-off-by: Sven Eckelmann <sven@narfation.org>
-> ---
-> Cc: Hillf Danton <hdanton@sina.com>
-> 
-> I had this one in the pipeline but didn't find the time to correctly test
-> it. You already send your one to syzkaller - do you want to rework your one
-> (to also catch the broken submission on the same interface) and submit it?
-> Or is this patch also ok for you? If it is, do you want to be mentioned in
+commit 32c72165dbd0e246e69d16a3ad348a4851afd415
+Author: Kadlecsik J=C3=B3zsef <kadlec@blackhole.kfki.hu>
+Date:   Sun Jan 19 21:06:49 2020 +0000
 
-Your work looks better, thanks :P
-And a Cc is more than enough.
+    netfilter: ipset: use bitmap infrastructure completely
 
-Hillf
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D17fc79b5e000=
+00
+start commit:   8f8972a3 Merge tag 'mtd/fixes-for-5.5-rc7' of git://git.ke.=
+.
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dcfbb8fa33f49f9f=
+3
+dashboard link: https://syzkaller.appspot.com/bug?extid=3D8b5f151de2f35100b=
+bc5
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D12e22559e0000=
+0
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D16056faee00000
 
-> some way or form in this patch?
-> ---
->  net/batman-adv/bat_iv_ogm.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-> index 5b0b20e6..bd514c36 100644
-> --- a/net/batman-adv/bat_iv_ogm.c
-> +++ b/net/batman-adv/bat_iv_ogm.c
-> @@ -789,6 +789,10 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
-> 
->  	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
-> 
-> +	/* interface already disabled in batadv_iv_ogm_iface_disable */
-> +	if (!*ogm_buff)
-> +		return;
-> +
->  	/* the interface gets activated here to avoid race conditions between
->  	 * the moment of activating the interface in
->  	 * hardif_activate_interface() where the originator mac is set and
-> --
-> 2.20.1
+If the result looks correct, please mark the bug fixed by replying with:
 
+#syz fix: netfilter: ipset: use bitmap infrastructure completely
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisectio=
+n
