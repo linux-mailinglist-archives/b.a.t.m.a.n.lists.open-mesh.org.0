@@ -1,75 +1,68 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE61916BA45
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 25 Feb 2020 08:14:07 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC01172230
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Feb 2020 16:25:17 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C0BF68071D;
-	Tue, 25 Feb 2020 08:14:06 +0100 (CET)
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id E41998003D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 24 Feb 2020 23:47:02 +0100 (CET)
-Received: by mail-ed1-x543.google.com with SMTP id v28so13865874edw.12
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 24 Feb 2020 14:47:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paul-moore-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IiEfOHCrh6zWQVm34gh4O8v2Un9u1uyhgcdvK71qZmY=;
- b=CroVqUi7mIIS7wL8nV78oVXOVovbLpfhD/u/2t3d2nfMCOWhxPe3VMYEVuTYeVyqG1
- ZTijB0v0aZ/Xe5zpPggXKkMyXFYkBjEgh2uddniuE8SilGKtNxFK8Bk1iXDUrzXFHa8q
- TRuR+8K/3NxLu1uARxS7/yYn4EQV0taV0ke8D3n6Yapg6UKSNDG0VMeiy1wt92RG1BWP
- ZvHR21B7B7CFDmXP0McRMNoPXJg0UojQpOhH48jPZAxCZJxrPiloskjyhRCL89zp2YqA
- vQOgTKa7bn+l6kTA5gEZ6TfUE+eLoP1mJFfwEx0G0TcrYjahZYW5oivzdEaEy4OEqXre
- tX/w==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E43B68067B;
+	Thu, 27 Feb 2020 16:25:16 +0100 (CET)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 0D9EC800EC
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 16:14:01 +0100 (CET)
+Received: by mail-wm1-x332.google.com with SMTP id t23so4010899wmi.1
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 07:14:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=tivhq+y5CVW+PBD1BTXe8Dk35F95Crr5VDp5Yugzmq8=;
+ b=oZ01RYgaSoemVrmwBLmern3/GAi7WJ2Yk9Zc+wBjU/7qitdUPKeXj1e0xZp7is2xnk
+ TtvVqH6vp/xHbMISUcExJPyL6Xed48hvOoWQkGqGl6oZVG6csfOH04k1cOH4Ni/QiCS6
+ F5saI7PAXwvmOGaaH9nB98iJyD4rXOObG8ghuyMthRPR+9zCFjGKldm8o+g0ZC57ivDk
+ 9SqPHeretCw3zXWyhgCQxbkCy5/G8WOtRlo3GhSFN9/g3x6CY66qko3cVNvMksG1jnDw
+ 1atBfwGlzH7TkIaQJiTGDxrJtiLyJRoMldtvbHBezPKArKnYHAsteB4iImMw+L9md0fk
+ A0HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IiEfOHCrh6zWQVm34gh4O8v2Un9u1uyhgcdvK71qZmY=;
- b=Vj0Y/Fl0x86EXkD5Tp9/QK3Pl4apesKoGZiK1W4cEN829AvLkPx3OwvBiQhpMATxtq
- rU0YR3/j4T1geWlRrLTjqMX9m64yX/DNLn0mQBEiv79973c3BiSJ//nB/+nb8vhxkHlW
- pModGxUxSv6Aei7GX14Ritz/xxp3k8qSQcPmAOKGsa6KXdZDNNQsZTm0dDccfSNhw6Wq
- CYqz/xc+wzjqds/ZGi+8jll/H1/ZYf8CVbcvXlEkaY8+Tb2E4PENxUYSW5qhEC0zf/Ml
- R5bCaOTl4J33upWQdorXaCfIzkx9OzhAnAT2c7Cy5cwDH0SXJV7UnPlogim8fG+G8eAH
- IsRg==
-X-Gm-Message-State: APjAAAWcep7mJ+CNBeJtNI1l0TBzMxWH2/zyf4S9M/Af/67MagQc3gl/
- 0GskMsUChiak16nSK9Wc6B2SFde+OeS+nhEMWpXpnl4=
-X-Google-Smtp-Source: APXvYqyoEHk7Xyx5zXdxxgh2THrTubUE2a7R58KdpvBAlLT9giKcRzhphu4hO4d4zL35ZHuLq9wq3CyiOiQrMTUn+N0=
-X-Received: by 2002:a50:a7a5:: with SMTP id i34mr49474602edc.128.1582584422397; 
- Mon, 24 Feb 2020 14:47:02 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=tivhq+y5CVW+PBD1BTXe8Dk35F95Crr5VDp5Yugzmq8=;
+ b=BHNm+izS6CdcH9fHizYkM1Ao4MFHvXBARQ5cuhGNMxYjRSo3u6pfpMwUGC8bGUKmgv
+ ocXiXWsUalwJT6mcYvcghNTrddnN/qSsPgaxlonsvN0nVbsAzL5g2lKO0HsjEIPW22I4
+ ICu5oQcNL/QWif9sToM808muste3G5hn+1lYi6iwfdeV9KN+ve5YTIihvRGSLpwbD6k8
+ a0r4kd/LZ4YUVKkgZc3Fz3vLYh2gFCf4WmefFstqNiiV+UVi0dzuuwVmzFnoiXHrJrk+
+ 5ingZU5DAmyYBycDNRGTea4OvFz9WcKnLvL3vF3rsr8LcuJOkBPOvzOn6v+1BpwX/yLu
+ cNDg==
+X-Gm-Message-State: APjAAAUl2ch7sQO4FjUE00tQ4drDksBlztLQ0xR//3ej2xLJVVcSx6hL
+ QcuXAPHR4/mfjjV3vd+a3f1ll2qiilMkNo2hYlvmgFTqVg==
+X-Google-Smtp-Source: APXvYqw7ol1tzedsUok3grWJKMIrQr9CYSsdzqrLwjBkX2SsqqqLLx+WThruRDP4VjgjfGHDVjYgctQtSJnAuUSpfHc=
+X-Received: by 2002:a05:600c:21c6:: with SMTP id
+ x6mr5611726wmj.17.1582816440327; 
+ Thu, 27 Feb 2020 07:14:00 -0800 (PST)
 MIME-Version: 1.0
-References: <0000000000003cbb40059f4e0346@google.com>
- <CAHC9VhQVXk5ucd3=7OC=BxEkZGGLfXv9bESX67Mr-TRmTwxjEg@mail.gmail.com>
- <17916d0509978e14d9a5e9eb52d760fa57460542.camel@redhat.com>
-In-Reply-To: <17916d0509978e14d9a5e9eb52d760fa57460542.camel@redhat.com>
-From: Paul Moore <paul@paul-moore.com>
-Date: Mon, 24 Feb 2020 17:46:50 -0500
-Message-ID: <CAHC9VhQnbdJprbdTa_XcgUJaiwhzbnGMWJqHczU54UMk0AFCtw@mail.gmail.com>
-Subject: Re: kernel panic: audit: backlog limit exceeded
-To: Eric Paris <eparis@redhat.com>
+From: Zach Barnett <zacharyc.barnett@gmail.com>
+Date: Thu, 27 Feb 2020 10:13:48 -0500
+Message-ID: <CANdV1hR-=nwrXkZTAh7C9LjW7MRbxEPeCpV4V7odiUV2dk0QcA@mail.gmail.com>
+Subject: Node AP's
+To: b.a.t.m.a.n@lists.open-mesh.org
 Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1582584423;
+ s=20121; t=1582816441;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=IiEfOHCrh6zWQVm34gh4O8v2Un9u1uyhgcdvK71qZmY=;
- b=qYxU4nus3r0eeBsSrxVsJARo68W9UGsIYGqLxI/Ue1QxA7zKQL85WlhiEHeXVwhw71j6w1
- xIRtg5WWkJofMk/bKkkr312FPyzKytWUFSXzQadIg+OcyHsRwRsLPEDFZj8/Dj3/7oJAJA
- NAYflUT65iZWcSC6hVaKBjkSxjaNGjo=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582584423; a=rsa-sha256; cv=none;
- b=cRUNpxs8h33WZJSMCYsxQYDqTGRJzJbBRq446Vuc5KIBuXbNtXJiUGkFeWxv+qGBEv+0xp
- TxIU621USmNZfkrVDGI+1lZZay9/mJKoNpDyzkljImh+aJjbOfuPZ3rwjXB8A7cMMenQGL
- 9h7Qz1MjFEY1BaOXpNnesYz2Y+kDpI4=
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ dkim-signature; bh=tivhq+y5CVW+PBD1BTXe8Dk35F95Crr5VDp5Yugzmq8=;
+ b=NEA8OztWV5WMoGI8f47R9nX9jHEK5Qg4y7LgwvXF6qZBYGocSkDjXdpsUD96RgDsXZ+bw5
+ bOI8GVNUy59uzWLAbCGeEMfs6e0KGLBvbEg9txApv9MW1w483tlonCIW1OtDeRssX0m8ZX
+ vqAyIUnhzQqVcTnAHXdwZSWE5KFqF+I=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582816441; a=rsa-sha256; cv=none;
+ b=2h16xZBHLU9nebZCpQx7h+81pXYwNXtMl/mftB1Nao2oRs5W2G+7j4LzY2+bWVmNKwhQTI
+ PyD2Cgak9fjNtBNmGpJ7suDrqVy6g7NSCt2/Pnbu18lMUEE8v4WWAXCnF82gvHPLd/I/bJ
+ Xoq4i4lM3KtVR9JD9+FCVO6heM+j/Ys=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=paul-moore-com.20150623.gappssmtp.com header.s=20150623
- header.b=CroVqUi7; 
- spf=none (diktynna.open-mesh.org: domain of paul@paul-moore.com has no SPF
- policy when checking 2a00:1450:4864:20::543)
- smtp.mailfrom=paul@paul-moore.com
-X-Mailman-Approved-At: Tue, 25 Feb 2020 08:13:46 +0100
+ dkim=pass header.d=gmail.com header.s=20161025 header.b=oZ01RYga;
+ spf=pass (diktynna.open-mesh.org: domain of zacharycbarnett@gmail.com
+ designates 2a00:1450:4864:20::332 as permitted sender)
+ smtp.mailfrom=zacharycbarnett@gmail.com
+X-Mailman-Approved-At: Thu, 27 Feb 2020 16:25:14 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,134 +77,23 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: mareklindner@neomailbox.ch, gregkh@linuxfoundation.org,
- b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc, linux-kernel@vger.kernel.org,
- davem@davemloft.net, syzkaller-bugs@googlegroups.com, linux-audit@redhat.com,
- netdev@vger.kernel.org, john.hammond@intel.com, fzago@cray.com,
- syzbot <syzbot+9a5e789e4725b9ef1316@syzkaller.appspotmail.com>,
- dan.carpenter@oracle.com
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Mon, Feb 24, 2020 at 5:43 PM Eric Paris <eparis@redhat.com> wrote:
-> https://syzkaller.appspot.com/x/repro.syz?x=151b1109e00000 (the
-> reproducer listed) looks like it is literally fuzzing the AUDIT_SET.
-> Which seems like this is working as designed if it is setting the
-> failure mode to 2.
+I looking for clarification about the following question
 
-So it is, good catch :)  I saw the panic and instinctively chalked
-that up to a mistaken config, not expecting that it was what was being
-tested.
+How can I connect non-mesh clients to my batman-adv network ?
+Does this mean that for an existing batman node to allow non-mesh
+clients to join (I.E. cell phone, wifi camera, etc..), then 2
+interfaces are required?
 
-> On Mon, 2020-02-24 at 17:38 -0500, Paul Moore wrote:
-> > On Mon, Feb 24, 2020 at 3:18 AM syzbot
-> > <syzbot+9a5e789e4725b9ef1316@syzkaller.appspotmail.com> wrote:
-> > > Hello,
-> > >
-> > > syzbot found the following crash on:
-> > >
-> > > HEAD commit:    36a44bcd Merge branch 'bnxt_en-shutdown-and-kexec-
-> > > kdump-re..
-> > > git tree:       net
-> > > console output:
-> > > https://syzkaller.appspot.com/x/log.txt?x=148bfdd9e00000
-> > > kernel config:
-> > > https://syzkaller.appspot.com/x/.config?x=768cc3d3e277cc16
-> > > dashboard link:
-> > > https://syzkaller.appspot.com/bug?extid=9a5e789e4725b9ef1316
-> > > compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
-> > > syz repro:
-> > > https://syzkaller.appspot.com/x/repro.syz?x=151b1109e00000
-> > > C reproducer:
-> > > https://syzkaller.appspot.com/x/repro.c?x=128bfdd9e00000
-> > >
-> > > The bug was bisected to:
-> > >
-> > > commit 0c1b9970ddd4cc41002321c3877e7f91aacb896d
-> > > Author: Dan Carpenter <dan.carpenter@oracle.com>
-> > > Date:   Fri Jul 28 14:42:27 2017 +0000
-> > >
-> > >     staging: lustre: lustre: Off by two in lmv_fid2path()
-> > >
-> > > bisection log:
-> > > https://syzkaller.appspot.com/x/bisect.txt?x=17e6c3e9e00000
-> > > final crash:
-> > > https://syzkaller.appspot.com/x/report.txt?x=1416c3e9e00000
-> > > console output:
-> > > https://syzkaller.appspot.com/x/log.txt?x=1016c3e9e00000
-> > >
-> > > IMPORTANT: if you fix the bug, please add the following tag to the
-> > > commit:
-> > > Reported-by: syzbot+9a5e789e4725b9ef1316@syzkaller.appspotmail.com
-> > > Fixes: 0c1b9970ddd4 ("staging: lustre: lustre: Off by two in
-> > > lmv_fid2path()")
-> > >
-> > > audit: audit_backlog=13 > audit_backlog_limit=7
-> > > audit: audit_lost=1 audit_rate_limit=0 audit_backlog_limit=7
-> > > Kernel panic - not syncing: audit: backlog limit exceeded
-> > > CPU: 1 PID: 9913 Comm: syz-executor024 Not tainted 5.6.0-rc1-
-> > > syzkaller #0
-> > > Hardware name: Google Google Compute Engine/Google Compute Engine,
-> > > BIOS Google 01/01/2011
-> > > Call Trace:
-> > >  __dump_stack lib/dump_stack.c:77 [inline]
-> > >  dump_stack+0x197/0x210 lib/dump_stack.c:118
-> > >  panic+0x2e3/0x75c kernel/panic.c:221
-> > >  audit_panic.cold+0x32/0x32 kernel/audit.c:307
-> > >  audit_log_lost kernel/audit.c:377 [inline]
-> > >  audit_log_lost+0x8b/0x180 kernel/audit.c:349
-> > >  audit_log_start kernel/audit.c:1788 [inline]
-> > >  audit_log_start+0x70e/0x7c0 kernel/audit.c:1745
-> > >  audit_log+0x95/0x120 kernel/audit.c:2345
-> > >  xt_replace_table+0x61d/0x830 net/netfilter/x_tables.c:1413
-> > >  __do_replace+0x1da/0x950 net/ipv6/netfilter/ip6_tables.c:1084
-> > >  do_replace net/ipv6/netfilter/ip6_tables.c:1157 [inline]
-> > >  do_ip6t_set_ctl+0x33a/0x4c8 net/ipv6/netfilter/ip6_tables.c:1681
-> > >  nf_sockopt net/netfilter/nf_sockopt.c:106 [inline]
-> > >  nf_setsockopt+0x77/0xd0 net/netfilter/nf_sockopt.c:115
-> > >  ipv6_setsockopt net/ipv6/ipv6_sockglue.c:949 [inline]
-> > >  ipv6_setsockopt+0x147/0x180 net/ipv6/ipv6_sockglue.c:933
-> > >  tcp_setsockopt net/ipv4/tcp.c:3165 [inline]
-> > >  tcp_setsockopt+0x8f/0xe0 net/ipv4/tcp.c:3159
-> > >  sock_common_setsockopt+0x94/0xd0 net/core/sock.c:3149
-> > >  __sys_setsockopt+0x261/0x4c0 net/socket.c:2130
-> > >  __do_sys_setsockopt net/socket.c:2146 [inline]
-> > >  __se_sys_setsockopt net/socket.c:2143 [inline]
-> > >  __x64_sys_setsockopt+0xbe/0x150 net/socket.c:2143
-> > >  do_syscall_64+0xfa/0x790 arch/x86/entry/common.c:294
-> > >  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> > > RIP: 0033:0x44720a
-> > > Code: 49 89 ca b8 37 00 00 00 0f 05 48 3d 01 f0 ff ff 0f 83 1a e0
-> > > fb ff c3 66 0f 1f 84 00 00 00 00 00 49 89 ca b8 36 00 00 00 0f 05
-> > > <48> 3d 01 f0 ff ff 0f 83 fa df fb ff c3 66 0f 1f 84 00 00 00 00 00
-> > > RSP: 002b:00007ffd032dec78 EFLAGS: 00000286 ORIG_RAX:
-> > > 0000000000000036
-> > > RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 000000000044720a
-> > > RDX: 0000000000000040 RSI: 0000000000000029 RDI: 0000000000000003
-> > > RBP: 00007ffd032deda0 R08: 00000000000003b8 R09: 0000000000004000
-> > > R10: 00000000006d7b40 R11: 0000000000000286 R12: 00007ffd032deca0
-> > > R13: 00000000006d9d60 R14: 0000000000000029 R15: 00000000006d7ba0
-> > > Kernel Offset: disabled
-> > > Rebooting in 86400 seconds..
-> > >
-> > >
-> > > ---
-> > > This bug is generated by a bot. It may contain errors.
-> > > See https://goo.gl/tpsmEJ for more information about syzbot.
-> > > syzbot engineers can be reached at syzkaller@googlegroups.com.
-> > >
-> > > syzbot will keep track of this bug report. See:
-> > > https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-> > > For information about bisection process see:
-> > > https://goo.gl/tpsmEJ#bisection
-> > > syzbot can test patches for this bug, for details see:
-> > > https://goo.gl/tpsmEJ#testing-patches
-> >
-> > Similar to syzbot report 72461ac44b36c98f58e5, see my comments there.
-> >
->
+For example, if I have a pi-zero W in a wooded area, and I want a
+camera to connect to it, then do I need to add an additional usb
+network adapter to the Pi.  One Interface for the Bat0 Mesh and One
+interface an an entry point for non-mesh clients.
 
 
--- 
-paul moore
-www.paul-moore.com
+any information is greatly appreciated.
+
+Thanks
+Zach
