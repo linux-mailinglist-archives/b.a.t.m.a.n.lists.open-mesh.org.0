@@ -1,52 +1,133 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2077C1722E1
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Feb 2020 17:11:34 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF5D1731B4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Feb 2020 08:23:27 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id EC7AE80720;
-	Thu, 27 Feb 2020 17:11:32 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 1B4EC800A7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 17:11:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1582819889;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=HxtVLBU34AYqOvzNX3zR1S/myOsXgUwuKmadQMa3rQA=;
- b=nQUd2RvqBgI+mN91yYu7R2ge4fLu30KG1+dltbpQm65hH4T4ZQ6drp5elUWcAz2o79Jpt9
- 8TIiPCEOdZAuubXNiePjaWp0TxRNZqN9azMXzqUu3fSM7W41NxRsDgpai8KkfqpFyDWTUd
- MmSlpb/5VsJiZAJuTwQxXNjmZaSk9R8=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: Node AP's
-Date: Thu, 27 Feb 2020 17:11:23 +0100
-Message-ID: <5758265.JSquzJLQuT@bentobox>
-In-Reply-To: <CANdV1hR-=nwrXkZTAh7C9LjW7MRbxEPeCpV4V7odiUV2dk0QcA@mail.gmail.com>
-References: <CANdV1hR-=nwrXkZTAh7C9LjW7MRbxEPeCpV4V7odiUV2dk0QcA@mail.gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 79D5F80693;
+	Fri, 28 Feb 2020 08:23:26 +0100 (CET)
+Received: from gateway21.websitewelcome.com (gateway21.websitewelcome.com
+ [192.185.45.38])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 58D6F80013
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 21:04:08 +0100 (CET)
+Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
+ by gateway21.websitewelcome.com (Postfix) with ESMTP id 486E9400D4EE9
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 14:04:07 -0600 (CST)
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
+ id 7POBj0NIivBMd7POBjvwfJ; Thu, 27 Feb 2020 14:04:07 -0600
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=QuLua+QDclGaA7VF9OoztLEEN0VMtyjkqur/1lunydU=; b=rngIFuS/c7qaKceiMum9Th5hag
+ oMffc8R+240E6e6iW4JroNfIxMHfB4euD51M9WKbQ9/SiECUVG5KAlmXX8E5jfwhjpVuc70nDSFZy
+ B8qMJn3Up83H7axLZ7sGbv3eidHGLYPM/NhrYJRH1TKujckVdmwfnG/568VslUfEw53Kv9A4fJAP/
+ +AJHLTvcdJ4XZCKtHNxGwevFydbjHAqd8uVeIyPfj0IchglSdGS0OMHOm5HLbUrmIlnkbumIuCmYz
+ 8rRmRGfggtKxbqCh91NzSL+GloorCinXJsm1wZ3Yin45wsyYz1dKZDZ/n72QzV0CYRfILJ2jB9DI7
+ Mo7WILVg==;
+Received: from [201.162.169.69] (port=29537 helo=[192.168.43.132])
+ by gator4166.hostgator.com with esmtpsa
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92)
+ (envelope-from <gustavo@embeddedor.com>)
+ id 1j7POA-000JeO-Hu; Thu, 27 Feb 2020 14:04:06 -0600
+Subject: Re: [PATCH][next] batman-adv: Replace zero-length array with
+ flexible-array member
+To: Sven Eckelmann <sven@narfation.org>
+References: <20200217214300.GA14129@embeddedor> <10763787.LixBgDfVEo@sven-edge>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Autocrypt: addr=gustavo@embeddedor.com; keydata=
+ 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
+ VtSixD1uOgytAP7RWS474w==
+Message-ID: <ba787bf4-1b9b-1b1c-97b0-253ea2329d0d@embeddedor.com>
+Date: Thu, 27 Feb 2020 14:06:56 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2279995.2Smy5gWWIt";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+In-Reply-To: <10763787.LixBgDfVEo@sven-edge>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.open-mesh.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 201.162.169.69
+X-Source-L: No
+X-Exim-ID: 1j7POA-000JeO-Hu
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.43.132]) [201.162.169.69]:29537
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 7
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1582819890;
+ s=20121; t=1582833848;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=HxtVLBU34AYqOvzNX3zR1S/myOsXgUwuKmadQMa3rQA=;
- b=KUaL+RNFVnhvYz+gNj6E+SSAIX/2PxovpGI0MaU44zodXD+KtlgwwZ4DQuxYn22lpn+MUZ
- UyicY1v6Hnfv1mjPu5fJWcyvXF5rjyPCAOjNwpBdVnXBnX9vpYDCFN8jLVzzQwT/UNABTa
- VYZSBmwo9FRY8ituD5lxrp4TjBp1Nf8=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582819890; a=rsa-sha256; cv=none;
- b=tW11v+7XvZUMtAlemczaV2YIUJq/CYV1Vhv8mwaoS1c9njldTyNRcbS9r2/Tv134Fos6pG
- bDkAs+LaHKdS8D8ub190QYaXmppGHYfjEaF8dBaQhwzD/slQzBO75NvbbpkVe3c3hkNGH9
- B96WdCAYSWWP5F9rbHli3OI++vD7MIM=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:dkim-signature:autocrypt:autocrypt;
+ bh=QuLua+QDclGaA7VF9OoztLEEN0VMtyjkqur/1lunydU=;
+ b=JmzXpAP0vgGb216orWMgf8oKBsA7gd3NNFel2cqG9VOZsxnEEFMPsfV7hiMYN6izmTzFYU
+ 6mTJ4mwBZrUOxmtDJJas7x1c4wAFvbOuM2aXKnRAPk58JJMvDbY3Z7lWSpOd7aazBiGfJ1
+ Vy+HCukhrpqhzP4sr44D2vTLI1i1QE8=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582833848; a=rsa-sha256; cv=none;
+ b=CV/jARx47xXMEEYU7iB+LTXRsQ+r3fNaW3P4wCsjeKHTW8jvCKD3q9r3fSd1y7odyZjeeI
+ pXwKci3kIECdAF7O9g7cFKMHs6SKmgFO2lmmkd7HdayAKXn7Ef2s2GtXsDBA6S6qX7/iu/
+ MDrliGEYh99bjYl/UvN/nzxK7Ca8V9M=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=nQUd2Rvq;
- spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ dkim=pass header.d=embeddedor.com header.s=default header.b=rngIFuS/;
+ spf=pass (diktynna.open-mesh.org: domain of gustavo@embeddedor.com designates
+ 192.185.45.38 as permitted sender) smtp.mailfrom=gustavo@embeddedor.com
+X-Mailman-Approved-At: Fri, 28 Feb 2020 08:23:22 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,95 +142,30 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Zach Barnett <zacharyc.barnett@gmail.com>
+Cc: Marek Lindner <mareklindner@neomailbox.ch>, netdev@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org, Antonio Quartulli <a@unstable.cc>,
+ linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart2279995.2Smy5gWWIt
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
 
-On Thursday, 27 February 2020 16:13:48 CET Zach Barnett wrote:
-> I looking for clarification about the following question
+
+On 2/17/20 15:49, Sven Eckelmann wrote:
+
+>>
+>> [1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
+>> [2] https://github.com/KSPP/linux/issues/21
+>> [3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
+>>
+>> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+>> ---
+>>  net/batman-adv/distributed-arp-table.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> How can I connect non-mesh clients to my batman-adv network ?
+> Applied
+> 
 
-Bridge (easiest way) or route the traffic from non-mesh interface to the 
-batadv interface (and vice versa). [1]
-
-
-> Does this mean that for an existing batman node to allow non-mesh
-> clients to join (I.E. cell phone, wifi camera, etc..), then 2
-> interfaces are required?
-
-Not necessarily but in most situation you want to use different (operation) 
-modes for sending batman-adv and non-batman-adv traffic over wifi. But it is 
-possible to use the same link layer interface. This is often the case when you 
-want to use ethernet for transporting the batman-adv traffic and the client 
-traffic.
-
-Just keep in mind that you cannot directly bridge an interface and have it at
-the same time as batadv slave interface. So you have to split this interface
-up somehow.
-
-For ethernet, it is recommended to put the batman-adv traffic in something
-like V(X)LAN on top of the ethernet device.
-
-Other option could also be to use a macvlan on top of the ethernet interface - 
-your ethernet interface just needs to support promiscious mode for receiving 
-and allow to send with a different mac address. Then you have basically two 
-virtual ethernet interfaces.
-
-But you could even create fancy things with veth pairs. Put one end in the 
-same bridge as the actual real ethernet interface. And then add the other end 
-as slave to the batadv interface. And then you can put the batadv interface in 
-the first bridge. You should most likely add some ebtables filter for 0x4305 
-ethernet frames at the correct positions. But I would call this
-"experimental".
-
-Just keep in mind that all the bridging will not work with client mode
-interfaces (non-AP STA interfaces in infrastructure mode).
-
-> For example, if I have a pi-zero W in a wooded area, and I want a
-> camera to connect to it, then do I need to add an additional usb
-> network adapter to the Pi.  One Interface for the Bat0 Mesh and One
-> interface an an entry point for non-mesh clients.
-
-I hope you are not talking about wifi usb network adapters. Because they are 
-(often/always) quite shitty in non-infrastructure modes. And also often
-shitty in infrastructure mode in the AP role.
-
-But regarding wifi PHYs under Linux - they usually support multiple virtual
-interfaces on the same PHY. Just check the interface combinations
-information from "iw phy"
-
-Kind regards,
-	Sven
-
-[1] https://www.open-mesh.org/projects/batman-adv/wiki/Faq#How-can-I-connect-non-mesh-clients-to-my-batman-adv-network-
---nextPart2279995.2Smy5gWWIt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl5X6isACgkQXYcKB8Em
-e0bHxg//TyF0wVGBO8GqVfvg/bYT9KlPNYMZif3p9Q+Q791JjU1iRu5cx560ZeCG
-jlkLAWggTrwZu42YYSYh2zE8XD9pKPk4K8gzT7oc9lYNEOxjRTXiFu+6ub1Sh+KN
-k4dSsBBnFlXMM5lHr1lklxiRw3S1qXs8Qv9t+0i5WtEaJdc1YZhuuYp0h2zZO5bJ
-AxIieRju9WLe6FTNoJUOVrbjKHWcWX5DSMLpm3LMYkSxOAM1KOvWK59SYt84Nwh0
-EMxkyWeepFvDkyFj0dl4GVGfbDAq2niC1G4KEb6+m+yR9YSgWaij/srQYgsFQ4a3
-8uu7raUS6BQyPhT/+eGeZ5StXDuw59A2NKodlBCiSe6mtrGCTEjAdjiTtDSxfCmM
-/WIWEr/KuN1ITEdDM4K/4j+Cj+LCq0kI/+oR3SjJVVwGULUhUDNnz21I+QjGN5UM
-ZQneS7oQ1menYLX2SnEsaZEAtcLcMkCvRyvHhkWYoK1rRYyzwpt9vV0yirGTGIZs
-5u1lMy4NeQMNi2ZS3LKlNi131VNpR1bu2XuI0xZhVEO9fQ+LJpmkgTwzJo60/MnQ
-Hjeh85EnINX4KRi0gfiZcbWuBvWk/QHMOlBtksQ8dHWgmue81fCmbQltpAlp1d5k
-7DmYuRuZc56f7mfHSmT5gSzvGqzdG47Giqg6yrpmDo0fKULfOag=
-=V0ZV
------END PGP SIGNATURE-----
-
---nextPart2279995.2Smy5gWWIt--
-
-
-
+Thanks, Sven.
+--
+Gustavo
