@@ -2,131 +2,75 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF5D1731B4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Feb 2020 08:23:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 988BA1731B5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Feb 2020 08:23:38 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 79D5F80693;
-	Fri, 28 Feb 2020 08:23:26 +0100 (CET)
-Received: from gateway21.websitewelcome.com (gateway21.websitewelcome.com
- [192.185.45.38])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 58D6F80013
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 21:04:08 +0100 (CET)
-Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
- by gateway21.websitewelcome.com (Postfix) with ESMTP id 486E9400D4EE9
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 14:04:07 -0600 (CST)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id 7POBj0NIivBMd7POBjvwfJ; Thu, 27 Feb 2020 14:04:07 -0600
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=QuLua+QDclGaA7VF9OoztLEEN0VMtyjkqur/1lunydU=; b=rngIFuS/c7qaKceiMum9Th5hag
- oMffc8R+240E6e6iW4JroNfIxMHfB4euD51M9WKbQ9/SiECUVG5KAlmXX8E5jfwhjpVuc70nDSFZy
- B8qMJn3Up83H7axLZ7sGbv3eidHGLYPM/NhrYJRH1TKujckVdmwfnG/568VslUfEw53Kv9A4fJAP/
- +AJHLTvcdJ4XZCKtHNxGwevFydbjHAqd8uVeIyPfj0IchglSdGS0OMHOm5HLbUrmIlnkbumIuCmYz
- 8rRmRGfggtKxbqCh91NzSL+GloorCinXJsm1wZ3Yin45wsyYz1dKZDZ/n72QzV0CYRfILJ2jB9DI7
- Mo7WILVg==;
-Received: from [201.162.169.69] (port=29537 helo=[192.168.43.132])
- by gator4166.hostgator.com with esmtpsa
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92)
- (envelope-from <gustavo@embeddedor.com>)
- id 1j7POA-000JeO-Hu; Thu, 27 Feb 2020 14:04:06 -0600
-Subject: Re: [PATCH][next] batman-adv: Replace zero-length array with
- flexible-array member
-To: Sven Eckelmann <sven@narfation.org>
-References: <20200217214300.GA14129@embeddedor> <10763787.LixBgDfVEo@sven-edge>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Autocrypt: addr=gustavo@embeddedor.com; keydata=
- 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
- VtSixD1uOgytAP7RWS474w==
-Message-ID: <ba787bf4-1b9b-1b1c-97b0-253ea2329d0d@embeddedor.com>
-Date: Thu, 27 Feb 2020 14:06:56 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 43488801FB;
+	Fri, 28 Feb 2020 08:23:33 +0100 (CET)
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
+ [IPv6:2a00:1450:4864:20::544])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id CDA6D8008D
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Feb 2020 01:14:26 +0100 (CET)
+Received: by mail-ed1-x544.google.com with SMTP id c7so1257666edu.2
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Feb 2020 16:14:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=paul-moore-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=1ib8VWwHjJvggYN18BEOwzhOZqnlM4YEYxegYLVlKSo=;
+ b=Cetq1zeYMvA3/xQUwFFjv1v7a1bjQAjSwdUaiPi9JjojBXivvTLHJkO6+ll4GT8Ghc
+ m4/MgSddbFsriGMMZ+avMc7K0HlBlyJU+uKEFXcLh6wkVNKc+wbLmWlfpl8+R5NF3I8M
+ takyOyT3ZosZd4ERE+TMDmzCgp5XOHnLqRZPkuRa6Pmf4jg/17k5EkKPa53ec1Z9UWcI
+ w3lbneT1IyeYjJRqrnUip3m4xn7zIumvSMkIoi6SMw1LXOXXpvjBxB3gemdqq80RmB7L
+ jSvf/J/cTa1+8ehW41M0doB+D6RKJNZjebMAQCJqk5m8s9qW+Db1BQyqzuC/mMBPky46
+ MgDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=1ib8VWwHjJvggYN18BEOwzhOZqnlM4YEYxegYLVlKSo=;
+ b=Zi/Xz4SRCl94fLOEdnLbieL6XRe7l5nEFll97TFurQ9zm1cUR+tswP0G6bD9Vnhe1e
+ /4DyIgcCmImZ3XRwjFOylrj3M07p4qH+mePhis8I+ARVv3QWmTL/SkXFF6kx5/fAhAjF
+ 9HnG4ax/LANhJZkbFoIpgpf5vJU1WFx4wWgRwoqe9Tyh8gOst9hvFqEiI/l3N7iQQbnM
+ s1LAAugjo6CHbvaYQv6ZkgDWXXdpiqNjjBNpfeg32X/nl+rGomT8iyNbbGbA8/MVOWrE
+ p9v8oQXNixwA51dcyX0+Xa8NdiGbpR70MmwXpcYoJ36XL2fNhyYKRtHxcFBMbHVCXDcX
+ zTSQ==
+X-Gm-Message-State: APjAAAVk/Mk2drk9guTC9DI5qZGOfVftgvjEfPUpsPOt3DU3znLGyJd3
+ 7JYE156cOJXH7OZYZuVxyAUEjEPDQE/ZK4c5VC/U
+X-Google-Smtp-Source: APXvYqzIh7t+mGR5KHWmesjgjSlqpj0MLXTGXcf7rY8aVOBQpqG6xj9+VllvTVXsLbvgWVt9QS8HOh37KIMIXqFAaUs=
+X-Received: by 2002:a50:a7a5:: with SMTP id i34mr1145928edc.128.1582848866078; 
+ Thu, 27 Feb 2020 16:14:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <10763787.LixBgDfVEo@sven-edge>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.open-mesh.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 201.162.169.69
-X-Source-L: No
-X-Exim-ID: 1j7POA-000JeO-Hu
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.43.132]) [201.162.169.69]:29537
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 7
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
+References: <0000000000003cbb40059f4e0346@google.com>
+ <CAHC9VhQVXk5ucd3=7OC=BxEkZGGLfXv9bESX67Mr-TRmTwxjEg@mail.gmail.com>
+ <17916d0509978e14d9a5e9eb52d760fa57460542.camel@redhat.com>
+ <CAHC9VhQnbdJprbdTa_XcgUJaiwhzbnGMWJqHczU54UMk0AFCtw@mail.gmail.com>
+ <CACT4Y+azQXLcPqtJG9zbj8hxqw4jE3dcwUj5T06bdL3uMaZk+Q@mail.gmail.com>
+In-Reply-To: <CACT4Y+azQXLcPqtJG9zbj8hxqw4jE3dcwUj5T06bdL3uMaZk+Q@mail.gmail.com>
+From: Paul Moore <paul@paul-moore.com>
+Date: Thu, 27 Feb 2020 19:14:15 -0500
+Message-ID: <CAHC9VhRRDJzyene2_40nhnxRV_ufgyaU=RrFxYGsnxR4Z_AWWw@mail.gmail.com>
+Subject: Re: kernel panic: audit: backlog limit exceeded
+To: Dmitry Vyukov <dvyukov@google.com>
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1582833848;
+ s=20121; t=1582848867;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:dkim-signature:autocrypt:autocrypt;
- bh=QuLua+QDclGaA7VF9OoztLEEN0VMtyjkqur/1lunydU=;
- b=JmzXpAP0vgGb216orWMgf8oKBsA7gd3NNFel2cqG9VOZsxnEEFMPsfV7hiMYN6izmTzFYU
- 6mTJ4mwBZrUOxmtDJJas7x1c4wAFvbOuM2aXKnRAPk58JJMvDbY3Z7lWSpOd7aazBiGfJ1
- Vy+HCukhrpqhzP4sr44D2vTLI1i1QE8=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582833848; a=rsa-sha256; cv=none;
- b=CV/jARx47xXMEEYU7iB+LTXRsQ+r3fNaW3P4wCsjeKHTW8jvCKD3q9r3fSd1y7odyZjeeI
- pXwKci3kIECdAF7O9g7cFKMHs6SKmgFO2lmmkd7HdayAKXn7Ef2s2GtXsDBA6S6qX7/iu/
- MDrliGEYh99bjYl/UvN/nzxK7Ca8V9M=
+ in-reply-to:in-reply-to:references:references:dkim-signature;
+ bh=1ib8VWwHjJvggYN18BEOwzhOZqnlM4YEYxegYLVlKSo=;
+ b=F0MdamDVUZSjZEbdG4on+xVtGWcRmPJAxUMqC/2MHQggkzRe+UoNl3EviE6LF/EyGqYmLR
+ O07QXy3h619xyqwTkGWMk505PHh0g7wSyAkvLvCe6fsGP7Gzp/Yt74nNYTiWm5vnANs89K
+ 2qiR2lF4DNpvO+x1PfB3kQEUTpHyWYM=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1582848867; a=rsa-sha256; cv=none;
+ b=1QcnW/AsQjLtBC3TewXYzWi0p+j/HehyjdRGdrAlDdVO9riV6FwQRnJxpfUSb+3BSYqAzT
+ cXJEl5o6G5M3XieF3IpZr2XRr+0+oW7dP/fO3R0Vof8dT+B7b0qJ8YQVWL072xAVYbnVZQ
+ vJuCZJz190rBvcOc4XBgxsZYn+fERSQ=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=embeddedor.com header.s=default header.b=rngIFuS/;
- spf=pass (diktynna.open-mesh.org: domain of gustavo@embeddedor.com designates
- 192.185.45.38 as permitted sender) smtp.mailfrom=gustavo@embeddedor.com
+ dkim=pass header.d=paul-moore-com.20150623.gappssmtp.com header.s=20150623
+ header.b=Cetq1zeY; 
+ spf=none (diktynna.open-mesh.org: domain of paul@paul-moore.com has no SPF
+ policy when checking 2a00:1450:4864:20::544)
+ smtp.mailfrom=paul@paul-moore.com
 X-Mailman-Approved-At: Fri, 28 Feb 2020 08:23:22 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
@@ -142,30 +86,56 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Marek Lindner <mareklindner@neomailbox.ch>, netdev@vger.kernel.org,
- b.a.t.m.a.n@lists.open-mesh.org, Antonio Quartulli <a@unstable.cc>,
- linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
+Cc: mareklindner@neomailbox.ch,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc,
+ LKML <linux-kernel@vger.kernel.org>, Eric Paris <eparis@redhat.com>,
+ David Miller <davem@davemloft.net>,
+ syzkaller-bugs <syzkaller-bugs@googlegroups.com>, linux-audit@redhat.com,
+ syzkaller <syzkaller@googlegroups.com>, netdev <netdev@vger.kernel.org>,
+ john.hammond@intel.com, fzago@cray.com,
+ syzbot <syzbot+9a5e789e4725b9ef1316@syzkaller.appspotmail.com>,
+ Dan Carpenter <dan.carpenter@oracle.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
+On Thu, Feb 27, 2020 at 10:40 AM Dmitry Vyukov <dvyukov@google.com> wrote:
+> On Mon, Feb 24, 2020 at 11:47 PM Paul Moore <paul@paul-moore.com> wrote:
+> > On Mon, Feb 24, 2020 at 5:43 PM Eric Paris <eparis@redhat.com> wrote:
+> > > https://syzkaller.appspot.com/x/repro.syz?x=151b1109e00000 (the
+> > > reproducer listed) looks like it is literally fuzzing the AUDIT_SET.
+> > > Which seems like this is working as designed if it is setting the
+> > > failure mode to 2.
+> >
+> > So it is, good catch :)  I saw the panic and instinctively chalked
+> > that up to a mistaken config, not expecting that it was what was being
+> > tested.
+>
+> Yes, this audit failure mode is quite unpleasant for fuzzing. And
+> since this is not a top-level syscall argument value, it's effectively
+> impossible to filter out in the fuzzer. Maybe another use case for the
+> "fuzer lockdown" feature +Tetsuo proposed.
+> With the current state of the things, I think we only have an option
+> to disable fuzzing of audit. Which is pity because it has found 5 or
+> so real bugs in audit too.
+> But this happened anyway because audit is only reachable from init pid
+> namespace and syzkaller always unshares pid namespace for sandboxing
+> reasons, that was removed accidentally and that's how it managed to
+> find the bugs. But the unshare is restored now:
+> https://github.com/google/syzkaller/commit/5e0e1d1450d7c3497338082fc28912fdd7f93a3c
+>
+> As a side effect all other real bugs in audit will be auto-obsoleted
+> in future if not fixed because they will stop happening.
 
+On the plus side, I did submit fixes for the other real audit bugs
+that syzbot found recently and Linus pulled them into the tree today
+so at least we have that small victory.
 
-On 2/17/20 15:49, Sven Eckelmann wrote:
+We could consider adding a fuzz-friendly build time config which would
+disable the panic failsafe, but it probably isn't worth it at the
+moment considering the syzbot's pid namespace limitations.
 
->>
->> [1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
->> [2] https://github.com/KSPP/linux/issues/21
->> [3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
->>
->> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
->> ---
->>  net/batman-adv/distributed-arp-table.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> Applied
-> 
-
-Thanks, Sven.
---
-Gustavo
+-- 
+paul moore
+www.paul-moore.com
