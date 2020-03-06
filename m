@@ -1,46 +1,43 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1591017BC7E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  6 Mar 2020 13:15:31 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6317F17BC70
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  6 Mar 2020 13:13:23 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id AF9E580BA0;
-	Fri,  6 Mar 2020 13:15:25 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E717C80642;
+	Fri,  6 Mar 2020 13:13:21 +0100 (CET)
 Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 366B180200
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  6 Mar 2020 13:15:17 +0100 (CET)
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 25818801D6
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  6 Mar 2020 13:13:19 +0100 (CET)
 Received: from kero.packetmixer.de
  (p200300C597077300B0A48B46F0435C76.dip0.t-ipconnect.de
  [IPv6:2003:c5:9707:7300:b0a4:8b46:f043:5c76])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by simonwunderlich.de (Postfix) with ESMTPSA id 3B7E762059;
- Fri,  6 Mar 2020 13:06:20 +0100 (CET)
+ by simonwunderlich.de (Postfix) with ESMTPSA id E154D6205D;
+ Fri,  6 Mar 2020 13:13:18 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: davem@davemloft.net
-Subject: [PATCH 1/1] batman-adv: Don't schedule OGM for disabled interface
-Date: Fri,  6 Mar 2020 13:06:18 +0100
-Message-Id: <20200306120618.25714-2-sw@simonwunderlich.de>
+Subject: [PATCH 0/3] pull request for net-next: batman-adv 2020-03-06
+Date: Fri,  6 Mar 2020 13:13:14 +0100
+Message-Id: <20200306121317.28931-1-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200306120618.25714-1-sw@simonwunderlich.de>
-References: <20200306120618.25714-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1583496917;
+ s=20121; t=1583496799;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=+jmdcEK6rO6U2z9PYLGza1Cc1hJZu5cVjyV1/ZAr8+k=;
- b=Llk1/ydjoxBoNCLqLKwUdrqkCJ0krEIrjLuVGdJpO6G6BMSxLL9W7+SfrLCvqy89o3K7IR
- rMMcGkXekjDao2ktMV7o1gpqr8J6t8xdihoGfYB1GUm5ngjcr37uetktT97dxPEVjUNsE7
- A/kVtLGdgx1KXtlcNdx1D5hwAGS+Jn4=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1583496917; a=rsa-sha256; cv=none;
- b=D8BbD3Nj+TViiV2V6sfPxTg5wmS90PDB2l6+HWFWCrWjID9jZccNKE2+MXS1BwhgNPNdCO
- 5DBlW61tNjCKv9XflL3v+mpM8QGRAcmrMBCj34gtCQiOFavGLUiqYjH5awRiAz+95KE55t
- aYxSRnCHs62nlmgamHlDtkmFp/bPHpY=
+ content-transfer-encoding:content-transfer-encoding;
+ bh=qFK1pzdGxwU30maHeIJUEA+XRuM5tvxZGK9OPfvO+NA=;
+ b=cWms6uboDXa1zTgTzXARr+qrPy2J/NznbGPkjjxcnf00voeNDYbFnAlKIcScs1dpVkLEoz
+ kBHTyYgRvdPoO/PIHJ6P+4LkUqs3TlQ6bC1tmDUrFMeLBKGKVbU0tdnnz4iT7SOC9D+bNm
+ oyrcGNPmAjRpo4uFebPPYcNVzAIp+0s=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1583496799; a=rsa-sha256; cv=none;
+ b=oTpPEvcFFmNfNVHMeh7Jj9r7cksMQtRLewn3CU+L3WJ9qRwACETwcUt5OuAaaRS4Dg/MPC
+ t1sNANK2VA4+6RwoUl/SddjF5WSdKCBsSZyyx636sdSseiNCvU/HqhotNZRUStTdqccK6s
+ 4EO1nfaMe37mQrxjNo/O4Jx6qdoBffU=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
  spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
@@ -58,49 +55,52 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Hillf Danton <hdanton@sina.com>, netdev@vger.kernel.org,
- b.a.t.m.a.n@lists.open-mesh.org,
- syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com,
- syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
+Cc: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+Hi David,
 
-A transmission scheduling for an interface which is currently dropped by
-batadv_iv_ogm_iface_disable could still be in progress. The B.A.T.M.A.N. V
-is simply cancelling the workqueue item in an synchronous way but this is
-not possible with B.A.T.M.A.N. IV because the OGM submissions are
-intertwined.
+here is a small cleanup pull request of batman-adv to go into net-next.
 
-Instead it has to stop submitting the OGM when it detect that the buffer
-pointer is set to NULL.
+Please pull or let me know of any problem!
 
-Reported-by: syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
-Reported-by: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
-Fixes: c6c8fea29769 ("net: Add batman-adv meshing protocol")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Cc: Hillf Danton <hdanton@sina.com>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/bat_iv_ogm.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Thank you,
+      Simon
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index f0209505e41a..a7c8dd7ae513 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -789,6 +789,10 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
- 
- 	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
- 
-+	/* interface already disabled by batadv_iv_ogm_iface_disable */
-+	if (!*ogm_buff)
-+		return;
-+
- 	/* the interface gets activated here to avoid race conditions between
- 	 * the moment of activating the interface in
- 	 * hardif_activate_interface() where the originator mac is set and
--- 
-2.20.1
+The following changes since commit bb6d3fb354c5ee8d6bde2d576eb7220ea09862b9:
 
+  Linux 5.6-rc1 (2020-02-09 16:08:48 -0800)
+
+are available in the Git repository at:
+
+  git://git.open-mesh.org/linux-merge.git tags/batadv-next-for-davem-20200306
+
+for you to fetch changes up to 5f27eb055d5c5814785fb9cf0ae4a4c150a8f334:
+
+  batman-adv: Replace zero-length array with flexible-array member (2020-02-17 22:43:42 +0100)
+
+----------------------------------------------------------------
+This cleanup patchset includes the following patches:
+
+ - bump version strings, by Simon Wunderlich
+
+ - Avoid RCU list-traversal in spinlock, by Sven Eckelmann
+
+ - Replace zero-length array with flexible-array member,
+   by Gustavo A. R. Silva
+
+----------------------------------------------------------------
+Gustavo A. R. Silva (1):
+      batman-adv: Replace zero-length array with flexible-array member
+
+Simon Wunderlich (1):
+      batman-adv: Start new development cycle
+
+Sven Eckelmann (1):
+      batman-adv: Avoid RCU list-traversal in spinlock
+
+ net/batman-adv/distributed-arp-table.c | 2 +-
+ net/batman-adv/main.h                  | 2 +-
+ net/batman-adv/translation-table.c     | 8 ++++----
+ 3 files changed, 6 insertions(+), 6 deletions(-)
