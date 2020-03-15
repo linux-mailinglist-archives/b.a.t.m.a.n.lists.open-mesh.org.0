@@ -2,69 +2,70 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A82C185624
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Mar 2020 18:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B158F185ACB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 15 Mar 2020 07:50:20 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7A6EB806A7;
-	Sat, 14 Mar 2020 18:50:04 +0100 (CET)
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 8E90680179
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 14 Mar 2020 18:20:03 +0100 (CET)
-Received: by mail-il1-f197.google.com with SMTP id h12so9721387ils.12
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 14 Mar 2020 10:20:03 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A616C804F2;
+	Sun, 15 Mar 2020 07:50:19 +0100 (CET)
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id C0204800AB
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Mar 2020 06:49:03 +0100 (CET)
+Received: by mail-il1-f198.google.com with SMTP id c11so4280794ilq.2
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 14 Mar 2020 22:49:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
  :from:to:content-transfer-encoding;
- bh=+QdPalM1/7ayitV9XmteLgnXaS2hu+LX/EwtXkNn8sI=;
- b=sb2ExKTavpwkeAIeJcQWfhBeUhcTWcg70qKBdsEFr592i5GGb6WYj8AO+8XNEokLE/
- WFaTS+Moom4VLvoIm2/o3i2g4Mxxucl3ah+lP7Iv6TKtMbS0AftvcaOTeOc6wwbh14Jp
- oN9oOJHzdAATv4jDnRE0bg5H4io6/Z+B9gXQGwzfIeXAgj3bXlgylfJj5vME4g9EA8pE
- 9d4vh0GRMPupdNsLqiQEPu+02jBfsx32X2ere1TRB2M4ItsZsKGduSiAY76e0a9j5WbM
- qSuuCRlRcIhBi3sdC76dZKOl0gzRbUk3vtHawM+ZUjkibqwSNhqGiFVBIiscoYSVZi8V
- rNIA==
-X-Gm-Message-State: ANhLgQ2rkO6XpOxH/M37AUE6uaxUeBLmQy8TMnm8DQ5WYJtNogadEY8S
- YT2i1JdMGWO/umUFfwtvByLydAhwVqjJ90ktsLHNGbeayq4g
-X-Google-Smtp-Source: ADFU+vsvmmvzF0I4nMIQXyBWKmywCRss6IV6wvF4RwqOdkw0XwU5mtrUilZd8jdSs9quwxi/+KGtd7aYDnIYchTEyVeGinshxzTm
+ bh=FJOATGVgF+RB8AvqptT57xQBCVKN+MlPkIh/jxrUb5Y=;
+ b=Yp+6XJA7wQ7nkUo7k4/kR+G2bkz+Fu3B5/e34k0FlYtbauXDxbvFuZAEmN1jMcKL2p
+ BNm38DA4kBfqnDMFG3buSOWOJOWWh8eTfXQAal1iYlqvvuRWggjROvP0ZTteXDCvoTR4
+ Op1t0uKvSvy9mD3weKzo1t46DqOi11lwM1IrqhZz3Xge7Uudv3RLxj0JjaT2ptU9gPhF
+ mAGT1VBX+ph6vYb9UH1n63rmwiD2VET5+OzR3ULSVyKn3EyugBK+TVg+o13fBGyxPvcb
+ t+bGT7qXxxUiTDR8dOqifPaI/0s9Ke1u0uPTROcYNcumqMOrUVubDwHZmIBy98PF0lYm
+ U7Ag==
+X-Gm-Message-State: ANhLgQ005VzuLiVgf+hq0dAWQo4n2fO8qvY9bmCcM8wAAd/NObq3hZL6
+ R+5AJxj1LNEzum8Z3q43HgbY0hHajoGN90LDMCfAHampJGLT
+X-Google-Smtp-Source: ADFU+vtjWrHuYWHmtJ+7R/F21gT5LEveKjWUsRf8UObsGMOlzh5S+x+bzsUNrMqUqBppbPPWer/sA+tMDrmnP8e3gzLvu8ysJS2P
 MIME-Version: 1.0
-X-Received: by 2002:a92:aa87:: with SMTP id p7mr18089913ill.63.1584206402340; 
- Sat, 14 Mar 2020 10:20:02 -0700 (PDT)
-Date: Sat, 14 Mar 2020 10:20:02 -0700
-In-Reply-To: <000000000000cdbe79059ce82948@google.com>
+X-Received: by 2002:a92:5e14:: with SMTP id s20mr101812ilb.101.1584251342473; 
+ Sat, 14 Mar 2020 22:49:02 -0700 (PDT)
+Date: Sat, 14 Mar 2020 22:49:02 -0700
+In-Reply-To: <000000000000e0ab4c059c79f014@google.com>
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000dccd2405a0d3cb04@google.com>
-Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_ipmac_destroy
-From: syzbot <syzbot+a85062dec5d65617cc1c@syzkaller.appspotmail.com>
-To: a@unstable.cc, arvid.brodin@alten.se, b.a.t.m.a.n@lists.open-mesh.org, 
+Message-ID: <00000000000080d06405a0de4277@google.com>
+Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_port_ext_cleanup
+From: syzbot <syzbot+7b6206fb525c1f5ec3f8@syzkaller.appspotmail.com>
+To: a@unstable.cc, andrew@lunn.ch, b.a.t.m.a.n@lists.open-mesh.org, 
  coreteam@netfilter.org, davem@davemloft.net, florent.fourcot@wifirst.fr, 
- fw@strlen.de, jeremy@azazel.net, johannes.berg@intel.com, 
- kadlec@blackhole.kfki.hu, kadlec@netfilter.org, linux-kernel@vger.kernel.org, 
+ fw@strlen.de, grygorii.strashko@ti.com, j-keerthy@ti.com, jeremy@azazel.net, 
+ johannes.berg@intel.com, kadlec@blackhole.kfki.hu, kadlec@netfilter.org, 
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
  mareklindner@neomailbox.ch, netdev@vger.kernel.org, 
  netfilter-devel@vger.kernel.org, pablo@netfilter.org, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com, xiyou.wangcong@gmail.com
+ syzkaller-bugs@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584206403;
+ s=20121; t=1584251343;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to; bh=+QdPalM1/7ayitV9XmteLgnXaS2hu+LX/EwtXkNn8sI=;
- b=0JqPo8zc/4k5rJHSFC/NLBZ9jeUY8o02yntki1xEJxBqajbQbrjCCVCD21CfdE4kUrq/BB
- AVHSMGeRv9LghM4zRJiDgZWTCtYHBJQXo9Rv5BpVlGTcy/i4N9cuB38NGJuz2hIOlFuK0Z
- CoKucATPLtQSwrDZs8MAahkhNWTolfA=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584206403; a=rsa-sha256; cv=none;
- b=FYHXcg53IFxWk6S+Msn0k9pA3GQwT2BFUoboU81oygXka/Tcsg+Yw1j+LNZ+2cLRz9bbwu
- AikaRE4V+oJ5gnJz+WvE+CogEY4jALxYKnw00ayaPKra+KfSWJZhsS3Hk4keIrwrMdnYt2
- arzchL1FGT9Zc8AaHOi2RtzqvMLAmpw=
+ in-reply-to:in-reply-to; bh=FJOATGVgF+RB8AvqptT57xQBCVKN+MlPkIh/jxrUb5Y=;
+ b=QMLHvert98OCIZ3voSFTPLX4eq7Dio0NG6RmFIZzrFWA+IMSfxVmDG8+uOxp97g5VCyRly
+ jfi969qXgl7vp16zSjNLLj8RjyYdc+Gi+qImk37CRfAon6cGW9EOiPZg4DL1MaNj6cDduI
+ cryDudibBuhixaeRaytUR2pKBvU69jY=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584251343; a=rsa-sha256; cv=none;
+ b=mr7yiZSD7xUYL/sgVl9C1/5Dt4z8wW6FGz/wlG1ismU7QJ+M4kKqxRDO/o7PhgWpBRJl2Z
+ DS1O3KeeJYiETdByQ9zAv3iDTRWtF42XacjqR6bDy4/2rZqRt7XbMIOt1XGvac2Apgpxea
+ 578xl5Jyuz1tRVwwaCTHxxCHcfZzQLY=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
  spf=pass (diktynna.open-mesh.org: domain of
- 3QhJtXgkbABUDJK5v66zCvAA3y.19916zFDzCx98Ez8E.x97@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.197 as permitted sender)
- smtp.mailfrom=3QhJtXgkbABUDJK5v66zCvAA3y.19916zFDzCx98Ez8E.x97@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Sat, 14 Mar 2020 18:49:58 +0100
+ 3zsFtXgkbAAMv12ndoohudsslg.jrrjohxvhufrqwhqw.frp@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.198 as permitted sender)
+ smtp.mailfrom=3zsFtXgkbAAMv12ndoohudsslg.jrrjohxvhufrqwhqw.frp@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Sun, 15 Mar 2020 07:50:16 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,18 +91,18 @@ Date:   Sun Jan 19 21:06:49 2020 +0000
 
     netfilter: ipset: use bitmap infrastructure completely
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D10aef753e000=
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D122e7c1de000=
 00
-start commit:   4703d911 Merge tag 'xarray-5.5' of git://git.infradead.org.=
+start commit:   d5d359b0 Merge branch 'for-linus' of git://git.kernel.org/.=
 .
 git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=3D83c00afca9cf515=
-3
-dashboard link: https://syzkaller.appspot.com/bug?extid=3Da85062dec5d65617c=
-c1c
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D1301ed85e0000=
+kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dcf8e288883e40ab=
+a
+dashboard link: https://syzkaller.appspot.com/bug?extid=3D7b6206fb525c1f5ec=
+3f8
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D15909f21e0000=
 0
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D14b7b79ee00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D141a1611e00000
 
 If the result looks correct, please mark the bug fixed by replying with:
 
