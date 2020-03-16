@@ -1,80 +1,67 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE061865B9
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 16 Mar 2020 08:31:19 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F7D186D35
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 16 Mar 2020 15:37:29 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 664C280855;
-	Mon, 16 Mar 2020 08:31:18 +0100 (CET)
-Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
- [209.85.166.70])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id C9350801B2
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 03:40:04 +0100 (CET)
-Received: by mail-io1-f70.google.com with SMTP id k5so10758394ioa.22
- for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Mar 2020 19:40:04 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6817580A35;
+	Mon, 16 Mar 2020 15:37:27 +0100 (CET)
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com
+ [IPv6:2607:f8b0:4864:20::12c])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 209E28009A
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 13:15:31 +0100 (CET)
+Received: by mail-il1-x12c.google.com with SMTP id p12so1548378ilm.7
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 05:15:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=mpwvBdezygXnzaFaO2l3Ti4L31vXjulr9JQM2w8UiyY=;
+ b=anHSIsrK3r4Rg2gll+QDtNeuNzjZcckOdOarmaF6wNRAFJqQQcqZlZI7qWBo5M9vm/
+ /+Qh5XkcMQ8y3HEnJu/C9obmmC6UHLmKZaLw/yLKOArZz3YvYlSoy1soZFuB8crhUupW
+ pa4yLqdUaxOZOnsYj5zS3HR76c1UCppib1dqakCJAgEo0cTEa9E1LqvBJvVzk4TYs2V9
+ V2kSBQ1xfSj/+QJNfpX44+Q52HvnjBKHABxq9LisAPOgUJcsJjT0tN4vNsIb/g4YFotW
+ CTkGwIqOU2xyLPJeLuVgddAtAGe7N+qIA73K9KaTjYJ9dizap7nYDvPUxhb42PaJzvhZ
+ dLUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to:content-transfer-encoding;
- bh=G7pIHMXafOLm3F/2/i2LvBMFMIvTzROgcOUTWFn2X6I=;
- b=hN37TPA0uhGx8/PKZveQjjkPy2atfIykKSY+Ci37sieP7IkZebPcpEQa0oYd/GAQS/
- DSOq5OEaUgQogekA8Djd7M8CUVfKmF+yPBOImzqm+V8/Opqb5nVigm4wDVb8mrrgUxOi
- RlocUrjnUbFL+YBHyBmkgulsrSxmQLGgwud5w2dClxmroQVCRlc6xad41Lkjm37dV8IP
- 8cg+Wre2BGEy+tOubxZTuTB0HuHuSX1BC8e2rErZ6yiwzF7WZ4v6SYkZP2gnKfEubP5x
- 3smDXu11GzERhmUYaUe7mNGhMJL2nKzrOH0F9UlAVOpq3FqnUGhFze/kQy/NZEhLlsAm
- /8PA==
-X-Gm-Message-State: ANhLgQ1J2wEKbWiekRsJDCMYUD30dqAbIftJOO9IxrtKwDnarQwvqoYk
- uKfYbJ6FfbtfvvfGWtnJb5hqpLOHSEyNGMaROIhCLW1/get2
-X-Google-Smtp-Source: ADFU+vsoZxccOxRhbL4Y/MIwgxSx220g7zIbktYsAfwneEMRwc/N8lW0/7POXMyHaJ8GuPRqszlVeuTTjg5as1yqhzbhVmbrzHSZ
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=mpwvBdezygXnzaFaO2l3Ti4L31vXjulr9JQM2w8UiyY=;
+ b=f0HlbECPiOAoMdqzcI5iYJEQ1WBDjZF51qM3e38ZsrWsx0N8UJkoXpNdazEI/iiL2w
+ 4z72nTS8p2LwDvzPG7UouK+SK0muVxykb2fe+WT2zKatph4JWyxTgU9j7gGqWpp22N6c
+ iYvrkCnleFFvtoeGPKHsgCBCK1syT+ykeTay7G2XVqmT/GqY4xFNMoTBdzRdTLQnbFuj
+ TJ9vE4QQRYUOmvQWKu4FZCD8HAiEt/gYtXh/UGCqDR0yUn0eHWKCQRrvXaGbSy/hPQyy
+ zM1YDUYl62UyIRox5UbJyE3TqjSqezK9z8Eegd5xkm344z4uMTS9s4jOrWCs+VU+X7mC
+ zVZA==
+X-Gm-Message-State: ANhLgQ2mHGBL9pI1V7TxxravF8vN9VEG+nJ1u67zTtXCLp4rx9hQ5G+u
+ 216oSZeHjk5SvvnX0NLJ46A+n88yy6GfWilp3UoYmnqolf0=
+X-Google-Smtp-Source: ADFU+vv9Q00r53vC4+Fh/C17TGe08WqnMuxFFyN9C6rH9pXvXznxuT6Kn3GzguM5qHeceYyZfov273DrtuoERM5LnU8=
+X-Received: by 2002:a92:8f4b:: with SMTP id j72mr26234825ild.17.1584360929600; 
+ Mon, 16 Mar 2020 05:15:29 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 2002:a05:6638:3dd:: with SMTP id
- r29mr2463944jaq.94.1584326403449; 
- Sun, 15 Mar 2020 19:40:03 -0700 (PDT)
-Date: Sun, 15 Mar 2020 19:40:03 -0700
-In-Reply-To: <000000000000bdb5b2059c865f5c@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000007c695f05a0efbc52@google.com>
-Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_ip_ext_cleanup
-From: syzbot <syzbot+6491ea8f6dddbf04930e@syzkaller.appspotmail.com>
-To: a@unstable.cc, akpm@linux-foundation.org, allison@lohutok.net, 
- arnd@arndb.de, axboe@kernel.dk, b.a.t.m.a.n@lists.open-mesh.org, bp@alien8.de, 
- catalin.marinas@arm.com, chris@zankel.net, christian.brauner@ubuntu.com, 
- christian@brauner.io, coreteam@netfilter.org, dan.carpenter@oracle.com, 
- davem@davemloft.net, elena.reshetova@intel.com, florent.fourcot@wifirst.fr, 
- fw@strlen.de, geert@linux-m68k.org, hare@suse.com, heiko.carstens@de.ibm.com, 
- hpa@zytor.com, info@drgreenstore.com, info@metux.net, jcmvbkbc@gmail.com, 
- jeremy@azazel.net, johannes.berg@intel.com, kadlec@blackhole.kfki.hu, 
- kadlec@netfilter.org, linux-api@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-xtensa@linux-xtensa.org, linux@armlinux.org.uk, 
- mareklindner@neomailbox.ch, mingo@redhat.com, netdev@vger.kernel.org, 
- netfilter-core-owner@lists.netfilter.org, netfilter-devel@vger.kernel.org, 
- pablo@netfilter.org, peterz@infradead.org, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com, tglx@linutronix.de, viro@zeniv.linux.org.uk, 
- will@kernel.org, x86@kernel.org
+From: Maksim Iushchenko <maxim.yuschenko1@gmail.com>
+Date: Mon, 16 Mar 2020 13:15:18 +0100
+Message-ID: <CADSehqO-iKQ9BVWd_WjR28uZmpwmmLLjctg6AQj_xMAHvtRPdQ@mail.gmail.com>
+Subject: batman-adv gateway issue
+To: b.a.t.m.a.n@lists.open-mesh.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584326404;
+ s=20121; t=1584360931;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to; bh=G7pIHMXafOLm3F/2/i2LvBMFMIvTzROgcOUTWFn2X6I=;
- b=LwUQJTYTKxk13VbtzjYxE3KaruYDPWGH7g7Iam2Q5RNhl7T0XpTwTuQT6+YjpND2//tljd
- MOxExAzt6uVwjxF7jTz5DTsIzK76W6ik+rnGkVw6wd0EVm4oj38xjuAiOAr0k3ErVmqIpj
- 1xTbHEJN4bBFgvlsfiEcJWaHl0xC+ow=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584326404; a=rsa-sha256; cv=none;
- b=G+HG9eLhyrAHvqsolPIlPFEDIDMrKQ7Xu0GfMZz9Pv4+sG26YLt5uEYGOEZ0aYYPocY7yV
- X133zUx916of71dAy5qUu/f+0UncNwSejl/lZf8md+Xf8X7tYbpjvVXqqzUGPepEh81WX6
- T1p28KgaDBRhj1I5Q3JTl4EkWG69WAA=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
- spf=pass (diktynna.open-mesh.org: domain of
- 3A-duXgkbAIY289ukvvo1kzzsn.qyyqvo42o1myx3ox3.myw@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.70 as permitted sender)
- smtp.mailfrom=3A-duXgkbAIY289ukvvo1kzzsn.qyyqvo42o1myx3ox3.myw@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Mon, 16 Mar 2020 08:31:15 +0100
+ dkim-signature; bh=mpwvBdezygXnzaFaO2l3Ti4L31vXjulr9JQM2w8UiyY=;
+ b=MbR1zXc/8u2BSriCDgMqtSiM2pkAtHRMdmZGO6IxzYTCedy/vQ8vs3GC0gdKYpt/IVxuMO
+ 9WtNnYSf1hkYYf30Pn4YuM0vpjWEe3vxqM/wULvt4ii4/J7WB/OL9H3Tz4OzGKfks+hXiY
+ 6oEANK608OP0iPwKZK9jXfo+BPYhfNs=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584360931; a=rsa-sha256; cv=none;
+ b=s5PfWSLnbtY5KIzojyvhHYjZQBSKY03kjBr5vbsRjd6dGmBJxTKKwPpdk5OM92b9PDCiF5
+ cJQe9sxi6y9RLq6P5+O0EGxWa9W23zQQ4xTyF6P5hjAdvHIzjk+ABQkhlyRzN9kAayi/7u
+ uOp78b47EB8YRcMkBKamXtOhyTlsD5E=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
+ dkim=pass header.d=gmail.com header.s=20161025 header.b=anHSIsrK;
+ spf=pass (diktynna.open-mesh.org: domain of maximyuschenko1@gmail.com
+ designates 2607:f8b0:4864:20::12c as permitted sender)
+ smtp.mailfrom=maximyuschenko1@gmail.com
+X-Mailman-Approved-At: Mon, 16 Mar 2020 15:37:25 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,30 +79,22 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot suspects this bug was fixed by commit:
-
-commit 32c72165dbd0e246e69d16a3ad348a4851afd415
-Author: Kadlecsik J=C3=B3zsef <kadlec@blackhole.kfki.hu>
-Date:   Sun Jan 19 21:06:49 2020 +0000
-
-    netfilter: ipset: use bitmap infrastructure completely
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D16b8e545e000=
-00
-start commit:   d96d875e Merge tag 'fixes_for_v5.5-rc8' of git://git.kerne.=
-.
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dcf8e288883e40ab=
-a
-dashboard link: https://syzkaller.appspot.com/bug?extid=3D6491ea8f6dddbf049=
-30e
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D126748d6e0000=
-0
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D1385f959e00000
-
-If the result looks correct, please mark the bug fixed by replying with:
-
-#syz fix: netfilter: ipset: use bitmap infrastructure completely
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisectio=
-n
+Hello,
+I use batman-adv to create a mesh network and recently I faced an
+issue related to batman-adv gateways.
+I have a mesh network based on batman-adv. Each node in my network has
+certain coordinates. Each node uses these coordinates to generate it's
+own IPv6 address and sets it to bat0 interface. Therefore, network's
+node has a static IPv6 address contains encoded coordinates.
+The purpose is to provide an Internet access to all mesh network nodes
+via gateway node. I already configured gateway node as gateway server
+and all rest nodes as gateway client. But in my case each gateway
+client wants to know default route to the gateway node and, in
+particular, it's IP-address.
+Please, suggest me how can I distribute default route to all nodes in
+the mesh network in the case where nodes have static IPv6-addresses
+(and also it is necessary to maintain the actual default gateway on
+the nodes). Or, please, suggest me how is better to provide an
+Internet access to all nodes and distribute their coordinates in the
+network.
+Thanks in advance
