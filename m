@@ -2,65 +2,70 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F7D186D35
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 16 Mar 2020 15:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9385B186D36
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 16 Mar 2020 15:37:38 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6817580A35;
-	Mon, 16 Mar 2020 15:37:27 +0100 (CET)
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com
- [IPv6:2607:f8b0:4864:20::12c])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 209E28009A
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 13:15:31 +0100 (CET)
-Received: by mail-il1-x12c.google.com with SMTP id p12so1548378ilm.7
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 05:15:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=mpwvBdezygXnzaFaO2l3Ti4L31vXjulr9JQM2w8UiyY=;
- b=anHSIsrK3r4Rg2gll+QDtNeuNzjZcckOdOarmaF6wNRAFJqQQcqZlZI7qWBo5M9vm/
- /+Qh5XkcMQ8y3HEnJu/C9obmmC6UHLmKZaLw/yLKOArZz3YvYlSoy1soZFuB8crhUupW
- pa4yLqdUaxOZOnsYj5zS3HR76c1UCppib1dqakCJAgEo0cTEa9E1LqvBJvVzk4TYs2V9
- V2kSBQ1xfSj/+QJNfpX44+Q52HvnjBKHABxq9LisAPOgUJcsJjT0tN4vNsIb/g4YFotW
- CTkGwIqOU2xyLPJeLuVgddAtAGe7N+qIA73K9KaTjYJ9dizap7nYDvPUxhb42PaJzvhZ
- dLUw==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5C1A680BA0;
+	Mon, 16 Mar 2020 15:37:33 +0100 (CET)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 0C1B8801AB
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 13:49:04 +0100 (CET)
+Received: by mail-io1-f69.google.com with SMTP id h76so5677152iof.12
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 05:49:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=mpwvBdezygXnzaFaO2l3Ti4L31vXjulr9JQM2w8UiyY=;
- b=f0HlbECPiOAoMdqzcI5iYJEQ1WBDjZF51qM3e38ZsrWsx0N8UJkoXpNdazEI/iiL2w
- 4z72nTS8p2LwDvzPG7UouK+SK0muVxykb2fe+WT2zKatph4JWyxTgU9j7gGqWpp22N6c
- iYvrkCnleFFvtoeGPKHsgCBCK1syT+ykeTay7G2XVqmT/GqY4xFNMoTBdzRdTLQnbFuj
- TJ9vE4QQRYUOmvQWKu4FZCD8HAiEt/gYtXh/UGCqDR0yUn0eHWKCQRrvXaGbSy/hPQyy
- zM1YDUYl62UyIRox5UbJyE3TqjSqezK9z8Eegd5xkm344z4uMTS9s4jOrWCs+VU+X7mC
- zVZA==
-X-Gm-Message-State: ANhLgQ2mHGBL9pI1V7TxxravF8vN9VEG+nJ1u67zTtXCLp4rx9hQ5G+u
- 216oSZeHjk5SvvnX0NLJ46A+n88yy6GfWilp3UoYmnqolf0=
-X-Google-Smtp-Source: ADFU+vv9Q00r53vC4+Fh/C17TGe08WqnMuxFFyN9C6rH9pXvXznxuT6Kn3GzguM5qHeceYyZfov273DrtuoERM5LnU8=
-X-Received: by 2002:a92:8f4b:: with SMTP id j72mr26234825ild.17.1584360929600; 
- Mon, 16 Mar 2020 05:15:29 -0700 (PDT)
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to:content-transfer-encoding;
+ bh=bbgjCSG0GMx48AI+Nh/K6rSe5vletqIPxakfsmtyduw=;
+ b=KbzS/7i0FAPmDxRV8W3O6hkA62J6MzZwDqVCMNHHRaLf0+1GprbZlJcxBSqu8whoAy
+ l5x53A5jFhN1XsW1vJxhc0cA1WqJm+6kg8YTSyeeR+1k9BmJFB2IcgqXVJr7oJmlee0r
+ R4VMnobJ3dtyEhU+2yKdByqk266vcBq+QvujUI6Pppg6NMJiiq+R2vtLiXWTdmGZLFRj
+ WY1rAd2Jb7+JCBWGWnoVA4/E4i5U24JWYuNo+JTwJADPnL+zUAIZSU25xbw6oZ9k1tcY
+ hTGN3mATRtjUayB77Pg9BzMZAgkC1mCIN+mANWOhst28hsd3ZK5phNCZZT6xyHtZanlJ
+ Dr0A==
+X-Gm-Message-State: ANhLgQ2iwmvFzc9iaHvm0mcNWFq57pIgArYUsZmm3vKJEP1tN48RCj2v
+ vhHRo4UZMMOKRB7uFJVMFr7fSRjv460shHxDlV43J6G+K//C
+X-Google-Smtp-Source: ADFU+vue7B9fHGoWNVwlgwrWGWkXeorIo9SBr4w0t4qGXj0x5F7298EMNFAO00Xn0od3oIodZxvMr/pdtB+0Ajok3FT03wHErLf5
 MIME-Version: 1.0
-From: Maksim Iushchenko <maxim.yuschenko1@gmail.com>
-Date: Mon, 16 Mar 2020 13:15:18 +0100
-Message-ID: <CADSehqO-iKQ9BVWd_WjR28uZmpwmmLLjctg6AQj_xMAHvtRPdQ@mail.gmail.com>
-Subject: batman-adv gateway issue
-To: b.a.t.m.a.n@lists.open-mesh.org
+X-Received: by 2002:a92:d789:: with SMTP id d9mr455830iln.301.1584362942791;
+ Mon, 16 Mar 2020 05:49:02 -0700 (PDT)
+Date: Mon, 16 Mar 2020 05:49:02 -0700
+In-Reply-To: <00000000000043aa29059c91459e@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000066871f05a0f83e9d@google.com>
+Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_ipmac_gc
+From: syzbot <syzbot+c1a1fb435465986efe35@syzkaller.appspotmail.com>
+To: a@unstable.cc, allison@lohutok.net, b.a.t.m.a.n@lists.open-mesh.org, 
+ coreteam@netfilter.org, davem@davemloft.net, fw@strlen.de, 
+ gregkh@linuxfoundation.org, info@metux.net, jeremy@azazel.net, 
+ kadlec@blackhole.kfki.hu, kadlec@netfilter.org, kstewart@linuxfoundation.org, 
+ linux-kernel@vger.kernel.org, lipeng321@huawei.com, liuyonglong@huawei.com, 
+ mareklindner@neomailbox.ch, netdev@vger.kernel.org, 
+ netfilter-devel@vger.kernel.org, pablo@netfilter.org, salil.mehta@huawei.com, 
+ sbrivio@redhat.com, shuliubin@huawei.com, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com, tglx@linutronix.de, yisen.zhuang@huawei.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584360931;
+ s=20121; t=1584362944;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
- dkim-signature; bh=mpwvBdezygXnzaFaO2l3Ti4L31vXjulr9JQM2w8UiyY=;
- b=MbR1zXc/8u2BSriCDgMqtSiM2pkAtHRMdmZGO6IxzYTCedy/vQ8vs3GC0gdKYpt/IVxuMO
- 9WtNnYSf1hkYYf30Pn4YuM0vpjWEe3vxqM/wULvt4ii4/J7WB/OL9H3Tz4OzGKfks+hXiY
- 6oEANK608OP0iPwKZK9jXfo+BPYhfNs=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584360931; a=rsa-sha256; cv=none;
- b=s5PfWSLnbtY5KIzojyvhHYjZQBSKY03kjBr5vbsRjd6dGmBJxTKKwPpdk5OM92b9PDCiF5
- cJQe9sxi6y9RLq6P5+O0EGxWa9W23zQQ4xTyF6P5hjAdvHIzjk+ABQkhlyRzN9kAayi/7u
- uOp78b47EB8YRcMkBKamXtOhyTlsD5E=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=gmail.com header.s=20161025 header.b=anHSIsrK;
- spf=pass (diktynna.open-mesh.org: domain of maximyuschenko1@gmail.com
- designates 2607:f8b0:4864:20::12c as permitted sender)
- smtp.mailfrom=maximyuschenko1@gmail.com
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to; bh=bbgjCSG0GMx48AI+Nh/K6rSe5vletqIPxakfsmtyduw=;
+ b=WVltr4pKCZBQADXhjpOKzgTf01EvZaM8bY2U/PthIHCIMbu0mj8OfBehYXiuFo7BQu+8q7
+ MO1+lsZ6wYnr95EQfdmQcsfgRk6+tXkDICCppgqGFy8SPqOxOKcUbHADAciDhxMiO42jWS
+ hGYWXd2cHHTGmHzKXo/gB3hCLWcUgVk=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584362944; a=rsa-sha256; cv=none;
+ b=yOC7qfeUr7Wo1lbz8e5fFCnsGwCJ70+h02D8rQ6qHTR3tBYEaIR8SRsdqqgvlBHuadSoZf
+ PcJpex85HdiEi6VL+h6sgfSx9Zjg7sWjRKQiRg392RUmGjO+pn1pnRY5qWH6CavzNHmSXX
+ O3Zea/84Aix4uV/hvOFSGeKbM8YutCE=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
+ spf=pass (diktynna.open-mesh.org: domain of
+ 3vnVvXgkbAGERXYJ9KKDQ9OOHC.FNNFKDTRDQBNMSDMS.BNL@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.69 as permitted sender)
+ smtp.mailfrom=3vnVvXgkbAGERXYJ9KKDQ9OOHC.FNNFKDTRDQBNMSDMS.BNL@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Approved-At: Mon, 16 Mar 2020 15:37:25 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
@@ -79,22 +84,30 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-Hello,
-I use batman-adv to create a mesh network and recently I faced an
-issue related to batman-adv gateways.
-I have a mesh network based on batman-adv. Each node in my network has
-certain coordinates. Each node uses these coordinates to generate it's
-own IPv6 address and sets it to bat0 interface. Therefore, network's
-node has a static IPv6 address contains encoded coordinates.
-The purpose is to provide an Internet access to all mesh network nodes
-via gateway node. I already configured gateway node as gateway server
-and all rest nodes as gateway client. But in my case each gateway
-client wants to know default route to the gateway node and, in
-particular, it's IP-address.
-Please, suggest me how can I distribute default route to all nodes in
-the mesh network in the case where nodes have static IPv6-addresses
-(and also it is necessary to maintain the actual default gateway on
-the nodes). Or, please, suggest me how is better to provide an
-Internet access to all nodes and distribute their coordinates in the
-network.
-Thanks in advance
+syzbot suspects this bug was fixed by commit:
+
+commit 32c72165dbd0e246e69d16a3ad348a4851afd415
+Author: Kadlecsik J=C3=B3zsef <kadlec@blackhole.kfki.hu>
+Date:   Sun Jan 19 21:06:49 2020 +0000
+
+    netfilter: ipset: use bitmap infrastructure completely
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D1074c2a9e000=
+00
+start commit:   d96d875e Merge tag 'fixes_for_v5.5-rc8' of git://git.kerne.=
+.
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dcf8e288883e40ab=
+a
+dashboard link: https://syzkaller.appspot.com/bug?extid=3Dc1a1fb435465986ef=
+e35
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D14e36185e0000=
+0
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D104a7a11e00000
+
+If the result looks correct, please mark the bug fixed by replying with:
+
+#syz fix: netfilter: ipset: use bitmap infrastructure completely
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisectio=
+n
