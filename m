@@ -2,71 +2,50 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9385B186D36
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 16 Mar 2020 15:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8124A186D6D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 16 Mar 2020 15:41:29 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5C1A680BA0;
-	Mon, 16 Mar 2020 15:37:33 +0100 (CET)
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
- [209.85.166.69])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 0C1B8801AB
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 13:49:04 +0100 (CET)
-Received: by mail-io1-f69.google.com with SMTP id h76so5677152iof.12
- for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 05:49:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to:content-transfer-encoding;
- bh=bbgjCSG0GMx48AI+Nh/K6rSe5vletqIPxakfsmtyduw=;
- b=KbzS/7i0FAPmDxRV8W3O6hkA62J6MzZwDqVCMNHHRaLf0+1GprbZlJcxBSqu8whoAy
- l5x53A5jFhN1XsW1vJxhc0cA1WqJm+6kg8YTSyeeR+1k9BmJFB2IcgqXVJr7oJmlee0r
- R4VMnobJ3dtyEhU+2yKdByqk266vcBq+QvujUI6Pppg6NMJiiq+R2vtLiXWTdmGZLFRj
- WY1rAd2Jb7+JCBWGWnoVA4/E4i5U24JWYuNo+JTwJADPnL+zUAIZSU25xbw6oZ9k1tcY
- hTGN3mATRtjUayB77Pg9BzMZAgkC1mCIN+mANWOhst28hsd3ZK5phNCZZT6xyHtZanlJ
- Dr0A==
-X-Gm-Message-State: ANhLgQ2iwmvFzc9iaHvm0mcNWFq57pIgArYUsZmm3vKJEP1tN48RCj2v
- vhHRo4UZMMOKRB7uFJVMFr7fSRjv460shHxDlV43J6G+K//C
-X-Google-Smtp-Source: ADFU+vue7B9fHGoWNVwlgwrWGWkXeorIo9SBr4w0t4qGXj0x5F7298EMNFAO00Xn0od3oIodZxvMr/pdtB+0Ajok3FT03wHErLf5
-MIME-Version: 1.0
-X-Received: by 2002:a92:d789:: with SMTP id d9mr455830iln.301.1584362942791;
- Mon, 16 Mar 2020 05:49:02 -0700 (PDT)
-Date: Mon, 16 Mar 2020 05:49:02 -0700
-In-Reply-To: <00000000000043aa29059c91459e@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <00000000000066871f05a0f83e9d@google.com>
-Subject: Re: KASAN: slab-out-of-bounds Read in bitmap_ipmac_gc
-From: syzbot <syzbot+c1a1fb435465986efe35@syzkaller.appspotmail.com>
-To: a@unstable.cc, allison@lohutok.net, b.a.t.m.a.n@lists.open-mesh.org, 
- coreteam@netfilter.org, davem@davemloft.net, fw@strlen.de, 
- gregkh@linuxfoundation.org, info@metux.net, jeremy@azazel.net, 
- kadlec@blackhole.kfki.hu, kadlec@netfilter.org, kstewart@linuxfoundation.org, 
- linux-kernel@vger.kernel.org, lipeng321@huawei.com, liuyonglong@huawei.com, 
- mareklindner@neomailbox.ch, netdev@vger.kernel.org, 
- netfilter-devel@vger.kernel.org, pablo@netfilter.org, salil.mehta@huawei.com, 
- sbrivio@redhat.com, shuliubin@huawei.com, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com, tglx@linutronix.de, yisen.zhuang@huawei.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584362944;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 40E0680B7E;
+	Mon, 16 Mar 2020 15:41:24 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id B4F20801A9
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Mar 2020 15:41:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1584369681;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to; bh=bbgjCSG0GMx48AI+Nh/K6rSe5vletqIPxakfsmtyduw=;
- b=WVltr4pKCZBQADXhjpOKzgTf01EvZaM8bY2U/PthIHCIMbu0mj8OfBehYXiuFo7BQu+8q7
- MO1+lsZ6wYnr95EQfdmQcsfgRk6+tXkDICCppgqGFy8SPqOxOKcUbHADAciDhxMiO42jWS
- hGYWXd2cHHTGmHzKXo/gB3hCLWcUgVk=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584362944; a=rsa-sha256; cv=none;
- b=yOC7qfeUr7Wo1lbz8e5fFCnsGwCJ70+h02D8rQ6qHTR3tBYEaIR8SRsdqqgvlBHuadSoZf
- PcJpex85HdiEi6VL+h6sgfSx9Zjg7sWjRKQiRg392RUmGjO+pn1pnRY5qWH6CavzNHmSXX
- O3Zea/84Aix4uV/hvOFSGeKbM8YutCE=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
- spf=pass (diktynna.open-mesh.org: domain of
- 3vnVvXgkbAGERXYJ9KKDQ9OOHC.FNNFKDTRDQBNMSDMS.BNL@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.69 as permitted sender)
- smtp.mailfrom=3vnVvXgkbAGERXYJ9KKDQ9OOHC.FNNFKDTRDQBNMSDMS.BNL@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Approved-At: Mon, 16 Mar 2020 15:37:25 +0100
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=B+fH9mFlHFdm6VGeEBukJi9J1vkVjyvHFjEbqwD5BvM=;
+ b=1GOuReU3zLQIV20dOyqTPZ1oG8Fz19seDwy5so//zpWJ6veRPRoYWUIkvrbJ3FwPYZ3e13
+ k3+zfmwlmoi/hl7d9tlfNwP6wkmu62iJC0gvoI6UrSfmkffcal+EDWfw5BHAOIewo1L1bL
+ zRiBHtvgxCCpPPU3dNdqgX4WG5qMFZg=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: batman-adv gateway issue
+Date: Mon, 16 Mar 2020 15:41:11 +0100
+Message-ID: <5958820.XUMrd2Zpsg@bentobox>
+In-Reply-To: <CADSehqO-iKQ9BVWd_WjR28uZmpwmmLLjctg6AQj_xMAHvtRPdQ@mail.gmail.com>
+References: <CADSehqO-iKQ9BVWd_WjR28uZmpwmmLLjctg6AQj_xMAHvtRPdQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart1786744.QDPt55KuLz";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1584369681;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:dkim-signature;
+ bh=B+fH9mFlHFdm6VGeEBukJi9J1vkVjyvHFjEbqwD5BvM=;
+ b=I6lWEo+cLkjoJBGk1+YpVngDzpVn1rmsCAUSeuUP0wMnnABjvCPX63ECOm/lBnnExFL/bH
+ Zt2yyUpxME8DgqJSfuimYyQw+KGFWXvPhIRSoy+/6Ms9pSf4Viwt6IX6r49LidQptv8HAf
+ gl0MNbGZDFcTzaAYp+SoJtUxS2V/xX4=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584369681; a=rsa-sha256; cv=none;
+ b=q9z8ukJq/2ZXiVgy/AhNsVGNa8x7XKW3ObGYHa41ABlis6e1BK0tMYT5RAhuohJPvV0QOW
+ zievB4kdQCDDkbXt5ekOk9yQVE74PIDJZlXOg3Rs4wPWZEAaDs48w+ylouopaFgM0qnhY3
+ PXFyGFOb3k7XLiimSGIVtwQRZP9vIf8=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
+ dkim=pass header.d=narfation.org header.s=20121 header.b=1GOuReU3;
+ spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,33 +60,56 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Maksim Iushchenko <maxim.yuschenko1@gmail.com>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot suspects this bug was fixed by commit:
+--nextPart1786744.QDPt55KuLz
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-commit 32c72165dbd0e246e69d16a3ad348a4851afd415
-Author: Kadlecsik J=C3=B3zsef <kadlec@blackhole.kfki.hu>
-Date:   Sun Jan 19 21:06:49 2020 +0000
+On Monday, 16 March 2020 13:15:18 CET Maksim Iushchenko wrote:
+> Hello,
+> I use batman-adv to create a mesh network and recently I faced an
+> issue related to batman-adv gateways.
 
-    netfilter: ipset: use bitmap infrastructure completely
+What are batman-adv gateways? Are you talking about the batman-adv gateway 
+feature? This feature is only about IPv4 DHCP (broadcast) requests.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D1074c2a9e000=
-00
-start commit:   d96d875e Merge tag 'fixes_for_v5.5-rc8' of git://git.kerne.=
-.
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dcf8e288883e40ab=
-a
-dashboard link: https://syzkaller.appspot.com/bug?extid=3Dc1a1fb435465986ef=
-e35
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D14e36185e0000=
-0
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D104a7a11e00000
+[...]
+> Please, suggest me how can I distribute default route to all nodes in
+> the mesh network in the case where nodes have static IPv6-addresses
+> (and also it is necessary to maintain the actual default gateway on
+> the nodes). 
 
-If the result looks correct, please mark the bug fixed by replying with:
+This has nothing to do with batman-adv. Sounds more like IPv6 router 
+advertisement.
 
-#syz fix: netfilter: ipset: use bitmap infrastructure completely
+Kind regards,
+	Sven
+--nextPart1786744.QDPt55KuLz
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisectio=
-n
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl5vkAcACgkQXYcKB8Em
+e0ZARhAArCOJwRgVFHyA9CTBQ2P/9f4C/FPp0XW0qTARH5SQfL5ut3CfsLLoFuOi
+vVXq1wJEzAIE0PYRJDsL1caXbBpKxvw0xKWQU6hu/gDkeecj0l/MEwWD+p/ciyNF
+BhSLW2mYimYBjk+YOei+jgE3HhXKwHQJtNDdr8J4ax7DpnwpP5gRP9W0q63qdUGs
+/Fl6zEYMlOe9pYRUMcMb3EcUTXKLQ9DvQcNkUzl8Vq6MCLC+mdm0O9f11/UOc6h8
+tq7FOhri0jhsF7QN37IgBOpyqcw/ppKYxD2eJc5q4KYhjqXECU0S2f3E/OpEl6bf
+TJ3em7TkQmDyWOggt6XOLeuo+klNUhDzd3cryo3M/KwIC5J56oUGzfRq8sQsqT/o
+YAa95rqLUQRbamV8Ou0xeYCekk3A3d438sjuYF2nmGd0oPkP4To5nYKY9fMVEe2P
+mIhqaVmqhoBhvGzX7LXKwiTW+PKoB2mhhLlgQepo9lw5RLaC8a7OHeh68lMcEnF/
+ZYSRw0oZWXuyr58vV0+eZdGkXjAEl3vLgYkOp11xHqbsCVHsC5zGemfDwBqxjAFw
+xqHvkkRKHWUpnFD+gO+qcTMb0AMq1AlxdxZdsh6M9rzujTnWcVhWq/2LfwTQ2ZNi
+EcXmDIO76/iTWs8gQWJEas/nBADwvukDn1sgatSzcsh/8Z0hbk0=
+=PxYw
+-----END PGP SIGNATURE-----
+
+--nextPart1786744.QDPt55KuLz--
+
+
+
