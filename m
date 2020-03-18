@@ -2,60 +2,60 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2521518A5C4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Mar 2020 22:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 061AF18A6CD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Mar 2020 22:13:10 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 05B458098B;
-	Wed, 18 Mar 2020 22:04:05 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5B3898002B;
+	Wed, 18 Mar 2020 22:13:09 +0100 (CET)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 4FCFD801B9
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Mar 2020 21:59:15 +0100 (CET)
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 7D1B180C15
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Mar 2020 22:04:15 +0100 (CET)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id BEF4020775;
- Wed, 18 Mar 2020 20:53:41 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 248F7215A4;
+ Wed, 18 Mar 2020 20:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1584564822;
- bh=F0FLa2iKgD3VIOUQXUfJd6u9S0Ph0eysk4JIX+3072E=;
+ s=default; t=1584564914;
+ bh=wR2TR1w/ynq1jlGvet5axAAOUI1ZOzfFYH8EMarjZvo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=T/6SsHQbK/w/BpCu+x/aDWJv1ibsanSGXs/Cte/h0Hs8yA+g8+cd3UdzdIpE6kGZq
- xxZW81rsfFh9wXuhcXR+XYKU7/zzgNszo3Bu0VIzkOXEb1Z7nNqYhKbAsZJOObTYNE
- swBZB0nGU3X91u5Tx4tD6wIVwt+1rGj+/ZgbjaKQ=
+ b=aA5JdqvH5YGGmS7IBy1NY22KEjMI29LHFBHMXXdbnTwqhQSbk/HpmdCe4E2QMVwLI
+ diOu5m7u5mrNHXXkM6f92i/7213IeAdKPGLEz4oFN14GwLt/hTMorzmW6vXSCPnWTS
+ 9lyc7xxDJmkY0Q0xEQ8Rh/jva2RWjZRso88/AaEI=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 04/73] batman-adv: Don't schedule OGM for disabled
- interface
-Date: Wed, 18 Mar 2020 16:52:28 -0400
-Message-Id: <20200318205337.16279-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 03/37] batman-adv: Don't schedule OGM for
+ disabled interface
+Date: Wed, 18 Mar 2020 16:54:35 -0400
+Message-Id: <20200318205509.17053-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318205337.16279-1-sashal@kernel.org>
-References: <20200318205337.16279-1-sashal@kernel.org>
+In-Reply-To: <20200318205509.17053-1-sashal@kernel.org>
+References: <20200318205509.17053-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584565155;
+ s=20121; t=1584565455;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=gGVj5ArG85CJ8fUCDPHeJDGxuq8rhqZ94AmHMDskasc=;
- b=mBD9+OINLy3nXU93yqc7gJsEKQNwMApA1OVtTbCqnAm72xrIBud40H4eWrn6Mwhlmm9NtH
- V1xQ5oCzx4ArKCcuKHdme0kVf7ecU4/M5e+6hnoUYVuCm1zDxR7Xe55MgmmlWkjiRYHtIm
- fZnQErKLtouTKEziEk7Dq9g7nsJ/cgk=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584565155; a=rsa-sha256; cv=none;
- b=HH1XlPA9k5lTctaKViIK9bFUAEXEsTJwniDHVLfVFtQ32ms+V6OcgZVXp1G+ktGa8t7v28
- P/GJA7q6oKpp9hs6+kdHVd1/JGqie7v54XsJwtome1mUzhrdzoF40pN1gFEm23ivytVKR8
- G9F2Oq+zYeJ3ynHgSXr+w/faIuaFh8Y=
+ bh=4HNrI4BIy4m+MRDEwPDiGY837+qSsZl4lbJ88ZhoQ7k=;
+ b=u0Oj/binBI0ASX/MHMPdR4BTtktkimAngsyhhYacNVISqu8cCInM8VlYm7kE+/e1FVbPAF
+ fFasijt7Y9z6tqEC6zTEFYPO3JyVOCS+dqye6D9sCfPNISXCfrKfKOGhYLs7ZHvHPF7Qon
+ ogEjqRfkQeEo+kPRFC2Svz3k8XeM6Kk=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584565455; a=rsa-sha256; cv=none;
+ b=2Ydi9xXrDgIpitmwZ+Tn4DAa8eMpEFhv1iH+tkwtBTw4g6xTq/u8gPoHysdKmcEBHEkevM
+ ie+V9+Ld0AQDxML8kgrkAFavkD60SwapkkUGjRbb2+tFG3/LNID35jwHEoinJWhRnjwKrz
+ OerAoR7VrIk4jUg2D7MV3aNqcoRdvL0=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=kernel.org header.s=default header.b=T/6SsHQb;
+ dkim=pass header.d=kernel.org header.s=default header.b=aA5JdqvH;
  spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates
  198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org
-X-Mailman-Approved-At: Wed, 18 Mar 2020 22:04:02 +0100
+X-Mailman-Approved-At: Wed, 18 Mar 2020 22:12:56 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,10 +102,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 4 insertions(+)
 
 diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 5b0b20e6da956..d88a4de022372 100644
+index f5941837c3ad4..0b052ff51bdeb 100644
 --- a/net/batman-adv/bat_iv_ogm.c
 +++ b/net/batman-adv/bat_iv_ogm.c
-@@ -789,6 +789,10 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
+@@ -970,6 +970,10 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
  
  	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
  
