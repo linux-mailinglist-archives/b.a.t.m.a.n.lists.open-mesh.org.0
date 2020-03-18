@@ -1,38 +1,38 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA6A18A5D0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Mar 2020 22:04:16 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2521518A5C4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Mar 2020 22:04:07 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A7CCF80BE2;
-	Wed, 18 Mar 2020 22:04:11 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 05B458098B;
+	Wed, 18 Mar 2020 22:04:05 +0100 (CET)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 52F51803BC
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 4FCFD801B9
  for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Mar 2020 21:59:15 +0100 (CET)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 85C8520777;
- Wed, 18 Mar 2020 20:53:27 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id BEF4020775;
+ Wed, 18 Mar 2020 20:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1584564808;
+ s=default; t=1584564822;
  bh=F0FLa2iKgD3VIOUQXUfJd6u9S0Ph0eysk4JIX+3072E=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=0uP77P7+2vNnJS3CN7ojZJenxyX8npZI4WgZSfnIhxDBAi+U26hoR13tBqYmwMlZb
- mr0eXWBRAlKtVqm5ew8WHplYfk9yyCOHWY2McbmzoUMbgavtEb7k6qmWNd1i8Pi6WA
- d8jeXYatF5Dm+FOJLTSx5Eni8jzQG7HeCGS5UcZk=
+ b=T/6SsHQbK/w/BpCu+x/aDWJv1ibsanSGXs/Cte/h0Hs8yA+g8+cd3UdzdIpE6kGZq
+ xxZW81rsfFh9wXuhcXR+XYKU7/zzgNszo3Bu0VIzkOXEb1Z7nNqYhKbAsZJOObTYNE
+ swBZB0nGU3X91u5Tx4tD6wIVwt+1rGj+/ZgbjaKQ=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 05/84] batman-adv: Don't schedule OGM for disabled
+Subject: [PATCH AUTOSEL 5.4 04/73] batman-adv: Don't schedule OGM for disabled
  interface
-Date: Wed, 18 Mar 2020 16:52:02 -0400
-Message-Id: <20200318205321.16066-5-sashal@kernel.org>
+Date: Wed, 18 Mar 2020 16:52:28 -0400
+Message-Id: <20200318205337.16279-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318205321.16066-1-sashal@kernel.org>
-References: <20200318205321.16066-1-sashal@kernel.org>
+In-Reply-To: <20200318205337.16279-1-sashal@kernel.org>
+References: <20200318205337.16279-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,15 +44,15 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:dkim-signature;
  bh=gGVj5ArG85CJ8fUCDPHeJDGxuq8rhqZ94AmHMDskasc=;
- b=W8zKofDlyCPc3VPeOGoCYGlctfHGeOeo7Z4cQz3BEXPSOToWJ+ohEENHNiuLq5NHkja87e
- 23HbwPOeZSCzJH6jaBM+WuA7JpppxF/kgopwdIFsW4xQcnXVJQw+9V7N39zT0E+2qS6LbM
- VFKT9r3CSNqBbXqTp4mtxNR6S00PXAs=
+ b=mBD9+OINLy3nXU93yqc7gJsEKQNwMApA1OVtTbCqnAm72xrIBud40H4eWrn6Mwhlmm9NtH
+ V1xQ5oCzx4ArKCcuKHdme0kVf7ecU4/M5e+6hnoUYVuCm1zDxR7Xe55MgmmlWkjiRYHtIm
+ fZnQErKLtouTKEziEk7Dq9g7nsJ/cgk=
 ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584565155; a=rsa-sha256; cv=none;
- b=sussizEG5kE73HqDRFwUDNjx4Z2RmnnVu0YsesQVIEjX7bBvgGmbWl2OUTzr+I5HJITfsk
- pEETA+sRR2Iv+1PttIrAh+h5XCjZ0YgtR3FQaj/4dY30iYDEKWC2LtsxrsoIEUnwLG7L8D
- 1gyGF2fjuKzTiuH2vSRnKfyFYuVa7nY=
+ b=HH1XlPA9k5lTctaKViIK9bFUAEXEsTJwniDHVLfVFtQ32ms+V6OcgZVXp1G+ktGa8t7v28
+ P/GJA7q6oKpp9hs6+kdHVd1/JGqie7v54XsJwtome1mUzhrdzoF40pN1gFEm23ivytVKR8
+ G9F2Oq+zYeJ3ynHgSXr+w/faIuaFh8Y=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=kernel.org header.s=default header.b=0uP77P7+;
+ dkim=pass header.d=kernel.org header.s=default header.b=T/6SsHQb;
  spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates
  198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org
 X-Mailman-Approved-At: Wed, 18 Mar 2020 22:04:02 +0100
