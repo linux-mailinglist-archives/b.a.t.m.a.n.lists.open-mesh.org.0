@@ -1,58 +1,67 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A90918A6CE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Mar 2020 22:13:20 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E6918C78B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Mar 2020 07:35:36 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0AD0680C7E;
-	Wed, 18 Mar 2020 22:13:15 +0100 (CET)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 81A6580C17
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Mar 2020 22:04:15 +0100 (CET)
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 76354208CA;
- Wed, 18 Mar 2020 20:56:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1584564991;
- bh=wyE376WqgvY5+rrlCpPW+hpOOpimfMKEWWvfWaIqJoM=;
- h=From:To:Cc:Subject:Date:From;
- b=swtQRAISRCV+OWWMMt+vf5z1y9wFz6aK0MbHqXzI653Mf9mIXK6dXZ3sOMD6y5JbB
- gOuGNrm/klU97It+SI/FtXKpmsyqlyyuhIEgA5e3sVea/uOYPyegvfJdJWCWtTh/Fn
- DFvyP6//+n788MsxivuHANJ6QWxqNo2SDz4fO/Ls=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 01/15] batman-adv: Don't schedule OGM for disabled
- interface
-Date: Wed, 18 Mar 2020 16:56:15 -0400
-Message-Id: <20200318205629.17750-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 36FE180724;
+	Fri, 20 Mar 2020 07:35:34 +0100 (CET)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id E095C800DF
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 20 Mar 2020 01:48:03 +0100 (CET)
+Received: by mail-io1-f69.google.com with SMTP id p4so3312580ioo.4
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 19 Mar 2020 17:48:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=KQIeV41BqSA2HWOsTXHaruLvJbTFku9df88EiZxeP2U=;
+ b=m5UwK6gsJt9+1bWY43IJQbdYSBWMix6tOS/yAFUSuDd4yE3kfVWiI80awUE8sUck/h
+ GnwzvUAndhtmKaIyQURhpNAHx4Ts33TPepjo2KdmjaE9vZxpzo3WdlOM8IytE4InFQL4
+ 90e1ISxdEvFX57OxWioDcnRDP+yhDTpEGWBzViawsKVlSJvA13QpzEF+0u4Eo/7ZNLrJ
+ RuwHmgUnKLDLWMyn90ahx4SgQL7umoILOFwDGOlrLQqy39U5OEbgebdctMSPYxLWou3K
+ glAo6u/zuEXH0gq5Fm8VybyTxb7TruO3Cm95vL7NvpE3TMCTNB4F4VAtUyZncHpbz4b2
+ 0xeQ==
+X-Gm-Message-State: ANhLgQ2KfBM8n1DRueF4ycilywDT6hvSSOi42JyhsV2qrtEQFhGpZ+sz
+ xtIcdiatZQvkEZATp6RYg/Y7eUaJUUdDcAzwNk4XMz81y+UT
+X-Google-Smtp-Source: ADFU+vtOqc6u9s+pMnAy4wggYF/r7nVtJrIj9IeIrcmEVypYawzs8Dh9C2t0kEbG2HqkEDMYGd/BujA1AdzgBk4Sx4zpBokunsE7
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+X-Received: by 2002:a6b:5406:: with SMTP id i6mr5275616iob.188.1584665282593; 
+ Thu, 19 Mar 2020 17:48:02 -0700 (PDT)
+Date: Thu, 19 Mar 2020 17:48:02 -0700
+In-Reply-To: <00000000000074219d05a139e082@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000041ca9305a13ea3e0@google.com>
+Subject: Re: general protection fault in sctp_ulpevent_nofity_peer_addr_change
+From: syzbot <syzbot+3950016bd95c2ca0377b@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, b.zolnierkie@samsung.com, 
+ davem@davemloft.net, dri-devel@lists.freedesktop.org, kuba@kernel.org, 
+ linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-sctp@vger.kernel.org, lkundrak@v3.sk, marcelo.leitner@gmail.com, 
+ mareklindner@neomailbox.ch, netdev@vger.kernel.org, nhorman@tuxdriver.com, 
+ sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com, vyasevich@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584565455;
+ s=20121; t=1584665284;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:dkim-signature;
- bh=G8blLGfHdbvhU8p+IjxwedXU9EK+NPsgtnr69Wg4/WE=;
- b=mKoZoh4Gbc5fzSWEglGLXDWv0W2VH98TqQXuJs3n0Z7ls/4ez6u7thBNZIFnlN0kI0aDS/
- QrgQhckaJiXFdCIT+nLa/qASjIgF8WpK0ZT6J7108+ne2NZxpxAdcc3fePECRhaEFRBcY9
- WFej9F0qd8/YLxOC/b0qviS+Ul72xQ0=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584565455; a=rsa-sha256; cv=none;
- b=egiVMlc46UY4f8sTmwaVIsGaYu14yofxO75mqkVpsnvpJzIdEkFMNnemuuweXKm4yNJv0T
- RtxrxM821wa68BEYKSWF6SrotUeua3rZrDJN8BeKRwhxS0Un9bmNRTzZjiDYMJ3i+hlXP5
- yxxm+zdCxqrgX/t2dKE7bW+5cAgu2+Y=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=kernel.org header.s=default header.b=swtQRAIS;
- spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates
- 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org
-X-Mailman-Approved-At: Wed, 18 Mar 2020 22:12:56 +0100
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=KQIeV41BqSA2HWOsTXHaruLvJbTFku9df88EiZxeP2U=;
+ b=dYUBZffzkATT1hIZdE/Ns13UYyYKKNwOBQnU7JcuUvm1mtc4l2sLP/3tcouA81n29Iy/k+
+ 1O/I1wBmlMfUJLuZ7zQs98kGJBhsPL2HFlye8xuZaP9kpVU82PHcaBd6sXRF1wOvTl4r1n
+ YKRwCk3phY/pu+MvCC/LEhOnxH+Wpto=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584665284; a=rsa-sha256; cv=none;
+ b=tAuwoiKw08+YXwEcKAcCIAnGQsvn5ko4ZWrzogzz7D1LvFXDQngjBU3soqtG41MEhoFw8p
+ owoUaT7vSa2g0ROFjwlF0UpEzuzYttit7PJ4zUFvAxcIeO+2qMopB6apWGD+VpfNJo/a7A
+ KDuVcXGkZP44PKazDaTJSy94jfxO48M=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
+ spf=pass (diktynna.open-mesh.org: domain of
+ 3whJ0XgkbALEjpqbRccViRggZU.XffXcVljViTfekVek.Tfd@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.69 as permitted sender)
+ smtp.mailfrom=3whJ0XgkbALEjpqbRccViRggZU.XffXcVljViTfekVek.Tfd@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Fri, 20 Mar 2020 07:35:31 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,52 +76,29 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Sasha Levin <sashal@kernel.org>, Hillf Danton <hdanton@sina.com>,
- netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org,
- syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com,
- syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+syzbot has bisected this bug to:
 
-[ Upstream commit 8e8ce08198de193e3d21d42e96945216e3d9ac7f ]
+commit da2648390ce3d409218b6bbbf2386d8ddeec2265
+Author: Lubomir Rintel <lkundrak@v3.sk>
+Date:   Thu Dec 20 18:13:09 2018 +0000
 
-A transmission scheduling for an interface which is currently dropped by
-batadv_iv_ogm_iface_disable could still be in progress. The B.A.T.M.A.N. V
-is simply cancelling the workqueue item in an synchronous way but this is
-not possible with B.A.T.M.A.N. IV because the OGM submissions are
-intertwined.
+    pxa168fb: trivial typo fix
 
-Instead it has to stop submitting the OGM when it detect that the buffer
-pointer is set to NULL.
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1361e139e00000
+start commit:   5076190d mm: slub: be more careful about the double cmpxch..
+git tree:       upstream
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=10e1e139e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=1761e139e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=9f894bd92023de02
+dashboard link: https://syzkaller.appspot.com/bug?extid=3950016bd95c2ca0377b
+userspace arch: i386
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1162bbe3e00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=13c93b45e00000
 
-Reported-by: syzbot+a98f2016f40b9cd3818a@syzkaller.appspotmail.com
-Reported-by: syzbot+ac36b6a33c28a491e929@syzkaller.appspotmail.com
-Fixes: c6c8fea29769 ("net: Add batman-adv meshing protocol")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Cc: Hillf Danton <hdanton@sina.com>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- net/batman-adv/bat_iv_ogm.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Reported-by: syzbot+3950016bd95c2ca0377b@syzkaller.appspotmail.com
+Fixes: da2648390ce3 ("pxa168fb: trivial typo fix")
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 780700fcbe63e..b08e3b331c503 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -934,6 +934,10 @@ static void batadv_iv_ogm_schedule(struct batadv_hard_iface *hard_iface)
- 	    (hard_iface->if_status == BATADV_IF_TO_BE_REMOVED))
- 		return;
- 
-+	/* interface already disabled by batadv_iv_ogm_iface_disable */
-+	if (!*ogm_buff)
-+		return;
-+
- 	/* the interface gets activated here to avoid race conditions between
- 	 * the moment of activating the interface in
- 	 * hardif_activate_interface() where the originator mac is set and
--- 
-2.20.1
-
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
