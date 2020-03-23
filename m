@@ -1,80 +1,67 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 423F318C78C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Mar 2020 07:35:42 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F6718F091
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 23 Mar 2020 09:04:38 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id EA55380C66;
-	Fri, 20 Mar 2020 07:35:40 +0100 (CET)
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
- [IPv6:2607:f8b0:4864:20::832])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id D461B8001D
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 20 Mar 2020 02:17:13 +0100 (CET)
-Received: by mail-qt1-x832.google.com with SMTP id f20so3688428qtq.6
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 19 Mar 2020 18:17:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=QHavipgYSNzUAjtspromspMTgYTom3kwMhXscnzi4bA=;
- b=ANo2YGyYS/aMgcH29Bkyjf3L68lI+JdTb8uBYs0jbOjfmE3S8hnXh5i/Y4sgBAB5P3
- Oy1KFAvFKGYzIn2IJg5wdjRO4+mtrrXU2fVupVrmiNtT7S4+eulKFqtzvh6zzuh9YqH2
- iE8FfvkBb3nzvuqc7Oa/kE7xPA7yXrYjaQko1+s/M/fqS0qRDlely0IZofZM24KcEbFX
- 9k7vzUYefx3iYeLbZk/by+BGwP4pkJ99jpZhb/2j0QADoYA+iHGiEJHV3dEJ0uCAtMvT
- pT6VsvEf4lETcxg7lxARtWPtFSwf3xoGjghzcH4j2L9uPu2HpRKqxYnhCaYxlXv2ePvz
- x55A==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D33FA80677;
+	Mon, 23 Mar 2020 09:04:36 +0100 (CET)
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id F14E380130
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 23 Mar 2020 08:37:03 +0100 (CET)
+Received: by mail-io1-f71.google.com with SMTP id s66so11010351iod.3
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 23 Mar 2020 00:37:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=QHavipgYSNzUAjtspromspMTgYTom3kwMhXscnzi4bA=;
- b=S06FF7vFL6MUqozhcPRZE4RqqrBeWdHiPakZq/wlmF2P1uygrnK6ZPP4phNl1NzFMT
- DD3pgp7j7xGJrZMuJZfUrVpi9MFlv25fyjC8nKHbjREObWcDUGsOsuxU7/lqIek/Rrm0
- 1yPXq0h6l3pvzYobLZHTuxKhN26Q7lumWDKtGMvmXnxSq1zpucNwazZ9wkJAeRDhx3/P
- sxJIzyD0cfbPs9YzRkIAc2wP6ZchUdSLhE3vBzLeOCvbXwOapgSDHosi89fxkYDVTDSn
- uAmRwr9uylxMUnScp08zL6ttHEGie8IxNoWI6OurHCftBXcBzcwXBTYx2mv8CGfCdrqk
- U9tw==
-X-Gm-Message-State: ANhLgQ2NayNMiwJC//+30hyytjETi1wRWHZy/jN0EAd16D0QVe2JqPjc
- SCkFNLGKH5y2g4bSY033qRo=
-X-Google-Smtp-Source: ADFU+vsq7hdtsaCbYqG7tUSQQrmGx0RogeROUuLZuLG/Kn1wi7/kIEp0004iJVQSM97XczjrwGI8hw==
-X-Received: by 2002:ac8:4549:: with SMTP id z9mr6071023qtn.274.1584667032585; 
- Thu, 19 Mar 2020 18:17:12 -0700 (PDT)
-Received: from localhost.localdomain ([177.220.176.176])
- by smtp.gmail.com with ESMTPSA id q24sm3156790qtk.45.2020.03.19.18.17.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Mar 2020 18:17:11 -0700 (PDT)
-Received: by localhost.localdomain (Postfix, from userid 1000)
- id 4F225C1B52; Thu, 19 Mar 2020 22:17:09 -0300 (-03)
-Date: Thu, 19 Mar 2020 22:17:09 -0300
-From: Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>
-To: syzbot <syzbot+3950016bd95c2ca0377b@syzkaller.appspotmail.com>
-Subject: Re: general protection fault in sctp_ulpevent_nofity_peer_addr_change
-Message-ID: <20200320011709.GE3756@localhost.localdomain>
-References: <00000000000074219d05a139e082@google.com>
- <00000000000041ca9305a13ea3e0@google.com>
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=xI0usRcGed/whdLZrrsYIFzz4drUK13ORfQnfasIJ14=;
+ b=MffW6HwJS8Pdle3z6nOGOsYj/zLAy1ait1BAb0QMlpa03suYwWxBSJNlM/uB8O9AfH
+ 8H639lpTf0t1ghY/j3Fz6Kj8iKO0g2mH/XsIQ8Kdu5k8sovTM0jmW9iZmXrnJTiGL+0j
+ 4Vz7EsHdFzhPe2yWqeWMb7dod3YNi5xDTBjLd6wMb3MOa+UfXW2cuse/KJP7kCAHBlP6
+ 9SOt2FmAqCrrjj94OhKo4hvWaRbkGooNjIgf8pxOSQrGtRNDxEtzHEUeyeRjdjyX0AqA
+ tMFguCheeWmM6+RXj8+QlQVmtDhVc7NElzpv5rySbwcv/ImqM3Z3URkJ408QdC12yV/o
+ RKaA==
+X-Gm-Message-State: ANhLgQ0XvcNsbDgeYbVizDGiexzJWhB3HR6S1hmuIzsqp3jqVvDfzEEb
+ UEJFxY4ZDU2iI6bYKmsKNARmUoFCHm8p2HnpYrMeYlLucY+T
+X-Google-Smtp-Source: ADFU+vufWP1ZmfhWge9JYASUxfhkELaTlcETnEuwcsBoeOODucklUQVC3o7tld/u7Pwx7D1VAa9UfQDBlJdJnT2pfzm7+QwL09Wo
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00000000000041ca9305a13ea3e0@google.com>
+X-Received: by 2002:a6b:f60d:: with SMTP id n13mr17817597ioh.147.1584949022600; 
+ Mon, 23 Mar 2020 00:37:02 -0700 (PDT)
+Date: Mon, 23 Mar 2020 00:37:02 -0700
+In-Reply-To: <000000000000e9e518059fd84189@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000007ab36905a180b328@google.com>
+Subject: Re: KASAN: use-after-free Write in hci_sock_bind (2)
+From: syzbot <syzbot+04e804c8c2224b6a9497@syzkaller.appspotmail.com>
+To: a@unstable.cc, andrew@lunn.ch, b.a.t.m.a.n@lists.open-mesh.org, 
+ davem@davemloft.net, f.fainelli@gmail.com, johan.hedberg@gmail.com, 
+ kuba@kernel.org, linux-bluetooth@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, marcel@holtmann.org, mareklindner@neomailbox.ch, 
+ netdev@vger.kernel.org, sw@simonwunderlich.de, 
+ syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1584667033;
+ s=20121; t=1584949024;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=QHavipgYSNzUAjtspromspMTgYTom3kwMhXscnzi4bA=;
- b=kea699F8Ff7fVLDHF5y7QYfACAFq8fuXu+Gr09JfMX4iiuyRXJHPktc9noRYV6nX1Z44Zd
- l0r/RdPd9cKSkbQ6V47gFxmsxhdIV4sn7ZdOwDcB1QoyWj50vfp0cvwvGCqlR8KzNI/NNQ
- UzI11GD6PsDBZci/I6U3x//TRMYaE8Q=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584667033; a=rsa-sha256; cv=none;
- b=Ey6J16B0sXWvdUI+qu2SlXMvYDoxvDoCoQGtfDwcJXUdvOsRfupFbmzv95HMBNxw3HzI6R
- c2xEJhVW0y3gb+zUcFakLeVPWVGVluG5HBl70VuqIyPQCSk2ZIZ94XVG0/zzDU/ZSXSTSe
- JfTaMDrIEiAKMjR5HE1gSSAiYs3/hAg=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=gmail.com header.s=20161025 header.b=ANo2YGyY;
- spf=pass (diktynna.open-mesh.org: domain of marceloleitner@gmail.com
- designates 2607:f8b0:4864:20::832 as permitted sender)
- smtp.mailfrom=marceloleitner@gmail.com
-X-Mailman-Approved-At: Fri, 20 Mar 2020 07:35:31 +0100
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=xI0usRcGed/whdLZrrsYIFzz4drUK13ORfQnfasIJ14=;
+ b=UsfYBeR3uVIFrcpvMdzcVTVYwjy2Lrz/GyWNlkXGwQ/kBdvujAfcO4V1iQMoGPAL0zrv/2
+ SZmvTTwunGZ+kF4Z7xDZ/nEvstV3lm27KTHeEmYGvu5ttKoR5I3/kvzmjHmcJ7lbzruqdr
+ 3iDUJXjnHvDCRgQLkImreR7TVYHl1j8=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1584949024; a=rsa-sha256; cv=none;
+ b=G96Kv0Vu1r+iHZpODvCMxLiBvNgWj2w0fYIbsoTxCRkJCU/0BSwKD1YMfWPY9OF/A/M5H2
+ QkyZLO/MupdNx5Q5T4gz97YjTObDi4IBYBaxQCIyE5uTD7D86gb/L3/ndFkrqVSFOqRIZl
+ wt7/bBxq4RksBgrub5DteTbXUYLLTBc=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
+ spf=pass (diktynna.open-mesh.org: domain of
+ 3Hmd4XgkbAMc5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.71 as permitted sender)
+ smtp.mailfrom=3Hmd4XgkbAMc5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Mon, 23 Mar 2020 09:04:34 +0100
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,22 +76,28 @@ List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: linux-fbdev@vger.kernel.org, mareklindner@neomailbox.ch,
- nhorman@tuxdriver.com, b.zolnierkie@samsung.com, netdev@vger.kernel.org,
- vyasevich@gmail.com, b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- syzkaller-bugs@googlegroups.com, lkundrak@v3.sk, linux-sctp@vger.kernel.org,
- kuba@kernel.org, davem@davemloft.net
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On Thu, Mar 19, 2020 at 05:48:02PM -0700, syzbot wrote:
-> syzbot has bisected this bug to:
-> 
-> commit da2648390ce3d409218b6bbbf2386d8ddeec2265
-> Author: Lubomir Rintel <lkundrak@v3.sk>
-> Date:   Thu Dec 20 18:13:09 2018 +0000
-> 
->     pxa168fb: trivial typo fix
+syzbot has bisected this bug to:
 
-Certainly not ;-)
+commit 7d13eca09ed5e477f6ecfd97a35058762228b5e4
+Author: Florian Fainelli <f.fainelli@gmail.com>
+Date:   Sat Aug 27 22:34:20 2016 +0000
+
+    Documentation: networking: dsa: Remove platform device TODO
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1746f3f9e00000
+start commit:   770fbb32 Add linux-next specific files for 20200228
+git tree:       linux-next
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=14c6f3f9e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=10c6f3f9e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=576314276bce4ad5
+dashboard link: https://syzkaller.appspot.com/bug?extid=04e804c8c2224b6a9497
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=11fc5e75e00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10707013e00000
+
+Reported-by: syzbot+04e804c8c2224b6a9497@syzkaller.appspotmail.com
+Fixes: 7d13eca09ed5 ("Documentation: networking: dsa: Remove platform device TODO")
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
