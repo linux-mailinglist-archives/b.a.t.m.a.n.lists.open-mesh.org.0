@@ -2,88 +2,64 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE2C195998
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 27 Mar 2020 16:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDDC197DC9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 30 Mar 2020 16:02:00 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id ED1F38098B;
-	Fri, 27 Mar 2020 16:12:28 +0100 (CET)
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
- [IPv6:2607:f8b0:4864:20::534])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 56D1A80055
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 27 Mar 2020 16:06:38 +0100 (CET)
-Received: by mail-pg1-x534.google.com with SMTP id x7so4704120pgh.5
- for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 27 Mar 2020 08:06:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kernel-dk.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=eXeiwmriuUHSGPIQ5FE/vs4fhtvCZSUZ3+noRetg2ao=;
- b=J80NARwEAtfKj8z76W4AvMB6js5ArpMXn6a03i9pbVQzqrM4mOTeWkHm5iLUvzWKq6
- dvdMjte/1ibknnyKRwJhQgpA9uL2d4OucbWEktnWOfDfUhE3/Nin1yfF2DN9FgqoNm33
- hNQKG3GYV1fXckGDsLsUagkYTLnTHw/Qic1FS1/hf0/YhrQ4qXe1NQblwT7DoW48ZfK8
- Tc8Nej4b7pM3v2HivVo+eMvOYFgDALiweWzEwovBxrxHrGk39ihgZVhs902Mi+z/24FN
- 3bS482It5MEKjA2IRfolXEyRT4Xikvj3228njhM/OHjzR7GRbY7uJQ7fnAy1dRUMpOWy
- yI/w==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8654180520;
+	Mon, 30 Mar 2020 16:01:55 +0200 (CEST)
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id 06A3C80190
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 30 Mar 2020 15:51:20 +0200 (CEST)
+Received: by mail-io1-f71.google.com with SMTP id x20so16241460iox.5
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 30 Mar 2020 06:51:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=eXeiwmriuUHSGPIQ5FE/vs4fhtvCZSUZ3+noRetg2ao=;
- b=cDjyEsv//NqeCawfNfyR1rkNM22N3TFNdoxWyqLRUG7KsxuR2cI0ZigUByKsKflroZ
- 9lv16lzIQXqhaDInEdM2rjHa1eV/NKDsjRWm4Saj/oat23dKfa6oYmnY/5enf9ebeV+O
- /uhoNz5UEgUzI9lI7LM0A+lx2bwt4JhkkVDjCHzrnac7qsSEt8Y2QrKi6tE1OYbQN9Wz
- dhqboMnEaS2eec5k3kSSNGgTW97l9Szdyv3t64NbWHKYZo9JVqzqGnVWmEmRMoEjV2tI
- 8YNt0Uti8Bnbfzov962KsVsMkvWDQAanciYSQi9EX1xggenHGqLVJY3FfJ9Gw8YJh9Rv
- PtKg==
-X-Gm-Message-State: ANhLgQ0sa04c0+V7GDpFTUS2MZWyRYvEX4jFR4Q6elizY+beZyrPS6AW
- y5hCO95ke+RdO9qPpPxY1bfvrQ==
-X-Google-Smtp-Source: ADFU+vs++DC7KxyU52I45Ga6jyMEVqGhwA7nu9vY/NNIxQmvXKQm1JdR/hw70GKZk7t4FSJKe8SEjw==
-X-Received: by 2002:a63:ef41:: with SMTP id c1mr13864299pgk.195.1585321596559; 
- Fri, 27 Mar 2020 08:06:36 -0700 (PDT)
-Received: from [192.168.1.188] ([66.219.217.145])
- by smtp.gmail.com with ESMTPSA id mq18sm4255882pjb.6.2020.03.27.08.06.33
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 27 Mar 2020 08:06:35 -0700 (PDT)
-Subject: Re: KASAN: null-ptr-deref Write in blk_mq_map_swqueue
-To: syzbot <syzbot+313d95e8a7a49263f88d@syzkaller.appspotmail.com>,
- a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
- dongli.zhang@oracle.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- mareklindner@neomailbox.ch, netdev@vger.kernel.org, sven@narfation.org,
- sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com,
- viro@zeniv.linux.org.uk
-References: <0000000000004760b805a1cc03fc@google.com>
-From: Jens Axboe <axboe@kernel.dk>
-Message-ID: <fa743a2c-f79e-6021-7c2b-72e178f913f4@kernel.dk>
-Date: Fri, 27 Mar 2020 09:06:32 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=YLVvaNavGqJEhh5fkSr20jBs4zDVUyraFKS4RYYWOFg=;
+ b=M/9I3Cpx9lSr+cnWx0j47TNVyMJ2PF622AWKycSYDGx7hkvceN5dzE7qQniAiOtQ0x
+ 3slvS3tJ89RfOrMNmk69uIL6MxL5MH9lFcVk/BBhFzCWssy/qBKuAyKgqH7lCaGgflcK
+ eZXutWliVR4xB9JRbrpuS7tbBWqV3I91dAA3uvmBP+FS4smh7ugB+wJ9eB3kAwcYJ8hL
+ RaJj1VDWf7CjiFleOP2o5Qbz9Qw9CxpPzJWRjjhqmcqFR6kaP76Q5HNS6Bs5sQh271Yd
+ r1Qi1SqtJu27MXptqPfuBsq9ixZzkA9MLGbTedfg2zzVCliGjEZZIySAZjYCmKbHadw1
+ NObA==
+X-Gm-Message-State: ANhLgQ1sZKcgCWat8BObwXyUynrYLyB7dFKgw1gWg649uvvYfOygiUG+
+ GsiN5JIXfivYSfpfTnnfZnMJ1pokQGU7f8cE5AasGlCFlfJG
+X-Google-Smtp-Source: ADFU+vsvxrmg4/EclKDmQeQf7Px0e7WNMnWZw5YOLVczE+DTyccrmmhsFybMffejJ0apRQDnvqMQVt+gHn8fKmDptiqTTYNCnRja
 MIME-Version: 1.0
-In-Reply-To: <0000000000004760b805a1cc03fc@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-Received: by 2002:a6b:b4c1:: with SMTP id d184mr10497100iof.85.1585576278701; 
+ Mon, 30 Mar 2020 06:51:18 -0700 (PDT)
+Date: Mon, 30 Mar 2020 06:51:18 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000db448f05a212beea@google.com>
+Subject: kernel panic: smack: Failed to initialize cipso DOI.
+From: syzbot <syzbot+89731ccb6fec15ce1c22@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, casey@schaufler-ca.com, 
+ davem@davemloft.net, intel-wired-lan@lists.osuosl.org, 
+ jeffrey.t.kirsher@intel.com, jkc@redhat.com, jmorris@namei.org, 
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org, 
+ mareklindner@neomailbox.ch, netdev@vger.kernel.org, serge@hallyn.com, 
+ sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1585321598;
+ s=20121; t=1585576280;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=eXeiwmriuUHSGPIQ5FE/vs4fhtvCZSUZ3+noRetg2ao=;
- b=3QxLrE4YzvclnzOwhyvXSyDywjsse0viEnFKE//8E4RQjn4rndIHl7FnvUpPQs1v3jB72s
- wE+mcJHPSUNuesfhvggFfdmY/uy8RHSODbI78iNQaavlhtX8xg0TO/psj9GVGTPJ5OG4xT
- O85rVf+8lvnbJAIURXc8UhI+CRcb7wY=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1585321598; a=rsa-sha256; cv=none;
- b=3MQH6S6cAK43cqMiMCUf7H8+AX1pJIHTXTf90q1EQmyYVnapuvc0vNRHg/LGEg9jxU90Lt
- Tcot6KdcObiovP/zr/7dED02A4qK7qsloCpp0zlFc7f1zaj8VGlhkgO7uMT+LhfjLNmp9f
- aWj7sPuw5fVDW0xhTHxNuafGDlZ5+a4=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=kernel-dk.20150623.gappssmtp.com header.s=20150623
- header.b=J80NARwE; 
- spf=pass (diktynna.open-mesh.org: domain of axboe@kernel.dk designates
- 2607:f8b0:4864:20::534 as permitted sender) smtp.mailfrom=axboe@kernel.dk
-X-Mailman-Approved-At: Fri, 27 Mar 2020 16:12:26 +0100
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=YLVvaNavGqJEhh5fkSr20jBs4zDVUyraFKS4RYYWOFg=;
+ b=qavbajohGkm7t97iJQ6QWFjnCaKWqLwOgPy1xZurRAx+9eziFlFGKFwrpGRA52NcdHcRzh
+ 3IeCCXTKwfKYCfDj6oWfoYh0x4QgvZnOXLzkLac2r/ifD2THin7+2oaadi+sJlx0A+hy5U
+ ZBqNFdKk5NoBw5C0FGMh6M126lrKsZU=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1585576280; a=rsa-sha256; cv=none;
+ b=2EM2ROgeMlW4MerH94e7luXZxrtLjy14RZ4cAgMw0HPQICnHBGl9KTx+SVjtzJUDDOvUr1
+ QJsYNSGDhTeMSnYbX4f865aj9so+j5P6ne8jokX+9f1bTcJK4GnWh92dzt9KL4yGt0Ww6Q
+ QAEwE7FkzO9xw9v4KxCa5dBU3ZYI0do=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
+ spf=pass (diktynna.open-mesh.org: domain of
+ 3VvmBXgkbAEs5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.71 as permitted sender)
+ smtp.mailfrom=3VvmBXgkbAEs5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Approved-At: Mon, 30 Mar 2020 16:01:53 +0200
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,17 +77,74 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-On 3/26/20 7:28 PM, syzbot wrote:
-> syzbot has bisected this bug to:
-> 
-> commit 768134d4f48109b90f4248feecbeeb7d684e410c
-> Author: Jens Axboe <axboe@kernel.dk>
-> Date:   Mon Nov 11 03:30:53 2019 +0000
-> 
->     io_uring: don't do flush cancel under inflight_lock
+Hello,
 
-This is definitely an utterly bogus bisect, not related at all.
+syzbot found the following crash on:
 
--- 
-Jens Axboe
+HEAD commit:    1b649e0b Merge git://git.kernel.org/pub/scm/linux/kernel/g..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=14957099e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=4ac76c43beddbd9
+dashboard link: https://syzkaller.appspot.com/bug?extid=89731ccb6fec15ce1c22
+compiler:       clang version 10.0.0 (https://github.com/llvm/llvm-project/ c2443155a0fb245c8f17f2c1c72b6ea391e86e81)
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1202c375e00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1390bb03e00000
 
+The bug was bisected to:
+
+commit a9d2d53a788a9c5bc8a7d1b4ea7857b68e221357
+Author: Ken Cox <jkc@redhat.com>
+Date:   Tue Nov 15 19:00:37 2016 +0000
+
+    ixgbe: test for trust in macvlan adjustments for VF
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=13cb06f3e00000
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=102b06f3e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=17cb06f3e00000
+
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+89731ccb6fec15ce1c22@syzkaller.appspotmail.com
+Fixes: a9d2d53a788a ("ixgbe: test for trust in macvlan adjustments for VF")
+
+RSP: 002b:00007ffebd499a38 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007ffebd499a40 RCX: 00000000004404e9
+RDX: 0000000000000014 RSI: 0000000020000040 RDI: 0000000000000003
+RBP: 0000000000000004 R08: 0000000000000001 R09: 00007ffebd490031
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000401dd0
+R13: 0000000000401e60 R14: 0000000000000000 R15: 0000000000000000
+Kernel panic - not syncing: smack:  Failed to initialize cipso DOI.
+CPU: 1 PID: 7197 Comm: syz-executor480 Not tainted 5.6.0-rc7-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0x1e9/0x30e lib/dump_stack.c:118
+ panic+0x264/0x7a0 kernel/panic.c:221
+ smk_cipso_doi+0x4d8/0x4e0 security/smack/smackfs.c:698
+ smk_write_doi+0x123/0x190 security/smack/smackfs.c:1595
+ __vfs_write+0xa7/0x710 fs/read_write.c:494
+ vfs_write+0x271/0x570 fs/read_write.c:558
+ ksys_write+0x115/0x220 fs/read_write.c:611
+ do_syscall_64+0xf3/0x1b0 arch/x86/entry/common.c:294
+ entry_SYSCALL_64_after_hwframe+0x49/0xbe
+RIP: 0033:0x4404e9
+Code: 18 89 d0 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 0f 83 5b 14 fc ff c3 66 2e 0f 1f 84 00 00 00 00
+RSP: 002b:00007ffebd499a38 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007ffebd499a40 RCX: 00000000004404e9
+RDX: 0000000000000014 RSI: 0000000020000040 RDI: 0000000000000003
+RBP: 0000000000000004 R08: 0000000000000001 R09: 00007ffebd490031
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000401dd0
+R13: 0000000000401e60 R14: 0000000000000000 R15: 0000000000000000
+Kernel Offset: disabled
+Rebooting in 86400 seconds..
+
+
+---
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+syzbot can test patches for this bug, for details see:
+https://goo.gl/tpsmEJ#testing-patches
