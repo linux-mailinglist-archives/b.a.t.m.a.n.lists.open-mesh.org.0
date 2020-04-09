@@ -2,50 +2,76 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 623841A2EE6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  9 Apr 2020 07:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73DE51A35DD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  9 Apr 2020 16:29:49 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id D33C580A3D;
-	Thu,  9 Apr 2020 07:54:31 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id ECFAA80185
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  9 Apr 2020 07:54:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1586411669;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=v1h3W8EXFznXYrw9GoeSK2MURmes5lCApad0rroours=;
- b=bZO4XA34kT/s4sBJ+pNwC8TBKkUVYW8UGgCbFklCW9tL8GRzfT5xqnewkC9DQ35OaJDD/I
- 9kd23qB/OKNusAk+dOqogx2zsPx0FifmT7mBELWzhj7C0VxWUDqzAgeTenHHArU5LjMBxw
- Hepmz4aVyeMNJvLvEdsXGV7zG4ncWPk=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
+	by diktynna.open-mesh.org (Postfix) with ESMTP id DECB8808C4;
+	Thu,  9 Apr 2020 16:29:47 +0200 (CEST)
+Received: from ory.petesbox.net (ory.petesbox.net [62.210.252.27])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id D076E802D2
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  9 Apr 2020 16:29:45 +0200 (CEST)
+Received: by ory.petesbox.net (Postfix, from userid 326)
+ id 4B115402C8; Thu,  9 Apr 2020 10:29:45 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
+ t=1586442585; bh=aQzpeN8wpcOGOHKk8ZNQ57wCnF+3FHKLrrpCMYO/vIk=;
+ h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
+ b=k69O2tL8d3/ShJGcFhwp2q2qg1PP290I9yDmb/VwDuAkrI8jSbJkASnqIpoY7i6eG
+ qrpMSLza5Y47SbbgGS8DxlQWQBxv1Nol/VJXW/rtc9VldIBwzpWDfTYNmBgmSbHY46
+ ZaxY6gJaS6DljiEgteB+gYDcC4dyWGRKFCC2+YI97TUaeLzfsSL6GYS/KByskdNUNE
+ XsvwcbsY0yRrXj8LFP9udWZJVTajegKaJH4jNRX4Ca8ZrRbRb8yaLrR+tPqD0d4ULo
+ 4T6fYlQtc92LdDfBJf5CQguFuwdMEzmFqN8ILtXggsL6lp8+R0N04Ypwh3UwLeaM1a
+ jv/+wbDjurtjA==
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ory.petesbox.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=4.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.2
+Received: from [192.168.160.217] (unknown [38.21.219.50])
+ by ory.petesbox.net (Postfix) with ESMTPSA id BE264402C8;
+ Thu,  9 Apr 2020 10:29:42 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
+ t=1586442583; bh=aQzpeN8wpcOGOHKk8ZNQ57wCnF+3FHKLrrpCMYO/vIk=;
+ h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
+ b=Zp5LODsj67b9T7u+modfmdxQfK0jhg477mdHL6ONXeeMrqVSQVoaGvT3XUksr803f
+ t7iRURJ0ra4cLGhaJ6QITxfUUNfiwAEmSoUzcGrV7k/dTbN1rIufxlvMZ6fQUtwyOU
+ WJgx9L/sUD9v35U6uZj2YT68Yv0yn6lwYntjDRgqvskGorWcbPgb6wBrllUmsxMEyn
+ dNPVSuZ8mURbY59PTAEyZiKR7ZTUIiJZWKZq+rB9CPA0fcOleZQevhy7oikV2QGXkz
+ RwCvhWkdZoi6eHmLZ48jvBXGXAKYEBuqO6mQqrx+dX1jKYCqe4E+FhrY01Q/fE1H82
+ ZcCk7U2kCOjSg==
 Subject: Re: working openwrt ibss configuration?
-Date: Thu, 09 Apr 2020 07:54:18 +0200
-Message-ID: <2428331.g3B3l9l1lY@bentobox>
-In-Reply-To: <3d4b35cb-4a4a-13a3-90dc-bbdb26456145@coolheads.com>
+To: Sven Eckelmann <sven@narfation.org>, b.a.t.m.a.n@lists.open-mesh.org
 References: <3d4b35cb-4a4a-13a3-90dc-bbdb26456145@coolheads.com>
+ <2428331.g3B3l9l1lY@bentobox>
+From: Steve Newcomb <srn@coolheads.com>
+Message-ID: <5bcbdfb8-5d85-de5b-2bd6-ca6ff3f0f83a@coolheads.com>
+Date: Thu, 9 Apr 2020 10:29:41 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1781114.JtcMaHvpFU";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+In-Reply-To: <2428331.g3B3l9l1lY@bentobox>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1586411670;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ s=20121; t=1586442585;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:dkim-signature;
- bh=v1h3W8EXFznXYrw9GoeSK2MURmes5lCApad0rroours=;
- b=PcRAhyjwnxkBerSbUGcREjbgWUH2FsvbVwmmx7hHQchSGKoOa2QriPAUtwQE1CL95R3d3U
- 1v/bOJQQQBM+fucoFlMgy9ohZZfjKx/ptJzJgnneOh/3/tsiSROSPlnAM/UWEHl+66XgRd
- h2uQqG48BKEzw+SEoRuI8EBJfVRvdUY=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1586411670; a=rsa-sha256; cv=none;
- b=DkWYINI0jPngwTNNdJD1mER8SS0yB3f1jcM1umvusZtTIl5dxDl28yIxWB/DsjVdPk2PcD
- gRAzAMGTEmQD1xlKE6yWwabITBqfcqCtVjbXkY8BE1LdHxqvKLu8quFQ6QPUZn2cPIhGkA
- Q6AemYHjR0Ea5dLt2BidWclPKNZU0E0=
+ bh=aQzpeN8wpcOGOHKk8ZNQ57wCnF+3FHKLrrpCMYO/vIk=;
+ b=zKHp/ypUAa9UxSrvGnCNXKBDo7e0G5P8HIDNTXhOO/nEg6pXOSLDTNb4fB0EJ2v/uuNqE7
+ NlELm2qHT+6w6Uj1/2gIZpq07aFsSzVIdu57KE7N/bJbpzF2IUdYdbkMW234PjDA48R/0B
+ yh6Ig7gnzSC/yOhBAEv8Cy+q46zLYP0=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1586442585; a=rsa-sha256; cv=none;
+ b=1DKDaxqg3Un0XaQ3qHTo5WQwEU0aA/jgq9vdF4hVADLsH7GboBBY6JeeiE+Y9WH9oF+Zw4
+ IdmdVk7ciEUA+CUDYUm91dkgpplGN/YEW2g+1CFkRy/Ezped7UcOEt/pmD4lJNFFrQW7of
+ Hwnkv/QQ7FxBlmKJXONcT5qocvTs+eY=
 ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
- dkim=pass header.d=narfation.org header.s=20121 header.b=bZO4XA34;
- spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ dkim=pass header.d=petesbox.net header.s=ory header.b=k69O2tL8;
+ dkim=fail (headers rsa verify failed) header.d=petesbox.net header.s=ory
+ header.b=Zp5LODsj; 
+ spf=pass (diktynna.open-mesh.org: domain of srn@coolheads.com designates
+ 62.210.252.27 as permitted sender) smtp.mailfrom=srn@coolheads.com
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,77 +84,21 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Subscribe: <https://lists.open-mesh.org/mm/listinfo/b.a.t.m.a.n>,
  <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=subscribe>
-Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
+Reply-To: srn@coolheads.com,
+ The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n@lists.open-mesh.org>
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
---nextPart1781114.JtcMaHvpFU
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Sven, Many thanks for the prompt, relevant and cautionary advice.  I 
+will try your suggested OpenWRT configuration soon.
 
-On Wednesday, 8 April 2020 20:10:03 CEST Steve Newcomb wrote:
-> Ben Greear suggested to me that I ask for help in figuring out how to 
-> configure an adhoc/ibss based mesh.  I haven't been able to find an 
-> example that's relevant.
+On 4/9/20 1:54 AM, Sven Eckelmann wrote:
+> Maybe some of the Gluon users here can
+> also provide some insides here because some of the communities used IBSS
+> with ath10k-ct.
+I'm hoping for just such insights.
 
-I am guessing you mean OpenWrt configuration. Because you linked a 
-OpenWrt routing commit below.
+All best wishes,
 
-Take the wireless configuration from 
-https://www.open-mesh.org/projects/batman-adv/wiki/Batman-adv-openwrt-config#Batman-adv-201300-till-20190-2 
-and the network configuration from 
-https://www.open-mesh.org/projects/batman-adv/wiki/Batman-adv-openwrt-config#Batman-adv-20190-3-and-newer
-
-[...]
-> My problem is that I have a bunch of wave-1 radios that, running under 
-> ath10k-ct (Ben Greear's firmware), can support mesh networking only in 
-> ibss mode (says Ben Greear).  I can use the non-CT firmware's 802.11s 
-> implementation, but it's unreliable. I'm looking for a way around my 
-> still-growing number of self-diagnosis-and-reboot hacks that are 
-> necessary with nodes running the non-CT firmware.
-> 
-> I'm hoping that someone on this list is running batman-adv with 
-> ibss/adhoc mode with a recent version of OpenWRT and will provide me 
-> their appropriately-redacted working OpenWrt config files 
-> (/etc/config/{network|wireless} as an example of something that is known 
-> to work.
-
-Uff. IBSS with Ben Greears firmware is... somewhat broken. I had fun with 
-this a couple of weeks ago. Easiest way to break it (on Dakota) was to 
-start an AP and IBSS interface at the same time - both will then top to 
-beacon and only start to beacon again when you stop one of them. It was 
-then decided just to stop using this firmware (and IBSS).
-
-But maybe it still works for you. Maybe some of the Gluon users here can 
-also provide some insides here because some of the communities used IBSS 
-with ath10k-ct.
-
-Kind regards,
-	Sven
---nextPart1781114.JtcMaHvpFU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6OuIoACgkQXYcKB8Em
-e0anIg/+KOHX+FNVJL4VdxECNgA8Qi3670M6WkQdUoFsrWl5Z0UAkeqyIPLBe7UZ
-K3NuRF3KgaL4pMTDGw1gWg6/d5IRGi4Jl//FgqHdGFDsvgq59IrepiAYLOltWP2E
-IIAtfWSngj1BZZEJEndktmVzAK984EDtcorc/v0wBuX/rHLdatcaFRgvj3kuWitc
-K71SND1TtP4dTuPWGiZeQBkLoMYB/StDITLoqxWpopt++LeKfp3/5/XUAS37BmbR
-E+4C5pwDaIQBa8E+cZORMJtT0Ke15GOsX41TmKoS1OL8Zk14vgyBFN+knbdUhqmk
-6rSP2KW8mIKksSdk6hgz20gtQHMKsPjnDdT2QQgFTaFoVjKv9rGTKzpSx4Nf/K6e
-3zMlxkOrAzskDb8JAH7LtGKJ4voc8xteT1Fq+EFqCWWnZ3/rY6uwetwG4YH4H6r+
-hdfKdwYZMMkLF8KP/nAVfm+I7mxUvN6N9V4/I3e3rbKysQEyiv08VaEYRGwsVB1s
-zTLLltVLlv6UnZEGJdh2YwE1XQTSiSTz+IgJixI+5iFEi++3bCipSJOuBT4oGgjN
-DXpbkF/eOjFVD1790vW8hg1DjgidBYwHqzByld2TnWxgAGgHYH8GuM9rfu2CF0VH
-nPNclqsy/faTscKRX2aJ5Rg6MQQTUxRG9KQ4eFX9d6VdH/JKXP4=
-=yiEZ
------END PGP SIGNATURE-----
-
---nextPart1781114.JtcMaHvpFU--
-
-
-
+Steve
