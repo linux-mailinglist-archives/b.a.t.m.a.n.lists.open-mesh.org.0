@@ -2,65 +2,77 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD031AB773
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 16 Apr 2020 07:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1493C1AB774
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 16 Apr 2020 07:40:21 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5C5DA806F7;
-	Thu, 16 Apr 2020 07:40:13 +0200 (CEST)
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
- [209.85.166.198])
- by diktynna.open-mesh.org (Postfix) with ESMTPS id 5CA5080084
- for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 16 Apr 2020 02:11:05 +0200 (CEST)
-Received: by mail-il1-f198.google.com with SMTP id y2so7259048ilm.8
- for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 15 Apr 2020 17:11:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=fpoqVPhszf0NVg05C+Ce87uumBc0cG0RasYX5KRrK/A=;
- b=t1syivuV0UFUQlLlEhEKPXLd3ATwztYPTgLudDFQ0XDArCWay0ggWUYh2TbHd1pcr7
- 0mivcSp9pdTS3SgE5kujv6geYwoX+50aHnqgSKafN3DjxSxVcE6m372D2FAIqacP0Lnf
- K/DmnMxLdDYHcZcf9DWINEN9RcoTBdeIi8NQlu/y+H3evYKDXY8kfZT27giTQVOfXAkA
- De0N6aJ8x9QOjtPgodKl/Csro5GD1Ef3osJWrwQQ0D1zCKPbNmoPglKHZOGdxENObyiH
- brHdzbHFtobC7QU+yaA76ua+G1XYPOlrv818dGGH1QGR+jUaPDiV3Qt0MIipHEH5nhVx
- T2xw==
-X-Gm-Message-State: AGi0PuaerjtWSgYGtMipuho3G4/qIFfiA4U/AmPisPBAgSjjoo58OFfa
- MqVlhDILJkBWDhrIO0/7PGPesI8FDqYQJmYnFwfIVE70dNkI
-X-Google-Smtp-Source: APiQypKcCgI3/2owP+Ax+avsl/BzFIkiA31xvFAOZDOMymkWaDm+4dJSPNPqeM8Ut+RNphNBCe4mDPpNDLKfGAmGhhXHK5QOcm+K
-MIME-Version: 1.0
-X-Received: by 2002:a02:7b05:: with SMTP id q5mr28919026jac.105.1586995863913; 
- Wed, 15 Apr 2020 17:11:03 -0700 (PDT)
-Date: Wed, 15 Apr 2020 17:11:03 -0700
-In-Reply-To: <0000000000003ec128058c7624ec@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000ba8e5605a35d4465@google.com>
-Subject: Re: WARNING in kernfs_create_dir_ns
-From: syzbot <syzbot+38f5d5cf7ae88c46b11a@syzkaller.appspotmail.com>
-To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, 
- gregkh@linuxfoundation.org, hdanton@sina.com, hongjiefang@asrmicro.com, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, longman@redhat.com, 
- mareklindner@neomailbox.ch, mingo@kernel.org, netdev@vger.kernel.org, 
- peterz@infradead.org, sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com, 
- tj@kernel.org, ulf.hansson@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
- s=20121; t=1586995865;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1C6648108F;
+	Thu, 16 Apr 2020 07:40:20 +0200 (CEST)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by diktynna.open-mesh.org (Postfix) with ESMTPS id B55D580043
+ for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 16 Apr 2020 02:30:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1586997029;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=fpoqVPhszf0NVg05C+Ce87uumBc0cG0RasYX5KRrK/A=;
- b=lW77bHzkxzMpONlLFC81yWSeDY4k7a4a4PdHQ8xeetl42IWVaEgmQqC5mfgl0tKvJLg/zE
- oOnsRiAZXGfP63hxH6SWP5ZvIumKQNcZ+39jdOJHvgjf5iYX1AnqaFAUapfRG8JqAWmRRz
- pWBR5QgJ4sBHhU29otl4NhyPx/fP/ho=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1586995865; a=rsa-sha256; cv=none;
- b=hbHmPKllKGhN2ujpFDN0XAiN/Ebfbo+Uax44ST7pcvFR9dENYfBEuZp2CLr8m6997GIDeA
- IdwlGDLjIc3LK1O53sMS0JlMiTnU2HlFdFHXKxO0og2QdgQcsxJxIKvnRSl7pBAkI0ZQA0
- y/IcuwENs/exfWr7ZNg+UGZ8P8vbReM=
-ARC-Authentication-Results: i=1; diktynna.open-mesh.org; dkim=none;
- spf=pass (diktynna.open-mesh.org: domain of
- 3l6KXXgkbADYkqrcSddWjShhaV.YggYdWmkWjUgflWfl.Uge@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
- designates 209.85.166.198 as permitted sender)
- smtp.mailfrom=3l6KXXgkbADYkqrcSddWjShhaV.YggYdWmkWjUgflWfl.Uge@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=s4rkdFZCt+CYPzp3/Qg70/GCXwWzZ5opTjJmcpHVXJY=;
+ b=P80IxbndyjXJTJb/l7TlTUUDXIHoJkqBYSq92ZPnix1Zx352RS9Jir8MqVwmZSc7fDWCxu
+ sPr2e75On4FM1DZY+w/efYX64HqCVMIzQzkBA73nqNBm6gp/HUpejyiZasw0YLIdp7fshQ
+ qkvCtqX99HyleXi5g0zJ3zySBCNSYHI=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-441-u5im1Xo4PlegAf8ewrePhg-1; Wed, 15 Apr 2020 20:30:25 -0400
+X-MC-Unique: u5im1Xo4PlegAf8ewrePhg-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B4F9C107ACC9;
+ Thu, 16 Apr 2020 00:30:21 +0000 (UTC)
+Received: from llong.remote.csb (ovpn-113-213.rdu2.redhat.com [10.10.113.213])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 041D15DA66;
+ Thu, 16 Apr 2020 00:30:09 +0000 (UTC)
+Subject: Re: WARNING in kernfs_create_dir_ns
+To: syzbot <syzbot+38f5d5cf7ae88c46b11a@syzkaller.appspotmail.com>,
+ a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+ gregkh@linuxfoundation.org, hdanton@sina.com, hongjiefang@asrmicro.com,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ mareklindner@neomailbox.ch, mingo@kernel.org, netdev@vger.kernel.org,
+ peterz@infradead.org, sw@simonwunderlich.de,
+ syzkaller-bugs@googlegroups.com, tj@kernel.org, ulf.hansson@linaro.org
+References: <000000000000ba8e5605a35d4465@google.com>
+From: Waiman Long <longman@redhat.com>
+Organization: Red Hat
+Message-ID: <894635f4-772e-a28c-1078-be8a5093e351@redhat.com>
+Date: Wed, 15 Apr 2020 20:30:09 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <000000000000ba8e5605a35d4465@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org; 
+ s=20121; t=1586997031;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:dkim-signature;
+ bh=s4rkdFZCt+CYPzp3/Qg70/GCXwWzZ5opTjJmcpHVXJY=;
+ b=ra0ZfWOHePW4TjQv8KN/e3VMDghGzwntxeqCbPNj1ONBATmqmcdadkksWhQF9kykn4Iu76
+ 2peW6Xd+njxbv3bzl2YHPfZ2wi2TRBj6ZZSg1BkmBAYU6g+EBE/Rzq/1xAReCsH2iwb11V
+ QoddLbfKjol+HGGOHT6qD5Ik/fWX1ws=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1586997031; a=rsa-sha256; cv=none;
+ b=BYfWS9CU3Ax1CtWnPjKbwqCm3jWhhG+pmP1Fwl59i1IpLhQJSilfkv+ergPNn3Qh0GYM3C
+ BtUvPtBN7fRae4mkaZTd8ygJDqsNNYWaKOgX74lazYdFl4Mjbtox0ScivgoAYWTAT5+dd4
+ 9+ayzkGfbR/VibiRduV8TPUFW9yxg/k=
+ARC-Authentication-Results: i=1; diktynna.open-mesh.org;
+ dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=P80Ixbnd;
+ spf=pass (diktynna.open-mesh.org: domain of longman@redhat.com designates
+ 207.211.31.120 as permitted sender) smtp.mailfrom=longman@redhat.com
 X-Mailman-Approved-At: Thu, 16 Apr 2020 07:40:11 +0200
 X-BeenThere: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 2.1.29
@@ -79,24 +91,5 @@ Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking
 Errors-To: b.a.t.m.a.n-bounces@lists.open-mesh.org
 Sender: "B.A.T.M.A.N" <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 
-syzbot suspects this bug was fixed by commit:
-
-commit 810507fe6fd5ff3de429121adff49523fabb643a
-Author: Waiman Long <longman@redhat.com>
-Date:   Thu Feb 6 15:24:08 2020 +0000
-
-    locking/lockdep: Reuse freed chain_hlocks entries
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1008138be00000
-start commit:   72825454 Merge branch 'x86-urgent-for-linus' of git://git...
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=9a31528e58cc12e2
-dashboard link: https://syzkaller.appspot.com/bug?extid=38f5d5cf7ae88c46b11a
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12a6c439a00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1353c323a00000
-
-If the result looks correct, please mark the bug fixed by replying with:
-
 #syz fix: locking/lockdep: Reuse freed chain_hlocks entries
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
