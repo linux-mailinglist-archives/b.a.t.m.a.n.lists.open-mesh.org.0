@@ -2,123 +2,123 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A471B0113
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 20 Apr 2020 07:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CB11B013A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 20 Apr 2020 07:54:01 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 13E478015B;
-	Mon, 20 Apr 2020 07:39:17 +0200 (CEST)
-Received: from fudan.edu.cn (mail.fudan.edu.cn [202.120.224.10])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E029D800DF
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 20 Apr 2020 07:38:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
-	Message-Id; bh=kUCGUPR2szUSoGME4rVvT/WsGE7O02byhpRwaI4bLIc=; b=w
-	Qh9JKDFyEEhmQgJvt5V8IbYGb7H3dmrUJqGNKaDZ6x/DSNc6+GpYwWY99MBsmmL2
-	u8XmJ4P4qBbeeOkgHaH6f1kAqp/Rq3ow0psY9cY849WS7PfuQ1CwREXNhKVUzESk
-	cQ+VxnESOallUcCKVMgiK64Rhv2d/7qUjOCcOcfNrs=
-Received: from localhost.localdomain (unknown [61.129.42.58])
-	by app1 (Coremail) with SMTP id XAUFCgCHH3cyNZ1e8HEWAA--.213S3;
-	Mon, 20 Apr 2020 13:37:55 +0800 (CST)
-From: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-To: Marek Lindner <mareklindner@neomailbox.ch>,
-	Simon Wunderlich <sw@simonwunderlich.de>,
-	Antonio Quartulli <a@unstable.cc>,
-	Sven Eckelmann <sven@narfation.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>,
-	b.a.t.m.a.n@lists.open-mesh.org,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] batman-adv: Fix refcnt leak in batadv_v_ogm_process
-Date: Mon, 20 Apr 2020 13:37:20 +0800
-Message-Id: <1587361040-83099-1-git-send-email-xiyuyang19@fudan.edu.cn>
-X-Mailer: git-send-email 2.7.4
-X-CM-TRANSID: XAUFCgCHH3cyNZ1e8HEWAA--.213S3
-X-Coremail-Antispam: 1UD129KBjvJXoW7uF4UWry5uFW5Kry8tr1fWFg_yoW8Xr48pr
-	4rKryYkrs5K3WUWa9Yy3ySyF48AFs7Xr17GayYyF15ArZFq3sak3yFgryY9Fy8ZFZak3yk
-	XF1vgFW3ZFyDGFDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBj14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4U
-	JVW0owA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Cr0_Gr
-	1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
-	648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc2xSY4AK67AK6r4rMxAIw28IcxkI7VAKI4
-	8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
-	wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjx
-	v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20E
-	Y4v20xvaj40_Zr0_Wr1UMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxV
-	AFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUXTmhUUUUU=
-X-CM-SenderInfo: irzsiiysuqikmy6i3vldqovvfxof0/
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1587361084;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3DAD280109;
+	Mon, 20 Apr 2020 07:54:00 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8923A80130
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 20 Apr 2020 07:53:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1587362014;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:dkim-signature; bh=kUCGUPR2szUSoGME4rVvT/WsGE7O02byhpRwaI4bLIc=;
-	b=zZGr5qt6Dsz/Ok/e3UArl6W30IMoDVLxvS4yPW4dhwHRT82xFXYzfAS/bZ1CzoMn1AGb4N
-	gX9afLS71baZoJjMQSTeUH30l1xNk+dwhvUVqdB9wCx9hfYtqNYB6VA1R6+M1Sbboveyz8
-	ZOqFh1gKANNL5qW7acGTBRDrgLM/P9c=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1587361084; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8v1nt9LlaYNIMct5NGUuujlOt/0rExt6hQKkny68o/c=;
+	b=zk/XmDTXnWfXW9BZ9mbWPCgmPhlL7TY46W6ldofYU6lxb4p8Q5PIXxj19Yd0EGq+vCN+BU
+	qh6aGHqyGJmBkx4dRrp1XYhYuVXBEn7NtEMnCG3BKPeDMD4VG45z/llKx20JaljUBcmNzl
+	4iJe7BcUWarvfNEUzUmpE9+uVVe6uCw=
+From: Sven Eckelmann <sven@narfation.org>
+To: Xiyu Yang <xiyuyang19@fudan.edu.cn>
+Subject: Re: [PATCH] batman-adv: Fix refcnt leak in batadv_v_ogm_process
+Date: Mon, 20 Apr 2020 07:53:31 +0200
+Message-ID: <6844758.PSh0Y5hloC@bentobox>
+In-Reply-To: <1587361040-83099-1-git-send-email-xiyuyang19@fudan.edu.cn>
+References: <1587361040-83099-1-git-send-email-xiyuyang19@fudan.edu.cn>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart3626795.PeB5Tdf7to"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1587362015;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=8v1nt9LlaYNIMct5NGUuujlOt/0rExt6hQKkny68o/c=;
+	b=w3WvFbauOKrh7gvlc39OFQ+zpXLpa0W/riMpU+53VisRTzGBG/PTN2gwruTlecXSdXKhFG
+	Di68g/GubD2iig4k3J/QoxwnPkazMqLqtZ3M8MV6ws3lQNpmZbyuUwSlZqy1z2XJn0WNEm
+	lcYMjsIVx5OBNbyw39Vx9yjZBNicCds=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1587362015; a=rsa-sha256;
 	cv=none;
-	b=rt3vAtkHgQ+1Q45BrpUOx8Bag+qcPjGaM/HAPdz03bdqiOQF1gjGRTo1gcahIW7JRn02kE
-	nUHqYEuMEMhU0LWx/+XGS4w6WRh4VACpQYvcqGZHJ49sobavXeMzojvXf3rBri1Uc7CoHY
-	msUz7lnfwbzsdj7qqTUXaBbya40Xe5c=
+	b=j3lOAqpjO8Rbi83dJchYZAsmmil1xN/z/5fWFyeRRvUWbdn6iMMQHN4vnNgEZusbwdgAjW
+	/zVzTOOC6VyoTkKwGbXdeSb5N1oLqW2GXpSNgSDaPd8aDFbGr5H+8qh+AnSzWb78m83ORO
+	OYjJuRwYEb73bYoqmwgT4kH+jgwt/Ls=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=fudan.edu.cn header.s=dkim header.b=w Qh9JKD;
-	spf=pass (diktynna.open-mesh.org: domain of xiyuyang19@fudan.edu.cn designates 202.120.224.10 as permitted sender) smtp.mailfrom=xiyuyang19@fudan.edu.cn
-X-MailFrom: xiyuyang19@fudan.edu.cn
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: LO7D27Q32I56XHWP7IRKKHGWRVINF7RZ
-X-Message-ID-Hash: LO7D27Q32I56XHWP7IRKKHGWRVINF7RZ
-X-Mailman-Approved-At: Mon, 20 Apr 2020 05:39:15 +0200
-CC: yuanxzhang@fudan.edu.cn, kjlu@umn.edu, Xiyu Yang <xiyuyang19@fudan.edu.cn>, Xin Tan <tanxin.ctf@gmail.com>
+	dkim=pass header.d=narfation.org header.s=20121 header.b=zk/XmDTX;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Hits: max-recipients
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-size; news-moderation; no-subject; suspicious-header
+Message-ID-Hash: USQIYRNP3LRO5I2WO6SRTTWNG7XOV2MI
+X-Message-ID-Hash: USQIYRNP3LRO5I2WO6SRTTWNG7XOV2MI
+X-Mailman-Approved-At: Mon, 20 Apr 2020 05:53:58 +0200
+CC: Marek Lindner <mareklindner@neomailbox.ch>, Antonio Quartulli <a@unstable.cc>, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, yuanxzhang@fudan.edu.cn, kjlu@umn.edu, Xin Tan <tanxin.ctf@gmail.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LO7D27Q32I56XHWP7IRKKHGWRVINF7RZ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/USQIYRNP3LRO5I2WO6SRTTWNG7XOV2MI/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-batadv_v_ogm_process() invokes batadv_hardif_neigh_get(), which returns
-a reference of the neighbor object to "hardif_neigh" with increased
-refcount.
+--nextPart3626795.PeB5Tdf7to
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-When batadv_v_ogm_process() returns, "hardif_neigh" becomes invalid, so
-the refcount should be decreased to keep refcount balanced.
+On Monday, 20 April 2020 07:37:20 CEST Xiyu Yang wrote:
+> batadv_v_ogm_process() invokes batadv_hardif_neigh_get(), which returns
+> a reference of the neighbor object to "hardif_neigh" with increased
+> refcount.
+> 
+> When batadv_v_ogm_process() returns, "hardif_neigh" becomes invalid, so
+> the refcount should be decreased to keep refcount balanced.
+> 
+> The reference counting issue happens in one exception handling paths of
+> batadv_v_ogm_process(). When batadv_v_ogm_orig_get() fails to get the
+> orig node and returns NULL, the refcnt increased by
+> batadv_hardif_neigh_get() is not decreased, causing a refcnt leak.
+> 
+> Fix this issue by jumping to "out" label when batadv_v_ogm_orig_get()
+> fails to get the orig node.
+> 
+> Fixes: 9323158ef9f4 ("batman-adv: OGMv2 - implement originators logic")
+> Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
+> Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
+> ---
+>  net/batman-adv/bat_v_ogm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-The reference counting issue happens in one exception handling paths of
-batadv_v_ogm_process(). When batadv_v_ogm_orig_get() fails to get the
-orig node and returns NULL, the refcnt increased by
-batadv_hardif_neigh_get() is not decreased, causing a refcnt leak.
+Applied [1]
 
-Fix this issue by jumping to "out" label when batadv_v_ogm_orig_get()
-fails to get the orig node.
+Thanks,
+	Sven
 
-Fixes: 9323158ef9f4 ("batman-adv: OGMv2 - implement originators logic")
-Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
----
- net/batman-adv/bat_v_ogm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1] https://git.open-mesh.org/linux-merge.git/commit/afba933d9875cdf31c973a1ecf05de7129a142c4
+--nextPart3626795.PeB5Tdf7to
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 969466218999..80b87b1f4e3a 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
-@@ -893,7 +893,7 @@ static void batadv_v_ogm_process(const struct sk_buff *skb, int ogm_offset,
- 
- 	orig_node = batadv_v_ogm_orig_get(bat_priv, ogm_packet->orig);
- 	if (!orig_node)
--		return;
-+		goto out;
- 
- 	neigh_node = batadv_neigh_node_get_or_create(orig_node, if_incoming,
- 						     ethhdr->h_source);
--- 
-2.7.4
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6dONsACgkQXYcKB8Em
+e0b6aA/9EgeHxmgaw9nEaGwVPQxs/aDz3TGXDZAVPhtj4/dd/uXxbvJ9USAG8veI
+XgBtMWRDj7jQP41+1CGYaPePAid6tZ4/hE0mEFg5d7+1gnf2rFCZ8CN0ox9GhGN2
+pccBnmMuJpHWIyxABUjCwbtYFw+fTbGAIV1Hm1y610JgXGmszcjfcqtY6LNaw3b0
+A8azcTlyZiAPJ+tCzUYb33hrxeNb9yqgaZSHMDXOpzcg/L8iR9xvgpgYRZi5DBj6
+E2EDpPWknflOfd4lX3FVrHzql7V2URKnDUBhhMc76Nea5qVLFqn8vKgW2IdbYwt+
+zTjGSqmwsme0pOEAI8xJkXGbwC3X4LhssidHHLRQb3vUu5UU+ShrEhGw+ack9IeE
+QUr9nGgpX3Yf6bu7jmEnIFZHG47A2l+KHbyxWpVsN9vnRMWKfvD82cqjfbglS5Xp
+y3V3RrREXN5hlKQ5jpn9vnJmlI0XmoWBiXjVkZHO2S2XPhXxf0FcwYCtCoGQGDa7
+qYc3adPv/pAf09g4rB1DYsB7/BXPjuz1JMf9zpdrGoJ/E+2z5xKRYbhiZX95TFSk
+n2ay85irBwRODSC4tgIzqJdH0udGUKxWAOo26dLOmZRTC1DUN+6IxfdGetGg7Y58
+9aZWNtXkhaeAtZyIU4VT191pyWf13nuL5luP3EPST1n/T5/nQCc=
+=oZeN
+-----END PGP SIGNATURE-----
+
+--nextPart3626795.PeB5Tdf7to--
+
+
