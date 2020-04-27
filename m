@@ -2,183 +2,212 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF6F1BA7F4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 27 Apr 2020 17:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC5E1BAB04
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 27 Apr 2020 19:19:14 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C657380DED;
-	Mon, 27 Apr 2020 17:27:38 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 08A8080E19;
+	Mon, 27 Apr 2020 19:19:13 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1588001257;
- b=YXLvF2TXMAddWVNipEu79Poq9HEEb3+9T4rRKn/0Iqd1G3l7x8M5HVRnGdOb9rcDxARyK
- kJeocu5Arg57bjebe0Le1KYcky1qn95I2iHdVa+QjM+Bo+RphuhSGqW7fHY9/FJBzJUv3uU
- otb6LajaeVefLYdLMIKVvNcAKZSlQ4k=
+ t=1588007952;
+ b=dYbKA19aa1N9Hm1y+Oxv+UZjWu5CtHuLQQ9sk62Vo8R+cqR1rfZdpo1pYVCh5RDuWUNCo
+ s0oyJq/5UVWFpXUsTdS+XnP2rmaW5ktIyvTO6+RUDYpMjWfhDtIlX7CXBQekJQyw/1Mvpsj
+ FwShOVfJHs1Kqqpvy2oBVR2/yHHULFY=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1588001257; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1588007952; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=HSk+B2xkzIkhfWm3w9CJBvC2CgXbUlgIMBXXWYrQa6Y=;
- b=iS7xQiK88wDr2oUyhogUrrf4zW/frGD5ThCPhZ1k721xuxghkyTTXa3Pyp2ElFuWBux5Z
- WwmR75b25Jwzijz/y/Sv2abXUetkVxx92QGUtrGDNMJXKnpuP5nHR5PDvsglcliuOQk0gVE
- XV84q7q7kxJyRtsjD4j76iwkx+Us8g8=
+ list-archive; bh=2sPEz6T5BUMrJ97PHNm6fItWtvJnY6t6C6Cwczj5iz4=;
+ b=K8R8I3+g4Yy/Yy438e+7qUtRCCeP1+BnYqXDgujs/3s9hZQiFPWP7YgF3rqsJQ/oHja6V
+ NfOffXCt+ssE7nCBhhYcNtj6V0+REfreiJEI+nXOxnIprBsMAAmejn9IPnJ3j7KAa3MSlN0
+ oMxJ60jXodkcS53mgbbY10QKsDnIXo0=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=narfation.org;
   arc=pass;
   dmarc=pass header.from=narfation.org
 Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org; arc=pass; dmarc=pass header.from=narfation.org
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8393C80314
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 27 Apr 2020 17:27:35 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 58D4980043
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 27 Apr 2020 19:19:10 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1588001255;
+	s=20121; t=1588007950;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=HSk+B2xkzIkhfWm3w9CJBvC2CgXbUlgIMBXXWYrQa6Y=;
-	b=mIl/2nQIVW35qPEue7cWAb6/IhFWg53yKooUGKnoH7AlIUPqmM5sAf/m83hOAHffMxwJKo
-	8EWPE1Hj3namX0xDusMvucF0Ax1OyKd+vMPmten+s0vvNULTsNnUigUSiOUO+jOl10g3Sr
-	tPUv/T9enYGCSxopVyp6SvVRIk6kuEY=
+	bh=2sPEz6T5BUMrJ97PHNm6fItWtvJnY6t6C6Cwczj5iz4=;
+	b=ni1sw8o0fuZxDuwZo0ukWd/FoHDbZ0kdrOWELVy/d86auGELsNVYDhH4Aj1JddnBNPSBnx
+	WJFfF3wPAzvRbYGLBUaH/7/9PRRoKvFVNoZ8pJ7Km3iiZT4OQOIsjf7o9iHPRPmJpHEAZ8
+	FcK+FgsoqI+sZKDYKZpy9VFXWdbL/0E=
 From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
+To: Oguzhan Kayhan <oguzhan@kayhan.name.tr>
 Subject: Re: configuration issue
-Date: Mon, 27 Apr 2020 17:27:30 +0200
-Message-ID: <1684592.5WYlJ4OYfx@bentobox>
-In-Reply-To: <CANKYHpeiWj7w2KEnkEfjUHWKfbhEAj7kMVE5hL5xv6O_1ZVFwg@mail.gmail.com>
-References: <CANKYHpeiWj7w2KEnkEfjUHWKfbhEAj7kMVE5hL5xv6O_1ZVFwg@mail.gmail.com>
+Date: Mon, 27 Apr 2020 19:19:00 +0200
+Message-ID: <5962426.I90Fg3i1QP@bentobox>
+In-Reply-To: <CANKYHpe_cG=dKv5z4tecjb24U_P2ipWoQPownNCxKySU_FozQw@mail.gmail.com>
+References: <CANKYHpeiWj7w2KEnkEfjUHWKfbhEAj7kMVE5hL5xv6O_1ZVFwg@mail.gmail.com> <1684592.5WYlJ4OYfx@bentobox> <CANKYHpe_cG=dKv5z4tecjb24U_P2ipWoQPownNCxKySU_FozQw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3756528.ibSLklOHiU"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: multipart/signed; boundary="nextPart17857616.P6YaZa0Rg7"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1588001255;
+	s=20121; t=1588007950;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=HSk+B2xkzIkhfWm3w9CJBvC2CgXbUlgIMBXXWYrQa6Y=;
-	b=GI8ad92KP5nPs7hWxpHgNGr9S8txs3zXJFb1uyQgjyMHP7EYehPJWN/bfLZKIAokK0NE/8
-	LRbuUURzAaZMGWWeVRaq+3hrC4fTHjipvjxNZXZytXRG7bkMZXKlegyiXqeB6TCrwruQMh
-	f147lPs+WEKuso0aoIfJzYbpIHen/Vk=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1588001255; a=rsa-sha256;
+	bh=2sPEz6T5BUMrJ97PHNm6fItWtvJnY6t6C6Cwczj5iz4=;
+	b=doViuYbUNRAJyN3pu2KjXJR/3cIfPFubYob5VURPJIa/2LFoJzOf2KO4fJnR7SI+R4FPrZ
+	1/p9TKRauTdu3tcnpxSUNmChHgC95EYyW0u7+GzhfE1gCb9w2zRVWyqh2fAmLaEvn/5DcP
+	Pj01n8HjoEjyDwivX491mrDm3AOJsbg=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1588007950; a=rsa-sha256;
 	cv=none;
-	b=GrE0q1vkMWUqjuNl9XZCjtpzw1yrvwHOUug/FkJzkVGjOc2SMznDyoKyK4Qx1PEgW38r2D
-	4AE5K1OqtMHz2P3aN9sKT/Ikw/5AYyfZMs+ulV7fP+Q2L/XEYEWpX2slRPUrHNMBsAs7zn
-	ct7VA5Lc2qfX8PG+54+WjNpCYoQf1YA=
+	b=2KqoflFwmpSkxOgQWpPcq44bqpejoL1Yg58kp8tts5MtQYR2IOD/ZZCNqUKshfkKke1L93
+	z7Zy2kjGPhQg0/5gESBWEbOAM6mFJIRfT5jC7ZGVw9CtrzsX14kR7bkHr7wkuTBmG2/P+z
+	GTuB1yPuRghwTvAxTJG3qdb9L0hd/FQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=mIl/2nQI;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=ni1sw8o0;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: ZXTZQNNKVIO7SDX5JGDKRVFHRQ2KKWI7
-X-Message-ID-Hash: ZXTZQNNKVIO7SDX5JGDKRVFHRQ2KKWI7
+Message-ID-Hash: LTZI45UBLLKJHIF5VTRO3HDDBJ7TZPP7
+X-Message-ID-Hash: LTZI45UBLLKJHIF5VTRO3HDDBJ7TZPP7
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Oguzhan Kayhan <oguzhan@kayhan.name.tr>
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZXTZQNNKVIO7SDX5JGDKRVFHRQ2KKWI7/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LTZI45UBLLKJHIF5VTRO3HDDBJ7TZPP7/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart3756528.ibSLklOHiU
+--nextPart17857616.P6YaZa0Rg7
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Monday, 27 April 2020 14:26:40 CEST Oguzhan Kayhan wrote:
-> Hello
-> I am running batman over a openwrt 18.06
-> default batman config over this firmware is batman-adv 2017.4
-
-This is odd. 18.06 is using batman-adv 2018.1 (2018.1-11 at the moment). 
-Sounds like something went wrong with your routing feed.
-
-
+On Monday, 27 April 2020 18:35:29 CEST Oguzhan Kayhan wrote:
 [...]
-> config wifi-iface
->         option device 'radio0'
->         option ifname 'mesh0'
->         option network 'mesh'
->         option mode 'adhoc'
->         option ssid 'mesh'
->         option bssid '02:CA:FE:CA:CA:40'
->         option mcast_rate '18000'
-[...]
+> *I 'm running Gateworks Newport as controller board. And updated from their
+> repository Thats the version they had..Actually I tried updating the feeds
+> to the latest version but, It threw error on compiling..So , didnt waste
+> too much time and stick on the 2017.4 version.But if needed, I will try to
+> update versions also.*
 
-Please think about switching to meshpoint without forwarding.
+Please write them and ask them to adjust their repositories to actually ship 
+OpenWrt 18.06 with the up-to-date feeds. We don't support 2017.4 anymore and 
+will not provide patch backports for 2017.4-0 from openwrt-routing. But we
+have a lot of stable backport patches in 2018.1-11. And 2018.1-11 build likes 
+a charm when the main OpenWrt repository is actually an 18.06.
 
-    config wifi-iface 'wmesh'
-        option device 'radio0'
-        option ifname 'mesh0'
-        option network 'bat0_hardif_mesh0'
-        option mode 'mesh'
-        option mesh_id 'mesh'
-        option mesh_fwding '0'
-        option mesh_ttl '1'
-        option 'mcast_rate' '18000'
+And to me, it looks like Gateworks 18.0x is not even based on OpenWrt 18.06 
+but on something which was forked 7 months (1287 commits) before the release 
+of 18.06.0 - and we are currently at OpenWrt 18.06.8 on the old stable branch 
+and 19.07.2 on the current stable branch.
 
-At least in my experience, the IBSS support in the device firmware is either
-not there or starting to rot.
+You don't even have the "newest" (up to 28 month old) security fixes in 
+gateworks 18.0x - and there are quite at some security and stability patches 
+which you should get integrated.
 
-
-> I have two systems present..
-> One board is with 802.11n radio. other is 802.11ac radio
-> This is the only difference..same image compiled running on both devices..
-[...]
-> This configuration works fine..
-> But if I run same config on the second node with 802.11ac radio.. it fails..
-> So I dig around and changed the config as follows.. And it started to work..
-> batman-adv is same..no difference
-[...]
-> config interface 'bat0_hardif_eth0'
->         option mtu '1532'
->         option proto 'batadv'
->         option mesh 'bat0'
->         option ifname 'eth0'
-
-Hum, where is the ethernet coming from? This is not used in the other 
-configuration as slave interface for bat0. And it should also fail if you do 
-something like this on the 11n device and don't use a separate interface
-section in /etc/config/network for it.
-
-Besides this, what is the change? I don't see one.
-
-And if you just wanted to have eth0 as slave and the wlan interface as slave - 
-then yes, you need two different interfaces with proto batadv (batadv_hardif 
-in OpenWrt 19.07) in /etc/config/network. It is not possible to have multiple 
-slave interfaces in /etc/config/network attached to a single master interface 
-using a single (non-"bridge" type) interface section . This is a limitation
-of netifd.
-
-> I have two questions so far..
+> > [...]
+> > > config wifi-iface
+> > >         option device 'radio0'
+> > >         option ifname 'mesh0'
+> > >         option network 'mesh'
+> > >         option mode 'adhoc'
+> > >         option ssid 'mesh'
+> > >         option bssid '02:CA:FE:CA:CA:40'
+> > >         option mcast_rate '18000'
+> > [...]
+> >
+> > Please think about switching to meshpoint without forwarding.
 > 
-> Why the first config does not work over second system..(Wifi works
-> fine but. for mesh. i needed to change the config like this)
 > 
-> Second question.. I can live with different config.. Ok..
-> But I want to use eth0 and eth2 and mesh network as a bridge...
+> *I'd be glad if you give more detail what you mean.*
 
-"as a bridge"? Maybe you mean in a bridge? Should work right of the box with eth2:
+The example configuration was given below. What more details do you need? You 
+already noticed yourself that it doesn't support IBSS/adhoc.
+
+> 
+> >
+> >     config wifi-iface 'wmesh'
+> >         option device 'radio0'
+> >         option ifname 'mesh0'
+> >         option network 'bat0_hardif_mesh0'
+> >         option mode 'mesh'
+> >         option mesh_id 'mesh'
+> >         option mesh_fwding '0'
+> >         option mesh_ttl '1'
+> >         option 'mcast_rate' '18000'
+> >
+> > At least in my experience, the IBSS support in the device firmware is
+> either
+> > not there or starting to rot.
+> >
+> 
+> 
+> 
+> *That might be the problem.On 802.11ac card, iw phy gives supported
+> interface modes as;managed, AP, AP/VLAN,monitor, Meshpoint      but 802.11n
+> gives IBSS,managed, AP, AP/VLAN,monitor, Meshpoint, p2p-client, p2p-go
+> modes..*
+> *So.. does it shows 802.11ac doesnt support batman?
+
+Hu? batman-adv is not IBSS. It can run on all kind of interface types. But it 
+makes more sense to run it on meshpoint without forwarding (mesh_fwding 0) or 
+IBSS/adhoc.
+
+> or is there any other
+> ways to try besides ad-hoc mode? Both cards are DoodleLabs*
+
+Use a meshpoint interface without forwarding. As shown in the example 
+configuration in my first mail.
+
+
+[...]
+> > A device just cannot be in a bridge and in batadv at the same time. Just
+> not
+> > possible because the bridge would steal all the ethernet packets before
+> > batman-adv would receive them. So it is not even allowed to have two
+> masters
+> > (batadv interface and a bridge) for a single interface (wlan0, eth0, ...).
+> >
+> 
+> *So, what is the correct way to do that then..*
+> *Any examples for this scenario?*
+
+Don't try to add the ethernet in both bridge and batman-adv as slave. Doesn't 
+work - so I cannot give you an example.
+
+If you want to still transport stuff over ethernet which is also used to 
+bridge to some other interface, try macvlan or vlan's on top of the ethernet 
+interface. The macvlan will create a new ethernet interface which just uses a 
+different mac address. A vlan interface on top of the ethernet will just but a 
+vlan header between the ethernet header and the next layer. So I am guessing 
+you want to first try macvlan (requires kmod-macvlan):
 
     config interface 'bat0_hardif_wlan'
             option mtu '1532'
             option proto 'batadv'
             option mesh 'bat0'
-    
+
+    config interface 'lan'
+            option type 'bridge'
+            option ifname 'eth2 eth0 bat0'
+            option proto 'static'
+
+    config device 'veth0'
+            option name 'veth0'
+            option type 'macvlan'
+            option ifname 'eth0'
+
     config interface 'bat0_hardif_eth0'
             option mtu '1532'
             option proto 'batadv'
             option mesh 'bat0'
-            option ifname 'eth0'
+            option ifname 'veth0'
 
-    config interface 'lan'
-            option type 'bridge'
-            option ifname 'eth2 bat0'
-            option proto 'static'
-
-
-If you want to use eth0, eth2 and bat0 in a bridge then it would look like this:
+Or if it is no problem to use VLANs (here 123):
 
     config interface 'bat0_hardif_wlan'
             option mtu '1532'
@@ -187,42 +216,40 @@ If you want to use eth0, eth2 and bat0 in a bridge then it would look like this:
 
     config interface 'lan'
             option type 'bridge'
-            option ifname 'eth0 eth2 bat0'
+            option ifname 'eth2 eth0 bat0'
             option proto 'static'
 
-> But whenever i add any of this interfaces on bridge.. batman-adv fails..
-> What am I missing???
-
-A device just cannot be in a bridge and in batadv at the same time. Just not 
-possible because the bridge would steal all the ethernet packets before 
-batman-adv would receive them. So it is not even allowed to have two masters 
-(batadv interface and a bridge) for a single interface (wlan0, eth0, ...).
+    config interface 'bat0_hardif_eth0'
+            option mtu '1532'
+            option proto 'batadv'
+            option mesh 'bat0'
+            option ifname 'eth0.123'
 
 Kind regards,
 	Sven
 
---nextPart3756528.ibSLklOHiU
+--nextPart17857616.P6YaZa0Rg7
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6m+eIACgkQXYcKB8Em
-e0ae9g//QECsAAdFuxDwu4WF+bsZlxMxaGnM/vYraAc71dliXjX4IK5bwbPfE/6L
-z5RCguLxsXtL63E5tCtmZAe5IRrmFI8NJzvAs3Asf+9L9Dc25vdHJxKYv0J+uCxl
-rlji3V3bnwR8nDyyqYTAITSaaPMx6bqfa3di4JbwqAEXz/QXbvTboaZdXEcesTW5
-FFPr837+0zen4H+j6RuJBaW0AkE67/A/nnMEqAJ7jL3NuyemZ6j4diYP0WzhpW1J
-r1avxQuHb0Ay73c2ouCXmk3DD+nXXzedRuiPZkqOcU9ViDJbv06ihOpBOhp81KGm
-JvVm71A4GwiU11JS6CsE1vlBH/VDW5a2XzdIitsn4Mwmid0gdLqeotyN8V/NZStj
-34OOPAIkME8Sjw7m8VuHM4OwY5lIwusy3POUD/iYAmuZmS8r75oXK2+bKt7qZKuz
-NmRaaPqXuYdahVZYfCju3xuciBjx6DNACOL84MmtWtcmx09pYoGP3+bv1+rn0X1h
-nkwPwjrNXU5WfmcwUVQdKkuYY1RbrdHsI4c7p7vk3+dxmV2O46VE2K7xuYfk76Fp
-jwSGKNtJIyHkVLIPr+NwLiE7sBTWwti7n8BPYBJeO3Cx3A7qW6XDCc8WGlaL+0W9
-y4Zj0YRIWeRUqBYhA2qyezZKsO3NyvZUD9gg8BklBUd+s0F+kio=
-=QWor
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6nFAQACgkQXYcKB8Em
+e0a4YQ//WfdQSc4gE2Aso1LPF3M1gzeFx84WYqUBlJLgY354T3OmEUWXgAL2LuYl
+G3vTrWU+WmZfMH5AeWi21TETEQ+DlcytOxvU24jOIbujUwWKKWurFcWkQuiXm7Mr
+5x+DA/ThRoCjW2UfXBEct3wyVO+q4ExYzK9j65iTAH/0qULvHOVlRQkUT+3Nx/bM
+WASMkHZdL2o6KKdbyMiEc926emI3KDseBo0fgJtWoSyCYUDMI8T4974RFy4t33HG
+FQ4s4X5u22rtLo/7I8j7SzQ8JfWOOyAWgOwO7lGWKU+RHBLkq+1pmJkTwj31yzDo
+DcxstsVqdcWn5MgI01CnZr2KxEOSEC5zO0h05vjPRh3hOL3VFb5luQn29oLLbp3m
+CsBkOzVxMRM1vvyUFUKpEt7C+TkTYd+w+E5oPLs4H4mmx0sV3ItSfhH3Fam9TYl4
+WrVhVcNgtwp6RQSFQSd4BgM7wdnybkA9/DkyvXfQUkO26/uHZf6qFv1pXiSWXV0K
+jtORnRapALkbYNOWeFLlH4U0Yl1MxvQakAoyEUoppuIIW+JAq/P5sKv1D6eo2+vg
+WrR9iolsbSnY+qeVvcHSCHAKZUhGh3VVDPE2HXak0MGJZ+wBOEYBMKsDM0uC7uw0
+0GClWW0QYAnLrBRtanteMyFlC3421B2TUXbOkVunA7taxgll2BM=
+=uwO8
 -----END PGP SIGNATURE-----
 
---nextPart3756528.ibSLklOHiU--
+--nextPart17857616.P6YaZa0Rg7--
 
 
