@@ -2,137 +2,161 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7851D3AE3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2020 21:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2A01D3B2C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2020 21:05:24 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 81D7F80C4C;
-	Thu, 14 May 2020 21:00:15 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E021C810B7;
+	Thu, 14 May 2020 21:05:22 +0200 (CEST)
 ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1589482814;
- b=spVN+gaGw1itcLdtJUHtsXAYwDjzu0SuYpg1VQl9qClqGGhiektGCpD5a+1xutvkOuoLx
- lzVlrilMcP03OG3W8RnuOhI16Z+HMMYZHXJI0vs2UQlKoyT056Q7I+XxZ1uBx8EK6/LEZIS
- /FyCbglbROZmqVXvlExrFhmB7R5hIhU=
+ t=1589483115;
+ b=V8SD4VNMlL4CZm9mc/JCJrjKwqX/+ppUal0srYrslf50dA3kYroSckZEP48tOFHXOH5jD
+ uxGL7KIGSbq3acj629aU74/Wk0VEEaK+XYqNiqHRgLMqIsfddgcnmBAjFBUXTSpjnjOrkE1
+ Q8Rc2/RYMSw+e/wj9ZmaX097AjchdU4=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1589482814; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1589483115; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=FDko3cnm3KY7sbM99mWKnNAJRaJ5PWGc8BlgHRbcVnY=;
- b=HSje1VAlx3TXn/8fY+NFptfib3dI3Ana2ADOgaP4odAwIVx1eC6ThMomG/YFzDBUMcx3h
- BAuFH9bgrkWxF+QL1lVWOiPLUL6L+3roG4gDK1wBlAzXxVWWNPeU8Okm2Pb1dvDZiIUo5JK
- b93IhBhbvTMn/zudpQ5nBrXkq8rc9t4=
+ list-archive; bh=pIhjqSd/+ywoWZYDDH1VjduBTe7NIu3yh24UkAu728U=;
+ b=hS1zAO2Xtkw2PAN0KyXArhybLkbRyXvgjjYYrPEDMjLICy3XGW4dcoLAwhmEXhE0H2V6W
+ L8y6KuLwDBwxsRZi9P9O9ZjvPPIh72UBjJsl+C9k+pns4HIHs/3omCsSqcD569TakR4TYG7
+ mSnNdWnV+4VtBsGNn41DFcTiJ1S2pVg=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail header.d=kernel.org;
   arc=fail;
   dmarc=fail (Used From Domain Record) header.from=kernel.org policy.dmarc=none
 Authentication-Results: open-mesh.org; dkim=fail header.d=kernel.org; arc=fail; dmarc=fail (Used From Domain Record) header.from=kernel.org policy.dmarc=none
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5B44580046
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2020 21:00:13 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 74AAA809AA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2020 21:05:13 +0200 (CEST)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 2A0A9207DF;
-	Thu, 14 May 2020 18:55:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPSA id 99BFA207E8;
+	Thu, 14 May 2020 18:55:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1589482506;
-	bh=3eUkQF/DEyxKmXqfZNKApdC2wT8+Z+Tejs2ARbaEbM0=;
+	s=default; t=1589482555;
+	bh=QN7DanSw/R5a5ejEmnces8IxIoCcRieV2B+iz4eTOR8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=1Nu5+3KD31J/cTr0gLIIrCYLf+pd5ITUovT8A6vJmzlCnz1DCe44XZWcGYTfUwng0
-	 OSvgqkbhqW3gi0ssyUfQnhPFzsPSKEdTlByhNi9DxYd6QJSZdsEn2Snc7zkfP4jjc8
-	 UwKisFNw1MzTwjNzIAL0vlrOcVRlVRIbLAQzm6/4=
+	b=Sxr80rahmF7dihLT4N3DSEunJ08o0767LUYdnxdTzuiRRbG+mBj6Wi7RmFMqzXIRn
+	 M7MuHflavdaJTixZ1B5ursk1TEPsPBI18zS8xLxI1Hx33az7RGCAOjYLj36depngSA
+	 vDMjug72tEqqLdNx4qXcSAKHKeXtGYf7yDahWBrs=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 07/39] batman-adv: Fix refcnt leak in batadv_v_ogm_process
-Date: Thu, 14 May 2020 14:54:24 -0400
-Message-Id: <20200514185456.21060-7-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 04/27] batman-adv: fix batadv_nc_random_weight_tq
+Date: Thu, 14 May 2020 14:55:27 -0400
+Message-Id: <20200514185550.21462-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200514185456.21060-1-sashal@kernel.org>
-References: <20200514185456.21060-1-sashal@kernel.org>
+In-Reply-To: <20200514185550.21462-1-sashal@kernel.org>
+References: <20200514185550.21462-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1589482813;
+	s=20121; t=1589483113;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=6+nuRak1bz6nVP3vyczwu9t+RUnxe0BjHQDnZ1IhxuA=;
-	b=Nc0uLd0rrXKWtZlBvhAhvYs6kBrx4Rwu7kU/gpjpYifx4QjXtydq6QYbptGdzBC5la5jyN
-	VpOPBqHgWiIEshA+YV8iF6T72ODGxYN1kGpBhHRlOLOitapjiLyjT63ctMnBu3XMAo1Enz
-	zXBae5OmRVpKO5qafRVRMYMsMOu62fs=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1589482813; a=rsa-sha256;
+	bh=xpVzIvrO0FkbxW4PvsSJHNmsFeBDwnfW3bjc1zHU+Yk=;
+	b=PMQE5RT5X1p5/f3lT819oepZkDtDHWtkk8S38hNzBSumqFHIiEkAdcAoadJspd/DvZpvII
+	wQW3nLzKHrLHfgXoRHCm3H7enxvJKr6MSP+PIpboCumKtqlSu4T/2uPgvRL7u2sC6QGvFF
+	Q3zvRuEW1fCaJONZXk8Hram5Plm0Nzg=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1589483113; a=rsa-sha256;
 	cv=none;
-	b=xjrZbXhLVriu1FZSI02VwuxaSCP/oc99yrRM3e2I6Cqu/2HiwX2JrnIvHubkucUQm9CsN0
-	D9yb0ab+HA3lvW+x6S+LQyADNm53/37uaBa5ovxExBLb4hR23ETuDrg/dyNtSYbhm+x75E
-	gntWaB5DvOyKsz8M/6QRCLk6YT6N1f8=
+	b=OtpOxubmKG73cqCnDcuWDLj+fhQrvF2DE1Tlg3t09ywn9N3z5ZEwG5/2drPAJSnLbG12P1
+	MvyWsdy9Ru8OmTQgZdleAVvwi/xoY33Nt14aeMAoPYApxi40HeYTgFVVqEFVeYWjLY4y/C
+	Uh8MfIC3D0+RauReoWVMQPwew7yoUew=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=default header.b=1Nu5+3KD;
+	dkim=pass header.d=kernel.org header.s=default header.b=Sxr80rah;
 	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 4CSBAGMUVQOUD3NYNLN3YVCRCCYYAYO5
-X-Message-ID-Hash: 4CSBAGMUVQOUD3NYNLN3YVCRCCYYAYO5
+Message-ID-Hash: O6YBQO7HF24AMMLPGMIGP3Q3W6MBPO6E
+X-Message-ID-Hash: O6YBQO7HF24AMMLPGMIGP3Q3W6MBPO6E
 X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: Xiyu Yang <xiyuyang19@fudan.edu.cn>, Xin Tan <tanxin.ctf@gmail.com>, Sasha Levin <sashal@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org
+CC: George Spelvin <lkml@sdf.org>, Sasha Levin <sashal@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4CSBAGMUVQOUD3NYNLN3YVCRCCYYAYO5/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/O6YBQO7HF24AMMLPGMIGP3Q3W6MBPO6E/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Xiyu Yang <xiyuyang19@fudan.edu.cn>
+From: George Spelvin <lkml@sdf.org>
 
-[ Upstream commit 6f91a3f7af4186099dd10fa530dd7e0d9c29747d ]
+[ Upstream commit fd0c42c4dea54335967c5a86f15fc064235a2797 ]
 
-batadv_v_ogm_process() invokes batadv_hardif_neigh_get(), which returns
-a reference of the neighbor object to "hardif_neigh" with increased
-refcount.
+and change to pseudorandom numbers, as this is a traffic dithering
+operation that doesn't need crypto-grade.
 
-When batadv_v_ogm_process() returns, "hardif_neigh" becomes invalid, so
-the refcount should be decreased to keep refcount balanced.
+The previous code operated in 4 steps:
 
-The reference counting issue happens in one exception handling paths of
-batadv_v_ogm_process(). When batadv_v_ogm_orig_get() fails to get the
-orig node and returns NULL, the refcnt increased by
-batadv_hardif_neigh_get() is not decreased, causing a refcnt leak.
+1. Generate a random byte 0 <=3D rand_tq <=3D 255
+2. Multiply it by BATADV_TQ_MAX_VALUE - tq
+3. Divide by 255 (=3D BATADV_TQ_MAX_VALUE)
+4. Return BATADV_TQ_MAX_VALUE - rand_tq
 
-Fix this issue by jumping to "out" label when batadv_v_ogm_orig_get()
-fails to get the orig node.
+This would apperar to scale (BATADV_TQ_MAX_VALUE - tq) by a random
+value between 0/255 and 255/255.
 
-Fixes: 9323158ef9f4 ("batman-adv: OGMv2 - implement originators logic")
-Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
+But!  The intermediate value between steps 3 and 4 is stored in a u8
+variable.  So it's truncated, and most of the time, is less than 255, aft=
+er
+which the division produces 0.  Specifically, if tq is odd, the product i=
+s
+always even, and can never be 255.  If tq is even, there's exactly one
+random byte value that will produce a product byte of 255.
+
+Thus, the return value is 255 (511/512 of the time) or 254 (1/512
+of the time).
+
+If we assume that the truncation is a bug, and the code is meant to scale
+the input, a simpler way of looking at it is that it's returning a random
+value between tq and BATADV_TQ_MAX_VALUE, inclusive.
+
+Well, we have an optimized function for doing just that.
+
+Fixes: 3c12de9a5c75 ("batman-adv: network coding - code and transmit pack=
+ets if possible")
+Signed-off-by: George Spelvin <lkml@sdf.org>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- net/batman-adv/bat_v_ogm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ net/batman-adv/network-coding.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index cec31769bb3fc..f0abbbdafe07f 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
-@@ -734,7 +734,7 @@ static void batadv_v_ogm_process(const struct sk_buff=
- *skb, int ogm_offset,
+diff --git a/net/batman-adv/network-coding.c b/net/batman-adv/network-cod=
+ing.c
+index a7b5cf08d3630..09549885cd147 100644
+--- a/net/batman-adv/network-coding.c
++++ b/net/batman-adv/network-coding.c
+@@ -1012,15 +1012,8 @@ static struct batadv_nc_path *batadv_nc_get_path(s=
+truct batadv_priv *bat_priv,
+  */
+ static u8 batadv_nc_random_weight_tq(u8 tq)
+ {
+-	u8 rand_val, rand_tq;
+-
+-	get_random_bytes(&rand_val, sizeof(rand_val));
+-
+ 	/* randomize the estimated packet loss (max TQ - estimated TQ) */
+-	rand_tq =3D rand_val * (BATADV_TQ_MAX_VALUE - tq);
+-
+-	/* normalize the randomized packet loss */
+-	rand_tq /=3D BATADV_TQ_MAX_VALUE;
++	u8 rand_tq =3D prandom_u32_max(BATADV_TQ_MAX_VALUE + 1 - tq);
 =20
- 	orig_node =3D batadv_v_ogm_orig_get(bat_priv, ogm_packet->orig);
- 	if (!orig_node)
--		return;
-+		goto out;
-=20
- 	neigh_node =3D batadv_neigh_node_get_or_create(orig_node, if_incoming,
- 						     ethhdr->h_source);
+ 	/* convert to (randomized) estimated tq again */
+ 	return BATADV_TQ_MAX_VALUE - rand_tq;
 --=20
 2.20.1
