@@ -1,117 +1,160 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6D01D2B68
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2020 11:27:59 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53ABF1D2B99
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2020 11:39:30 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id D291A8084E;
-	Thu, 14 May 2020 11:27:57 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1F32C80A35;
+	Thu, 14 May 2020 11:39:29 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1589448477;
- b=dxXyU782EdOrrKczERAEdrWzU2H9PiGU+foHGhxDRla4lb4dPLLq1TxHBoJCgVC+C2qzi
- eGe9r9tbtO8gDRNJ6KHWotDdjeXqct2BLfaohWG6CGRH1C/6MJSlXN3vKR6PcCbqGviwxhd
- cIgVKa7LWzgzrzt/rKe//h4UY9y1x7Q=
+ t=1589449168;
+ b=XNYbJV3H6Tk4+AHdygY+hA++utgCm0TMacA+CrTYAaLcpIiNeZDgA3FA13jRTjwDZQNAh
+ VuIpK819K0vBqu1Olau3ABzHrktQ76uDyxTx/JKhtQY4nnqbiWuJtTRkny/74hw4umMVbWL
+ M+sqMlRuu/FfYEX3kP1mlZD0M8hgy94=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1589448477; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1589449168; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=yVzPcaUWq0P74XxL1uFZLHj/fd3+Z5p5lRrMmz2X5FY=;
- b=Enq1DiHI5Vtx96cxFP3WXCH0HH5TUpANBsySvZwfiipYLbX+3s2pD4f6fiItjKu/u4bTx
- nh2YVxl8k4lGFaegEgOQ/WVZI+ulH1hBXlvi+w3JqqxtrUHCfonhe5WUp7bL5RkNeE4cjrJ
- HDcjl/jaP4YMk8iq+AEY8pBr8r8SV5s=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=gmail.com;
+ list-archive; bh=nbk7k6YcxRF/fNtf5uZc1WYIVvNCzEcAT1GzK4u40Hk=;
+ b=r+TfBwUdsGSjuFk5HE6jx4rWgMKxIpcHLnevpfuLzo6XMc6WpWPZhc7vHJxtiC5QFOoVg
+ 8PNqbvIEFW3kgIhmoRe0YBpZkm6GuwXmjbiL7xIELM4sIAz8xM8nRhR7Tba/5GOFPndmWo3
+ yQZN0EAhamIJO3K5yC4IW8ED1fFKSio=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=narfation.org;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=gmail.com; arc=pass; dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=none
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id EF49B80054
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2020 10:17:19 +0200 (CEST)
-Received: by mail-io1-xd33.google.com with SMTP id f3so2078667ioj.1
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2020 01:17:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=yVzPcaUWq0P74XxL1uFZLHj/fd3+Z5p5lRrMmz2X5FY=;
-        b=CMkxnPzojUjT6bHcjPxrrZZPjcBWN+ATFVBLO2dbyXMJkFcoGr5M4MVO+ipikCFYVV
-         VmiSHDLuAsmYdlnZbdlg96Zea/gEXZdi6vI58ppQI4Rm5qKMah+sZa8jpYt4v5mzJTBt
-         qtT6o4TRNfQIZriH1QbziNKw3VUKCe62O4gyqMVWEx5kVhFHMiVpq24cxLZGV2AI/IHR
-         fDRiFHoutRuZVlKypBkuOrgeaM8g8T13CREsfLXwbtvbqMi55jL/0akeIMk3nc4eo2iy
-         APclB0uTKsupfEMYiIYxzVYy4ujidSUzlr5tG9QaZQb9juGnjvlZVXb5TGSt1s+/aY2+
-         xdrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=yVzPcaUWq0P74XxL1uFZLHj/fd3+Z5p5lRrMmz2X5FY=;
-        b=r81mnY94hE6tN5yFkM4IFyWWxLCWrUNc4cWcuu34FUOkv5XoVXrSHaRtVCWla0s8b9
-         JdL74jQFaoMS+PWp77Ea/8fYcjVz2UmySX/MEqFn8WmgLFIocLguaF5u41+kO1jiYeMh
-         DochEaB/MvxrrSZ5iZ41ri/z7EcJkyam/swtO41FoJpDQK9WSvTfB95tbCvf4mYKpowP
-         ikd9Kn8nASHkyaXlKkYJIxuazhWw+yZe4juuBatfcHNA9TW7VF/fYKiDBqw+27L8bIRV
-         tUHFFc+IsyFXXlvU5qpazR2CEHdinR35wsuEtsHAa4GXfxXZ5Lm7HE4Xf4cVdrGKyjJ7
-         frdg==
-X-Gm-Message-State: AOAM530vFSm5U0ZH6G86YQlNnWuZkGR2NVG5gdzdYpzCVGI/ZBTW6RXc
-	8F/rf//qIGRiPWvDOKDT0OVFtx6wpXQuFmlZrq+M1yC4
-X-Google-Smtp-Source: ABdhPJwFowYyJHEAvX46PTjatoHeCQs4JlvMzyNhk30rUQdnXcJ0FNyS+Goky1kIc9umCLxLfBFsmkXVd4VNOoU3XHU=
-X-Received: by 2002:a6b:7701:: with SMTP id n1mr3052713iom.68.1589444238524;
- Thu, 14 May 2020 01:17:18 -0700 (PDT)
-MIME-Version: 1.0
-From: Maksim Iushchenko <maxim.yuschenko1@gmail.com>
-Date: Thu, 14 May 2020 10:17:07 +0200
-Message-ID: <CADSehqPoEQGqdURG0g8OO85Dvb5dL0eExwG+-9uum8=wz9VXsg@mail.gmail.com>
-Subject: 
-To: b.a.t.m.a.n@lists.open-mesh.org
-Content-Type: text/plain; charset="UTF-8"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1589444240;
+  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org; arc=pass; dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 279F8800DA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2020 11:39:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1589449165;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 dkim-signature; bh=yVzPcaUWq0P74XxL1uFZLHj/fd3+Z5p5lRrMmz2X5FY=;
-	b=GRYbJKp3cS1hZskSSwqiEuYY6Hlg6Wgm/ZHfTdmFRhyFOjnxBFISwtdWr/Jsgt7XzybRXa
-	96khaql4N9jtE8snutc+Z5M3Q7poWi1ujIWfMNcsf/eAWtoxu0C71DLJSZne0d5CIDTudu
-	6lXgPUTkxRDHjjDHvQP5PcoTzfgaiTI=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1589444240; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nbk7k6YcxRF/fNtf5uZc1WYIVvNCzEcAT1GzK4u40Hk=;
+	b=S8Lj922EVMJHsDK45R0iZwCKYqYwTeWHc7FciRPyCsz3G5FdWy1owejEz0IsSPfcnGGVes
+	bk0oVaIc4tpZQc38AP1tFnzna9iQllZ4ks9O9KBp6U7ZMp6UrhvBek0aiditmLpCNmojIg
+	zbaW1XHXfpXiTsodjhuQ1mZq5HBbEXo=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: WiFi chips/drivers supporting IBSS/802.11s
+Date: Thu, 14 May 2020 11:39:22 +0200
+Message-ID: <2392919.NNVJBL4L6o@bentobox>
+In-Reply-To: <CADSehqPoEQGqdURG0g8OO85Dvb5dL0eExwG+-9uum8=wz9VXsg@mail.gmail.com>
+References: <CADSehqPoEQGqdURG0g8OO85Dvb5dL0eExwG+-9uum8=wz9VXsg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart2043141.RrgemjlQgN"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1589449166;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=nbk7k6YcxRF/fNtf5uZc1WYIVvNCzEcAT1GzK4u40Hk=;
+	b=AT3/DIZHQzyVDi7UoyIBSgJzwqHO2UKRtXx/WYv3nemePibTNJeDxIDbYk1cAlACXsgenI
+	ct/rJKyqZoX0RSbk3JQBSM9shOtpxx5ERK3oEff5vqlU9HiMi+D1LK6LRODUFP4Rq0rA8W
+	TdtiVtuT2W0VbLw4uu6QDM4xnHbiprI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1589449166; a=rsa-sha256;
 	cv=none;
-	b=TOCRc6jqcrmbjkNVGnuu8qofHdUAbkdBQ+XfwVNSMnz6Vc43dbc8Du9qCtEl8zi6F/5nK8
-	+BPtUTZIgq+eKeSFFt0ww+2dp+YgRlijQVGmm7sYc+S9YiOAsfFdpVwaz6ujnBzoAWKESZ
-	vJPijdr57T0cQ+k5qw7I4nWThiSB4RE=
+	b=3VnfZoWqvYuR2GAmaZBUpXRgvcKCCgS2jqql6uiEQ1eFehivRJDoj0mbnchRYNTE14sUaZ
+	llggcngD1LzFiN6prJh2gX7DqNCvwRDVbwKrLKRCaXYoQFrdreXc0X4Q1M15BCbp6x4DKc
+	3DGB3jxXU95KozWtakxxpokoc9w0HIQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b=CMkxnPzo;
-	spf=pass (diktynna.open-mesh.org: domain of maximyuschenko1@gmail.com designates 2607:f8b0:4864:20::d33 as permitted sender) smtp.mailfrom=maximyuschenko1@gmail.com
-X-MailFrom: maxim.yuschenko1@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: TT7EIIQE4ZKFQ6ZT72HNCCMGWGYRVVVY
-X-Message-ID-Hash: TT7EIIQE4ZKFQ6ZT72HNCCMGWGYRVVVY
-X-Mailman-Approved-At: Thu, 14 May 2020 09:27:56 +0200
+	dkim=pass header.d=narfation.org header.s=20121 header.b=S8Lj922E;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+Message-ID-Hash: EC5DGXUYANHQEOUHSS6UZYXJWKTDEVN7
+X-Message-ID-Hash: EC5DGXUYANHQEOUHSS6UZYXJWKTDEVN7
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Maksim Iushchenko <maxim.yuschenko1@gmail.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TT7EIIQE4ZKFQ6ZT72HNCCMGWGYRVVVY/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EC5DGXUYANHQEOUHSS6UZYXJWKTDEVN7/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello,
-I am creating a Wi-Fi ad-hoc network based on batman-adv. I read that
-batman-adv is able to work with any types of interfaces, but I still
-have a question related to ad-hoc networking. Will Wi-Fi ad-hoc
-network (based on batman-adv) work if Wi-Fi chip does not support
-802.11s standard?
-Unfortunately, there is no mention of ad-hoc mode support in
-documentation of many Wi-Fi chips.
+--nextPart2043141.RrgemjlQgN
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-How to check if a Wi-Fi chip is suited to be used to create a Wi-Fi
-ad-hoc network based on batman-adv?
+On Thursday, 14 May 2020 10:17:07 CEST Maksim Iushchenko wrote:
+> Hello,
 
-For example, is ATWILC3000-MR110CA an appropriate chip to build a
-Wi-Fi ad-hoc network based on batman-adv? Or maybe you could suggest
-any another Wi-Fi chips?
+Please add subjects to your mails. Next time, I will just reject this
+kind of mail.
 
-Thanks in advance
+> I am creating a Wi-Fi ad-hoc network based on batman-adv. I read that
+> batman-adv is able to work with any types of interfaces, but I still
+> have a question related to ad-hoc networking. Will Wi-Fi ad-hoc
+> network (based on batman-adv) work if Wi-Fi chip does not support
+> 802.11s standard?
+
+Hu? You are mixing stuff up. There is traditional IBSS (often called adhoc) 
+and then there is 802.11s (meshpoint interfaces with and without an integrated 
+mesh protocol).
+
+> Unfortunately, there is no mention of ad-hoc mode support in
+> documentation of many Wi-Fi chips.
+> 
+> How to check if a Wi-Fi chip is suited to be used to create a Wi-Fi
+> ad-hoc network based on batman-adv?
+
+Check for "valid interface combinations" in `iw phy`. Here for example from an 
+QCA955x (when I remember correctly)
+
+        valid interface combinations:
+                 * #{ managed } <= 2048, #{ AP, mesh point } <= 8, #{ P2P-client, P2P-GO } <= 1, #{ IBSS } <= 1,
+                   total <= 2048, #channels <= 1, STA/AP BI must match, radar detect widths: { 20 MHz (no HT), 20 MHz, 40 MHz }
+
+You can see here that it supports a limited number of mesh points interfaces 
+(802.11s) together with AP interfaces. It also supports IBSS (adhoc). Just
+keep in mind that there are a lot of broken wifi drivers and wifi firmwares
+out there which claim to support IBSS/802.11s but fail to reliably receive
+or transmit over these interface types.
+
+> For example, is ATWILC3000-MR110CA an appropriate chip to build a
+> Wi-Fi ad-hoc network based on batman-adv? Or maybe you could suggest
+> any another Wi-Fi chips?
+
+No idea what it is.
+
+ath9k based chips work good. ath10k work also with ath10k firmware in 802.11s 
+mode. Just make sure that you disable mesh_fwding when you want to run 
+batman-adv over an meshpoint interface.
+
+Kind regards,
+	Sven
+--nextPart2043141.RrgemjlQgN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl69EcoACgkQXYcKB8Em
+e0Y3mBAAoEcpliYMgnG8075sxsz7b7Hj2IHRkp18Y7fQpJSTdW5rv/DiXND3tYNk
+90tPuT2UhcscdPAp8uOcIUxy495P8rQ3DlYXnhqxJFfw+D49etSRakUa32U3jXLx
+bw0+KK95BZlAVYighSuvGYE7SYPp8rRMJdcH0fA2rmxLUE+qmMbhPZ/xoJdKuBgk
+2hz3NUhf5r95HWU2X3S9wpCoKz7UE8I4eEHKT8ca9U7CNl/NW0xr8yujDi81uMHf
+nE2VYf7Ol/FtyHbbB63NQ2YnN8iPHFIneUIIRF0Tzvd5m8V+LvQPWaTqSsxGOKVq
+I6LWhUf5S3gRlj5OAK8DJYvthVXhBMYmlTC2so/T3+HC1cPSuIYFT7zkAyZB2wa9
+ZiyJMCf95TS+f04ZSBG8rAnh+h2PyvdfE+sZfKvjvdiO8yvGFFZq5I7rKO4fgsic
+LQto6VzVUlMu+5yqDNxsDnuV9qhgwW8t4AkKQ8HvfdYDBAlEwp38ffqAGtrVPL5N
+QUuti1nle2UjvDlYX03J110L19dRuTrsbi4LTT3FOfrRgRHgpUmyQIe8Yh//4mjR
+cSk4xwnRNL9C9ZUzYdDsyudNJ74N5n0wFAodx1VkxzcASncCSSMR9O1fm+7+heeo
+zt/RqKUZO1RryRkfl6BeBtHREbHxlgPVnJZ1wtMif+fB5idreZM=
+=dWsM
+-----END PGP SIGNATURE-----
+
+--nextPart2043141.RrgemjlQgN--
+
+
