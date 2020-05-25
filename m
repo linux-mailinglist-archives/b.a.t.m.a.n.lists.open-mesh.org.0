@@ -2,110 +2,91 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E211E1362
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 25 May 2020 19:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C0201E136B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 25 May 2020 19:33:52 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3C95681DD4;
-	Mon, 25 May 2020 19:27:42 +0200 (CEST)
-Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 375B580145
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 25 May 2020 19:27:39 +0200 (CEST)
-From: Marek Lindner <mareklindner@neomailbox.ch>
-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: Batman-adv packet retranslation
-Date: Mon, 25 May 2020 19:27:32 +0200
-Message-ID: <7073983.9WrHQ1J9Fu@rousseau>
-In-Reply-To: <CAOVt3fGODcxuZAigHuHSgPED5Y67kB2NV2encCyDz4qMFy7gyQ@mail.gmail.com>
-References: <CAOVt3fEEaLx8-58NjVXU0L6XToB5FPvGjFaEoZBeRCL+Eh-QWw@mail.gmail.com> <10714145.5AxrDinkzN@rousseau> <CAOVt3fGODcxuZAigHuHSgPED5Y67kB2NV2encCyDz4qMFy7gyQ@mail.gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4852482046;
+	Mon, 25 May 2020 19:33:51 +0200 (CEST)
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 48C7281DD1
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 25 May 2020 19:33:49 +0200 (CEST)
+Received: by mail-io1-xd2c.google.com with SMTP id d5so9761838ios.9
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 25 May 2020 10:33:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=RkMySdvSpS6gZeTq1b/m4P7OisZBdQ0b2gAJAzgbczM=;
+        b=MWF2lmz7CXZlyOlLaxQBrf/olmD8gYXdh2YgMeUb4uTfWsAvx0QeKQQ3D8z0xSjBy/
+         3PRMSM1Ez6CDhyhw5ldXUl5en6Ag6pfikNQ2jpkoyLHA2X0dgMP9D1jyfLKgVvrOjeGK
+         bZPuJkgoHyOIq7HBaYyEADWDCbIJNyxd1KYZNwv2k0S1UjbhRap0BeUugcMqCQrCH1z6
+         NLib4qlxnIRiDw338BgozlvleMfMeJA7GTy9acQiVcyKjdvRtt7ybgt0/8FHbosRv38Q
+         dJZubmWGPsc0Cso4cNuh2UbvyzIwZlgE36CkTtyUv3MvmKklzBvM+nOTAKWU9rwRCOS0
+         fa6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=RkMySdvSpS6gZeTq1b/m4P7OisZBdQ0b2gAJAzgbczM=;
+        b=MP8w2jPK8eD5Z65DUzwH251QaSbt+vfeS/9vHKmBPsYBcocXlNH79FMhBH9sH3toss
+         HXE5qiCu65R+udEUx8jtUAz5dZO+XDQA/r6k5TS0YwAc3FBuh+ikYYI0VGPpM155ZuNt
+         9C1mPri+YtCKl5jXwn6fE1R2KtMLEFRcC+jcEi2Kt55uh+/pRJrSXTZlc07G4KCybvwZ
+         aInVgDM7uywo7j4l31aIwAyVh8l6KqONCSXX53gSo8JooBALmaWc4HBYtJmrPtdm66x+
+         wFJZJVh6k48/AAC0OPzCSbgYtZQcLEPKjsC7fze6xCnrbFURaQBTPFeLRbl2tH2s4XQn
+         grNQ==
+X-Gm-Message-State: AOAM531TGBwIY3zgQ4MbqxKi9pR5CFx0rELv6zYmbPFSBOEE0VLWHJSt
+	4t93s/sqm2b99T2L0Sbe0cSsVzdSrO+9y8V2Y1Rrvi3SA2Y=
+X-Google-Smtp-Source: ABdhPJzJTSlPxm1eie3p5BMBrVZlQTWcR6dfA/ltKIsud/pb3AFMBe3ECg1x9fq2pp7zfEvgIwBHwPqYWjUwinN7Jgo=
+X-Received: by 2002:a02:82cd:: with SMTP id u13mr7034924jag.32.1590428027634;
+ Mon, 25 May 2020 10:33:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2583158.ocIN8Hk9gp"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+References: <CAOVt3fEEaLx8-58NjVXU0L6XToB5FPvGjFaEoZBeRCL+Eh-QWw@mail.gmail.com>
+ <10714145.5AxrDinkzN@rousseau> <CAOVt3fGODcxuZAigHuHSgPED5Y67kB2NV2encCyDz4qMFy7gyQ@mail.gmail.com>
+ <7073983.9WrHQ1J9Fu@rousseau>
+In-Reply-To: <7073983.9WrHQ1J9Fu@rousseau>
+From: Alexey Ermakov <axel101@gmail.com>
+Date: Mon, 25 May 2020 20:33:35 +0300
+Message-ID: <CAOVt3fFzfsnnv2Y_Z5R4Sz0VWNmiK7mzTKR3r6S2wPyqQqLimw@mail.gmail.com>
+Subject: Re: Batman-adv packet retranslation
+To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1590427659;
+	s=20121; t=1590428029;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8r+xwdPmDqMmd6ynojmZ2ZSJRAXCq53oiNNTcCB/9V4=;
-	b=IBXGlpp3gQO0rB+Hgzkkl6lB5V4OwtUR4Xt2Fqm9uxPtW1RHG7RFcin4UgSWtYwYvN2kh7
-	K878V7JqaPMRWF8U5eveqqVsmBuEfR2Uu6jULUxeVEM2rgmZRTJwLg84/nmOc8NhUEmz0y
-	hr31Yzuab/2WzHfsBgr80vv6PhE2eL0=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1590427659; a=rsa-sha256;
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=RkMySdvSpS6gZeTq1b/m4P7OisZBdQ0b2gAJAzgbczM=;
+	b=BmROlG7DA5Fe86hG+yryAGkRGrNJgVdS2DbbR482XpN7HAYjIxLbdsGnWwt3ofnHj4QveQ
+	s/rfAoC4Gg2/bzxFjWBEFOkcoF9wDdc7uvfQ4mzn+sqmyVvOaLidagmw83GhZnGiLEPt2L
+	GZhfnjeTUbyRNAwq3uxTUZNt5oKIfQY=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1590428029; a=rsa-sha256;
 	cv=none;
-	b=ipAF3JPjnTXZfhaGOmSpdmuF1bR3q8ERlZv6KE2OgOEcJf1YmwqEeYDAdZDlmdbY/115O2
-	kq0/YJqN/ZAdxdQ/bfgblNPY96+3IqnlnZa4ZhxoLQ/y6IJr1BlyPHXjIVzte+g12pPnJi
-	m8BL06y5Se1kYeZNDooKuOifOUJedwI=
+	b=WVJsf7N6h+NqtpRRuNkGj65bcn1bHv5yVRTMPlJ++1MYIaOW60gvuRKexCySKtPpH8BgHg
+	BUhSjiOto5DnO9zONHuPhZ2IFl8HohScfLvI2wf4tnD2tLJY/5VRBcbOAioPvGaPdxwj9r
+	6FMKOBqDi2TDuLmHg7pzjkri4ZEYBxk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of mareklindner@neomailbox.ch designates 5.148.176.60 as permitted sender) smtp.mailfrom=mareklindner@neomailbox.ch
-Message-ID-Hash: JS5PM7KOKT3QOZJMXMVAORAQC3CDIBSO
-X-Message-ID-Hash: JS5PM7KOKT3QOZJMXMVAORAQC3CDIBSO
-X-MailFrom: mareklindner@neomailbox.ch
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=MWF2lmz7;
+	spf=pass (diktynna.open-mesh.org: domain of axel101@gmail.com designates 2607:f8b0:4864:20::d2c as permitted sender) smtp.mailfrom=axel101@gmail.com
+Message-ID-Hash: TZ6JKM6G4C6CBA5HV4AAOTMWIG4DKQ2U
+X-Message-ID-Hash: TZ6JKM6G4C6CBA5HV4AAOTMWIG4DKQ2U
+X-MailFrom: axel101@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JS5PM7KOKT3QOZJMXMVAORAQC3CDIBSO/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TZ6JKM6G4C6CBA5HV4AAOTMWIG4DKQ2U/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2583158.ocIN8Hk9gp
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+> If you have to configure the throughput manually why not configure the link with
+> something like 5mbit/s instead of 100kbit/s ? Batman-adv does not care that
+> this throughput is not exact. All that matters is provide input to the
+> algorithm to allow batman-adv to make smart choices.
 
-On Monday, 25 May 2020 19:21:50 CEST Alexey Ermakov wrote:
-> > I am surprised you still are configuring a throughput override of
-> > 100kbit/s. What's the idea behind this configuration ?
-> 
-> I have two channels between nodes (actually more, but this doesn't matter
-> now) 1) Radio modem, connects as follows:
->    NODE1(eth0)<-->modem(radio)<-->(radio)modem<-->(eth0)NODE2
-> eth0 interface have 100mbit/s speed and batman detects it as 100mbit/s.
-> radio has 145kbit/s, and actual speed of this channel is 145kbit/s
-> 
-> 2) eth1 Ethernet channel. Speed of this channel is 100mbit/s
->    NODE1(eth1)<---->(eth1)NODE2
-> 
-> Now make a test:
-> 1) Set up eth0 modem channel
-> 2) Disconnect eth1 channel
-> 3) Turn on nodes - batman saw eth0 channel between nodes and detected
-> speed 100mbit/s (because speed between node and modem is 100mbit/s, as
-> I understand)
-> 4) plug eth1 cable in - At this moment I expect batman switch to eth1
-> channel because it has real 100mbit/s speed. But batman doesn't
-> switch, because it detects eth0 as 100mbit/s too.
-> Therefore I override throughput of eth0, actually batman detects
-> incorrect speed on eth0.
-
-If you have to configure the throughput manually why not configure the link with 
-something like 5mbit/s instead of 100kbit/s ? Batman-adv does not care that 
-this throughput is not exact. All that matters is provide input to the 
-algorithm to allow batman-adv to make smart choices.
-
-Kind regards,
-Marek Lindner
-
---nextPart2583158.ocIN8Hk9gp
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEI5CG6MPJfr3knG//U1VOj+62HMAFAl7MAAQACgkQU1VOj+62
-HMBs6Qf/XXUiwnMu6XzAlsd2ls/ydp35yL/J6Mov4rQhAg97YBJFtl/ryil3o2cX
-dHWnAGQUfyftavPkM2r2c3iNZnytzdh/Pq5+7qCQVq6wVmb0+ZSEu3h4SotnFpPe
-kAlk4+b2o1WbopnxKNhmKgnthQ2BO4TDx3aG41FftPQvXyKwkl+2VoHG6TGBa5AY
-ugW0tJtn5oZIwILNDMIvGKNQln/ZnkeVYwhstPDaxTxNxWgCy3ESs3dz8+mN3xmk
-LbRtsYRCK1SYaQFBxfJ2VSlqg4r2wk2cTMeNxUTlmWmcHC09vSJZ1WzxpUlfRhhe
-AxHzxAyt1lqgLrPehhzG+vOSUa8uEw==
-=12fU
------END PGP SIGNATURE-----
-
---nextPart2583158.ocIN8Hk9gp--
-
-
+Yes, today I have changed throughput to 1mbit/s and it works as expected.
+I just wanted to make sure it was the right way.
+Thnks to all
