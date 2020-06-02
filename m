@@ -2,124 +2,143 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12BF1EB63F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  2 Jun 2020 09:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF421EBBDE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  2 Jun 2020 14:40:32 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id D0ED5809B6;
-	Tue,  2 Jun 2020 09:11:13 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C6AC380843
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jun 2020 09:11:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1591081869;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F67MhQeEgj5WuSrkYA1YR5+4leGddaZ8MXj+TqsRciw=;
-	b=qbtScslP+dsT7yNXOSeRboduskLJIssHvJVGE52c3A9Cl7eeeHgX9x6dfwlIOjbsWgdJ89
-	xu/CroJ8JYiHm7/itD5Qbpfwr5PghvFDr2Y8SUny1mkF378KfHTmXBS9H799ttoScwQbXp
-	m3Q5JgXsuuXop/btILbmMUinana+5kM=
-From: Sven Eckelmann <sven@narfation.org>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 2ACBE8011B;
+	Tue,  2 Jun 2020 14:40:31 +0200 (CEST)
+Received: from ory.petesbox.net (ory.petesbox.net [62.210.252.27])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id E5BA68011B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jun 2020 14:40:28 +0200 (CEST)
+Received: by ory.petesbox.net (Postfix, from userid 326)
+	id 6C18E404B1; Tue,  2 Jun 2020 08:40:28 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
+	t=1591101628; bh=iMG+0ft8/K3FhKthE4Yf+YdQyFwM8RR46dd+TasUY2k=;
+	h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
+	b=ZMraQ4MMYWJ84Ulkn8cSRzeaOZvIo6H8EZaABiaYJdmLRblybyvNDFk0Tj7kGiR4d
+	 SiIE/KR4upIAljIHFLH8LL41Q/YA/dtKn5nYlFg4f6juq950ZhFhXIu9lirapMN1HJ
+	 v63N2CW97Nqe1Ijy0h5M9biEP1GjxIMxjgZigl7E5kgPkjdUOfAsSM2shJ+cogMTXI
+	 MNDKGdhJgJIkaISkwqbDnW9RLO1Q941vUdaeo3P/feRreqZsCEq8f/zDX/l775TLQP
+	 77ZiQ4DZXqgvkzFGug28exQAoCPpwRrghqTLlJQHd5N4xA8ui/DQ3t0TjCfc4VU6Hl
+	 wDgOHFO5Wnv7A==
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ory.petesbox.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=4.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+	DKIM_VALID,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.2
+Received: from [192.168.2.88] (unknown [38.21.219.2])
+	by ory.petesbox.net (Postfix) with ESMTPSA id 1AA9F403AD
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jun 2020 08:40:23 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
+	t=1591101623; bh=iMG+0ft8/K3FhKthE4Yf+YdQyFwM8RR46dd+TasUY2k=;
+	h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
+	b=MtSCdiCWCATSeP7WnXYdCNsYMFle/U+DvGZxDE3jDWVa9KY1HdvpmY+NqgdmrKy9x
+	 1qPkPeyLBiLbtJbe/re8dEpD+jb9gbMf4KlOeMOr0l5oX3dzUwmuY3rkx3kxavsuWa
+	 RWU5DKjr1Wz8i0aDKpoWy2DRkGlogw3O/2b7nR3aaxV0iDASiNhIbmOwXYAdxe8Qj6
+	 tw/oemArqgYcX3Zw+GsycPfrjE8W2e+IXnYR7ETZBSBP71hqKwKeqgpe/3d7prUTMm
+	 rogCKoLbIIot6dcKtL0FXR2OEBFrZZJJFTkauXHWXNekY86VCgFUBIgZUTrF+AI/2h
+	 7TL2P96TUgKFQ==
+Subject: Re: Network stops passing traffic randomly
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH] batctl: Add per interface hop penalty command
-Date: Tue, 02 Jun 2020 09:11:04 +0200
-Message-ID: <1986436.iMA26uce0h@bentobox>
-In-Reply-To: <20200601203538.5318-1-linus.luessing@c0d3.blue>
-References: <20200601203538.5318-1-linus.luessing@c0d3.blue>
+References: <20200525083512.832.13419@diktynna.open-mesh.org>
+ <c022e032-f283-8432-2d3e-3013cf91773b@coolheads.com>
+ <1970963.L7oaDoOIKM@sven-edge>
+ <04932e2f-d727-46ce-ef68-2c79062cf196@coolheads.com>
+ <41ed807d-5bbf-8cd0-53e8-0951c84b4889@candelatech.com>
+ <1f7b4548-d4b1-2063-dd73-fa866d195efe@coolheads.com>
+From: Steve Newcomb <srn@coolheads.com>
+Message-ID: <c310a314-91a4-64b2-494f-f3d559de230e@coolheads.com>
+Date: Tue, 2 Jun 2020 08:40:21 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart72324447.64dR16D2lC"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+In-Reply-To: <1f7b4548-d4b1-2063-dd73-fa866d195efe@coolheads.com>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1591081870;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	s=20121; t=1591101629;
+	h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=F67MhQeEgj5WuSrkYA1YR5+4leGddaZ8MXj+TqsRciw=;
-	b=nBfVcrmhqt/yse/qKAuiJvYiuFSc/JgTlO6cHwb0Y+pz94ZWICyVecLD6Rr5Yf4fY6BJoA
-	6UAwI02HIPnPePL65Cry0aA3M+d7HMYQdNkVbKrpzyuO2oWsroMIFcdDTmRN9r2Hwf1V9t
-	Pfwg9DPy8+A3fjaSi62fPEPw57QNm3c=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591081870; a=rsa-sha256;
+	bh=iMG+0ft8/K3FhKthE4Yf+YdQyFwM8RR46dd+TasUY2k=;
+	b=jQERrD7bdjK1ydsIRBkdeNaUShHK5Wr6C7LjQxDqRtkaFo1ri4kfshiktwvnTDBfnQ1bsH
+	SxeGzaVHPBGl345LmTjCZz+uDHLQP3dZN/AM2uPBQdDDIm089d9Ihe2sprQwHDjQO3UNAv
+	ABH+oHBhcPLTPjwgaXjmNlRhKjxiL9Q=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591101629; a=rsa-sha256;
 	cv=none;
-	b=F/OStFKQvrAP60J8+k6JB4TEES7ztIPNCEllVC01sP0/icNSE4ivgsCBNXX5OQOzR+IZpv
-	LjYJsxR2Q2Krn1YPMVOwGQMydrZu2TQYvZVzIGVKtzsbRo1NJSKwzFLgKtGQmz/jD3vT7A
-	OtqRJoOrhangCaVUuT4PEsTst6ucyn8=
+	b=K1Cyh6hx96c5JrQAIXwl/BiSyGl4/VhCdxBm2lgdbfIVfAwoUuQblGaBTNoppoZWPRN6Y8
+	zzeW/+wjRuM86WW3McRFb2zoeHOYvx4skxWdhvj2LJJDeZOjGpgsXAdFCuOrw5gza+Wwlh
+	GlbK0QcY/xuco57G88ohFSLNft/uUP8=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=qbtScslP;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: V36ZS7LDHCCQKDOTOPIHRYQPVDUQNHUA
-X-Message-ID-Hash: V36ZS7LDHCCQKDOTOPIHRYQPVDUQNHUA
-X-MailFrom: sven@narfation.org
+	dkim=pass header.d=petesbox.net header.s=ory header.b=ZMraQ4MM;
+	dkim=fail (headers rsa verify failed) header.d=petesbox.net header.s=ory header.b=MtSCdiCW;
+	spf=pass (diktynna.open-mesh.org: domain of srn@coolheads.com designates 62.210.252.27 as permitted sender) smtp.mailfrom=srn@coolheads.com
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: AM7SQUIAQWIJ6SYYZ4LF2A4XYEDO7G6J
+X-Message-ID-Hash: AM7SQUIAQWIJ6SYYZ4LF2A4XYEDO7G6J
+X-MailFrom: srn@coolheads.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Maximilian Wilhelm <max@rfc2324.org>
 X-Mailman-Version: 3.2.1
 Precedence: list
-Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Reply-To: srn@coolheads.com, The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/V36ZS7LDHCCQKDOTOPIHRYQPVDUQNHUA/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AM7SQUIAQWIJ6SYYZ4LF2A4XYEDO7G6J/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart72324447.64dR16D2lC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Never mind.=A0 I shouldn't have asked, because=20
+openwrt/dl/ath10k-ct-2020-03-25-3d173a47.tar.xz!ath10k-ct-2020-03-25-3d17=
+3a47/README.txt=20
+clearly states:
 
-On Monday, 1 June 2020 22:35:38 CEST Linus L=FCssing wrote:
-> This patch extends the hop penalty setting to be configurable not only
-> on a node scope but also on a per hard interface basis.
+This is a copy of the drivers/net/wireless/ath/ath10k tree from
+the Candela-Technologies (CT) 4.7, 4.9, and 4.13 kernels.
 
-I would prefer not to have "this patch" in all your patches :)
+This package may be useful for people trying to use CT ath10k
+firmware on LEDE/OpenWRT, or other custom-built kernels.
 
-Maybe something more like:
+The ath10k driver has a lot of patches, most of which are to enable it to
+work more effectively with the ath10k CT firmware:
 
-* why is it needed
-* what was changed
+http://www.candelatech.com/ath10k.php
 
->=20
-> Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
-> ---
->  Makefile         |   1 +
->  README.rst       |   7 ++-
->  if_hop_penalty.c | 113 +++++++++++++++++++++++++++++++++++++++++++++++
+To compile with some help:
+./build_me.sh
 
-Wouldn't it be more consistent to have this in the main hop_penalty file an=
-d=20
-just add a new COMMAND_NAMED?
-
->  man/batctl.8     |   4 ++
->  4 files changed, 124 insertions(+), 1 deletion(-)
->  create mode 100644 if_hop_penalty.c
-
-This is missing the change to parse the per hardif in the `batctl event`=20
-monitor command.
-
-Kind regards,
-	Sven
-
---nextPart72324447.64dR16D2lC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl7V+4gACgkQXYcKB8Em
-e0ZLrQ/+KiYNq9MdSbKxLrjzVjGDzi4nMlCSV2znQvmiy55fCPiNxicAqjM0GKHk
-+dmb46KagFYFC0i8BWmR8otiPaJuPq9wDhD8lKgsqlWqywn3I7bvZEnY/8WyTVJr
-NtviaKbHXmRg0WpPM19wl7c636uEzk1DytK5kLeLlYqVPULheZVaPe38wLr+rdgE
-OEKRRIZg/p65R6jyhIF04Cko7GYBRUe27kXoEx7XW1jpMFbQT3bjesbfo2QTV7tX
-B2Nd4yyFE11yEVTXIlkIEX264cmLmt0/+r4Ga5OU5rmfppzk67mSZjXbWvKnWRlm
-tVo7arvWSIrfDluvCKf+9ddtQgWiezoP/FMVBIi1g9ERben9tQItlyMSt5EiqtfX
-BkyjE8KlXpTg6cD7LADaLHddHQze6TzIisDUEdM9qEgo0HsghOW3NPX7u4s8XjgO
-7EK7FCN5ynt1RkjMsAGhCtCWv4OGjQAhg5VLGrdyfKLksfu2XxNVbsrpj+WrUoZj
-0/rZAm9eOwgGcp6EgDJy1ROrljlJ9b/tneQN4oKF6a0aRs81lsbJ1ZSS01t+7vM3
-djGWfFBIg0hJrK5ydO3xzaVVsgn14R3L1RWy4HnRwyRCsW8p/iICPQO02d4cQG2g
-wgMhyU0jOOzEaD8Lqc31XpFDwSxcvo/rddhPVF2iHBMtREGX/3c=
-=yqC9
------END PGP SIGNATURE-----
-
---nextPart72324447.64dR16D2lC--
+To compile manually:
+cd ath10k
+cp make_all make_all.mine
+chmod a+x make_all.mine
+# Edit make_all.mine to point to your compiled kernel
+# Copy ath/*.h files into ../
+# This header file stuff is not obvious, sorry..but it helps us compile
+# properly on LEDE/OpenWRT backports infrastructure.
+./make_all.mine
 
 
+For full kernel source that these drivers came from, see:
+
+http://dmz2.candelatech.com/?p=3Dlinux-4.7.dev.y/.git;a=3Dsummary
+git clone git://dmz2.candelatech.com/linux-4.7.dev.y
+
+http://dmz2.candelatech.com/?p=3Dlinux-4.4.dev.y/.git;a=3Dsummary
+git clone git://dmz2.candelatech.com/linux-4.4.dev.y
+
+Please send bug reports to:=A0 greearb@candelatech.com
+
+
+On 6/1/20 9:41 PM, Steve Newcomb wrote:
+>
+>
+> On 5/28/20 5:28 PM, Ben Greear wrote:
+>> I've tested DFS in STA/AP mode and that works fine on my=20
+>> driver/firmware, possibly
+>> due to us setting the regdom as a fwcfg option, I suppose.=20
+> I wonder how I can set the regdom as fwcfg option?=A0 I don't know the=20
+> procedure to try that.=A0 Do I need to cross-compile the firmware=20
+> myself, rather than using the OpenWRT package?
