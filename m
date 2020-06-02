@@ -2,120 +2,124 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B20221EB336
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  2 Jun 2020 04:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C12BF1EB63F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  2 Jun 2020 09:11:15 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 91F1C80DF0;
-	Tue,  2 Jun 2020 04:05:12 +0200 (CEST)
-Received: from ory.petesbox.net (ory.petesbox.net [62.210.252.27])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7F5F180314
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jun 2020 04:05:10 +0200 (CEST)
-Received: by ory.petesbox.net (Postfix, from userid 326)
-	id 31D254177D; Mon,  1 Jun 2020 22:05:10 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
-	t=1591063510; bh=SgbUiCpKmpxZ2RbkleWmMuNL2oMrAHuZeSvDc8F3z5k=;
-	h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
-	b=NVVeCPcYqgGKw24fipeMtvX9MFefIeEHE8XQfGy3ymmlkKyMFTFV81diuESh69Kol
-	 blhRppGl3RgbnNw8yLNQEUTW/ynwuSqo0AqOXB6eoa2mDBGXZYRnHjPGPP93xDAFuQ
-	 YXZ4R9R7Kpijt+jeY3I5RIllfkwDEme44qhNjKVltEa3738bxwpnkERbueP/Re2J7B
-	 Yjswz4MTyj/FSFAbnxeJ42nj4wM3asqe7AgGBrJznPyzhuCQ67InFF+ambgoiMMadi
-	 lQ/E1/2QolarIUllRqqoddi24OjmFFBP03DcCmC9nnNqolm9/Hz735hvC9T7+cJVor
-	 ayw5TaL+KtmRg==
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ory.petesbox.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=4.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-	DKIM_VALID,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.2
-Received: from [192.168.2.88] (unknown [38.21.219.2])
-	by ory.petesbox.net (Postfix) with ESMTPSA id CF3DA40362;
-	Mon,  1 Jun 2020 22:05:05 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; d=petesbox.net; s=ory;
-	t=1591063506; bh=SgbUiCpKmpxZ2RbkleWmMuNL2oMrAHuZeSvDc8F3z5k=;
-	h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
-	b=aPqwUwdmDzvkoHuPrCkR9k7KAvZkV18yonZ6A2o/AmA2PocCw3rJ6D7mIFipFvo/R
-	 LnIL2UFRmG/r0Qtcnc8zbm8PGVXKodmtbhDFacezWkpiSbDqMJO9o2dK2+iddmpRTb
-	 4i9Vc339NxytXVgScLmTLMiYQPBlFdCal2o8TeBC02GBLVnvVy/NFz34ryyJ/z9yka
-	 ZA4HKHYT8UsRuXJmrBvTto+qn/52eYdW4DqlP6H+y0balBnyQfSby0A3CJJIqFDprx
-	 32qgfgHnEs72DdUasCvXcEM/FeOSenW5H6Ihr0pPwERCWHI4tLZqNWYFEZpfzpQlcX
-	 kuFv25xsmMdmw==
-Subject: Re: Network stops passing traffic randomly
-To: b.a.t.m.a.n@lists.open-mesh.org, Ben Greear <greearb@candelatech.com>,
- smartwires@gmail.com
-References: <c022e032-f283-8432-2d3e-3013cf91773b@coolheads.com>
- <20200529001302.832.66710@diktynna.open-mesh.org>
-From: Steve Newcomb <srn@coolheads.com>
-Message-ID: <174b4bab-d84e-899d-3ecf-34bfdccff4fd@coolheads.com>
-Date: Mon, 1 Jun 2020 22:05:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D0ED5809B6;
+	Tue,  2 Jun 2020 09:11:13 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id C6AC380843
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jun 2020 09:11:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1591081869;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=F67MhQeEgj5WuSrkYA1YR5+4leGddaZ8MXj+TqsRciw=;
+	b=qbtScslP+dsT7yNXOSeRboduskLJIssHvJVGE52c3A9Cl7eeeHgX9x6dfwlIOjbsWgdJ89
+	xu/CroJ8JYiHm7/itD5Qbpfwr5PghvFDr2Y8SUny1mkF378KfHTmXBS9H799ttoScwQbXp
+	m3Q5JgXsuuXop/btILbmMUinana+5kM=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: [PATCH] batctl: Add per interface hop penalty command
+Date: Tue, 02 Jun 2020 09:11:04 +0200
+Message-ID: <1986436.iMA26uce0h@bentobox>
+In-Reply-To: <20200601203538.5318-1-linus.luessing@c0d3.blue>
+References: <20200601203538.5318-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-In-Reply-To: <20200529001302.832.66710@diktynna.open-mesh.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: multipart/signed; boundary="nextPart72324447.64dR16D2lC"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1591063510;
-	h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
+	s=20121; t=1591081870;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=SgbUiCpKmpxZ2RbkleWmMuNL2oMrAHuZeSvDc8F3z5k=;
-	b=oDZDDWVhHws8gfo5sKERqMDHWS7grDzRU1aPg3vvJdfB42auuSHiEmNyVT0Y/Dvd4TCeT5
-	4SYz0qYGhJssPrcEavYTlbCNadqHoxO2Tul5yvd5g3xiCdCz27H0gGe6blDrBSNZzPGh3Z
-	Pg4xmGWblOCWnoiOgLyXIVwGt1WnYag=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591063510; a=rsa-sha256;
+	bh=F67MhQeEgj5WuSrkYA1YR5+4leGddaZ8MXj+TqsRciw=;
+	b=nBfVcrmhqt/yse/qKAuiJvYiuFSc/JgTlO6cHwb0Y+pz94ZWICyVecLD6Rr5Yf4fY6BJoA
+	6UAwI02HIPnPePL65Cry0aA3M+d7HMYQdNkVbKrpzyuO2oWsroMIFcdDTmRN9r2Hwf1V9t
+	Pfwg9DPy8+A3fjaSi62fPEPw57QNm3c=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591081870; a=rsa-sha256;
 	cv=none;
-	b=jFi4fSOILo5CzDkLHnzLTb1Etjskey3qMX42kYu7PDM0wQvH7FyHu7A9uvDepOEvLlW9cD
-	xhNUtr5TyfZzlRUoJL1O1rPuhCxHfXH+wiXS0/PQD0e6yil2auKa7shahcWBmrU4dMFsum
-	iOjOWBijrUseyFaZnnrXtPLYVaHyG2I=
+	b=F/OStFKQvrAP60J8+k6JB4TEES7ztIPNCEllVC01sP0/icNSE4ivgsCBNXX5OQOzR+IZpv
+	LjYJsxR2Q2Krn1YPMVOwGQMydrZu2TQYvZVzIGVKtzsbRo1NJSKwzFLgKtGQmz/jD3vT7A
+	OtqRJoOrhangCaVUuT4PEsTst6ucyn8=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=petesbox.net header.s=ory header.b=NVVeCPcY;
-	dkim=fail (headers rsa verify failed) header.d=petesbox.net header.s=ory header.b=aPqwUwdm;
-	spf=pass (diktynna.open-mesh.org: domain of srn@coolheads.com designates 62.210.252.27 as permitted sender) smtp.mailfrom=srn@coolheads.com
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: VHMPU7SJKJLWF5ICVNIJHDSNUQIPRBMX
-X-Message-ID-Hash: VHMPU7SJKJLWF5ICVNIJHDSNUQIPRBMX
-X-MailFrom: srn@coolheads.com
+	dkim=pass header.d=narfation.org header.s=20121 header.b=qbtScslP;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+Message-ID-Hash: V36ZS7LDHCCQKDOTOPIHRYQPVDUQNHUA
+X-Message-ID-Hash: V36ZS7LDHCCQKDOTOPIHRYQPVDUQNHUA
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Maximilian Wilhelm <max@rfc2324.org>
 X-Mailman-Version: 3.2.1
 Precedence: list
-Reply-To: srn@coolheads.com, The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VHMPU7SJKJLWF5ICVNIJHDSNUQIPRBMX/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/V36ZS7LDHCCQKDOTOPIHRYQPVDUQNHUA/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
+--nextPart72324447.64dR16D2lC
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
+On Monday, 1 June 2020 22:35:38 CEST Linus L=FCssing wrote:
+> This patch extends the hop penalty setting to be configurable not only
+> on a node scope but also on a per hard interface basis.
 
-On 5/28/20 8:13 PM, smartwires@gmail.com wrote:
-> Steve, I am also using ap with a QCA9558 SOC and Also using ath10k-firm=
-ware-qca988x . I have also considered using adhoc.
+I would prefer not to have "this patch" in all your patches :)
 
-I think I discovered something yesterday that explains everything, and=20
-it's very reproducible.=C2=A0 The mesh mode in the QCA firmware works=20
-reliably in the lab and in the field, but only when there are 3 or fewer=20
-nodes.=C2=A0 If I add one more node, the mesh will completely fail, eithe=
-r=20
-immediately or within a few hours.=C2=A0 If the nodes are strung out in a=
-=20
-daisy chain, failure is usually, but not always, delayed for a while,=20
-and the links break in a piecemeal fashion, one at a time.=C2=A0 If the n=
-odes=20
-are close enough to each other, total failure occurs quite quickly.=C2=A0=
- I=20
-surmise that the 802.11s implementation in the QCA driver was not tested=20
-with more than 3 nodes, or perhaps it wasn't designed to support more=20
-than 3 nodes.=C2=A0 Sigh.
+Maybe something more like:
 
-Sven, I think this epiphany obviates the need for your test (which I=20
-still haven't figured out how to execute in the field), but I'll return=20
-to that effort if you think I should.
+* why is it needed
+* what was changed
 
-So in the end, unless I replace the hardware throughout the neighborhood=20
-with far more expensive hardware, I must find a way to use Ben's driver,=20
-or to have no mesh network with more than 3 nodes in it.
+>=20
+> Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
+> ---
+>  Makefile         |   1 +
+>  README.rst       |   7 ++-
+>  if_hop_penalty.c | 113 +++++++++++++++++++++++++++++++++++++++++++++++
+
+Wouldn't it be more consistent to have this in the main hop_penalty file an=
+d=20
+just add a new COMMAND_NAMED?
+
+>  man/batctl.8     |   4 ++
+>  4 files changed, 124 insertions(+), 1 deletion(-)
+>  create mode 100644 if_hop_penalty.c
+
+This is missing the change to parse the per hardif in the `batctl event`=20
+monitor command.
+
+Kind regards,
+	Sven
+
+--nextPart72324447.64dR16D2lC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl7V+4gACgkQXYcKB8Em
+e0ZLrQ/+KiYNq9MdSbKxLrjzVjGDzi4nMlCSV2znQvmiy55fCPiNxicAqjM0GKHk
++dmb46KagFYFC0i8BWmR8otiPaJuPq9wDhD8lKgsqlWqywn3I7bvZEnY/8WyTVJr
+NtviaKbHXmRg0WpPM19wl7c636uEzk1DytK5kLeLlYqVPULheZVaPe38wLr+rdgE
+OEKRRIZg/p65R6jyhIF04Cko7GYBRUe27kXoEx7XW1jpMFbQT3bjesbfo2QTV7tX
+B2Nd4yyFE11yEVTXIlkIEX264cmLmt0/+r4Ga5OU5rmfppzk67mSZjXbWvKnWRlm
+tVo7arvWSIrfDluvCKf+9ddtQgWiezoP/FMVBIi1g9ERben9tQItlyMSt5EiqtfX
+BkyjE8KlXpTg6cD7LADaLHddHQze6TzIisDUEdM9qEgo0HsghOW3NPX7u4s8XjgO
+7EK7FCN5ynt1RkjMsAGhCtCWv4OGjQAhg5VLGrdyfKLksfu2XxNVbsrpj+WrUoZj
+0/rZAm9eOwgGcp6EgDJy1ROrljlJ9b/tneQN4oKF6a0aRs81lsbJ1ZSS01t+7vM3
+djGWfFBIg0hJrK5ydO3xzaVVsgn14R3L1RWy4HnRwyRCsW8p/iICPQO02d4cQG2g
+wgMhyU0jOOzEaD8Lqc31XpFDwSxcvo/rddhPVF2iHBMtREGX/3c=
+=yqC9
+-----END PGP SIGNATURE-----
+
+--nextPart72324447.64dR16D2lC--
+
 
