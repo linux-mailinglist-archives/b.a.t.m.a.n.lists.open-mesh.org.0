@@ -1,72 +1,74 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A3F1EC947
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  3 Jun 2020 08:12:45 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B7D71ED111
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  3 Jun 2020 15:43:42 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 878F880953;
-	Wed,  3 Jun 2020 08:12:44 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B20CC81086;
+	Wed,  3 Jun 2020 15:43:40 +0200 (CEST)
 Received: from mail3.candelatech.com (mail2.candelatech.com [208.74.158.173])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 81A2F80128
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  2 Jun 2020 22:02:26 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 635A880095
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  3 Jun 2020 14:48:26 +0200 (CEST)
 Received: from [192.168.254.4] (unknown [50.34.197.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by mail3.candelatech.com (Postfix) with ESMTPSA id D413813C2B0;
-	Tue,  2 Jun 2020 13:02:24 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail3.candelatech.com D413813C2B0
+	by mail3.candelatech.com (Postfix) with ESMTPSA id 0A51D13C2B0;
+	Wed,  3 Jun 2020 05:48:25 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail3.candelatech.com 0A51D13C2B0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=candelatech.com;
-	s=default; t=1591128145;
-	bh=HDJv8TC+CUlOQ0d8yg4BwAnAEk7OO2dZD4zC/i8Bs3M=;
+	s=default; t=1591188505;
+	bh=UN7FbsGUdJwJj0DH+Q6G6RTbBh69IMS15XOucGMmwb0=;
 	h=Subject:To:References:From:Date:In-Reply-To:From;
-	b=rulajP2NY0LXC1/nogxMKBQ8eaz+C90NoH2yCnXrZbzU9F0kOzF2xqOC7l+fiXgnB
-	 Chj0F8DY0LJfSKT//700Pj0VGYerD+eJQVOvxZV6XDo6BIMnI68NBAcwd+3RLU/Wio
-	 1Hobs4NYTjJhnKIU8v0zLoOiTNJWJMP4IYr9MmU4=
+	b=Bq1jTSVpwVn20zqXip6JUiBqBCisrwaaKA7Vopmitd4rpdAVh+cTtZdrcpZJbYZDx
+	 Z5jkZyJDHiBJCAL5EzBIfJJ17XfbhkoMKAyRXd85icd3x6AMqt8EF5ohtG509A8Dnl
+	 sqVOINNYbmoDYp2IeqfOjznQi4ot3sLuyBfxN4/Y=
 Subject: Re: Network stops passing traffic randomly
 To: srn@coolheads.com, b.a.t.m.a.n@lists.open-mesh.org, smartwires@gmail.com
 References: <c022e032-f283-8432-2d3e-3013cf91773b@coolheads.com>
  <20200529001302.832.66710@diktynna.open-mesh.org>
  <174b4bab-d84e-899d-3ecf-34bfdccff4fd@coolheads.com>
+ <8cb674e5-26b2-e992-61e6-5969cc50358f@candelatech.com>
+ <f99daabf-2081-c6af-779d-580f8d352b59@coolheads.com>
 From: Ben Greear <greearb@candelatech.com>
-Message-ID: <8cb674e5-26b2-e992-61e6-5969cc50358f@candelatech.com>
-Date: Tue, 2 Jun 2020 13:02:24 -0700
+Message-ID: <92655f2e-4ec4-5e1b-4ea9-b1df87a88aac@candelatech.com>
+Date: Wed, 3 Jun 2020 05:48:24 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
  Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <174b4bab-d84e-899d-3ecf-34bfdccff4fd@coolheads.com>
+In-Reply-To: <f99daabf-2081-c6af-779d-580f8d352b59@coolheads.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1591128148;
+	s=20121; t=1591188507;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=J32Kn9qcpyCXLdgryxIjVmjJHbs22s2Zypp8y/zGj3c=;
-	b=xXT9UamsB78qZ1kqqkAUSfjZPOAd8rIjk84R/hYiY7VKakvFJn7xNAFGXN3pH9YPCqLjUZ
-	gUzdTvHbDt0SQLFY0FuYEwozFjwYYkeontipSU36nFRT2ajej7aKiluUilSoGlQpyu+R2/
-	Kx3kqVuL6FczvJs9OCnDvRgBvc/9S8Q=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591128148; a=rsa-sha256;
+	bh=i3kQj/FzsaK+Qt5Ve3dEEgEbUzEAaHGic9fnxAxsqRk=;
+	b=PbMaZdcHUk2D8U2UIA8A9h1r/DHkLe311aaQB78uBz0jDRhaCwzQRrsQ7Q00tQ7NFcLDFi
+	oTAuU89Z1Jtl+aZzClyQXs5e/4RBZQy4TM/SUrFFtMJfFxpzNOnWM3fbOI2Ft6he3FGsge
+	eysZ3voachbGl8iNjsVblk4E5WL8z2A=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591188507; a=rsa-sha256;
 	cv=none;
-	b=YcYvNZbk5lEFGa5l6X2T2meDW5Uvcdguawyumqlt498yB1pRI5sdbYXPbV2CftKLDLTd6h
-	W+7l+2xPTYKaukcwy0huiLD/3b0Jce6uVit0JeuzrZeMhtUlk02tYMow+P6UySq6RT+hdF
-	BHJrgllvuQ+YQq81zUlcT3bMVwHhxOQ=
+	b=utDo50fyNRnq+y6RiN1UPmuJh16Qv4ucz+s/urn3X5KZQWapCbXjkmnahEX1ZW/r8WwmrR
+	KZnI6EMT23HUZkceYF6U+T4ZXAH3arwNC8cEc1aHLUSKIWUy/iIihCC2WU4idVRrZi5QGt
+	OpnrBJc+qxBBjQSeaNhNNabi4Mt4O1s=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=candelatech.com header.s=default header.b=rulajP2N;
+	dkim=pass header.d=candelatech.com header.s=default header.b=Bq1jTSVp;
 	spf=pass (diktynna.open-mesh.org: domain of greearb@candelatech.com designates 208.74.158.173 as permitted sender) smtp.mailfrom=greearb@candelatech.com
 X-MailFrom: greearb@candelatech.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: RSBQ6L7V5N4UZDLKT3TZ7MCKSIGWRSLV
-X-Message-ID-Hash: RSBQ6L7V5N4UZDLKT3TZ7MCKSIGWRSLV
-X-Mailman-Approved-At: Wed, 03 Jun 2020 06:12:43 +0200
+Message-ID-Hash: VFLGZGITWOZ55QUBOHRMU4A4JBAVLZE7
+X-Message-ID-Hash: VFLGZGITWOZ55QUBOHRMU4A4JBAVLZE7
+X-Mailman-Approved-At: Wed, 03 Jun 2020 13:43:38 +0200
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RSBQ6L7V5N4UZDLKT3TZ7MCKSIGWRSLV/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VFLGZGITWOZ55QUBOHRMU4A4JBAVLZE7/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -75,20 +77,24 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 
 
-On 06/01/2020 07:05 PM, Steve Newcomb wrote:
+On 06/02/2020 07:06 PM, Steve Newcomb wrote:
 >
 >
-> On 5/28/20 8:13 PM, smartwires@gmail.com wrote:
->> Steve, I am also using ap with a QCA9558 SOC and Also using ath10k-firmware-qca988x . I have also considered using adhoc.
+> On 6/2/20 4:02 PM, Ben Greear wrote:
+>> Have you tried using IPQ4019 based systems?  They seem pretty affordable, and the 3-radio Linksys MR8300 & EA8300 seem pretty stable
+>> in my testing recently (in AP mode, not tested mesh).
+> No.  Used, on E-bay, the cheaper of the two, the EA8300  is at least twice as expensive as what we're using now.  To buy a dozen or so in hope of getting them to work with Batman is out of the question, alas.
 >
-> I think I discovered something yesterday that explains everything, and it's very reproducible.  The mesh mode in the QCA firmware works reliably in the lab and in the field, but only when there are 3 or fewer nodes.  If I add one more node, the mesh will completely fail, either immediately or within a few hours.  If the nodes are strung out in a daisy chain, failure is usually, but not always, delayed for a while, and the links break in a piecemeal fashion, one at a time.  If the nodes are close enough to each other, total failure occurs quite quickly.  I surmise that the 802.11s implementation in the QCA driver was not tested with more than 3 nodes, or perhaps it wasn't designed to support more than 3 nodes.  Sigh.
+> Ben, I fully understand your lack of incentive to spend your time on drivers for older hardware.  This is not your problem, really. (Unless, like me, you are seeking ways to address the digital divide, where low entry cost is the key consideration.  Every dollar cheaper means more people can connect, which was important even before the pandemic began.  I selected these Archer [AC]7 v[245] units because there are so many of them for sale that they are kind of hard to sell.  True, I didn't know the QCA driver would limit me to 3 nodes per mesh, nor did I know your driver couldn't support encryption nor DFS, at least not out of the box.  It looked like a reasonable bet at the time; with 2 drivers to choose from, what could go wrong?  Oh, well, nothing worthwhile was ever easy.)
 >
-> Sven, I think this epiphany obviates the need for your test (which I still haven't figured out how to execute in the field), but I'll return to that effort if you think I should.
->
-> So in the end, unless I replace the hardware throughout the neighborhood with far more expensive hardware, I must find a way to use Ben's driver, or to have no mesh network with more than 3 nodes in it.
+> Steve
 
-Have you tried using IPQ4019 based systems?  They seem pretty affordable, and the 3-radio Linksys MR8300 & EA8300 seem pretty stable
-in my testing recently (in AP mode, not tested mesh).
+I'm working with the TIP project, which aims to provide stable OpenWrt capable hardware, among lots of other things.
+
+I know some others in that group are interested in low cost solutions, so curious to know what price you think is
+viable for your market...
+
+https://telecominfraproject.com/wifi/
 
 Thanks,
 Ben
