@@ -2,60 +2,60 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B161F2417
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  9 Jun 2020 01:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5AB31F2491
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  9 Jun 2020 01:23:15 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B9C4380BB9;
-	Tue,  9 Jun 2020 01:19:57 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id BBD5B802FB;
+	Tue,  9 Jun 2020 01:23:14 +0200 (CEST)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5EF5B8015B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  9 Jun 2020 01:19:55 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B013D80046
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  9 Jun 2020 01:23:12 +0200 (CEST)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 4854920814;
-	Mon,  8 Jun 2020 23:19:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPSA id A382A20899;
+	Mon,  8 Jun 2020 23:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1591658394;
-	bh=LrwI3WVVMEZTLt+oktHm+tTG2mf3KGJ3BQ4rafhaoYY=;
+	s=default; t=1591658591;
+	bh=/rsiNZmJKMU7ImUM+XD8KQ6xKLVf5BpHcUfc7DiIKDY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rDQJhI3p5YHJbgNnYb3jvpLxeHef65/yiWfBpOvQuhPyq3lutdVsC1Lrjrs8FN6hP
-	 jnHrsl1RyNDKQLkhMLl5lt7d7TH7+RwNd4k3J74zsjvWLHx6nqHbXo4A24gzoAGt6T
-	 67nAPT7MNfuBIbRp7cAVzLN85psVyZMSzi7DOKHg=
+	b=BJB3TY+orpPhaXiEqle9dhpG4RxQqWii7/TV3KrxYwM2yEISIIkBnns9Dlv5Wedl6
+	 bqxlTUX1hT+EWhVZALi23BL9ppr/fO/b09aiADzPrdxzfq5VI5CnN5Ey3RQlFAXHpN
+	 ZiHUt9wiwMcRRUEA7EcX39O0HF5xKIBgC0Vbplxk=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 051/175] batman-adv: Revert "disable ethtool link speed detection when auto negotiation off"
-Date: Mon,  8 Jun 2020 19:16:44 -0400
-Message-Id: <20200608231848.3366970-51-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 025/106] batman-adv: Revert "disable ethtool link speed detection when auto negotiation off"
+Date: Mon,  8 Jun 2020 19:21:17 -0400
+Message-Id: <20200608232238.3368589-25-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200608231848.3366970-1-sashal@kernel.org>
-References: <20200608231848.3366970-1-sashal@kernel.org>
+In-Reply-To: <20200608232238.3368589-1-sashal@kernel.org>
+References: <20200608232238.3368589-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1591658395;
+	s=20121; t=1591658593;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=U6qp6lspa9T8Fh/Y7A4IUiSZLMB6kDU000xCTKfQsII=;
-	b=LFfltb731d8HBoI6whFQpqVLNB8Sn6JiTXhyal0diSh/AUpyfxpoWRsqNSrYbPobM8PcBx
-	Q1dxAN79qtXlTiiD+lPmDwGULr72jMDNG2iEp3acNxHYjBUI2BjNkgQZ4ZbD6HvqkBQIVu
-	ZJvtQB6VxkbG0Df+/oRmkVBHP0znUPg=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591658395; a=rsa-sha256;
+	bh=egtNGrCbP05hP/iCTRFkg0PACJeT8my3YR7hB1M0OKk=;
+	b=0D48aBulQbWOg/X9XZ6p/V+mwTsfg5PablD7cjs6tQhY1IsRrAwCCH/GbCpqR/k3tec9yN
+	tzvDWZh9BK8rdBnmCwgBHpPX+ITaYtJyfOfhb6R+b/XXTdVZ6okc7tf2uDjwDCqI35OXj+
+	HgT/573u9p34NzpL1JoNN8hFlFE4lWU=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591658593; a=rsa-sha256;
 	cv=none;
-	b=ad3reWjjjjrO7n52nrNhxeiSFNqBSPyZdQgHuSWwEz9FY9IHf4P7X/ogTX0gAVd8Eg9B+T
-	/0PKbrWlkgm5bq0ZHw6wGuCBn5fulqBmdm9FvyxcoeGta9FBuLvcoiCd6b9jSQAF1Blhba
-	S1sFHu11I2e1CIMewnsOfz8HFNJdHxA=
+	b=HhTRwhTNDMmtx0oslL1hyBHEjaW0k0BH2Fs64NjSfEjdxtKiTH+5zVDpsUDtvyP3daEXc+
+	1XD/hDExr3LcxwLuOXPo9RLhrJd9poIFSJypQyoPAjNBambvVVsA8ay9Bi4pJj8WrMBpkU
+	6vRwvbwC8ke5ZkZ3cMczMkZ1befI4F4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=default header.b=rDQJhI3p;
+	dkim=pass header.d=kernel.org header.s=default header.b=BJB3TY+o;
 	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: DPHHFXWSNU5USIZAHVWLOXLZY56CLU5W
-X-Message-ID-Hash: DPHHFXWSNU5USIZAHVWLOXLZY56CLU5W
+Message-ID-Hash: BMI5HZAXIAGAIDNZ34M674VIVBF2ST6K
+X-Message-ID-Hash: BMI5HZAXIAGAIDNZ34M674VIVBF2ST6K
 X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
@@ -64,7 +64,7 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DPHHFXWSNU5USIZAHVWLOXLZY56CLU5W/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BMI5HZAXIAGAIDNZ34M674VIVBF2ST6K/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -108,10 +108,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 14 deletions(-)
 
 diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
-index 2614a9caee00..a39af0eefad3 100644
+index 5da183b2f4c9..af3da6cdfc79 100644
 --- a/net/batman-adv/bat_v_elp.c
 +++ b/net/batman-adv/bat_v_elp.c
-@@ -120,20 +120,7 @@ static u32 batadv_v_elp_get_throughput(struct batadv=
+@@ -132,20 +132,7 @@ static u32 batadv_v_elp_get_throughput(struct batadv=
 _hardif_neigh_node *neigh)
  	rtnl_lock();
  	ret =3D __ethtool_get_link_ksettings(hard_iface->net_dev, &link_setting=
