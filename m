@@ -2,138 +2,211 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5AB31F2491
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  9 Jun 2020 01:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3901F75E0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 12 Jun 2020 11:24:17 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id BBD5B802FB;
-	Tue,  9 Jun 2020 01:23:14 +0200 (CEST)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B013D80046
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  9 Jun 2020 01:23:12 +0200 (CEST)
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id A382A20899;
-	Mon,  8 Jun 2020 23:23:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1591658591;
-	bh=/rsiNZmJKMU7ImUM+XD8KQ6xKLVf5BpHcUfc7DiIKDY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BJB3TY+orpPhaXiEqle9dhpG4RxQqWii7/TV3KrxYwM2yEISIIkBnns9Dlv5Wedl6
-	 bqxlTUX1hT+EWhVZALi23BL9ppr/fO/b09aiADzPrdxzfq5VI5CnN5Ey3RQlFAXHpN
-	 ZiHUt9wiwMcRRUEA7EcX39O0HF5xKIBgC0Vbplxk=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 025/106] batman-adv: Revert "disable ethtool link speed detection when auto negotiation off"
-Date: Mon,  8 Jun 2020 19:21:17 -0400
-Message-Id: <20200608232238.3368589-25-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200608232238.3368589-1-sashal@kernel.org>
-References: <20200608232238.3368589-1-sashal@kernel.org>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3E283810CD;
+	Fri, 12 Jun 2020 11:24:16 +0200 (CEST)
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com [209.85.166.70])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 39BA78009D
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 12 Jun 2020 11:24:13 +0200 (CEST)
+Received: by mail-io1-f70.google.com with SMTP id 5so5711494iou.6
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 12 Jun 2020 02:24:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=G+HZh4mhFhAwMVR6n/No7HJ3NlUbn0CRpmJVSgxGS9g=;
+        b=cObtuchr2v8kMSRGi+y4CtRo0tg+iYcTMcagIY6o0z899ytqQQEFqyyx+7/1MLB6Wq
+         8xosqipY5hnINHsqLVMsbzLY/EFPRzpDyOyhDt2WXfHaQzKK8/W6yqApdQ4OoASisHXh
+         qCJcwMinUtonvFLisEETdnKIbWE4O9/Fd5WSX2h+bvHQHquN9Tq6Kek/P06i43Zk9+nG
+         A+FbIYeoDT3sjhoO2bXigyz0b2RA+ClzojSkUbVzdFlwNCf4Oj7JSZvqCXuMq8WoXjxZ
+         KsXXOgCNJ9BooAEBQQ8gYTD1fspcigoS2ypGMR5+S5YJ3rAmPVeJOG6YwGB2qIvAjQ/0
+         Frkw==
+X-Gm-Message-State: AOAM5330QibSMKwJwvjyU1+juULLsi2NiVLeYJFyoCLz/YDjDAtSABuV
+	XaY+wZO7toiQu2QknIqQHgcWNXRTqnQ0xKfCNOXXyvUUvp73
+X-Google-Smtp-Source: ABdhPJzjURpQ1YBkZ95I8AFVO4cvr2ERC+3dMIHpwpYHXvZTNy24xl3t5Dpe0hqVhPsYDUPT/5r7Qd2kvhLlhbo2N/xr3Jr4YiX3
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+X-Received: by 2002:a92:c6cd:: with SMTP id v13mr11574126ilm.150.1591953851908;
+ Fri, 12 Jun 2020 02:24:11 -0700 (PDT)
+Date: Fri, 12 Jun 2020 02:24:11 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000d788c905a7dfa3f4@google.com>
+Subject: KASAN: use-after-free Write in fsnotify_detach_connector_from_object
+From: syzbot <syzbot+7d2debdcdb3cb93c1e5e@syzkaller.appspotmail.com>
+To: a@unstable.cc, adobriyan@gmail.com, akpm@linux-foundation.org,
+	alex.dewar@gmx.co.uk, amir73il@gmail.com, anton.ivanov@cambridgegreys.com,
+	b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, ebiederm@xmission.com,
+	jack@suse.cz, jdike@addtoit.com, kuba@kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-um@lists.infradead.org, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, richard@nod.at, sfr@canb.auug.org.au,
+	sven@narfation.org, sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1591658593;
+	s=20121; t=1591953853;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=egtNGrCbP05hP/iCTRFkg0PACJeT8my3YR7hB1M0OKk=;
-	b=0D48aBulQbWOg/X9XZ6p/V+mwTsfg5PablD7cjs6tQhY1IsRrAwCCH/GbCpqR/k3tec9yN
-	tzvDWZh9BK8rdBnmCwgBHpPX+ITaYtJyfOfhb6R+b/XXTdVZ6okc7tf2uDjwDCqI35OXj+
-	HgT/573u9p34NzpL1JoNN8hFlFE4lWU=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591658593; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=G+HZh4mhFhAwMVR6n/No7HJ3NlUbn0CRpmJVSgxGS9g=;
+	b=pBIRbLK7Z2+NOf9RFbSupdwqtYDVFmKDp5x6ZM7J+WdMAIBGa37Z9U1adT6edipcc8BDC1
+	+aBP/MWVyBDrzZ6M2Ugyk8x1+ydiZjiEdeOFZWcSQ4GxfwFWcbRFrBv8sinnHUTnOdzVQ7
+	QSCfdqGLjEn8HUZAw7CzORomgYnHoa8=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591953853; a=rsa-sha256;
 	cv=none;
-	b=HhTRwhTNDMmtx0oslL1hyBHEjaW0k0BH2Fs64NjSfEjdxtKiTH+5zVDpsUDtvyP3daEXc+
-	1XD/hDExr3LcxwLuOXPo9RLhrJd9poIFSJypQyoPAjNBambvVVsA8ay9Bi4pJj8WrMBpkU
-	6vRwvbwC8ke5ZkZ3cMczMkZ1befI4F4=
+	b=bSvvUp4DI9WJtPDcPb/ftBmpwwE4bOnyrgHtKvozzuc2SHm5PAVB89NH/cT4W04+yaYKNX
+	xoeGi1I4cMKvZCjqKUu/SJtp2XIHQS5qqwLS5FrGkL5nsiGEeqkwqxy3LgZgQUWkvBb5hS
+	nn58idMRg/LvL3XeiWDTuQ8BUDzg4KI=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=default header.b=BJB3TY+o;
-	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: BMI5HZAXIAGAIDNZ34M674VIVBF2ST6K
-X-Message-ID-Hash: BMI5HZAXIAGAIDNZ34M674VIVBF2ST6K
-X-MailFrom: sashal@kernel.org
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3u0njXgkbANgMSTE4FF8L4JJC7.AIIAF8OM8L6IHN8HN.6IG@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.70 as permitted sender) smtp.mailfrom=3u0njXgkbANgMSTE4FF8L4JJC7.AIIAF8OM8L6IHN8HN.6IG@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: RWA5RO4RFAJFTHUPM6C3AYSY5KWUU4CO
+X-Message-ID-Hash: RWA5RO4RFAJFTHUPM6C3AYSY5KWUU4CO
+X-MailFrom: 3u0njXgkbANgMSTE4FF8L4JJC7.AIIAF8OM8L6IHN8HN.6IG@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: Sasha Levin <sashal@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BMI5HZAXIAGAIDNZ34M674VIVBF2ST6K/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RWA5RO4RFAJFTHUPM6C3AYSY5KWUU4CO/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+Hello,
 
-[ Upstream commit 9ad346c90509ebd983f60da7d082f261ad329507 ]
+syzbot found the following crash on:
 
-The commit 8c46fcd78308 ("batman-adv: disable ethtool link speed detectio=
-n
-when auto negotiation off") disabled the usage of ethtool's link_ksetting
-when auto negotation was enabled due to invalid values when used with
-tun/tap virtual net_devices. According to the patch, automatic measuremen=
-ts
-should be used for these kind of interfaces.
+HEAD commit:    7ae77150 Merge tag 'powerpc-5.8-1' of git://git.kernel.org..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=120b26c1100000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=d195fe572fb15312
+dashboard link: https://syzkaller.appspot.com/bug?extid=7d2debdcdb3cb93c1e5e
+compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1724b246100000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=14ceb3de100000
 
-But there are major flaws with this argumentation:
+The bug was bisected to:
 
-* automatic measurements are not implemented
-* auto negotiation has nothing to do with the validity of the retrieved
-  values
+commit 76313c70c52f930af4afd21684509ca52297ea71
+Author: Eric W. Biederman <ebiederm@xmission.com>
+Date:   Wed Feb 19 16:37:15 2020 +0000
 
-The first point has to be fixed by a longer patch series. The "validity"
-part of the second point must be addressed in the same patch series by
-dropping the usage of ethtool's link_ksetting (thus always doing automati=
-c
-measurements over ethernet).
+    uml: Create a private mount of proc for mconsole
 
-Drop the patch again to have more default values for various net_device
-types/configurations. The user can still overwrite them using the
-batadv_hardif's BATADV_ATTR_THROUGHPUT_OVERRIDE.
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=117c4912100000
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=137c4912100000
+console output: https://syzkaller.appspot.com/x/log.txt?x=157c4912100000
 
-Reported-by: Matthias Schiffer <mschiffer@universe-factory.net>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+7d2debdcdb3cb93c1e5e@syzkaller.appspotmail.com
+Fixes: 76313c70c52f ("uml: Create a private mount of proc for mconsole")
+
+==================================================================
+BUG: KASAN: use-after-free in atomic64_inc include/asm-generic/atomic-instrumented.h:1049 [inline]
+BUG: KASAN: use-after-free in atomic_long_inc include/asm-generic/atomic-long.h:160 [inline]
+BUG: KASAN: use-after-free in fsnotify_detach_connector_from_object+0x25e/0x380 fs/notify/mark.c:185
+Write of size 8 at addr ffff88809fd7e7c0 by task syz-executor972/8021
+
+CPU: 1 PID: 8021 Comm: syz-executor972 Not tainted 5.7.0-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0x188/0x20d lib/dump_stack.c:118
+ print_address_description.constprop.0.cold+0xd3/0x413 mm/kasan/report.c:383
+ __kasan_report mm/kasan/report.c:513 [inline]
+ kasan_report.cold+0x1f/0x37 mm/kasan/report.c:530
+ check_memory_region_inline mm/kasan/generic.c:186 [inline]
+ check_memory_region+0x141/0x190 mm/kasan/generic.c:192
+ atomic64_inc include/asm-generic/atomic-instrumented.h:1049 [inline]
+ atomic_long_inc include/asm-generic/atomic-long.h:160 [inline]
+ fsnotify_detach_connector_from_object+0x25e/0x380 fs/notify/mark.c:185
+ fsnotify_put_mark+0x367/0x580 fs/notify/mark.c:250
+ fsnotify_clear_marks_by_group+0x33f/0x490 fs/notify/mark.c:764
+ fsnotify_destroy_group+0xc9/0x300 fs/notify/group.c:61
+ inotify_release+0x33/0x40 fs/notify/inotify/inotify_user.c:271
+ __fput+0x33e/0x880 fs/file_table.c:281
+ task_work_run+0xf4/0x1b0 kernel/task_work.c:123
+ exit_task_work include/linux/task_work.h:22 [inline]
+ do_exit+0xb3f/0x2de0 kernel/exit.c:806
+ do_group_exit+0x125/0x340 kernel/exit.c:904
+ __do_sys_exit_group kernel/exit.c:915 [inline]
+ __se_sys_exit_group kernel/exit.c:913 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:913
+ do_syscall_64+0xf6/0x7d0 arch/x86/entry/common.c:295
+ entry_SYSCALL_64_after_hwframe+0x49/0xb3
+RIP: 0033:0x445448
+Code: Bad RIP value.
+RSP: 002b:00007ffe48521018 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 0000000000445448
+RDX: 0000000000000000 RSI: 000000000000003c RDI: 0000000000000000
+RBP: 00000000004cca90 R08: 00000000000000e7 R09: ffffffffffffffd0
+R10: 00007ffe48521060 R11: 0000000000000246 R12: 0000000000000001
+R13: 00000000006e0340 R14: 0000000000000007 R15: 000000000000002d
+
+Allocated by task 8026:
+ save_stack+0x1b/0x40 mm/kasan/common.c:48
+ set_track mm/kasan/common.c:56 [inline]
+ __kasan_kmalloc mm/kasan/common.c:494 [inline]
+ __kasan_kmalloc.constprop.0+0xbf/0xd0 mm/kasan/common.c:467
+ kmem_cache_alloc_trace+0x153/0x7d0 mm/slab.c:3551
+ kmalloc include/linux/slab.h:555 [inline]
+ kzalloc include/linux/slab.h:669 [inline]
+ alloc_super+0x52/0x9d0 fs/super.c:203
+ sget_fc+0x13f/0x790 fs/super.c:530
+ vfs_get_super+0x6d/0x2d0 fs/super.c:1186
+ vfs_get_tree+0x89/0x2f0 fs/super.c:1547
+ do_new_mount fs/namespace.c:2874 [inline]
+ do_mount+0x1306/0x1b40 fs/namespace.c:3199
+ __do_sys_mount fs/namespace.c:3409 [inline]
+ __se_sys_mount fs/namespace.c:3386 [inline]
+ __x64_sys_mount+0x18f/0x230 fs/namespace.c:3386
+ do_syscall_64+0xf6/0x7d0 arch/x86/entry/common.c:295
+ entry_SYSCALL_64_after_hwframe+0x49/0xb3
+
+Freed by task 23:
+ save_stack+0x1b/0x40 mm/kasan/common.c:48
+ set_track mm/kasan/common.c:56 [inline]
+ kasan_set_free_info mm/kasan/common.c:316 [inline]
+ __kasan_slab_free+0xf7/0x140 mm/kasan/common.c:455
+ __cache_free mm/slab.c:3426 [inline]
+ kfree+0x109/0x2b0 mm/slab.c:3757
+ process_one_work+0x965/0x16a0 kernel/workqueue.c:2268
+ worker_thread+0x96/0xe20 kernel/workqueue.c:2414
+ kthread+0x388/0x470 kernel/kthread.c:268
+ ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:351
+
+The buggy address belongs to the object at ffff88809fd7e000
+ which belongs to the cache kmalloc-4k of size 4096
+The buggy address is located 1984 bytes inside of
+ 4096-byte region [ffff88809fd7e000, ffff88809fd7f000)
+The buggy address belongs to the page:
+page:ffffea00027f5f80 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 head:ffffea00027f5f80 order:1 compound_mapcount:0
+flags: 0xfffe0000010200(slab|head)
+raw: 00fffe0000010200 ffffea000247aa88 ffffea000242ef08 ffff8880aa002000
+raw: 0000000000000000 ffff88809fd7e000 0000000100000001 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88809fd7e680: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88809fd7e700: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff88809fd7e780: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                           ^
+ ffff88809fd7e800: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88809fd7e880: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+
+
 ---
- net/batman-adv/bat_v_elp.c | 15 +--------------
- 1 file changed, 1 insertion(+), 14 deletions(-)
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
-index 5da183b2f4c9..af3da6cdfc79 100644
---- a/net/batman-adv/bat_v_elp.c
-+++ b/net/batman-adv/bat_v_elp.c
-@@ -132,20 +132,7 @@ static u32 batadv_v_elp_get_throughput(struct batadv=
-_hardif_neigh_node *neigh)
- 	rtnl_lock();
- 	ret =3D __ethtool_get_link_ksettings(hard_iface->net_dev, &link_setting=
-s);
- 	rtnl_unlock();
--
--	/* Virtual interface drivers such as tun / tap interfaces, VLAN, etc
--	 * tend to initialize the interface throughput with some value for the
--	 * sake of having a throughput number to export via ethtool. This
--	 * exported throughput leaves batman-adv to conclude the interface
--	 * throughput is genuine (reflecting reality), thus no measurements
--	 * are necessary.
--	 *
--	 * Based on the observation that those interface types also tend to set
--	 * the link auto-negotiation to 'off', batman-adv shall check this
--	 * setting to differentiate between genuine link throughput information
--	 * and placeholders installed by virtual interfaces.
--	 */
--	if (ret =3D=3D 0 && link_settings.base.autoneg =3D=3D AUTONEG_ENABLE) {
-+	if (ret =3D=3D 0) {
- 		/* link characteristics might change over time */
- 		if (link_settings.base.duplex =3D=3D DUPLEX_FULL)
- 			hard_iface->bat_v.flags |=3D BATADV_FULL_DUPLEX;
---=20
-2.25.1
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+syzbot can test patches for this bug, for details see:
+https://goo.gl/tpsmEJ#testing-patches
