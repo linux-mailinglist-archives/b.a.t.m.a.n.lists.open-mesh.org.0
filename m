@@ -1,188 +1,118 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DB71F7D98
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 12 Jun 2020 21:30:18 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979BE1F8439
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 13 Jun 2020 18:08:07 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6CFE580241;
-	Fri, 12 Jun 2020 21:30:17 +0200 (CEST)
-Received: from out02.mta.xmission.com (out02.mta.xmission.com [166.70.13.232])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 028A8802D2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 12 Jun 2020 21:20:21 +0200 (CEST)
-Received: from in02.mta.xmission.com ([166.70.13.52])
-	by out02.mta.xmission.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	(Exim 4.90_1)
-	(envelope-from <ebiederm@xmission.com>)
-	id 1jjpDl-0004PN-Dk; Fri, 12 Jun 2020 13:20:09 -0600
-Received: from ip68-227-160-95.om.om.cox.net ([68.227.160.95] helo=x220.xmission.com)
-	by in02.mta.xmission.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.87)
-	(envelope-from <ebiederm@xmission.com>)
-	id 1jjpDd-0006RR-MZ; Fri, 12 Jun 2020 13:20:09 -0600
-From: ebiederm@xmission.com (Eric W. Biederman)
-To: syzbot <syzbot+7d2debdcdb3cb93c1e5e@syzkaller.appspotmail.com>
-References: <000000000000d788c905a7dfa3f4@google.com>
-Date: Fri, 12 Jun 2020 14:15:51 -0500
-In-Reply-To: <000000000000d788c905a7dfa3f4@google.com> (syzbot's message of
-	"Fri, 12 Jun 2020 02:24:11 -0700")
-Message-ID: <87mu58p02g.fsf@x220.int.ebiederm.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-MIME-Version: 1.0
-Content-Type: text/plain
-X-XM-SPF: eid=1jjpDd-0006RR-MZ;;;mid=<87mu58p02g.fsf@x220.int.ebiederm.org>;;;hst=in02.mta.xmission.com;;;ip=68.227.160.95;;;frm=ebiederm@xmission.com;;;spf=neutral
-X-XM-AID: U2FsdGVkX19vy/8HlHfqiCxlfZY83od+GSsaBZEU8Is=
-X-SA-Exim-Connect-IP: 68.227.160.95
-X-SA-Exim-Mail-From: ebiederm@xmission.com
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on sa01.xmission.com
-X-Spam-Level: ***
-X-Spam-Status: No, score=3.5 required=8.0 tests=ALL_TRUSTED,BAYES_50,
-	DCC_CHECK_NEGATIVE,LotsOfNums_01,NO_DNS_FOR_FROM,SORTED_RECIPS,
-	T_TM2_M_HEADER_IN_MSG autolearn=disabled version=3.4.2
-X-Spam-Virus: No
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.4825]
-	*  2.5 SORTED_RECIPS Recipient list is sorted by address
-	*  0.0 T_TM2_M_HEADER_IN_MSG BODY: No description available.
-	*  1.2 LotsOfNums_01 BODY: Lots of long strings of numbers
-	* -0.0 DCC_CHECK_NEGATIVE Not listed in DCC
-	*      [sa01 0; Body=1 Fuz1=1 Fuz2=1]
-	*  0.0 NO_DNS_FOR_FROM DNS: Envelope sender has no MX or A DNS records
-X-Spam-DCC: ; sa01 0; Body=1 Fuz1=1 Fuz2=1 
-X-Spam-Combo: ***;syzbot
-	<syzbot+7d2debdcdb3cb93c1e5e@syzkaller.appspotmail.com>
-X-Spam-Relay-Country: 
-X-Spam-Timing: total 7251 ms - load_scoreonly_sql: 0.03 (0.0%),
-	signal_user_changed: 3.9 (0.1%), b_tie_ro: 2.8 (0.0%), parse: 0.68
-	(0.0%), extract_message_metadata: 12 (0.2%), get_uri_detail_list: 1.77
-	(0.0%), tests_pri_-1000: 2.7 (0.0%), tests_pri_-950: 0.97 (0.0%),
-	tests_pri_-900: 0.84 (0.0%), tests_pri_-90: 139 (1.9%), check_bayes:
-	138 (1.9%), b_tokenize: 8 (0.1%), b_tok_get_all: 8 (0.1%),
-	b_comp_prob: 1.97 (0.0%), b_tok_touch_all: 117 (1.6%), b_finish: 0.72
-	(0.0%), tests_pri_0: 6340 (87.4%), check_dkim_signature: 0.39 (0.0%),
-	check_dkim_adsp: 6008 (82.9%), poll_dns_idle: 6742 (93.0%),
-	tests_pri_10: 2.6 (0.0%), tests_pri_500: 746 (10.3%), rewrite_mail:
-	0.00 (0.0%)
-Subject: [PATCH] proc: Use new_inode not new_inode_pseudo
-X-Spam-Flag: No
-X-SA-Exim-Version: 4.2.1 (built Thu, 05 May 2016 13:38:54 -0600)
-X-SA-Exim-Scanned: Yes (on in02.mta.xmission.com)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1591989622;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7918381215;
+	Sat, 13 Jun 2020 18:08:02 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 77D1580DDE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 13 Jun 2020 18:07:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1592064003;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2464096GEti55CftbwSrO3fRyNv70rwJyJg0b0v7yus=;
-	b=pXY1tenZWf+6kUh8PnLwyQkVce4+sJHeUqpMxqnYc/wzlALlpmqhZELa4q6wok75xPMfTG
-	/1EfyoWZR/BZxr3meMX4iya199iJDb0T1rYSX1wQvJURoGIqSDbgTocFF9Nz3iqsVN3eDo
-	B7Miklv/lHPkut0CFTd88CAbvhMUPpA=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1591989622; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3amq+CLXGGRWSDMCNX/xKBXylnoAi/x9b14d1Qu7cy0=;
+	b=11N1mY10/LYcDU/7QDAu0bRmj2hhqNm9iEAxJ6ROznJw7q17SByLPcrsHSd5XNuCD1CBh8
+	KMpGjv7tqrhhWYLxAGUv/ViNqEiiBzkd3eaAQ3GFQDDgaHnE5t4q9/KEV/QapKbCtqC7Hm
+	c6Il9Bj18626of/dUbeLVA0ghmPPXIY=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>,
+	Matthias Schiffer <mschiffer@universe-factory.net>
+Subject: [PATCH 1/2] batctl: Only remove batadv interface on hardif reduction
+Date: Sat, 13 Jun 2020 17:59:34 +0200
+Message-Id: <20200613155935.8934-1-sven@narfation.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1592064479;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=3amq+CLXGGRWSDMCNX/xKBXylnoAi/x9b14d1Qu7cy0=;
+	b=xA9UbQNRR6ACFEmglrZCyaj/8lqf/L5az/vntwzzLltHft8GVvlRLguA+x9yWFn121YfXS
+	Z6hGhMF9TuwLV63BXPZKMihVwffsEnjSYjsK9ypX93N58RT4vQr/kVLY8KB6Ox43aV20HU
+	q3uHb+vX/Z5Ibqhk28pU2lx/hPylVBI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1592064479; a=rsa-sha256;
 	cv=none;
-	b=fOGiD1FKIYvaz+twWQCbfb8yBAFiYLcjcJ145OQZnEKiSrxJ+lb6MdtDSaoVuWn9IxMgVK
-	rYIUnUA7Svo2yROOVgGexJrA5BN/04mM1eXTKYQQqLQKgnZImLEcnfMB8HxVeVFETbdar8
-	8ba1OUT8hPIOvdt8VyYrqkbg32GWA1I=
+	b=z00bWflcoJ5ExvzPJQi68D+1w0t4Lq1kVMnYB+6tQvrjxFUKXww8yrI7xCbJmdQhuiBWO1
+	e42fTiDUEBS7sAa/n86iTTU/KgiGq8HyNkRnjXd92XQ/ULMjJP9yyD1cqKaExQgG+H1HJ8
+	z32OsPU+T4tSiD5BOHTODYoJUCrvmK0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of ebiederm@xmission.com designates 166.70.13.232 as permitted sender) smtp.mailfrom=ebiederm@xmission.com
-X-MailFrom: ebiederm@xmission.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: TKNSXJM3ZGGKPLDBQPGEAWZVTGQDRR4K
-X-Message-ID-Hash: TKNSXJM3ZGGKPLDBQPGEAWZVTGQDRR4K
-X-Mailman-Approved-At: Fri, 12 Jun 2020 19:30:15 +0200
-CC: a@unstable.cc, adobriyan@gmail.com, akpm@linux-foundation.org, alex.dewar@gmx.co.uk, amir73il@gmail.com, anton.ivanov@cambridgegreys.com, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, jack@suse.cz, jdike@addtoit.com, kuba@kernel.org, linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, linux-um@lists.infradead.org, mareklindner@neomailbox.ch, netdev@vger.kernel.org, richard@nod.at, sfr@canb.auug.org.au, syzkaller-bugs@googlegroups.com
+	dkim=pass header.d=narfation.org header.s=20121 header.b=11N1mY10;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: DYT3GDOB7DBNERMNU65S456BATLIBSF6
+X-Message-ID-Hash: DYT3GDOB7DBNERMNU65S456BATLIBSF6
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TKNSXJM3ZGGKPLDBQPGEAWZVTGQDRR4K/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DYT3GDOB7DBNERMNU65S456BATLIBSF6/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
+A deletion of a hardif from a batadv meshif will also get a success reply
+from the kernel when the hardif was never part of the batadv meshif. If t=
+he
+batadv meshif had no attached hardifs before the removal was started, the=
+n
+users are then not expecting that the batadv meshif is removed at all.
 
-Recently syzbot reported that unmounting proc when there is an ongoing
-inotify watch on the root directory of proc could result in a use
-after free when the watch is removed after the unmount of proc
-when the watcher exits.
+Since the delete operation is not an atomic compare-and-swap operation,
+just check first the number of attached interfaces and only start the
+removal of the batadv meshif when the number attached hardifs was reduced=
+.
 
-Commit 69879c01a0c3 ("proc: Remove the now unnecessary internal mount
-of proc") made it easier to unmount proc and allowed syzbot to see the
-problem, but looking at the code it has been around for a long time.
-
-Looking at the code the fsnotify watch should have been removed by
-fsnotify_sb_delete in generic_shutdown_super.  Unfortunately the inode
-was allocated with new_inode_pseudo instead of new_inode so the inode
-was not on the sb->s_inodes list.  Which prevented
-fsnotify_unmount_inodes from finding the inode and removing the watch
-as well as made it so the "VFS: Busy inodes after unmount" warning
-could not find the inodes to warn about them.
-
-Make all of the inodes in proc visible to generic_shutdown_super,
-and fsnotify_sb_delete by using new_inode instead of new_inode_pseudo.
-The only functional difference is that new_inode places the inodes
-on the sb->s_inodes list.
-
-I wrote a small test program and I can verify that without changes it
-can trigger this issue, and by replacing new_inode_pseudo with
-new_inode the issues goes away.
-
-Cc: stable@vger.kernel.org
-Link: https://lkml.kernel.org/r/000000000000d788c905a7dfa3f4@google.com
-Reported-by: syzbot+7d2debdcdb3cb93c1e5e@syzkaller.appspotmail.com
-Fixes: 0097875bd415 ("proc: Implement /proc/thread-self to point at the directory of the current thread")
-Fixes: 021ada7dff22 ("procfs: switch /proc/self away from proc_dir_entry")
-Fixes: 51f0885e5415 ("vfs,proc: guarantee unique inodes in /proc")
-Signed-off-by: "Eric W. Biederman" <ebiederm@xmission.com>
+Fixes: 25022e0b154d ("batctl: Use rtnl to add/remove interfaces")
+Reported-by: Matthias Schiffer <mschiffer@universe-factory.net>
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- fs/proc/inode.c       | 2 +-
- fs/proc/self.c        | 2 +-
- fs/proc/thread_self.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ interface.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/fs/proc/inode.c b/fs/proc/inode.c
-index f40c2532c057..28d6105e908e 100644
---- a/fs/proc/inode.c
-+++ b/fs/proc/inode.c
-@@ -617,7 +617,7 @@ const struct inode_operations proc_link_inode_operations = {
- 
- struct inode *proc_get_inode(struct super_block *sb, struct proc_dir_entry *de)
- {
--	struct inode *inode = new_inode_pseudo(sb);
-+	struct inode *inode = new_inode(sb);
- 
- 	if (inode) {
- 		inode->i_ino = de->low_ino;
-diff --git a/fs/proc/self.c b/fs/proc/self.c
-index ca5158fa561c..72cd69bcaf4a 100644
---- a/fs/proc/self.c
-+++ b/fs/proc/self.c
-@@ -43,7 +43,7 @@ int proc_setup_self(struct super_block *s)
- 	inode_lock(root_inode);
- 	self = d_alloc_name(s->s_root, "self");
- 	if (self) {
--		struct inode *inode = new_inode_pseudo(s);
-+		struct inode *inode = new_inode(s);
- 		if (inode) {
- 			inode->i_ino = self_inum;
- 			inode->i_mtime = inode->i_atime = inode->i_ctime = current_time(inode);
-diff --git a/fs/proc/thread_self.c b/fs/proc/thread_self.c
-index ac284f409568..a553273fbd41 100644
---- a/fs/proc/thread_self.c
-+++ b/fs/proc/thread_self.c
-@@ -43,7 +43,7 @@ int proc_setup_thread_self(struct super_block *s)
- 	inode_lock(root_inode);
- 	thread_self = d_alloc_name(s->s_root, "thread-self");
- 	if (thread_self) {
--		struct inode *inode = new_inode_pseudo(s);
-+		struct inode *inode = new_inode(s);
- 		if (inode) {
- 			inode->i_ino = thread_self_inum;
- 			inode->i_mtime = inode->i_atime = inode->i_ctime = current_time(inode);
--- 
+diff --git a/interface.c b/interface.c
+index 1cd6ede..ac4d883 100644
+--- a/interface.c
++++ b/interface.c
+@@ -386,6 +386,7 @@ static int interface(struct state *state, int argc, c=
+har **argv)
+ 	int ret;
+ 	unsigned int ifindex;
+ 	unsigned int ifmaster;
++	unsigned int pre_cnt;
+ 	const char *long_op;
+ 	unsigned int cnt;
+ 	int rest_argc;
+@@ -502,6 +503,8 @@ static int interface(struct state *state, int argc, c=
+har **argv)
+ 		goto err;
+ 	}
+=20
++	pre_cnt =3D count_interfaces(state->mesh_iface);
++
+ 	for (i =3D 1; i < rest_argc; i++) {
+ 		ifindex =3D if_nametoindex(rest_argv[i]);
+=20
+@@ -531,7 +534,7 @@ static int interface(struct state *state, int argc, c=
+har **argv)
+ 	/* check if there is no interface left and then destroy mesh_iface */
+ 	if (!manual_mode && rest_argv[0][0] =3D=3D 'd') {
+ 		cnt =3D count_interfaces(state->mesh_iface);
+-		if (cnt =3D=3D 0)
++		if (cnt =3D=3D 0 && pre_cnt > 0)
+ 			destroy_interface(state->mesh_iface);
+ 	}
+=20
+--=20
 2.20.1
