@@ -1,109 +1,349 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B951FA95D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 16 Jun 2020 09:01:33 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 009551FAD29
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 16 Jun 2020 11:54:22 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 399CD80303;
-	Tue, 16 Jun 2020 09:01:32 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4B65D8000D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 16 Jun 2020 09:01:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1592290889;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B984380953;
+	Tue, 16 Jun 2020 11:54:20 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id A222F801CC
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 16 Jun 2020 11:54:17 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+	t=1592301257;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mV2Qqc99FOT3H+K9aANwHEhk9mCAcPavkNQv9gIsLF0=;
-	b=0jm9C3374Dy64FxS6ruyelOUWLQNwcJPqzo5qfSQJYUywfT1yOCDj3AJCwzlRp3c0U4krw
-	IosXiF7EymuEG5DnofCwCrvRJngYkGyFjXvOOCRqHakK/WcZvYDtgTyE1JwiOcyloP7ZlW
-	s2Isjzt7lF1lbMLc+8W7XXehYoFLRZI=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: batadv gw_mode client 0?
-Date: Tue, 16 Jun 2020 09:01:26 +0200
-Message-ID: <20687769.zqcOZmODRP@bentobox>
-In-Reply-To: <927533E5-C265-44BF-B271-1A7A9A084447@xecoenergy.com>
-References: <927533E5-C265-44BF-B271-1A7A9A084447@xecoenergy.com>
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=oErH0TNBeWyMm45ENk+vuH3RgkgdpFP6inOZq1vHKEM=;
+	b=iNDhuEG0e9TFVKAtIhs/EJbwY1JMGzUcTu3xzzQuI8G2UgwSpw4v54hl7BEEtWWDUfWgcf
+	9p1Zg4IP6be3211g+27Jsk7ORC7W3A/fY87YT5UMmW69wwFoqtvUHlaQFPSLdz4DhXwWwQ
+	ADRObgg+QLh9YZSPTRGjjPF4aMd3jD99kkTzdAIGD5FMXhtgLtd0lMvQkteTn7Dh3PMsk9
+	PPrfRELClEQ3lFxY/+5P407ISKnqM8CVcmFVNSa3zsjxzNML8RTIjQ7HvRoC+PHTphwhqE
+	ilQ972Uv4d41CZ6WR7AF282VNc5AcJrzUnTFvHCOZJ+/qUpfXC3p6vWJ+zvpDA==
+To: Johannes Berg <johannes@sipsolutions.net>
+Subject: [PATCH] mac80211: mesh: add mesh_param "mesh_nolearn" to skip path discovery
+Date: Tue, 16 Jun 2020 11:53:57 +0200
+Message-Id: <20200616095358.20143-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2296441.xZy9kG0TSa"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=UTF-8
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1592290889;
+	s=20121; t=1592301257;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=mV2Qqc99FOT3H+K9aANwHEhk9mCAcPavkNQv9gIsLF0=;
-	b=LU379s65oToDtQ45HPKf9iobHAgqODkHoMYT7QwMo7b63Ioa963C3Ox0vBSj1SEojmTC+L
-	GCkJMVsP+NV9YxlZiaIa0a/bLz3dUXoClXQ/HCzYCTTDBfMV8/XabOmz9LCq2vkpGJWAjJ
-	qxNXdoAe7Z2XytTsP1AnvUPTflvVl54=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1592290889; a=rsa-sha256;
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=oErH0TNBeWyMm45ENk+vuH3RgkgdpFP6inOZq1vHKEM=;
+	b=LKPG0d8GBVJa8Us606boAex6wRZqVdEh1fs/P2xXMFafKtchRdA4aNuIQj0WhXcjmFzP68
+	IXsSUMc2Nn14FbmmTVZPMK4/hBWnH0hX4k4fEjOzbPvIEJZGyrTV+dYiv82yNNE1TwXqvR
+	X0iYzq+sTu7rawrLYBP0kQCa8Z6sEDU=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1592301257; a=rsa-sha256;
 	cv=none;
-	b=oh8ORYXlaoe6Sp3WomnKcVuutrz+eSbQnfamAvBYqBLisY50EJBuz8Bb6JzplXoYH9wDEV
-	ImUdsZOFZzV8QdObC76+B6ffXC16RDbfggiQ3tB3FWGjVNwIcOwgxEBwtJI8TMjyvp41Ql
-	0oBJE/XRVFO470eo/HOWOLbCsov6xSw=
+	b=ACueXIfrZ5gqcuVg8A6zpGSquCw5IMLJasm9JYOPvBfvcVE+RPb3RIaYXfNMs1btM9ORzt
+	ucBtefgPbk9b7792jL9RTK1MmcOeUXFv0I0D6AyzbNZIzClLxk1B0YAcN7QpQ69RDyCJ/G
+	+G4/5hzsfK2YARq8q2KAD6uWZ1oGE58=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=0jm9C337;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: IWSY5TRBBTNEM6MB3SBNETVJBIXTMQQY
-X-Message-ID-Hash: IWSY5TRBBTNEM6MB3SBNETVJBIXTMQQY
-X-MailFrom: sven@narfation.org
+	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=iNDhuEG0;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: MIHN4TKE43H7D6UD7KZ756IBDLAHL5ST
+X-Message-ID-Hash: MIHN4TKE43H7D6UD7KZ756IBDLAHL5ST
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Rob Cowart <rob.cowart@xecoenergy.com>
+CC: linux-wireless@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, =?UTF-8?q?Linus=20L=C3=BCssing?= <ll@simonwunderlich.de>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IWSY5TRBBTNEM6MB3SBNETVJBIXTMQQY/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/MIHN4TKE43H7D6UD7KZ756IBDLAHL5ST/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2296441.xZy9kG0TSa
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+From: Linus L=C3=BCssing <ll@simonwunderlich.de>
 
-On Monday, 15 June 2020 22:45:34 CEST Rob Cowart wrote:
-[...]
->but something we found was all of our nodes were using gw_mode client 0, and we realized this isn't listed in the spec.  Do you know what it does in that case, does it use the default of 20?
+Currently, before being able to forward a packet between two 802.11s
+nodes, both a PLINK handshake is performed upon receiving a beacon and
+then later a PREQ/PREP exchange for path discovery is performed on
+demand upon receiving a data frame to forward.
 
-I have no idea where "client 0" is coming from. This is not a valid output 
-from batctl or the sysfs files. I must now assume that 0 refers to the 
-selection class.
+When running a mesh protocol on top of an 802.11s interface, like
+batman-adv, we do not need the multi-hop mesh routing capabilities of
+802.11s and usually set mesh_fwding=3D0. However, even with mesh_fwding=3D=
+0
+the PREQ/PREP path discovery is still performed on demand. Even though
+in this scenario the next hop PREQ/PREP will determine is always the
+direct 11s neighbor node.
 
-selection class 0 is not valid for B.A.T.M.A.N. IV and will also be rejected 
-by the netlink and sysfs code for B.A.T.M.A.N. IV.
+The new mesh_nolearn parameter allows to skip the PREQ/PREP exchange in
+this scenario, leading to a reduced delay, reduced packet buffering and
+simplifies HWMP in general.
 
-If you were really able to set this somehow(tm) then it should (mis)behave 
-like gw class 2 (when I remember correctly).
+mesh_nolearn is still rather conservative in that if the packet destinati=
+on
+is not a direct 11s neighbor, it will fall back to PREQ/PREP path
+discovery.
 
-Kind regards,
-	Sven
---nextPart2296441.xZy9kG0TSa
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+For normal, multi-hop 802.11s mesh routing it is usually not advisable
+to enable mesh_nolearn as a transmission to a direct but distant neighbor
+might be worse than reaching that same node via a more robust /
+higher throughput etc. multi-hop path.
 
------BEGIN PGP SIGNATURE-----
+Cc: Sven Eckelmann <sven@narfation.org>
+Cc: Simon Wunderlich <sw@simonwunderlich.de>
+Signed-off-by: Linus L=C3=BCssing <ll@simonwunderlich.de>
+---
+ include/net/cfg80211.h        |  6 ++++++
+ include/uapi/linux/nl80211.h  |  7 +++++++
+ net/mac80211/cfg.c            |  2 ++
+ net/mac80211/debugfs_netdev.c |  2 ++
+ net/mac80211/mesh_hwmp.c      | 39 +++++++++++++++++++++++++++++++++++
+ net/wireless/mesh.c           |  1 +
+ net/wireless/nl80211.c        |  8 ++++++-
+ net/wireless/trace.h          |  4 +++-
+ 8 files changed, 67 insertions(+), 2 deletions(-)
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl7obkYACgkQXYcKB8Em
-e0a4ohAAzqUmDvAgRpboRv8EmErgohKe7CR9uBX78RzfX9If6uUkqoqPIPTljdAh
-Cb1U8yKLaCbyFk2v3IW56UV822IXcUUQwAArIy/7X+d41s671CdLWDzfj1tVP523
-xqVwiqAKsBG63QDlQ53Qxj9l3m+lVMM4VYHbgOqDMBxXDEp+FANvWe9rU1v2SRIw
-+GgwmpfkSq2vHDMSSmO6thEzVr8QVZ0OH0cPVoU5X+gVkFRGV031m+TAk9eNWnrI
-Jr8qSxGukBw+J6VXG+JjIcOimDJ4Bq0Wv0nr+0CPIn00pgBlv2v3W4aQ+ojoRAKc
-5xsjh27PXqDwIJfmPxd3qdiujhHCJ8EKY58b7BZGQblLn85dN9NLKtJlQS4WdGnS
-9GT8kTMrxmELT2qfxh2LJrDCUNeKXe0c15/lxdfjXAKqXWzdkTrcrFf3843hOHL0
-4QRm5oRNsY8yfbIreKLhYGAdmwxgbn9np4h4WqM/fNo2cFFTsKBn09eMY8auBn7g
-jgbPk1+w5UfViH8xfPkwD6KAHDwY6DDQhNBM1s464QjuVE2mSONoeO5UrzS6p21D
-2rxhggklWCyHRfeHVZ7b8Y7IRa/ak7IXsO0KmOrLu86J6ZRswASVBzh3n3hstx/f
-NX7sVNNWbDQ2EKqowrEHKv7o1AGzdrIbUC8/vkpj0DJjpmJSac0=
-=TTtX
------END PGP SIGNATURE-----
-
---nextPart2296441.xZy9kG0TSa--
-
-
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+index fc7e8807838d..5ffb35592a23 100644
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -1853,6 +1853,11 @@ struct bss_parameters {
+  *      connected to a mesh gate in mesh formation info.  If false, the
+  *      value in mesh formation is determined by the presence of root pa=
+ths
+  *      in the mesh path table
++ * @dot11MeshNolearn: Try to avoid multi-hop path discovery (e.g. PREQ/P=
+REP
++ *      for HWMP) if the destination is a direct neighbor. Note that thi=
+s might
++ *      not be the optimal decision as a multi-hop route might be better=
+. So
++ *      if using this setting you will likely also want to disable
++ *      dot11MeshForwarding and use another mesh routing protocol on top=
+.
+  */
+ struct mesh_config {
+ 	u16 dot11MeshRetryTimeout;
+@@ -1884,6 +1889,7 @@ struct mesh_config {
+ 	enum nl80211_mesh_power_mode power_mode;
+ 	u16 dot11MeshAwakeWindowDuration;
+ 	u32 plink_timeout;
++	bool dot11MeshNolearn;
+ };
+=20
+ /**
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index 4e6339ab1fce..f6560bb9644c 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -4236,6 +4236,12 @@ enum nl80211_mesh_power_mode {
+  *	field.  If left unset then the mesh formation field will only
+  *	advertise such if there is an active root mesh path.
+  *
++ * @NL80211_MESHCONF_NOLEARN: Try to avoid multi-hop path discovery (e.g=
+.
++ *      PREQ/PREP for HWMP) if the destination is a direct neighbor. Not=
+e that
++ *      this might not be the optimal decision as a multi-hop route migh=
+t be
++ *      better. So if using this setting you will likely also want to di=
+sable
++ *      dot11MeshForwarding and use another mesh routing protocol on top=
+.
++ *
+  * @__NL80211_MESHCONF_ATTR_AFTER_LAST: internal use
+  */
+ enum nl80211_meshconf_params {
+@@ -4269,6 +4275,7 @@ enum nl80211_meshconf_params {
+ 	NL80211_MESHCONF_AWAKE_WINDOW,
+ 	NL80211_MESHCONF_PLINK_TIMEOUT,
+ 	NL80211_MESHCONF_CONNECTED_TO_GATE,
++	NL80211_MESHCONF_NOLEARN,
+=20
+ 	/* keep last */
+ 	__NL80211_MESHCONF_ATTR_AFTER_LAST,
+diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
+index 9b360544ad6f..f48e095e912a 100644
+--- a/net/mac80211/cfg.c
++++ b/net/mac80211/cfg.c
+@@ -2126,6 +2126,8 @@ static int ieee80211_update_mesh_config(struct wiph=
+y *wiphy,
+ 	if (_chg_mesh_attr(NL80211_MESHCONF_CONNECTED_TO_GATE, mask))
+ 		conf->dot11MeshConnectedToMeshGate =3D
+ 			nconf->dot11MeshConnectedToMeshGate;
++	if (_chg_mesh_attr(NL80211_MESHCONF_NOLEARN, mask))
++		conf->dot11MeshNolearn =3D nconf->dot11MeshNolearn;
+ 	ieee80211_mbss_info_change_notify(sdata, BSS_CHANGED_BEACON);
+ 	return 0;
+ }
+diff --git a/net/mac80211/debugfs_netdev.c b/net/mac80211/debugfs_netdev.=
+c
+index d7e955127d5c..09eab2c3f380 100644
+--- a/net/mac80211/debugfs_netdev.c
++++ b/net/mac80211/debugfs_netdev.c
+@@ -638,6 +638,7 @@ IEEE80211_IF_FILE(dot11MeshAwakeWindowDuration,
+ 		  u.mesh.mshcfg.dot11MeshAwakeWindowDuration, DEC);
+ IEEE80211_IF_FILE(dot11MeshConnectedToMeshGate,
+ 		  u.mesh.mshcfg.dot11MeshConnectedToMeshGate, DEC);
++IEEE80211_IF_FILE(dot11MeshNolearn, u.mesh.mshcfg.dot11MeshNolearn, DEC)=
+;
+ #endif
+=20
+ #define DEBUGFS_ADD_MODE(name, mode) \
+@@ -762,6 +763,7 @@ static void add_mesh_config(struct ieee80211_sub_if_d=
+ata *sdata)
+ 	MESHPARAMS_ADD(power_mode);
+ 	MESHPARAMS_ADD(dot11MeshAwakeWindowDuration);
+ 	MESHPARAMS_ADD(dot11MeshConnectedToMeshGate);
++	MESHPARAMS_ADD(dot11MeshNolearn);
+ #undef MESHPARAMS_ADD
+ }
+ #endif
+diff --git a/net/mac80211/mesh_hwmp.c b/net/mac80211/mesh_hwmp.c
+index aa5150929996..cbf94c0b408f 100644
+--- a/net/mac80211/mesh_hwmp.c
++++ b/net/mac80211/mesh_hwmp.c
+@@ -1117,6 +1117,40 @@ void mesh_path_start_discovery(struct ieee80211_su=
+b_if_data *sdata)
+ 	kfree(preq_node);
+ }
+=20
++/**
++ * mesh_nexthop_resolve_nolearn - try to set next hop without path disco=
+very
++ * @skb: 802.11 frame to be sent
++ * @sdata: network subif the frame will be sent through
++ *
++ * Check if the meshDA (addr3) of a unicast frame is a direct neighbor.
++ * And if so, set the RA (addr1) to it to transmit to this node directly=
+,
++ * avoiding PREP/PREP path discovery.
++ *
++ * Returns: 0 if the next hop was found and -ENOENT otherwise.
++ */
++static int mesh_nexthop_resolve_nolearn(struct ieee80211_sub_if_data *sd=
+ata,
++					struct sk_buff *skb)
++{
++	struct ieee80211_hdr *hdr =3D (struct ieee80211_hdr *)skb->data;
++	struct sta_info *sta;
++
++	if (is_multicast_ether_addr(hdr->addr1))
++		return -ENOENT;
++
++	rcu_read_lock();
++	sta =3D sta_info_get(sdata, hdr->addr3);
++
++	if (!sta || sta->mesh->plink_state !=3D NL80211_PLINK_ESTAB) {
++		rcu_read_unlock();
++		return -ENOENT;
++	}
++	rcu_read_unlock();
++
++	memcpy(hdr->addr1, hdr->addr3, ETH_ALEN);
++	memcpy(hdr->addr2, sdata->vif.addr, ETH_ALEN);
++	return 0;
++}
++
+ /**
+  * mesh_nexthop_resolve - lookup next hop; conditionally start path disc=
+overy
+  *
+@@ -1132,6 +1166,7 @@ void mesh_path_start_discovery(struct ieee80211_sub=
+_if_data *sdata)
+ int mesh_nexthop_resolve(struct ieee80211_sub_if_data *sdata,
+ 			 struct sk_buff *skb)
+ {
++	struct ieee80211_if_mesh *ifmsh =3D &sdata->u.mesh;
+ 	struct ieee80211_hdr *hdr =3D (struct ieee80211_hdr *) skb->data;
+ 	struct ieee80211_tx_info *info =3D IEEE80211_SKB_CB(skb);
+ 	struct mesh_path *mpath;
+@@ -1146,6 +1181,10 @@ int mesh_nexthop_resolve(struct ieee80211_sub_if_d=
+ata *sdata,
+ 	if (info->control.flags & IEEE80211_TX_CTRL_SKIP_MPATH_LOOKUP)
+ 		return 0;
+=20
++	if (ifmsh->mshcfg.dot11MeshNolearn &&
++	    !mesh_nexthop_resolve_nolearn(sdata, skb))
++		return 0;
++
+ 	if (!mesh_nexthop_lookup(sdata, skb))
+ 		return 0;
+=20
+diff --git a/net/wireless/mesh.c b/net/wireless/mesh.c
+index eac5aa1419fc..e4e363138279 100644
+--- a/net/wireless/mesh.c
++++ b/net/wireless/mesh.c
+@@ -78,6 +78,7 @@ const struct mesh_config default_mesh_config =3D {
+ 	.power_mode =3D NL80211_MESH_POWER_ACTIVE,
+ 	.dot11MeshAwakeWindowDuration =3D MESH_DEFAULT_AWAKE_WINDOW,
+ 	.plink_timeout =3D MESH_DEFAULT_PLINK_TIMEOUT,
++	.dot11MeshNolearn =3D false,
+ };
+=20
+ const struct mesh_setup default_mesh_setup =3D {
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index 263ae395ad44..b0b7f110064f 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -6884,7 +6884,9 @@ static int nl80211_get_mesh_config(struct sk_buff *=
+skb,
+ 	    nla_put_u32(msg, NL80211_MESHCONF_PLINK_TIMEOUT,
+ 			cur_params.plink_timeout) ||
+ 	    nla_put_u8(msg, NL80211_MESHCONF_CONNECTED_TO_GATE,
+-		       cur_params.dot11MeshConnectedToMeshGate))
++		       cur_params.dot11MeshConnectedToMeshGate) ||
++	    nla_put_u8(msg, NL80211_MESHCONF_NOLEARN,
++		       cur_params.dot11MeshNolearn))
+ 		goto nla_put_failure;
+ 	nla_nest_end(msg, pinfoattr);
+ 	genlmsg_end(msg, hdr);
+@@ -6942,6 +6944,7 @@ nl80211_meshconf_params_policy[NL80211_MESHCONF_ATT=
+R_MAX+1] =3D {
+ 	[NL80211_MESHCONF_AWAKE_WINDOW] =3D { .type =3D NLA_U16 },
+ 	[NL80211_MESHCONF_PLINK_TIMEOUT] =3D { .type =3D NLA_U32 },
+ 	[NL80211_MESHCONF_CONNECTED_TO_GATE] =3D NLA_POLICY_RANGE(NLA_U8, 0, 1)=
+,
++	[NL80211_MESHCONF_NOLEARN] =3D { .type =3D NLA_U8 },
+ };
+=20
+ static const struct nla_policy
+@@ -7093,6 +7096,9 @@ do {									\
+ 				  NL80211_MESHCONF_AWAKE_WINDOW, nla_get_u16);
+ 	FILL_IN_MESH_PARAM_IF_SET(tb, cfg, plink_timeout, mask,
+ 				  NL80211_MESHCONF_PLINK_TIMEOUT, nla_get_u32);
++	FILL_IN_MESH_PARAM_IF_SET(tb, cfg, dot11MeshNolearn, 0, 1,
++				  mask, NL80211_MESHCONF_NOLEARN,
++				  nl80211_check_bool);
+ 	if (mask_out)
+ 		*mask_out =3D mask;
+=20
+diff --git a/net/wireless/trace.h b/net/wireless/trace.h
+index b23cab016521..6e218a0acd4e 100644
+--- a/net/wireless/trace.h
++++ b/net/wireless/trace.h
+@@ -68,7 +68,8 @@
+ 		       __field(u16, ht_opmode)				   \
+ 		       __field(u32, dot11MeshHWMPactivePathToRootTimeout)  \
+ 		       __field(u16, dot11MeshHWMProotInterval)		   \
+-		       __field(u16, dot11MeshHWMPconfirmationInterval)
++		       __field(u16, dot11MeshHWMPconfirmationInterval)	   \
++		       __field(bool, dot11MeshNolearn)
+ #define MESH_CFG_ASSIGN							      \
+ 	do {								      \
+ 		__entry->dot11MeshRetryTimeout =3D conf->dot11MeshRetryTimeout; \
+@@ -109,6 +110,7 @@
+ 				conf->dot11MeshHWMProotInterval;	      \
+ 		__entry->dot11MeshHWMPconfirmationInterval =3D		      \
+ 				conf->dot11MeshHWMPconfirmationInterval;      \
++		__entry->dot11MeshNolearn =3D conf->dot11MeshNolearn;	      \
+ 	} while (0)
+=20
+ #define CHAN_ENTRY __field(enum nl80211_band, band) \
+--=20
+2.27.0
