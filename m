@@ -1,138 +1,86 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24CC207E9F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 24 Jun 2020 23:32:23 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DCEC2098B4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 25 Jun 2020 05:01:17 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C9F64809B6;
-	Wed, 24 Jun 2020 23:32:22 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 16849802D2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 24 Jun 2020 23:32:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1593034339;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IMnLF06ds/xsl2FUowg8Dx2TM7iYxX3Nn8aLX039a3w=;
-	b=c2VN3YDMJrWd1Ki6VA2aOXsOTSSOnnxGygxznoqOvuH24xnIH4MFlap5ih5S3/+MYjTKSY
-	+IbWhPRvjLHqX0qFxd1nClUpBJmjBbxWST+NASL3QOh1tAhdMPnrTGE0PeD3KFBG6/TuqL
-	ywgdT1EmxtJlWe9QDGdE0BsGgNtAe7c=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: BATMAN-adv Debug options
-Date: Wed, 24 Jun 2020 23:32:16 +0200
-Message-ID: <1986026.lAXmxmQttu@sven-edge>
-In-Reply-To: <CADg1mwL07UQqmUctQexAFCgFMrXBiF=rB1EdRqb3agveSEkckQ@mail.gmail.com>
-References: <CADg1mwL07UQqmUctQexAFCgFMrXBiF=rB1EdRqb3agveSEkckQ@mail.gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 36F3080808;
+	Thu, 25 Jun 2020 05:01:16 +0200 (CEST)
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com [209.85.166.199])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 86E1D801E5
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 25 Jun 2020 05:01:12 +0200 (CEST)
+Received: by mail-il1-f199.google.com with SMTP id d3so3029381ilq.9
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 24 Jun 2020 20:01:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=wKHziB1HTjinXOROzU9x8QSF9UVTTl5CGULxlu3fS2A=;
+        b=LXzAv3WWGkFZT0bF0uCKaLr7/mS4ydvdGHtp+95QaaTce7qq4OsR1FQt8X5jaEgph6
+         tJaRhMQXsufRhdc4hwqDOGZj3pKoLOHm95Q5SFg75fWjZKUaUhGWo08dzNqhc590Yqmy
+         MfJzEhNvTZvfrsp4wWRxb6BJNf7MTd4BEpskzBaUbMo1RlxR8jVlP7sx8fLxq5BjQ/6z
+         PZOFaqbDZ347K9rfe28jG3DXlzuPgSUN9soKvQNrUr5Moz82nvm43ehWpl8kp7ozi2m4
+         69JJlebeh/ygG8UF9iY32y4wJ83z6uPtmR+MPlTtGM+sIYQpuaDdl3be/2lFJ5IpF66A
+         EzJQ==
+X-Gm-Message-State: AOAM530YFVKBVYwCkKuibfpZ4ARpCTZcKcy7j0dDl5ILFIb1v3vguVoh
+	gpBYGCo9ojDbi6/7cj3HnIZ4DN+sV5IVjn4WJ3SKOZyRixgX
+X-Google-Smtp-Source: ABdhPJxbs1SAyL/M/fgk3l40cIJl7wJzsJfAm+GKPt/0zA1RuUK6bKXZkytrERisRhBiK2xMcbSQIrQom47jw0jbMN8Qdv/m0rQo
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4150699.2y9b4eNgFs"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Received: by 2002:a92:290b:: with SMTP id l11mr31731641ilg.145.1593054071282;
+ Wed, 24 Jun 2020 20:01:11 -0700 (PDT)
+Date: Wed, 24 Jun 2020 20:01:11 -0700
+In-Reply-To: <00000000000047770d05a1c70ecb@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000006e0ff05a8dfce2d@google.com>
+Subject: Re: KASAN: null-ptr-deref Write in blk_mq_map_swqueue
+From: syzbot <syzbot+313d95e8a7a49263f88d@syzkaller.appspotmail.com>
+To: a@unstable.cc, axboe@kernel.dk, b.a.t.m.a.n@lists.open-mesh.org,
+	bvanassche@acm.org, davem@davemloft.net, dongli.zhang@oracle.com,
+	hdanton@sina.com, jianchao.w.wang@oracle.com, linux-block@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mareklindner@neomailbox.ch, netdev@vger.kernel.org, sven@narfation.org,
+	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com,
+	viro@zeniv.linux.org.uk
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1593034340;
+	s=20121; t=1593054072;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=IMnLF06ds/xsl2FUowg8Dx2TM7iYxX3Nn8aLX039a3w=;
-	b=TRrs1jRyCaqgYKiO0XfOC3gfiZ//0HirbmXU+dily95psJjlItXP1wZEjJOnpkBeaDMxzs
-	2x0iMHPNgwyRf4rUI2hC9htUIIQUYKqiNYVEskztNgmRp/jpnTQC5cq2BQ9E+JL9TXfa2s
-	Lwj+iBZEzRjKHrYcQ61fbipn/Ssm7AM=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1593034340; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=wKHziB1HTjinXOROzU9x8QSF9UVTTl5CGULxlu3fS2A=;
+	b=nZ6420VgMAvBhIVoR1hYP4i5oL9Ywnni1BaP6haz2sQaxi/Bn1amVq43AL3lIuVObV9TMZ
+	bRPmg8FA3nJL1f8sbwahO2PdjlI6nxd0XMS84riQ6sXs6dv5FYv9gsKYfljSrgIdfo5m0D
+	hj/kOO2zH8Fo+byXsPBn1+3PtbqPBTQ=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1593054072; a=rsa-sha256;
 	cv=none;
-	b=D6o0jEmWI5nTZjhpf9URMRhTwkfXlnzolBtcrEck1nFnFa5fjBdRuraQ9voJMKZnGAT44J
-	+of6ex3fn3w6JdyY7D7HEVH0pAjGeB4Ok3Y94sJViCLHSGu1GA0WmUzyxYe3ETXRV/vhxf
-	Yxm9eyEIlMB7W52CE+sMo3IZTj+zg54=
+	b=nI2Vo2LzdPts9K5naZ//IYZ14KeowxFzKwbulXNRX2UM7JbAgoNhgnRD9cJIK5X4+k9lcg
+	Y6yvR5088mRvzF2kHFxsJyr3Yom5XejwTJUpEu48zWFni7TJAvLqy3jtjal2PpiZ1ir3x9
+	cOKL9G0U01v2inv4oDLeWA7btQUXdJY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=c2VN3YDM;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: SFOELEU2YXINCBEZASOA4J35ECSILW4K
-X-Message-ID-Hash: SFOELEU2YXINCBEZASOA4J35ECSILW4K
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Mark Birss <markbirss@gmail.com>
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3dxP0XgkbAGwcijUKVVObKZZSN.QYYQVOecObMYXdOXd.MYW@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.199 as permitted sender) smtp.mailfrom=3dxP0XgkbAGwcijUKVVObKZZSN.QYYQVOecObMYXdOXd.MYW@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: ZKFGO6ZSHPNS7SRWJHNXVXHNXKW6COYF
+X-Message-ID-Hash: ZKFGO6ZSHPNS7SRWJHNXVXHNXKW6COYF
+X-MailFrom: 3dxP0XgkbAGwcijUKVVObKZZSN.QYYQVOecObMYXdOXd.MYW@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SFOELEU2YXINCBEZASOA4J35ECSILW4K/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZKFGO6ZSHPNS7SRWJHNXVXHNXKW6COYF/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart4150699.2y9b4eNgFs
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-On Wednesday, 24 June 2020 23:13:50 CEST Mark Birss wrote:
-> What other debug  information are available to troubleshoot connection issues?
-
-The first question you have to answer: Is the lower layer working or did the 
-lower layer break? Can be tested easily with multicast/broadcast and unicast 
-pings on the lower device. Don't assume that the driver/firmware didn't break 
-the connection because you see entries in the originator table. And also don't 
-assume that the link is working just because you've only tested unicast 
-packets on the lower device. WiFi drivers/firmware started to only partially 
-(and "accidentally") kill links for only unicast OR for broadcast.
-
-> I have enabled for OpenWRT
-> echo "CONFIG_BATMAN_ADV_DEBUG=y" >> .config
-> echo "CONFIG_BATMAN_ADV_DEBUGFS=y" >> .config
-> echo "CONFIG_BATMAN_ADV_BLA=y" >> .config
-> echo "CONFIG_BATMAN_ADV_DAT=y" >> .config
-> echo "CONFIG_BATMAN_ADV_MCAST=y" >> .config
-> echo "CONFIG_BATMAN_ADV_NC=n" >> .config
-> echo "CONFIG_BATMAN_ADV_BATMAN_V=y" >> .config
-> echo "CONFIG_BATMAN_ADV_SYSFS=y" >> .config
-> echo "CONFIG_BATMAN_ADV_TRACING=y" >> .config
-> 
-> 
-> echo 255 > /sys/class/net/bat0/mesh/log_level
-> cat /sys/kernel/debug/batman_adv/bat0/log
-
-Seems about right from the batman-adv perspective. Of course, also check the 
-originator/neighbor and local/global translation tables. Use this information 
-to check whether the packets are routed correctly through the lower 
-interfaces. Just use tools like (batctl) tcpdump to capture this traffic. You 
-can also use a recent wireshark to dissect pcaps from the lower interfaces.
-
-You could also start to trace packets using trace-cmd and similar tools to 
-figure out where your packets end up inside the kernel.
-
-> since i want to understand also why on wifi mesh seems to crash for me ath10k
-
-I've heard multiple persons complain in recent months about stability problems
-of ath10k. So maybe it is the same problem here. But unfortunately, I don't 
-have more information than various threads [1] on this mailing list.
-
-Kind regards,
-	Sven
-
-[1] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/thread/PZK7RS5CACYDJIW4SH7R6UF7BIQI5OYR/#LZX2PNOX3FLG6L4D3WLRZYEULKD5IEF5
---nextPart4150699.2y9b4eNgFs
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl7zxmAACgkQXYcKB8Em
-e0ZntxAAlGnt2X+KRtP29tc6NskFy1GA+vDUzItC4X7iJpL6mI6FUiAwNcdecGCN
-F9o/biIEiNV7D4400iqsaWJCdlRZkUuoDiRAbut1hCArO+zs0xS+E/u3LvgAm0hX
-k9+F3Tg1mxcaxc6L5WpiUVexZXbDCFvwBlqB9GzMgBm6gkhKkjfOeJODqNFTff8F
-bibUf2MrGOOXJo0ZkJPmWlp7oc1COgx95AswToFhD+tXJLKWWhaOs2ioRDVugjsu
-OYhj1fRHUCAd71hJNbz0x+czxJxudgYUyKRSCxqsD3RvT16x/0bK8t5XEB1ImDd+
-UmynpSbssXW96WmT/is3fHaC09dPqFW/uIFCY4NlFEHk9ktkmtMHNA3zHafq9i/I
-UeMLjqG0RxN9Iz1DWUDg2X0rYFb9mcm/rcXYjNmwf6yptrEPOzVoU2rT9R/aVoko
-z5kozHdiAN6SSpssHe3IaTn8dRd+QlL66QaYf9H5ll6ma64Txo6hsD3i9Wog58VD
-8xOm6gSdzUSQrWwpJ1nd2boFNJHu0w8RaQUaQ/MATSSXNoaKQcfwBl+TYmIhXEWQ
-SY1YCoHMg49r4qb8lz68JGdIjFrZIC3ziiYUYgwu1gJmacq0SwRoMDPg4i4NBfju
-ZFLf2A2RsjM2ZUPAp308TBFep8AxbjukVt5EfXxLyyAtIjye0qM=
-=Mohr
------END PGP SIGNATURE-----
-
---nextPart4150699.2y9b4eNgFs--
-
-
+This bug is marked as fixed by commit:
+blk-mq: Fix a recently introduced regression in
+But I can't find it in any tested tree for more than 90 days.
+Is it a correct commit? Please update it by replying:
+#syz fix: exact-commit-title
+Until then the bug is still considered open and
+new crashes with the same signature are ignored.
