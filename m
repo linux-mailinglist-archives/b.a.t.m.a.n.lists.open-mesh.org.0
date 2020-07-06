@@ -2,73 +2,164 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3F720FD44
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2020 22:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB056215267
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  6 Jul 2020 08:09:21 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 1CB0C80418;
-	Tue, 30 Jun 2020 22:00:05 +0200 (CEST)
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id AA85B80347
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 30 Jun 2020 21:59:57 +0200 (CEST)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
-	(using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	(Authenticated sender: davem-davemloft)
-	by shards.monkeyblade.net (Postfix) with ESMTPSA id 7A14E1275AC51;
-	Tue, 30 Jun 2020 12:59:41 -0700 (PDT)
-Date: Tue, 30 Jun 2020 12:59:40 -0700 (PDT)
-Message-Id: <20200630.125940.2156489314044742068.davem@davemloft.net>
-To: sw@simonwunderlich.de
-Subject: Re: [PATCH 0/4] pull request for net-next: batman-adv 2020-06-26
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20200630082731.2397-1-sw@simonwunderlich.de>
-References: <20200630082731.2397-1-sw@simonwunderlich.de>
-X-Mailer: Mew version 6.8 on Emacs 26.3
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Tue, 30 Jun 2020 12:59:41 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 776E480724;
+	Mon,  6 Jul 2020 08:09:20 +0200 (CEST)
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com [209.85.166.71])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4E402800DB
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon,  6 Jul 2020 08:09:17 +0200 (CEST)
+Received: by mail-io1-f71.google.com with SMTP id f13so20058953iok.10
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 05 Jul 2020 23:09:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=UqvjFR3XJzzrT7GERHVDePnddnot7kGWpGScSc1TFoU=;
+        b=h+5ckLRuI5C+Skt/3Wpvuy7M0KoApbAlXfwqXC+2b4OJ8dAdGdmUMFJXmjHgOSISOp
+         W6/ZHYenUHQoOaSGipWuNG9xumkKFpPLhsX+DwVL43WmFy9w2oocw5q9JwmD5q16gWzQ
+         mshMloXube0ezuuGiDKsf0tQTyIWPeTMU2LXP+8AyxYtpoYYFbPhHrunYjTgD96Wry/A
+         cucEzODr6W9ZXWGmLx4Iiopvp08y8uPsfNkyrz1ewdTDC7obMMgrEDPEoOlCwsY77NU+
+         +m5w6kXUlXcvk5kPgb9werqNKiRfIBvgeOf/OG1CTuz/1JKvfsb5C3XgQxc8KmHLlVEU
+         CNlg==
+X-Gm-Message-State: AOAM530G7HteTSfhnWv571P4rO/oQgwkIy2XPNSrUePZbCIlY7idI6vZ
+	637sOfTlsoCZvVEaMe3LJRwlQXbLHzTlxMyq73F2C1938T7e
+X-Google-Smtp-Source: ABdhPJx251hwN52q29K91QSmP7hrhFqSgXlaxem49CU0V8deoQtdx2eiH8FLpun4hZFL6m8kYO96Z7mQaxKFCJCvPbiBsttEIbNZ
+MIME-Version: 1.0
+X-Received: by 2002:a02:370b:: with SMTP id r11mr50218967jar.119.1594015755906;
+ Sun, 05 Jul 2020 23:09:15 -0700 (PDT)
+Date: Sun, 05 Jul 2020 23:09:15 -0700
+In-Reply-To: <0000000000000a8e8605a22a1ae0@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000e5b5bb05a9bfb63c@google.com>
+Subject: Re: INFO: rcu detected stall in netlink_sendmsg (4)
+From: syzbot <syzbot+0fb70e87d8e0ac278fe9@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+	kuba@kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com, tglx@linutronix.de
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1593547203;
+	s=20121; t=1594015757;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JtTSLsjMxPNJ2vXooKc4atNbOIp2G0JUk9fDxARHlz0=;
-	b=XVH45kyWevFN1zRTPn55u1A5HCRooZWbhe04q2rlxIkDwUCdU+4ZxlndOzK6N2vFcyACwU
-	JIALrYbBjlq6bJeDXyFK80KfR2Z1RY1rsTJGxAqtVS5SnBZ7SYddKpFC/QOLfYMRWRvJCe
-	CZRuS8hYpwm5wND91F8NQw72OyIj0J4=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1593547203; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=UqvjFR3XJzzrT7GERHVDePnddnot7kGWpGScSc1TFoU=;
+	b=1uzhotz2K1k8J34988Ie1YmXmWfNLVoWfSwfY4CWNgbMis0+cWLaF3yGEvNj9FCvpNkvuQ
+	DH761YZqZSYyCglgLjybkNz0pJRlzNnqJEaeCIGZy8Gs901H/BvmDafkWSED3VkQf4LN3R
+	dm6r3DEkVeCWGUeQhsU45Rsd7zFYe8c=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1594015757; a=rsa-sha256;
 	cv=none;
-	b=pb5pImFoAkTf0ogH6HVJjSSybhafkxOnJWXAUHSo+Z9J90BBi5e2KozoUrCPXNiLGEDWl1
-	SsMhPRjswWNF7ruVBSMN5jMA2CYo/BFdVcvRR4xSsGOx+teNmsa/ahtRETAYaR2CYj4024
-	5WAoW5albt/k2WfLypP4g89V91jqWvA=
+	b=fdBIhYQT4GJAJ/gPmEz9qYWaB9r/PHSxqURbpYqpPClAu7RRw/mVVJl7EKjboESQpYYR01
+	Q2Bc08X/h4iTwyiAJpQTxOhtV5rYB2R1NSpIN8qyIdleQmplT/6YFrMReHw6c3NCNgfUDD
+	bgEb1ZQpEhJz8PD+mrBH63N/K0TSb4I=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=none (diktynna.open-mesh.org: domain of davem@davemloft.net has no SPF policy when checking 2620:137:e000::1:9) smtp.mailfrom=davem@davemloft.net
-Message-ID-Hash: QZ2U457TJBUIBRG4ZZP2PQ5ZZNNBRYNQ
-X-Message-ID-Hash: QZ2U457TJBUIBRG4ZZP2PQ5ZZNNBRYNQ
-X-MailFrom: davem@davemloft.net
+	spf=pass (diktynna.open-mesh.org: domain of 3C8ACXwkbAJQGMN8y992FyDD61.4CC492IG2F0CBH2BH.0CA@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.71 as permitted sender) smtp.mailfrom=3C8ACXwkbAJQGMN8y992FyDD61.4CC492IG2F0CBH2BH.0CA@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: 3SXH3WFAPZ3MWHHX45SPWPKVTXPU4FD6
+X-Message-ID-Hash: 3SXH3WFAPZ3MWHHX45SPWPKVTXPU4FD6
+X-MailFrom: 3C8ACXwkbAJQGMN8y992FyDD61.4CC492IG2F0CBH2BH.0CA@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QZ2U457TJBUIBRG4ZZP2PQ5ZZNNBRYNQ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3SXH3WFAPZ3MWHHX45SPWPKVTXPU4FD6/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Simon Wunderlich <sw@simonwunderlich.de>
-Date: Tue, 30 Jun 2020 10:27:27 +0200
+syzbot has found a reproducer for the following crash on:
 
-> here is a little feature/cleanup pull request of batman-adv to go into net-next.
-> 
-> Please pull or let me know of any problem!
+HEAD commit:    9e50b94b Add linux-next specific files for 20200703
+git tree:       linux-next
+console output: https://syzkaller.appspot.com/x/log.txt?x=13e6ec33100000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=f99cc0faa1476ed6
+dashboard link: https://syzkaller.appspot.com/bug?extid=0fb70e87d8e0ac278fe9
+compiler:       gcc (GCC) 10.1.0-syz 20200507
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=168ab5d5100000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1771c5d5100000
 
-Pulled, thanks Simon.
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+0fb70e87d8e0ac278fe9@syzkaller.appspotmail.com
+
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-...0: (3 ticks this GP) idle=ff2/1/0x4000000000000000 softirq=8592/8593 fqs=5250 
+	(detected by 1, t=10502 jiffies, g=8273, q=66)
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 6802 Comm: syz-executor688 Not tainted 5.8.0-rc3-next-20200703-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:__preempt_count_dec_and_test arch/x86/include/asm/preempt.h:94 [inline]
+RIP: 0010:rcu_lockdep_current_cpu_online kernel/rcu/tree.c:1144 [inline]
+RIP: 0010:rcu_lockdep_current_cpu_online+0xc8/0x110 kernel/rcu/tree.c:1131
+Code: 59 48 8d 7d 70 48 8b 5b 20 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 75 41 48 8b 45 70 48 85 c3 0f 95 c0 <65> ff 0d d1 18 a1 7e 74 07 48 83 c4 08 5b 5d c3 e8 52 93 9f ff eb
+RSP: 0018:ffffc90000007db8 EFLAGS: 00000002
+RAX: 0000000000000001 RBX: 0000000000000001 RCX: 1ffffffff1303b28
+RDX: 1ffffffff1378c1e RSI: 0000000000010204 RDI: ffffffff89bc60f0
+RBP: ffffffff89bc6080 R08: 0000000000000000 R09: ffffffff8aaf028f
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+R13: ffff8880ae627840 R14: ffff888094512340 R15: dffffc0000000000
+FS:  00000000017fe880(0000) GS:ffff8880ae600000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000610 CR3: 000000009aba2000 CR4: 00000000001506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <IRQ>
+ rcu_read_lock_held_common kernel/rcu/update.c:110 [inline]
+ rcu_read_lock_held_common kernel/rcu/update.c:100 [inline]
+ rcu_read_lock_sched_held+0x25/0xb0 kernel/rcu/update.c:121
+ trace_hrtimer_expire_exit include/trace/events/timer.h:279 [inline]
+ __run_hrtimer kernel/time/hrtimer.c:1523 [inline]
+ __hrtimer_run_queues+0xd13/0xfc0 kernel/time/hrtimer.c:1584
+ hrtimer_interrupt+0x32a/0x930 kernel/time/hrtimer.c:1646
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1080 [inline]
+ __sysvec_apic_timer_interrupt+0x142/0x5e0 arch/x86/kernel/apic/apic.c:1097
+ asm_call_on_stack+0xf/0x20 arch/x86/entry/entry_64.S:706
+ </IRQ>
+ __run_on_irqstack arch/x86/include/asm/irq_stack.h:22 [inline]
+ run_on_irqstack_cond arch/x86/include/asm/irq_stack.h:48 [inline]
+ sysvec_apic_timer_interrupt+0xe0/0x120 arch/x86/kernel/apic/apic.c:1091
+ asm_sysvec_apic_timer_interrupt+0x12/0x20 arch/x86/include/asm/idtentry.h:596
+RIP: 0010:arch_local_irq_restore arch/x86/include/asm/paravirt.h:765 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:160 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x8c/0xe0 kernel/locking/spinlock.c:191
+Code: 48 c7 c0 00 ff b4 89 48 ba 00 00 00 00 00 fc ff df 48 c1 e8 03 80 3c 10 00 75 37 48 83 3d 9b 74 c8 01 00 74 22 48 89 df 57 9d <0f> 1f 44 00 00 bf 01 00 00 00 e8 95 fb 62 f9 65 8b 05 fe 73 15 78
+RSP: 0018:ffffc900010872c0 EFLAGS: 00000282
+RAX: 1ffffffff1369fe0 RBX: 0000000000000282 RCX: 0000000000000002
+RDX: dffffc0000000000 RSI: 0000000000000000 RDI: 0000000000000282
+RBP: ffff8880945122e8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000282
+R13: 161f14abb88be58f R14: ffff888094512000 R15: 0000000000000000
+ spin_unlock_irqrestore include/linux/spinlock.h:409 [inline]
+ taprio_change+0x1fdc/0x2960 net/sched/sch_taprio.c:1556
+ taprio_init+0x52e/0x670 net/sched/sch_taprio.c:1669
+ qdisc_create+0x4b6/0x12e0 net/sched/sch_api.c:1245
+ tc_modify_qdisc+0x4c8/0x1990 net/sched/sch_api.c:1661
+ rtnetlink_rcv_msg+0x44e/0xad0 net/core/rtnetlink.c:5460
+ netlink_rcv_skb+0x15a/0x430 net/netlink/af_netlink.c:2469
+ netlink_unicast_kernel net/netlink/af_netlink.c:1303 [inline]
+ netlink_unicast+0x533/0x7d0 net/netlink/af_netlink.c:1329
+ netlink_sendmsg+0x856/0xd90 net/netlink/af_netlink.c:1918
+ sock_sendmsg_nosec net/socket.c:652 [inline]
+ sock_sendmsg+0xcf/0x120 net/socket.c:672
+ ____sys_sendmsg+0x6e8/0x810 net/socket.c:2352
+ ___sys_sendmsg+0xf3/0x170 net/socket.c:2406
+ __sys_sendmsg+0xe5/0x1b0 net/socket.c:2439
+ do_syscall_64+0x60/0xe0 arch/x86/entry/common.c:367
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x443799
+Code: Bad RIP value.
+RSP: 002b:00007ffceabd28c8 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
+RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 0000000000443799
+RDX: 0000000000000000 RSI: 00000000200007c0 RDI: 0000000000000004
+RBP: 00007ffceabd28d0 R08: 0000000001bbbbbb R09: 0000000001bbbbbb
+R10: 0000000001bbbbbb R11: 0000000000000246 R12: 00007ffceabd28e0
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 0.000 msecs
