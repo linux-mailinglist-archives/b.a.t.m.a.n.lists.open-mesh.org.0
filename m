@@ -2,105 +2,150 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C4421B2A4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2020 11:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC14521E80D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 14 Jul 2020 08:23:25 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E410B80F63;
-	Fri, 10 Jul 2020 11:48:10 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B3D3980097
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 10 Jul 2020 11:48:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1594374488;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BOHYaqTfo+9AZnWjnPol2rPG71FOTxU/DkdVEwgMuLU=;
-	b=o7hWZQTCzHZDxbjYPYGvpaPxGbvOd7u0IVKLhJgXhhWvyxixNaQ7kFVf3zDxm//id4cdh6
-	h1q8jwxYSJAplNIwyJQ2UBnE4F5R+0A7YaKy6TrCysjYn7d+fT4Yim1Le1jmrarUG+iKbk
-	TUr5kWUUkpvETNVjenlmVdnr3sATbbY=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org, Maksim Iushchenko <maxim.yuschenko1@gmail.com>
-Subject: Re: Batman-adv TTL value
-Date: Fri, 10 Jul 2020 11:48:05 +0200
-Message-ID: <1836851.Vk5ASu7fO2@ripper>
-In-Reply-To: <CADSehqO4YiKBKQJs0KWBdefWo3D1rNgMz2buGN2aQAXyZpZzNg@mail.gmail.com>
-References: <CADSehqO4YiKBKQJs0KWBdefWo3D1rNgMz2buGN2aQAXyZpZzNg@mail.gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A233B80804;
+	Tue, 14 Jul 2020 08:23:24 +0200 (CEST)
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com [209.85.166.197])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4FB8A80241
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 14 Jul 2020 08:23:22 +0200 (CEST)
+Received: by mail-il1-f197.google.com with SMTP id d18so11302104ill.21
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 13 Jul 2020 23:23:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=Bt7VIZoYh6q5iszUbKKdJVEoemMQ5yuTF5lHduyu0Us=;
+        b=LaXT2XXT3sNszwTwmbhr/NQkRfyCEoRIamfAJwpm1AiDoWfipn13Ftmz5AdAGmpFjO
+         hUaVTix/TcLfxG/YiAtua1xaZvyekP4qCCSd+Tn+oRbgyhS19WGj3wl2UDYU3QiNSP13
+         5qofJhcanrXK2iFec/9wAtbDRMamoJS2YkA0KHFYuWSungTkplZ0CKdHAyWiejEOD6aq
+         6dpnSoxW9I7qNfn+To+mV3BLHyFsvfImnXwNWmnTobQRTmuyvVNb5YDTb2vk+7wmPQOQ
+         ukE7cM9/taBwxpMbwrUbXjLt77jj+MUCB4s2LvGrfPPgE5jzDPGiMAMupIxB2ccQm4+P
+         Aigw==
+X-Gm-Message-State: AOAM531tB7Ll2kzP+oJrGFy0TVH3LyV2Lz9l1xL5HTSN1sABxmJWBQp/
+	oqvaUI6irmtECS8ofJ8uOBrHz1q3tFtnSIa8XOcjQ8Xhfd0t
+X-Google-Smtp-Source: ABdhPJwzEVSHrG7eUOqPSRed/XMlCM8tTr/NGNaWxdli2fy9fDiOpDKoIOai2HIGnZYTnMv2uTMaO9HK1/WqwD0ScF5mbNz682y2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart113888128.p3AWP2ICfS"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Received: by 2002:a92:b6d4:: with SMTP id m81mr3415880ill.72.1594707800956;
+ Mon, 13 Jul 2020 23:23:20 -0700 (PDT)
+Date: Mon, 13 Jul 2020 23:23:20 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000ff264805aa60d794@google.com>
+Subject: general protection fault in batadv_hardif_get_by_netdev
+From: syzbot <syzbot+4a2d01c2df834fe6e86d@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+	kuba@kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1594374488;
+	s=20121; t=1594707802;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=BOHYaqTfo+9AZnWjnPol2rPG71FOTxU/DkdVEwgMuLU=;
-	b=KB9tiNwTA/1HOi0Kwp17QbT1atGuK8j6PlUSM/d7Zz2pttuNP8hFfgY2qMAT+9cZoYxVMf
-	c/Q2udMVd8j/3Foo2LDpr3taZsFmoOCuGyLKOfVbiylOvx/q1Lo4bWfXKXj4WGnPoMHhYs
-	1/FsQTUOTPAw6TieNCUNnw2CLbOb60M=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1594374488; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=Bt7VIZoYh6q5iszUbKKdJVEoemMQ5yuTF5lHduyu0Us=;
+	b=ylt7muDgi8HnEXeG8PQGeAhc3f2OXP2U6um3Em9vBY/76Tf3q7lsv66jiN+jrfca4GNhlR
+	UaRspBvrlCVucUkuZtwRJk4/JaGC6tYCqLpaDYUw5xAUGgk4JqX4XLeKmTdl8/D/Cquxn1
+	brK0PMDh2kNSL4JuZhf2DxijJ9gHRao=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1594707802; a=rsa-sha256;
 	cv=none;
-	b=DcLFCdz83ZuIGuOtSXGSzMbjJoeJox+O0CVDMWuo4dLCO8c3taar3t/j7JhungDoFXfOUP
-	mbbiJ9CyGo7mAm1pPeFCLNr5LgFeOV3sZATA2g8khii+SV9e+fSCOYMG99THEljFKaeiq+
-	HxQOCgmCXPY2gIujTuVcKrUXDh39mgs=
+	b=euAYxvz1hqjEC1aXKNE3qKy9+rsUQiipRzEkRHs42hvQHtWvpQjBLZizGn17uVzSNj4hOQ
+	ILo2wP+/XkujtrBpNADrj84elOysMHBfKIINVFYBitwrfD4T7/DXCi+1HLOnoLGx0wAkIp
+	gXiH795p6Z3UJ+dY5HBehIAjx3JaGKY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=o7hWZQTC;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: DZNTZGI233I5PC2WNNNCCIPNLS3DV2GV
-X-Message-ID-Hash: DZNTZGI233I5PC2WNNNCCIPNLS3DV2GV
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3WE8NXwkbACsZfgRHSSLYHWWPK.NVVNSLbZLYJVUaLUa.JVT@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.197 as permitted sender) smtp.mailfrom=3WE8NXwkbACsZfgRHSSLYHWWPK.NVVNSLbZLYJVUaLUa.JVT@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: EPSHQY7VW75OYEEU2NAWCIEN7XUM2AKJ
+X-Message-ID-Hash: EPSHQY7VW75OYEEU2NAWCIEN7XUM2AKJ
+X-MailFrom: 3WE8NXwkbACsZfgRHSSLYHWWPK.NVVNSLbZLYJVUaLUa.JVT@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DZNTZGI233I5PC2WNNNCCIPNLS3DV2GV/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EPSHQY7VW75OYEEU2NAWCIEN7XUM2AKJ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart113888128.p3AWP2ICfS
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Hello,
 
-On Friday, 10 July 2020 11:29:08 CEST Maksim Iushchenko wrote:
-> batman-adv messages contain TTL value in batman header. So,
-> 1. What is default TTL batman-adv uses?
+syzbot found the following crash on:
 
-50 [1]
+HEAD commit:    0aea6d5c Merge tag 'for-linus-5.8b-rc5-tag' of git://git.k..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=1596004f100000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=66ad203c2bb6d8b
+dashboard link: https://syzkaller.appspot.com/bug?extid=4a2d01c2df834fe6e86d
+compiler:       gcc (GCC) 10.1.0-syz 20200507
+userspace arch: i386
 
-> 2. Is it possible to set my own TTL value for each batman-adv packet?
+Unfortunately, I don't have any reproducer for this crash yet.
 
-No
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+4a2d01c2df834fe6e86d@syzkaller.appspotmail.com
 
-Kind regards,
-	Sven
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.4'.
+general protection fault, probably for non-canonical address 0xdffffc0000000003: 0000 [#1] PREEMPT SMP KASAN
+KASAN: null-ptr-deref in range [0x0000000000000018-0x000000000000001f]
+CPU: 1 PID: 11316 Comm: syz-executor.4 Not tainted 5.8.0-rc4-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:batadv_hardif_get_by_netdev+0x14c/0x400 net/batman-adv/hard-interface.c:72
+Code: 18 00 0f 85 92 02 00 00 4d 8b 24 24 49 81 fc e0 29 4f 8d 0f 84 b4 01 00 00 e8 00 01 ab f9 49 8d 7c 24 18 48 89 f8 48 c1 e8 03 <80> 3c 18 00 0f 85 73 02 00 00 4d 39 6c 24 18 75 b7 e8 de 00 ab f9
+RSP: 0018:ffffc900171aeca8 EFLAGS: 00010206
+RAX: 0000000000000003 RBX: dffffc0000000000 RCX: ffffc90011a8c000
+RDX: 0000000000040000 RSI: ffffffff87c8b900 RDI: 0000000000000018
+RBP: ffff88802afd4000 R08: 0000000000000000 R09: ffffffff8c593a27
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffff88802afd4000 R14: 0000000000000000 R15: ffffffff8aa441c0
+FS:  0000000000000000(0000) GS:ffff8880ae700000(0063) knlGS:00000000f5d6db40
+CS:  0010 DS: 002b ES: 002b CR0: 0000000080050033
+CR2: 000055feecf1dcd8 CR3: 0000000027b29000 CR4: 00000000001426e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ batadv_hard_if_event+0x62/0x12f0 net/batman-adv/hard-interface.c:1031
+ notifier_call_chain+0xb5/0x200 kernel/notifier.c:83
+ call_netdevice_notifiers_info+0xb5/0x130 net/core/dev.c:2027
+ call_netdevice_notifiers_extack net/core/dev.c:2039 [inline]
+ call_netdevice_notifiers net/core/dev.c:2053 [inline]
+ register_netdevice+0xa52/0x1540 net/core/dev.c:9509
+ veth_newlink+0x405/0xa00 drivers/net/veth.c:1366
+ __rtnl_newlink+0x1090/0x1730 net/core/rtnetlink.c:3339
+ rtnl_newlink+0x64/0xa0 net/core/rtnetlink.c:3397
+ rtnetlink_rcv_msg+0x44e/0xad0 net/core/rtnetlink.c:5460
+ netlink_rcv_skb+0x15a/0x430 net/netlink/af_netlink.c:2469
+ netlink_unicast_kernel net/netlink/af_netlink.c:1303 [inline]
+ netlink_unicast+0x533/0x7d0 net/netlink/af_netlink.c:1329
+ netlink_sendmsg+0x856/0xd90 net/netlink/af_netlink.c:1918
+ sock_sendmsg_nosec net/socket.c:652 [inline]
+ sock_sendmsg+0xcf/0x120 net/socket.c:672
+ ____sys_sendmsg+0x6e8/0x810 net/socket.c:2352
+ ___sys_sendmsg+0xf3/0x170 net/socket.c:2406
+ __sys_sendmsg+0xe5/0x1b0 net/socket.c:2439
+ do_syscall_32_irqs_on+0x3f/0x60 arch/x86/entry/common.c:428
+ __do_fast_syscall_32 arch/x86/entry/common.c:475 [inline]
+ do_fast_syscall_32+0x7f/0x120 arch/x86/entry/common.c:503
+ entry_SYSENTER_compat_after_hwframe+0x4d/0x5c
+RIP: 0023:0xf7f72569
+Code: Bad RIP value.
+RSP: 002b:00000000f5d6d0cc EFLAGS: 00000296 ORIG_RAX: 0000000000000172
+RAX: ffffffffffffffda RBX: 0000000000000007 RCX: 0000000020000040
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+Modules linked in:
 
-[1] https://git.open-mesh.org/batman-adv.git/blob/921f23df8a26fa49f12f58dd8409f56e2b89e7d5:/net/batman-adv/main.h#l26
---nextPart113888128.p3AWP2ICfS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
 
------BEGIN PGP SIGNATURE-----
+---
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl8IOVUACgkQXYcKB8Em
-e0ZOzhAAgCbA7gf4LjmAcj5EPQK/fNBu8aAekJ2bXocKNmmIlohKeGbEqBVfiRvJ
-KQZTMa1CDOsIqLY3wtwZUEV8r7SBIOKTx3PZx9LpT4QYUjhIND+zLUNBgBvoCxlY
-bfHimshKuzx7vG1OZ5OijFDfaTaeKDda/ecj6hPtQ7bvdaL2r1KZvjDLJtoiSzoO
-tzGJ4m6tHrbSNvK+/3nCs1DMDmcDqEZWaSxiMxPs2tr7TjIPqe4rKBkAtHoVz6I8
-xyOrxenj/5WdS4UG08f7hPf7YPs1SyokURm4uYHJA197VnWmv4ZUrBqk9MeEsBri
-i7gwVrBhbu6ewBK5HDuwOihl8pGAHjCiIQY36mhnPeGZalvjoNgWKQcaOKzgxOt5
-JNDD+YdP/8RtsAi6/X+oFdCKXn/TQ55cSjLHg/8ErXFKeq//J6CxdXAbQXvW6qbs
-ynuTWi4NrQ1qPX8zC/S15LGuE4ll1QlxFhaujeGzhv3V04FXYnGUZKCnWg7vVGuO
-wgF5P/+FLUcHwJ+Qx7FiTyJdMaBD/dvACuxpsOrVV4JV6643gnatjI99NzpUDLHi
-p2ar6sSBkZxz0cjm9af0xUcRkrz9aSerHVfRFjlLaBcQ2cv+ybPzuNI/pqO658h4
-1Ik50iakEY03EVCLuU1FrATtnQJBlfSu2b9zQblQc4TN5GTOo4M=
-=8PVG
------END PGP SIGNATURE-----
-
---nextPart113888128.p3AWP2ICfS--
-
-
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
