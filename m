@@ -1,93 +1,121 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369B722F7CF
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 27 Jul 2020 20:36:32 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA39230115
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 28 Jul 2020 07:06:18 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 06BB780BE7;
-	Mon, 27 Jul 2020 20:36:31 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id EA0E38040B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 27 Jul 2020 20:36:27 +0200 (CEST)
-Date: Mon, 27 Jul 2020 20:36:25 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1595874987;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3CDCF802A2;
+	Tue, 28 Jul 2020 07:06:17 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id E10D680212
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 28 Jul 2020 07:06:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1595912773;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=8plxXDPOwOK6w7UfOqFgHpjJVTnZZI43C9E1PdffOmM=;
-	b=ouh0sUp/E2dVExGt1xuTgtsLNQnGmVRgmrMS1vacErrisxZVwTQ2ud05D8xlzxnNatmaxR
-	JVg71/nXfDk0vKU8F+c1qyFlkUBoiU3xiBsYoNGsvz3wqHfu0W3HawJEbfX9xSKPt5ZO6n
-	qOc+r71gJyxKtbt1uxh/jhv02IbEKFuYx95wJJw4gba4jwlKs+2aqPKZneniPrvsbMCTs5
-	7DasFY86+xPsiyt4E8OfZUp+T3ZvoD5aupvzaU07G9P0Kyq75pccRIKTnHR1MPbEvnsc35
-	iK7BSdK9DPJHzMqS2NgQfpha3Oi1/thJc1Mpijcdhv1Hk5rsyOVYWXoxejmWFA==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: Batman_V Originator Loop Issue
-Message-ID: <20200727183625.GA2340@otheros>
-References: <20200724202356.GB2357@otheros>
- <20200727162815.30286.54503@diktynna.open-mesh.org>
+	bh=13xhimdYL47fBPwoh7I5kCtnq3HbZOTIgdLbbiE7cDU=;
+	b=eueSyT+ZMFY2R+JDbXmVDCd3XoPIE88L7fedH0bcoeaYzS0iz1HOZ8pTuWiWRod4KsKuNS
+	SLykcmgQBifuQbCXkjANDrj09eSnIuE5XRxZIA9Iv1TI4mxZRIUzTEuHFDvbnUNWmXdbDe
+	+4vxCHHWZKnwYDweK+PDbFJklTexJnE=
+From: Sven Eckelmann <sven@narfation.org>
+To: Rob Cowart <rob.cowart@xecoenergy.com>
+Subject: Re: batadv gw_mode client 0?
+Date: Tue, 28 Jul 2020 07:06:06 +0200
+Message-ID: <1997151.jcLF785M7x@sven-edge>
+In-Reply-To: <1C0C87FF-C97B-4118-BCC6-DF1163BAB05F@xecoenergy.com>
+References: <927533E5-C265-44BF-B271-1A7A9A084447@xecoenergy.com> <3573996.TXEB8fxZsQ@sven-edge> <1C0C87FF-C97B-4118-BCC6-DF1163BAB05F@xecoenergy.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200727162815.30286.54503@diktynna.open-mesh.org>
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
+Content-Type: multipart/signed; boundary="nextPart2164744.kCo4vZI0ly"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1595874988;
+	s=20121; t=1595912774;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=8plxXDPOwOK6w7UfOqFgHpjJVTnZZI43C9E1PdffOmM=;
-	b=biA3PSINVrU53EqQhe/9kNZEHA3trEPfeyOv3fVcl+MUnBL4dWdLV9rsPkz1qOZz/EeRo8
-	Sfel2pGDJX6p9ysJJCQHqBRkCV5QBVTd5bXkIzmHIAeFs1BUjLpPmB5iSgv2RPd5WGG0qn
-	BMD+dJW7J69MgTpVimt9YlRbnTkUMjE=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1595874988; a=rsa-sha256;
+	bh=13xhimdYL47fBPwoh7I5kCtnq3HbZOTIgdLbbiE7cDU=;
+	b=eE0apKYfvGPU9VMxsK9cj3BDd1Vb3och2hkFnW3WGCz9zZJpkyXErutqFfUFVR5q4U5hlv
+	cJQCR6wdMp1dROviGnQTglQqAQVl+k7ogdeZ90oBZ0gbPkRyE2C8CjxFrQK8Gz3SRYlpmF
+	sw5GEyEQ1go5QtoWyUI4GwJDjnzzL18=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1595912774; a=rsa-sha256;
 	cv=none;
-	b=BVnNVQV0FuULntc7VCQec3sku81Tp8lR2UFA1ZxkfZU520/NQNTDs+2XwmOHWEWFGxIChs
-	t338Bx3wjuewD1BBWdQMONWUmYO4p9HpE1J0ZyJT/31G8qJmjnWRP2D1iPxrOQngQHIRg6
-	yZ4DfFSmL0SU8j9ucjLtPak2cB69xvQ=
+	b=T0k42wMlaxuR2WdJdR8BpD8kn9VzIiHLDrAQXkH/KIeMcWaXyKAsfBYt5hRq/4xC/SUfl5
+	PvZFfzGJc9mEH9IlGhYz6uF0rv6XCtF4KYRbeY5VsCBIETRNY7MbRswverdvPEWspBuA3o
+	AHMJiOmTshyvrIjyqyPneLUTMBqR0pE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=ouh0sUp/;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
-Message-ID-Hash: ANCHKYNCKCUCNHC555CNFFJ2PAYKXAUX
-X-Message-ID-Hash: ANCHKYNCKCUCNHC555CNFFJ2PAYKXAUX
-X-MailFrom: linus.luessing@c0d3.blue
+	dkim=pass header.d=narfation.org header.s=20121 header.b=eueSyT+Z;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+Message-ID-Hash: WW4HDTXECTDTIPTLEUOYGI2EQW36FODK
+X-Message-ID-Hash: WW4HDTXECTDTIPTLEUOYGI2EQW36FODK
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ANCHKYNCKCUCNHC555CNFFJ2PAYKXAUX/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WW4HDTXECTDTIPTLEUOYGI2EQW36FODK/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Mon, Jul 27, 2020 at 04:28:15PM -0000, lavincent15@gmail.com wrote:
-> Linus
-> 
-> I would love to try it out and help with the development, but unfortunately I do not have the time to do that. My internship is coming to a close, and I need to use a version I know works to provide good data.
+--nextPart2164744.kCo4vZI0ly
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Oh, okay, good luck with the results then!
+On Tuesday, 28 July 2020 01:07:09 CEST Rob Cowart wrote:
+> So we have a new problem.  In BATMAN 2018 logging worked, but on BATMAN 2019 it doesn't - should I update to 2020?
 
-> Side note* Do you think you could provide me with a rough equation for when a node decides to use a hop instead of a direct connection? I'm particularly interested in how the nodes use the hop penalty in the equation. Does speeding up the interval increase the speediness of its decision? I'm using this in a mobile node environment and I need it to dynamically switch to the most stable connection.
+What does this have to do with gw_mode client 0? At least you posted in the 
+thread [0] with the subject "batadv gw_mode client 0". And you mail also has
+the subject "batadv gw_mode client 0"
 
-The metric, including the hop-penalty for BATMAN V is described here:
+And please stop posting HTML messages [1]
 
-https://www.open-mesh.org/projects/batman-adv/wiki/Ogmv2#322-Metric-Update
+> pi@raspberrypi:~ $ sudo batctl -v
+> batctl 2019.4-1-g6046cf9 [batman-adv: 2019.4-9-g890c6748-dirty]
+[...]
+> pi@raspberrypi:~ $ sudo batctl log
+> Error - no valid command or debug table specified: log
 
-Or here in the code, in this short function:
+The log command was removed from batctl on purpose [2]. Please either get the 
+data via trace-cmd [3] or build your batman-adv with DEBUGFS support and 
+manually fetch the data from the deprecated log file
+/sys/kernel/debug/batman_adv/log (tail -f, cat, ...).
 
-https://elixir.bootlin.com/linux/v5.7.8/source/net/batman-adv/bat_v_ogm.c#L470
+Kind regards,
+	Sven
 
-And then the algorithm will compare if the resulting throughput
-metric is higher via a direct connection or over another hop even
-with the (either) hop or half-duplex penalty applied.
+[0] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/thread/FG4ZGHSHFHISJUKZ4XQH56ACBV4ASSSZ/
+[1] https://www.open-mesh.org/projects/open-mesh/wiki/MailingList
+[2] https://www.open-mesh.org/news/90
+[3] https://www.open-mesh.org/projects/batman-adv/wiki/Understand-your-batman-adv-network#Logging
 
-Hope that helps.
+--nextPart2164744.kCo4vZI0ly
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Regards, Linus
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl8fsj4ACgkQXYcKB8Em
+e0Y9pw//WQJ66nnTjYN4hFlEuWKC+gdIobNsrDCdh3P2EXHk7IcvPgsv4VGgRKhQ
+C2BB9smwKD5EpQFJF+OJOdUfhIOKo2a/b6uDwy+UgSzQviiqmXnxJibgwOZo2B0S
+sv+YxoV4995gmBqRsumTb6Q0L1LQA6ZQf5On3YlM1bsMYa7dL+AtnIJAmpE328hf
+GabrIn0O88zvPX7xKvAA8muCmZcYgnjvNScOUD/kBGCS+r2rGrWYbN7A3GXg7P0L
+jiKWAiR+GK21OdvkdJXSPAS3MjJLGztORlD4oUefOs+zG4yqjVU7adfAH5rnf+IG
+7IWP5AHIcTAzqoIy0EH0oF/UFPnOnYFsrdRPUdUxR2m4T0fGwaMBjgWKNIO4Z47/
+uqKfLQjJtt/pngtb8QWIG82PwG8gH2byR2ShUVCJWHMEVDjF+lB56t5tOjO6PX7g
+JA0Yzr7PENLB2SGv5FE092mM1bgy4MHpbjAaAYF2fKNeEm4ymeWq+Z10AuCkmalz
+B8I9Mh/AyShSOdZ801K0wXnMCd/dSmSTiiVchJch//bnutJl5dliLjcSkmiSzXBt
+CcY7nPuz/sD89Dy2bbzk+9aI2nTVriXIOnujBNx5yUctuxMM/bwLWJYXr6mG3bgM
+0ed7EKyJv7OQXlUPokpeVy41q6lFi83Itna0Xbs4j+dGOUtI8jM=
+=wEV+
+-----END PGP SIGNATURE-----
+
+--nextPart2164744.kCo4vZI0ly--
+
+
