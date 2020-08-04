@@ -2,195 +2,98 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD9E234B46
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 31 Jul 2020 20:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE6B23B49A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  4 Aug 2020 07:53:10 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 91A9B80FCB;
-	Fri, 31 Jul 2020 20:40:36 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0506C801AB
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 31 Jul 2020 20:40:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1596220505;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Uc3GLIcHW7wjOOdtjW6dyDZ46WyvH09Z9Db7cssSPSs=;
-	b=EmvU2/uGhHO9KAdtHarMowWp5bOMslrRIXTrck9PkmFW2AYX+1O4U9Dq4Ev8MFeoXM/5AG
-	ea15/dgQmaAKuHs9tCs+0A14lCpq0p077dRakScUJtlF7bW04XrdK9JNGnHTjGmXlpW2PT
-	883/uHguhJrj7kH9JP9xkA9pNaKeEAg=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH] batman-adv: Drop repeated words in comments
-Date: Fri, 31 Jul 2020 20:35:01 +0200
-Message-Id: <20200731183501.14698-1-sven@narfation.org>
-X-Mailer: git-send-email 2.20.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A203C80344;
+	Tue,  4 Aug 2020 07:53:09 +0200 (CEST)
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com [209.85.166.70])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 88E4780344
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  4 Aug 2020 07:53:06 +0200 (CEST)
+Received: by mail-io1-f70.google.com with SMTP id m26so27232775ioc.6
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 03 Aug 2020 22:53:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=BRdtTRPOEaQKBrhbJMVyVg8f+gg0wNhNpfaLQFbDwIc=;
+        b=rL+q7URRIsdMvR2MNksHCE9+V3qKKngSgCh1Ii1TgTslRmgsT0v+w5qmPfase6cc+h
+         dZgfFzh1ayaT04FR60INmcKPa02ggGdwV1z6HW9b5BVNC60bCY8PvdRIi3f3iyLif/JU
+         NXT4F0manSiafzVGbt/9Tma5K0OMGOPXkbIaLj6ECWuWiXBLfFkWQ94eCWpD5Qsaj4LZ
+         eUjm5sH80ChrNaccNoIZHkqwiwXm3iQr9mRlx1woFfug4bwU2OKkT3BDiER63W0ind0G
+         khQEkeD9zjVVrcMLARV+Vnoea537ktsAER1/070EeGUL/6G5in6boR9nTee8s3xk+8jo
+         VxJQ==
+X-Gm-Message-State: AOAM533APlwaeOupF8Az9BeIR+TEq2/do6FULAShF61oc/daD5EZZz+Q
+	Gmg3sSABDL3GzpTGFGv+yjqUvz+whs1lzdXF3qAB0I/UrCpM
+X-Google-Smtp-Source: ABdhPJzEkoMCbnNdFUe97FE5HM517BQ0ax1yAE9KKbwZVWX1mKbnq4Vi7DM1AkTvDXzbANiqrkZroxhk4raf2RYgrw3J8jVZ61+P
 MIME-Version: 1.0
+X-Received: by 2002:a6b:e216:: with SMTP id z22mr3305588ioc.97.1596520385235;
+ Mon, 03 Aug 2020 22:53:05 -0700 (PDT)
+Date: Mon, 03 Aug 2020 22:53:05 -0700
+In-Reply-To: <0000000000003d6e8405abeb1da7@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000070529b05ac06deaa@google.com>
+Subject: Re: KASAN: use-after-free Read in hci_send_acl
+From: syzbot <syzbot+98228e7407314d2d4ba2@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+	johan.hedberg@gmail.com, kuba@kernel.org, linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org, marcel@holtmann.org, mareklindner@neomailbox.ch,
+	michael.chan@broadcom.com, netdev@vger.kernel.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1596220834;
+	s=20121; t=1596520386;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=Uc3GLIcHW7wjOOdtjW6dyDZ46WyvH09Z9Db7cssSPSs=;
-	b=TqUaEsGukSN+VhzjR+C81c850rjg2bLKJcUjB8l70Or7Uxde0f/2MTH0uWU3pVogjupAFN
-	uMDdtCgriwi1XX9UopqhrXjWtf+RphCWDn1wHT9RUmyrnOvCepVcqcSFyMrPFLDbqMLtfN
-	71zGrrkqeV/UHpLR4VpFVb3rRE2suVY=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1596220834; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=BRdtTRPOEaQKBrhbJMVyVg8f+gg0wNhNpfaLQFbDwIc=;
+	b=PaGEst+zi2f5gCZeveueq7u70TDi9Pw3ZOrcGLjdTBs/cQIH7J0A0Jf0XTmql1dxS3wu2Y
+	E4PmrYmxRDhBpe/XEgVTq1fjhQkaX0/Aiwu/NnP22V7HC0zZmJHU79rdmvjb71vX5aFlwh
+	nSAA9Tf5Ax9Qhlc5yXXLe6GZe8BSxBY=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1596520386; a=rsa-sha256;
 	cv=none;
-	b=rpTGuvDxHIqjapRHayXg6kzFcX5jlA49d6X5OF/U7kBISlBQIPPr2KN1slhUgL0negEbL/
-	ipa045cYZKAVoMyrWMOvzqgmu+fSzoKyvouehcGIYYl2m/N/qJ8YcAhSm7Lb89Nhpe1KkZ
-	Xg8cbvORiwKuk/Aqas8EPq5BdJlYHgA=
+	b=rkLvp+bw7PBml3WnPmwQka2YZf5WuhwXnSVonnZ2g356I3Jc61oo8F7TNeplBlMZU6qCie
+	TL7tED/Aizx+Caot+JHtYoqmAPOU5cQnMI28FvYNoCgwO22b5hkI1MjfdZFzUQMnGkMAL+
+	jIky/zixPJKKe9S7g0V5Lrecg88e86s=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=EmvU2/uG;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: FYFIYMTXQWMS2DTUKYILH4ACXLWZNN45
-X-Message-ID-Hash: FYFIYMTXQWMS2DTUKYILH4ACXLWZNN45
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3wfcoXwkbAFQEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.70 as permitted sender) smtp.mailfrom=3wfcoXwkbAFQEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: ON2OK3GSEJIZXZFCSBUX263TGAZJR75X
+X-Message-ID-Hash: ON2OK3GSEJIZXZFCSBUX263TGAZJR75X
+X-MailFrom: 3wfcoXwkbAFQEKL6w770DwBB4z.2AA270GE0DyA9F09F.yA8@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FYFIYMTXQWMS2DTUKYILH4ACXLWZNN45/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ON2OK3GSEJIZXZFCSBUX263TGAZJR75X/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-checkpatch found various instances of "Possible repeated word" in various
-comments.
+syzbot has bisected this issue to:
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- net/batman-adv/bridge_loop_avoidance.c | 2 +-
- net/batman-adv/fragmentation.c         | 2 +-
- net/batman-adv/hard-interface.c        | 2 +-
- net/batman-adv/multicast.c             | 2 +-
- net/batman-adv/network-coding.c        | 2 +-
- net/batman-adv/send.c                  | 2 +-
- net/batman-adv/soft-interface.c        | 4 ++--
- 7 files changed, 8 insertions(+), 8 deletions(-)
+commit 4ffcd582301bd020b1f9d00c55473af305ec19b5
+Author: Michael Chan <michael.chan@broadcom.com>
+Date:   Mon Sep 19 07:58:07 2016 +0000
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/brid=
-ge_loop_avoidance.c
-index 91a04ca3..5c41cc52 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -1795,7 +1795,7 @@ batadv_bla_loopdetect_check(struct batadv_priv *bat=
-_priv, struct sk_buff *skb,
-=20
- 	ret =3D queue_work(batadv_event_workqueue, &backbone_gw->report_work);
-=20
--	/* backbone_gw is unreferenced in the report work function function
-+	/* backbone_gw is unreferenced in the report work function
- 	 * if queue_work() call was successful
- 	 */
- 	if (!ret)
-diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentatio=
-n.c
-index 9fdbe306..9a47ef8b 100644
---- a/net/batman-adv/fragmentation.c
-+++ b/net/batman-adv/fragmentation.c
-@@ -306,7 +306,7 @@ batadv_frag_merge_packets(struct hlist_head *chain)
-  * set *skb to merged packet; 2) Packet is buffered: Return true and set=
- *skb
-  * to NULL; 3) Error: Return false and free skb.
-  *
-- * Return: true when the packet is merged or buffered, false when skb is=
- not not
-+ * Return: true when the packet is merged or buffered, false when skb is=
- not
-  * used.
-  */
- bool batadv_frag_skb_buffer(struct sk_buff **skb,
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interf=
-ace.c
-index fa06b51c..715f169c 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -599,7 +599,7 @@ int batadv_hardif_min_mtu(struct net_device *soft_ifa=
-ce)
- 	/* report to the other components the maximum amount of bytes that
- 	 * batman-adv can send over the wire (without considering the payload
- 	 * overhead). For example, this value is used by TT to compute the
--	 * maximum local table table size
-+	 * maximum local table size
- 	 */
- 	atomic_set(&bat_priv->packet_size_max, min_mtu);
-=20
-diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index bdc4a1fb..1622c3f5 100644
---- a/net/batman-adv/multicast.c
-+++ b/net/batman-adv/multicast.c
-@@ -207,7 +207,7 @@ static u8 batadv_mcast_mla_rtr_flags_bridge_get(struc=
-t batadv_priv *bat_priv,
- 		return BATADV_MCAST_WANT_NO_RTR4 | BATADV_MCAST_WANT_NO_RTR6;
-=20
- 	/* TODO: ask the bridge if a multicast router is present (the bridge
--	 * is capable of performing proper RFC4286 multicast multicast router
-+	 * is capable of performing proper RFC4286 multicast router
- 	 * discovery) instead of searching for a ff02::2 listener here
- 	 */
- 	ret =3D br_multicast_list_adjacent(dev, &bridge_mcast_list);
-diff --git a/net/batman-adv/network-coding.c b/net/batman-adv/network-cod=
-ing.c
-index 48d70785..64619b7a 100644
---- a/net/batman-adv/network-coding.c
-+++ b/net/batman-adv/network-coding.c
-@@ -250,7 +250,7 @@ static void batadv_nc_path_put(struct batadv_nc_path =
-*nc_path)
- /**
-  * batadv_nc_packet_free() - frees nc packet
-  * @nc_packet: the nc packet to free
-- * @dropped: whether the packet is freed because is is dropped
-+ * @dropped: whether the packet is freed because is dropped
-  */
- static void batadv_nc_packet_free(struct batadv_nc_packet *nc_packet,
- 				  bool dropped)
-diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
-index d267b948..87017332 100644
---- a/net/batman-adv/send.c
-+++ b/net/batman-adv/send.c
-@@ -461,7 +461,7 @@ int batadv_send_skb_via_gw(struct batadv_priv *bat_pr=
-iv, struct sk_buff *skb,
- /**
-  * batadv_forw_packet_free() - free a forwarding packet
-  * @forw_packet: The packet to free
-- * @dropped: whether the packet is freed because is is dropped
-+ * @dropped: whether the packet is freed because is dropped
-  *
-  * This frees a forwarding packet and releases any resources it might
-  * have claimed.
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
-ace.c
-index 23833a0b..9d3974ba 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -649,7 +649,7 @@ static void batadv_softif_destroy_vlan(struct batadv_=
-priv *bat_priv,
- /**
-  * batadv_interface_add_vid() - ndo_add_vid API implementation
-  * @dev: the netdev of the mesh interface
-- * @proto: protocol of the the vlan id
-+ * @proto: protocol of the vlan id
-  * @vid: identifier of the new vlan
-  *
-  * Set up all the internal structures for handling the new vlan on top o=
-f the
-@@ -707,7 +707,7 @@ static int batadv_interface_add_vid(struct net_device=
- *dev, __be16 proto,
- /**
-  * batadv_interface_kill_vid() - ndo_kill_vid API implementation
-  * @dev: the netdev of the mesh interface
-- * @proto: protocol of the the vlan id
-+ * @proto: protocol of the vlan id
-  * @vid: identifier of the deleted vlan
-  *
-  * Destroy all the internal structures used to handle the vlan identifie=
-d by vid
---=20
-2.20.1
+    bnxt_en: Pad TX packets below 52 bytes.
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=167b0f04900000
+start commit:   ac3a0c84 Merge git://git.kernel.org/pub/scm/linux/kernel/g..
+git tree:       upstream
+final oops:     https://syzkaller.appspot.com/x/report.txt?x=157b0f04900000
+console output: https://syzkaller.appspot.com/x/log.txt?x=117b0f04900000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=c0cfcf935bcc94d2
+dashboard link: https://syzkaller.appspot.com/bug?extid=98228e7407314d2d4ba2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=152f1904900000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1482dfca900000
+
+Reported-by: syzbot+98228e7407314d2d4ba2@syzkaller.appspotmail.com
+Fixes: 4ffcd582301b ("bnxt_en: Pad TX packets below 52 bytes.")
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
