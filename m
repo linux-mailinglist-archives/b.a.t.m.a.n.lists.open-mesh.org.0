@@ -1,38 +1,40 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D992623FF35
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  9 Aug 2020 18:27:22 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3BE32437B3
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Aug 2020 11:31:23 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A7220800AD;
-	Sun,  9 Aug 2020 18:27:21 +0200 (CEST)
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com [209.85.166.69])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F100A8003B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  9 Aug 2020 18:27:18 +0200 (CEST)
-Received: by mail-io1-f69.google.com with SMTP id k5so5373783ion.17
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 09 Aug 2020 09:27:18 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 07D1980579;
+	Thu, 13 Aug 2020 11:31:22 +0200 (CEST)
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com [209.85.166.199])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6AE7B8034B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Aug 2020 11:31:19 +0200 (CEST)
+Received: by mail-il1-f199.google.com with SMTP id o191so3912057ila.3
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Aug 2020 02:31:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-        bh=4XSXq+pkr3PFjgGjwOy8V7S5LJrWfQdXc+zd762spFo=;
-        b=Wb8CNz36SeZJjVYbzBHeg8xCWImuYOqIIoubXG1wvb02/rgtdl0uybwTLFskGDQaBt
-         LaAdrSgAnyuLI0odZTBf5Eee2/SJwfuS2WPf1fY+/dQOZ9ift5u5LNregUNJXtaSwmDZ
-         nwFPOqJ6LdC6Z6iEFlvmH8jeS9bgM7HfsNG3QZax13MgDDn5k/e1OHK27ue1Opi8tlDc
-         0yXvRpVp5ov+GaAo07n3fGV5louHbWYjRMzbvnfg5zPGSGbx7HEBM6VQXl69oed7jygN
-         3A8Yt+l+fxH5qknyoEYi52teHfrP+M7A8QGOtqC+nI0RhhW4q4rEtZw6TqFhBt3YweQz
-         Ey7w==
-X-Gm-Message-State: AOAM5305t9/vojbx/Jluf1KbwLFNkEV3NCQoZKZDkKIHPwMROdxYyovW
-	8tr2euuI9OofE45bf3b2PGg3e4n6oH1xiA+OlCZIs7prUEJG
-X-Google-Smtp-Source: ABdhPJxCb8Fc9gj7xJ+738Iy5K3TiYRUKs+DEiRZYCnd9cRMmFmxLa8rdrZjOLEpssozQCq8J6+vTEW/PuRy1QsjTxu8mqAFxiNp
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=iULDNrU3wU77g15OGdBBrBKhYSuPNWFb2hnHV4cWJRI=;
+        b=uSdfVkTLmhOFWzYQ7sJ4dXY/0Xk8AgUdVa3D6uPUrLBXOLFEgPz6gG62cFAqor2cEE
+         3fC008F/WnXstcJlBxINzlAqW2380NJqDG4UPXOhlKthC+sXmVC8Xfawt2mpk6vUsavK
+         GCDX7CjvTkr+C5w/AwlNcZKNJspy9qyWMS7NE0Wh5PrV6K8Xcpxh0JeHvUtMU9mWoqAh
+         cGX6i/j2WoWeKSclvkj06uMP205D6ovyvt54DSNANMJpUwAIEht3M897gsX2HepsQXaE
+         tvo6wUnZ62OVmd9gTzOK8cr1YjkTbLQ5B7/8sp3WffsJaRqZkxu1JkNoF4aw3ghiRoKB
+         O84Q==
+X-Gm-Message-State: AOAM533LS92OyqUFL258M7RO9Ix38ER3KuCMRKTI04s3mWls2asjpAqR
+	a9ZNaRpaVgsmPq4r5Xd+ySC5TJsmfaq9AB3vxoJZbYdERF08
+X-Google-Smtp-Source: ABdhPJwjSfdYpDaOLGkwv9pl55bzrhseFffwwyjVdOsbCZgO66GXdKBIkKa3cY2r0Sn28/LdveBU1dxfUpnOHtrvd3RrnxoE2n+K
 MIME-Version: 1.0
-X-Received: by 2002:a92:480f:: with SMTP id v15mr13207248ila.123.1596990437671;
- Sun, 09 Aug 2020 09:27:17 -0700 (PDT)
-Date: Sun, 09 Aug 2020 09:27:17 -0700
+X-Received: by 2002:a92:841c:: with SMTP id l28mr3742608ild.297.1597311078122;
+ Thu, 13 Aug 2020 02:31:18 -0700 (PDT)
+Date: Thu, 13 Aug 2020 02:31:18 -0700
+In-Reply-To: <000000000000bf4b3605ac744f22@google.com>
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000bf4b3605ac744f22@google.com>
-Subject: KMSAN: uninit-value in batadv_hard_if_event (2)
+Message-ID: <00000000000068562c05acbef79d@google.com>
+Subject: Re: KMSAN: uninit-value in batadv_hard_if_event (2)
 From: syzbot <syzbot+abbc768b560c84d92fd3@syzkaller.appspotmail.com>
 To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
 	glider@google.com, kuba@kernel.org, linux-kernel@vger.kernel.org,
@@ -40,61 +42,61 @@ To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
 	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1596990439;
+	s=20121; t=1597311079;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=4XSXq+pkr3PFjgGjwOy8V7S5LJrWfQdXc+zd762spFo=;
-	b=NvSHNqp6hupmUI62v/3JfSZjp0+dgy9kgxRGpWvu0FYRIzTv1TrNKqHsF43U+Sg61k0VkR
-	iuJygfTHurqjaj3hhrLLPUaT3bNgCOOXgwRF4eXrENezlIYFQglPmv/wEJp0O3TNa1AkVm
-	dVSblZaiWtlROnYTSrBp3qjQDGoLo9A=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1596990439; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=iULDNrU3wU77g15OGdBBrBKhYSuPNWFb2hnHV4cWJRI=;
+	b=ptYMOz7iJjUXnQjtyoaxvU3lAJfOwrW3DTjpMf5Ld7f7tVpIoSZCInjmhsGTqDCgzUXRwr
+	SNKn9QpAmlY0vIRf2SdAwg8uWw/EniDekfemkAveXKlUZb4RP56rnqobU3fP+F5ltxFMSU
+	R+Dbq7WAhmNjTdKVotVVJBkROPT4WX0=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1597311079; a=rsa-sha256;
 	cv=none;
-	b=fmOdk1lZ2Ke2Eb6dvFhx0cGUvRDFF7rQMD0vEpzogF+c3nUWPLPn1p/35hTIFnqo87stah
-	gVl8m1vFLMDkXVWJglAh8Oizyh2vyiefI4VMklCyop/6iRk9uDKz6YOPlYQHHSFLSF2Wa2
-	3X9sKnsC0KMN3oRoF3Q6mcG0xyktFrA=
+	b=T+FM192Vvl/0XY5yhmBjiQ7PaSDxpwydIitojHVBjsewYJWq9vbF/VYPd58eIc7SQwfZ+h
+	U3VLCyRRgXOqIDjnEZ02PatLghf7WnDoxQWLC5PuMdSv6N4U/vEqn8diabWo8yXlfIwhRO
+	wMyrXAu7lPXkgReX1ggOxUCd5xhM0QM=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of 35SMwXwkbAOwgmnYOZZSfOddWR.UccUZSigSfQcbhSbh.Qca@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.69 as permitted sender) smtp.mailfrom=35SMwXwkbAOwgmnYOZZSfOddWR.UccUZSigSfQcbhSbh.Qca@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-Message-ID-Hash: XWVHL5YACT3JDAVDILR55YCSHNTE6JG5
-X-Message-ID-Hash: XWVHL5YACT3JDAVDILR55YCSHNTE6JG5
-X-MailFrom: 35SMwXwkbAOwgmnYOZZSfOddWR.UccUZSigSfQcbhSbh.Qca@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+	spf=pass (diktynna.open-mesh.org: domain of 3Zgg1XwkbAEs5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.199 as permitted sender) smtp.mailfrom=3Zgg1XwkbAEs5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: ESMC5JT4YSWTEW326B3ZTY2AMLKLTSHW
+X-Message-ID-Hash: ESMC5JT4YSWTEW326B3ZTY2AMLKLTSHW
+X-MailFrom: 3Zgg1XwkbAEs5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XWVHL5YACT3JDAVDILR55YCSHNTE6JG5/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ESMC5JT4YSWTEW326B3ZTY2AMLKLTSHW/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello,
-
-syzbot found the following issue on:
+syzbot has found a reproducer for the following issue on:
 
 HEAD commit:    ce8056d1 wip: changed copy_from_user where instrumented
 git tree:       https://github.com/google/kmsan.git master
-console output: https://syzkaller.appspot.com/x/log.txt?x=106e4c3c900000
+console output: https://syzkaller.appspot.com/x/log.txt?x=1015b616900000
 kernel config:  https://syzkaller.appspot.com/x/.config?x=3afe005fb99591f
 dashboard link: https://syzkaller.appspot.com/bug?extid=abbc768b560c84d92fd3
 compiler:       clang version 10.0.0 (https://github.com/llvm/llvm-project/ c2443155a0fb245c8f17f2c1c72b6ea391e86e81)
-userspace arch: i386
-
-Unfortunately, I don't have any reproducer for this issue yet.
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17837fba900000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1218cc16900000
 
 IMPORTANT: if you fix the issue, please add the following tag to the commit:
 Reported-by: syzbot+abbc768b560c84d92fd3@syzkaller.appspotmail.com
 
+usb 1-1: new high-speed USB device number 2 using dummy_hcd
+usb 1-1: New USB device found, idVendor=07b8, idProduct=401a, bcdDevice=3d.3d
+usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
 usb 1-1: config 0 descriptor??
 =====================================================
 BUG: KMSAN: uninit-value in batadv_check_known_mac_addr net/batman-adv/hard-interface.c:512 [inline]
 BUG: KMSAN: uninit-value in batadv_hardif_add_interface net/batman-adv/hard-interface.c:944 [inline]
 BUG: KMSAN: uninit-value in batadv_hard_if_event+0x28d7/0x3bd0 net/batman-adv/hard-interface.c:1034
-CPU: 0 PID: 8697 Comm: kworker/0:3 Not tainted 5.8.0-rc5-syzkaller #0
+CPU: 1 PID: 29 Comm: kworker/1:1 Not tainted 5.8.0-rc5-syzkaller #0
 Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
 Workqueue: usb_hub_wq hub_event
 Call Trace:
@@ -190,12 +192,3 @@ Local variable ----node_id.i@rtl8150_probe created at:
  set_ethernet_addr drivers/net/usb/rtl8150.c:281 [inline]
  rtl8150_probe+0xea7/0x15b0 drivers/net/usb/rtl8150.c:912
 =====================================================
-
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
