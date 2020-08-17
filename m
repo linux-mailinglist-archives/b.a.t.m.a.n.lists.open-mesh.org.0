@@ -1,60 +1,60 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2DFB246514
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Aug 2020 13:05:01 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FAF52467C2
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Aug 2020 15:55:01 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A90A8805A6;
-	Mon, 17 Aug 2020 13:05:00 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D6DB28058E;
+	Mon, 17 Aug 2020 15:54:59 +0200 (CEST)
 Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 616958039F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Aug 2020 13:04:57 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id AA733803C3
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Aug 2020 15:54:57 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1597661770;
+	s=20121; t=1597672052;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=lIQkJdKItQtPGIYA1cpUGi7DZ2Z83z1jPnsLDHRjLoU=;
-	b=Kxc3PqtG75tCeAhjgt3+15rghL+qJlSItfnrqQu0aC82wS/t3m9FL7as3kpyf9TWdt/yRX
-	VI4J3g4xmj3bnRTr0g4pq2JokavJNI0k44oBYXw0Amyblih3KLWn9gewJgioHskNVn28oA
-	5jfCOR3iJJeKMnSrMIjvRt37Pmeeo88=
+	bh=ypu1CrPXqWNF6a884MIAx2y3h1VwqlAXoytBr6nzE9Y=;
+	b=kYmMzxiSh14C+Hd8bYWHlepIpMHd94EFaAGNXGMzeyGF+6TKSLRWBTm49kJw0VZKnGgm9i
+	RPs+8w35KMWZ1U9ef3+9myLzKqX++mOcdJMp63TxZfkey3P7ifMI08E8Maqp9k+a9H9xdG
+	y5kzthbidh0zVDrxuRrx0AWnVb0UB0s=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH] batman-adv: Migrate to linux/prandom.h
-Date: Mon, 17 Aug 2020 12:56:06 +0200
-Message-Id: <20200817105606.15457-1-sven@narfation.org>
+Subject: [PATCH v2] batman-adv: Migrate to linux/prandom.h
+Date: Mon, 17 Aug 2020 15:47:25 +0200
+Message-Id: <20200817134725.4149-1-sven@narfation.org>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1597662297;
+	s=20121; t=1597672497;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=lIQkJdKItQtPGIYA1cpUGi7DZ2Z83z1jPnsLDHRjLoU=;
-	b=ChNzZE+Iyntvug2R3ftTtwgQo1UTrnq0HURIKdkH03RPXuVBsMFGuUu5aN86v0N66mJPzU
-	X/kyOcEEItb2hOjLMj0zi1KCzdz/gb/wa6FgfXaCJfsVwYGNQ4sEDvapecvHLLEs5SuuDr
-	VxLRxejC5EpUE4XGp9S70myXyA70NNY=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1597662297; a=rsa-sha256;
+	bh=ypu1CrPXqWNF6a884MIAx2y3h1VwqlAXoytBr6nzE9Y=;
+	b=rG9Wv62F70d2f2/cfXbP7Tpc5Vs1mXBVcKEuIn0jjoqW3Oy7mTB5E9ye5ny0e3MH90nHI8
+	SmJDJDV0/hjW5st4Usfk2A7NJHgrGf9GSMTenoX+L5a7L9KxnVkfIjq8dYdSvi2wbED/jP
+	xYG8WCVzL5CVUypoFyWk9sFpZB//GME=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1597672497; a=rsa-sha256;
 	cv=none;
-	b=RB2N2qbTzQeV4IQm+n4nC1WoSyAgEP3jjHMukmG9tm4I5Fpx2NhudoXXxo2Ps7o7/+DGKb
-	8PQ0v21qUE825RuVEFvA4uK8sMehQ71JoFNToHGo1e9YifNlZCkyobRF60TWMq//x4Sk/a
-	icD9JTSLEonDYlI83X7sNhq5zq/kfjo=
+	b=r24TIDCOIw0skx3KL8Bxh8Usnlyu6oJFjFSdKgRPkdlwIl9Ku0IY1UI4WA8+KkdXxvwUFm
+	GYPDuOQefDIa/Cmd8U/cENV349q33nBs5GSuN6XVfhc7D/w4/1FTYOR1LlRuePhchwN09y
+	y5A6LjOeAWhqrAhLcgvBkrdwyDYQPaY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Kxc3PqtG;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=kYmMzxiS;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: FH3PYCIKCQLZRS4AAPBXAOBZEIABMO3V
-X-Message-ID-Hash: FH3PYCIKCQLZRS4AAPBXAOBZEIABMO3V
+Message-ID-Hash: BBT52MRGGUWHRRQ5VJQ5Z4GSZ3NXEQSB
+X-Message-ID-Hash: BBT52MRGGUWHRRQ5VJQ5Z4GSZ3NXEQSB
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FH3PYCIKCQLZRS4AAPBXAOBZEIABMO3V/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BBT52MRGGUWHRRQ5VJQ5Z4GSZ3NXEQSB/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -71,21 +71,24 @@ include from random.h
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- compat-include/linux/prandom.h  | 20 ++++++++++++++++++++
+v2:
+- handle stable kernels in compat code
+
+ compat-include/linux/prandom.h  | 24 ++++++++++++++++++++++++
  net/batman-adv/bat_iv_ogm.c     |  1 +
  net/batman-adv/bat_v_elp.c      |  1 +
  net/batman-adv/bat_v_ogm.c      |  1 +
  net/batman-adv/network-coding.c |  2 +-
- 5 files changed, 24 insertions(+), 1 deletion(-)
+ 5 files changed, 28 insertions(+), 1 deletion(-)
  create mode 100644 compat-include/linux/prandom.h
 
 diff --git a/compat-include/linux/prandom.h b/compat-include/linux/prando=
 m.h
 new file mode 100644
-index 00000000..6280957e
+index 00000000..2863a57d
 --- /dev/null
 +++ b/compat-include/linux/prandom.h
-@@ -0,0 +1,20 @@
+@@ -0,0 +1,24 @@
 +/* SPDX-License-Identifier: GPL-2.0 */
 +/* Copyright (C) 2007-2020  B.A.T.M.A.N. contributors:
 + *
@@ -100,7 +103,14 @@ rsions
 +#define _NET_BATMAN_ADV_COMPAT_LINUX_PRANDOM_H_
 +
 +#include <linux/version.h>
-+#if LINUX_VERSION_IS_GEQ(5, 9, 0)
++#if LINUX_VERSION_IS_GEQ(5, 8, 1) || \
++    (LINUX_VERSION_IS_GEQ(4, 14, 193) && LINUX_VERSION_IS_LESS(4, 15, 0)=
+) || \
++    (LINUX_VERSION_IS_GEQ(4, 19, 138) && LINUX_VERSION_IS_LESS(4, 20, 0)=
+) || \
++    (LINUX_VERSION_IS_GEQ(5, 4, 57) && LINUX_VERSION_IS_LESS(5, 5, 0)) |=
+| \
++    (LINUX_VERSION_IS_GEQ(5, 7, 14) && LINUX_VERSION_IS_LESS(5, 8, 0))
 +#include_next <linux/prandom.h>
 +#else
 +#include <linux/random.h>
