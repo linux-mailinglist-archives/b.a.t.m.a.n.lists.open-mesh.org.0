@@ -2,212 +2,147 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0C9246A2A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 17 Aug 2020 17:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24CC4248B28
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 18 Aug 2020 18:09:30 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5367E800E2;
-	Mon, 17 Aug 2020 17:31:30 +0200 (CEST)
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com [209.85.166.72])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0A12B800E2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Aug 2020 17:31:28 +0200 (CEST)
-Received: by mail-io1-f72.google.com with SMTP id t22so10042246iob.7
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 17 Aug 2020 08:31:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-        bh=W7K7lW55Dn94R20eYYTCzBxa9B+ssGzLwKDqHmECJpA=;
-        b=l3zilF2bL6quYrx/mi6JKg/jW3n4vC9Hh+xKQeaLDpYg2ri9Fm8kVJ51uYUy6fAAed
-         Loez4tyBFRdrN805gjgB9LjxP651ID+PcoMOTXbj+jmsiXHCjvRMmpLVR+EgxzJUZeeR
-         x5kG5LBylK8KKdD+qZSA8uZ09YaTieyE2Sfiu+gR3gtmlwJsxPukZURyhtu7io6sHS3L
-         WcgMO8XIsuQrQevADfs/+T0d/qCEcU8LmrgbhGo3Q/gWJOpcT2WWw6a4uJV6sss/Py6Y
-         U5NsAINi8nVV2fXkmHIiPXmyt7RTq55UrSr0BkwJPsCYq4nh84BKAQPnAPafxqI1X6XR
-         4QQw==
-X-Gm-Message-State: AOAM530BpyyPC77eofEG6T8d5Z0VHXiPyiqn905+wX95XUjTHs47FbNA
-	tMycd1s0/ESsCe4alwyaau5yKfxiJKRriDQJfCdjxzpouDWV
-X-Google-Smtp-Source: ABdhPJwYKxGHy0MLF+yiMDC0FLZLpIMQg10/YFZtRi/BhjGZeROGoSHU7CDMfq2pXT/HGoE9GTN7fsDoqqAxcyEImusSusSEAMtS
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D6BCE80672;
+	Tue, 18 Aug 2020 18:09:28 +0200 (CEST)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60082.outbound.protection.outlook.com [40.107.6.82])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id E0E1D80297
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 18 Aug 2020 16:47:09 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AvSoi2j+ApHQN/KsEL54Gfr/SyLF7JltodrmQvCEZapg85aNKGIUjE99eYFu4YUIWVZcEwmaGWipRH3LeX+De6A4AeTnF1S8X6FljmsWsEBqaYia0RXlhAlzsM88/ebWKvZnLMajM0tmpM7guynIJ5gWYB1ZRn9fu/CYA6kTRiAejOm4VACeWj61d048Ea3iLgH4kqvKwlLmsbBvQzzH8XdtV/mxvGlr1D5cGTd64cruI4ZEd/tokg4tI5GSC3VWDgeBsZ23VHKriPcPL+HT8EnoREOh5Y6vRNEbPqaINpaFRuV7h3D24stD2XADQCNaQjpX4y5K2IRnMgQf97zS/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tvtou7586v0jUV9waDoPTLxI8IHEjeGETp/Z5ja4pM8=;
+ b=LSJfci8QJG1JB6eGOoC8G/F4b7i2Z2bZU5jI8xNHpuEzPUs+yV0zTX4wMWfGM34idzE7MLwucoMkKMqEnLlwYjskTkyEJ6r8Yuurc0xT9y98pzVuZQjXM5V5SAaOxyRLGy7g/bKL6OzAavZ15UgPy3HQ2xWlUCP4FIQE1fJ20j1Nqz5loZEvLn+y0Wkl/tJJYoKwu+1J6+ykxVtPdkD3RlQq3ZlTOaiFFfKCn+NmAo595xAft6/xfLrGTxloM6v++Ag8wOCwrSK72giAWWy8tn1lifrpMmdEAgaJhTeSnueQHHnAAI7YqQ+v46puItqlWnQwWv7q1oKc3ffdH5y3vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=haltian.com; dmarc=pass action=none header.from=haltian.com;
+ dkim=pass header.d=haltian.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=haltian.onmicrosoft.com; s=selector2-haltian-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tvtou7586v0jUV9waDoPTLxI8IHEjeGETp/Z5ja4pM8=;
+ b=X6AlTm/WizgHNK1e0nNOufmVsBS4K4XLSddqDuS7n0jX2o5IdnepmiS+uCNmVpLH2rml3xX7MxtQtZd41Cjd3O/k9CFVtEr0KWyrLoZMJ016qLngC0EMGZdlTFvjFlNS7+YckfDBl1vpTjw+0Erh0N+PBQLA/oKKQT67PXjaXfU=
+Authentication-Results: haltian.com; dkim=none (message not signed)
+ header.d=none;haltian.com; dmarc=none action=none header.from=haltian.com;
+Received: from VI1PR0702MB3760.eurprd07.prod.outlook.com (2603:10a6:803:9::25)
+ by VI1PR07MB4301.eurprd07.prod.outlook.com (2603:10a6:802:67::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.10; Tue, 18 Aug
+ 2020 14:47:07 +0000
+Received: from VI1PR0702MB3760.eurprd07.prod.outlook.com
+ ([fe80::fc9c:b733:d178:6858]) by VI1PR0702MB3760.eurprd07.prod.outlook.com
+ ([fe80::fc9c:b733:d178:6858%3]) with mapi id 15.20.3305.023; Tue, 18 Aug 2020
+ 14:47:07 +0000
+From: Jussi Kivilinna <jussi.kivilinna@haltian.com>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH] batman-adv: bla: use netif_rx_ni when not in interrupt context
+Date: Tue, 18 Aug 2020 17:46:10 +0300
+Message-Id: <20200818144610.8094-1-jussi.kivilinna@haltian.com>
+X-Mailer: git-send-email 2.25.1
+Content-Type: text/plain
+X-ClientProxiedBy: HE1PR0301CA0019.eurprd03.prod.outlook.com
+ (2603:10a6:3:76::29) To VI1PR0702MB3760.eurprd07.prod.outlook.com
+ (2603:10a6:803:9::25)
 MIME-Version: 1.0
-X-Received: by 2002:a05:6602:29c3:: with SMTP id z3mr12649177ioq.126.1597678286698;
- Mon, 17 Aug 2020 08:31:26 -0700 (PDT)
-Date: Mon, 17 Aug 2020 08:31:26 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000be7fb805ad147615@google.com>
-Subject: inconsistent lock state in sco_sock_timeout
-From: syzbot <syzbot+2f6d7c28bb4bf7e82060@syzkaller.appspotmail.com>
-To: a@unstable.cc, andrew@lunn.ch, b.a.t.m.a.n@lists.open-mesh.org,
-	davem@davemloft.net, hkallweit1@gmail.com, jakub.kicinski@netronome.com,
-	johan.hedberg@gmail.com, kuba@kernel.org, linux-bluetooth@vger.kernel.org,
-	linux-kernel@vger.kernel.org, marcel@holtmann.org, mareklindner@neomailbox.ch,
-	netdev@vger.kernel.org, sw@simonwunderlich.de,
-	syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1597678288;
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from t520.lan (80.75.107.218) by HE1PR0301CA0019.eurprd03.prod.outlook.com (2603:10a6:3:76::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.15 via Frontend Transport; Tue, 18 Aug 2020 14:47:07 +0000
+Received: by t520.lan (Postfix, from userid 1000)	id 1F03B600E33; Tue, 18 Aug 2020 17:47:06 +0300 (EEST)
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [80.75.107.218]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3e966057-e802-4cd6-79d9-08d843859471
+X-MS-TrafficTypeDiagnostic: VI1PR07MB4301:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<VI1PR07MB43012C7652A28261153AAFC3E35C0@VI1PR07MB4301.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	TP6v/89BIZiSXzs8ePRBnzpBMJDH6eMr6SDnPPi0Ye6VVD1y77PPt1C9I5doHoBjbnLH/VcqjMlfmEr/1TURwyohrvtvnNMgPmq/NWQS7KeEwmlkXiYsDp8QR2TTSfk974A0V6p+gHVsC7wRbI8Ny0M9EB1AreHPnQ4T7mX8szCYSeTa1Vj9pbokpFUqbv3DyHcWsemNJVGbrtB//qZ5stEYTyUCNF8VGO7Qw92os/xxxNtU0+wZ7zS2Nk155IYMj9Z05jbrLlF0Cs+CHKjLlJM2k3OeBy1hgo0OBEcSZmcJEwCZjC/Ot1u6D8a5BxU9p5qhMbdK5vBlz2Vt05x2wQ==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0702MB3760.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(39840400004)(346002)(136003)(376002)(42186006)(66476007)(6666004)(186003)(5660300002)(8936002)(26005)(107886003)(66556008)(2906002)(478600001)(66946007)(6266002)(36756003)(2616005)(83380400001)(86362001)(4326008)(316002)(6916009)(1076003)(44832011)(52116002)(4744005)(8676002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	jRRhXywBHNV4p3PK9SlEgPIlXnICjTDZ8SjwwsbUHCsVIMjwWLV+X3LHRl/66QpYSfVTPrAfmfwvbkZxpjrXjwUzSBT6o9Ab5ynpDduMPSWjdrze0i+uFcfr8eJbgq9KT+wklgVnL6jh0h3Qwet+5OeYA+J61XUbY0hEi5PyQezOtjBKxUMy3CjJk3DWSWn1g27xfsIQIlJNBZfvrhj3ER/qx1R9Ip/DMAUvbPKV8TISnNKILmn6vOK/ix3HzrlRYq5QTGuCnpoBnxGOirjNC4G4QgsjOszP2mhszQNsW8MJApxRtuh1gdbhDW8HYvo/WGwqYZSdyQlEpGE9ZEUTDFhyJT1on67ddRdpCayfpnuLZ4vvwi701hYT3FqflMUQdNq8ty7xKt1iKOfwouo1hp6IxM+yIt8xdpDOG160NXhDXy/rmZIRU05KL2ktCIicQq7UZumztbauMoSl98cLqLVug23prSihE4Hgi5DOrxtznDc0GAvyPq4yj1e8Yw8h27plwy7dX+KnVIZ+ykTY/jZAU2ro6yla710EAwtM/3ur7kEY6Q2Oj7q+cGtoDYJmaKfE9dU+quubJuHINvpXIueTJ5578Y1L/wOx7OogF3cz3+ME+l95zVovZ5JOKRZERiZHARmlJfJFV5QyneQKtA==
+X-OriginatorOrg: haltian.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e966057-e802-4cd6-79d9-08d843859471
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0702MB3760.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2020 14:47:07.5220
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2f7c6292-67f2-4cc5-82be-5d187e289ab2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yAWuXWpd1exDzKQirK9S8h8MTUxOSHUiamqjlhqNzMtNocsBLs9gqyqGEYHBDXudCSEj/bHPtjtgyQUpS80OSTg/phWt7wVCUIsrtM+bMOs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB4301
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1597762030;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=W7K7lW55Dn94R20eYYTCzBxa9B+ssGzLwKDqHmECJpA=;
-	b=XVn4J5vxevxAO/bejcZoV/EBia/pf2w9/90gN50mXuIbrEubrY9PBbIwhkhaVP3gIXVlo7
-	aLHakvic0vM709UG2mO/miiNVmPRdfPZlNC2JZoi+ZrNzF6POnbzYCgqHOEJa90+RTUKLS
-	nSuO8YkDiT9VamRvGxx0Htng/LA/5fA=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1597678288; a=rsa-sha256;
-	cv=none;
-	b=Ljp7fh39PY36oRzF7zNU823zfRkslfO48DMhYQ9HTcHpCpxCzHMGKV2PPpsw/KRM10lvKY
-	OX/ILNeGLn2dgRtf+sCNGgro13O2HhOPipDo7ucEifiXpChMLzyjND9tW01fCYTOTnK4yx
-	eixcFgexQsxAO2qdpqxJ0AUIzdfVUlA=
-ARC-Authentication-Results: i=1;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=Tvtou7586v0jUV9waDoPTLxI8IHEjeGETp/Z5ja4pM8=;
+	b=qMXkNYarQz9D+0BgvmQsi4IWk40GTn5y1BOBoJV05OHQUk/0pRB9YQ6E5edQLOUo2A1I83
+	q5JRXzFw1GTsUT7dBbycj7JML/Ielo9sGZRU2S4UNTiaikrFrMx6OT+0Pt66qZr/g908xr
+	prBjm7TAt7cXIAYEahRQlIQuw/8cp5M=
+ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1597762030; a=rsa-sha256;
+	cv=pass;
+	b=0pZcIhDklCaW+vr+cu+FBVir7Kd02NzCQd1dusNNgKLjZbcljDPAW9ZH37JseCDN9rPzwF
+	TCuEM1ft8djwgHkcI9a7xjxvM83L9WnnaRzGIt20zwPXV939QVK/y+Q1P01Cqn7M8wbkCG
+	cqfc8LrFFmHfMMuRvh3y7WIR5BGOfEU=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of 3zqI6XwkbAP0x34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.72 as permitted sender) smtp.mailfrom=3zqI6XwkbAP0x34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-Message-ID-Hash: IPCQKR4CBXWR5FMO6XBHAJK4TPUAJGMQ
-X-Message-ID-Hash: IPCQKR4CBXWR5FMO6XBHAJK4TPUAJGMQ
-X-MailFrom: 3zqI6XwkbAP0x34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+	dkim=pass header.d=haltian.onmicrosoft.com header.s=selector2-haltian-onmicrosoft-com header.b=X6AlTm/W;
+	spf=neutral (diktynna.open-mesh.org: 40.107.6.82 is neither permitted nor denied by domain of jussi.kivilinna@haltian.com) smtp.mailfrom=jussi.kivilinna@haltian.com;
+	arc=pass (microsoft.com:s=arcselector9901:i=1)
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: jussi.kivilinna@haltian.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: 6ZESXNSNFROQEAV4BXUNZTFELLGRHMR5
+X-Message-ID-Hash: 6ZESXNSNFROQEAV4BXUNZTFELLGRHMR5
+X-Mailman-Approved-At: Tue, 18 Aug 2020 16:09:27 +0200
+CC: Jussi Kivilinna <jussi.kivilinna@haltian.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IPCQKR4CBXWR5FMO6XBHAJK4TPUAJGMQ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6ZESXNSNFROQEAV4BXUNZTFELLGRHMR5/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello,
+batadv_bla_send_claim() gets called from worker thread context through
+batadv_bla_periodic_work(), thus netif_rx_ni needs to be used in that
+case. This fixes "NOHZ: local_softirq_pending 08" log messages seen
+when batman-adv is enabled.
 
-syzbot found the following issue on:
-
-HEAD commit:    2cc3c4b3 Merge tag 'io_uring-5.9-2020-08-15' of git://git...
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=10cf6aa6900000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=19f02fc5c511a391
-dashboard link: https://syzkaller.appspot.com/bug?extid=2f6d7c28bb4bf7e82060
-compiler:       clang version 10.0.0 (https://github.com/llvm/llvm-project/ c2443155a0fb245c8f17f2c1c72b6ea391e86e81)
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=13071491900000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=11ec5be2900000
-
-The issue was bisected to:
-
-commit 331c56ac73846fa267c04ee6aa9a00bb5fed9440
-Author: Heiner Kallweit <hkallweit1@gmail.com>
-Date:   Mon Aug 12 21:51:27 2019 +0000
-
-    net: phy: add phy_speed_down_core and phy_resolve_min_speed
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1623bea6900000
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=1523bea6900000
-console output: https://syzkaller.appspot.com/x/log.txt?x=1123bea6900000
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+2f6d7c28bb4bf7e82060@syzkaller.appspotmail.com
-Fixes: 331c56ac7384 ("net: phy: add phy_speed_down_core and phy_resolve_min_speed")
-
-================================
-WARNING: inconsistent lock state
-5.8.0-syzkaller #0 Not tainted
---------------------------------
-inconsistent {SOFTIRQ-ON-W} -> {IN-SOFTIRQ-W} usage.
-swapper/1/0 [HC0[0]:SC1[1]:HE1:SE0] takes:
-ffff888088b810a0 (slock-AF_BLUETOOTH-BTPROTO_SCO){+.?.}-{2:2}, at: spin_lock include/linux/spinlock.h:354 [inline]
-ffff888088b810a0 (slock-AF_BLUETOOTH-BTPROTO_SCO){+.?.}-{2:2}, at: sco_sock_timeout+0x2b/0x280 net/bluetooth/sco.c:83
-{SOFTIRQ-ON-W} state was registered at:
-  lock_acquire+0x160/0x730 kernel/locking/lockdep.c:5005
-  __raw_spin_lock include/linux/spinlock_api_smp.h:142 [inline]
-  _raw_spin_lock+0x2a/0x40 kernel/locking/spinlock.c:151
-  spin_lock include/linux/spinlock.h:354 [inline]
-  sco_conn_del+0x100/0x710 net/bluetooth/sco.c:176
-  hci_disconn_cfm include/net/bluetooth/hci_core.h:1438 [inline]
-  hci_conn_hash_flush+0x127/0x200 net/bluetooth/hci_conn.c:1557
-  hci_dev_do_close+0xb7b/0x1040 net/bluetooth/hci_core.c:1770
-  hci_unregister_dev+0x185/0x1590 net/bluetooth/hci_core.c:3790
-  vhci_release+0x73/0xc0 drivers/bluetooth/hci_vhci.c:340
-  __fput+0x34f/0x7b0 fs/file_table.c:281
-  task_work_run+0x137/0x1c0 kernel/task_work.c:141
-  exit_task_work include/linux/task_work.h:25 [inline]
-  do_exit+0x5f3/0x1f20 kernel/exit.c:806
-  do_group_exit+0x161/0x2d0 kernel/exit.c:903
-  get_signal+0x13bb/0x1d50 kernel/signal.c:2757
-  arch_do_signal+0x33/0x610 arch/x86/kernel/signal.c:811
-  exit_to_user_mode_loop kernel/entry/common.c:135 [inline]
-  exit_to_user_mode_prepare+0x8d/0x1b0 kernel/entry/common.c:166
-  syscall_exit_to_user_mode+0x5e/0x1a0 kernel/entry/common.c:241
-  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-irq event stamp: 1760434
-hardirqs last  enabled at (1760434): [<ffffffff882bbc5f>] __raw_spin_unlock_irq include/linux/spinlock_api_smp.h:168 [inline]
-hardirqs last  enabled at (1760434): [<ffffffff882bbc5f>] _raw_spin_unlock_irq+0x1f/0x80 kernel/locking/spinlock.c:199
-hardirqs last disabled at (1760433): [<ffffffff882bbab1>] __raw_spin_lock_irq include/linux/spinlock_api_smp.h:126 [inline]
-hardirqs last disabled at (1760433): [<ffffffff882bbab1>] _raw_spin_lock_irq+0x41/0x80 kernel/locking/spinlock.c:167
-softirqs last  enabled at (1760422): [<ffffffff88292264>] sysvec_apic_timer_interrupt+0x14/0xf0 arch/x86/kernel/apic/apic.c:1091
-softirqs last disabled at (1760423): [<ffffffff88400f2f>] asm_call_on_stack+0xf/0x20 arch/x86/entry/entry_64.S:706
-
-other info that might help us debug this:
- Possible unsafe locking scenario:
-
-       CPU0
-       ----
-  lock(slock-AF_BLUETOOTH-BTPROTO_SCO);
-  <Interrupt>
-    lock(slock-AF_BLUETOOTH-BTPROTO_SCO);
-
- *** DEADLOCK ***
-
-1 lock held by swapper/1/0:
- #0: ffffc90000da8dc0 ((&sk->sk_timer)){+.-.}-{0:0}, at: lockdep_copy_map include/linux/lockdep.h:45 [inline]
- #0: ffffc90000da8dc0 ((&sk->sk_timer)){+.-.}-{0:0}, at: call_timer_fn+0x57/0x160 kernel/time/timer.c:1403
-
-stack backtrace:
-CPU: 1 PID: 0 Comm: swapper/1 Not tainted 5.8.0-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-Call Trace:
- <IRQ>
- __dump_stack lib/dump_stack.c:77 [inline]
- dump_stack+0x1f0/0x31e lib/dump_stack.c:118
- print_usage_bug+0x1117/0x11d0 kernel/locking/lockdep.c:3350
- mark_lock_irq arch/x86/include/asm/paravirt.h:661 [inline]
- mark_lock+0x10e2/0x1b00 kernel/locking/lockdep.c:4006
- mark_usage kernel/locking/lockdep.c:3905 [inline]
- __lock_acquire+0xa99/0x2ab0 kernel/locking/lockdep.c:4380
- lock_acquire+0x160/0x730 kernel/locking/lockdep.c:5005
- __raw_spin_lock include/linux/spinlock_api_smp.h:142 [inline]
- _raw_spin_lock+0x2a/0x40 kernel/locking/spinlock.c:151
- spin_lock include/linux/spinlock.h:354 [inline]
- sco_sock_timeout+0x2b/0x280 net/bluetooth/sco.c:83
- call_timer_fn+0x91/0x160 kernel/time/timer.c:1413
- expire_timers kernel/time/timer.c:1458 [inline]
- __run_timers+0x65e/0x830 kernel/time/timer.c:1755
- run_timer_softirq+0x46/0x80 kernel/time/timer.c:1768
- __do_softirq+0x236/0x66c kernel/softirq.c:298
- asm_call_on_stack+0xf/0x20 arch/x86/entry/entry_64.S:706
- </IRQ>
- __run_on_irqstack arch/x86/include/asm/irq_stack.h:22 [inline]
- run_on_irqstack_cond arch/x86/include/asm/irq_stack.h:48 [inline]
- do_softirq_own_stack+0x91/0xe0 arch/x86/kernel/irq_64.c:77
- invoke_softirq kernel/softirq.c:393 [inline]
- __irq_exit_rcu+0x1e1/0x1f0 kernel/softirq.c:423
- irq_exit_rcu+0x5/0x10 kernel/softirq.c:435
- sysvec_apic_timer_interrupt+0xd5/0xf0 arch/x86/kernel/apic/apic.c:1091
- asm_sysvec_apic_timer_interrupt+0x12/0x20 arch/x86/include/asm/idtentry.h:581
-RIP: 0010:tick_nohz_idle_exit+0x2f2/0x3a0 kernel/time/tick-sched.c:1213
-Code: 30 00 74 0c 48 c7 c7 08 15 4d 89 e8 f8 0b 4c 00 48 83 3d 48 52 e4 07 00 0f 84 a6 00 00 00 e8 95 37 0c 00 fb 66 0f 1f 44 00 00 <48> 83 c4 20 5b 41 5c 41 5d 41 5e 41 5f 5d c3 e8 7a 37 0c 00 0f 0b
-RSP: 0018:ffffc90000d3fe68 EFLAGS: 00000293
-RAX: ffffffff8168c2cb RBX: ffff8880ae927f80 RCX: ffff8880a9a3e340
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff8168c29a
-RBP: 000000b26607d004 R08: ffffffff817abce0 R09: ffffed1015d26c6c
-R10: ffffed1015d26c6c R11: 0000000000000000 R12: 0000000000000000
-R13: ffff8880ae927f54 R14: dffffc0000000000 R15: 1ffff11015d24fea
- do_idle+0x5fe/0x650 kernel/sched/idle.c:289
- cpu_startup_entry+0x15/0x20 kernel/sched/idle.c:372
- secondary_startup_64+0xa4/0xb0 arch/x86/kernel/head_64.S:243
-
-
+Signed-off-by: Jussi Kivilinna <jussi.kivilinna@haltian.com>
 ---
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+ net/batman-adv/bridge_loop_avoidance.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
-syzbot can test patches for this issue, for details see:
-https://goo.gl/tpsmEJ#testing-patches
+diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/brid=
+ge_loop_avoidance.c
+index 5c41cc52bc53..ab6cec3c7586 100644
+--- a/net/batman-adv/bridge_loop_avoidance.c
++++ b/net/batman-adv/bridge_loop_avoidance.c
+@@ -437,7 +437,10 @@ static void batadv_bla_send_claim(struct batadv_priv=
+ *bat_priv, u8 *mac,
+ 	batadv_add_counter(bat_priv, BATADV_CNT_RX_BYTES,
+ 			   skb->len + ETH_HLEN);
+=20
+-	netif_rx(skb);
++	if (in_interrupt())
++		netif_rx(skb);
++	else
++		netif_rx_ni(skb);
+ out:
+ 	if (primary_if)
+ 		batadv_hardif_put(primary_if);
+--=20
+2.25.1
