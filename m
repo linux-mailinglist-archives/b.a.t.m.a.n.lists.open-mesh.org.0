@@ -2,106 +2,101 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA94424EBB2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 23 Aug 2020 07:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45B624EBAE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 23 Aug 2020 07:49:59 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 95DAB81C40;
-	Sun, 23 Aug 2020 07:52:39 +0200 (CEST)
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1231::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id BF1748009D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 23 Aug 2020 02:12:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=S+FPpVijMG08FT12uXFjTaQyoZqQXqUSzSZgfsXA7u8=; b=LJgTBaMvmoNXi8acOHxw7tC91L
-	ykgr3Vgr5ngzxZ2Qim7bc31cFcJmbD0CLpom8NbTwN+EpUg392XK5ws2BJVoZ6Qcr5aEtIdXE0Xap
-	ITgpT8xZMuHl2iJvcpx+kGSI8u/eYgfPcgbQezozDFFcSoLW5JHdI2vgIjb0J1QDYvl0yv+M2XA8F
-	9IahxImuLsDS0kKh/VpufWcozrt6ul+ePmsznpZ9cAKUHdu2tC5Txo1CdzYkN0jSzLFmXDELJuxdf
-	GbVCgIt9v/p446I1Oce5F1VInb/pT9jkWHoW409pYYgSjRm5G9n28B5Iv71mAg/FuOrbEghKuPt+N
-	SHJsXVMg==;
-Received: from [2601:1c0:6280:3f0::19c2] (helo=smtpauth.infradead.org)
-	by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1k9ci7-0006Nf-72; Sat, 22 Aug 2020 23:14:07 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: netdev@vger.kernel.org
-Subject: [PATCH 8/8] net: batman-adv: types.h: delete duplicated words
-Date: Sat, 22 Aug 2020 16:13:35 -0700
-Message-Id: <20200822231335.31304-9-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.26.2
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8E5C980E1D;
+	Sun, 23 Aug 2020 07:49:58 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 369F48017C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 23 Aug 2020 07:49:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1598161794;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/w9wtTgUFAfnZ/V+ZprD6aGtvFc9a4IfLLPsuWQJwa8=;
+	b=Tl7uDJkaV1sBKLE1i4DZRRILEsx66j1H/xU67mec/6LJSE1JN+H9RJl5Hft62fhKIVZRNO
+	TnKSdPT++0A8whb0xBMEWLWx/dhuxiIh4Ge3BdEyvNqOx3Pb4IjNrbJ/jm3I9W/uwiwTdD
+	Lr4R2kahezFgwrMq5KZ53QEFR9QdSEs=
+From: Sven Eckelmann <sven@narfation.org>
+To: netdev@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH 0/8] net: batman-adv: delete duplicated words + other fixes
+Date: Sun, 23 Aug 2020 07:49:43 +0200
+Message-ID: <1676363.I2AznyWB51@sven-edge>
 In-Reply-To: <20200822231335.31304-1-rdunlap@infradead.org>
 References: <20200822231335.31304-1-rdunlap@infradead.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart3238041.zqnHrrKj3g"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1598141576;
+	s=20121; t=1598161795;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=S+FPpVijMG08FT12uXFjTaQyoZqQXqUSzSZgfsXA7u8=;
-	b=zKs/OpAoQpomVxtJuy1Gv5UimJOK935j9znQ1Dl4pigya9on2MPSFcF98yT5n3yVvOZG3u
-	WFGjzAiWPW1aRDf0/8kOffBnt/n4C5IRMTb/Bb5fbQ3U3UyqeKdFybQSD1tcdLOsy7v1FN
-	3HdN7o+AMyHcPOkiUQ0LxsbxxMjFmic=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598141576; a=rsa-sha256;
+	bh=/w9wtTgUFAfnZ/V+ZprD6aGtvFc9a4IfLLPsuWQJwa8=;
+	b=mDehj4INUAwt9rNW+fqPiqUxV3PDGBn+ckYnXKPNFBLu1LzwiV7d+gC0/5b0m3q1/ko/lk
+	fke1GI1n5n911JK90SayLZnj8UodGHIgeuRS01/+HW+sakULNQdjVyI+PCgRQ7u+GvzaWw
+	4lldScmyqSjsbcW4kiaJtl5yiREXuXM=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598161795; a=rsa-sha256;
 	cv=none;
-	b=zqmAad/9+SS9nkQoMYmX5NotyKOBRrl6QZpSyP8BGHr9zgfYg+/VPPeZCbGwWt0EReLD1Z
-	p7+iHe1lxSDpwpJVfemW7AIRThRnMCeLvrI/mp2lPPSQQ+iHi05VBUDoKDg6xRyiRQ0PQN
-	Mp2BTjR8AXgP9/9iRbStpGpNCyjRK34=
+	b=aHDT8EY7qAjg78Txvk2TZtvsE3GA9uQDFRJ+bLL+BTXQez/HYAOfI6FW95wOMUU2wuHRZi
+	CwMte8VKczNLGq9rm8FE9FCw56ELq+nqyCx3tA27Cc234IjB4Vjc4I/acNHXpj2ATWLAt1
+	DZ7ZadleOacj2/ffuC7u+kaK/0FQRXg=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=infradead.org header.s=merlin.20170209 header.b=LJgTBaMv;
-	spf=none (diktynna.open-mesh.org: domain of rdunlap@infradead.org has no SPF policy when checking 2001:8b0:10b:1231::1) smtp.mailfrom=rdunlap@infradead.org
-Content-Transfer-Encoding: quoted-printable
-X-MailFrom: rdunlap@infradead.org
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: 63D7PJEWZMFKLJQHVTZXDLEKGGCEWUDF
-X-Message-ID-Hash: 63D7PJEWZMFKLJQHVTZXDLEKGGCEWUDF
-X-Mailman-Approved-At: Sun, 23 Aug 2020 05:52:26 +0200
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Tl7uDJka;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+Message-ID-Hash: 52JSJORDLQNCFWSYYH3TZMUOASK7QJNS
+X-Message-ID-Hash: 52JSJORDLQNCFWSYYH3TZMUOASK7QJNS
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: Randy Dunlap <rdunlap@infradead.org>, Marek Lindner <mareklindner@neomailbox.ch>, Antonio Quartulli <a@unstable.cc>, b.a.t.m.a.n@lists.open-mesh.org, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/63D7PJEWZMFKLJQHVTZXDLEKGGCEWUDF/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/52JSJORDLQNCFWSYYH3TZMUOASK7QJNS/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Drop the repeated words "time" and "address".
+--nextPart3238041.zqnHrrKj3g
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Marek Lindner <mareklindner@neomailbox.ch>
-Cc: Simon Wunderlich <sw@simonwunderlich.de>
-Cc: Antonio Quartulli <a@unstable.cc>
-Cc: Sven Eckelmann <sven@narfation.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Jakub Kicinski <kuba@kernel.org>
----
- net/batman-adv/types.h |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Sunday, 23 August 2020 01:13:27 CEST Randy Dunlap wrote:
+> Drop repeated words in net/batman-adv/.
 
---- linux-next-20200731.orig/net/batman-adv/types.h
-+++ linux-next-20200731/net/batman-adv/types.h
-@@ -1492,7 +1492,7 @@ struct batadv_tp_vars {
- 	/** @unacked_lock: protect unacked_list */
- 	spinlock_t unacked_lock;
-=20
--	/** @last_recv_time: time time (jiffies) a msg was received */
-+	/** @last_recv_time: time (jiffies) a msg was received */
- 	unsigned long last_recv_time;
-=20
- 	/** @refcount: number of context where the object is used */
-@@ -1996,7 +1996,7 @@ struct batadv_tt_change_node {
-  */
- struct batadv_tt_req_node {
- 	/**
--	 * @addr: mac address address of the originator this request was sent t=
-o
-+	 * @addr: mac address of the originator this request was sent to
- 	 */
- 	u8 addr[ETH_ALEN];
-=20
+Please rebase to only contain the changes not yet in 
+https://git.open-mesh.org/linux-merge.git/shortlog/refs/heads/batadv/net-next
+
+Kind regards,
+	Sven
+
+--nextPart3238041.zqnHrrKj3g
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl9CA3cACgkQXYcKB8Em
+e0aLPw//YiXX3hTmjuwrfrwU3PH8X7RrNwDqp20IFr7tNag9pBtc9IQARHdT3eEC
+GOAFjPOibVyU9keF4fsbXQxUrq4Jux+Jg6AsBAcZLA3hkGcA0kG6fmJTAXey8RWI
+qpy4KzVOwaWgeW3J3lR5saOXZIY1FezhgZcJSWeU31lMwJYN4A9W8OvHXKbvCKff
+Dqf6+jSCOSgKhlAPe+UVpadajB2z9mgaXYOXquSfHWctlWjJnhUsh3txTWNqSBZi
+iWqI1wBXW5qb6WGBKU52c6QaTrVTPEcnFZIFC597oE7L+adUqu+WItcyGHbcUNy5
+tEhsjTU1YpumlG984P95SIndAuBkVFpEXON00oOsIdEt+NsjB4VdM6e71EMShaG5
+tjBWtMuSXtK35E8ScaMIpr4zXFW53+Etgklq65+K9tV9PEv1LD85hN9fiSzYC0TX
+tyCHHS1FEZaCYYWhJZTarBBEm6dxUhBwy1Hnnnc9vlRVPFGsxDg6V1QKXFKoB61q
+6cifUHxV9j5paN635O/+9A9cONnBH+ppy4LXfI1rWOmLCg4M8fZFr/QSObvt4dy0
+vBa9dYmX4BE6pObHDNatyAFo5pwHobwfyLK4rusiUjtwrt/nW8vKqnDPEUUP4nxl
+tMztFtvGBLdXc2V936H6FLKOjS7tukfiq2mc8GsHAO8Y8E3Tpp8=
+=Dvr/
+-----END PGP SIGNATURE-----
+
+--nextPart3238041.zqnHrrKj3g--
+
+
