@@ -2,181 +2,111 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 549ED25317B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 26 Aug 2020 16:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7015125498A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Aug 2020 17:35:21 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0E37C8059A;
-	Wed, 26 Aug 2020 16:38:28 +0200 (CEST)
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com [209.85.166.197])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id ACA23803CE
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 26 Aug 2020 16:38:24 +0200 (CEST)
-Received: by mail-il1-f197.google.com with SMTP id i19so1691233ild.14
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 26 Aug 2020 07:38:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-        bh=hVKkFWcDp6C4jE79q6b4gVLV14SWjOcaiVviZRs5Qkw=;
-        b=NNn0hPxBjPdN1whBtq6iExDVCcBCJEq+7V2bnLk2hNa8vZ3A526304DF75qooT8P8K
-         5KPUl8WvJmMp+eU/bPsSpdRF7crdvmDjBMp9siJGdeCmLqUFmMU+KSWI3q7z6yhMoYk5
-         FEp7DrykHHHBLvB+gLoP0UbPOEBL4Nd21sE9RzJ/yo6M2gPAXv6Q1WtnlcE2SJ/3ypgG
-         Kh4XRGW/OhZeZvpM26AWzBWgzXSMzXSC5SJGmkWaaB2i4Zm4ehyNVAhyz0y+FFdyFkV1
-         kT+kq0NNMHIvRajurgsZg9EGnr9UqDWZzhZxwMOEBT+wle6cygBRL36xaZHNUrub3ap9
-         4m9g==
-X-Gm-Message-State: AOAM530g8CY9hAi5mGXL9mKL/7eoXK/PQtEhM7iYAkFRDmqT2HefG2pY
-	aRXVg0dSDGpGHzseJj4oQu/YmMkkaAvFI1+N9NfDUsw1IIdc
-X-Google-Smtp-Source: ABdhPJyeU8DkqIF0GIAqJjpYJ/sw6qESdwRLjSdqwsNzGKttk3AY6IVJEtNZINrukqwCYj/JUGPL43QYum6K0s/mcPlCKe9BD1xz
-MIME-Version: 1.0
-X-Received: by 2002:a02:aa87:: with SMTP id u7mr15098111jai.13.1598452703395;
- Wed, 26 Aug 2020 07:38:23 -0700 (PDT)
-Date: Wed, 26 Aug 2020 07:38:23 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000009383f505adc8c5a0@google.com>
-Subject: general protection fault in nexthop_is_blackhole
-From: syzbot <syzbot+b2c08a2f5cfef635cc3a@syzkaller.appspotmail.com>
-To: a@unstable.cc, andriin@fb.com, ast@kernel.org,
-	b.a.t.m.a.n@lists.open-mesh.org, bpf@vger.kernel.org, daniel@iogearbox.net,
-	davem@davemloft.net, hariprasad.kelam@gmail.com, herbert@gondor.apana.org.au,
-	john.fastabend@gmail.com, kafai@fb.com, kpsingh@chromium.org, kuba@kernel.org,
-	kuznet@ms2.inr.ac.ru, linux-kernel@vger.kernel.org,
-	mareklindner@neomailbox.ch, netdev@vger.kernel.org, songliubraving@fb.com,
-	steffen.klassert@secunet.com, sw@simonwunderlich.de,
-	syzkaller-bugs@googlegroups.com, yhs@fb.com, yoshfuji@linux-ipv6.org
-Content-Type: text/plain; charset="UTF-8"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1598452704;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3EEC3802CB;
+	Thu, 27 Aug 2020 17:35:20 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id ECE1A802B3
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Aug 2020 17:35:17 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+	t=1598542517;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=hVKkFWcDp6C4jE79q6b4gVLV14SWjOcaiVviZRs5Qkw=;
-	b=Yfa/wOH8QtpicffWIpyJKMQkTW4cSZkER8lbS11hqyDqBQ8y/WiCpRjRQfjM59eR++o2dZ
-	cXiKFzXEW2BvVY/3pGWfs/d6rSBfbnnaJiL+exv+HJNFPZ6and59iBuu36UAnQBfGGFL8v
-	kR4hhR4qdHxwK00Mr8x6YP7Nf11ufbo=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598452704; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=g6c1LAnQY6ZErUT49uiD+gcD/rrAfGdbJKMoGEz54r8=;
+	b=FGke5AJ3GcSGMKptyAdhFANikJ9L+HD9t7GvOPeSGYmwMeqqX0lRFzd8tpNH8rS3P6K5f+
+	ur3ukI7r7hExNTw/+v4LXFkl2LWXv9WVXtnAe6GH+VcQhoK/BUm166syEu2d9YTmhU0rG1
+	pG3Pe9Ts0MYXEJu7d1Fl5ZgAecdl2jvz6zuTXen1Ki8A6+jYUFmVaDBnrCTGB++eMRn5I1
+	BZovi/PYel2tcOtPaxhElO6wHkpXVdiKURgbLMYAGm94RwhcYbbm7tL9kNrfdGXEVo8qCk
+	8xEeqBL06TW4zafePKPuI7YvGq4WtVZXZDfbttyKOuIhTDS5z8VMAygR+7Fr6w==
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH] batman-adv: bla: fix type misuse for backbone_gw hash indexing
+Date: Thu, 27 Aug 2020 17:34:48 +0200
+Message-Id: <20200827153448.3935-1-linus.luessing@c0d3.blue>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1598542518;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=g6c1LAnQY6ZErUT49uiD+gcD/rrAfGdbJKMoGEz54r8=;
+	b=D++hZ28rcW6P9oYW6j2VbZF/bIAltkha80KPeK6Yveu38nq5rtH3tp4vYsjAu8u2j9ayUA
+	862OBRGVhjPRvV+NkAvgDwfOUra2rAA2dtt5eIgPoBPd9x+M8SQ2oS+sU0m6BKrkUNlcsh
+	6T+BwERS1t96kCaKQV+gNmw6TWatKbU=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598542518; a=rsa-sha256;
 	cv=none;
-	b=wzD04YxjYod+PiJz5rHlhqEKdL8Bqb4sT33Y4u+6O2oW29DBhRaZNx6ipikMPGNRGeGzw5
-	uIvx0oXAXF/yI6es6gC1r/WV2oxZ8oJmxLLt+vp40bxp9Qy1pAQgBJQswLUMn9hY8fFa2S
-	nlIsY5MTtRWJn/MH/iceB8GQnTvLNYs=
+	b=LpT5Tmlot9ZvttQ6RoDOlI09qOKJCDSW1iQtymp1nNCcaRAimHB3yBdhqIgBEoLcl++Q7G
+	A4+S4N82J5uba0sVI1Tb8rl2GiNcK1Xj4Ek9nEOxVpLbuWKl1MB1lT0JarsIhafwZ49hbG
+	A7iqJ8qeVHYDPU1Py65W1N56KHvqtBU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of 333NGXwkbAOAUabMCNNGTCRRKF.IQQINGWUGTEQPVGPV.EQO@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.197 as permitted sender) smtp.mailfrom=333NGXwkbAOAUabMCNNGTCRRKF.IQQINGWUGTEQPVGPV.EQO@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-Message-ID-Hash: 32KH46M5EYURWVJKF4XWHSU2VAUXFWX6
-X-Message-ID-Hash: 32KH46M5EYURWVJKF4XWHSU2VAUXFWX6
-X-MailFrom: 333NGXwkbAOAUabMCNNGTCRRKF.IQQINGWUGTEQPVGPV.EQO@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=FGke5AJ3;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 64KE5IRGOGWT5TK5Y6HBSJ72AG4EGBR3
+X-Message-ID-Hash: 64KE5IRGOGWT5TK5Y6HBSJ72AG4EGBR3
+X-MailFrom: linus.luessing@c0d3.blue
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: =?UTF-8?q?Linus=20L=C3=BCssing?= <ll@simonwunderlich.de>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/32KH46M5EYURWVJKF4XWHSU2VAUXFWX6/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/64KE5IRGOGWT5TK5Y6HBSJ72AG4EGBR3/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello,
+From: Linus L=C3=BCssing <ll@simonwunderlich.de>
 
-syzbot found the following issue on:
+It seems that due to a copy & paste error the void pointer
+in batadv_choose_backbone_gw() is cast to the wrong type.
 
-HEAD commit:    c3d8f220 Merge tag 'kbuild-fixes-v5.9' of git://git.kernel..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=11c48c96900000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=bb68b9e8a8cc842f
-dashboard link: https://syzkaller.appspot.com/bug?extid=b2c08a2f5cfef635cc3a
-compiler:       clang version 10.0.0 (https://github.com/llvm/llvm-project/ c2443155a0fb245c8f17f2c1c72b6ea391e86e81)
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=14d75e39900000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=12aea519900000
+Fixing this by using "struct batadv_bla_backbone_gw" instead of "struct
+batadv_bla_claim" which better matches the caller's side.
 
-The issue was bisected to:
+For now it seems that we were lucky because the two structs both have
+their orig/vid and addr/vid in the beginning. However I stumbled over
+this issue when I was trying to add some debug variables in front of
+"orig" in batadv_backbone_gw, which caused hash lookups to fail.
 
-commit de47c5d8e11dda678e4354eeb4235e58e92f7cd2
-Author: Hariprasad Kelam <hariprasad.kelam@gmail.com>
-Date:   Sat Jun 8 09:00:50 2019 +0000
-
-    af_key: make use of BUG_ON macro
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=10450972900000
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=12450972900000
-console output: https://syzkaller.appspot.com/x/log.txt?x=14450972900000
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+b2c08a2f5cfef635cc3a@syzkaller.appspotmail.com
-Fixes: de47c5d8e11d ("af_key: make use of BUG_ON macro")
-
-IPv6: RTM_NEWROUTE with no NLM_F_CREATE or NLM_F_REPLACE
-IPv6: NLM_F_CREATE should be set when creating new route
-IPv6: NLM_F_CREATE should be set when creating new route
-general protection fault, probably for non-canonical address 0xdffffc0000000010: 0000 [#1] PREEMPT SMP KASAN
-KASAN: null-ptr-deref in range [0x0000000000000080-0x0000000000000087]
-CPU: 0 PID: 7050 Comm: syz-executor320 Not tainted 5.9.0-rc1-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-RIP: 0010:nexthop_is_blackhole+0x145/0x250 include/net/nexthop.h:240
-Code: 4d fa 49 83 c6 10 4c 89 f0 48 c1 e8 03 42 80 3c 38 00 74 08 4c 89 f7 e8 39 f0 8c fa 49 8b 1e 48 83 eb 80 48 89 d8 48 c1 e8 03 <42> 80 3c 38 00 74 08 48 89 df e8 1c f0 8c fa 48 8b 1b e8 e4 4e 02
-RSP: 0018:ffffc900061172b8 EFLAGS: 00010202
-RAX: 0000000000000010 RBX: 0000000000000080 RCX: ffff888091444300
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000001
-RBP: 0000000000000001 R08: ffffffff8727dfc7 R09: ffffed1012299e09
-R10: ffffed1012299e09 R11: 0000000000000000 R12: dffffc0000000000
-R13: ffff8880919da280 R14: ffff8880a9576610 R15: dffffc0000000000
-FS:  0000000001a89880(0000) GS:ffff8880ae800000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000020000300 CR3: 00000000a7555000 CR4: 00000000001506f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- rt6_fill_node+0xfe9/0x1f90 net/ipv6/route.c:5584
- inet6_rt_notify+0x2ab/0x500 net/ipv6/route.c:6017
- fib6_add_rt2node net/ipv6/ip6_fib.c:1246 [inline]
- fib6_add+0x203b/0x3bd0 net/ipv6/ip6_fib.c:1473
- __ip6_ins_rt net/ipv6/route.c:1317 [inline]
- ip6_route_add+0x84/0x120 net/ipv6/route.c:3744
- inet6_rtm_newroute+0x22f/0x2150 net/ipv6/route.c:5360
- rtnetlink_rcv_msg+0x889/0xd40 net/core/rtnetlink.c:5563
- netlink_rcv_skb+0x190/0x3a0 net/netlink/af_netlink.c:2470
- netlink_unicast_kernel net/netlink/af_netlink.c:1304 [inline]
- netlink_unicast+0x786/0x940 net/netlink/af_netlink.c:1330
- netlink_sendmsg+0xa57/0xd70 net/netlink/af_netlink.c:1919
- sock_sendmsg_nosec net/socket.c:651 [inline]
- sock_sendmsg net/socket.c:671 [inline]
- ____sys_sendmsg+0x519/0x800 net/socket.c:2353
- ___sys_sendmsg net/socket.c:2407 [inline]
- __sys_sendmsg+0x2b1/0x360 net/socket.c:2440
- do_syscall_64+0x31/0x70 arch/x86/entry/common.c:46
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x443ef9
-Code: e8 8c 07 03 00 48 83 c4 18 c3 0f 1f 80 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 0f 83 bb 09 fc ff c3 66 2e 0f 1f 84 00 00 00 00
-RSP: 002b:00007ffd64ccd428 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
-RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 0000000000443ef9
-RDX: 0000000000000000 RSI: 0000000020000300 RDI: 0000000000000003
-RBP: 00007ffd64ccd430 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 000000000000b6f1
-R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
-Modules linked in:
----[ end trace e62dc7d3de715e59 ]---
-RIP: 0010:nexthop_is_blackhole+0x145/0x250 include/net/nexthop.h:240
-Code: 4d fa 49 83 c6 10 4c 89 f0 48 c1 e8 03 42 80 3c 38 00 74 08 4c 89 f7 e8 39 f0 8c fa 49 8b 1e 48 83 eb 80 48 89 d8 48 c1 e8 03 <42> 80 3c 38 00 74 08 48 89 df e8 1c f0 8c fa 48 8b 1b e8 e4 4e 02
-RSP: 0018:ffffc900061172b8 EFLAGS: 00010202
-RAX: 0000000000000010 RBX: 0000000000000080 RCX: ffff888091444300
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000001
-RBP: 0000000000000001 R08: ffffffff8727dfc7 R09: ffffed1012299e09
-R10: ffffed1012299e09 R11: 0000000000000000 R12: dffffc0000000000
-R13: ffff8880919da280 R14: ffff8880a9576610 R15: dffffc0000000000
-FS:  0000000001a89880(0000) GS:ffff8880ae800000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000020000300 CR3: 00000000a7555000 CR4: 00000000001506f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-
-
+Fixes: 7e15c9305ce0 ("batman-adv: don't rely on positions in struct for h=
+ashing")
+Signed-off-by: Linus L=C3=BCssing <ll@simonwunderlich.de>
 ---
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+ net/batman-adv/bridge_loop_avoidance.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
-syzbot can test patches for this issue, for details see:
-https://goo.gl/tpsmEJ#testing-patches
+diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/brid=
+ge_loop_avoidance.c
+index b643dadc..4ba984bf 100644
+--- a/net/batman-adv/bridge_loop_avoidance.c
++++ b/net/batman-adv/bridge_loop_avoidance.c
+@@ -88,11 +88,12 @@ static inline u32 batadv_choose_claim(const void *dat=
+a, u32 size)
+  */
+ static inline u32 batadv_choose_backbone_gw(const void *data, u32 size)
+ {
+-	const struct batadv_bla_claim *claim =3D (struct batadv_bla_claim *)dat=
+a;
++	const struct batadv_bla_backbone_gw *gw;
+ 	u32 hash =3D 0;
+=20
+-	hash =3D jhash(&claim->addr, sizeof(claim->addr), hash);
+-	hash =3D jhash(&claim->vid, sizeof(claim->vid), hash);
++	gw =3D (struct batadv_bla_backbone_gw *)data;
++	hash =3D jhash(&gw->orig, sizeof(gw->orig), hash);
++	hash =3D jhash(&gw->vid, sizeof(gw->vid), hash);
+=20
+ 	return hash % size;
+ }
+--=20
+2.28.0.rc1
