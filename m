@@ -2,95 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B853F2562C2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 29 Aug 2020 00:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9242569B1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 29 Aug 2020 20:23:19 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8991C8039C;
-	Sat, 29 Aug 2020 00:01:39 +0200 (CEST)
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 70660800C7
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 29 Aug 2020 00:01:36 +0200 (CEST)
-Received: by mail-ed1-x52f.google.com with SMTP id b2so408565edw.5
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Aug 2020 15:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=XzA8inqc5ewJXOAglW6SVQO9ocOyECo8CznQOJry/oM=;
-        b=eX5n/DIulRBBnBf0wfdrXuuYBrHXkrQBMd+FupyrqrQbN9XyDGOva72Irj9ETnw6m8
-         IZxZTZC+XAZ0uinfWW0cgv4O0ruJ5tP4gdN510NeqbIIC/mrDjkuXCJaFarTuiiLcXvU
-         atQR6DdPRxVCGavWWvJreoWu8pAbV1Afu3JztqYV81eXKQWm+Jevb69Lkvw0Ehfm3p/b
-         nyGQVEAZfWnnJRl1quxFzrL91aJcIRH4I8h2reXBqjZeew7c1WHM+c5AUwBIJBtYmzki
-         FQt7+XFsyiWE7HxnxJDJ3SLQieINsu334psisw/R746SfuXspxw0W+vVbNuEeufyl3ej
-         3CiA==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 74153803C2;
+	Sat, 29 Aug 2020 20:23:13 +0200 (CEST)
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com [209.85.166.199])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3F16380019
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 29 Aug 2020 20:23:09 +0200 (CEST)
+Received: by mail-il1-f199.google.com with SMTP id o18so1787935ill.20
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 29 Aug 2020 11:23:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=XzA8inqc5ewJXOAglW6SVQO9ocOyECo8CznQOJry/oM=;
-        b=lqsirNUMh86fTXeLTjkpkEny+THUUilxTyZlrqGtNmmbZZNm2XiVPtVAcRmuiTDsGN
-         wXvFXF19k9BFXoNidE3VhA64/XgZw8S7G/MjevjBSm/NuorVjTK1nNV17yiacvISGo7Z
-         gom4TYDg5ll3uQXVh7/n7aoSYXopRQlstrmejPHO90I77UhO0iZ5ZgzkNu6zD4e8jycU
-         w8pARYfh3B9ZisC1IIW3/ImHMBCLVDxpKjilL7recX3nJ3wm8iwoix7VTYUR5qGU0+X3
-         05RtZ8fKmpV6RL2mvpiJqrXuG7rkLTD9BY4RJqIEoqJd2u+Wy4zTkbiVlQ+wLwYa67Gc
-         248Q==
-X-Gm-Message-State: AOAM533+G0/B/E6lUJUcKdQgmO5nsoudQy0Ie5RiduC/miMM0SoUy1l6
-	IaZexlB9C2CKx/v7FTxI+mlZ6tle20X4tkxU5oGXSXiPl50=
-X-Google-Smtp-Source: ABdhPJw/dRrNeS2GaYNwhOkN1lJdPqBypEiVFvSujxpSRFmeNnkg/czTBs2ESsDPSDt7+Fvz8MT/2IgGBpLn/f0iJ5o=
-X-Received: by 2002:aa7:ce15:: with SMTP id d21mr828092edv.55.1598652095810;
- Fri, 28 Aug 2020 15:01:35 -0700 (PDT)
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=bPIxx1nU1y1vRAICXwgpqNsvENjqeAPVEB+JHRttykM=;
+        b=d6zzwslynGAbBh+/YXByg8d0SIemgnIWpaggwAQsp8IrPvYWbTyM4jt7+FAaEb/p+Z
+         awEBnhjZglM5DHfyqSE4oKBixWYK2CHdd7XLEsXahdMDnmhQVYFMPEf9T1OsCs1g5894
+         rvQn7ylOwJaAW6IO0buImhub9hpIE43z2MjvbWBoZAL0AXfRa+cpLWQUhChLFCXEszjx
+         Lf9SWZowdI3PJrE2goBprE7iz0IXQJl4kWPz2/ZNHV1w0c0X9v7KJDxlehTbiqDqmLk/
+         es19z3u+b3WrDmJuI4LEsIarMbJdX8VkqJOGqgA8iZhoQv+MzC7JxeJaBf1JCKbu4l7A
+         ZDtA==
+X-Gm-Message-State: AOAM533+HIDMbJCZSbozBXYe1IrZrsKaND5KGMJx0AfDXxjK5mzjBq1n
+	rBw8INifZZp6mLTImdPX8MULeh3Tld7KxLUQT+1vlFdyDXLm
+X-Google-Smtp-Source: ABdhPJxEVVgA7Ub0bc+MvFmjZc1/RLEdJoez91edkd/s46zbbgIIdHjRz0Wm+HGP+LJ67kuMQWaAkopVRrwprhGvW720EhjW9N/v
 MIME-Version: 1.0
-From: Chuck Ritola <cjritola@gmail.com>
-Date: Fri, 28 Aug 2020 18:00:59 -0400
-Message-ID: <CA+RexfHNV+HY28OiuHKNy4Rn=MM4gxOU0xCiVG0z56dfnv_z6g@mail.gmail.com>
-Subject: Is it possible to send all batman-adv traffic through http proxy cache?
-To: b.a.t.m.a.n@lists.open-mesh.org
+X-Received: by 2002:a92:d1c4:: with SMTP id u4mr3401246ilg.295.1598725387974;
+ Sat, 29 Aug 2020 11:23:07 -0700 (PDT)
+Date: Sat, 29 Aug 2020 11:23:07 -0700
+In-Reply-To: <000000000000d3d67f05a20d2027@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000d8002705ae084273@google.com>
+Subject: Re: INFO: task hung in tls_sk_proto_close
+From: syzbot <syzbot+ca1345cca66556f3d79b@syzkaller.appspotmail.com>
+To: a@unstable.cc, aviadye@mellanox.com, aviadye@nvidia.com,
+	b.a.t.m.a.n@lists.open-mesh.org, borisp@mellanox.com, borisp@nvidia.com,
+	daniel@iogearbox.net, davem@davemloft.net, idosch@mellanox.com,
+	john.fastabend@gmail.com, kuba@kernel.org, linux-kernel@vger.kernel.org,
+	mareklindner@neomailbox.ch, netdev@vger.kernel.org, petrm@mellanox.com,
+	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1598652096;
+	s=20121; t=1598725389;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 dkim-signature; bh=XzA8inqc5ewJXOAglW6SVQO9ocOyECo8CznQOJry/oM=;
-	b=jyJoQ+aaWZQ69A7iaHawi8j8C5EcixhbNRKEColLFzP1m/bIiCGV7GL9n91GLfbGRbIZok
-	hqaG3vmW1Yd58tbAutycH0Ffzxp7BeKpgMpKMW+GYe9tH3ku7NcfQhPJsItH/YAOWW8Qix
-	TYBI5gradn+zMYuhtfqBpMWdXSAJ6mk=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598652096; a=rsa-sha256;
+	 in-reply-to:in-reply-to; bh=bPIxx1nU1y1vRAICXwgpqNsvENjqeAPVEB+JHRttykM=;
+	b=1OwTJ5lkiuyYgN3TiWoLeLZn9IMfNR7gLVgWossaWYOxT515q+u6LmwYt0R+DY0YWsqCzT
+	zmcPyX5kr0RlmBBPta4pH/7QmlLLcIIuebOADpvjXZK3/mepQ04/1162ycXcxmpQLHyWXl
+	MWDGsw9CWmH6t/MVTkK6qIvb+DqYegM=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598725389; a=rsa-sha256;
 	cv=none;
-	b=fexAPuELzbAsWnHtgFMFnvKV6VN85DFY2LpCDyswBPzWbY1WOXZzb1dHKBArcbo60FixS4
-	o0jr1foUxiynZ9pyCCQPDkDaeZyJFWTxsfy33cFxav6lfg8knHEqQWP3GEQ41DjZaKV+2u
-	pUXNs/9CUM1XYUtjBBzHJGcx8etZ4C8=
+	b=H4zOY4Ykk0E1LogoYOql9XufQEBQK1/5bm8WE0Vy6Rgfg5H2lNRYtQu6XwKrfghMC22eJm
+	84P1iq6PK2ekqWnLmZU+RK3D4PVtSxLZcobCjJsL3cmeJjTJmJrdfCwaEd4oPmzcbuTbP+
+	eXlDPkyY+5lX4m1Uva4YIS8rBq5hBj4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b=eX5n/DIu;
-	spf=pass (diktynna.open-mesh.org: domain of cjritola@gmail.com designates 2a00:1450:4864:20::52f as permitted sender) smtp.mailfrom=cjritola@gmail.com
-Message-ID-Hash: VCPKGYULWWKBXH3BGVRVPQCHVNULAXZX
-X-Message-ID-Hash: VCPKGYULWWKBXH3BGVRVPQCHVNULAXZX
-X-MailFrom: cjritola@gmail.com
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3C51KXwkbAHAgmnYOZZSfOddWR.UccUZSigSfQcbhSbh.Qca@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.199 as permitted sender) smtp.mailfrom=3C51KXwkbAHAgmnYOZZSfOddWR.UccUZSigSfQcbhSbh.Qca@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: O3GC6Q5ZNNJ2KPMQBSTJM2VUN7ARWQ4B
+X-Message-ID-Hash: O3GC6Q5ZNNJ2KPMQBSTJM2VUN7ARWQ4B
+X-MailFrom: 3C51KXwkbAHAgmnYOZZSfOddWR.UccUZSigSfQcbhSbh.Qca@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VCPKGYULWWKBXH3BGVRVPQCHVNULAXZX/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/O3GC6Q5ZNNJ2KPMQBSTJM2VUN7ARWQ4B/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Is it possible to send all batman-adv ethernet traffic through an HTTP
-proxy cache such as Squid?
+syzbot has bisected this issue to:
 
-This is for building a fairly large mesh network on amateur radio with
-some links having limited bandwidth. To improve performance a proxy
-cache would be installed inside each node, which stores to cache any
-HTTP responses tagged as cacheable and sniffs for HTTP requests
-through said switch for requests matching any cache entry. It then
-blocks the request from being forwarded and responds to the request
-itself with the cached data.
+commit 02d21b59d5cc4b4b395bbc2a29319b8a529ebeff
+Author: Ido Schimmel <idosch@mellanox.com>
+Date:   Wed Jan 23 14:32:59 2019 +0000
 
-I'm having difficulty figuring out how to get batman-adv to pass all
-of its raw ethernet traffic (presumably with mesh headers removed)
-through outside software such as Squid before performing its
-switching.
+    mlxsw: spectrum_nve: Enable VXLAN on Spectrum-2
 
-Another consideration was ALFRED but it doesn't appear to be easily
-integratable with existing software.
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=14e89b05900000
+start commit:   5438dd45 net_sched: fix error path in red_init()
+git tree:       net
+final oops:     https://syzkaller.appspot.com/x/report.txt?x=16e89b05900000
+console output: https://syzkaller.appspot.com/x/log.txt?x=12e89b05900000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=a0437fdd630bee11
+dashboard link: https://syzkaller.appspot.com/bug?extid=ca1345cca66556f3d79b
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=14acdfe5900000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1792598e900000
+
+Reported-by: syzbot+ca1345cca66556f3d79b@syzkaller.appspotmail.com
+Fixes: 02d21b59d5cc ("mlxsw: spectrum_nve: Enable VXLAN on Spectrum-2")
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
