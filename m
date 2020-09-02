@@ -1,72 +1,87 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51A0258526
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Sep 2020 03:32:21 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF61A25B2AC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  2 Sep 2020 19:07:40 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 80FF2805F8;
-	Tue,  1 Sep 2020 03:32:20 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5BA3980024
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Sep 2020 03:32:18 +0200 (CEST)
-Date: Tue, 1 Sep 2020 03:32:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1598923938;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RgXFNrPM3RYHDCL19NX6obMVU+Snv0XTlB0h1BfiIAQ=;
-	b=hR875/8LOKLvB/Q3aKyM/lkFkN01ykHGGNxSQ0Ets7gCVpZrvOVnFRcQ2etYquXtVG5YuF
-	H3omv6kN43T3DV5gsrR4G5Kc2/Im4eZmHLW+IKFt/CEfqm6Hb3Fi5e2bAh+jyRUw32hsyi
-	zusCLFoacdt04X9NK0IF/DSF98Gdux1Vqsx/McAJdCXx3ufaZlk4L5Kyq62wfRkHqKAulV
-	CzH+ciy94vKeHr3w1HMpeve/fFSujRFRcXlKvmFhjK/EzuI+aY5fyJVS/VrKe1RGZz8dRV
-	9PzIDIMuNCyw6s8U9zxg6ib+1l/vCHY8I+z5vaLMUzOpNbp3mj3FPIbx70waow==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH maint 1/4] batman-adv: mcast/TT: fix wrongly dropped or
- rerouted packets
-Message-ID: <20200901013217.GA2835@otheros>
-References: <20200901012606.7620-1-linus.luessing@c0d3.blue>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7CBF8805EB;
+	Wed,  2 Sep 2020 19:07:39 +0200 (CEST)
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 81E5080288
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  2 Sep 2020 17:09:01 +0200 (CEST)
+Received: by mail-io1-xd2f.google.com with SMTP id g14so6153336iom.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 02 Sep 2020 08:09:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=48VAOcFEZrbXceL2DOgwTkjkGd1lKooXrqVm3Ux2rlY=;
+        b=rGNxAm4Vs+IjkOtFoqs9YlVq9hBMQCtlz0R3qImEsvmbcGuKL7AyCHOJMNyYYkB+3Q
+         Jm8OE/TKOamubAV+fcQYwlIIsmblZuyB7WeUX1VkgLPWg67+4NjprKQJu+1HkTR+aYxQ
+         8v8DMsqL0Rbi2L9k3WgLidYc7Uk8JJsMNQoU85rE2azAVYUsaO6Bz5emiacftP7/iLid
+         18/ev3ef6aO43F4Ew2vBhlxCzDIRuizPYZ9uGFyS/nSVvISo6AFpW64WcKTILH43EULP
+         ig8awTj6FblxL1v/oBn8vQGy+L/SVpmIFgXSF0VvHIG/lWH0rNb6SCBQFEoLYk+Su8tW
+         daMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=48VAOcFEZrbXceL2DOgwTkjkGd1lKooXrqVm3Ux2rlY=;
+        b=g3iWdAQILGE+HIrTIiGmbCU7XqnNpZIeVM0XuCHPu7cZRgqioNgxJBTGFo3/BsD73E
+         I60tOrvu2Ec6T4b8dll4lQBSMKo4tMYzroRfCXjmaOYWjjJ/R2MD5kU6BV31DP0sIRF2
+         rUAN6UbuF+d1bqs1AEv1JzllTkxL0ugKmZ7uEbWgDrUAs//B3BhQn4BU7hhMAnx98eyB
+         KjDXXKjw3xM7s26CyOhjDWa7vHD+egfmLKf7LLDYMVZ+BJCJN+DeZ5sKdyvY5SbtwHIX
+         AhKzN8j260huis35EeVzAE3iPZ5J4WCYiFCHafh/OvPJpf7ss6f9MAc+4avcQFX2CKJV
+         wdKA==
+X-Gm-Message-State: AOAM533GC/ADac7FDkS2jHEaa3DgyGLb961ACLEzDwNv5t+1j2c1CNdu
+	cWMXXcw2pXc+/fVz2EHmpTV0jz8uzFz8q6BdsQaoDTLhDgWmUQ==
+X-Google-Smtp-Source: ABdhPJwnTQPahaR8k2TK0T5yodzgMb3s4B0oS9Iyukv4K6da+Dr8ww/SbzdWOdsE6oq8CYpz9E39SwgF5TX9loTEg7Q=
+X-Received: by 2002:a5e:930d:: with SMTP id k13mr3814077iom.40.1599059340045;
+ Wed, 02 Sep 2020 08:09:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200901012606.7620-1-linus.luessing@c0d3.blue>
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
+From: Maksim Iushchenko <maxim.yuschenko1@gmail.com>
+Date: Wed, 2 Sep 2020 17:08:48 +0200
+Message-ID: <CADSehqPK2R0ymqwFFm-wcE1m+K8WoAYSb1dwiCNhaNQDP6xYEw@mail.gmail.com>
+Subject: Node amount restriction in IEEE 802.11s mesh network
+To: b.a.t.m.a.n@lists.open-mesh.org
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1598923938;
+	s=20121; t=1599059341;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=RgXFNrPM3RYHDCL19NX6obMVU+Snv0XTlB0h1BfiIAQ=;
-	b=Gtm6CPrdUs4kmtvmh6KqRznM6XZmjDAM2cmkxQc2kUC/UB5k4ja/XzwBn5WxSBbpa6tJJl
-	KoAN/dGZf4iDgVzLNsxOSn0Po+5lAbbYxUGdQbsvEVS3jNz50SzQvj+5JQFVfUjHnT3KTs
-	KWwFy06MIOwjAMLe2zSUwmhftsnOCng=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1598923938; a=rsa-sha256;
+	 dkim-signature; bh=48VAOcFEZrbXceL2DOgwTkjkGd1lKooXrqVm3Ux2rlY=;
+	b=1/r4eh+IwIqVn+dq9lS++1llizmRib9T32/ueX2ngsvad8ZFgBFmsCJloqe/joB8NRRPKo
+	U6XXLotf3hbedVJMFREopjdmQk+M92CCkB3d5oHLEdlFtHuXAZTb+1NZiCm5d0Vrn/XmOf
+	S3xHdyn52FP7EvsZPzAjN5pKbnWfxF4=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599059341; a=rsa-sha256;
 	cv=none;
-	b=kGT5QMUrMiQ4yab5wu5hsFMqoBPMphy2N8kE29CByz3v8jOMB3vM/HQAQ4F8FA+CX//lTR
-	nxpXJJoZRHyTosbIqaCxTI6aHQpxw2obqs/aBDSlghAhayjenNYlawZnEgRxpiLo929Bem
-	hGbl3AUhVteq/N3eRJo9AzXQqoSLUTg=
+	b=4LCqZhuUXtlZARcDuDOBL/rag9+izwsTFRWX8XffXBTWBX7gWINrQhKoBCJfkyiiL5G/5m
+	iH7Ab6ujMCOZhfrKT9+5/qiCPoQZc5YIPNJ7ehy/e/rP6x2WBnTNALKd/rmVyIKGCaQ8eX
+	qu9MwF0X7bI0QwB9YqFfAP7Nm2XWApg=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=hR875/8L;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
-Message-ID-Hash: WEDNWDFIJP5PZBXCRIWMGMI3VBUS4UJG
-X-Message-ID-Hash: WEDNWDFIJP5PZBXCRIWMGMI3VBUS4UJG
-X-MailFrom: linus.luessing@c0d3.blue
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=rGNxAm4V;
+	spf=pass (diktynna.open-mesh.org: domain of maximyuschenko1@gmail.com designates 2607:f8b0:4864:20::d2f as permitted sender) smtp.mailfrom=maximyuschenko1@gmail.com
+X-MailFrom: maxim.yuschenko1@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: ZRRW5HG7WM5YXWLWYAJ4UPRV6ZW76GAK
+X-Message-ID-Hash: ZRRW5HG7WM5YXWLWYAJ4UPRV6ZW76GAK
+X-Mailman-Approved-At: Wed, 02 Sep 2020 17:07:37 +0200
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WEDNWDFIJP5PZBXCRIWMGMI3VBUS4UJG/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZRRW5HG7WM5YXWLWYAJ4UPRV6ZW76GAK/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Argh, forgot the "Fixes:" lines for all four patches... Need to
-get some sleep now though, so will need to do that tomorrow
-(unless someone beats me to it - I wouldn't mind :-) ).
+I read that IEEE 802.11s mesh network has a restriction for how many
+nodes it consists of. It is supposed that the number of nodes in IEEE
+802.11s mesh network does not exceed 32 nodes or so.
+
+Is it HWMP protocol restriction? Or what is it related to? If I turn
+HWMP off and use batman-adv instead, could it overcome such
+restriction?
