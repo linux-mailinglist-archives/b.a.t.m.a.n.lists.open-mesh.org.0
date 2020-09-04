@@ -1,31 +1,35 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E5A25E178
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  4 Sep 2020 20:28:10 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A0D25E179
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  4 Sep 2020 20:28:15 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 98B9A803C2;
-	Fri,  4 Sep 2020 20:28:09 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 146628029D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  4 Sep 2020 20:28:06 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1D9738061F;
+	Fri,  4 Sep 2020 20:28:10 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:171:314c::100:a1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7F1D98029D
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  4 Sep 2020 20:28:07 +0200 (CEST)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1599244086;
+	t=1599244087;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=BrDOGd2SzGBioDFhIiaGxL6pjzzFD9pVH266isrLK/A=;
-	b=LOaH5PNHbb2fOG0vkWz6N0RZV/0xnZ6CnCl63bmCM7/+L8EVM/dBCBGw15nqvqrfiA9M6p
-	/ky8ueVKKTNtOMmmc6k/kowjDBxxSqJE3QS1e69Jpfei1TBnnMzHBXZDEHnobycCljS9q7
-	CF5I1YInsSOYbWLVyzvhAX5LbQZz5a5obEN5H5nAkcvO+MZw0eZstlassIv6uTkXHvumZI
-	AiBuhwz3L/NohOLVsI6l4Em8KmjwRpYpO+4v2Sn2AisavEfPZUeeVIXt7OkmxJ2LmUVlLb
-	wHHVRjmuNFI9TPiUgJ+ur8J/3rCTRtNjh+DBvLfUqQ82eiUglRywGGddTl7jrA==
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EDUwi0/GITZ2Lp55iQqZ9p3U9MWRMTMcdviy8WCgYqs=;
+	b=CmUZ3XKcJzXwaho+0KOC99fEC0X2qlvl9f1DSrIThOPSuwQ2AteSeNuLQk++IvfrUdP8jM
+	fT5uTZWyORGqWELycyrQ2ayPAlXwtBZKg10o92HRk4idaDnPLxPKWdiAzyWg+H7MzdfSmP
+	9bcsIwD4CJwUQkt8iDS72RU30Nnp9PU23LFDO3nVEnCrS9/yCoX44hXaWCTj7uVYwsw0x5
+	60rcrWHh0dcK41nvlwwayjVWrkbDRIX4EE1mLEy1IKLOt/fJ4A4vR0zUVgRSel11fBumb0
+	TTOGUYnmkx7k0USdkoqB/J9YOqzew0ijj6GV513MlJU7j8hQsYyXfZTmnAMMVw==
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH maint v2 0/4] batman-adv: mcast: TT/BLA fixes
-Date: Fri,  4 Sep 2020 20:27:59 +0200
-Message-Id: <20200904182803.8428-1-linus.luessing@c0d3.blue>
+Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+Subject: [PATCH maint v2 1/4] batman-adv: mcast/TT: fix wrongly dropped or rerouted packets
+Date: Fri,  4 Sep 2020 20:28:00 +0200
+Message-Id: <20200904182803.8428-2-linus.luessing@c0d3.blue>
+In-Reply-To: <20200904182803.8428-1-linus.luessing@c0d3.blue>
+References: <20200904182803.8428-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Authentication-Results: ORIGINATING;
@@ -33,57 +37,83 @@ Authentication-Results: ORIGINATING;
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	s=20121; t=1599244087;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=BrDOGd2SzGBioDFhIiaGxL6pjzzFD9pVH266isrLK/A=;
-	b=wGv57MuFty83dDqzp8WRYDQghJNwQaMNz89UIsNZRo9e69sroY7gL+litLj0NNCxSzzNGx
-	FJnqExVXRWqGGsU7UXGuT/gC5qH1I7nd4IRDNZGb+8RnsNecvzLkxz+XIhqfgXaO4rNHQc
-	iH1bbMTFAV+HvaUuHTWpBKJo7xSpl0A=
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=EDUwi0/GITZ2Lp55iQqZ9p3U9MWRMTMcdviy8WCgYqs=;
+	b=N4aOHgC+gz3P29X50UzD8c5ST5Y19t+vk+cAYiznDL3nNELgVamHFb0VxlFaS+rP+P5N0b
+	ShHizn/dONON+NcuiGaCaUdqW8K+6YAm9r5wT+X0PQtdSZii0nypV2BK9gK/t+2aiSYpgO
+	HInjHKmSE6fiIrf8yLPOrmtnttw9B58=
 ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599244087; a=rsa-sha256;
 	cv=none;
-	b=YyzGAewlN+KB2VNkEj02QBdQIg2l13uycCrjOGGbDP4uMwnzdZKL/qbJQC0U2GlLLQPOFU
-	aBrJS4Gb8nh5SFFUhjRAhmTgAukeN/+nEApiZsABDdxoZ4MFp9JV34zQ/Ez6x1PBW8JuoR
-	cBfy7ZWe4IUU1EwzfUnLsu3HobPsp08=
+	b=uSS0DhVHv8lki+uLv1olEbvIQwHplHq+0ReIf8GfNOJLEBNYnQLokvV7sIRY6D//jQjNFQ
+	BdTMoKvXM2OHbsHE8Vyuww6zEOg+J1n7QUFjVmGjBPmdtya8YL8Znhq98I9VbaHqx+XxHM
+	JuLkwJZTiSXZiUPAJLzTplcKrf+SYO4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=LOaH5PNH;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
+	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=CmUZ3XKc;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:171:314c::100:a1) smtp.mailfrom=linus.luessing@c0d3.blue
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: JUH7LCWPH3ZNFHUQCYP6ZQFVGMX34DQR
-X-Message-ID-Hash: JUH7LCWPH3ZNFHUQCYP6ZQFVGMX34DQR
+Message-ID-Hash: SEQM4UCLN36JRSXWCDM3M5VVJSCTL47P
+X-Message-ID-Hash: SEQM4UCLN36JRSXWCDM3M5VVJSCTL47P
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JUH7LCWPH3ZNFHUQCYP6ZQFVGMX34DQR/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SEQM4UCLN36JRSXWCDM3M5VVJSCTL47P/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi,
+The unicast packet rerouting code makes several assumptions. For
+instance it assumes that there is always exactly one destination in the
+TT. This breaks for multicast frames in a unicast packets in several ways=
+:
 
-These are four fixes for issues which occur when using the batman-adv
-multicast-to-unicast feature.
+For one thing if there is actually no TT entry and the destination node
+was selected due to the multicast tvlv flags it announced. Then an
+intermediate node will wrongly drop the packet.
 
-The first one fixes an issue of an intermediate node snitching
-multicast-to-unicast packets and either dropping it or rerouting it to
-another node. Which causes lost packets on some and duplicate packets on
-other nodes.
+For another thing if there is a TT entry but the TTVN of this entry is
+newer than the originally addressed destination node: Then the
+intermediate node will wrongly redirect the packet, leading to
+duplicated multicast packets at a multicast listener and missing
+packets at other multicast listeners or multicast routers.
 
-Patches 2 to 4 fix issues when using the multicast-to-unicast conversion
-while BLA is enabled and some nodes are sharing the same LAN side. Here
-it either causes "just" duplicates in the "good" scenario (Patch 4/4).
-But can also cause multiple BLA backbones to send a frame from the mesh
-into the same, shared LAN segment (Patch 3). Or in the worst case, even
-reflect packets back to the host in the shared LAN, which completely
-confuses switches/bridges and ICMPv6 Neighbor Discovery.
+Fixing this by not applying the unicast packet rerouting to batman-adv
+unicast packets with a multicast payload. We are not able to detect a
+roaming multicast listener at the moment and will just continue to send
+the multicast frame to both the new and old destination for a while in
+case of such a roaming multicast listener.
 
-Changelog v2:
-* Adding "Fixes:" lines
+Fixes: cea194d90b11 ("batman-adv: improved client announcement mechanism"=
+)
+Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+---
+ net/batman-adv/routing.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Regards, Linus
-
+diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
+index 27cdf5e4..9e5c71e4 100644
+--- a/net/batman-adv/routing.c
++++ b/net/batman-adv/routing.c
+@@ -826,6 +826,10 @@ static bool batadv_check_unicast_ttvn(struct batadv_=
+priv *bat_priv,
+ 	vid =3D batadv_get_vid(skb, hdr_len);
+ 	ethhdr =3D (struct ethhdr *)(skb->data + hdr_len);
+=20
++	/* do not reroute multicast frames in a unicast header */
++	if (is_multicast_ether_addr(ethhdr->h_dest))
++		return true;
++
+ 	/* check if the destination client was served by this node and it is no=
+w
+ 	 * roaming. In this case, it means that the node has got a ROAM_ADV
+ 	 * message and that it knows the new destination in the mesh to re-rout=
+e
+--=20
+2.28.0
