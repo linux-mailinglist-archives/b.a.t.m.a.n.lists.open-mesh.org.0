@@ -2,103 +2,164 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7F326111D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Sep 2020 14:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0012613BE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Sep 2020 17:47:43 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7B8AD80669;
-	Tue,  8 Sep 2020 14:12:13 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F1919800FC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Sep 2020 14:12:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1599567129;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xH3EkC0yV36Fp70JBcHbNd+8gfjzbf2q2O2pb2+kzeQ=;
-	b=zgb22lCa5CXo330u0uXGYxuxXyU5rqzmMnvBz0/1wsVpLO5F4tBQ0CPrbfoqAayjr3am8J
-	LTl7G6jwk4+4qrTxxC2VmtczpOgepukPehKfiYXyl0yRmpmeikkpSujOZZA94L0tUCgO9w
-	sMtCzcNfy2ZKXG7R64DfS0LlGEgxsoc=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: alfred/batman issue
-Date: Tue, 08 Sep 2020 14:12:06 +0200
-Message-ID: <4723062.gsoOXRqoEn@ripper>
-In-Reply-To: <CANKYHpe825qzeW9g7HbrHcacsO36x0=W_nRBCGKy_UfybvL7gw@mail.gmail.com>
-References: <CANKYHpe825qzeW9g7HbrHcacsO36x0=W_nRBCGKy_UfybvL7gw@mail.gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C483D80799;
+	Tue,  8 Sep 2020 17:47:42 +0200 (CEST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id CEEA3802C6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Sep 2020 17:47:39 +0200 (CEST)
+Received: by mail-ej1-x62b.google.com with SMTP id r7so9890666ejs.11
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 08 Sep 2020 08:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=Z8PLb9WikKozSUCM7lvoIwqrMhgY4/AsNx8G+f8j0+k=;
+        b=X7ZqePZdrFTix5zAyZGqMPKxzX0qlyB0AoVD+/+LM1NfDRgPfdaUF6OXylkz+L0MAK
+         tTm9EZXL+Tt8WLxC06zZ7LrlA0SQ1D34KpdthroKj6AVvzUl1ahOd2ZwpGMJfFtHTAMP
+         J2xuIMI59N+f+p+pgFIujm9nBb2ENJzUY1Jd+c5KFLuJRpN1cew+asZR6pF12mMfzsRf
+         WahDfkU52camfpqABvuY1l0AXiwzM/0g4iND1ssPpGW8rgHsIQ0r4lQbsyvA+rIErAOF
+         slLBUZ9qGIY7o3GXUhl+IGLpRo5VDSSAbF3yZ7LWNow3b6y8ytGntOJZfG8Kcyp94xLo
+         hnbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:content-transfer-encoding;
+        bh=Z8PLb9WikKozSUCM7lvoIwqrMhgY4/AsNx8G+f8j0+k=;
+        b=B1YqUl/7fnfGXI5Ptv6HTaCNczlmlSN+vbVUKkvve33NBoUjYaU22y2rb8X8OJuWJ6
+         WOTKOhiLzhNVx/rQpmJogpjAfb65sY3/POJqgj5jGOCaVbgkh1mAFuj6lTN/vyR72KiS
+         jyGTTK2/XDo+hKR+3RDJj+QEUZG//9K/iVQC30HlsM5EKyQa0hVDtQLyGGXO3m8w2E3P
+         nfhCvqu+s8cMhNixv3PJHZaQte21lCN83M7BFovAsprI4fL6QabpxpR9bOburpkXBfyJ
+         3tDOkMeZjkvFDbiGuLfVvkmSHaYg4MMeYFWVwVEw+VL+SUqGZFxYxKxbzKh3/KAfAnBr
+         DnjQ==
+X-Gm-Message-State: AOAM530DsSv3jgCC825B6a7F5ZP0fXyUCao7u3QG7pJ86Z5kXo3ZXz/v
+	y5egSpKhiDrvX2+3UgXbRVmdDXWasAg+LCEoZ7EkmtJgDbtPuQ==
+X-Google-Smtp-Source: ABdhPJxr61cUT+Yjkh0bRxeJuNkjSbb05U1OtONnFlCSN17By+4mUNdYl+9RlWiP050EzwlUDLdjml6jGdrCd1aJj9E=
+X-Received: by 2002:a17:906:1106:: with SMTP id h6mr26266785eja.200.1599580058898;
+ Tue, 08 Sep 2020 08:47:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1657020.gspWTsGk6h"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+References: <CA+RexfHNV+HY28OiuHKNy4Rn=MM4gxOU0xCiVG0z56dfnv_z6g@mail.gmail.com>
+ <20200904184403.GA2391@otheros> <c746bd54-37d3-cb62-a647-a07176289733@fsck.co.uk>
+In-Reply-To: <c746bd54-37d3-cb62-a647-a07176289733@fsck.co.uk>
+From: Chuck Ritola <cjritola@gmail.com>
+Date: Tue, 8 Sep 2020 11:47:02 -0400
+Message-ID: <CA+RexfFSc=Vbx01utuo4gLqDKrYmU8yykGD7qR8p0XC7-V5+gQ@mail.gmail.com>
+Subject: Re: Is it possible to send all batman-adv traffic through http proxy cache?
+To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1599567130;
+	s=20121; t=1599580059;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=xH3EkC0yV36Fp70JBcHbNd+8gfjzbf2q2O2pb2+kzeQ=;
-	b=0NBOZo6s+uYGAiXAC/CTIo4w5QbdyCzBj44imxWot3iZDBXKo/BmQKBVLbqh6lGGS2uKTB
-	LmAulSBsHv+aYQHRBowN3HP/vro7gK8BLVVAa9XCng9raYlb0NTDG8DbyYCndh/wrhqH/e
-	qTj3IFj2IuSTnx6vOTTbTXeoz055dfE=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599567130; a=rsa-sha256;
+	bh=Z8PLb9WikKozSUCM7lvoIwqrMhgY4/AsNx8G+f8j0+k=;
+	b=g4nqNvw9Ll1QtoeWyLnN5aRlctzIwLAVwy/RF0otr0gPOvZ3vyI//xuoX2/WbEMvmSowtg
+	YQYWHw/M2NS4/wiWD2uXZUOL0MD3zGUUfVSndT/2pj7CiDNIVWvfkN4p6kN8rleLv5ROXQ
+	N/QK3uDtx1qQOXkAj/YD3kjiGyglfEI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599580059; a=rsa-sha256;
 	cv=none;
-	b=Ye16hsJlYUsJlSeks9GRnEIjtFkaBklaP+2iHfe3P8ELGQQWGj7D23waNHPOQfDkpPb+uL
-	O5JCQTO1E5a+KYULDhY0jXBHNOugYrS83fCTpAcZhHnPXex9HypcYJbB8o4AJZStZ/w2XV
-	RA5ZWuoMB6DP87YhLkcsVH70Lq2spYc=
+	b=CRBl6eXF5tviaHE/jHuMV/X8XCicuFsLbCedb2kgQmmlh8cobnUNuB1Ooh3Bs5AM675x7S
+	PALQns0DTeBurNA1GkNYe5uuNtMEllcdYzeZL1n8jewKM2T1FH0wLJV1OVhKg+g7LwLgg4
+	9hM33gZobObeLG8XoYx/7UxFL+AZprk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=zgb22lCa;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: EF2L2VG2GXEKIXX42DQSOUMRONBU23XG
-X-Message-ID-Hash: EF2L2VG2GXEKIXX42DQSOUMRONBU23XG
-X-MailFrom: sven@narfation.org
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=X7ZqePZd;
+	spf=pass (diktynna.open-mesh.org: domain of cjritola@gmail.com designates 2a00:1450:4864:20::62b as permitted sender) smtp.mailfrom=cjritola@gmail.com
+Message-ID-Hash: ALPO6RD67PR3KDJ5FMSNKPZNV5B2CJZJ
+X-Message-ID-Hash: ALPO6RD67PR3KDJ5FMSNKPZNV5B2CJZJ
+X-MailFrom: cjritola@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Oguzhan Kayhan <oguzhan@kayhan.name.tr>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EF2L2VG2GXEKIXX42DQSOUMRONBU23XG/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ALPO6RD67PR3KDJ5FMSNKPZNV5B2CJZJ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart1657020.gspWTsGk6h
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+> I'm wondering, are HTTP caching proxies actually still useful these
+days where all major sides have switched to HTTPS?
+(Linus)
+>You could set up a transparent proxy, in the route to the batman
+gateway,,, you've have to look at the exact details of how the
+routing/NAT is set up, but I'd bet you could do some pretty clever stuff:-
+(James)
 
-On Tuesday, 8 September 2020 14:04:11 CEST Oguzhan Kayhan wrote:
-> I set up a batman mesh network between 3 nodes..all running
-> B.A.T.M.A.N. adv openwrt-2018.4-0 on batman V protocol.
-> And also installed alfred which version 2016.5
+This would be mostly-mesh hosting with almost no uplink. We are
+allowed to carefully gateway some internet content such as 44-block
+IPs and maybe sites with 'safe' content such as NOAA. The choke point
+is not the internet gateways like it would for a traditional 802.x
+mesh but the speed of the hops themselves, as this involves VHF/UHF
+with 20-1000 kilobit speeds to get 20-100mi hop lengths. Sometimes ghz
+802.xx is used for last-mile, cities, etc. AREDN does a bit of this on
+ghz but I wanted to go layer-2.
 
-There is no B.A.T.M.A.N. V support in batadv-vis [1] (and also not alfred).
+Amateur radio in the US is governed by FCC Part 97, which forbids
+encrypted communications (the wording is 'intent to obscure its
+meaning') so it pretty much has to be HTTP with no 'S'. A sidenote:
+Authentication hashing is still ok. Sniffing traffic is encouraged.
 
-Kind regards,
-	Sven
+The idea was to keep things simple by staying browser-based where
+practical. Cacheable HTTP would be passively cached at every hop with
+the storage for it. Even if part of the network got cratered there
+would still be a 'ghost' of the content in the cache, and so long as
+it was frequently accessed and had an unlimited age, said ghost could
+propagate through the caches indefinitely.
 
-[1] https://www.open-mesh.org/issues/251
---nextPart1657020.gspWTsGk6h
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+I considered BitTorrent but it requires a tracking host, which means
+centralization. Freenet looked interesting but by the time I remove
+all of the encryption and obfuscation to make it legal for amateur
+radio it ends up having similar functionality as per-hop cache proxy.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl9XdRYACgkQXYcKB8Em
-e0bORhAA0V3ITDIqbudLOuVGq0YU63AmslefyHtAoIaKpXmQov06Ud+mqSz+XlUO
-sEPsy97d/d2k9XLyo19osFPvFPTTICuieJQwUSCU3X9VZ7pmjpjGD1FHQrYjgaRJ
-S2r8WhRVmaSLgWssIwRU9kurT7wfoWzJVQH4lYcNKaML5SsM2v6PmiZkb6rgF8LI
-L9eQIfOm91ABorAj6riaNVQ0rP8zFsYMbAp8VThydulbk2ePo67NYokQvu9WHwAQ
-5KS0sFuEbn5qwyHTkhsy/ZRhz+r/rcJOmRlke68Q0BvclZ/JZ0sP5VXm22pHm/Ey
-hUU6VvQL3r4FzrQtxURbQEWw5lDSm2LBmW/4NH0BVa3iTVMsqI+mli4RLzfdb//N
-i3VFlqGSVUDNBWOMISxMVuy7dsRx7emo9+8bRgcCtb+kHOzDiLeo4M2QlZkVpNCM
-TRhi987pjzVzr5sFtUNgqQWmQSoWnnYgf2IQfid/7kiYsb6gfWkNqrbqqem2IheE
-wzlGAHFpt3UxXt3XtdIsB4G1jrJrdqXdEb4sjbaMelhCbLmLazVP2xCmdbddQE89
-m2TaIQbv/jldyuBGrZrF9AV+ybn2lOFtnu1wvIOPQvUK7uNd9TG7kNqsUrAKSAvc
-7p3SH4KPM06VbUbbdf8Nh2pLzjxSILy6AcrcSuIKoXrI95gITj4=
-=OX0n
------END PGP SIGNATURE-----
-
---nextPart1657020.gspWTsGk6h--
-
-
+On Fri, Sep 4, 2020 at 3:04 PM A. James Lewis <james@fsck.co.uk> wrote:
+>
+> You could set up a transparent proxy, in the route to the batman
+> gateway,,, you've have to look at the exact details of how the
+> routing/NAT is set up, but I'd bet you could do some pretty clever stuff:=
+-
+>
+> https://tldp.org/HOWTO/TransparentProxy.html
+>
+> James
+>
+>
+> On 04/09/2020 19:44, Linus L=C3=BCssing wrote:
+> > Hi,
+> >
+> > On Fri, Aug 28, 2020 at 06:00:59PM -0400, Chuck Ritola wrote:
+> >> Is it possible to send all batman-adv ethernet traffic through an HTTP
+> >> proxy cache such as Squid?
+> > Not really, there are a bunch of headers too many for an HTTP
+> > caching proxy to work with batman-adv.
+> >
+> > I'm wondering, are HTTP caching proxies actually still useful these
+> > days where all major sides have switched to HTTPS?
+> >
+> >> Another consideration was ALFRED but it doesn't appear to be easily
+> >> integratable with existing software.
+> > Alfred is more useful for little bits of information, not really
+> > for complete packet streams.
+> >
+> >
+> > The "best" solution I could think of right now for limited uplink
+> > bandwidths is hosting content within your mesh network instead.
+> > Like setting up a Seafile or MediaGoblin, for instance.
+> >
+> > Or using P2P technologies, like Bittorrent. Although you might
+> > need to be careful with this particular one that it won't greedly
+> > occupy the rest of the bandwidth your uplink has left, if content is
+> > still mainly shared over the uplink and not within the mesh.
+> >
+> > Regards, Linus
+> --
+> *=E0=B8=84. =EF=BB=9D=E0=B8=84=E0=B9=93=D1=94=E0=B8=A3 =C9=AD=D1=94=E0=B8=
+=AC=E0=B9=80=E0=B8=A3* (james@fsck.co.uk)
+> "Engineering does not require science. Science helps a lot but people
+> built perfectly good brick walls long before they knew why cement works."
