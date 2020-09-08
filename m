@@ -2,103 +2,188 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413942610A5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Sep 2020 13:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE4D26110C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Sep 2020 14:04:29 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 10909804B4;
-	Tue,  8 Sep 2020 13:28:46 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4BB2180290
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Sep 2020 13:28:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1599564523;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kvzMG4Sn4AAQaUFzSUF21uH7RnQ6jdaZKk3XDy41eFM=;
-	b=OXFPBFiJFc67ilbFrPqxwcjcJksB3u6sAFZMDOl/SpGOdvaZ/doj8FItwX974+2qK5brNG
-	hvwaE3igsbWMxcJotSwXt8ovb5bGX7EXbLXQrXJqm3wqc1OwD5LvM2E5XpqBL+aBrYhs+k
-	LdScsW9KZYZBcf7RNfFvJHAWAa3N5Cc=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: Running multiple batman-adv namespaces on the same broadcast domain
-Date: Tue, 08 Sep 2020 13:28:36 +0200
-Message-ID: <17582207.Wjj8Q8S2kB@ripper>
-In-Reply-To: <CADJ1cUTq=Bpj9SQdS5Y6aXKcPR9XqkxKn_Sj5sRMmN1R=qX_2g@mail.gmail.com>
-References: <CADJ1cUTq=Bpj9SQdS5Y6aXKcPR9XqkxKn_Sj5sRMmN1R=qX_2g@mail.gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 08627805E7;
+	Tue,  8 Sep 2020 14:04:28 +0200 (CEST)
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5A7FF8026E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Sep 2020 14:04:25 +0200 (CEST)
+Received: by mail-vs1-xe36.google.com with SMTP id x203so8813742vsc.11
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 08 Sep 2020 05:04:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kayhan.name.tr; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=7WZUoI1JXs4Es8QKhkWzYPflPMGkfhlJlUWB0F7xtcg=;
+        b=BsYLyo1DCmZXsS9jzFpsaqFjU1fuzFqfWoKDMSH3N3IshU5uzoEcI2vbMOIBJQ4amp
+         RhuV3fg/hPD0r0tJsX5P8VfB24fLlm6sXJdIrSaouNkfWTrZnmB4YOTlvpum7AG+D4i/
+         mtK32bfH5yv4XGb1zxtSSCO599dyXGkFnOn+YoFVI6UdlCX/QDyjyrSsCArC5/D8DsNa
+         h+3Vc9SAkP42rfMz6tppsw9oI1vGs/Cevg+KjCDxPwbPSi7A/BcQ1VC0HQOeVLef06IX
+         dKUNYGsHoTA6uy+y49iIpxT8u0SP7SocODtp7giGkymnQjgsf6kGz6bFNdoDsMRleMr9
+         dTeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=7WZUoI1JXs4Es8QKhkWzYPflPMGkfhlJlUWB0F7xtcg=;
+        b=msFBQGFS40Hq2NUOS/joosX2vYLoNtb/jq46meuHoyGwbEGGsbVOwYPZXGQpWu+fO+
+         KsBWLhPlQfephN7/MxuswwkPzuFvyEHOGWMlD5+gEh8c4oD1uJdnZh5++FGtZ24SF700
+         zX67E89WgcI30Uotw5CKrYqUX0kzsC5HJBhyVK1TLXtfJGBPlrwxwPHvplCI7CrStulI
+         /HDqHAnpk9FgWt2P7PLov0YL0HTfG/sVx7nxGLVnpBf3NDw8yPpmX5ygC5lIZRmkXH0D
+         IHGWwCDEqkD657u+c/8h7BVrxubQ+nLFYwHLiFNJ6hwwYfUQk2Zh5bPF2oQfNrCWnquI
+         HbgQ==
+X-Gm-Message-State: AOAM533Po2wGSvmPN4SO1Eg+rOnL2/FDZhx3GLrnASkFUTXH9ITIffyw
+	kuQNGMGrWhee1CQkxGAYWgMj1pTfQB2S/+hA7VY9i9IyF6vMyvwU
+X-Google-Smtp-Source: ABdhPJw2pJXVKgkaMlYyxAXgUA6YpuFZvryfgDgfhaS5sl9jhmYQ6Ggip96KZrNjXxcewhgvLGXXnInwK4h8W8nDhmY=
+X-Received: by 2002:a67:ecd0:: with SMTP id i16mr13885323vsp.85.1599566663512;
+ Tue, 08 Sep 2020 05:04:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart26226944.1ARZ2byAtU"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+From: Oguzhan Kayhan <oguzhan@kayhan.name.tr>
+Date: Tue, 8 Sep 2020 15:04:11 +0300
+Message-ID: <CANKYHpe825qzeW9g7HbrHcacsO36x0=W_nRBCGKy_UfybvL7gw@mail.gmail.com>
+Subject: alfred/batman issue
+To: b.a.t.m.a.n@lists.open-mesh.org
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1599564524;
+	s=20121; t=1599566665;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=kvzMG4Sn4AAQaUFzSUF21uH7RnQ6jdaZKk3XDy41eFM=;
-	b=WWkEpavLctz5UTp5GuIfBh4Es+j6MNRZNzOltZ9IJtrXSG7a25ARYRKVyKC6d8gV0fJzhX
-	3+zpYMar05G3Mt+KbRdrVjjV4Sku6poS6PXe/GxEUexsiql27ZzpU1uQz15+1dngRBaO4U
-	wA1GHbR3l5dMwKeT5b4jxny48gllhNQ=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599564524; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 dkim-signature; bh=7WZUoI1JXs4Es8QKhkWzYPflPMGkfhlJlUWB0F7xtcg=;
+	b=rAvn/jtgp0xx8PwbFW2lQOxmG5PSM9O/QqremLbsojzGj1DfMTMUq3OP7jZ3aQrA/AvGFI
+	5O6NztqWDjH7Y7sDtPtnmZxmLLbl92ivUsIhxIOBjwoPKtUCowLY8mqVsOBd+GV+Svhl8d
+	sRbC+zZ57iPEM4au3Ga+q8yMg6P3qn8=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599566665; a=rsa-sha256;
 	cv=none;
-	b=0xx+nL9JX+qo6EIXOokAlBDOX42Il09zL+gbEIskigzCCH+42n4p/gapJDqRZ0wqVKrDrv
-	hf4Zk9Civgecwnf25tXLWMCZMRfchMg126NOVI8q+mQ2A5N3CGl/Yi1mh2mAI88FkRyjmr
-	tUCmGL5RUauumbqo3VZyZND6eSXCcno=
+	b=X3X5LEw6QciWIOlzxRMjVxuUVtcrPlrJab171NniIaggVVpozkBleb0otNI8fkV7O/ehqQ
+	QEBBCZsE6HSu1/j04hRbq/QBdmV0mKBr7/XZtBsV7/BTnwyYQ1GvWIcXPN2IfT9xbIqSf6
+	qEjDEDkZ6GmA8+h9bdQx0mb0+xObut0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=OXFPBFiJ;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: FJ4BCJ4QK5TD4BLGZ7IMDJ6CSZPGKGZ5
-X-Message-ID-Hash: FJ4BCJ4QK5TD4BLGZ7IMDJ6CSZPGKGZ5
-X-MailFrom: sven@narfation.org
+	dkim=pass header.d=kayhan.name.tr header.s=google header.b=BsYLyo1D;
+	spf=pass (diktynna.open-mesh.org: domain of oguzhan@kayhan.name.tr designates 2607:f8b0:4864:20::e36 as permitted sender) smtp.mailfrom=oguzhan@kayhan.name.tr
+Message-ID-Hash: FWSGWLZWROS6S46FTUELRJTGPMZ3NVNU
+X-Message-ID-Hash: FWSGWLZWROS6S46FTUELRJTGPMZ3NVNU
+X-MailFrom: oguzhan@kayhan.name.tr
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Alessandro Bolletta <abolletta@netter.io>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FJ4BCJ4QK5TD4BLGZ7IMDJ6CSZPGKGZ5/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FWSGWLZWROS6S46FTUELRJTGPMZ3NVNU/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart26226944.1ARZ2byAtU
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-On Tuesday, 8 September 2020 13:23:32 CEST Alessandro Bolletta wrote:
-> i'm trying to reproduce a PoC where i'm running multiple batman-adv
-> instances(eg. bat0, bat1, batX) on the same broadcast domain.
-[...]
-> Is this kind of scenario supported?
-
-No, you need something which implements separation of top of ethernet to avoid 
-that bat0/bat1/.../batX see each other. E.g. VLAN, VXLAN, ...
-
-Kind regards,
-	Sven
---nextPart26226944.1ARZ2byAtU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl9XauQACgkQXYcKB8Em
-e0YNxhAApu6US6Ma5JjrP/tfSIwruPY/AHPI4/j3LGUaLvO1cQZjtf0D93RxYmV2
-2vI+r0oV1YFcHA0s4xcrDWMg2JME1an8ypE2cGt0IFv07PKZ5jSgQqxe6t6ysWya
-TaOnPGPD7u/Ly08mLFJQ4f7aBeHm4DckoIoJnQVb8x8TvBXis4p3LlKI/DEJJ3GU
-WE57G4Z/opwJDI4+9mqX4yKqbwVBNfE+Y2VtuStmDnvITwVqBx1B2PvgWtsbEo5t
-g6bwwStJONoyqkYoq1dPln4+8y4xf7QcIZWmJ6xBubq3Tzt/wsELfyMQs0QvUdJJ
-3n/oxrmbYEBHTDprEn7zZkuNS+kzS57W+bvzjUtzjQIAJ1vs2D0D5E2M1YVtCkYX
-o8hnAI9nUQTUNrB9x9C1YYQyautgD3qzuEmMN5BspOSOO03xV64Kdk1D3L8xSPM0
-yl3yndM+LA9HrURjJ4kGQQCN/DdIEvlY1oH1uPAL0zVewLVAgJgyxlPRW22QuHhL
-IaXgLVaUgdfOuQS1ziUOPUbZl7sgtY0G1yQcVaBuQu4VieOL2IBP88Zp0gxlEnd5
-RXOgftKEXPKqLT0ksPP/eZuDxHAkEwCb3CGyaQaCU8DCcsgbR+O3MDnvKpYlsRqt
-rHNZsSmEoA/b01238qZH69aR+r6adcex2BNFQVYQazMna33SqmI=
-=sr9s
------END PGP SIGNATURE-----
-
---nextPart26226944.1ARZ2byAtU--
+  Hello
+I have two questions which most of you may find very novice.
 
 
+I set up a batman mesh network between 3 nodes..all running
+B.A.T.M.A.N. adv openwrt-2018.4-0 on batman V protocol.
+And also installed alfred which version 2016.5
+
+
+node-1 ( 00:30:1a:4e:aa:20 ) connection
+  IF             Neighbor              last-seen
+00:30:1a:4e:aa:23    0.190s (       15.8) [     wlan0]
+00:30:1a:4e:aa:1d    0.050s (        8.9) [     wlan0]
+
+node-2 ( 00:30:1a:4e:aa:23 ) connection
+IF             Neighbor              last-seen
+00:30:1a:4e:aa:1d    0.420s (       22.7) [     wlan0]
+00:30:1a:4e:aa:20    0.520s (       15.8) [     wlan0]
+
+node-3 ( 00:30:1a:4e:aa:1d )connection
+IF             Neighbor              last-seen
+00:30:1a:4e:aa:20    0.500s (        9.0) [     wlan0]
+00:30:1a:4e:aa:23    0.180s (       22.6) [     wlan0]
+
+No clients connected to any of the nodes. Only one of them (node 1)
+is connected  br-wan port to my internal gateway. And all others are
+reachable via this node (node1)
+
+alfred output does not show any neighborhood on this case..
+alfred config is ;
+config 'alfred' 'alfred'
+        option interface 'br-wan'
+        option mode 'master'
+        option batmanif 'bat0'
+        option start_vis '1'
+        option run_facters '1'
+
+
+node-1
+digraph {
+        subgraph "cluster_00:30:1a:4e:aa:20" {
+                "00:30:1a:4e:aa:20"
+        }
+        "00:30:1a:4e:aa:20" -> "6c:4b:90:61:e3:d6" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "02:b9:87:a6:4f:66" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "28:d2:44:68:bd:1b" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "90:6c:ac:51:b9:dc" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "34:29:8f:74:59:c9" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "50:7b:9d:56:43:08" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "00:30:1a:4e:aa:21" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "02:b9:87:a6:4f:66" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "00:25:36:c1:13:3a" [label="TT"]
+        "00:30:1a:4e:aa:20" -> "00:24:9b:53:55:62" [label="TT"
+
+
+node-2
+digraph {
+        subgraph "cluster_00:30:1a:4e:aa:23" {
+                "00:30:1a:4e:aa:23"
+        }
+        "00:30:1a:4e:aa:23" -> "32:21:1f:29:72:04" [label="TT"]
+        "00:30:1a:4e:aa:23" -> "00:30:1a:4e:aa:24" [label="TT"]
+        "00:30:1a:4e:aa:23" -> "32:21:1f:29:72:04" [label="TT"]
+}
+
+node-3
+
+digraph {
+        subgraph "cluster_00:30:1a:4e:aa:1d" {
+                "00:30:1a:4e:aa:1d"
+        }
+        "00:30:1a:4e:aa:1d" -> "3a:ed:c5:16:bb:e6" [label="TT"]
+        "00:30:1a:4e:aa:1d" -> "00:30:1a:4e:aa:1e" [label="TT"]
+        "00:30:1a:4e:aa:1d" -> "3a:ed:c5:16:bb:e6" [label="TT"]
+}
+
+
+Even after adding an ethernet client to node 2..
+the output replaced as
+digraph {
+        subgraph "cluster_00:30:1a:4e:aa:23" {
+                "00:30:1a:4e:aa:23"
+        }
+        "00:30:1a:4e:aa:23" -> "32:21:1f:29:72:04" [label="TT"]
+        "00:30:1a:4e:aa:23" -> "00:30:1a:4e:aa:24" [label="TT"]
+        "00:30:1a:4e:aa:23" -> "32:21:1f:29:72:04" [label="TT"]
+        "00:30:1a:4e:aa:23" -> "00:24:9b:53:55:62" [label="TT"]
+This client traffic is normally passing from eth port of the node-2 to
+node-3 via wifi, and then node 1 via wifi and then eth of node-1 to
+internet.
+
+but didnt see an update on other nodes even node 1 has all the traffic
+carrying to the new added client.
+Is it something expected? Or am I missing something?
+
+By the way.. on batctl tg output.. the client appears on the list
+  Client             VID Flags Last ttvn     Via        ttvn  (CRC       )
+ * 32:21:1f:29:72:04    0 [....] (  1) 00:30:1a:4e:aa:23 (  2) (0x3e5717a8)
+ * 3a:ed:c5:16:bb:e6   -1 [....] (  1) 00:30:1a:4e:aa:1d (  1) (0x10f0fbd0)
+ * 00:30:1a:4e:aa:1e   -1 [....] (  1) 00:30:1a:4e:aa:1d (  1) (0x10f0fbd0)
+ * 3a:ed:c5:16:bb:e6    0 [....] (  1) 00:30:1a:4e:aa:1d (  1) (0x2eef010b)
+ * 00:30:1a:4e:aa:24   -1 [....] (  1) 00:30:1a:4e:aa:23 (  2) (0xcfe8055b)
+ * 32:21:1f:29:72:04   -1 [....] (  1) 00:30:1a:4e:aa:23 (  2) (0xcfe8055b)
+ * 00:24:9b:53:55:62   -1 [....] (  2) 00:30:1a:4e:aa:23 (  2) (0xcfe8055b)
+
+
+Second question is valid only after I see the neighborhood information correct..
+Which tool can I use on openwrt to visualize this relation between
+nodes.Any ready tools for luci?
+
+Regards
