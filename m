@@ -1,131 +1,188 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C579262B48
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  9 Sep 2020 11:05:18 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4949262DFA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  9 Sep 2020 13:38:57 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CC4B2805FB;
-	Wed,  9 Sep 2020 11:05:16 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id BF4168039E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  9 Sep 2020 11:05:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1599642313;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 9AED0807B3;
+	Wed,  9 Sep 2020 13:38:56 +0200 (CEST)
+Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id D4A788003B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  9 Sep 2020 13:38:53 +0200 (CEST)
+Received: from prime.localnet (p4fd577c7.dip0.t-ipconnect.de [79.213.119.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by simonwunderlich.de (Postfix) with ESMTPSA id 99DE06206B;
+	Wed,  9 Sep 2020 13:38:52 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
+Subject: Re: [PATCH maint v2 2/4] batman-adv: mcast: fix duplicate mcast packets in BLA backbone from LAN
+Date: Wed, 09 Sep 2020 13:38:49 +0200
+Message-ID: <12905687.KyMRHU7LPt@prime>
+In-Reply-To: <20200904182803.8428-3-linus.luessing@c0d3.blue>
+References: <20200904182803.8428-1-linus.luessing@c0d3.blue> <20200904182803.8428-3-linus.luessing@c0d3.blue>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart1678547.dNe71AlPue"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1599651533;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=W713Zj9HnO8PGkLEA1evxYsPm8XoLjEZAqa9IXLAgKk=;
-	b=TPdvgKTYyAgGAE++csv0BFcJQ9HsdYIFjWDiZ5+mAchZugR5Sxz1eyszEiMSdILfAJ3sTM
-	JhFH41axfInsR5JQ8hZrhfTkZ3PlLt2kpp+tB/OG29rpUPpg76HBuLc9vJUZ++O+tIAdQk
-	y8ui6eyyxApWsYVl6W6UsKrJfgg9bs0=
-From: Sven Eckelmann <sven@narfation.org>
-To: Alessandro Bolletta <abolletta@netter.io>
-Subject: Re: Running multiple batman-adv namespaces on the same broadcast domain
-Date: Wed, 09 Sep 2020 11:05:11 +0200
-Message-ID: <7459754.hIpYFi07Vt@ripper>
-In-Reply-To: <CADJ1cUSff_g-tB28HHeR5GrYHHtch7f+bdQQ85HdZx4dhLdTvw@mail.gmail.com>
-References: <CADJ1cUTq=Bpj9SQdS5Y6aXKcPR9XqkxKn_Sj5sRMmN1R=qX_2g@mail.gmail.com> <34120415.8pMx1AJBNe@ripper> <CADJ1cUSff_g-tB28HHeR5GrYHHtch7f+bdQQ85HdZx4dhLdTvw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2953339.uSJZPQ8N1e"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1599642314;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=W713Zj9HnO8PGkLEA1evxYsPm8XoLjEZAqa9IXLAgKk=;
-	b=SNi9cm6+J8JkWLxTTxvFGf58iSh0zd1kcDg/iGtUrhYFkyhmNa6jsYCjPJ5iRuhOqPMz4b
-	XAvFRXS13tzfB7Nckr4cepScVEry0e9jRdN4QNXk7aakMm2ZY7mGO4jlss0/xnwaXn4Yhz
-	Mz3PndbbEEng4zetHM04BohqwcD8T/U=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599642314; a=rsa-sha256;
+	bh=JLacS6El4LwChy0BHlJM+27wym6fd/5WHuC6Grsv5kg=;
+	b=eGRjiaERVUuOo0KMEgi6S0Zy0xHKcHFES3eiqscYBu92+scUj/7ZxxxOD3B1EBEpiGDbk1
+	1vmb9ImDDgtqsz0cmdmup6rLFwvL1eeaDOUQGRGu3Tv1SRb6P96T82x/pNFAIbedbYNCmR
+	1n0wPxOUfBanoC8/G7enLj2Or/uxamo=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599651533; a=rsa-sha256;
 	cv=none;
-	b=FTtbRO2IgVC0fI1qATASJLI7NUDq/Va5Jv18Dza5226LUKm0dqJFqrbEsEO3tZORVGrcxH
-	/rTR/kNdX5EUW6L02e1tOkQzNf0xSW1v9UGZpwjly/u01TFiwLtdfUCpCdY75p1t+5ESg+
-	uEhCAJWQJN/Q8Vc+vxFNBQWKoCVCzwc=
+	b=sKYGr0renmdR2uaDPer+bxT/igZbHuO8v25GLZn/G0Fgx8SHJWla1PzVNTG0voXNatE09n
+	OCMYMRNK4Bkxi0Vm2k9CxFbGTu5dZyjHJfdjhceXwGL0OjM/f4PfEzt3zWKRKflUVRvyC0
+	kkPqY+balgbdW8mHL7PcYpk1VdJwKHA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=TPdvgKTY;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: YOTJHKEC5QHBNDG2XYYBCQMA4GI2ZA5A
-X-Message-ID-Hash: YOTJHKEC5QHBNDG2XYYBCQMA4GI2ZA5A
-X-MailFrom: sven@narfation.org
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+Message-ID-Hash: 6RU7X72YC7X5F74DQTXY3UHKRPYGKHCT
+X-Message-ID-Hash: 6RU7X72YC7X5F74DQTXY3UHKRPYGKHCT
+X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YOTJHKEC5QHBNDG2XYYBCQMA4GI2ZA5A/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6RU7X72YC7X5F74DQTXY3UHKRPYGKHCT/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2953339.uSJZPQ8N1e
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+--nextPart1678547.dNe71AlPue
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wednesday, 9 September 2020 10:50:24 CEST Alessandro Bolletta wrote:
-[...]
-> Great, this is exactly what I'm looking for! I'm running this for some
-> experimental purposes. Are you running VXLANs in multicast modes?
+On Friday, September 4, 2020 8:28:01 PM CEST Linus L=FCssing wrote:
+> Scenario:
+> * Multicast frame send from a BLA backbone (multiple nodes with
+>   their bat0 bridged together, with BLA enabled)
+>=20
+> Issue:
+> * BLA backbone nodes receive the frame multiple times on bat0
+>=20
+> For multicast frames received via batman-adv broadcast packets the
+> originator of the broadcast packet is checked before decapsulating and
+> forwarding the frame to bat0 (batadv_bla_is_backbone_gw()->
+> batadv_recv_bcast_packet()). If it came from a node which shares the
+> same BLA backbone with us then it is not forwarded to bat0 to avoid a
+> loop.
+>=20
+> When sending a multicast frame in a non-4-address batman-adv unicast
+> packet we are currently missing this check - and cannot do so because
+> the batman-adv unicast packet has no originator address field.
+>=20
+> However, we can simply fix this on the sender side by only sending the
+> multicast frame via unicasts to interested nodes which do not share the
+> same BLA backbone with us. This also nicely avoids some unnecessary
+> transmissions on mesh side.
+>=20
+> Note that no infinite loop was observed, probably because of dropping
+> via batadv_interface_tx()->batadv_bla_tx(). However the duplicates still
+> utterly confuse switches/bridges, ICMPv6 duplicate address detection and
+> neighbor discovery and therefore leads to long delays before being able
+> to establish TCP connections, for instance. And it also leads to the Linux
+> bridge printing messages like:
+> "br-lan: received packet on eth1 with own address as source address ..."
+>=20
+> Fixes: 405cc1e5a81e ("batman-adv: Modified forwarding behaviour for
+> multicast packets") Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.b=
+lue>
+> ---
+>  net/batman-adv/send.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>=20
+> diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
+> index d267b948..67f493c0 100644
+> --- a/net/batman-adv/send.c
+> +++ b/net/batman-adv/send.c
+> @@ -29,6 +29,7 @@
+>  #include <linux/stddef.h>
+>  #include <linux/workqueue.h>
+>=20
+> +#include "bridge_loop_avoidance.h"
+>  #include "distributed-arp-table.h"
+>  #include "fragmentation.h"
+>  #include "gateway_client.h"
+> @@ -343,6 +344,18 @@ int batadv_send_skb_unicast(struct batadv_priv
+> *bat_priv, if (!orig_node)
+>  		goto out;
+>=20
+> +	/* Avoid sending multicast-in-unicast packets to other BLA
+> +	 * gateways - they already got the frame from the LAN side
+> +	 * we share with them.
+> +	 * TODO: Refactor multicast code to anticipate this, to
+> +	 * avoid this check here.
+> +	 */
+> +	if (is_multicast_ether_addr(eth_hdr(skb)->h_dest) &&
+> +	    batadv_bla_is_backbone_gw_orig(bat_priv, orig_node->orig, vid)) {
+> +		dev_kfree_skb(skb);
+> +		return NET_XMIT_SUCCESS;
+> +	}
+> +
 
-I am using it between datacenters with handcrafted forwarding rules. And I am 
-using gluon which uses link local "multicast" mode [1]. 
+Would it make sense to perform this check in the BATADV_UNICAST case, witho=
+ut=20
+checking the ethernet destination for multicast?
 
-[...]
-> > I don't like the word "namespaces" here. Because this reverse to a completely
-> > different concept in the linux kernel.
-> >
-> 
-> Yeah, I'm sorry but I didn't know how to call them. "Mesh clouds" is a
-> more exact term to call our batX?
+A backbone gateway should never send a unicast frame to another backbone=20
+gateway, regardless of multicast or not - those things should go over the=20
+backbone either way.
 
-I would call them batadv interfaces. And the thing behind it - maybe mesh 
-cloud.
+=46or 4addr unicasts, I see two cases: TT Unicasts could be dropped in the =
+same=20
+way, as TT is ignored between backbone gateways. For DAT, there is currentl=
+y=20
+no specific BLA handling for the unicast handling as far as I see, there ar=
+e=20
+only some checks to make sure that ARP replies coming out of the correct=20
+backbone gateway. Since DAT is "best effort" and requests may get dropped, =
+it's=20
+probably safe to drop this too.
 
-> > And I don't know what you will end using - so I cannot say if this will work
-> > or is tested.
-> >
-> 
-> I will use them in a scenario where a have 3 hosts connected by an
-> ethernet card each and a switch. Then, I have to connect at layer 2
-> these hosts to batman, but I need to separate their traffic through
-> different batman-adv "mesh clouds" (in my case I can't use VLANs, QinQ
-> or stuff like that to do so)
+That would allow us to use the same check as you have here, but dropping th=
+e=20
+check multicast ethernet address check.
 
-I've already used both VLAN and VXLAN (and other things) for stuff like this. 
-But there can always be problems with your kernel/driver/batman-adv/... 
-version or even the hardware. And I can guarantee that all of them will 
-create some kind of cost (overhead, performance, ...).
+Cheers,
+       Simon
 
-Kind regards,
-	Sven
+>  	switch (packet_type) {
+>  	case BATADV_UNICAST:
+>  		if (!batadv_send_skb_prepare_unicast(skb, orig_node))
 
-[1] https://github.com/freifunk-gluon/gluon/blob/dd76e0898d70a123d8e7f178384fec84890e5251/package/gluon-core/files/lib/netifd/proto/gluon_wired.sh#L39
---nextPart2953339.uSJZPQ8N1e
+
+--nextPart1678547.dNe71AlPue
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl9YmscACgkQXYcKB8Em
-e0bOmA/9G5Wrx7A5XTe7397nwYXKk+TKLvUFOeYpCvFxS6HqBDl7auyTuMYD2X+J
-CYw+CNM1zB8Rtw1eALEb3K3239WVLnDIG3BQrjCtFiwsuDOFdnxkEzFRltCGGZel
-qe41gndQxg5wc5YPcEUh5n+haOquq3OzyBhts3VtUhHK/jRkPj6istUIbR27QSBi
-ZCwhCyG5rnTYH5FAAMzLO7AKWef+nH2pFEoVp85fu04tmtAPIk6nF6v8Txdg1P53
-Vo6QnHvE9OOU+BKUvK3M8SaYeSx39I9G6rTnJC1yLT/sKQFEnJ/X8fBLIPNVEXkS
-jOi+D9UYcu6RDBMb3nt+17ahRjUcmFP06/ndGtO6ceQVS9MZpOZk3UmZ4UvS/zFa
-Df52orFtVlumP6E3mhvMMVdETLtj36sG0TIYApH110KuZuD0VfLmXTylZCOM3Qx1
-N+IuPPx/s3gfJXgHujRRgG1AF0D2MVfKHzNzgd4+BvFYwyiX1fMc30PdluCzeNKT
-dLukOz/e1i6DOnFgdPtOgaUQSEzeZYc3Mnmv/m0k9LFiGYSEnwlIo5Rpw9UDhIM/
-ZNppsPLwGhjF1MujkZQmcnUI4yZrp1FV5SLvvCasWzqZILym/Kt4g1kc8qvEFwpn
-inOH7uGAr5eDlyqnbPrlp28Hxmd40Zka3S3+B9OihwZqsurLO2Y=
-=5tcR
+iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAl9YvskACgkQoSvjmEKS
+nqGpxBAAlaSpxkKum4DouczDYi46CxLlKWYqkuMwn8rI0h7wfebdmUOkXwDe0OIz
+rvt11FMdiLO7CTozBYTK8BHaMYBH7na+dK0CU6sFgWs7x7yuWU5oBNEKDjd80O8C
+QE/VjA+XaKblE5eLAAODjDnaSPyDobw/YJhoGrL5VV4AOYMaUmrQJLUeEKjQkKIx
+NO059OR+dmavQ9NpnSXnaiFbppWxeWaBH8zoP7yL+EB09E+dluIx+hS/kcJRcyXW
+I2GpFF/7E0Sn6Wybdp0wSZeEdw4duL+1J6OLv60/haEBEDY/9FGwSMd9AQW+J2NO
+23yyJlp5beDljS/NxfHOdE/EROPLbBj58Hmk8WTIetxtyFrruq+MfFKXgkk5X/da
+yHLUOPstX9kM5NpbgOjtWC0RYxB9DG9WrzVQX8TaryclKtL+trbKKUl5F4IV5iLs
+LIB0cf5Fy4WwJUhabjVxJBIE21Cs7ON7ENZyJujbUjNQrHrztAYY0fdYvYgOcr48
+v3mMk6PzL27BdP5fn7/nbUkKtYLi3etSgSU/V8cUFU/1WvE7BnCYUrGeQqBJRkaK
+gl2oGLx0Udi7O2ZTO/+WAnsOat6qcwqGA13NnQ/XbRhQ5+7jAehSjup87yU1Xmt0
+0X9+SrSEy2J+snZCtCc2nuBh5OcDOIXePIGH+jrsflyKLcDBHyk=
+=RJqB
 -----END PGP SIGNATURE-----
 
---nextPart2953339.uSJZPQ8N1e--
+--nextPart1678547.dNe71AlPue--
 
 
