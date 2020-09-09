@@ -1,107 +1,87 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9C6263081
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  9 Sep 2020 17:28:00 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9765263725
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  9 Sep 2020 22:14:30 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 2EB15807F1;
-	Wed,  9 Sep 2020 17:27:59 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 19CC280272
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  9 Sep 2020 17:27:57 +0200 (CEST)
-Date: Wed, 9 Sep 2020 17:27:56 +0200
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 9F99E802CA;
+	Wed,  9 Sep 2020 22:14:29 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:171:314c::100:a1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B827380013
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  9 Sep 2020 22:14:26 +0200 (CEST)
+Date: Wed, 9 Sep 2020 22:14:24 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1599665276;
+	t=1599682466;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=MlE6HMah1Qq0v8DxMqsfhjY7ky80rxKd2Itp/1S1jFc=;
-	b=PxveKSa5/ggJAn4dk62W/anEcXcol0NS+I8MtNADKSVhhicanLKdiwDjmfAB4oI0Zc0IL/
-	w2HCI/x9JlF4IYw1zzFkAeyMaL2OC/wDKayqSyT37JhGrLiZr9oc1yehuXpWYkVBFaEohq
-	Ipp0t12mW14RnXMFCvizdYSAotbrB58EanWsy47jQSWzXeOdw+fb4rivcznOk7Y+W7SjAH
-	m2U+U8Vo8onv3pzVxp7RQsOFcIXRwrVZ0xF3WDlLmPl4+3c+flH0rwVeJ2SbN7YN0VJSBc
-	Fvb0D+soVWym3FU2D2od20B8GievYsnk55o/vq8m0WunvqXv4+h2QfOJ6gw/Yg==
+	bh=v9NeDTkBJ8xao0ZPF48XE/7FscUtyOun+iQT0AB3Uro=;
+	b=fUUQ07wqD3wvmQ8MzVNXsnedxcVEXFyvxauBwjBMhoRa1B07TuCgjXKPJwSRnyjugn7WmC
+	S+ni9jrZmtSqr6GtgoI+8Sif6WMkB5kOp8Vh3jObCX++4nOsoGO/1WFcbfYy29KQXMjvxG
+	4R/2KxsuAGouEfg2mSaCIsPFy8sIvOZ+GpJRMPTXvHZOcP7HWai6iSf4KREZ8BziZPTSRc
+	HIAi+GigjWf0HHG1GuL9tGl+Ci4/6CMxZhq4Q0eKoEB37I74oiU51OIVvz2i4oEjSnrSjZ
+	XBRZOHiG/EMecnQzOQ4pJvsHSSGpIUsG3ZXnVtv60YLnPB/f4XiLASChDY01Aw==
 From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: [PATCH maint v2 4/4] batman-adv: mcast: fix duplicate mcast
- packets from BLA backbone to mesh
-Message-ID: <20200909152756.GD2391@otheros>
+Subject: Re: [PATCH maint v2 3/4] batman-adv: mcast: fix duplicate mcast
+ packets in BLA backbone from mesh
+Message-ID: <20200909201424.GE2391@otheros>
 References: <20200904182803.8428-1-linus.luessing@c0d3.blue>
- <20200904182803.8428-5-linus.luessing@c0d3.blue>
- <3191833.Be6Uz4tNrB@prime>
+ <20200904182803.8428-4-linus.luessing@c0d3.blue>
+ <2973088.WcO1NEu1zB@prime>
+ <20200909145357.GB2391@otheros>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3191833.Be6Uz4tNrB@prime>
+In-Reply-To: <20200909145357.GB2391@otheros>
 Authentication-Results: ORIGINATING;
 	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1599665277;
+	s=20121; t=1599682466;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=MlE6HMah1Qq0v8DxMqsfhjY7ky80rxKd2Itp/1S1jFc=;
-	b=r51r+6L97P1o/pxFMr/mCHTugTdzQ/gWA+fvrRiY7SOYq/BKNxKXnCda63B6xDGYoVXslW
-	4zzEzFMBxLIfZpfRzCKHxUBnFGC+zHZa9psqaLTaIKAe59EH5O+xH267t21+A0uwTztLlE
-	E6p9kKDgJxwDQk2PqGNZz1Yp+z2In8A=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599665277; a=rsa-sha256;
+	bh=v9NeDTkBJ8xao0ZPF48XE/7FscUtyOun+iQT0AB3Uro=;
+	b=z3UoZ0eHmpddf+DO9ccVmeXDDXlV5BfuTtXUgjiQnVcFTpf0AQMJVMEIl4eksMUl3dQ3Yj
+	AZM3MTqX7bykBMJhxhwRb8XYaMqgdkGl6j9vpgSdOPu7HgZCs+LzVlyfN3JaqkoeJZS7MU
+	yFNsWR2hLBeKVXe38WgRHTFd5f86Kuc=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1599682466; a=rsa-sha256;
 	cv=none;
-	b=jp7MBbgFokZaG+bW/QQpxCpsVTPp1awLvL21N19ao6Y88hNHt8OpXj8OKQeHJXWVlLJ/Ri
-	w+vs5YzrhR86cA7L8XpSRmIU261I1PRyNoKGTz5iclYQj8JIwAIu1cj/5fBRxlxHESmZta
-	GuI6iLA/YFScxdjV99WdnyzeoKifMvM=
+	b=VJaoqTBaaRyPSrXeE3WawGL6Ibx7ObAv8GNFgBww1Sy9VQTB6wLoD5Jtzsj/UP4WvtsFh7
+	S2gh39gnk1iWwCqG822uVlz61t6PofBrQsZUmL8+KOaLow8R7F7V/bwpUbesSA6yXj8dY8
+	2zV9mRFTzk8L3he8+E2Cf3WM2psuEgM=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=PxveKSa5;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
+	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=fUUQ07wq;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:171:314c::100:a1) smtp.mailfrom=linus.luessing@c0d3.blue
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 5XNXTQ7X5BEMJSDINW2JDTIGCAMZWOKM
-X-Message-ID-Hash: 5XNXTQ7X5BEMJSDINW2JDTIGCAMZWOKM
+Message-ID-Hash: 2LAIRKK6FDHB5QEWMHO4XOIMUADAWO75
+X-Message-ID-Hash: 2LAIRKK6FDHB5QEWMHO4XOIMUADAWO75
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/5XNXTQ7X5BEMJSDINW2JDTIGCAMZWOKM/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2LAIRKK6FDHB5QEWMHO4XOIMUADAWO75/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Wed, Sep 09, 2020 at 02:15:51PM +0200, Simon Wunderlich wrote:
-> On Friday, September 4, 2020 8:28:03 PM CEST Linus L=C3=BCssing wrote:
-> > @@ -1626,7 +1626,8 @@ bool batadv_bla_check_bcast_duplist(struct bata=
-dv_priv
-> > *bat_priv, if (entry->crc !=3D crc)
-> >                         continue;
-> >=20
-> > -               if (batadv_compare_eth(entry->orig, bcast_packet->ori=
-g))
-> > +               if (!is_zero_ether_addr(entry->orig) &&
-> > +                   batadv_compare_eth(entry->orig, orig))
-> >                         continue;
-> >=20
-> >                 /* this entry seems to match: same crc, not too old,
->=20
-> Shouldn't this check also be skipped if the orig parameter is a zero ma=
-c=20
-> address? i.e.:
->=20
-> if (!is_zero_ether_addr(orig)) {
-> 	if (!is_zero_ether_addr(entry->orig) && batadv_compare_eth(entry->orig=
-,=20
-> orig))
-> 		continue;
-> }
+On Wed, Sep 09, 2020 at 04:53:57PM +0200, Linus L=C3=BCssing wrote:
+> So the only solution I could think of for now is
+> excluding DHCPv6 from multicast feature in TX of the originator...
+> (in batadv_mcast_forw_mode_check_ipv6(), adding excludes for
+> ff02::1:2 and ff05::1:3).
 
-Would be redundant. If entry->orig is non-zero and
-the compare_eth() says they are equal, then orig must also be
-non-zero.
+Ah, wait, we could distinguish them. Just noticed that the gateway
+feature uses a unicast 4 address header, while the multicast
+feature uses a simple, 3 address unicast header.
 
-I initially wanted to leave the code as unchanged as possible for
-net / maint. Should I do the restructuring to enhance readability, with
-the bool in this patch or in additional patch for net-next?
+That should work. But might look a bit hacky. And would disallow
+using a 4 address header from the multicast feature in the future.
