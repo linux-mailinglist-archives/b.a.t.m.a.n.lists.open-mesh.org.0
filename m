@@ -1,287 +1,151 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A16F268243
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 14 Sep 2020 03:21:55 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19A72684FB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 14 Sep 2020 08:36:08 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 1CA2C80810;
-	Mon, 14 Sep 2020 03:21:54 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:171:314c::100:a1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B3E1C800A7
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 14 Sep 2020 03:21:40 +0200 (CEST)
-From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1600046500;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fy3Yw9u4FcTOg5UqaOBFlKAJFLfGglIePjuxtawf7OE=;
-	b=sfYaVdXGhMDTJDGiFEv52KoCch1gsg2WlKf7IRI6orSrp9P6wAM57rnuojNbWQLzwQlQBa
-	j+gh4S6cKJQ+bOPF0aGUfEvNdcdaaaUwEcNpRSG+2a9IlZH++pC70uqW4s475oHbAGBFkX
-	Tu7aHvmf0XykCeRebJf58M0p5ic0pDMX88l3Q5L8oEIMcViB4zuFuQ8piDkoEePdH5ySc6
-	fNi2MFH7I+RvlXClgA/6Qo3htJ3R3iZGh9F2PNOWhIJuXQcEw8i7+58uRjgpAvIuQx0VnB
-	kUyIG9ubsjvf1QbNsVyGd36owNj/GRH1btB3DPRHYlGuzI9kCKRv4jATUxO4aQ==
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH maint v3 3/3] batman-adv: mcast: fix duplicate mcast packets from BLA backbone to mesh
-Date: Mon, 14 Sep 2020 03:21:36 +0200
-Message-Id: <20200914012136.5278-4-linus.luessing@c0d3.blue>
-In-Reply-To: <20200914012136.5278-1-linus.luessing@c0d3.blue>
-References: <20200914012136.5278-1-linus.luessing@c0d3.blue>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8BA2C80797;
+	Mon, 14 Sep 2020 08:36:07 +0200 (CEST)
+Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1A70D806FD
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 14 Sep 2020 08:36:04 +0200 (CEST)
+Subject: Re: Passing VID-aware ethernet frames on plain batX interfaces
+To: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n@lists.open-mesh.org>, Sven Eckelmann <sven@narfation.org>,
+ Alessandro Bolletta <abolletta@netter.io>
+References: <CADJ1cURtCsWdy6rovfgb_XPhbsTc5epCv3yLgRCLcOVjfNSFdw@mail.gmail.com>
+ <38142483.hY40ij8To5@ripper>
+ <CADJ1cUQZ2YqFSVj=SNhPcC_sOjy+AkrEr=dQ=8T_0HegFou=Hw@mail.gmail.com>
+ <4337705.76P5Ur0oAU@sven-edge>
+From: Antonio Quartulli <a@unstable.cc>
+Autocrypt: addr=a@unstable.cc; prefer-encrypt=mutual; keydata=
+ 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
+ 8QRnNzBkJk/ejM/Es0pjrgC/I5iDlHw=
+Message-ID: <97828d35-e1a9-9766-6e5b-7476a55e4014@unstable.cc>
+Date: Mon, 14 Sep 2020 08:35:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
+In-Reply-To: <4337705.76P5Ur0oAU@sven-edge>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1600046500;
+	s=20121; t=1600065364;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=fy3Yw9u4FcTOg5UqaOBFlKAJFLfGglIePjuxtawf7OE=;
-	b=uxgOTgllCUCeSNjARRdEWHzUDCyqv3tDyFmsdxBCiMWvVmLrsRre4bnXuroX3ceocmDISt
-	2SLmkCdoNkQpvrCydY7MDhNTkVDtOriHNacbwYsQDEpf707xbIsk57xy5L0Rulb6GxmKQ1
-	m5Hzr56o5ntHgLvI2a3YnhsZHj2IG94=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1600046500; a=rsa-sha256;
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=xG8Lgq6bN61TqANhN1iJW7nLfmYSqgeqEBLpwP2mCEA=;
+	b=tztIupwFUJqDktvlh0guRlwts2HlJPyHgZ9TCDFh96OvTDO4fOUWibHa20sa5o3RSIPLEC
+	T5Hq3KRruE61S7nz13/WQCYToBKPBaSaB1fkr7YX0yNHth9WBN8cjb4w8l1vzBcXFKPOBz
+	0YYUmKbqKuELGHVnsKWXlWUZ8+OaA9A=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1600065364; a=rsa-sha256;
 	cv=none;
-	b=eEJyKQYvuoolUe+KS9eqbvys4nFGjTz8giC+PVM4K836bIVlPoqPvc7cVZ4Px+rvCZWjUb
-	n4IhCGW5w+NOLxgtMSTQitxfsCZ5rfgvDpCTmdZ9QSozr8SJzZAYbdBz547eMTSjKDS9KP
-	c+tW6FC3qw9HZZGMy018pgln+wVhyEM=
+	b=fL/2I/h/ms/pJvGjL7MrMeDrrU/YdtAsS+vQ0ff7SNm+IuG8mpOjnHzfMTpg6vkfr2h6Qn
+	4HC2klGj5GtY7Hltk85sy85jPj75RWMhWK7YSHwblh1+zLJGFrjBK88kzyKsFuRexXIJq1
+	ggG4wFTs8yzhmV0eQQh3oft1DLMMVds=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=sfYaVdXG;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:171:314c::100:a1) smtp.mailfrom=linus.luessing@c0d3.blue
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: GS222JNX3K2JQNENUTPCSYXCHMI3EF2B
-X-Message-ID-Hash: GS222JNX3K2JQNENUTPCSYXCHMI3EF2B
-X-MailFrom: linus.luessing@c0d3.blue
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of a@unstable.cc designates 5.148.176.60 as permitted sender) smtp.mailfrom=a@unstable.cc
+Message-ID-Hash: 6LX2LODEIJGQ6EGO2TXJ3X4HOLSBKUHO
+X-Message-ID-Hash: 6LX2LODEIJGQ6EGO2TXJ3X4HOLSBKUHO
+X-MailFrom: a@unstable.cc
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GS222JNX3K2JQNENUTPCSYXCHMI3EF2B/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6LX2LODEIJGQ6EGO2TXJ3X4HOLSBKUHO/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Scenario:
-* Multicast frame send from BLA backbone gateways (multiple nodes
-  with their bat0 bridged together, with BLA enabled) sharing the same
-  LAN to nodes in the mesh
+On 11/09/2020 16:02, Sven Eckelmann wrote:
+> Maybe Antonio wants to add more things to this discussion.
 
-Issue:
-* Nodes receive the frame multiple times on bat0 from the mesh,
-  once from each foreign BLA backbone gateway which shares the same LAN
-  with another
+I believe you and Simon have already been fairly exhaustive.
 
-For multicast frames via batman-adv broadcast packets coming from the
-same BLA backbone but from different backbone gateways duplicates are
-currently detected via a CRC history of previously received packets.
+batman-adv simply won't forward any VLAN tagged traffic to nodes that
+don't have that specific VLAN set up.
 
-However this CRC so far was not performed for multicast frames received
-via batman-adv unicast packets. Fixing this by appyling the same check
-for such packets, too.
+That's because batman-adv will instantiate a number of internal data
+structures, along with routing logic, only when the VLAN is created.
 
-Room for improvements in the future: Ideally we would introduce the
-possibility to not only claim a client, but a complete originator, too.
-This would allow us to only send a multicast-in-unicast packet from a BLA
-backbone gateway claiming the node and by that avoid potential redundant
-transmissions in the first place.
+Regards,
 
-Fixes: e5cf86d30a9b ("batman-adv: add broadcast duplicate check")
-Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
----
- net/batman-adv/bridge_loop_avoidance.c | 109 +++++++++++++++++++++----
- 1 file changed, 93 insertions(+), 16 deletions(-)
-
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/brid=
-ge_loop_avoidance.c
-index 3d2a66f2..60ed5293 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -1580,14 +1580,17 @@ int batadv_bla_init(struct batadv_priv *bat_priv)
- }
-=20
- /**
-- * batadv_bla_check_bcast_duplist() - Check if a frame is in the broadca=
-st dup.
-+ * batadv_bla_check_duplist() - Check if a frame is in the broadcast dup=
-.
-  * @bat_priv: the bat priv with all the soft interface information
-- * @skb: contains the bcast_packet to be checked
-- *
-- * check if it is on our broadcast list. Another gateway might
-- * have sent the same packet because it is connected to the same backbon=
-e,
-- * so we have to remove this duplicate.
-+ * @skb: contains the multicast packet to be checked
-+ * @payload_ptr: pointer to position inside the head buffer of the skb
-+ *  marking the start of the data to be CRC'ed
-+ * @orig: originator mac address, NULL if unknown
-  *
-+ * Check if it is on our broadcast list. Another gateway might have sent=
- the
-+ * same packet because it is connected to the same backbone, so we have =
-to
-+ * remove this duplicate.
-+
-  * This is performed by checking the CRC, which will tell us
-  * with a good chance that it is the same packet. If it is furthermore
-  * sent by another host, drop it. We allow equal packets from
-@@ -1595,23 +1598,23 @@ int batadv_bla_init(struct batadv_priv *bat_priv)
-  *
-  * Return: true if a packet is in the duplicate list, false otherwise.
-  */
--bool batadv_bla_check_bcast_duplist(struct batadv_priv *bat_priv,
--				    struct sk_buff *skb)
-+static bool batadv_bla_check_duplist(struct batadv_priv *bat_priv,
-+				     struct sk_buff *skb, u8 *payload_ptr,
-+				     const u8 *orig)
- {
-+	struct batadv_bcast_duplist_entry *entry;
-+	bool ret =3D false;
- 	int i, curr;
- 	__be32 crc;
--	struct batadv_bcast_packet *bcast_packet;
--	struct batadv_bcast_duplist_entry *entry;
--	bool ret =3D false;
--
--	bcast_packet =3D (struct batadv_bcast_packet *)skb->data;
-=20
- 	/* calculate the crc ... */
--	crc =3D batadv_skb_crc32(skb, (u8 *)(bcast_packet + 1));
-+	crc =3D batadv_skb_crc32(skb, payload_ptr);
-=20
- 	spin_lock_bh(&bat_priv->bla.bcast_duplist_lock);
-=20
- 	for (i =3D 0; i < BATADV_DUPLIST_SIZE; i++) {
-+		bool is_from_same_orig =3D false;
-+
- 		curr =3D (bat_priv->bla.bcast_duplist_curr + i);
- 		curr %=3D BATADV_DUPLIST_SIZE;
- 		entry =3D &bat_priv->bla.bcast_duplist[curr];
-@@ -1626,7 +1629,24 @@ bool batadv_bla_check_bcast_duplist(struct batadv_=
-priv *bat_priv,
- 		if (entry->crc !=3D crc)
- 			continue;
-=20
--		if (batadv_compare_eth(entry->orig, bcast_packet->orig))
-+		/* are the originators both known and not anonymous? */
-+		if (orig && !is_zero_ether_addr(orig) &&
-+		    !is_zero_ether_addr(entry->orig)) {
-+			/* if known, check if the new frame came from
-+			 * the same originator
-+			 */
-+			if (batadv_compare_eth(entry->orig, orig))
-+				is_from_same_orig =3D true;
-+		}
-+
-+		/* we are safe to take identical frames from the
-+		 * same orig, if known, as multiplications in
-+		 * the mesh are detected via the (orig, seqno) pair;
-+		 * so we can be a bit more liberal here and allow
-+		 * identical frames from the same orig which the source
-+		 * host might have sent multiple times on purpose
-+		 */
-+		if (is_from_same_orig)
- 			continue;
-=20
- 		/* this entry seems to match: same crc, not too old,
-@@ -1643,7 +1663,14 @@ bool batadv_bla_check_bcast_duplist(struct batadv_=
-priv *bat_priv,
- 	entry =3D &bat_priv->bla.bcast_duplist[curr];
- 	entry->crc =3D crc;
- 	entry->entrytime =3D jiffies;
--	ether_addr_copy(entry->orig, bcast_packet->orig);
-+
-+	/* known originator */
-+	if (orig)
-+		ether_addr_copy(entry->orig, orig);
-+	/* anonymous originator */
-+	else
-+		eth_zero_addr(entry->orig);
-+
- 	bat_priv->bla.bcast_duplist_curr =3D curr;
-=20
- out:
-@@ -1652,6 +1679,48 @@ bool batadv_bla_check_bcast_duplist(struct batadv_=
-priv *bat_priv,
- 	return ret;
- }
-=20
-+/**
-+ * batadv_bla_check_ucast_duplist() - Check if a frame is in the broadca=
-st dup.
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: contains the multicast packet to be checked, decapsulated from =
-a
-+ *  unicast_packet
-+ *
-+ * Check if it is on our broadcast list. Another gateway might have sent=
- the
-+ * same packet because it is connected to the same backbone, so we have =
-to
-+ * remove this duplicate.
-+ *
-+ * Return: true if a packet is in the duplicate list, false otherwise.
-+ */
-+static bool batadv_bla_check_ucast_duplist(struct batadv_priv *bat_priv,
-+					   struct sk_buff *skb)
-+{
-+	return batadv_bla_check_duplist(bat_priv, skb, (u8 *)skb->data, NULL);
-+}
-+
-+/**
-+ * batadv_bla_check_bcast_duplist() - Check if a frame is in the broadca=
-st dup.
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: contains the bcast_packet to be checked
-+ *
-+ * Check if it is on our broadcast list. Another gateway might have sent=
- the
-+ * same packet because it is connected to the same backbone, so we have =
-to
-+ * remove this duplicate.
-+ *
-+ * Return: true if a packet is in the duplicate list, false otherwise.
-+ */
-+bool batadv_bla_check_bcast_duplist(struct batadv_priv *bat_priv,
-+				    struct sk_buff *skb)
-+{
-+	struct batadv_bcast_packet *bcast_packet;
-+	u8 *payload_ptr;
-+
-+	bcast_packet =3D (struct batadv_bcast_packet *)skb->data;
-+	payload_ptr =3D (u8 *)(bcast_packet + 1);
-+
-+	return batadv_bla_check_duplist(bat_priv, skb, payload_ptr,
-+					bcast_packet->orig);
-+}
-+
- /**
-  * batadv_bla_is_backbone_gw_orig() - Check if the originator is a gatew=
-ay for
-  *  the VLAN identified by vid.
-@@ -1866,6 +1935,14 @@ bool batadv_bla_rx(struct batadv_priv *bat_priv, s=
-truct sk_buff *skb,
- 			    packet_type =3D=3D BATADV_UNICAST)
- 				goto handled;
-=20
-+	/* potential duplicates from foreign BLA backbone gateways via
-+	 * multicast-in-unicast packets
-+	 */
-+	if (is_multicast_ether_addr(ethhdr->h_dest) &&
-+	    packet_type =3D=3D BATADV_UNICAST &&
-+	    batadv_bla_check_ucast_duplist(bat_priv, skb))
-+		goto handled;
-+
- 	ether_addr_copy(search_claim.addr, ethhdr->h_source);
- 	search_claim.vid =3D vid;
- 	claim =3D batadv_claim_hash_find(bat_priv, &search_claim);
---=20
-2.28.0
+-- 
+Antonio Quartulli
