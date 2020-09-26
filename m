@@ -2,172 +2,244 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE2A276D23
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 24 Sep 2020 11:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F552797E8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 26 Sep 2020 10:22:12 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9F7BD80418;
-	Thu, 24 Sep 2020 11:26:31 +0200 (CEST)
-Received: from mail-io1-f78.google.com (mail-io1-f78.google.com [209.85.166.78])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id D2ED18027F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 24 Sep 2020 11:26:27 +0200 (CEST)
-Received: by mail-io1-f78.google.com with SMTP id e83so1955312ioa.2
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 24 Sep 2020 02:26:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-        bh=1vZBoUfllgQW1HoxmcWnFRiHdvFknjpt5KNWNGuStuA=;
-        b=VG+Jv0rE0p3yXMneWMfbMdbYqhqq8Nx5YrnsXVQ1RbVUqzhXAcR+Ftp5/QeORwqBxq
-         y7gW2M5iokdGeNbn7yEh3hN3+hc2lIJq8WLK6viY7E5gogpTa1oxjsMtpy7OLVE1W4zV
-         sTEj1IWCieNM0xWhd07s2+fmr70jqqdDkHiF+82vM1K4BD5+1PIHn3dWsm47K1kkJKzO
-         ehwAlJjxio+n+5kRwKh99GqS5bJ+2VaqPR6QwS4KftJHARnseqi5MKMwq+UaRj0VnnrF
-         LtbMcclwvuW9afGdZ0AMuH/svxaP4M5BEm86SwATy41ZIBIN72M5HPxz2/Dn0lpPjkCs
-         8mwg==
-X-Gm-Message-State: AOAM5332TQ/sHuqmiQC6wmSi7HxzTIrcPziiFWcDKaN6xTwxI8j/OfaS
-	JONvirbn5htyj1UD7SaDREy1kE+aNuTi0IAdFJ8OlQpPTMUp
-X-Google-Smtp-Source: ABdhPJwOx8rANuVrAsei7C1g+CVbAzLOuF18+sdMCU8TSORbUwU6ZvDr5+K0pkfk5oYluj6k2Rofx9x79zsvdMNZFPGsktwVak2E
-MIME-Version: 1.0
-X-Received: by 2002:a02:c789:: with SMTP id n9mr2750231jao.36.1600939586191;
- Thu, 24 Sep 2020 02:26:26 -0700 (PDT)
-Date: Thu, 24 Sep 2020 02:26:26 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000578a4f05b00bcb4b@google.com>
-Subject: KASAN: vmalloc-out-of-bounds Read in bpf_trace_run5
-From: syzbot <syzbot+856297c51366950e115e@syzkaller.appspotmail.com>
-To: a@unstable.cc, andriin@fb.com, ast@kernel.org,
-	b.a.t.m.a.n@lists.open-mesh.org, bpf@vger.kernel.org, daniel@iogearbox.net,
-	davem@davemloft.net, hawk@kernel.org, john.fastabend@gmail.com, kafai@fb.com,
-	kpsingh@chromium.org, kuba@kernel.org, linux-kernel@vger.kernel.org,
-	linux-raid@vger.kernel.org, mareklindner@neomailbox.ch, mingo@redhat.com,
-	netdev@vger.kernel.org, rostedt@goodmis.org, shli@fb.com, shli@kernel.org,
-	songliubraving@fb.com, sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com,
-	yhs@fb.com
-Content-Type: text/plain; charset="UTF-8"
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1600939587;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 70BB18081E;
+	Sat, 26 Sep 2020 10:22:07 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 73C1180599
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 26 Sep 2020 10:22:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1601107979;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=1vZBoUfllgQW1HoxmcWnFRiHdvFknjpt5KNWNGuStuA=;
-	b=NnvR/zxQFXzi8KNE0X5RTJlTQfohaEz/wlV2FELDJVcHATlezoK7Hsu05dFEVkywIzUoTD
-	Im/Jod/DmnwHvK+2x0MIoTxHyJe2CX2qq83+z2WmQVzeYXWuHDq90VHBBjiRbWtuRefhNN
-	nFuilZRgWYPLP/7OGFM6ivTF1VhZO78=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1600939587; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=PiyNY7uUAXkphfVLKrVaoMUy9s/jcssrAt8TIVmT5I4=;
+	b=bWSfplyJ6LHzOzIyoDSFXGBGJBae9uSnkJZrU82jDQrJwy2DuxnAgqqSESk9I4jNZvvtcO
+	+YGDQ+SmLZBdUobphoS27pSnHlolf+OoB7m3ud5JKucOzOqDmHWvjh41C6FWlAq7fPrHo+
+	isJcm9N81BoovZTmZ1unU1v31rJiKnY=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH 1/2] batman-adv: Re-add compat-patches infrastructure
+Date: Sat, 26 Sep 2020 10:12:19 +0200
+Message-Id: <20200926081220.40779-1-sven@narfation.org>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1601108524;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=PiyNY7uUAXkphfVLKrVaoMUy9s/jcssrAt8TIVmT5I4=;
+	b=baldiHE+n0RkUW9KtVcQkRL4a1xUqDCLqujB5lhdFhaVct8UXmIerN4eEesf0X1BeqNKBU
+	axtTU93/EqEWVlj39uzeABsALp5FD0NLi7a2QHamfZrN0IgqOoEEbm5KsvYYmyvaL4uJG7
+	s2yux8a8xk49v8d3eENC6UlSE8T9FnI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601108524; a=rsa-sha256;
 	cv=none;
-	b=wxSGvMVstl/fd2Q1OYByBKQIwgOrFx/SnG80fwhm1viRmvnuPEgDs4Fd4M5VTmBovBU4KR
-	eaqMc8TBy//Fp6kFWoG8yIgTxhx4EwlxLl/g86Vdwl1umVJ32DwTFTERMltZyDYg6GFZ3c
-	W3JMja9iDc1ZcrhrpffJ+qU96+N+F7E=
+	b=maRXm/h3chIn44tX4OO35aFFu1ZkW9PQQtUwKbLJMmEuIcednzPRQPqP+ZaZiHknAdpVGy
+	kQL+PjvC5Q0hdXnaUwMblzcvcO5XIth0Czc/1+i3nW95JDs2oJ49G3WAyn0zLfBdc980fu
+	WbMKjH0Nch5+n0aUoI7f3TZ/lISjjek=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of 3QmZsXwkbAMEz56rhsslyhwwpk.nvvnsl1zlyjvu0lu0.jvt@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.78 as permitted sender) smtp.mailfrom=3QmZsXwkbAMEz56rhsslyhwwpk.nvvnsl1zlyjvu0lu0.jvt@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-Message-ID-Hash: 2ITX4VEHEWYHFKH5I2TYWP4LVX4NSJFY
-X-Message-ID-Hash: 2ITX4VEHEWYHFKH5I2TYWP4LVX4NSJFY
-X-MailFrom: 3QmZsXwkbAMEz56rhsslyhwwpk.nvvnsl1zlyjvu0lu0.jvt@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+	dkim=pass header.d=narfation.org header.s=20121 header.b=bWSfplyJ;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: B4QOYO3UMUJGV5YMDUFX75DEIQLFC5EV
+X-Message-ID-Hash: B4QOYO3UMUJGV5YMDUFX75DEIQLFC5EV
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Nikolay Aleksandrov <nikolay@nvidia.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2ITX4VEHEWYHFKH5I2TYWP4LVX4NSJFY/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/B4QOYO3UMUJGV5YMDUFX75DEIQLFC5EV/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello,
+Some patches were added again in the mainline kernel which make it rather
+hard to allow building of the unmodified batman-adv sources against older
+kernel versions.
 
-syzbot found the following issue on:
+Just switch again to the old build infrastructure again. It creates a
+copy of the sources in net/batman-adv which can be patched and then
+compiled+linked to create build/net/batman-adv/batman-adv.ko
 
-HEAD commit:    b10b8ad8 Add linux-next specific files for 20200921
-git tree:       linux-next
-console output: https://syzkaller.appspot.com/x/log.txt?x=1371eb1d900000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=3cf0782933432b43
-dashboard link: https://syzkaller.appspot.com/bug?extid=856297c51366950e115e
-compiler:       gcc (GCC) 10.1.0-syz 20200507
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1510d3d9900000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1328ecbb900000
-
-The issue was bisected to:
-
-commit 1e6d690b9334b7e1b31d25fd8d93e980e449a5f9
-Author: Song Liu <songliubraving@fb.com>
-Date:   Thu Nov 17 23:24:39 2016 +0000
-
-    md/r5cache: caching phase of r5cache
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=109283d9900000
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=129283d9900000
-console output: https://syzkaller.appspot.com/x/log.txt?x=149283d9900000
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+856297c51366950e115e@syzkaller.appspotmail.com
-Fixes: 1e6d690b9334 ("md/r5cache: caching phase of r5cache")
-
-==================================================================
-BUG: KASAN: vmalloc-out-of-bounds in __bpf_trace_run kernel/trace/bpf_trace.c:1937 [inline]
-BUG: KASAN: vmalloc-out-of-bounds in bpf_trace_run5+0x401/0x410 kernel/trace/bpf_trace.c:1977
-Read of size 8 at addr ffffc90000e80030 by task rs:main Q:Reg/6567
-
-CPU: 1 PID: 6567 Comm: rs:main Q:Reg Not tainted 5.9.0-rc5-next-20200921-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-Call Trace:
- __dump_stack lib/dump_stack.c:77 [inline]
- dump_stack+0x198/0x1fb lib/dump_stack.c:118
- print_address_description.constprop.0.cold+0x5/0x497 mm/kasan/report.c:385
- __kasan_report mm/kasan/report.c:545 [inline]
- kasan_report.cold+0x1f/0x37 mm/kasan/report.c:562
- __bpf_trace_run kernel/trace/bpf_trace.c:1937 [inline]
- bpf_trace_run5+0x401/0x410 kernel/trace/bpf_trace.c:1977
- __bpf_trace_ext4_journal_start+0x142/0x180 include/trace/events/ext4.h:1788
- __traceiter_ext4_journal_start+0x83/0xd0 include/trace/events/ext4.h:1788
- trace_ext4_journal_start include/trace/events/ext4.h:1788 [inline]
- __ext4_journal_start_sb+0x228/0x440 fs/ext4/ext4_jbd2.c:96
- __ext4_journal_start fs/ext4/ext4_jbd2.h:328 [inline]
- ext4_dirty_inode+0xbc/0x130 fs/ext4/inode.c:5850
- __mark_inode_dirty+0x888/0x1190 fs/fs-writeback.c:2260
- generic_update_time+0x21c/0x370 fs/inode.c:1764
- update_time fs/inode.c:1777 [inline]
- file_update_time+0x434/0x520 fs/inode.c:1992
- file_modified fs/inode.c:2015 [inline]
- file_modified+0x7d/0xa0 fs/inode.c:2000
- ext4_write_checks fs/ext4/file.c:248 [inline]
- ext4_buffered_write_iter+0xf9/0x4a0 fs/ext4/file.c:264
- ext4_file_write_iter+0x1f3/0x13e0 fs/ext4/file.c:660
- call_write_iter include/linux/fs.h:1895 [inline]
- new_sync_write+0x426/0x650 fs/read_write.c:517
- vfs_write+0x57d/0x700 fs/read_write.c:595
- ksys_write+0x12d/0x250 fs/read_write.c:648
- do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x7fed08e3a1cd
-Code: c2 20 00 00 75 10 b8 01 00 00 00 0f 05 48 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 ae fc ff ff 48 89 04 24 b8 01 00 00 00 0f 05 <48> 8b 3c 24 48 89 c2 e8 f7 fc ff ff 48 89 d0 48 83 c4 08 48 3d 01
-RSP: 002b:00007fed063f5590 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
-RAX: ffffffffffffffda RBX: 00007fecfc0238a0 RCX: 00007fed08e3a1cd
-RDX: 0000000000000dd6 RSI: 00007fecfc0238a0 RDI: 0000000000000006
-RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000293 R12: 00007fecfc023620
-R13: 00007fed063f55b0 R14: 0000560a2b025360 R15: 0000000000000dd6
-
-
-Memory state around the buggy address:
- ffffc90000e7ff00: f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8
- ffffc90000e7ff80: f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8
->ffffc90000e80000: f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8
-                                     ^
- ffffc90000e80080: f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8
- ffffc90000e80100: f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8 f8
-==================================================================
-
-
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+ .gitignore                     | 13 +-----------
+ Makefile                       | 38 +++++++++++++++++++++++++++-------
+ compat-patches/README          | 27 ++++++++++++++++++++++++
+ compat-patches/replacements.sh |  5 +++++
+ 4 files changed, 64 insertions(+), 19 deletions(-)
+ create mode 100644 compat-patches/README
+ create mode 100755 compat-patches/replacements.sh
 
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
-syzbot can test patches for this issue, for details see:
-https://goo.gl/tpsmEJ#testing-patches
+diff --git a/.gitignore b/.gitignore
+index 4df7f60a..1a8dbc0d 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,14 +1,3 @@
+-/.cache.mk
+ /compat-autoconf.h
+ /compat-autoconf.h.tmp
+-/compat-sources/**/.*
+-/compat-sources/**/*.o
+-/modules.order
+-/Module.symvers
+-/net/batman-adv/batman-adv.ko
+-/net/batman-adv/.batman-adv.ko.cmd
+-/net/batman-adv/batman-adv.mod.c
+-/net/batman-adv/modules.order
+-/net/batman-adv/*.o
+-/net/batman-adv/.*.o.cmd
+-/.tmp_versions
++/build/
+diff --git a/Makefile b/Makefile
+index afdbc03c..25c75f46 100644
+--- a/Makefile
++++ b/Makefile
+@@ -24,6 +24,7 @@ export CONFIG_BATMAN_ADV_SYSFS=3Dn
+ export CONFIG_BATMAN_ADV_TRACING=3Dn
+=20
+ PWD:=3D$(shell pwd)
++BUILD_DIR=3D$(PWD)/build
+ KERNELPATH ?=3D /lib/modules/$(shell uname -r)/build
+ # sanity check: does KERNELPATH exist?
+ ifeq ($(shell cd $(KERNELPATH) && pwd),)
+@@ -32,17 +33,24 @@ endif
+=20
+ export KERNELPATH
+ RM ?=3D rm -f
++MKDIR :=3D mkdir -p
++PATCH_FLAGS =3D --batch --fuzz=3D0 --forward --strip=3D1 --unified --ver=
+sion-control=3Dnever -g0 --remove-empty-files --no-backup-if-mismatch --r=
+eject-file=3D-
++PATCH :=3D patch $(PATCH_FLAGS) -i
+ CP :=3D cp -fpR
+ LN :=3D ln -sf
+ DEPMOD :=3D depmod -a
+=20
++SOURCE =3D $(wildcard net/batman-adv/*.[ch]) net/batman-adv/Makefile
++SOURCE_BUILD =3D $(wildcard $(BUILD_DIR)/net/batman-adv/*.[ch]) $(BUILD_=
+DIR)/net/batman-adv/Makefile
++SOURCE_STAMP =3D $(BUILD_DIR)/net/batman-adv/.compat-prepared
++
+ REVISION=3D $(shell	if [ -d "$(PWD)/.git" ]; then \
+ 				echo $$(git --git-dir=3D"$(PWD)/.git" describe --always --dirty --ma=
+tch "v*" |sed 's/^v//' 2> /dev/null || echo "[unknown]"); \
+ 			fi)
+ NOSTDINC_FLAGS +=3D \
+-	-I$(PWD)/compat-include/ \
+-	-I$(PWD)/include/ \
+-	-include $(PWD)/compat.h \
++	-I$(PWD)/../compat-include/ \
++	-I$(PWD)/../include/ \
++	-include $(PWD)/../compat.h \
+ 	$(CFLAGS)
+=20
+ ifneq ($(REVISION),)
+@@ -55,8 +63,8 @@ export batman-adv-y
+=20
+=20
+ BUILD_FLAGS :=3D \
+-	M=3D$(PWD) \
+-	PWD=3D$(PWD) \
++	M=3D$(BUILD_DIR) \
++	PWD=3D$(BUILD_DIR) \
+ 	REVISION=3D$(REVISION) \
+ 	CONFIG_BATMAN_ADV=3Dm \
+ 	CONFIG_BATMAN_ADV_DEBUG=3D$(CONFIG_BATMAN_ADV_DEBUG) \
+@@ -70,18 +78,34 @@ BUILD_FLAGS :=3D \
+ 	CONFIG_BATMAN_ADV_BATMAN_V=3D$(CONFIG_BATMAN_ADV_BATMAN_V) \
+ 	INSTALL_MOD_DIR=3Dupdates/
+=20
+-all: config
++all: config $(SOURCE_STAMP)
+ 	$(MAKE) -C $(KERNELPATH) $(BUILD_FLAGS)	modules
+=20
+ clean:
+ 	$(RM) compat-autoconf.h*
+ 	$(MAKE) -C $(KERNELPATH) $(BUILD_FLAGS) clean
+=20
+-install: config
++install: config $(SOURCE_STAMP)
+ 	$(MAKE) -C $(KERNELPATH) $(BUILD_FLAGS) modules_install
+ 	$(DEPMOD)
+=20
+ config:
+ 	$(PWD)/gen-compat-autoconf.sh $(PWD)/compat-autoconf.h
+=20
++$(SOURCE_STAMP): $(SOURCE) compat-patches/* compat-patches/replacements.=
+sh
++	$(MKDIR) $(BUILD_DIR)/net/batman-adv/
++	@$(LN) ../Makefile $(BUILD_DIR)/Makefile
++	@$(RM) $(SOURCE_BUILD)
++	@$(CP) $(SOURCE) $(BUILD_DIR)/net/batman-adv/
++	@set -e; \
++	patches=3D"$$(ls -1 compat-patches/|grep '.patch$$'|sort)"; \
++	for i in $${patches}; do \
++		echo '  COMPAT_PATCH '$${i};\
++		cd $(BUILD_DIR); \
++		$(PATCH) ../compat-patches/$${i}; \
++		cd - > /dev/null; \
++	done
++	compat-patches/replacements.sh
++	touch $(SOURCE_STAMP)
++
+ .PHONY: all clean install config
+diff --git a/compat-patches/README b/compat-patches/README
+new file mode 100644
+index 00000000..55cb0fe2
+--- /dev/null
++++ b/compat-patches/README
+@@ -0,0 +1,27 @@
++.. SPDX-License-Identifier: GPL-2.0
++
++WARNING
++=3D=3D=3D=3D=3D=3D=3D
++
++Please avoid using the compat-patches/ to implement support for old kern=
+els.
++This should be the last resort.
++
++ * it is nearly always possible to use compat-includes/ to do the same w=
+ith a
++   lot less problems
++
++ * maintaining these patches is *censored*
++
++GENERATING A PATCH
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++
++If it not possible to avoid a patch then please make the patch as small =
+as
++possible. Even refactor the code which has to be patched to reduce the
++size/number of the changes.
++
++Please use git-format-patches to generate them and order them inside via=
+ the
++XXXX- prefix before the patch name.
++
++    git format-patch --no-stat --full-index --no-renames --binary \
++      --diff-algorithm=3Dhistogram --no-signature \
++      --format=3Dformat:'From: %an <%ae>%nDate: %aD%nSubject: %B' \
++      -1
+diff --git a/compat-patches/replacements.sh b/compat-patches/replacements=
+.sh
+new file mode 100755
+index 00000000..1b64e5c2
+--- /dev/null
++++ b/compat-patches/replacements.sh
+@@ -0,0 +1,5 @@
++#! /bin/sh
++# SPDX-License-Identifier: GPL-2.0
++# Copyright (C) 2007-2018  B.A.T.M.A.N. contributors
++
++set -e
+--=20
+2.28.0
