@@ -1,64 +1,64 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168CC2797E7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 26 Sep 2020 10:22:08 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C09F727A27B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 27 Sep 2020 21:12:54 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B3E7C800E2;
-	Sat, 26 Sep 2020 10:22:06 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 621F1800A1
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 26 Sep 2020 10:22:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1601107986;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8B06E805F8;
+	Sun, 27 Sep 2020 21:12:53 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:171:314c::100:a1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 231D080091
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 27 Sep 2020 21:12:49 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+	t=1601233969;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E6TKCD2SmP0HbdLaY49M2V+pU+Q7FjyqTxkD6V+xbuQ=;
-	b=2bbu8RAT+2ud7PQpkNBLy8xPJQ1he+VgGnocp/jIIk6mE6m3WGpett330NszJ1HBbH/gsA
-	NN84W6Klthwbw7sL0QEXxDqooeQdfRxcCWGA01fVWzAPPNdPdP8WPHYLnMX00sWaGBUYCr
-	qYI6/mxSLy7NgxNADwBDXGeSNO7IV5E=
-From: Sven Eckelmann <sven@narfation.org>
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fZLqRGGSTUrOK+qF5Zhf7v3YXXpTS2w+aSJq9/Ptp6w=;
+	b=gkKYAn9YNu1Y2VBsEUxgDv2SwbBNzzWRKENdpP/tyz5f65WduHm2/oE8iiZP8q3kAT8i7H
+	RTbN840Vsv6TmRwH6275X8X0aUu1mlkLR9gT8IE+vjJeRsH10qYIHXhVH1XobEzy0yviRz
+	Qv6lAYKq3XX3pFrumZ9V4eOj+h5DRllITwFXrRia50pPMT6yHtPt5fFH8jEQVWEvOa1Tqa
+	FCtOpyJbWi6LkRKejwcFV/O1JXICcQbgtQ/UI28rHGMyOjg9IWQVmhTmBXOj9U0RVzIJKS
+	3xdART3Ty6zsDLenQGgDy6ZROhh8y1lG+wF9keTBPLXU5VM4DW7PCynjCur7Ow==
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 2/2] batman-adv: mcast: rename br_ip's u member to dst
-Date: Sat, 26 Sep 2020 10:12:20 +0200
-Message-Id: <20200926081220.40779-2-sven@narfation.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200926081220.40779-1-sven@narfation.org>
-References: <20200926081220.40779-1-sven@narfation.org>
+Subject: [PATCH] net: bridge: mcast: rename br_ip's u member to dst
+Date: Sun, 27 Sep 2020 21:12:34 +0200
+Message-Id: <20200927191234.22423-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1601108524;
+	s=20121; t=1601233970;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=E6TKCD2SmP0HbdLaY49M2V+pU+Q7FjyqTxkD6V+xbuQ=;
-	b=JffKiaIGay9hnLu3rapWRrNBaJPOPxRKqH5hTuWCCbDgGa+B3cU2F1SwEVQtRRCuVp/LUz
-	9h48xmj97+1VdnCbd5kf+rm7VbnjF+9uEr2Ot1utVIkdzpB2YT6Hpl8PAzzZBI++t79A8H
-	sXjwL/eVGLkyp0iCV2nlvdRiUR0Pddw=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601108524; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=fZLqRGGSTUrOK+qF5Zhf7v3YXXpTS2w+aSJq9/Ptp6w=;
+	b=OIJ8TdhhSnxrrl1mu9dZ/Y/Ud17oglXNfwACpSD0lbKMQA8w5SaeAZkjxJ4fKMLAhi3/55
+	qqz60rNMWq6roVy/8HQzuFizuEu63/oIEcUdGpWLpB85cPVxnUFG7RtOPWuGk5WT45Zn3T
+	I5NcAOyHnjN1R7BonxquSdm/Oe8nblI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601233970; a=rsa-sha256;
 	cv=none;
-	b=3hrMV1X7ZodBGISp5qx4cO95dG9dKN7OeXSMPUwx6opi80ZMqHiUc7bmCTzCA0Z8tThlwe
-	lS5thMj4LfX1tzbQpRkJt1XgKAavCAb/3yQN15lm715AyXOcdABP2zeOSKzHJSCDQlOFkg
-	SIxhCQIieLPRRbYeh5QYPZOry/2AL6s=
+	b=Xkmwjy01XSlTag/v6Kx07poAVBoTV07yZwb6JObGsYdlUkowcVE6bTjTKFW3OrxPKfrfvK
+	JrdB1QDY9vORa736ifBUN8notFtPw0ZzREYX+fuB2sE9DsMyjjIqjIiKrWkwE/pfH7EGoY
+	5L96Rhvcrpw7bF7E1D/z4Vj6Iv0cC7w=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2bbu8RAT;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=gkKYAn9Y;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:171:314c::100:a1) smtp.mailfrom=linus.luessing@c0d3.blue
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 7H76PITJXELMORCMJ4JCGONBLKCGJIG4
-X-Message-ID-Hash: 7H76PITJXELMORCMJ4JCGONBLKCGJIG4
-X-MailFrom: sven@narfation.org
+Message-ID-Hash: 2F37FAVASNYXBLDOU5IHALOLEUSS6XE7
+X-Message-ID-Hash: 2F37FAVASNYXBLDOU5IHALOLEUSS6XE7
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Nikolay Aleksandrov <nikolay@nvidia.com>
+CC: Nikolay Aleksandrov <nikolay@nvidia.com>, Marek Lindner <mareklindner@neomailbox.ch>, Antonio Quartulli <a@unstable.cc>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7H76PITJXELMORCMJ4JCGONBLKCGJIG4/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2F37FAVASNYXBLDOU5IHALOLEUSS6XE7/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -70,24 +70,29 @@ From: Nikolay Aleksandrov <nikolay@nvidia.com>
 Since now we have src in br_ip, u no longer makes sense so rename
 it to dst. No functional changes.
 
+v2: fix build with CONFIG_BATMAN_ADV_MCAST
+
+CC: Marek Lindner <mareklindner@neomailbox.ch>
+CC: Simon Wunderlich <sw@simonwunderlich.de>
+CC: Antonio Quartulli <a@unstable.cc>
+CC: Sven Eckelmann <sven@narfation.org>
+CC: b.a.t.m.a.n@lists.open-mesh.org
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-[sven@narfation.org: Add compat code]
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+[linus.luessing@c0d3.blue: Add compat code]
+Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 ---
- compat-include/linux/if_bridge.h | 26 ++++++++++++++++++++++++++
- compat-patches/replacements.sh   |  5 +++++
- net/batman-adv/multicast.c       | 14 +++++++-------
- 3 files changed, 38 insertions(+), 7 deletions(-)
+ compat-include/linux/if_bridge.h | 39 ++++++++++++++++++++++++++++++++
+ net/batman-adv/multicast.c       | 14 ++++++------
+ 2 files changed, 46 insertions(+), 7 deletions(-)
  create mode 100644 compat-include/linux/if_bridge.h
 
 diff --git a/compat-include/linux/if_bridge.h b/compat-include/linux/if_b=
 ridge.h
 new file mode 100644
-index 00000000..7b6d5876
+index 00000000..c4f9bc08
 --- /dev/null
 +++ b/compat-include/linux/if_bridge.h
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,39 @@
 +/* SPDX-License-Identifier: GPL-2.0 */
 +/* Copyright (C) 2007-2020  B.A.T.M.A.N. contributors:
 + *
@@ -106,29 +111,28 @@ rsions
 +
 +#if LINUX_VERSION_IS_LESS(5, 10, 0)
 +
-+#define BATADV_BR_IP_UNION u
++struct batadv_br_ip {
++	union {
++		__be32  ip4;
++#if IS_ENABLED(CONFIG_IPV6)
++		struct in6_addr ip6;
++#endif
++	} dst;
++	__be16          proto;
++	__u16           vid;
++};
 +
-+#else
++struct batadv_br_ip_list {
++	struct list_head list;
++	struct batadv_br_ip addr;
++};
 +
-+#define BATADV_BR_IP_UNION dst
++#define br_ip batadv_br_ip
++#define br_ip_list batadv_br_ip_list
 +
 +#endif /* LINUX_VERSION_IS_LESS(5, 10, 0) */
 +
-+#endif	/* _NET_BATMAN_ADV_COMPAT_LINUX_IF_BRIDGE_H_ */
-diff --git a/compat-patches/replacements.sh b/compat-patches/replacements=
-.sh
-index 1b64e5c2..e72ec5ec 100755
---- a/compat-patches/replacements.sh
-+++ b/compat-patches/replacements.sh
-@@ -3,3 +3,8 @@
- # Copyright (C) 2007-2018  B.A.T.M.A.N. contributors
-=20
- set -e
-+
-+# for kernel < 5.10 to enable br_ip compat code
-+sed -i \
-+	-e 's/\(->\|\.\)dst\.ip/\1BATADV_BR_IP_UNION.ip/' \
-+	build/net/batman-adv/multicast.c
++#endif /* _NET_BATMAN_ADV_COMPAT_LINUX_IF_BRIDGE_H_ */
 diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
 index 0746fe2c..9af99c39 100644
 --- a/net/batman-adv/multicast.c
