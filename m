@@ -2,222 +2,188 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CF227B19C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 28 Sep 2020 18:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A862127D787
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 29 Sep 2020 22:05:20 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id BF0CC8069B;
-	Mon, 28 Sep 2020 18:15:57 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id A395A8026F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 28 Sep 2020 18:15:53 +0200 (CEST)
-From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1601309753;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=cOh9RkmeroteNH/lYjEI3q2RemkZBF3scdWHaf/1T4Q=;
-	b=iWuX1mjep3+d5wPLWx4FRYX+7bTlWVbUPK5IJxurQ/DifeWy+l5z07O9ZnB9yGBbbFeVKH
-	+vnbRHAfbxxfehV9tTJVOasy0wSy0nXy2g1TIVD6bxvS6YKNzrKADoWafTBwhEmtX3jCuD
-	ery1sNphYqaOUFFdH7NVHqinWTqRGxgt20tQL0JB4LVWeF4iUAswuQwcPbDyi7O+Knphxb
-	0mtjpJsfocWMmrxQrbkM1qpKYlfjn1j2gePUzVM+ITqLFUeTgqfwSnE6l8us/NTPdOVTYy
-	pqoLl3grQlZF6K0K0rsRvmWf9O8L5smY/luL1jRAcOu9Jf4lP2t6klDXgFa7RA==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6AF84800AE;
+	Tue, 29 Sep 2020 22:05:19 +0200 (CEST)
+Received: from mailout03.agenturserver.de (mailout03.agenturserver.de [153.92.196.166])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id BCB85800AE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 29 Sep 2020 22:05:11 +0200 (CEST)
+Received: from mail02.agenturserver.de (mail02.internal [172.16.51.35])
+	by mailout03.agenturserver.de (Postfix) with ESMTP id 7C9351008BE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 29 Sep 2020 22:05:11 +0200 (CEST)
+Received: from XXX.XXX.XXX.XXX (XXXXX.XX [XXX.XXX.XXX.XXX])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: p381503p13)
+	by mail.agenturserver.de (Postfix) with ESMTPSA id 4BBB480231
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 29 Sep 2020 22:05:10 +0200 (CEST)
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH v2] net: bridge: mcast: rename br_ip's u member to dst
-Date: Mon, 28 Sep 2020 18:15:43 +0200
-Message-Id: <20200928161543.28331-1-linus.luessing@c0d3.blue>
+References: <5e4c619d-bdb1-2fa7-57cc-e5d71ea13f08@kkk-web.de>
+ <88928628.8v8VXxemU5@ripper>
+From: MK <mailing.m1@kkk-web.de>
+Autocrypt: addr=mailing.m1@kkk-web.de; prefer-encrypt=mutual; keydata=
+ mQINBFipULABEADTwacOHgUaof6/A/BW/cchgSlrk86s0MrQX2yjeLT64Z5BVxXML9Nw1+xO
+ SkJNtCk7iqP0I7874gWvqec2RtJwkspLxTkCdkdTkr7RIADeda6yZbFDzjFvzO9K5PaOL+B9
+ gZ/XAqw9HaJ9TiEH43g+IMaphAzbG28mEXMDsy9sdTmG47Y8uFiskyOglUPzaLLMKcNARH2s
+ zkQLZDH2g+b25hw3pxRuLsoudz+Q3DxB8hH64mPl676FepnoGloIEYxw5AwLASnrhhojICs8
+ rZi2CMjc4MsihoFGhGHPr2jYvmYtyRaDppieY6CiO98K9fvJWPZj5lkm3PhkT5KYBLanshci
+ FnlVoK4xNa/QnThrJuko/xPN/Hf/GTUcqsEyf+p8G8A3S5O+MJdNvQnYfVdQX+536mX2+SrJ
+ zuE7ZqkWo6W97qr4ISfDTaXzfdXhgzDf8tb/f262fqKU43Dxxjo81wWGvCCDLSv7hXZxFEZ7
+ jgYjNP66khBHCgvyyASkVLJ0D1loxYZkSnuG7cK5hJvnH/u0AKpXuI+d970HVdcOylBOrvlX
+ oH3RRE5132R2VZUWpeL5bDFTy8k+g7uw0Kc/n9QAALdpAdrLlyXkDEr4y3OIswObIcuy6Mpr
+ wY4IioVA2mCvwCIlnnnBcOtAJsCHQl99x8qufmQ5Q4GVwtPh7QARAQABtCVNYXJ0aW4gS2Vy
+ bGVyIDxtYWlsaW5nLm0xQGtray13ZWIuZGU+iQJABBMBCgAqBQJYqVaBAhsDBQkPCZwACAsN
+ CQoMCAMHBRUKCQgLBRYCAwEAAh4BAheAAAoJEHDYidBDeWqPfdoP+wYUyFdklTj3RKTlZAs6
+ yEAus0GgdLxWJnBIYu+bI/QEB65hSJ1jhgXS+rnaO5+gKgVwfDdMfQIccjdfiNm6p7JEyKBs
+ haG1rQaaS3Ka2q3u2hjg89TpejilQXP5ZCMnwRfl3erHXbKX0AfqNeJl9y92ioQIBBnRb0pN
+ hNEmdYMModUcXq26DhpJHrUw9AVyrC0OnX3VuIJ8fsAL+cLBH9pNR2FvRO1725aD111TS0hw
+ mfHBVtpEsmz25j/VyCYVZME4KhKgAV03p5qPdPBpIKJa68TTCFOvf1dCx8wG5CaD2Z8Nyad6
+ 1djugUXhQZip/FPR4/WQ+VjGyp0B40UC2SzyNajh5MKq3BguHUKi0NKcC14DmYnb3hkX1KJk
+ LA+7w8YTrTFtHPg+sR9KUWRUFvAVKYJz1LcNNXn+ROFs218k6Xzp6jsarEmJkpn0FciPQh6t
+ 0JoxnfGiFFlgNV9ATVKygJ+AvobvCRk8n07g22CdAQagos0RRjAXI+21Lg3znGURlbjNcUbz
+ J+WbcchLCJKHEagECXkov8zknLOObW5rKx88UkkNpP7s9cZbBnLitDk2FRsf+ZsxBMd01q2x
+ TRo6DOq/w0F6NjI/QfBLHC6EeC/fo1ETgSBV1AdmvXQKfcZBEIx0UE2xkC9V3hxflYqDq0d3
+ CEUhC+PdyPpF6YtvuQINBFipULABEADRhaKfHo54bENUtrjW5uuwdGijwVS3p24QiSwbMxQg
+ ffjMatmVfMmOyt5exwWQZU8JD1SEus1e727V+A7+z2hWBURYKlwcN7WGeH071enao9riIEZz
+ 3aBiVoQ7my9x7kB2W2H7iFCMUf4DN3pFylYCWOzQS/k/Pv3Yq7rWPt/853QU8L7uf5kknzQL
+ a+Br6mpWxX/rCCuk4DgVOlWqd+4NNx1qKn8I+vIiZWyjrWdNMrxC8ZyZv/Ex9wf/MRLVg3nW
+ QeOjEoGWnn2XPVMZqQyxlk3NKZYOrnltVmjOeBMyMn0oCUONUd/llqas1owYqS2kqAnjO5pb
+ b+CsB88SXVOOTURnm+F0KQFqHuDIxl+ALE6ApILhvOZHQd/W/WEWs0EF/MGloaQsGfiyGmxT
+ 5UttvDPYl+vnX1ozewLPEB5Mu8TLK3OriodaNZAU2fug0tPocer3ZHmfYyhWO/e6+b6TjJUa
+ hnTUUUm5RLFbaejTHom5wHc5/fAQOM1s5cLb+9VjkYj9J55+ON8O4feQX1i2ULz06N8BJ4DS
+ 6Ud+u3N7vM/5BBGZtPm7QvB7GAbEiS/L2bcrsnzRU1XnF3n4heuYTzV4PAkdjLLGSBEBEBrH
+ a687Ci0SfELd/T0tZUy8eUIqbVFfNrCDfEkArj0MgkyVDA7xTJY1RU7rNfZ8+GjhnwARAQAB
+ iQIlBBgBCgAPBQJYqVCwAhsMBQkPCZwAAAoJEHDYidBDeWqP/yAQAIWMOP4N8bEHK5LTprVw
+ WhAiC1QOUBStfpAL1NlyIlvV1sLtYQ9Dff4+OzlyezTgGuoY04x1hcTsvHGFRKg6pORUwNJR
+ TsW874TJinjmvoH8ed5J6wV2UHDXUfhbde4o7QyF8PWRz6G1x4BMouBLqq7mfZCiY0uAOgrQ
+ uys1Ur2Nfwp1E3VEBZkAnmC+itXuGJuCa+U4enEK2AhLvsCsacAVGTIZ6k0LsrAzH75Gvy12
+ ohPipfYaU+1MLqmQHIf9qZMCC0+NvNHgknj04I9PNkCqR5dt8KTmHleCqX/kRB824NAmsiZT
+ 0ubeP+0PUCkOoMClPi/JEIYWTfuFXIP+vK3UoxDlN1FuQnFGMyTxPhEtcp3qFOeUsQeaie3q
+ akTLdv4K9EsQGAaTrc8Zd8kpF87ZFkS1FH628J8EkHdm0FMNfFj4xwaf+gWoecgyAcFA1C/X
+ sBPHGQaG71rgEK1YBhJe94MhFyN4CfE6DfiZTDu4lfiPnpUQgD/89ELFPmsRkKj9uBcIeB24
+ UstjzEXNzmFm3QdbGuZU5NI81lbF0c/Q2TNMcM2Hy5Hq5HSJsAn4jrJMIuVPTT3E0DHOtLY1
+ 9yBOVh2dgXCtJOVCAOcXR9DI9q9qrWKtUiV6icGvjfzM/ufeQO+s/znoXcOaB/uiYFQWa/Oz
+ m+Y2iqJWrPq0fuYg
+Subject: Re: Does batman choose DHCP server by random?
+Message-ID: <998e8a9b-e0c6-babb-0b45-5fb3fb657a32@kkk-web.de>
+Date: Tue, 29 Sep 2020 22:04:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=linus.luessing@c0d3.blue smtp.mailfrom=linus.luessing@c0d3.blue
+In-Reply-To: <88928628.8v8VXxemU5@ripper>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="jNUqtfHPkjOFwyECooQmK3yi9cfgWKvV4"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1601309753;
+	s=20121; t=1601409915;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=cOh9RkmeroteNH/lYjEI3q2RemkZBF3scdWHaf/1T4Q=;
-	b=OSUOpyePZrZPZw2Df9EV5V1XMpJrF0zN5dG0WVGS1l+LweNfnfGjp0v8SqTgj2YblW4GAt
-	NijI2OwOtNUsZRnZZDRvKFf3NlokaCYYOL+9pNyc6MuFel4Was0DV5pvaO9LV7A8khiFDm
-	aQovduJxJqvr6ko0siL6m5RhtJcrTT8=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601309753; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=9qK1vSp/cguKhlsH8NTULD6GChA9oUUhjecvd8faVrA=;
+	b=GXfU/gHVDNZUke2xtw1fNGYPrypW6kvZYCNKrZTHMREi37IK0AflMWIyuxUbWkLXydPbjx
+	bLhmRnJMbrAB9j5jEYUHpfu0xXGdzqRk1eZunnzjtM7IEATenB6oXFLu6/ce0JfdiWBJH6
+	Ggwp7z6X7VLsuw/RxVcUmc62LQ3Wwgg=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601409915; a=rsa-sha256;
 	cv=none;
-	b=h9gBdX0Hst5pI9Cft3w0kTUieakmNOQuy502dD4LCNTUIWuxBUA683GLaVskghbNDg8wP8
-	UHoB8ahGwfOv21fiJxQVKpGGv4k0oH6dyNPENJJVTOkc8mDHcxxqC6Zz5PUkDZsUx+ssh+
-	PT6pjqWEgnM06m9RPbDV7HJwrjBbkGU=
+	b=lLjH0pcQlgT0xW61iFrhN3w0JvObeX/bSoYl3nnqTJpvC8rQAp9JXuP1+CLM87yjkTi8/d
+	fBh81qScN00N2k6ohI5BFzQK8bOdYay93jg1c3RbNe686zZC31Q3o9fwDteY10y9xQoPCW
+	6Z6gqyXVD+T9Wv4SOE3ev2IaJ8QW/3o=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none (invalid DKIM record) header.d=c0d3.blue header.s=2018 header.b=iWuX1mje;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 138.201.29.205) smtp.mailfrom=linus.luessing@c0d3.blue
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: ZNXO6WNE2W5J6UVJH3SXVKJENNMQJDFM
-X-Message-ID-Hash: ZNXO6WNE2W5J6UVJH3SXVKJENNMQJDFM
-X-MailFrom: linus.luessing@c0d3.blue
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of mailing.m1@kkk-web.de designates 153.92.196.166 as permitted sender) smtp.mailfrom=mailing.m1@kkk-web.de
+Message-ID-Hash: DHEBPQBA767Q4QK3RDFYYNB7UMHBKXVW
+X-Message-ID-Hash: DHEBPQBA767Q4QK3RDFYYNB7UMHBKXVW
+X-MailFrom: mailing.m1@kkk-web.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Nikolay Aleksandrov <nikolay@nvidia.com>, Marek Lindner <mareklindner@neomailbox.ch>, Antonio Quartulli <a@unstable.cc>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZNXO6WNE2W5J6UVJH3SXVKJENNMQJDFM/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DHEBPQBA767Q4QK3RDFYYNB7UMHBKXVW/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--jNUqtfHPkjOFwyECooQmK3yi9cfgWKvV4
+Content-Type: multipart/mixed; boundary="W7T39sBAMlaQrfwfaD9HS6b9g6I87MPzD";
+ protected-headers="v1"
+From: MK <mailing.m1@kkk-web.de>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Message-ID: <998e8a9b-e0c6-babb-0b45-5fb3fb657a32@kkk-web.de>
+Subject: Re: Does batman choose DHCP server by random?
+References: <5e4c619d-bdb1-2fa7-57cc-e5d71ea13f08@kkk-web.de>
+ <88928628.8v8VXxemU5@ripper>
+In-Reply-To: <88928628.8v8VXxemU5@ripper>
 
-Since now we have src in br_ip, u no longer makes sense so rename
-it to dst. No functional changes.
+--W7T39sBAMlaQrfwfaD9HS6b9g6I87MPzD
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-v2: fix build with CONFIG_BATMAN_ADV_MCAST
+Hi Sven.
 
-CC: Marek Lindner <mareklindner@neomailbox.ch>
-CC: Simon Wunderlich <sw@simonwunderlich.de>
-CC: Antonio Quartulli <a@unstable.cc>
-CC: Sven Eckelmann <sven@narfation.org>
-CC: b.a.t.m.a.n@lists.open-mesh.org
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-[linus.luessing@c0d3.blue: Add compat code]
-Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
----
-Compat v2:
-* added BUILD_BUG_ON size+offset checks as suggested by Sven (thanks!)
+> See https://www.open-mesh.org/projects/batman-adv/wiki/Gateways
 
- compat-include/linux/if_bridge.h | 56 ++++++++++++++++++++++++++++++++
- net/batman-adv/multicast.c       | 14 ++++----
- 2 files changed, 63 insertions(+), 7 deletions(-)
- create mode 100644 compat-include/linux/if_bridge.h
+We did set up all batctl values according to the manual, but still get
+IPs/Leases from other gateway's ranges and therefore cross-traffic...
 
-diff --git a/compat-include/linux/if_bridge.h b/compat-include/linux/if_b=
-ridge.h
-new file mode 100644
-index 00000000..45585003
---- /dev/null
-+++ b/compat-include/linux/if_bridge.h
-@@ -0,0 +1,56 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Copyright (C) 2007-2020  B.A.T.M.A.N. contributors:
-+ *
-+ * Marek Lindner, Simon Wunderlich
-+ *
-+ * This file contains macros for maintaining compatibility with older ve=
-rsions
-+ * of the Linux kernel.
-+ */
-+
-+#ifndef _NET_BATMAN_ADV_COMPAT_LINUX_IF_BRIDGE_H_
-+#define _NET_BATMAN_ADV_COMPAT_LINUX_IF_BRIDGE_H_
-+
-+#include <linux/version.h>
-+#include_next <linux/if_bridge.h>
-+
-+#if LINUX_VERSION_IS_LESS(5, 10, 0)
-+
-+struct batadv_br_ip {
-+	union {
-+		__be32  ip4;
-+#if IS_ENABLED(CONFIG_IPV6)
-+		struct in6_addr ip6;
-+#endif
-+	} dst;
-+	__be16          proto;
-+	__u16           vid;
-+};
-+
-+struct batadv_br_ip_list {
-+	struct list_head list;
-+	struct batadv_br_ip addr;
-+};
-+
-+/* "static" dropped to force compiler to evaluate it as part of multicas=
-t.c
-+ * might need to be added again and then called in some kind of dummy
-+ * compat.c in case this header is included in multiple files.
-+ */
-+inline void __batadv_br_ip_list_check(void)
-+{
-+	BUILD_BUG_ON(sizeof(struct batadv_br_ip_list) !=3D sizeof(struct br_ip_=
-list));
-+	BUILD_BUG_ON(offsetof(struct batadv_br_ip_list, list) !=3D offsetof(str=
-uct br_ip_list, list));
-+	BUILD_BUG_ON(offsetof(struct batadv_br_ip_list, addr) !=3D offsetof(str=
-uct br_ip_list, addr));
-+
-+	BUILD_BUG_ON(sizeof(struct batadv_br_ip) !=3D sizeof(struct br_ip));
-+	BUILD_BUG_ON(offsetof(struct batadv_br_ip, dst.ip4) !=3D offsetof(struc=
-t br_ip, u.ip4));
-+	BUILD_BUG_ON(offsetof(struct batadv_br_ip, dst.ip6) !=3D offsetof(struc=
-t br_ip, u.ip6));
-+	BUILD_BUG_ON(offsetof(struct batadv_br_ip, proto) !=3D offsetof(struct =
-br_ip, proto));
-+	BUILD_BUG_ON(offsetof(struct batadv_br_ip, vid) !=3D offsetof(struct br=
-_ip, vid));
-+}
-+
-+#define br_ip batadv_br_ip
-+#define br_ip_list batadv_br_ip_list
-+
-+#endif /* LINUX_VERSION_IS_LESS(5, 10, 0) */
-+
-+#endif /* _NET_BATMAN_ADV_COMPAT_LINUX_IF_BRIDGE_H_ */
-diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index 0746fe2c..9af99c39 100644
---- a/net/batman-adv/multicast.c
-+++ b/net/batman-adv/multicast.c
-@@ -221,7 +221,7 @@ static u8 batadv_mcast_mla_rtr_flags_bridge_get(struc=
-t batadv_priv *bat_priv,
- 		 * address here, only IPv6 ones
- 		 */
- 		if (br_ip_entry->addr.proto =3D=3D htons(ETH_P_IPV6) &&
--		    ipv6_addr_is_ll_all_routers(&br_ip_entry->addr.u.ip6))
-+		    ipv6_addr_is_ll_all_routers(&br_ip_entry->addr.dst.ip6))
- 			flags &=3D ~BATADV_MCAST_WANT_NO_RTR6;
-=20
- 		list_del(&br_ip_entry->list);
-@@ -562,10 +562,10 @@ batadv_mcast_mla_softif_get(struct net_device *dev,
- static void batadv_mcast_mla_br_addr_cpy(char *dst, const struct br_ip *=
-src)
- {
- 	if (src->proto =3D=3D htons(ETH_P_IP))
--		ip_eth_mc_map(src->u.ip4, dst);
-+		ip_eth_mc_map(src->dst.ip4, dst);
- #if IS_ENABLED(CONFIG_IPV6)
- 	else if (src->proto =3D=3D htons(ETH_P_IPV6))
--		ipv6_eth_mc_map(&src->u.ip6, dst);
-+		ipv6_eth_mc_map(&src->dst.ip6, dst);
- #endif
- 	else
- 		eth_zero_addr(dst);
-@@ -609,11 +609,11 @@ static int batadv_mcast_mla_bridge_get(struct net_d=
-evice *dev,
- 				continue;
-=20
- 			if (tvlv_flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES &&
--			    ipv4_is_local_multicast(br_ip_entry->addr.u.ip4))
-+			    ipv4_is_local_multicast(br_ip_entry->addr.dst.ip4))
- 				continue;
-=20
- 			if (!(tvlv_flags & BATADV_MCAST_WANT_NO_RTR4) &&
--			    !ipv4_is_local_multicast(br_ip_entry->addr.u.ip4))
-+			    !ipv4_is_local_multicast(br_ip_entry->addr.dst.ip4))
- 				continue;
- 		}
-=20
-@@ -623,11 +623,11 @@ static int batadv_mcast_mla_bridge_get(struct net_d=
-evice *dev,
- 				continue;
-=20
- 			if (tvlv_flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES &&
--			    ipv6_addr_is_ll_all_nodes(&br_ip_entry->addr.u.ip6))
-+			    ipv6_addr_is_ll_all_nodes(&br_ip_entry->addr.dst.ip6))
- 				continue;
-=20
- 			if (!(tvlv_flags & BATADV_MCAST_WANT_NO_RTR6) &&
--			    IPV6_ADDR_MC_SCOPE(&br_ip_entry->addr.u.ip6) >
-+			    IPV6_ADDR_MC_SCOPE(&br_ip_entry->addr.dst.ip6) >
- 			    IPV6_ADDR_SCOPE_LINKLOCAL)
- 				continue;
- 		}
---=20
-2.28.0
+Any hint on what we did wrong?
+
+Server:
+$ batctl gwl
+[B.A.T.M.A.N. adv 2020.2, MainIF/MAC: fastd_mesh/ (bat0/ BATMAN_V)]
+  Router            ( throughput) Next Hop          [outgoingIf]  Bandwid=
+th
+   (        7.7)  [fastd_mesh]: 10.0/10.0 MBit
+   (        7.7)  [fastd_mesh]: 10.0/10.0 MBit
+   (       10.0)  [fastd_mesh]: 10.0/10.0 MBit
+   (        8.8)  [fastd_mesh]: 10.0/10.0 MBit
+   (        7.7)  [fastd_mesh]: 10.0/10.0 MBit
+   (        8.8)  [fastd_mesh]: 10.0/10.0 MBit
+
+$ batctl gw_mode
+server (announced bw: 10.0/10.0 MBit)
+
+$ batctl -v
+batctl 2020.2 [batman-adv: 2020.2]
+
+Client:
+https://github.com/ffulm/firmware/blob/ec1d061e20557662dd8c7fc75dc603fee9=
+bf77e0/files/etc/uci-defaults/50_freifunk-setup#L207
+
+Regards,
+ Martin
+
+
+
+--W7T39sBAMlaQrfwfaD9HS6b9g6I87MPzD--
+
+--jNUqtfHPkjOFwyECooQmK3yi9cfgWKvV4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE9IPOuVyPsFfx2iJ9cNiJ0EN5ao8FAl9zk3UACgkQcNiJ0EN5
+ao+WxBAAwbco8iuF2Bc9+kr4U9vWTeMqIB8azS9TiYkh1/yjS0Vf9FpeAPB5AorI
+Fby13ofJLcPIcZJKs6ZhdouwCY/F2xhQQZW43XhqOeO710rzJrvSzKvXG8737krY
+gJ7GoY2ZFBBsccJpIkH5eS2fuqermZgMQyT1zSejs+hWmAiKKZd7l0CktwCjivqq
+Af4nha3XgamYKPIpSCBy5kkmp6W3bp9p0ZST5ILfd9g6mBmvS4UXYQEohIl5K5qi
+SLfk0SFOVJoEXxuuMXwChjin6/En+r8+iS4pWRRNQY5wv2ylvC/8Anoiz3nBia9T
+YEN/yoh31dU3Abnjb4zoSoYBIwre/X7XGVc9GTpFc9zPf/Cw9t5+ncH3eSRperCI
++o9q7h3GFUV1WKvDGrIKgspThWGyHba8Ore4fptnCE7Cbh+LB86woZJneO9OKXkv
+oIKCifk/BKSbvcHKcmcYDqtCWFo/ni8wVQXmTrIlmuv5sYSUy+frg22tdUwQ1qMZ
+j3FEiqTxZU/f0JnzaEhEKU6NKo2wqudk0LT2KBks2S3Jm6DPg/tIG3KDcRh++5XM
+YUjlAjCDMALlw5JlU6iDewx5LTlPIiBKM6RRxfTaV7e7zNA3LGnE+X5lcjwiza78
+cqekfJXV5ye05uy1pElWsUQQ6/R4awhT3w/gND21IWXC5ovu9Rg=
+=OUfT
+-----END PGP SIGNATURE-----
+
+--jNUqtfHPkjOFwyECooQmK3yi9cfgWKvV4--
