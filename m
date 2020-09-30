@@ -1,104 +1,201 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178BE27D7F5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 29 Sep 2020 22:22:26 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 405F827E8DF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 30 Sep 2020 14:49:20 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E993E802F5;
-	Tue, 29 Sep 2020 22:22:24 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 813D980092
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 29 Sep 2020 22:22:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1601410942;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=p1b52u8pNTd74kdiu0EtUFje4oOhu+tzN3qYOfvT9yA=;
-	b=qiAvnBNh3RWSi5hLQEpNHzvR3oeoOIZ3BNJaSNCQKD7gzax8zcs0/3XYudZLmUzIv94rgC
-	b3PPFXrvY1mE4RcEMVQs7X6tkpHnLj4skHdCw8G9dUmh/S122dbnxFgrMT02Froau7NEVb
-	k1sqMfzYlh0ls1SzeqUv/uFcVrumb1w=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: Does batman choose DHCP server by random?
-Date: Tue, 29 Sep 2020 22:22:12 +0200
-Message-ID: <5095353.evS3lK4dNX@sven-edge>
-In-Reply-To: <998e8a9b-e0c6-babb-0b45-5fb3fb657a32@kkk-web.de>
-References: <5e4c619d-bdb1-2fa7-57cc-e5d71ea13f08@kkk-web.de> <88928628.8v8VXxemU5@ripper> <998e8a9b-e0c6-babb-0b45-5fb3fb657a32@kkk-web.de>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 22834806CC;
+	Wed, 30 Sep 2020 14:49:19 +0200 (CEST)
+Received: from mail-il1-f207.google.com (mail-il1-f207.google.com [209.85.166.207])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id DAFD4800DA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 30 Sep 2020 14:49:16 +0200 (CEST)
+Received: by mail-il1-f207.google.com with SMTP id t11so1338812ilj.10
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 30 Sep 2020 05:49:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=/hvE1WJmPnaf3tjNkTN3ozvcblsJGWdVi4rG2TJXdkU=;
+        b=f/L9SJ02ziRlaYK/SPpiJKFXUuIUBfP58qc9+fcuFCXW/Ppm/pa1BaJyMFfEDvCObq
+         IdyviJIIzcvFNKaZTlGSHKS7AtmM/gmO0fL6L9Iupoi4rBraW1qcSER1PRczzjRoelTt
+         /U4uBG2Ux1ztj32uYFJqVmUHh9ctaYc2LEXWtAAbnqvb1szP/62YFfX11b4AEObdnWLW
+         LRuU3WcwMRpuh9dPriQEu8w4ovwtucnLiymp52nNbcNTkIhl1r49kHPtvUrVG3LkR7aK
+         sQ5moNWbfpQaNzjAcrzFs6+G6lbcDwqnl33ABJxEuAjoncXg7MxJBvyvAwnZ9ypxx9U1
+         mRKA==
+X-Gm-Message-State: AOAM531XMP+LAqJXLkqEFYlqahK7N/O37IdChoTWxebRQjoLcOAeDgdu
+	51VqMMnuUtkBg48OqZbgTfd8erBvQz08Ofsg4DCxiNwBacsV
+X-Google-Smtp-Source: ABdhPJwbn/fqdYCXnI/R+QHdujVgoT2Pzz8fN7PgCIf7YuX8QCigcm7lu47/nSQDOlgt+u78bQauDvqSjujVtabBfA9X7GyLDH+m
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2132583.DS14mmBGYa"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Received: by 2002:a92:7713:: with SMTP id s19mr1904120ilc.161.1601470155527;
+ Wed, 30 Sep 2020 05:49:15 -0700 (PDT)
+Date: Wed, 30 Sep 2020 05:49:15 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000bd1edd05b087535a@google.com>
+Subject: INFO: rcu detected stall in security_file_open (3)
+From: syzbot <syzbot+d2b6e8cc299748fecf25@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+	fweisbec@gmail.com, ktkhai@virtuozzo.com, linux-fsdevel@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, miklos@szeredi.hu,
+	mingo@kernel.org, mszeredi@redhat.com, netdev@vger.kernel.org,
+	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com, tglx@linutronix.de
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1601410942;
+	s=20121; t=1601470156;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=p1b52u8pNTd74kdiu0EtUFje4oOhu+tzN3qYOfvT9yA=;
-	b=JQeA7IKPYK0et4e28l/BBHUYVrj3GKVt06aV5WqAyhM2af/M85B6jr/pZ9iKf+PGpZvQir
-	11lZY3jiwaayo4vf+r6aE9GYdDeXKyRDeInn9lftyUA1hw8mtyBx5UEDuOD0/rhlce5UvN
-	xLvtWSXKhWqx6iOmaiE3FTdqeAF23eE=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601410942; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=/hvE1WJmPnaf3tjNkTN3ozvcblsJGWdVi4rG2TJXdkU=;
+	b=KBH1r7K34Fc8g993m5szRC8utmQ1ja6ot+Ay66u/Y2VcywhvfLom6/Wu4X9sWW0ItLcvul
+	I7wO9WrmZuhuoYW/mqjI7OhiTExIcn7WGrRA5hiHeJlduXZMOgNubY+rhunIaIMxr7MeuE
+	FZKI+Ic2o7v7FDp04O8Eotp9BHN+WWI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601470156; a=rsa-sha256;
 	cv=none;
-	b=kemS7YAt+rzuJJ6nvuLBbb5oL5ptRD5B6ah6EHBzS6RaTLAU4E38mCuboiGMP/3/Rqig+2
-	INW2P7T4KkiK5WOL6kSZV60NC4CuZaGXw0ZZRNi9CeS11xrJiscjadjmH5ra81vC5+DwPZ
-	JHwL81OoMgAf2DCHaK9h9P9K18gmssc=
+	b=tmnJaylPPdsYkIxk2MeTXWSsLaLLK5ZDkDcN0/akTAhdhOhwkLxep7TNrpj1ihxB0sQXoX
+	wEOucXpibFwcUrsaRZuwqyM5N7UK8dcjAcREf5MIU2NROMBSm2qWO2qI0b2xfEsiAH4ZPo
+	HoefX7sdpUUYxSJiaf9mjVuU2fuyglY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=qiAvnBNh;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-Message-ID-Hash: 2KD4U5OCYXIKA6YFN2R3N7WHNFGMZNIG
-X-Message-ID-Hash: 2KD4U5OCYXIKA6YFN2R3N7WHNFGMZNIG
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: MK <mailing.m1@kkk-web.de>
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3y350XwkbAJwOUVG6HHAN6LLE9.CKKCHAQOAN8KJPAJP.8KI@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.207 as permitted sender) smtp.mailfrom=3y350XwkbAJwOUVG6HHAN6LLE9.CKKCHAQOAN8KJPAJP.8KI@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: 2NPVGL7KLHQNF6WGS3SZLQ5M3RWUW3JL
+X-Message-ID-Hash: 2NPVGL7KLHQNF6WGS3SZLQ5M3RWUW3JL
+X-MailFrom: 3y350XwkbAJwOUVG6HHAN6LLE9.CKKCHAQOAN8KJPAJP.8KI@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2KD4U5OCYXIKA6YFN2R3N7WHNFGMZNIG/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2NPVGL7KLHQNF6WGS3SZLQ5M3RWUW3JL/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2132583.DS14mmBGYa
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Hello,
 
-On Tuesday, 29 September 2020 22:04:58 CEST MK wrote:
-[...]
-> Client:
-> https://github.com/ffulm/firmware/blob/ec1d061e20557662dd8c7fc75dc603fee9bf77e0/files/etc/uci-defaults/50_freifunk-setup#L207
+syzbot found the following issue on:
 
-I think you forgot to paste the information here. It is not really relevant 
-what the server sees when the gw client has to decide where the IPv4 DHCP 
-Broadcast packet has to go.
+HEAD commit:    fb0155a0 Merge tag 'nfs-for-5.9-3' of git://git.linux-nfs...
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=10b007cf900000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=41b736b7ce1b3ea4
+dashboard link: https://syzkaller.appspot.com/bug?extid=d2b6e8cc299748fecf25
+compiler:       gcc (GCC) 10.1.0-syz 20200507
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1249c717900000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1048d9e3900000
 
-Kind regards,
-	Sven
---nextPart2132583.DS14mmBGYa
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+The issue was bisected to:
 
------BEGIN PGP SIGNATURE-----
+commit c9d8f5f0692d5960ed50970ffe63756fb8f96cdb
+Author: Kirill Tkhai <ktkhai@virtuozzo.com>
+Date:   Fri Nov 9 10:33:27 2018 +0000
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl9zl3QACgkQXYcKB8Em
-e0bolA/+LYa5uuwL79isuMldcW6EQP9dlREd0Btqs8pf/g7t+l+4hj7H6dAt65yi
-y+0tlknKdPjaEvVxgZ6NFfFOt86pTn9uc6KEmoQ143I0SrRUL5kQIMjId9dznSOr
-2nUSM4lYAMf0+k3lhHZECqktBb7mAeLG4LVJCgzSRpbAGMzazdsVuby3kJ7ZiPTZ
-eCIh2vvJHWYXtuAxR6Wa4E7B+i9jHxs8Hmcg3rmnfS+f2zbOEhMl1elNWXEUa2UM
-BDcAoQEP2qifShjh+eHIOXiprQDjKi9mGuLZxAUN5ZLQFUTIrZoAzzHCk9879HvA
-6sjnAvuSFTnHASqJIH1xHb+AkgPAj/hVQca+SaHVitYnoSUDiMakCk0m+X6UhuQy
-hEIY9eACHNH+2JNAaVPj+6Q6/5s39Af8xIKHir2ixmzZIRvcrYveHZXDPBVp9+Ll
-lJ0ynfTzMcbXevdb9yxzs6KkopZfubRIYbXphLlpHmfBD3eCbyZYIwT/DZZiKY5A
-4ywW3TEd6jlPJvPGnignzCHC2JezmtELgpgdUAITo6JmwCDu/SnTTcOA2UPgkT5Q
-lBkDypTCQf2Apr0YxiNafQdOqulu2oyWD928VpHWGe+UKkV2C1tNNi14dSifos5c
-ZLDpqjQdwrOEHwTsO2GpeR5RSJzU5GCaccg/vA8EFlgGkLFqxQs=
-=4l3A
------END PGP SIGNATURE-----
+    fuse: Protect fi->nlookup with fi->lock
 
---nextPart2132583.DS14mmBGYa--
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=11af769d900000
+final oops:     https://syzkaller.appspot.com/x/report.txt?x=13af769d900000
+console output: https://syzkaller.appspot.com/x/log.txt?x=15af769d900000
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+d2b6e8cc299748fecf25@syzkaller.appspotmail.com
+Fixes: c9d8f5f0692d ("fuse: Protect fi->nlookup with fi->lock")
+
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-1):
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 3922 at kernel/sched/core.c:3013 rq_unlock kernel/sched/sched.h:1326 [inline]
+WARNING: CPU: 0 PID: 3922 at kernel/sched/core.c:3013 try_invoke_on_locked_down_task+0x21d/0x2f0 kernel/sched/core.c:3019
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 0 PID: 3922 Comm: systemd-udevd Not tainted 5.9.0-rc7-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0x198/0x1fd lib/dump_stack.c:118
+ panic+0x382/0x7fb kernel/panic.c:231
+ __warn.cold+0x20/0x4b kernel/panic.c:600
+ report_bug+0x1bd/0x210 lib/bug.c:198
+ handle_bug+0x38/0x90 arch/x86/kernel/traps.c:234
+ exc_invalid_op+0x14/0x40 arch/x86/kernel/traps.c:254
+ asm_exc_invalid_op+0x12/0x20 arch/x86/include/asm/idtentry.h:536
+RIP: 0010:try_invoke_on_locked_down_task+0x21d/0x2f0 kernel/sched/core.c:3013
+Code: 45 31 f6 49 39 c0 74 3a 8b 74 24 38 49 8d 78 18 4c 89 04 24 e8 a4 e7 08 00 4c 8b 04 24 4c 89 c7 e8 28 ab d6 06 e9 20 ff ff ff <0f> 0b e9 7d fe ff ff 4c 89 ee 48 89 ef 41 ff d4 41 89 c6 e9 08 ff
+RSP: 0018:ffffc90000007be0 EFLAGS: 00010046
+RAX: 0000000000000000 RBX: 1ffff92000000f7e RCX: 0000000000000001
+RDX: 0000000000000000 RSI: ffffffff8162da10 RDI: ffff8880a61a2440
+RBP: ffff8880a61a2440 R08: 0000000000000033 R09: ffffffff8a05ae03
+R10: 000000000000062e R11: 0000000000000001 R12: ffffffff8162da10
+R13: ffffc90000007d08 R14: ffff8880a61a2440 R15: 0000000000000000
+ rcu_print_task_stall kernel/rcu/tree_stall.h:267 [inline]
+ print_other_cpu_stall kernel/rcu/tree_stall.h:475 [inline]
+ check_cpu_stall kernel/rcu/tree_stall.h:634 [inline]
+ rcu_pending kernel/rcu/tree.c:3639 [inline]
+ rcu_sched_clock_irq.cold+0x97e/0xdfd kernel/rcu/tree.c:2521
+ update_process_times+0x25/0xa0 kernel/time/timer.c:1710
+ tick_sched_handle+0x9b/0x180 kernel/time/tick-sched.c:176
+ tick_sched_timer+0x1d1/0x2a0 kernel/time/tick-sched.c:1328
+ __run_hrtimer kernel/time/hrtimer.c:1524 [inline]
+ __hrtimer_run_queues+0x1d5/0xfc0 kernel/time/hrtimer.c:1588
+ hrtimer_interrupt+0x334/0x940 kernel/time/hrtimer.c:1650
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1080 [inline]
+ __sysvec_apic_timer_interrupt+0x147/0x5f0 arch/x86/kernel/apic/apic.c:1097
+ asm_call_irq_on_stack+0xf/0x20
+ </IRQ>
+ __run_sysvec_on_irqstack arch/x86/include/asm/irq_stack.h:37 [inline]
+ run_sysvec_on_irqstack_cond arch/x86/include/asm/irq_stack.h:89 [inline]
+ sysvec_apic_timer_interrupt+0xb2/0xf0 arch/x86/kernel/apic/apic.c:1091
+ asm_sysvec_apic_timer_interrupt+0x12/0x20 arch/x86/include/asm/idtentry.h:581
+RIP: 0010:preempt_count arch/x86/include/asm/preempt.h:26 [inline]
+RIP: 0010:check_kcov_mode kernel/kcov.c:163 [inline]
+RIP: 0010:__sanitizer_cov_trace_pc+0x9/0x60 kernel/kcov.c:197
+Code: 5d be 03 00 00 00 e9 76 af 49 02 66 0f 1f 44 00 00 48 8b be b0 01 00 00 e8 b4 ff ff ff 31 c0 c3 90 65 48 8b 14 25 c0 fe 01 00 <65> 8b 05 e0 bf 8b 7e a9 00 01 ff 00 48 8b 34 24 74 0f f6 c4 01 74
+RSP: 0018:ffffc90000f075a8 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 0000000000000004 RCX: ffffffff838a0be7
+RDX: ffff88809c62c4c0 RSI: ffff88809c62c4c0 RDI: 0000000000000005
+RBP: ffff8880a601de80 R08: 0000000000000001 R09: ffffffff8d5f79c7
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000183 R14: dffffc0000000000 R15: 0000000000000000
+ tomoyo_domain_quota_is_ok+0x31a/0x550 security/tomoyo/util.c:1070
+ tomoyo_supervisor+0x2f2/0xef0 security/tomoyo/common.c:2089
+ tomoyo_audit_path_log security/tomoyo/file.c:168 [inline]
+ tomoyo_path_permission security/tomoyo/file.c:587 [inline]
+ tomoyo_path_permission+0x270/0x3a0 security/tomoyo/file.c:573
+ tomoyo_check_open_permission+0x33e/0x380 security/tomoyo/file.c:777
+ tomoyo_file_open security/tomoyo/tomoyo.c:313 [inline]
+ tomoyo_file_open+0xa3/0xd0 security/tomoyo/tomoyo.c:308
+ security_file_open+0x52/0x4f0 security/security.c:1574
+ do_dentry_open+0x358/0x11b0 fs/open.c:804
+ do_open fs/namei.c:3251 [inline]
+ path_openat+0x1b9a/0x2730 fs/namei.c:3368
+ do_filp_open+0x17e/0x3c0 fs/namei.c:3395
+ do_sys_openat2+0x16d/0x420 fs/open.c:1168
+ do_sys_open fs/open.c:1184 [inline]
+ __do_sys_open fs/open.c:1192 [inline]
+ __se_sys_open fs/open.c:1188 [inline]
+ __x64_sys_open+0x119/0x1c0 fs/open.c:1188
+ do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7fb405960840
+Code: 73 01 c3 48 8b 0d 68 77 20 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d 89 bb 20 00 00 75 10 b8 02 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 1e f6 ff ff 48 89 04 24
+RSP: 002b:00007fff26dc0bd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000002
+RAX: ffffffffffffffda RBX: 00007fff26dc0c70 RCX: 00007fb405960840
+RDX: 0000560daddc7fe3 RSI: 00000000000a0800 RDI: 0000560daede0670
+RBP: 00007fff26dc1100 R08: 0000560daddc7670 R09: 0000000000000010
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fff26dc0d80
+R13: 0000560daed2da60 R14: 0000560daedeeef0 R15: 00007fff26dc0c50
+Kernel Offset: disabled
+Rebooting in 86400 seconds..
 
 
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+syzbot can test patches for this issue, for details see:
+https://goo.gl/tpsmEJ#testing-patches
