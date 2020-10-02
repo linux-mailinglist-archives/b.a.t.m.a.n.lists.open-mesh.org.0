@@ -1,114 +1,100 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE582280964
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  1 Oct 2020 23:25:54 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53FCB280CD5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  2 Oct 2020 06:31:14 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7A16E8077B;
-	Thu,  1 Oct 2020 23:25:53 +0200 (CEST)
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 161C880290
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  1 Oct 2020 23:25:47 +0200 (CEST)
-Received: by mail-pj1-x1043.google.com with SMTP id jw11so63135pjb.0
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 01 Oct 2020 14:25:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cQBYhjCFO9RMoYSUCsYvbpJht7oVwjHoDy5V5qwzfMA=;
-        b=r2qCyTxiCloY2P6yVgJyVcAMjYUm4z/B/Kp2t2ISskkg1ecTziJJ0JWE23i1KFAocv
-         6+ONQCl9cCKQtFwSttWsgXkPRWtIjP4R+zhvVuKBUZk1WGJ43B7gW9tBz7xY3VODIS2e
-         KU6Mj3hZzDbCXDPeks6YTgh5tm3T8N8ygyJ7fr2QzrE4+eSJJ13LQBVwyGnoRB3ssgf6
-         LX8Oh4/lH1ggA5F0/Im53RrqZ7sqiAcwVfOsGdjTrQ/fnaoVALZZV2g/eqRIhAp0Yk4c
-         dibvTB9b1hIjpHJdsX//GTpjJEuL7Ds5Wl+t/waCHF/KuT2GG0Iaw0wj6q65hUjIDp/P
-         Hsaw==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 0B5C2804BB;
+	Fri,  2 Oct 2020 06:31:13 +0200 (CEST)
+Received: from mail-io1-f80.google.com (mail-io1-f80.google.com [209.85.166.80])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 494A0800A1
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  2 Oct 2020 06:31:10 +0200 (CEST)
+Received: by mail-io1-f80.google.com with SMTP id m10so207011ioq.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 01 Oct 2020 21:31:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cQBYhjCFO9RMoYSUCsYvbpJht7oVwjHoDy5V5qwzfMA=;
-        b=BUz8jZXTTn2Prz/NWn2UgpcOihvdcXbsAdI6wqGXqvsS2o6XM0sdoy6T1CCTrVpeVz
-         /Ejga/9TMkt0LEnNKXxv6DgjtwDaCQjvX6RXg2/5qk9UmmRYwKPXAL9gl1AFMEvx77pA
-         /ZO2AX45KTrsZvElZspIsPmgT1RwkyQT2JOGA0+xizhZta8SDmnJTB3/LrmjEojh5K0i
-         1cDXzwt3REHC9Tw1bwzUGr3U2akfgthfmKpCrSPHKoGPDXtsVmR/vZGd3dgX64fSEduU
-         h2cQdTHNEOlm0W/q1L0xGege8EC74vUWSBKMpkDNCyOIIncrYMY4IWGcWrSlGolrtaHK
-         /wLQ==
-X-Gm-Message-State: AOAM53399aPVSDWCPS/u3/RQL9bWJtJEcz+NUTG/eoihHALt4u8mxNQ0
-	QkwfXP1TmhFfMcs/+5hsClRTiw==
-X-Google-Smtp-Source: ABdhPJz0cU3AoiiPJf8EI9/hexRoeRORSA/B4+N6i7S/vFAvf+LEpUqmkh38VpO4BoDN1pv3hHrhCQ==
-X-Received: by 2002:a17:90a:c381:: with SMTP id h1mr1869610pjt.225.1601587546377;
-        Thu, 01 Oct 2020 14:25:46 -0700 (PDT)
-Received: from hermes.local (204-195-22-127.wavecable.com. [204.195.22.127])
-        by smtp.gmail.com with ESMTPSA id z4sm7144647pfr.197.2020.10.01.14.25.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2020 14:25:45 -0700 (PDT)
-Date: Thu, 1 Oct 2020 14:25:38 -0700
-From: Stephen Hemminger <stephen@networkplumber.org>
-To: Sabrina Dubroca <sd@queasysnail.net>
-Subject: Re: [PATCH net 00/12] net: iflink and link-netnsid fixes
-Message-ID: <20201001142538.03f28397@hermes.local>
-In-Reply-To: <cover.1600770261.git.sd@queasysnail.net>
-References: <cover.1600770261.git.sd@queasysnail.net>
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=2rR7OFCkiGOcbn8yg3FFIizJzk0Y5CDsOwEAe9MFfqY=;
+        b=fUo8R92zZcuWNuyImDMi0G7aVsWKTV/VsuX4/PqnEwadY5EMKwX1IQ6kSpBbP1e07F
+         a5ip/uCC/mNeLbSttA/lIlIBDbBtFZmwmu3Jni9DoaYlqX7c9skX84L+PuliQwMxCHZw
+         0sSt9YFhRk6kRSCUS1Pt29dyjjJP87eJu+nzaZRpdwCBhcmUabuQKaMT2gZ7pB8JP2jR
+         qROSnJUr0ukB1zg5xq9KzyAA3fDcfzwKxYJGJbCoQR9NCm4cMuf2O/i3OnX7tMdTstxl
+         PY/gLULilnR0sOJXtuAt+4eOvjVs3NS+jsDILe3itmPOC6fqGxD3qNHgRdtQQ/U+bBix
+         Zq5Q==
+X-Gm-Message-State: AOAM533Sq3SeIH2VswEaYVjdjYTn7W8f3PYbLLtvOKhETlw4jUrEg6AU
+	pI5t+y/bMuw9HulDmlnylTLCxZRzOjzHPy5jS5//6CaFmiMn
+X-Google-Smtp-Source: ABdhPJwyio9B9RK4QMV+77SSkDUiL2aBMDrXygJtRXJZn8ix0TJV07LbSiIGdgU/ICZl+Xp6JhyjTk1bOjljcqJ5nfrSfAkO2l0T
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-Received: by 2002:a05:6638:24c1:: with SMTP id y1mr616780jat.119.1601613068931;
+ Thu, 01 Oct 2020 21:31:08 -0700 (PDT)
+Date: Thu, 01 Oct 2020 21:31:08 -0700
+In-Reply-To: <0000000000007b357405b099798f@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000000a954d05b0a89a86@google.com>
+Subject: Re: WARNING in cfg80211_connect
+From: syzbot <syzbot+5f9392825de654244975@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+	david@fromorbit.com, dchinner@redhat.com, hch@lst.de,
+	johannes@sipsolutions.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1601587550;
+	s=20121; t=1601613070;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=cQBYhjCFO9RMoYSUCsYvbpJht7oVwjHoDy5V5qwzfMA=;
-	b=kRw025GA9yah9C5xs+g+y3BG9bXQ3ScVPs87RTznlVUNDB1uf7nAu6V81w/VokYsdMwJXm
-	eY7EN8IF09TGenY8bSxIkhmMolHIiIskSqHJCPl9wSfQbaU5yeXKircwpz7L/K7n+QdBGO
-	fwwSx3R9B/aiFX5sPPlCjyPXIXo4OaE=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601587550; a=rsa-sha256;
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=2rR7OFCkiGOcbn8yg3FFIizJzk0Y5CDsOwEAe9MFfqY=;
+	b=r5I6o75/PixusYgBeK938bbE2LCcI8kfPitny8AeeTR6mCh4qAKB3cvyCApnHSovW+6ylU
+	Fkrvt2If5oGreC4QXR+rd3PM9HptdVPhTI7+aTSZxayUgOLVQwLccg9fFo6mFy/hS4R+7c
+	W84lQpZobQ6a+euUHPldCKxb2zOnzAM=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601613070; a=rsa-sha256;
 	cv=none;
-	b=WksVdWyMrM19L6vWlw6KzLMn4NXmBWpv3LI4Z+e4jgnEWiuRTujiRXLX0cw0pJMyGhVDCa
-	QkvQ6AymXaqUpoSJX5GSBr+uqhlPGmuUGwGr5JQKS/K8QAfKCmR7V1vvvSZZ6wiwnpJxpx
-	0pVs+2qhqRJIHeA/ZpAaV8DWd7/4HX8=
+	b=I42cCFX8KAHUt8I5u0IAjWQGaCAvDF06VmQQWewHAvbMUsrEA0xQkFx9fNp5wKL7bBQza/
+	spRMxvHuVN9rhxIABOFe3OiD+BPiJ7R2Jxv7GaLqALwoHcbdgAkm1RzxUSeVy59gPWeZ0V
+	+uQgwfBU93qcpQlSoM/HyT478fv9FIg=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=networkplumber-org.20150623.gappssmtp.com header.s=20150623 header.b=r2qCyTxi;
-	spf=pass (diktynna.open-mesh.org: domain of stephen@networkplumber.org designates 2607:f8b0:4864:20::1043 as permitted sender) smtp.mailfrom=stephen@networkplumber.org
-Message-ID-Hash: YH5DDLVEX5JAX4CRFPFD6C3WJ265JANI
-X-Message-ID-Hash: YH5DDLVEX5JAX4CRFPFD6C3WJ265JANI
-X-MailFrom: stephen@networkplumber.org
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3DK12XwkbAEMx34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.80 as permitted sender) smtp.mailfrom=3DK12XwkbAEMx34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+Message-ID-Hash: V55ZLXAAAHIYOMY4SRLJPK6BPCRYVYI7
+X-Message-ID-Hash: V55ZLXAAAHIYOMY4SRLJPK6BPCRYVYI7
+X-MailFrom: 3DK12XwkbAEMx34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: netdev@vger.kernel.org, Nicolas Dichtel <nicolas.dichtel@6wind.com>, Marek Lindner <mareklindner@neomailbox.ch>, Antonio Quartulli <a@unstable.cc>, b.a.t.m.a.n@lists.open-mesh.org, Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YH5DDLVEX5JAX4CRFPFD6C3WJ265JANI/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/V55ZLXAAAHIYOMY4SRLJPK6BPCRYVYI7/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Thu,  1 Oct 2020 09:59:24 +0200
-Sabrina Dubroca <sd@queasysnail.net> wrote:
+syzbot has bisected this issue to:
 
-> In a lot of places, we use this kind of comparison to detect if a
-> device has a lower link:
-> 
->   dev->ifindex != dev_get_iflink(dev)
+commit 16d4d43595b4780daac8fcea6d042689124cb094
+Author: Christoph Hellwig <hch@lst.de>
+Date:   Wed Jul 20 01:38:55 2016 +0000
 
+    xfs: split direct I/O and DAX path
 
-Since this is a common operation, it would be good to add a new
-helper function in netdevice.h
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=14f662b7900000
+start commit:   87d5034d Merge tag 'mlx5-updates-2020-09-30' of git://git...
+git tree:       net-next
+final oops:     https://syzkaller.appspot.com/x/report.txt?x=16f662b7900000
+console output: https://syzkaller.appspot.com/x/log.txt?x=12f662b7900000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=7b5cc8ec2218e99d
+dashboard link: https://syzkaller.appspot.com/bug?extid=5f9392825de654244975
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1100d333900000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1414c997900000
 
-In your patch set, you are copying the same code snippet which
-seems to indicate that it should be a helper.
+Reported-by: syzbot+5f9392825de654244975@syzkaller.appspotmail.com
+Fixes: 16d4d43595b4 ("xfs: split direct I/O and DAX path")
 
-Something like:
-
-static inline bool netdev_has_link(const struct net_device *dev)
-{
-	const struct net_device_ops *ops = dev->netdev_ops;
-
-	return ops && ops->ndo_get_iflink;
-}
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
