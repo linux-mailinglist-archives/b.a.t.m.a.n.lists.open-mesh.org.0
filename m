@@ -1,122 +1,203 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002462848C7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  6 Oct 2020 10:46:06 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DE37287BA9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Oct 2020 20:25:37 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 2040580A79;
-	Tue,  6 Oct 2020 10:46:03 +0200 (CEST)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 26517805C7
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  6 Oct 2020 10:16:08 +0200 (CEST)
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 7F79A2078E;
-	Tue,  6 Oct 2020 08:16:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1601972166;
-	bh=rykVwVTmBmGpcopd950wK1or7+3AVRiWL9lnV+qoF7M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o77EsqhavPejEmO43Ssll9DR6fqoHpJ/c6F8EFR9+nKzkQUdXFcJVmoaiWd/8R5MZ
-	 6y0ZO7lbnydq6jFBc9K5Q5YEfrMhw4YIeo68vvbHj3wha8m2AIi3EZNtxUDQZ9/pNR
-	 B/wNFa6wH6pBsEhztXrqAJT2wIXhVpN9O4d+oP60=
-Date: Tue, 6 Oct 2020 09:16:00 +0100
-From: Will Deacon <will@kernel.org>
-To: syzbot <syzbot+45d7c243c006f39dc55a@syzkaller.appspotmail.com>
-Subject: Re: WARNING in sta_info_alloc
-Message-ID: <20201006081559.GA25187@willie-the-truck>
-References: <00000000000055e16405b0fc1a90@google.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4393C8018B;
+	Thu,  8 Oct 2020 20:25:36 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1702A8018B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Oct 2020 20:25:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1602180993;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=yvgUYGanYfcfRLHdaTHHDrfpf1rVWJcvZYYu5jj+3B4=;
+	b=A/qMIFz82nsS6fN5/ehQJqpjmSsGdHNRmKzcZ6GpJyIYFf8h+Dd6qR5oJVs3JMzL5pRaiR
+	f/bF1No4JIJs7LgDUdpauUuvkMPCfmm0IdGF0YU/p9Uk5gPQpru1AMNnbcuSxnfrCJQlYQ
+	wenHSNjstYOKTnDJkBRbKBoeFf8dyaE=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH] batman-adv: genetlink: move to smaller ops wherever possible
+Date: Thu,  8 Oct 2020 20:16:12 +0200
+Message-Id: <20201008181612.9663-1-sven@narfation.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00000000000055e16405b0fc1a90@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1601972168; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1602181533; a=rsa-sha256;
 	cv=none;
-	b=s9YwMhffN5ov2NkFuGzSzZuXW2QN3YhVBrHVkneFhY2osBjShl2Ca7etubECiqLpnr2GXu
-	OUO+kMDFJ55xC9zvsA8Xq2slGQn//z4Ay1FSndLpQ+zbT1gMGMarXi8TDBdPyOF6aleYoL
-	kQryEwH+XuwUuUWseeJ6SPfHBRtp9Xk=
+	b=WlfjoY4hEQ+aGcKRXewyfO39cDNLUSpUpA1j8Cq5ZJG43+vzFu+qjJLmRhoOhQ5c4W0RV/
+	CZONBhYyKFqIA16SZM2ytOlXwr5+kX0CxTzdIuJtilayL2OmeBc0TDEuVtEnGYAlH/4/hz
+	YYe6G1qPdxWKP72O6P/SwMik4D7XDqk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=default header.b=o77Esqha;
-	spf=pass (diktynna.open-mesh.org: domain of will@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=will@kernel.org
+	dkim=pass header.d=narfation.org header.s=20121 header.b=A/qMIFz8;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1601972168;
+	s=20121; t=1602181533;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=2Jr+sx/zTgcSkJe714GFsTi0sh115TZDbw/dt5mth5o=;
-	b=EnWt3dNn7+RTjbtASXHdz/QUhJset1xq8Fu3iGjVMxRFG368eNrW75LKrQiKyrP71p3Ty1
-	fyNg629noWdriZrzdDmSQYpTtcUkZ9T9e4rbk9n6pTeFiDd4V7x1Ho45ZFYP36nbgTxj7H
-	mHQ4FKXReV9RufE0D/S/Ld1M0BWXzZ0=
-X-MailFrom: will@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: HDUZHZUVNNKEQSCPUCGPLQE3H5ABCTPI
-X-Message-ID-Hash: HDUZHZUVNNKEQSCPUCGPLQE3H5ABCTPI
-X-Mailman-Approved-At: Tue, 06 Oct 2020 08:45:59 +0200
-CC: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, catalin.marinas@arm.com, davem@davemloft.net, johannes@sipsolutions.net, kuba@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, mareklindner@neomailbox.ch, netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com, will.deacon@arm.com, zlim.lnx@gmail.com
+	 to:to:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=yvgUYGanYfcfRLHdaTHHDrfpf1rVWJcvZYYu5jj+3B4=;
+	b=OU3W5TjRssusZby2kmd6NSDocsOCRMe3drmxbeEXvbtrHrPh3UvJ7KUbQvojJ2A6yt2WGw
+	+x93rUJGr2r+/1wh9jXanlro/IOE1oRPcGssUGiE1twPpDX3j0pLPg/ScXv9TnswQoe9bZ
+	Yh+/E05AfJXeqWjT6Ere8yFErGS81TU=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 27NREY3PAM5AYDJKN63UM4VPWLTKFGQA
+X-Message-ID-Hash: 27NREY3PAM5AYDJKN63UM4VPWLTKFGQA
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HDUZHZUVNNKEQSCPUCGPLQE3H5ABCTPI/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/27NREY3PAM5AYDJKN63UM4VPWLTKFGQA/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Tue, Oct 06, 2020 at 01:08:23AM -0700, syzbot wrote:
-> Hello,
-> 
-> syzbot found the following issue on:
-> 
-> HEAD commit:    549738f1 Linux 5.9-rc8
-> git tree:       upstream
-> console output: https://syzkaller.appspot.com/x/log.txt?x=15b97ba3900000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=c06bcf3cc963d91c
-> dashboard link: https://syzkaller.appspot.com/bug?extid=45d7c243c006f39dc55a
-> compiler:       gcc (GCC) 10.1.0-syz 20200507
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12bae9c0500000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1099b1c0500000
-> 
-> The issue was bisected to:
-> 
-> commit 643c332d519bdfbf80d21f40d1c0aa0ccf3ec1cb
-> Author: Zi Shen Lim <zlim.lnx@gmail.com>
-> Date:   Thu Jun 9 04:18:50 2016 +0000
-> 
->     arm64: bpf: optimize LD_ABS, LD_IND
-> 
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=11d44477900000
-> final oops:     https://syzkaller.appspot.com/x/report.txt?x=13d44477900000
-> console output: https://syzkaller.appspot.com/x/log.txt?x=15d44477900000
-> 
-> IMPORTANT: if you fix the issue, please add the following tag to the commit:
-> Reported-by: syzbot+45d7c243c006f39dc55a@syzkaller.appspotmail.com
-> Fixes: 643c332d519b ("arm64: bpf: optimize LD_ABS, LD_IND")
-> 
-> ------------[ cut here ]------------
-> WARNING: CPU: 0 PID: 6879 at net/mac80211/ieee80211_i.h:1447 ieee80211_get_sband net/mac80211/ieee80211_i.h:1447 [inline]
-> WARNING: CPU: 0 PID: 6879 at net/mac80211/ieee80211_i.h:1447 sta_info_alloc+0x1900/0x1f90 net/mac80211/sta_info.c:469
-> Kernel panic - not syncing: panic_on_warn set ...
-> CPU: 0 PID: 6879 Comm: syz-executor071 Not tainted 5.9.0-rc8-syzkaller #0
-> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-> Call Trace:
->  __dump_stack lib/dump_stack.c:77 [inline]
->  dump_stack+0x198/0x1fd lib/dump_stack.c:118
->  panic+0x382/0x7fb kernel/panic.c:231
->  __warn.cold+0x20/0x4b kernel/panic.c:600
->  report_bug+0x1bd/0x210 lib/bug.c:198
->  handle_bug+0x38/0x90 arch/x86/kernel/traps.c:234
->  exc_invalid_op+0x14/0x40 arch/x86/kernel/traps.c:254
->  asm_exc_invalid_op+0x12/0x20 arch/x86/include/asm/idtentry.h:536
-> RIP: 0010:ieee80211_get_sband net/mac80211/ieee80211_i.h:1447 [inline]
+From: Jakub Kicinski <kuba@kernel.org>
 
-The patch fingered by the bisection only affects arm64, but this is an x86
-box. So this is clearly bogus.
+Bulk of the genetlink users can use smaller ops, move them.
 
-Will
+Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+Reviewed-by: Johannes Berg <johannes@sipsolutions.net>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+[sven@narfation.org: Add compat code]
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ compat-include/net/genetlink.h | 38 +++++++++++++++++++++-------------
+ net/batman-adv/netlink.c       |  6 +++---
+ 2 files changed, 27 insertions(+), 17 deletions(-)
+
+diff --git a/compat-include/net/genetlink.h b/compat-include/net/genetlin=
+k.h
+index d1f80cd8..f16355fe 100644
+--- a/compat-include/net/genetlink.h
++++ b/compat-include/net/genetlink.h
+@@ -31,15 +31,17 @@ void batadv_genl_dump_check_consistent(struct netlink=
+_callback *cb,
+ #endif /* LINUX_VERSION_IS_LESS(4, 15, 0) */
+=20
+=20
+-#if LINUX_VERSION_IS_LESS(5, 2, 0)
++#if LINUX_VERSION_IS_LESS(5, 10, 0)
+=20
++#if LINUX_VERSION_IS_LESS(5, 2, 0)
+ enum genl_validate_flags {
+ 	GENL_DONT_VALIDATE_STRICT		=3D BIT(0),
+ 	GENL_DONT_VALIDATE_DUMP			=3D BIT(1),
+ 	GENL_DONT_VALIDATE_DUMP_STRICT		=3D BIT(2),
+ };
++#endif /* LINUX_VERSION_IS_LESS(5, 2, 0) */
+=20
+-struct batadv_genl_ops {
++struct batadv_genl_small_ops {
+ 	int		       (*doit)(struct sk_buff *skb,
+ 				       struct genl_info *info);
+ 	int		       (*dumpit)(struct sk_buff *skb,
+@@ -68,9 +70,9 @@ struct batadv_genl_family {
+ 			 struct genl_info *info);
+         void (*post_doit)(const struct genl_ops *ops, struct sk_buff *sk=
+b,
+ 			  struct genl_info *info);
+-	const struct batadv_genl_ops *ops;
++	const struct batadv_genl_small_ops *small_ops;
+ 	const struct genl_multicast_group *mcgrps;
+-	unsigned int n_ops;
++	unsigned int n_small_ops;
+ 	unsigned int n_mcgrps;
+ 	struct module *module;
+=20
+@@ -94,24 +96,32 @@ static inline int batadv_genl_register_family(struct =
+batadv_genl_family *family)
+ 	family->family.pre_doit =3D family->pre_doit;
+ 	family->family.post_doit =3D family->post_doit;
+ 	family->family.mcgrps =3D family->mcgrps;
+-	family->family.n_ops =3D family->n_ops;
++	family->family.n_ops =3D family->n_small_ops;
+ 	family->family.n_mcgrps =3D family->n_mcgrps;
+ 	family->family.module =3D family->module;
+=20
+-	ops =3D kzalloc(sizeof(*ops) * family->n_ops, GFP_KERNEL);
++	ops =3D kzalloc(sizeof(*ops) * family->n_small_ops, GFP_KERNEL);
+ 	if (!ops)
+ 		return -ENOMEM;
+=20
+ 	for (i =3D 0; i < family->family.n_ops; i++) {
+-		ops[i].doit =3D family->ops[i].doit;
+-		ops[i].dumpit =3D family->ops[i].dumpit;
+-		ops[i].done =3D family->ops[i].done;
+-		ops[i].cmd =3D family->ops[i].cmd;
+-		ops[i].internal_flags =3D family->ops[i].internal_flags;
+-		ops[i].flags =3D family->ops[i].flags;
++		ops[i].doit =3D family->small_ops[i].doit;
++		ops[i].dumpit =3D family->small_ops[i].dumpit;
++		ops[i].done =3D family->small_ops[i].done;
++		ops[i].cmd =3D family->small_ops[i].cmd;
++		ops[i].internal_flags =3D family->small_ops[i].internal_flags;
++		ops[i].flags =3D family->small_ops[i].flags;
++#if LINUX_VERSION_IS_GEQ(5, 2, 0)
++		ops[i].validate =3D family->small_ops[i].validate;
++#else
+ 		ops[i].policy =3D family->policy;
++#endif
+ 	}
+=20
++#if LINUX_VERSION_IS_GEQ(5, 2, 0)
++	family->family.policy =3D family->policy;
++#endif
++
+ 	family->family.ops =3D ops;
+ 	family->copy_ops =3D ops;
+=20
+@@ -126,7 +136,7 @@ typedef struct genl_ops batadv_genl_ops_old;
+ #define batadv_post_doit(__x, __y, __z) \
+ 	batadv_post_doit(const batadv_genl_ops_old *ops, __y, __z)
+=20
+-#define genl_ops batadv_genl_ops
++#define genl_small_ops batadv_genl_small_ops
+ #define genl_family batadv_genl_family
+=20
+ #define genl_register_family(family) \
+@@ -150,6 +160,6 @@ batadv_genl_unregister_family(struct batadv_genl_fami=
+ly *family)
+ 	genlmsg_multicast_netns(&(_family)->family, _net, _skb, _portid, \
+ 				_group, _flags)
+=20
+-#endif /* LINUX_VERSION_IS_LESS(5, 2, 0) */
++#endif /* LINUX_VERSION_IS_LESS(5, 10, 0) */
+=20
+ #endif /* _NET_BATMAN_ADV_COMPAT_NET_GENETLINK_H_ */
+diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
+index dc193618..c7a55647 100644
+--- a/net/batman-adv/netlink.c
++++ b/net/batman-adv/netlink.c
+@@ -1350,7 +1350,7 @@ static void batadv_post_doit(const struct genl_ops =
+*ops, struct sk_buff *skb,
+ 	}
+ }
+=20
+-static const struct genl_ops batadv_netlink_ops[] =3D {
++static const struct genl_small_ops batadv_netlink_ops[] =3D {
+ 	{
+ 		.cmd =3D BATADV_CMD_GET_MESH,
+ 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
+@@ -1484,8 +1484,8 @@ struct genl_family batadv_netlink_family __ro_after=
+_init =3D {
+ 	.pre_doit =3D batadv_pre_doit,
+ 	.post_doit =3D batadv_post_doit,
+ 	.module =3D THIS_MODULE,
+-	.ops =3D batadv_netlink_ops,
+-	.n_ops =3D ARRAY_SIZE(batadv_netlink_ops),
++	.small_ops =3D batadv_netlink_ops,
++	.n_small_ops =3D ARRAY_SIZE(batadv_netlink_ops),
+ 	.mcgrps =3D batadv_netlink_mcgrps,
+ 	.n_mcgrps =3D ARRAY_SIZE(batadv_netlink_mcgrps),
+ };
+--=20
+2.28.0
