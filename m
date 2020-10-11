@@ -2,202 +2,204 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE37287BA9
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Oct 2020 20:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AACA28A6BB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 11 Oct 2020 11:49:15 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4393C8018B;
-	Thu,  8 Oct 2020 20:25:36 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1702A8018B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Oct 2020 20:25:33 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3EA55807D0;
+	Sun, 11 Oct 2020 11:49:15 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9ED8E807D0
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 11 Oct 2020 11:49:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1602180993;
+	s=20121; t=1602409162;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=yvgUYGanYfcfRLHdaTHHDrfpf1rVWJcvZYYu5jj+3B4=;
-	b=A/qMIFz82nsS6fN5/ehQJqpjmSsGdHNRmKzcZ6GpJyIYFf8h+Dd6qR5oJVs3JMzL5pRaiR
-	f/bF1No4JIJs7LgDUdpauUuvkMPCfmm0IdGF0YU/p9Uk5gPQpru1AMNnbcuSxnfrCJQlYQ
-	wenHSNjstYOKTnDJkBRbKBoeFf8dyaE=
+	bh=WW9FYmj2ovMS0vPe/2JG5Z39ysobZQfYl8pOCUa70gc=;
+	b=xlbJmiYnkKqQJOl715l7v3DUkXBEdgr96qUG50gwhimTZ0m9MgpnCdPp2nOnyei3gYMVP7
+	qQEhlduKTZcP8UqSEvCOj8mh60g0cqk0CB3Ebtvqqpr2NH/3QeT8hoTBCVQDY3//wCEhd+
+	TtZ3LDXCqQLIvG8eDuPhXnq85xU4eug=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] batman-adv: genetlink: move to smaller ops wherever possible
-Date: Thu,  8 Oct 2020 20:16:12 +0200
-Message-Id: <20201008181612.9663-1-sven@narfation.org>
+Subject: [PATCH 1/2] batman-adv: Prepare infrastructure for newlink settings
+Date: Sun, 11 Oct 2020 11:39:08 +0200
+Message-Id: <20201011093909.297580-1-sven@narfation.org>
 X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1602181533; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1602409752; a=rsa-sha256;
 	cv=none;
-	b=WlfjoY4hEQ+aGcKRXewyfO39cDNLUSpUpA1j8Cq5ZJG43+vzFu+qjJLmRhoOhQ5c4W0RV/
-	CZONBhYyKFqIA16SZM2ytOlXwr5+kX0CxTzdIuJtilayL2OmeBc0TDEuVtEnGYAlH/4/hz
-	YYe6G1qPdxWKP72O6P/SwMik4D7XDqk=
+	b=1VAOYmFLq75a0rD0j8666H17uv1cLVjUON9otkkdtA0YRHfYHBD7CsMYqUnV+zP33iSPUo
+	V+/3X8oBucGEWt9KzC1u7qeEMxK5yECpajycgC/9NIILoYwpqKMRP18QcxY4XZ6gB//HuN
+	dbS8KH1jcF4pC5F49tkHp0mC7351KSY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=A/qMIFz8;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=pass header.d=narfation.org header.s=20121 header.b=xlbJmiYn;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1602181533;
+	s=20121; t=1602409752;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=yvgUYGanYfcfRLHdaTHHDrfpf1rVWJcvZYYu5jj+3B4=;
-	b=OU3W5TjRssusZby2kmd6NSDocsOCRMe3drmxbeEXvbtrHrPh3UvJ7KUbQvojJ2A6yt2WGw
-	+x93rUJGr2r+/1wh9jXanlro/IOE1oRPcGssUGiE1twPpDX3j0pLPg/ScXv9TnswQoe9bZ
-	Yh+/E05AfJXeqWjT6Ere8yFErGS81TU=
+	bh=WW9FYmj2ovMS0vPe/2JG5Z39ysobZQfYl8pOCUa70gc=;
+	b=zClW/6k6XC8tmQIDEOdX/vt2tBtJN+/XbMA7c3S+BECeq6QFrcZEOBn/kny39iudrocxQ0
+	QEScCZSQnqtbFtRocuQPu++qxow8L3BQ5n6CVNiAv3r6PKXV/OQEEKZDs5tyxB18m5VxnH
+	LC3wdOq13F81D5i1PycrdlMF9uURdWc=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 27NREY3PAM5AYDJKN63UM4VPWLTKFGQA
-X-Message-ID-Hash: 27NREY3PAM5AYDJKN63UM4VPWLTKFGQA
+Message-ID-Hash: DR7DKZSACJW3KFNUTDA3RYZCKAWI7PMU
+X-Message-ID-Hash: DR7DKZSACJW3KFNUTDA3RYZCKAWI7PMU
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Annika Wickert <annika.wickert@exaring.de>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/27NREY3PAM5AYDJKN63UM4VPWLTKFGQA/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DR7DKZSACJW3KFNUTDA3RYZCKAWI7PMU/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Jakub Kicinski <kuba@kernel.org>
+The batadv generic netlink family can be used to retrieve the current sta=
+te
+and set various configuration settings. But there are also settings which
+must be set before the actual interface is created.
 
-Bulk of the genetlink users can use smaller ops, move them.
+The rtnetlink already uses IFLA_INFO_DATA to allow net_device families to
+transfer such configurations. The minimal required functionality for this
+is now available for the batadv rtnl_link_ops. Also a new IFLA class of
+attributes will be attached to it because rtnetlink only allows 51
+different attributes but batadv_nl_attrs already contains 62 attributes.
 
-Signed-off-by: Jakub Kicinski <kuba@kernel.org>
-Reviewed-by: Johannes Berg <johannes@sipsolutions.net>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-[sven@narfation.org: Add compat code]
+Cc: Annika Wickert <annika.wickert@exaring.de>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- compat-include/net/genetlink.h | 38 +++++++++++++++++++++-------------
- net/batman-adv/netlink.c       |  6 +++---
- 2 files changed, 27 insertions(+), 17 deletions(-)
+ compat.h                        |  6 +++++
+ include/uapi/linux/batman_adv.h | 20 +++++++++++++++++
+ net/batman-adv/soft-interface.c | 39 +++++++++++++++++++++++++++++++++
+ 3 files changed, 65 insertions(+)
 
-diff --git a/compat-include/net/genetlink.h b/compat-include/net/genetlin=
-k.h
-index d1f80cd8..f16355fe 100644
---- a/compat-include/net/genetlink.h
-+++ b/compat-include/net/genetlink.h
-@@ -31,15 +31,17 @@ void batadv_genl_dump_check_consistent(struct netlink=
-_callback *cb,
+diff --git a/compat.h b/compat.h
+index e3220e39..3f772754 100644
+--- a/compat.h
++++ b/compat.h
+@@ -20,6 +20,12 @@
+ #define batadv_softif_slave_add(__dev, __slave_dev, __extack) \
+ 	batadv_softif_slave_add(__dev, __slave_dev)
+=20
++#define batadv_softif_validate(__tb, __data, __extack) \
++	batadv_softif_validate(__tb, __data)
++
++#define batadv_softif_newlink(__src_net, __dev, __tb, __data, __extack) =
+\
++	batadv_softif_newlink(__src_net, __dev, __tb, __data)
++
  #endif /* LINUX_VERSION_IS_LESS(4, 15, 0) */
 =20
-=20
--#if LINUX_VERSION_IS_LESS(5, 2, 0)
-+#if LINUX_VERSION_IS_LESS(5, 10, 0)
-=20
-+#if LINUX_VERSION_IS_LESS(5, 2, 0)
- enum genl_validate_flags {
- 	GENL_DONT_VALIDATE_STRICT		=3D BIT(0),
- 	GENL_DONT_VALIDATE_DUMP			=3D BIT(1),
- 	GENL_DONT_VALIDATE_DUMP_STRICT		=3D BIT(2),
+ #endif /* __KERNEL__ */
+diff --git a/include/uapi/linux/batman_adv.h b/include/uapi/linux/batman_=
+adv.h
+index bb0ae945..b05399d8 100644
+--- a/include/uapi/linux/batman_adv.h
++++ b/include/uapi/linux/batman_adv.h
+@@ -675,4 +675,24 @@ enum batadv_tp_meter_reason {
+ 	BATADV_TP_REASON_TOO_MANY		=3D 133,
  };
-+#endif /* LINUX_VERSION_IS_LESS(5, 2, 0) */
 =20
--struct batadv_genl_ops {
-+struct batadv_genl_small_ops {
- 	int		       (*doit)(struct sk_buff *skb,
- 				       struct genl_info *info);
- 	int		       (*dumpit)(struct sk_buff *skb,
-@@ -68,9 +70,9 @@ struct batadv_genl_family {
- 			 struct genl_info *info);
-         void (*post_doit)(const struct genl_ops *ops, struct sk_buff *sk=
-b,
- 			  struct genl_info *info);
--	const struct batadv_genl_ops *ops;
-+	const struct batadv_genl_small_ops *small_ops;
- 	const struct genl_multicast_group *mcgrps;
--	unsigned int n_ops;
-+	unsigned int n_small_ops;
- 	unsigned int n_mcgrps;
- 	struct module *module;
-=20
-@@ -94,24 +96,32 @@ static inline int batadv_genl_register_family(struct =
-batadv_genl_family *family)
- 	family->family.pre_doit =3D family->pre_doit;
- 	family->family.post_doit =3D family->post_doit;
- 	family->family.mcgrps =3D family->mcgrps;
--	family->family.n_ops =3D family->n_ops;
-+	family->family.n_ops =3D family->n_small_ops;
- 	family->family.n_mcgrps =3D family->n_mcgrps;
- 	family->family.module =3D family->module;
-=20
--	ops =3D kzalloc(sizeof(*ops) * family->n_ops, GFP_KERNEL);
-+	ops =3D kzalloc(sizeof(*ops) * family->n_small_ops, GFP_KERNEL);
- 	if (!ops)
- 		return -ENOMEM;
-=20
- 	for (i =3D 0; i < family->family.n_ops; i++) {
--		ops[i].doit =3D family->ops[i].doit;
--		ops[i].dumpit =3D family->ops[i].dumpit;
--		ops[i].done =3D family->ops[i].done;
--		ops[i].cmd =3D family->ops[i].cmd;
--		ops[i].internal_flags =3D family->ops[i].internal_flags;
--		ops[i].flags =3D family->ops[i].flags;
-+		ops[i].doit =3D family->small_ops[i].doit;
-+		ops[i].dumpit =3D family->small_ops[i].dumpit;
-+		ops[i].done =3D family->small_ops[i].done;
-+		ops[i].cmd =3D family->small_ops[i].cmd;
-+		ops[i].internal_flags =3D family->small_ops[i].internal_flags;
-+		ops[i].flags =3D family->small_ops[i].flags;
-+#if LINUX_VERSION_IS_GEQ(5, 2, 0)
-+		ops[i].validate =3D family->small_ops[i].validate;
-+#else
- 		ops[i].policy =3D family->policy;
-+#endif
- 	}
-=20
-+#if LINUX_VERSION_IS_GEQ(5, 2, 0)
-+	family->family.policy =3D family->policy;
-+#endif
++/**
++ * enum batadv_ifla_attrs - batman-adv ifla nested attributes
++ */
++enum batadv_ifla_attrs {
++	/**
++	 * @IFLA_BATADV_UNSPEC: unspecified attribute which is not parsed by
++	 *  rtnetlink
++	 */
++	IFLA_BATADV_UNSPEC,
 +
- 	family->family.ops =3D ops;
- 	family->copy_ops =3D ops;
++	/* add attributes above here, update the policy in soft-interface.c */
++
++	/**
++	 * @__IFLA_BATADV_MAX: internal use
++	 */
++	__IFLA_BATADV_MAX,
++};
++
++#define IFLA_BATADV_MAX (__IFLA_BATADV_MAX - 1)
++
+ #endif /* _UAPI_LINUX_BATMAN_ADV_H_ */
+diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
+ace.c
+index 82e7ca88..9c7b8968 100644
+--- a/net/batman-adv/soft-interface.c
++++ b/net/batman-adv/soft-interface.c
+@@ -38,6 +38,7 @@
+ #include <linux/stddef.h>
+ #include <linux/string.h>
+ #include <linux/types.h>
++#include <net/netlink.h>
+ #include <uapi/linux/batadv_packet.h>
+ #include <uapi/linux/batman_adv.h>
 =20
-@@ -126,7 +136,7 @@ typedef struct genl_ops batadv_genl_ops_old;
- #define batadv_post_doit(__x, __y, __z) \
- 	batadv_post_doit(const batadv_genl_ops_old *ops, __y, __z)
-=20
--#define genl_ops batadv_genl_ops
-+#define genl_small_ops batadv_genl_small_ops
- #define genl_family batadv_genl_family
-=20
- #define genl_register_family(family) \
-@@ -150,6 +160,6 @@ batadv_genl_unregister_family(struct batadv_genl_fami=
-ly *family)
- 	genlmsg_multicast_netns(&(_family)->family, _net, _skb, _portid, \
- 				_group, _flags)
-=20
--#endif /* LINUX_VERSION_IS_LESS(5, 2, 0) */
-+#endif /* LINUX_VERSION_IS_LESS(5, 10, 0) */
-=20
- #endif /* _NET_BATMAN_ADV_COMPAT_NET_GENETLINK_H_ */
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index dc193618..c7a55647 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -1350,7 +1350,7 @@ static void batadv_post_doit(const struct genl_ops =
-*ops, struct sk_buff *skb,
- 	}
+@@ -1073,6 +1074,37 @@ static void batadv_softif_init_early(struct net_de=
+vice *dev)
+ 	dev->ethtool_ops =3D &batadv_ethtool_ops;
  }
 =20
--static const struct genl_ops batadv_netlink_ops[] =3D {
-+static const struct genl_small_ops batadv_netlink_ops[] =3D {
- 	{
- 		.cmd =3D BATADV_CMD_GET_MESH,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
-@@ -1484,8 +1484,8 @@ struct genl_family batadv_netlink_family __ro_after=
-_init =3D {
- 	.pre_doit =3D batadv_pre_doit,
- 	.post_doit =3D batadv_post_doit,
- 	.module =3D THIS_MODULE,
--	.ops =3D batadv_netlink_ops,
--	.n_ops =3D ARRAY_SIZE(batadv_netlink_ops),
-+	.small_ops =3D batadv_netlink_ops,
-+	.n_small_ops =3D ARRAY_SIZE(batadv_netlink_ops),
- 	.mcgrps =3D batadv_netlink_mcgrps,
- 	.n_mcgrps =3D ARRAY_SIZE(batadv_netlink_mcgrps),
++/**
++ * batadv_softif_validate() - validate configuration of new batadv link
++ * @tb: IFLA_INFO_DATA netlink attributes
++ * @data: enum batadv_ifla_attrs attributes
++ * @extack: extended ACK report struct
++ *
++ * Return: 0 if successful or error otherwise.
++ */
++static int batadv_softif_validate(struct nlattr *tb[], struct nlattr *da=
+ta[],
++				  struct netlink_ext_ack *extack)
++{
++	return 0;
++}
++
++/**
++ * batadv_softif_newlink() - pre-initialize and register new batadv link
++ * @src_net: the applicable net namespace
++ * @dev: network device to register
++ * @tb: IFLA_INFO_DATA netlink attributes
++ * @data: enum batadv_ifla_attrs attributes
++ * @extack: extended ACK report struct
++ *
++ * Return: 0 if successful or error otherwise.
++ */
++static int batadv_softif_newlink(struct net *src_net, struct net_device =
+*dev,
++				 struct nlattr *tb[], struct nlattr *data[],
++				 struct netlink_ext_ack *extack)
++{
++	return register_netdevice(dev);
++}
++
+ /**
+  * batadv_softif_create() - Create and register soft interface
+  * @net: the applicable net namespace
+@@ -1171,9 +1203,16 @@ bool batadv_softif_is_valid(const struct net_devic=
+e *net_dev)
+ 	return false;
+ }
+=20
++static const struct nla_policy batadv_ifla_policy[IFLA_BATADV_MAX + 1] =3D=
+ {
++};
++
+ struct rtnl_link_ops batadv_link_ops __read_mostly =3D {
+ 	.kind		=3D "batadv",
+ 	.priv_size	=3D sizeof(struct batadv_priv),
+ 	.setup		=3D batadv_softif_init_early,
++	.maxtype	=3D IFLA_BATADV_MAX,
++	.policy		=3D batadv_ifla_policy,
++	.validate	=3D batadv_softif_validate,
++	.newlink	=3D batadv_softif_newlink,
+ 	.dellink	=3D batadv_softif_destroy_netlink,
  };
 --=20
 2.28.0
