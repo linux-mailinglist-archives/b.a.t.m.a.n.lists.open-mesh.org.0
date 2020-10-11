@@ -2,55 +2,51 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id AECF428A6E1
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 11 Oct 2020 12:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7FA28A6F5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 11 Oct 2020 12:25:32 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 95806809CE;
-	Sun, 11 Oct 2020 12:09:55 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C779080244
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 11 Oct 2020 12:09:52 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 23EAF802A5;
+	Sun, 11 Oct 2020 12:25:31 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 88B11800F2
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 11 Oct 2020 12:25:28 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1602410992;
+	s=20121; t=1602411927;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0n8mkfxu55lIQSJjgP/abSThGULofETFwXMmR+VnJS4=;
-	b=HPFJ7dxiODyScNyXODbXOxcDk4wjZTu8ePF7hnRTbNutx9GKKW24rBlpExyEgqRzP72gNd
-	tCV1XsX+AoY4bMeuCuBJeyJSXjs1YUGzyM4BW8JQXrsvHFM0/L+A1PGE1oDnie1IW4WnY4
-	aOzTLgS3LmU7cz8goB+s2nvw1LOuoVc=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=2Fdf9Lj4DyCCjQSowH0P7u7f7WME+Mwutil/MeJN5Dg=;
+	b=eI1u6+MhFsjfgR/rSCwBII0/qudYHqmnMV9a2cx6wJr3Aj8f/SRphoP0iLw/kroDfqWDpn
+	xl4JaKWqhXKbvlOio2gULn+j/3zq/8DqqTwnqKkDGbrR/BbOu39c91w0CSCuB32DXXjS8U
+	H3nqFYzNsmZbzHcgQ5QtDdYpqXBOs04=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH v2 2/2] batman-adv: Allow selection of routing algorithm over rtnetlink
-Date: Sun, 11 Oct 2020 12:09:41 +0200
-Message-Id: <20201011100941.299742-2-sven@narfation.org>
+Subject: [PATCH v3 1/2] batman-adv: Prepare infrastructure for newlink settings
+Date: Sun, 11 Oct 2020 12:25:23 +0200
+Message-Id: <20201011102524.302085-1-sven@narfation.org>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201011100941.299742-1-sven@narfation.org>
-References: <20201011100941.299742-1-sven@narfation.org>
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1602410992; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1602411928; a=rsa-sha256;
 	cv=none;
-	b=bPJ2ddbT2vmPiWs3lPCAKQPMTQZAxplmmB37ke2hxhb/T3RzUarMP0DP5JSw8AWWSq7lCI
-	uTn5fvBK7vDpOZXYlL834/OaCZRakueiihxCiRRcg3B7jtVnIXaraMEBs17O+kfuSwplui
-	Y4rtRNJTpOhVH0CWnkNGa3pCrUdpBDU=
+	b=uQo6ggVfgu5kDs6iva12j3IHGqRPc3Fr79Vl1vpw+ZcsmXBp+uzHVxMJqkMpicphFItrTd
+	kLqKoax8JG8FlC4hl/QO+A+OOL9kukPLtI8/8Vs+F2ax2UAxPu3qnsYmaXaW3I8+6JdfAW
+	aV1s7pBkxIF5s6x3SEyARxC9HjvWSKE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=HPFJ7dxi;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=pass header.d=narfation.org header.s=20121 header.b=eI1u6+Mh;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1602410992;
+	s=20121; t=1602411928;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=0n8mkfxu55lIQSJjgP/abSThGULofETFwXMmR+VnJS4=;
-	b=PQPDiKQtAa/h8AWsCnMIB1MajzF30kzwEDBV5vv/mMvUi+4MhQJRiOUb9WqoiSz1yKIcch
-	xMkLxU91LtE5vCBLPu1BvaOkITdZhwreZ20VTXKUEwZAYoR/4fv6HzsUkGWLqxjq3GhpRF
-	8BqV8PM2tpGH0G4NvXAs7zDo5fvJix0=
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=2Fdf9Lj4DyCCjQSowH0P7u7f7WME+Mwutil/MeJN5Dg=;
+	b=nayfUOH7xc2hk1zWyvQHPwBMVCQCYPxlLIm5+TohVxRbE/uImk7J/wbt4TdRXj5l1sHmX3
+	tSvusx1B+3XW/HD1zVw11UZ65QLqF7MG/vAsPmhzbDOMHtbmbqm9EFplnilJ8elgSxPwbx
+	zWFRJbKMdTU/ca8Fk32PHkTWB4tRTbk=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: X3SAWN6AVRVO4HQOZDVHXAGOGGLVXXZZ
-X-Message-ID-Hash: X3SAWN6AVRVO4HQOZDVHXAGOGGLVXXZZ
+Message-ID-Hash: P6BLT7M2J2A4FDFXRZQ6QO6RUY6YSQY5
+X-Message-ID-Hash: P6BLT7M2J2A4FDFXRZQ6QO6RUY6YSQY5
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: Annika Wickert <annika.wickert@exaring.de>
@@ -58,186 +54,162 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/X3SAWN6AVRVO4HQOZDVHXAGOGGLVXXZZ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/P6BLT7M2J2A4FDFXRZQ6QO6RUY6YSQY5/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-A batadv net_device is associated to a B.A.T.M.A.N. routing algorithm. Th=
-is
-algorithm has to be selected before the interface is initialized and cann=
-ot
-be changed after that. The only way to select this algorithm was a module
-parameter which specifies the default algorithm used during the creation =
-of
-the net_device.
+The batadv generic netlink family can be used to retrieve the current sta=
+te
+and set various configuration settings. But there are also settings which
+must be set before the actual interface is created.
 
-This module parameter is writeable over
-/sys/module/batman_adv/parameters/routing_algo and thus allows switching =
-of
-the routing algorithm:
-
-1. change routing_algo parameter
-2. create new batadv net_device
-
-But this is not race free because another process can be scheduled betwee=
-n
-1 + 2 and in that time frame change the routing_algo parameter again.
-
-It is much cleaner to directly provide this information inside the
-rtnetlink's RTM_NEWLINK message. The two processes would be (in regards o=
-f
-the creation parameter of their batadv interfaces) be isolated. This also
-eases the integration of batadv devices inside tools like network-manager
-or systemd-networkd which are not expecting to operate on /sys before a n=
-ew
-net_device is created.
+The rtnetlink already uses IFLA_INFO_DATA to allow net_device families to
+transfer such configurations. The minimal required functionality for this
+is now available for the batadv rtnl_link_ops. Also a new IFLA class of
+attributes will be attached to it because rtnetlink only allows 51
+different attributes but batadv_nl_attrs already contains 62 attributes.
 
 Cc: Annika Wickert <annika.wickert@exaring.de>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- include/uapi/linux/batman_adv.h |  6 ++++++
- net/batman-adv/bat_algo.c       | 10 ++++++++--
- net/batman-adv/bat_algo.h       |  3 ++-
- net/batman-adv/soft-interface.c | 34 ++++++++++++++++++++++++++++++---
- 4 files changed, 47 insertions(+), 6 deletions(-)
+v3:
+* no change
+v2:
+* don't use compat code for kernel 4.13 and 4.14
 
+ compat.h                        | 11 ++++++++++
+ include/uapi/linux/batman_adv.h | 20 +++++++++++++++++
+ net/batman-adv/soft-interface.c | 39 +++++++++++++++++++++++++++++++++
+ 3 files changed, 70 insertions(+)
+
+diff --git a/compat.h b/compat.h
+index e3220e39..9da9feb7 100644
+--- a/compat.h
++++ b/compat.h
+@@ -15,6 +15,17 @@
+=20
+ #include "compat-autoconf.h"
+=20
++#if LINUX_VERSION_IS_LESS(4, 13, 0)
++
++#define batadv_softif_validate(__tb, __data, __extack) \
++	batadv_softif_validate(__tb, __data)
++
++#define batadv_softif_newlink(__src_net, __dev, __tb, __data, __extack) =
+\
++	batadv_softif_newlink(__src_net, __dev, __tb, __data)
++
++#endif /* LINUX_VERSION_IS_LESS(4, 13, 0) */
++
++
+ #if LINUX_VERSION_IS_LESS(4, 15, 0)
+=20
+ #define batadv_softif_slave_add(__dev, __slave_dev, __extack) \
 diff --git a/include/uapi/linux/batman_adv.h b/include/uapi/linux/batman_=
 adv.h
-index b05399d8..bdb317fa 100644
+index bb0ae945..b05399d8 100644
 --- a/include/uapi/linux/batman_adv.h
 +++ b/include/uapi/linux/batman_adv.h
-@@ -685,6 +685,12 @@ enum batadv_ifla_attrs {
- 	 */
- 	IFLA_BATADV_UNSPEC,
-=20
-+	/**
-+	 * @IFLA_BATADV_ALGO_NAME: routing algorithm (name) which should be
-+	 *  used by the newly registered batadv net_device.
-+	 */
-+	IFLA_BATADV_ALGO_NAME,
-+
- 	/* add attributes above here, update the policy in soft-interface.c */
-=20
- 	/**
-diff --git a/net/batman-adv/bat_algo.c b/net/batman-adv/bat_algo.c
-index 382fbe51..500db94a 100644
---- a/net/batman-adv/bat_algo.c
-+++ b/net/batman-adv/bat_algo.c
-@@ -34,7 +34,13 @@ void batadv_algo_init(void)
- 	INIT_HLIST_HEAD(&batadv_algo_list);
- }
-=20
--static struct batadv_algo_ops *batadv_algo_get(char *name)
-+/**
-+ * batadv_algo_get() - Search for algorithm with specific name
-+ * @name: algorithm name to find
-+ *
-+ * Return: Pointer to batadv_algo_ops on success, NULL otherwise
-+ */
-+struct batadv_algo_ops *batadv_algo_get(const char *name)
- {
- 	struct batadv_algo_ops *bat_algo_ops =3D NULL, *bat_algo_ops_tmp;
-=20
-@@ -97,7 +103,7 @@ int batadv_algo_register(struct batadv_algo_ops *bat_a=
-lgo_ops)
-  *
-  * Return: 0 on success or negative error number in case of failure
-  */
--int batadv_algo_select(struct batadv_priv *bat_priv, char *name)
-+int batadv_algo_select(struct batadv_priv *bat_priv, const char *name)
- {
- 	struct batadv_algo_ops *bat_algo_ops;
-=20
-diff --git a/net/batman-adv/bat_algo.h b/net/batman-adv/bat_algo.h
-index 686a60bc..2ae140ea 100644
---- a/net/batman-adv/bat_algo.h
-+++ b/net/batman-adv/bat_algo.h
-@@ -18,8 +18,9 @@ extern char batadv_routing_algo[];
- extern struct list_head batadv_hardif_list;
-=20
- void batadv_algo_init(void);
-+struct batadv_algo_ops *batadv_algo_get(const char *name);
- int batadv_algo_register(struct batadv_algo_ops *bat_algo_ops);
--int batadv_algo_select(struct batadv_priv *bat_priv, char *name);
-+int batadv_algo_select(struct batadv_priv *bat_priv, const char *name);
- int batadv_algo_seq_print_text(struct seq_file *seq, void *offset);
- int batadv_algo_dump(struct sk_buff *msg, struct netlink_callback *cb);
-=20
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
-ace.c
-index 9c7b8968..d96b4815 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -846,9 +846,11 @@ static int batadv_softif_init_late(struct net_device=
- *dev)
-=20
- 	batadv_nc_init_bat_priv(bat_priv);
-=20
--	ret =3D batadv_algo_select(bat_priv, batadv_routing_algo);
--	if (ret < 0)
--		goto free_bat_counters;
-+	if (!bat_priv->algo_ops) {
-+		ret =3D batadv_algo_select(bat_priv, batadv_routing_algo);
-+		if (ret < 0)
-+			goto free_bat_counters;
-+	}
-=20
- 	ret =3D batadv_debugfs_add_meshif(dev);
- 	if (ret < 0)
-@@ -1085,6 +1087,17 @@ static void batadv_softif_init_early(struct net_de=
-vice *dev)
- static int batadv_softif_validate(struct nlattr *tb[], struct nlattr *da=
-ta[],
- 				  struct netlink_ext_ack *extack)
- {
-+	struct batadv_algo_ops *algo_ops;
-+
-+	if (!data)
-+		return 0;
-+
-+	if (data[IFLA_BATADV_ALGO_NAME]) {
-+		algo_ops =3D batadv_algo_get(nla_data(data[IFLA_BATADV_ALGO_NAME]));
-+		if (!algo_ops)
-+			return -EINVAL;
-+	}
-+
- 	return 0;
- }
-=20
-@@ -1102,6 +1115,20 @@ static int batadv_softif_newlink(struct net *src_n=
-et, struct net_device *dev,
- 				 struct nlattr *tb[], struct nlattr *data[],
- 				 struct netlink_ext_ack *extack)
- {
-+	struct batadv_priv *bat_priv =3D netdev_priv(dev);
-+	const char *algo_name;
-+	int err;
-+
-+	if (!data)
-+		return 0;
-+
-+	if (data[IFLA_BATADV_ALGO_NAME]) {
-+		algo_name =3D nla_data(data[IFLA_BATADV_ALGO_NAME]);
-+		err =3D batadv_algo_select(bat_priv, algo_name);
-+		if (err)
-+			return -EINVAL;
-+	}
-+
- 	return register_netdevice(dev);
- }
-=20
-@@ -1204,6 +1231,7 @@ bool batadv_softif_is_valid(const struct net_device=
- *net_dev)
- }
-=20
- static const struct nla_policy batadv_ifla_policy[IFLA_BATADV_MAX + 1] =3D=
- {
-+	[IFLA_BATADV_ALGO_NAME]	=3D { .type =3D NLA_NUL_STRING },
+@@ -675,4 +675,24 @@ enum batadv_tp_meter_reason {
+ 	BATADV_TP_REASON_TOO_MANY		=3D 133,
  };
 =20
++/**
++ * enum batadv_ifla_attrs - batman-adv ifla nested attributes
++ */
++enum batadv_ifla_attrs {
++	/**
++	 * @IFLA_BATADV_UNSPEC: unspecified attribute which is not parsed by
++	 *  rtnetlink
++	 */
++	IFLA_BATADV_UNSPEC,
++
++	/* add attributes above here, update the policy in soft-interface.c */
++
++	/**
++	 * @__IFLA_BATADV_MAX: internal use
++	 */
++	__IFLA_BATADV_MAX,
++};
++
++#define IFLA_BATADV_MAX (__IFLA_BATADV_MAX - 1)
++
+ #endif /* _UAPI_LINUX_BATMAN_ADV_H_ */
+diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
+ace.c
+index 82e7ca88..9c7b8968 100644
+--- a/net/batman-adv/soft-interface.c
++++ b/net/batman-adv/soft-interface.c
+@@ -38,6 +38,7 @@
+ #include <linux/stddef.h>
+ #include <linux/string.h>
+ #include <linux/types.h>
++#include <net/netlink.h>
+ #include <uapi/linux/batadv_packet.h>
+ #include <uapi/linux/batman_adv.h>
+=20
+@@ -1073,6 +1074,37 @@ static void batadv_softif_init_early(struct net_de=
+vice *dev)
+ 	dev->ethtool_ops =3D &batadv_ethtool_ops;
+ }
+=20
++/**
++ * batadv_softif_validate() - validate configuration of new batadv link
++ * @tb: IFLA_INFO_DATA netlink attributes
++ * @data: enum batadv_ifla_attrs attributes
++ * @extack: extended ACK report struct
++ *
++ * Return: 0 if successful or error otherwise.
++ */
++static int batadv_softif_validate(struct nlattr *tb[], struct nlattr *da=
+ta[],
++				  struct netlink_ext_ack *extack)
++{
++	return 0;
++}
++
++/**
++ * batadv_softif_newlink() - pre-initialize and register new batadv link
++ * @src_net: the applicable net namespace
++ * @dev: network device to register
++ * @tb: IFLA_INFO_DATA netlink attributes
++ * @data: enum batadv_ifla_attrs attributes
++ * @extack: extended ACK report struct
++ *
++ * Return: 0 if successful or error otherwise.
++ */
++static int batadv_softif_newlink(struct net *src_net, struct net_device =
+*dev,
++				 struct nlattr *tb[], struct nlattr *data[],
++				 struct netlink_ext_ack *extack)
++{
++	return register_netdevice(dev);
++}
++
+ /**
+  * batadv_softif_create() - Create and register soft interface
+  * @net: the applicable net namespace
+@@ -1171,9 +1203,16 @@ bool batadv_softif_is_valid(const struct net_devic=
+e *net_dev)
+ 	return false;
+ }
+=20
++static const struct nla_policy batadv_ifla_policy[IFLA_BATADV_MAX + 1] =3D=
+ {
++};
++
  struct rtnl_link_ops batadv_link_ops __read_mostly =3D {
+ 	.kind		=3D "batadv",
+ 	.priv_size	=3D sizeof(struct batadv_priv),
+ 	.setup		=3D batadv_softif_init_early,
++	.maxtype	=3D IFLA_BATADV_MAX,
++	.policy		=3D batadv_ifla_policy,
++	.validate	=3D batadv_softif_validate,
++	.newlink	=3D batadv_softif_newlink,
+ 	.dellink	=3D batadv_softif_destroy_netlink,
+ };
 --=20
 2.28.0
