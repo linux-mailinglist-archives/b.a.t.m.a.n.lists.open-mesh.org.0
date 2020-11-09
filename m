@@ -1,84 +1,100 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C992A958E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  6 Nov 2020 12:41:09 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C9A2AB5BA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  9 Nov 2020 12:03:11 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0E530803C2;
-	Fri,  6 Nov 2020 12:41:07 +0100 (CET)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [63.128.21.124])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id DB8EB802D7
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  6 Nov 2020 12:41:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1604662863;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wrZ4oLrRKAlkIXCkiskrapF3SJUeI8FJdBVtlw792IE=;
-	b=RaQqK++jWookrCWlMqAtM09/4ylW9rwEpi9Kl9xCjYDHWV3rsj+9TTCgJbvYAUz+ao8mjr
-	0THr1KPQPPHL9nRyMHMHvdkxmBOgGo8x5wzGOnGxa8mGTmuipYBg1eOlKVKbGciViQsvBn
-	MCGAS3b+M6JKjfCsArDfSAW2m3134JM=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-226-wkLnwCPxMuO8w8QgqW3KOg-1; Fri, 06 Nov 2020 06:41:01 -0500
-X-MC-Unique: wkLnwCPxMuO8w8QgqW3KOg-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com [10.5.11.23])
-	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D4E8218CBC7A;
-	Fri,  6 Nov 2020 11:40:57 +0000 (UTC)
-Received: from warthog.procyon.org.uk (ovpn-115-47.rdu2.redhat.com [10.10.115.47])
-	by smtp.corp.redhat.com (Postfix) with ESMTP id 16D7F380;
-	Fri,  6 Nov 2020 11:40:53 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
-	Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
-	Kingdom.
-	Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <000000000000e0a53705b2d7ec44@google.com>
-References: <000000000000e0a53705b2d7ec44@google.com>
-To: syzbot <syzbot+d2b6e8cc299748fecf25@syzkaller.appspotmail.com>
-Subject: Re: INFO: rcu detected stall in security_file_open (3)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 39E2F8049F;
+	Mon,  9 Nov 2020 12:03:10 +0100 (CET)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com [209.85.166.69])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B0A0C80290
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon,  9 Nov 2020 12:03:06 +0100 (CET)
+Received: by mail-io1-f69.google.com with SMTP id c4so5333788ioi.16
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 09 Nov 2020 03:03:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=RC1F7ktIPdtkjf9WZxb33quJkR4mZqslLpcDaMizXIQ=;
+        b=Au4ZPuJp1t/+Ro0vO6Cc9cIvA4YiMPywBpJR6AWjZQdbE58nYmoy/+jZ504tk26bzG
+         LYKL15NpxwKLkNXmRI/FtIvLB3g3JevycPt2V/3pGbVXKsOkNpYBakGOMgAE4PpYzvaa
+         fvsR3FFJ8qhUZUuhuizPgR9M7SjTRCxAZaWDYAwDQQTfwUJ7HWT6LmCKSFaU3f2Hqi5/
+         A38jOWL5RffV3oa5B/iATF0T8YohGP0Xm8FjfHMK/Uj2fjEu8zTEurMUAlJ3PWb/MXtv
+         tCsaK7gJlzDoCfRcrG54Y8WuqM18Cq/dJBD3FcwuPKukrj9fo0Zim/XPj2gV0wu7NgbM
+         cFmg==
+X-Gm-Message-State: AOAM530E9Yz8aU1GtzRxPh+3Euf8vnwt/mEa+lvEf7PwGLNHJFNpAEq+
+	NoR5QRivmtQ0A2iyocJOGm9wGz+EArZL5Vuib1+B1EicVdbe
+X-Google-Smtp-Source: ABdhPJywQbYbN3++ou8k2gB6sjlyy0rEKh+k8IYljtbeI93rm6pObmoUSlPtAT1Ld4D0aDBhwcdPxIgVjgAK/RKW4DgHAskDUE5K
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <1797847.1604662853.1@warthog.procyon.org.uk>
-Date: Fri, 06 Nov 2020 11:40:53 +0000
-Message-ID: <1797848.1604662853@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Received: by 2002:a92:d5d0:: with SMTP id d16mr10009802ilq.223.1604919785429;
+ Mon, 09 Nov 2020 03:03:05 -0800 (PST)
+Date: Mon, 09 Nov 2020 03:03:05 -0800
+In-Reply-To: <000000000000a48f9e05aef6cce1@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000b4227e05b3aa8101@google.com>
+Subject: Re: INFO: rcu detected stall in exit_group
+From: syzbot <syzbot+1a14a0f8ce1a06d4415f@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
+	dhowells@redhat.com, fweisbec@gmail.com, linux-afs@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-mm@kvack.org, mareklindner@neomailbox.ch,
+	mike.kravetz@oracle.com, mingo@kernel.org, netdev@vger.kernel.org,
+	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com, tglx@linutronix.de,
+	viro@zeniv.linux.org.uk
+Content-Type: text/plain; charset="UTF-8"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=RaQqK++j;
-	spf=pass (diktynna.open-mesh.org: domain of dhowells@redhat.com designates 63.128.21.124 as permitted sender) smtp.mailfrom=dhowells@redhat.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1604662865; a=rsa-sha256;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 36SGpXwkbANQIOPA0BB4H0FF83.6EE6B4KI4H2EDJ4DJ.2EC@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.69 as permitted sender) smtp.mailfrom=36SGpXwkbANQIOPA0BB4H0FF83.6EE6B4KI4H2EDJ4DJ.2EC@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1604919786; a=rsa-sha256;
 	cv=none;
-	b=HR4zRorSPmIJsaZAMC23seNNXUKIIMkykYaMQ0FM5N6AfKaHaUKgV1uxdIbhDhN+p3ml8N
-	8sT9gO1mUH4O9nanhciM8B0o8/1MskehRlU4IF5qxAokSjWTZPvduLaKjN0BfgpbA019Pm
-	SE4MFQuz7t1roMBdGnBqiCk75jGiOjM=
+	b=Sf9UXU/e6GPwaUFnAl5SHV7IlYdLT3vmWeiYEWV8jnDGcvD8pVRQOu6zd0MzaiAlA68DuM
+	JtxoTW2hC/0qC7RS9NZYrSK7z5ZDOBKvvR6hsdZEpxwO+9rgH74V6yHi0rOLsLybzEWJLT
+	OCigkMSw66cDF+mLjFbxhDndt0OK/DM=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1604662865;
+	s=20121; t=1604919786;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=wrZ4oLrRKAlkIXCkiskrapF3SJUeI8FJdBVtlw792IE=;
-	b=yBmVlBJjMQudb2MRhUyGDRkoAXvbfQ6LQ5IuXNyFR0tRDYwnr9fF537R4SVG5K50VAiV87
-	foUpAeAp2/PoMLrL4XWpTq0ixWnTUWmXm/EA1UDpRSg/uE3Gy2RN2tLimDwL3nQFGqF5bB
-	ee2LZ0zUdaQi7fggfXBlarcr/3zzfos=
-Message-ID-Hash: JMVGN5ODECUV3GZTBF5GAPVJLIWXE7GX
-X-Message-ID-Hash: JMVGN5ODECUV3GZTBF5GAPVJLIWXE7GX
-X-MailFrom: dhowells@redhat.com
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=RC1F7ktIPdtkjf9WZxb33quJkR4mZqslLpcDaMizXIQ=;
+	b=oapWKdJ3d/k5MIh/5Tzq/RAQxz/jyc/6dFPdXWGym4jpVwKWKWHn8feG62A5sgJg9MBAIN
+	u0gMb77Wnio0gW9m7Qi7NMT4IZ8ltO8MNLuGJcHb1jHysBq4G7IdfbX/azT6KgX7KLnsjy
+	wZxfyIJbG+i3K9YS9JiIcYnmKTOv8YU=
+Message-ID-Hash: 2G5Y3IWHDYIWG3RUIYBHUEEFVLOMLLAG
+X-Message-ID-Hash: 2G5Y3IWHDYIWG3RUIYBHUEEFVLOMLLAG
+X-MailFrom: 36SGpXwkbANQIOPA0BB4H0FF83.6EE6B4KI4H2EDJ4DJ.2EC@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: dhowells@redhat.com, a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, fweisbec@gmail.com, ktkhai@virtuozzo.com, linux-afs@lists.infradead.org, linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, miklos@szeredi.hu, mingo@kernel.org, mszeredi@redhat.com, netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com, tglx@linutronix.de
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JMVGN5ODECUV3GZTBF5GAPVJLIWXE7GX/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2G5Y3IWHDYIWG3RUIYBHUEEFVLOMLLAG/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
+syzbot suspects this issue was fixed by commit:
+
+commit 1d0e850a49a5b56f8f3cb51e74a11e2fedb96be6
+Author: David Howells <dhowells@redhat.com>
+Date:   Fri Oct 16 12:21:14 2020 +0000
+
+    afs: Fix cell removal
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=14b65c3a500000
+start commit:   34d4ddd3 Merge tag 'linux-kselftest-5.9-rc5' of git://git...
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=a9075b36a6ae26c9
+dashboard link: https://syzkaller.appspot.com/bug?extid=1a14a0f8ce1a06d4415f
+userspace arch: i386
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=10c6642d900000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=132d00fd900000
+
+If the result looks correct, please mark the issue as fixed by replying with:
+
 #syz fix: afs: Fix cell removal
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
