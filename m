@@ -2,159 +2,118 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050E12AEF75
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 11 Nov 2020 12:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 618592B33F8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 15 Nov 2020 11:43:12 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B7B2080D64;
-	Wed, 11 Nov 2020 12:20:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1605093600;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:list-id:list-help:
-	 list-unsubscribe:list-subscribe:list-post;
-	bh=SS0AzCn/ZqMEGHRahKWufggq+ytWf6OdLf6Nk/LcGxk=;
-	b=OjZAedaptIqHVFzk9NCfCWvVI4tO5kK7miopPphZl3YfOM0UMciy4WNFR0mr+jTWJfKL28
-	EnH0d9qKeRHV5iGYYWDN6dvmxBxXIWU1wx4J9r0qi+UwdzKfcdHB6WNl1MZ/8bsF4oXx/A
-	smCRiFrlDei9PlS3iDoMyKu5t9yDsII=
-References: <0000000000008fddd805adc8c56f@google.com> <000000000000abcd5505b0a06d96@google.com>
-In-Reply-To: <000000000000abcd5505b0a06d96@google.com>
-Date: Wed, 11 Nov 2020 12:19:45 +0100
-Subject: Re: general protection fault in rt6_fill_node
-To: syzbot <syzbot+81af6e9b3c4b8bc874f8@syzkaller.appspotmail.com>
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-X-Mailman-Version: 3.2.1
-Precedence: list
-List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KIVBNQFWITLWMNGMXQ7I5B55BJ77J23O/>
-List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
-List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
-List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
-List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
-List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-MIME-Version: 1.0
-Message-ID: <160509360000.1287.18151546458621112194@diktynna.open-mesh.org>
-From: "Dmitry Vyukov via B.A.T.M.A.N" <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: John.Linn@xilinx.com, a@unstable.cc, Anant Thazhemadam <anant.thazhemadam@gmail.com>, Andrii Nakryiko <andriin@fb.com>, anirudh@xilinx.com, Alexei Starovoitov <ast@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org, bpf <bpf@vger.kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, David Miller <davem@davemloft.net>, David Ahern <dsahern@gmail.com>, hancock@sedsystems.ca, John Fastabend <john.fastabend@gmail.com>, Martin KaFai Lau <kafai@fb.com>, KP Singh <kpsingh@chromium.org>, Jakub Kicinski <kuba@kernel.org>, Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, Linux ARM <linux-arm-kernel@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>, mareklindner@neomailbox.ch, michal.simek@xilinx.com, netdev <netdev@vger.kernel.org>, Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, Song Liu <songliubraving@fb.com>, syzkaller-bugs <syzkaller-bugs@googlegroups.com>, Yonghong Song <yhs@fb.com>, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Dmitry Vyukov <dvyukov@google.com>
-Content-Type: multipart/mixed; boundary="===============3658809862557392288=="
-
---===============3658809862557392288==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-The sender domain has a DMARC Reject/Quarantine policy which disallows
-sending mailing list messages using the original "From" header.
-
-To mitigate this problem, the original message has been wrapped
-automatically by the mailing list software.
---===============3658809862557392288==
-Content-Type: message/rfc822
-MIME-Version: 1.0
-Content-Disposition: inline
-
-Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C11FB804B4
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 11 Nov 2020 12:19:57 +0100 (CET)
-Received: by mail-qv1-xf42.google.com with SMTP id 63so678778qva.7
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 11 Nov 2020 03:19:57 -0800 (PST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3086A80590;
+	Sun, 15 Nov 2020 11:43:11 +0100 (CET)
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 687358023F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Nov 2020 11:30:12 +0100 (CET)
+Received: by mail-pl1-x641.google.com with SMTP id 35so2512674ple.12
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Nov 2020 02:30:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HL+P6C+e6EWuUkq6BT22AnRS/x2R8zWC5SF2fuIvWTY=;
-        b=G7eBLWOQu/jKzydXH77LVk341vLoFf2aVMsmRzA51ZaqsLZw8reU4eMnbvGOcSaAZq
-         0b3xp/oFtihhxA67Tz22LyI/Yore49lROWLIym1ViOFCxrPRQcgwHAw/NWFVF7JRvSKm
-         KzNfdc/KedyImofcF1Gl6HzW0SvPt2kJolBtt/fSQNWKnHsxpXz70c+sUIfX747qok7N
-         LZQVuNAH2Al9XhPCPYpPID5PU37KLRoO/v5VdbkK2DlYc3cSUs33actL4xTT8i0Zr2rw
-         P3hJJL1bXlkdtS2TKLIUGe+PuhLraTqcRbvnRhYjqqBT/EF+M86YL/YhjOos1psD1mQE
-         nl0w==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=f99YlmJ7V8b5QfAJFnko13WoyUnuZI5dQ9Q4mdc9rPE=;
+        b=EB6YaPolo+9wlVswNo0NjqdqHBqPRdLsrG52IjnDPod4KsuWhW/v3t7cPk5DOr+Vxd
+         UNwVRKo7znwUSai913hMXuoR4XnDI+bpl8r0SKVKhgl9IQraRWOtsdqWY35cH9JmDWd/
+         FdaiDCYv5RDuvig15ZgGG/YlUP2YqUrMVeGNWDYyeL+IDUwWSwBxGVTSQHfa2jFg8n4x
+         Vq1UCNwZQUqexEYXVM8UpXjGuHO7XMo3wT0BrRdBABh6lfLJP4VaZPyzQAP1Qt9wVkLT
+         15519ZGGJMqeU3c0EBdshZ0oLe6EdaNUNts+2LJ2V6grcD4gQgHh0YWM5DRQRoZBiPhd
+         aelA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HL+P6C+e6EWuUkq6BT22AnRS/x2R8zWC5SF2fuIvWTY=;
-        b=iF+BKPpxN12+M4EB6zL9EotLVsVETvRmQVERltUZXPDlZQj8IC/Y53w21GMt5oNve5
-         v8Y0SZFb+Fnr5+WeFhYk78ZKR8mVBoE1RqbQ+iCu4HUrpKo+KVNXcrYJq57v6dkHyfaW
-         Z1mzXozdwNSeGnfcX5NYV5bp399jXFSSZ+XYg3XYWh8Sxasl4LKskeMguRbIa3pDuM06
-         rezX/FxUKWtVONwlmDQIHPhwCa4D561vFlBWBYWTR/aDeLUt4GBjgfz6b0V7AkwUDUsi
-         U/yFYWJBhn89C8uXlbP+s4choHsl9VmybL5RMgnruQj04IDueOe6X+8xV/mSI86lvTpX
-         4L/A==
-X-Gm-Message-State: AOAM530L7T7TqUAZehsZYoA0ZqSfGC0H3w7EeOWDfLsxwJLmNho40sKi
-	bxa1eJhavYi/hwVGuUZHQl3eRy03/KA8AWlPuMlDew==
-X-Google-Smtp-Source: ABdhPJxSKANgqKyIaFyKJJvDKEIsAq50ZDYIvoYkWBLdIn0dbZYFOsej/MN69Kzg8OORqQgkUJcdv3y6TbWf2QePsTM=
-X-Received: by 2002:a0c:8d8b:: with SMTP id t11mr24811025qvb.13.1605093596081;
- Wed, 11 Nov 2020 03:19:56 -0800 (PST)
-MIME-Version: 1.0
-References: <0000000000008fddd805adc8c56f@google.com> <000000000000abcd5505b0a06d96@google.com>
-In-Reply-To: <000000000000abcd5505b0a06d96@google.com>
-From: Dmitry Vyukov <dvyukov@google.com>
-Date: Wed, 11 Nov 2020 12:19:45 +0100
-Message-ID: <CACT4Y+bpDs82p-+vV2fki3STcdZaGcrmOqO1qh-agE7couKBHw@mail.gmail.com>
-Subject: Re: general protection fault in rt6_fill_node
-To: syzbot <syzbot+81af6e9b3c4b8bc874f8@syzkaller.appspotmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=f99YlmJ7V8b5QfAJFnko13WoyUnuZI5dQ9Q4mdc9rPE=;
+        b=pb14MN+JDSA4pwPMCbYX4Ma1uZqlkJ2FiPcFLx3NRxidcYyUvOeoo0r1HoG8DxQng5
+         bM1mp1XWr0isYkyNAozx6k5o2j4B1vRmVNZDi91ioQ2My3+9nDb9JyNPNXI6dxu2ztgB
+         q+tPeGi96HcV5MRJNLDqE0rDitjAqJ6Yf4oZdIgkTunOxs1Fjo8lWqN004ERUV3MYIFT
+         SK0S/yshZHtlo5Pfsst9sliRxtwzAeFxpS3bebr9h288xxpeOcbHYWTv99YXsp+RKOI5
+         E6wiAewLjqp2m42SxIvuR1WqJRPafqsLlgnSPQ1lL3WIgCUkdqIIWEwhCdiqBOiXkuSx
+         UyEg==
+X-Gm-Message-State: AOAM5325CbKN257bZCK52DkRcB+Lq0timNkrReEgyaDHPAfGRKsJXD1w
+	QqSJ18RhWOt+x4Cfuj80uGU=
+X-Google-Smtp-Source: ABdhPJx/7OwfA+CrCXi0xslwYws9tTOHaIqcWrpoIHvIiKM5GiiJ2Jjc1/Bobb3d3W51/dP2r1mrxw==
+X-Received: by 2002:a17:902:8d93:b029:d8:d8ee:e275 with SMTP id v19-20020a1709028d93b02900d8d8eee275mr8003044plo.71.1605436210639;
+        Sun, 15 Nov 2020 02:30:10 -0800 (PST)
+Received: from localhost.localdomain ([49.173.165.44])
+        by smtp.gmail.com with ESMTPSA id mt2sm15893571pjb.7.2020.11.15.02.30.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2020 02:30:09 -0800 (PST)
+From: Taehee Yoo <ap420073@gmail.com>
+To: mareklindner@neomailbox.ch,
+	sw@simonwunderlich.de,
+	a@unstable.cc,
+	sven@narfation.org,
+	b.a.t.m.a.n@lists.open-mesh.org
+Subject: [PATCH v3 net] batman-adv: set .owner to THIS_MODULE
+Date: Sun, 15 Nov 2020 10:30:04 +0000
+Message-Id: <20201115103004.30618-1-ap420073@gmail.com>
+X-Mailer: git-send-email 2.17.1
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=google.com header.s=20161025 header.b=G7eBLWOQ;
-	spf=pass (diktynna.open-mesh.org: domain of dvyukov@google.com designates 2607:f8b0:4864:20::f42 as permitted sender) smtp.mailfrom=dvyukov@google.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1605093597; a=rsa-sha256;
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=EB6YaPol;
+	spf=pass (diktynna.open-mesh.org: domain of ap420073@gmail.com designates 2607:f8b0:4864:20::641 as permitted sender) smtp.mailfrom=ap420073@gmail.com
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1605436212; a=rsa-sha256;
 	cv=none;
-	b=Y9RuqL3+/ZFPoY9fHC+uheqddiWhSr772Nye/blIwz2l6l35x5p8MMledbEG23fRJ6YevI
-	n2QFHIp44+d0AtibiuBIqCO6mcaHkdZjGGgqL2t+JcAUbTT+9hMlDZaJRoRPZUN/Ow50EO
-	JynCNsp42rnDPiIQBudISqbWcPMuSzg=
+	b=KhJakb5rRqMce2nTpuymStdIkoJnIkD3Rl9tw/juTNSU48OaO0GSw3GcsmJkqla1O9u2HQ
+	wmPksHIlu4xFDhOAdpeG/UZJi7KpJqyjZ3yqe4Mov74p+RYowNiZ73Tog4DEGBeaSMEpT2
+	7qp4u8IaTIXN4jh6gFcmt0QIMoo+aYo=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1605093597;
+	s=20121; t=1605436212;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=HL+P6C+e6EWuUkq6BT22AnRS/x2R8zWC5SF2fuIvWTY=;
-	b=hviP0CWKSCamX296Q0rkzJIWVZtPHp8cJTQRctyqn7BLY9A8JObVXCPdvnQLQaQpN+sQ3i
-	wa0gO+Kl4RShPuVMH+4kaNVCK3+MCQo23i9RFwt28jMj62W8jVQg0kq0EKh2/jVqW9rTAg
-	/+EtZVDwrRWt2VJn4zdkP8sWQZAeBYc=
-Message-ID-Hash: KIVBNQFWITLWMNGMXQ7I5B55BJ77J23O
-X-Message-ID-Hash: KIVBNQFWITLWMNGMXQ7I5B55BJ77J23O
-X-MailFrom: dvyukov@google.com
+	 to:to:cc:cc:dkim-signature; bh=f99YlmJ7V8b5QfAJFnko13WoyUnuZI5dQ9Q4mdc9rPE=;
+	b=DF7RH9cFRd6xg4ILBF9uc9nlrcWNQK8YdafTAsKEAQ6QvMwXjG1JAUvjgCs5xRpK0aw1i8
+	Yo4PfaJCqpSw8Ad9dFndb+fUwW4GG65zyNmeVe2MOFwVoWrL4xZ4fS9+pKl4W9Mtd7W2kC
+	D8882FatOyUZgRntXtw0boKUfLTLg4A=
+X-MailFrom: ap420073@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: John.Linn@xilinx.com, a@unstable.cc, Anant Thazhemadam <anant.thazhemadam@gmail.com>, Andrii Nakryiko <andriin@fb.com>, anirudh@xilinx.com, Alexei Starovoitov <ast@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org, bpf <bpf@vger.kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, David Miller <davem@davemloft.net>, David Ahern <dsahern@gmail.com>, hancock@sedsystems.ca, John Fastabend <john.fastabend@gmail.com>, Martin KaFai Lau <kafai@fb.com>, KP Singh <kpsingh@chromium.org>, Jakub Kicinski <kuba@kernel.org>, Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, Linux ARM <linux-arm-kernel@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>, mareklindner@neomailbox.ch, michal.simek@xilinx.com, netdev <netdev@vger.kernel.org>, Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, Song Liu <songliubraving@fb.com>, syzkaller-bugs <syzkaller-bugs@googlegroups.com>, Yonghong Song <yhs@fb.com>, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>
+Message-ID-Hash: TVYHL6NWFGZTWYABDBGDRROILPVV45AM
+X-Message-ID-Hash: TVYHL6NWFGZTWYABDBGDRROILPVV45AM
+X-Mailman-Approved-At: Sun, 15 Nov 2020 10:43:10 +0100
+CC: ap420073@gmail.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KIVBNQFWITLWMNGMXQ7I5B55BJ77J23O/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TVYHL6NWFGZTWYABDBGDRROILPVV45AM/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Thu, Oct 1, 2020 at 8:46 PM syzbot
-<syzbot+81af6e9b3c4b8bc874f8@syzkaller.appspotmail.com> wrote:
->
-> syzbot suspects this issue was fixed by commit:
->
-> commit eeaac3634ee0e3f35548be35275efeca888e9b23
-> Author: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-> Date:   Sat Aug 22 12:06:36 2020 +0000
->
->     net: nexthop: don't allow empty NHA_GROUP
->
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12beed5b900000
-> start commit:   c3d8f220 Merge tag 'kbuild-fixes-v5.9' of git://git.kernel..
-> git tree:       upstream
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=a0437fdd630bee11
-> dashboard link: https://syzkaller.appspot.com/bug?extid=81af6e9b3c4b8bc874f8
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=13ff8539900000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=143f3a96900000
->
-> If the result looks correct, please mark the issue as fixed by replying with:
->
-> #syz fix: net: nexthop: don't allow empty NHA_GROUP
->
-> For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+If THIS_MODULE is not set, the module would be removed while debugfs is
+being used.
+It eventually makes kernel panic.
 
-#syz fix: net: nexthop: don't allow empty NHA_GROUP
---===============3658809862557392288==--
+Fixes: 9e466250ede3 ("batman-adv: Prefix bat_debugfs local static functions with batadv_")
+Signed-off-by: Taehee Yoo <ap420073@gmail.com>
+---
+
+v3:
+ - Separate from one big series
+
+v2:
+ - Change headline
+ - Squash patches into per-driver/subsystem
+
+ net/batman-adv/log.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/net/batman-adv/log.c b/net/batman-adv/log.c
+index a67b2b091447..c0ca5fbe5b08 100644
+--- a/net/batman-adv/log.c
++++ b/net/batman-adv/log.c
+@@ -180,6 +180,7 @@ static const struct file_operations batadv_log_fops = {
+ 	.read           = batadv_log_read,
+ 	.poll           = batadv_log_poll,
+ 	.llseek         = no_llseek,
++	.owner          = THIS_MODULE,
+ };
+ 
+ /**
+-- 
+2.17.1
