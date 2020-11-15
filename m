@@ -1,119 +1,138 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 618592B33F8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 15 Nov 2020 11:43:12 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776DE2B33B6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 15 Nov 2020 11:40:59 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3086A80590;
-	Sun, 15 Nov 2020 11:43:11 +0100 (CET)
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 687358023F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Nov 2020 11:30:12 +0100 (CET)
-Received: by mail-pl1-x641.google.com with SMTP id 35so2512674ple.12
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Nov 2020 02:30:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=f99YlmJ7V8b5QfAJFnko13WoyUnuZI5dQ9Q4mdc9rPE=;
-        b=EB6YaPolo+9wlVswNo0NjqdqHBqPRdLsrG52IjnDPod4KsuWhW/v3t7cPk5DOr+Vxd
-         UNwVRKo7znwUSai913hMXuoR4XnDI+bpl8r0SKVKhgl9IQraRWOtsdqWY35cH9JmDWd/
-         FdaiDCYv5RDuvig15ZgGG/YlUP2YqUrMVeGNWDYyeL+IDUwWSwBxGVTSQHfa2jFg8n4x
-         Vq1UCNwZQUqexEYXVM8UpXjGuHO7XMo3wT0BrRdBABh6lfLJP4VaZPyzQAP1Qt9wVkLT
-         15519ZGGJMqeU3c0EBdshZ0oLe6EdaNUNts+2LJ2V6grcD4gQgHh0YWM5DRQRoZBiPhd
-         aelA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=f99YlmJ7V8b5QfAJFnko13WoyUnuZI5dQ9Q4mdc9rPE=;
-        b=pb14MN+JDSA4pwPMCbYX4Ma1uZqlkJ2FiPcFLx3NRxidcYyUvOeoo0r1HoG8DxQng5
-         bM1mp1XWr0isYkyNAozx6k5o2j4B1vRmVNZDi91ioQ2My3+9nDb9JyNPNXI6dxu2ztgB
-         q+tPeGi96HcV5MRJNLDqE0rDitjAqJ6Yf4oZdIgkTunOxs1Fjo8lWqN004ERUV3MYIFT
-         SK0S/yshZHtlo5Pfsst9sliRxtwzAeFxpS3bebr9h288xxpeOcbHYWTv99YXsp+RKOI5
-         E6wiAewLjqp2m42SxIvuR1WqJRPafqsLlgnSPQ1lL3WIgCUkdqIIWEwhCdiqBOiXkuSx
-         UyEg==
-X-Gm-Message-State: AOAM5325CbKN257bZCK52DkRcB+Lq0timNkrReEgyaDHPAfGRKsJXD1w
-	QqSJ18RhWOt+x4Cfuj80uGU=
-X-Google-Smtp-Source: ABdhPJx/7OwfA+CrCXi0xslwYws9tTOHaIqcWrpoIHvIiKM5GiiJ2Jjc1/Bobb3d3W51/dP2r1mrxw==
-X-Received: by 2002:a17:902:8d93:b029:d8:d8ee:e275 with SMTP id v19-20020a1709028d93b02900d8d8eee275mr8003044plo.71.1605436210639;
-        Sun, 15 Nov 2020 02:30:10 -0800 (PST)
-Received: from localhost.localdomain ([49.173.165.44])
-        by smtp.gmail.com with ESMTPSA id mt2sm15893571pjb.7.2020.11.15.02.30.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2020 02:30:09 -0800 (PST)
-From: Taehee Yoo <ap420073@gmail.com>
-To: mareklindner@neomailbox.ch,
-	sw@simonwunderlich.de,
-	a@unstable.cc,
-	sven@narfation.org,
-	b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH v3 net] batman-adv: set .owner to THIS_MODULE
-Date: Sun, 15 Nov 2020 10:30:04 +0000
-Message-Id: <20201115103004.30618-1-ap420073@gmail.com>
-X-Mailer: git-send-email 2.17.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6A805806ED;
+	Sun, 15 Nov 2020 11:40:57 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id A0F8E80103
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 15 Nov 2020 11:40:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1605436853;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ti17F69x2c9iulBarnY0JRJ9bV8O171Ua3OT67DiGek=;
+	b=ZgZiT4C4qhGPAux+Ay3XO+KaMbHXqIuypoujm5d2GV+KkO34FR8S8sLOr13rfR6PpVQ2ZP
+	cLkc+L5ogU4ZVIYz+vWJ3VIiUOyAJtXctVHQVmR9NDzKXK/HVgelDzMqPDXNwzjs/BJ9pk
+	pCJwgwfxIYi/fxMkarIsIXkvjUMGWQM=
+From: Sven Eckelmann <sven@narfation.org>
+To: mareklindner@neomailbox.ch, sw@simonwunderlich.de, a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, Taehee Yoo <ap420073@gmail.com>
+Subject: Re: [PATCH v3 net] batman-adv: set .owner to THIS_MODULE
+Date: Sun, 15 Nov 2020 11:40:51 +0100
+Message-ID: <4602363.31r3eYUQgx@sven-edge>
+In-Reply-To: <20201115103004.30618-1-ap420073@gmail.com>
+References: <20201115103004.30618-1-ap420073@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart4272036.LvFx2qVVIh"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b=EB6YaPol;
-	spf=pass (diktynna.open-mesh.org: domain of ap420073@gmail.com designates 2607:f8b0:4864:20::641 as permitted sender) smtp.mailfrom=ap420073@gmail.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1605436212; a=rsa-sha256;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=ZgZiT4C4;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1605436854; a=rsa-sha256;
 	cv=none;
-	b=KhJakb5rRqMce2nTpuymStdIkoJnIkD3Rl9tw/juTNSU48OaO0GSw3GcsmJkqla1O9u2HQ
-	wmPksHIlu4xFDhOAdpeG/UZJi7KpJqyjZ3yqe4Mov74p+RYowNiZ73Tog4DEGBeaSMEpT2
-	7qp4u8IaTIXN4jh6gFcmt0QIMoo+aYo=
+	b=Qe/fm/anLevCix4tY/35+klkvHeVMgLx/nKo7X2V36Jab20HdgtEKyo3SFONRm0LOxehX+
+	XGLGZWj065tsylY4T4Uvz7rojUeSP+hSCQoV+6QVVUjYagGR4D4fx81sgmPX4S7DT/Ds6x
+	T4mBzHuWnK+zADoCXKqt4aRCjeFaGnc=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1605436212;
+	s=20121; t=1605436854;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:dkim-signature; bh=f99YlmJ7V8b5QfAJFnko13WoyUnuZI5dQ9Q4mdc9rPE=;
-	b=DF7RH9cFRd6xg4ILBF9uc9nlrcWNQK8YdafTAsKEAQ6QvMwXjG1JAUvjgCs5xRpK0aw1i8
-	Yo4PfaJCqpSw8Ad9dFndb+fUwW4GG65zyNmeVe2MOFwVoWrL4xZ4fS9+pKl4W9Mtd7W2kC
-	D8882FatOyUZgRntXtw0boKUfLTLg4A=
-X-MailFrom: ap420073@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: TVYHL6NWFGZTWYABDBGDRROILPVV45AM
-X-Message-ID-Hash: TVYHL6NWFGZTWYABDBGDRROILPVV45AM
-X-Mailman-Approved-At: Sun, 15 Nov 2020 10:43:10 +0100
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=Ti17F69x2c9iulBarnY0JRJ9bV8O171Ua3OT67DiGek=;
+	b=K/CEc9yspL4pukXmGl895cNOB2+G2zIPuivaDfihZJsc+30cN+dkDVGiMV+rb9gl1/GKkW
+	IGVdLuFas9OZZQsjdI9e89oEspePFLTGClCNIpqJ0kKF08oVy1jD0mDV0s59Bg3xMZNgSL
+	6TX/866svj/FS2ndQAFjhoPBNry2uqA=
+Message-ID-Hash: IKDCJSHTFZDT6QCTAISBWMGMRUBJPGQI
+X-Message-ID-Hash: IKDCJSHTFZDT6QCTAISBWMGMRUBJPGQI
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: ap420073@gmail.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TVYHL6NWFGZTWYABDBGDRROILPVV45AM/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IKDCJSHTFZDT6QCTAISBWMGMRUBJPGQI/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-If THIS_MODULE is not set, the module would be removed while debugfs is
-being used.
-It eventually makes kernel panic.
+--nextPart4272036.LvFx2qVVIh
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: mareklindner@neomailbox.ch, sw@simonwunderlich.de, a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, Taehee Yoo <ap420073@gmail.com>
+Cc: ap420073@gmail.com
+Subject: Re: [PATCH v3 net] batman-adv: set .owner to THIS_MODULE
+Date: Sun, 15 Nov 2020 11:40:51 +0100
+Message-ID: <4602363.31r3eYUQgx@sven-edge>
+In-Reply-To: <20201115103004.30618-1-ap420073@gmail.com>
+References: <20201115103004.30618-1-ap420073@gmail.com>
 
-Fixes: 9e466250ede3 ("batman-adv: Prefix bat_debugfs local static functions with batadv_")
-Signed-off-by: Taehee Yoo <ap420073@gmail.com>
----
+On Sunday, 15 November 2020 11:30:04 CET Taehee Yoo wrote:
+> If THIS_MODULE is not set, the module would be removed while debugfs is
+> being used.
+> It eventually makes kernel panic.
+> 
+> Fixes: 9e466250ede3 ("batman-adv: Prefix bat_debugfs local static functions with batadv_")
 
-v3:
- - Separate from one big series
+This Fixes: is bogus. The code was already present with the first commit 
+c6c8fea29769 ("net: Add batman-adv meshing protocol"). I have now changed it 
+before it was applied to the net branch.
 
-v2:
- - Change headline
- - Squash patches into per-driver/subsystem
+>  net/batman-adv/log.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/net/batman-adv/log.c b/net/batman-adv/log.c
+> index a67b2b091447..c0ca5fbe5b08 100644
+> --- a/net/batman-adv/log.c
+> +++ b/net/batman-adv/log.c
+> @@ -180,6 +180,7 @@ static const struct file_operations batadv_log_fops = {
+>  	.read           = batadv_log_read,
+>  	.poll           = batadv_log_poll,
+>  	.llseek         = no_llseek,
+> +	.owner          = THIS_MODULE,
+>  };
+>  
+>  /**
+> 
 
- net/batman-adv/log.c | 1 +
- 1 file changed, 1 insertion(+)
+General info: This causes a merge problem with the net-next branch [1] because 
+the debugfs files were dropped in preparation of the Linux 5.11 release in 
+2021. I might rebase the currently pending patches for net-next to avoid this
+weird merge conflict.
 
-diff --git a/net/batman-adv/log.c b/net/batman-adv/log.c
-index a67b2b091447..c0ca5fbe5b08 100644
---- a/net/batman-adv/log.c
-+++ b/net/batman-adv/log.c
-@@ -180,6 +180,7 @@ static const struct file_operations batadv_log_fops = {
- 	.read           = batadv_log_read,
- 	.poll           = batadv_log_poll,
- 	.llseek         = no_llseek,
-+	.owner          = THIS_MODULE,
- };
- 
- /**
--- 
-2.17.1
+Kind regards,
+	Sven
+
+[1] https://git.open-mesh.org/linux-merge.git/shortlog/refs/heads/batadv/net-next
+--nextPart4272036.LvFx2qVVIh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl+xBbMACgkQXYcKB8Em
+e0aVfQ//VRRU7RnW5O8RTGtgk/Qb5MJTTBetkq13lttk/hU2bpmcAlXqvWhwwKje
+D2cjoc4hDbyAb4uZQN/JWVFGAoLNa64pMlIidhaG93kJ6BOtHj/z0q9IWTziMaH0
+NS65OpNv9bVCPn89A95zKsXSTkSAd+1t/ruAzI5hD7XFsxYNiaRd/IgcmURaa7u9
+Wn2MYnzPHBs2d2fJg2rw49nN13UtaE/i1dpa79TB/v8pvxVaikiWgWXIX497OeJ0
+6OVPU/c7NKMeoChDJ9tiQ8kNTiesbclX77fjMUvz0tltpq4CGrB+kfs0AeqsF+fg
+zA9q/7kfogRwxM7VWoUN7GJexZUtXK/w4mP/UXTYVDxb6cKTCo2vHoSfQs+4FKtz
+tk1XJco7Nl+zK4kBvCmBuyMCBaoqPp1DDoqpSallGR4BT3v93e39DtXJuHwkt/DT
+ly1fYL0sIkE9c2Vu59uebP6C4DfQ4SQ0t7+7Waqj+SzDCRltCdsJrFJVwxMBjcHn
+Tih9EJKey3mQxfW5GcIVsAbaXrydSIMhCiMBTPI8lj3QCeSDrR1IoVSxvX+2JIiC
+NSgXDy0Ty7KWFyDtSbUg+RfFKL8mhgivUYxnB+ce3Ovft1k6w/BVNvl6dYpZVrP9
+F/WmBaiwwQ/4HFuWnhabBXlDvWh6mKsAR8ruAjl/9+bHD5mwzQ0=
+=Mxg5
+-----END PGP SIGNATURE-----
+
+--nextPart4272036.LvFx2qVVIh--
+
+
