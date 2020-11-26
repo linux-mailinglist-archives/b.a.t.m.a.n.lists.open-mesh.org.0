@@ -1,94 +1,151 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4EF52C545D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 26 Nov 2020 14:02:09 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35332C5849
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 26 Nov 2020 16:31:33 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3642B819D4;
-	Thu, 26 Nov 2020 14:02:05 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2E1B08121A
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 26 Nov 2020 14:02:02 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 48BFE802C9;
+	Thu, 26 Nov 2020 16:31:32 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 86D70802C9
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 26 Nov 2020 16:31:29 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1606395200;
+	s=20121; t=1606404688;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zV9ZqDHzPB9d6PtOImamgvuZOteIZ+VW/oQO+TRb7O4=;
-	b=sq37VNJcpPUyveuutj+PATo+Uq9ER3tH2NTmSO/Ymq+2rWJByIjSZsbSO3D8KnbeAYSOWD
-	h+vj9d0RVPDjKVJ0uhAJRD+YuvDCUJqL4ZjMfwgPbGnW+nKoBe6bm1Bgi/U0Mair7BtMBH
-	yj656QvWwdBxWj/6VXVP6WZpcZmAl9A=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=rlChDxVdKGEovd18VLes/fNPfPPiWe2rAKNhPd0gj9M=;
+	b=Qy9T8/XfO6z+54RpfojYmcnLZcZHHOWeHoQZQZtvNTManvbfOuk4p+yR3DPKopo59lA5YY
+	epfR9B75t2gkMZerGZduqEIVsQW21GeeBjOzdzCNc8eeocyAHOgWc0twvCuLRVFfFRtPpB
+	0KwhZgSGWTtlDfo0K1dPgaI+bblUeOc=
 From: Sven Eckelmann <sven@narfation.org>
-To: netdev@vger.kernel.org
-Subject: [PATCH 2/2] vxlan: Copy needed_tailroom from lowerdev
-Date: Thu, 26 Nov 2020 13:52:47 +0100
-Message-Id: <20201126125247.1047977-2-sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH] batman-adv: Reserve needed_*room for fragments
+Date: Thu, 26 Nov 2020 16:31:20 +0100
+Message-Id: <20201126153120.1053700-1-sven@narfation.org>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201126125247.1047977-1-sven@narfation.org>
-References: <20201126125247.1047977-1-sven@narfation.org>
 MIME-Version: 1.0
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1606395722;
+	s=20121; t=1606404689;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=zV9ZqDHzPB9d6PtOImamgvuZOteIZ+VW/oQO+TRb7O4=;
-	b=rLccsLzUsD4WOivYumxj33S0W6KsI9lIJoaVBd9HeCcWIR1Hn03834TC4aNJFLhjfNqlfD
-	j8jR1ZiQyw6W1s0MWSn06W+ua+ux609r7vW+gt9xhcLhvNu4O6xs6j2jpmhSpeSSEuha+/
-	hPflFoLeqcPDWUOBgSvla9uv/WFxgq4=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1606395722; a=rsa-sha256;
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=rlChDxVdKGEovd18VLes/fNPfPPiWe2rAKNhPd0gj9M=;
+	b=U3dMDfiPc1EXlOc1A7rIOidK841c0WUBEW7MoM7BOIgZZFVy9GVdcNph6zPsMpNU8FzEOC
+	12yQndc4BFgAPPo60YmuPwK62YJgdyiEAc/PUAXCNBJGCGiTYBcb9q9GJWS3Ncjqu96xIc
+	r0hgPAdHVt2C1ju489/WokSI3q5HevE=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1606404689; a=rsa-sha256;
 	cv=none;
-	b=iHHwh8rbzv1lBZmglIf+ms0sbykLZrv28iJ6PlUtROgyJwf/pzKlEFbxl/Z5VRaHwuy5af
-	6AGRRmXOJz6MkSuzQ61ij8vw4gRI/4T+Z1N7jUaR6NLun7FL7Mq1n7BRNf9Ofp+YBc3pCE
-	CraiTGhIy6fVejjt4r6IKbBUQ5QWSyI=
+	b=HMPBVOobTRB+723Jg+vzoCF78bD5A9skAocBOggP+totYzitdyDaSt8hCdF+Kr8xDQ/CMY
+	su0lwFshnG9PEBz2f8jaMuYIH16YzHbuqhxrfLcC3Lqf/uQCeMr9+z9MIwrvijr8O8AXqN
+	0/itk8tVrwe1c8DzkdJlFPZeYnLkn7M=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=sq37VNJc;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Qy9T8/Xf;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: GG3UMOVUEE3F6A6VS6IFVCARA5OU7UKG
-X-Message-ID-Hash: GG3UMOVUEE3F6A6VS6IFVCARA5OU7UKG
+Message-ID-Hash: BTO3V7R3ITDO7Y7T5MF54EIAYI4QQTJK
+X-Message-ID-Hash: BTO3V7R3ITDO7Y7T5MF54EIAYI4QQTJK
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GG3UMOVUEE3F6A6VS6IFVCARA5OU7UKG/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BTO3V7R3ITDO7Y7T5MF54EIAYI4QQTJK/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-While vxlan doesn't need any extra tailroom, the lowerdev might need it. =
-In
-that case, copy it over to reduce the chance for additional (re)allocatio=
-ns
-in the transmit path.
+The batadv net_device is trying to propagate the needed_headroom and
+needed_tailroom from the lower devices. This is needed to avoid cost
+intensive reallocations using pskb_expand_head during the transmission.
+
+But the fragmentation code splitted the skb's without adding extra room a=
+t
+the end/beginning of the various fragments. This reduced the performance =
+of
+transmissions over complex scenarios (batadv on vxlan on wireguard) becau=
+se
+the lower devices had to perform the reallocations at least once.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- drivers/net/vxlan.c | 2 ++
- 1 file changed, 2 insertions(+)
+v1:
+- added commit message
+- added tailroom
 
-diff --git a/drivers/net/vxlan.c b/drivers/net/vxlan.c
-index 25b5b5a2dfea..44bb02122526 100644
---- a/drivers/net/vxlan.c
-+++ b/drivers/net/vxlan.c
-@@ -3801,6 +3801,8 @@ static void vxlan_config_apply(struct net_device *d=
-ev,
- 		needed_headroom =3D lowerdev->hard_header_len;
- 		needed_headroom +=3D lowerdev->needed_headroom;
+ net/batman-adv/fragmentation.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentatio=
+n.c
+index 97220e19..8a73804d 100644
+--- a/net/batman-adv/fragmentation.c
++++ b/net/batman-adv/fragmentation.c
+@@ -391,6 +391,7 @@ bool batadv_frag_skb_fwd(struct sk_buff *skb,
 =20
-+		dev->needed_tailroom =3D lowerdev->needed_tailroom;
-+
- 		max_mtu =3D lowerdev->mtu - (use_ipv6 ? VXLAN6_HEADROOM :
- 					   VXLAN_HEADROOM);
- 		if (max_mtu < ETH_MIN_MTU)
+ /**
+  * batadv_frag_create() - create a fragment from skb
++ * @net_dev: outgoing device for fragment
+  * @skb: skb to create fragment from
+  * @frag_head: header to use in new fragment
+  * @fragment_size: size of new fragment
+@@ -401,22 +402,25 @@ bool batadv_frag_skb_fwd(struct sk_buff *skb,
+  *
+  * Return: the new fragment, NULL on error.
+  */
+-static struct sk_buff *batadv_frag_create(struct sk_buff *skb,
++static struct sk_buff *batadv_frag_create(struct net_device *net_dev,
++					  struct sk_buff *skb,
+ 					  struct batadv_frag_packet *frag_head,
+ 					  unsigned int fragment_size)
+ {
++	unsigned int ll_reserved =3D LL_RESERVED_SPACE(net_dev);
++	unsigned int tailroom =3D net_dev->needed_tailroom;
+ 	struct sk_buff *skb_fragment;
+ 	unsigned int header_size =3D sizeof(*frag_head);
+ 	unsigned int mtu =3D fragment_size + header_size;
+=20
+-	skb_fragment =3D netdev_alloc_skb(NULL, mtu + ETH_HLEN);
++	skb_fragment =3D dev_alloc_skb(ll_reserved + mtu + tailroom);
+ 	if (!skb_fragment)
+ 		goto err;
+=20
+ 	skb_fragment->priority =3D skb->priority;
+=20
+ 	/* Eat the last mtu-bytes of the skb */
+-	skb_reserve(skb_fragment, header_size + ETH_HLEN);
++	skb_reserve(skb_fragment, ll_reserved + header_size);
+ 	skb_split(skb, skb_fragment, skb->len - fragment_size);
+=20
+ 	/* Add the header */
+@@ -439,11 +443,12 @@ int batadv_frag_send_packet(struct sk_buff *skb,
+ 			    struct batadv_orig_node *orig_node,
+ 			    struct batadv_neigh_node *neigh_node)
+ {
++	struct net_device *net_dev =3D neigh_node->if_incoming->net_dev;
+ 	struct batadv_priv *bat_priv;
+ 	struct batadv_hard_iface *primary_if =3D NULL;
+ 	struct batadv_frag_packet frag_header;
+ 	struct sk_buff *skb_fragment;
+-	unsigned int mtu =3D neigh_node->if_incoming->net_dev->mtu;
++	unsigned int mtu =3D net_dev->mtu;
+ 	unsigned int header_size =3D sizeof(frag_header);
+ 	unsigned int max_fragment_size, num_fragments;
+ 	int ret;
+@@ -503,7 +508,7 @@ int batadv_frag_send_packet(struct sk_buff *skb,
+ 			goto put_primary_if;
+ 		}
+=20
+-		skb_fragment =3D batadv_frag_create(skb, &frag_header,
++		skb_fragment =3D batadv_frag_create(net_dev, skb, &frag_header,
+ 						  max_fragment_size);
+ 		if (!skb_fragment) {
+ 			ret =3D -ENOMEM;
 --=20
 2.29.2
