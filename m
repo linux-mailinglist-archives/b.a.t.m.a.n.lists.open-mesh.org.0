@@ -1,160 +1,108 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA982FDA64
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 Jan 2021 21:08:12 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 096A9308C2C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 Jan 2021 19:13:21 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C44FC807A5;
-	Wed, 20 Jan 2021 21:08:10 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 78CBD803D5
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 20 Jan 2021 21:08:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1611172819;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=l++HVqNEBpdnehBRBkbBrna3eZpKlPReaDBZzYzwmUI=;
-	b=g7Cwzi1joIRO/bKgQX4otfXQTZ3fvD8rUI3CB1BnJCHHZtY8d8yEXCOU8+CTvZfk+0Xeii
-	5fLJohBtbCy/HmNv2nLOCG99YkKhlkUajwHyhdvLul1hFtZpilysCYUKjgQkdiUUS1lhiD
-	2xN4WyxXWnFURl15H2/vmkcjD5Wt1bQ=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: batman-adv: Fix names for kernel-doc blocks
-Date: Wed, 20 Jan 2021 21:00:14 +0100
-Message-Id: <20210120200014.8894-1-sven@narfation.org>
-X-Mailer: git-send-email 2.29.2
+	by diktynna.open-mesh.org (Postfix) with ESMTP id AC59380421;
+	Fri, 29 Jan 2021 19:13:19 +0100 (CET)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1FBFE83B0F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 29 Jan 2021 02:43:38 +0100 (CET)
+Received: by mail-ed1-x52f.google.com with SMTP id c6so8865960ede.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Jan 2021 17:43:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Cmat/4FW1/EroPJtq2RMhHCAoS5X+8jX01il7tvDXWo=;
+        b=pFHF7+jtS6ORxknUTHxZ8lgng5wryvGEHQx8ztJrkrJQLL7tZElLFVkN+IYkg/x5fA
+         CFup4qrNV4ItE3kojyCk3iGCVvx/wyWSV2NJ1bjfnbZ+9FjBfmawK1o+JaEuYO2cTjsL
+         mH1CdAHquQv71Jv+FMuk7wXMVlL0FC7t4cRBbAX3Wj0oyXLx15QMVEAatF9lcwfax/RK
+         njkGZW+1+Mf6asu9v5kBbXtnGxp0OVN6JMBxWvZPTkdQtvCWpRTtmZkyCqZGYlv6U5GE
+         7cmuIVmOnBHAypEM7LcfUYMDDnFMroAHM6UHylyZ/whm14M9Jl4DVpJy3cEHdvZ2J4Ce
+         xv0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Cmat/4FW1/EroPJtq2RMhHCAoS5X+8jX01il7tvDXWo=;
+        b=leM1piCZACCUrqxq6Qjvz7NQ8vpWo4UxBGmI1WYERlyY9LL/r4rgthVsKAZzo/V/sd
+         OdMK0eJhSv5DZRAb170+jElm4y+lx5gv9cqeojtm/P4NgRDW3+uLpBiUg36M2vHoivmF
+         +wkCBIEsd2/KyO/FSOH2T6YMZMzan2tPrKCveHWq+MIn3xr/eLYkhKv6jPFAkV0s+UAu
+         nbR2RqGT3Z38uZANE8gjpp7HNFHpXSuPV1vnhWZXNqPfBw3G2sKMwarg7qP1zqScHzEO
+         FzDH/M3IL9rDlyPHhtLUejeTd5y7+UNIfpi50c5rmPORLMaDmk7bpWUantq6aaNW5pPL
+         5/tw==
+X-Gm-Message-State: AOAM5300xp7wNfy9Mxisblaoq7js1UrCQUTMPYM+eibctEUm9KN4I+hF
+	Kbqlv5cxJTc9lGsdCE5TJldctLWF9FEu+OdIDJ959Fnrs5I=
+X-Google-Smtp-Source: ABdhPJxPKvjWDrmg6wkoGpvL8HRv+8ux93fPF4J3BIzQimNOyd4uueL1t52JqcnJ1M7EUHkLBkNUY2Y8MPj4ml9fumc=
+X-Received: by 2002:a05:6402:3585:: with SMTP id y5mr2612537edc.97.1611884617208;
+ Thu, 28 Jan 2021 17:43:37 -0800 (PST)
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1611173287; a=rsa-sha256;
+From: Scooter Willis <willishf@gmail.com>
+Date: Fri, 29 Jan 2021 06:43:25 +0500
+Message-ID: <CAMjFWEOpvMmedQw7sB-G1f9pMMo6ymhZemVy07Y0UeUN+EPU1w@mail.gmail.com>
+Subject: Mobile Vehicle Mesh Network
+To: b.a.t.m.a.n@lists.open-mesh.org
+Content-Type: text/plain; charset="UTF-8"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1611884618; a=rsa-sha256;
 	cv=none;
-	b=I/H8X7hRQueeWg0vIpBccfTPPGAhRUX1hAfZ9NOvDTaCtR8kFnOsGpZSpTfUs/mDWt07MG
-	uzVZX0ImhugMjGVF8r3EWviEbi4g2wdDCIhVfVIHujFna8PIK+j8F7deaGNC/lca+5xjy1
-	+l86LXtgXSffIdjVNha1NjuGLxP/oc8=
+	b=dHnEVbET/hhDtrWzNjacGD8H1k3O+yEoUkemirMkMmHQ9HmZsmW5gDkOb+RAvYYRamU8qE
+	3goxkcag5BmeclpunSZ01AIALzf2KbI/zyiSaIlZb65NPjzRuRVNjv33zwU2841C5Bmi6N
+	g7GMYT6vjNz/SgmdDLdDv6IwjOxGstU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=g7Cwzi1j;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=pFHF7+jt;
+	spf=pass (diktynna.open-mesh.org: domain of willishf@gmail.com designates 2a00:1450:4864:20::52f as permitted sender) smtp.mailfrom=willishf@gmail.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1611173287;
+	s=20121; t=1611884618;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=l++HVqNEBpdnehBRBkbBrna3eZpKlPReaDBZzYzwmUI=;
-	b=TNv51Rr5RcFvMsupDPdKfV71Cx8XHioDKC8hU7UoHheD0veYt9/oA7t84ODUtlsNEvpMJ/
-	JuaAyny5uCsIR2jFWd+vZetDEdVvk/YxarV1/1jbGDZ2vmp0Gt9dxJbxgl2ywqrMmP1Mtn
-	citLxBjSv3vHOIz3uGtkzRxxb6kmA4A=
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: VQEPWXOV2ZVFBHJACNVIIEBK2UH2TYRZ
-X-Message-ID-Hash: VQEPWXOV2ZVFBHJACNVIIEBK2UH2TYRZ
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 dkim-signature; bh=Cmat/4FW1/EroPJtq2RMhHCAoS5X+8jX01il7tvDXWo=;
+	b=lTco6+jy+IeCHaXMssnLTKm1A5ClxCZ3kqu6JTc9M26B6sTqVAjh2J1heiaGVfVKWJd2bv
+	koI0X1tXHCpKk6N6aDe78rG8ruaf5C/N2TjlWPvo3iydtpZIaLC4lODBIIKSTgEmCYaZpf
+	oy95XQ9NCVo9bO/yvH9YIzFC6aQ/s1U=
+X-MailFrom: willishf@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: Q5HODHAQHHUZJYK3D5W372JADLJLGKIC
+X-Message-ID-Hash: Q5HODHAQHHUZJYK3D5W372JADLJLGKIC
+X-Mailman-Approved-At: Fri, 29 Jan 2021 18:13:17 +0100
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VQEPWXOV2ZVFBHJACNVIIEBK2UH2TYRZ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Q5HODHAQHHUZJYK3D5W372JADLJLGKIC/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-kernel-doc can only correctly identify the documented function or struct
-when the name in the first kernel-doc line references it. But some of the
-kernel-doc blocks referenced a different function/struct then it actually
-documented.
+Doing some research to see what options are available for a hybrid
+mobile-mesh network.
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+The application would be a large warehouse with fixed nodes overhead
+connected via ethernet/POE.
 
-diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/dist=
-ributed-arp-table.c
-index fd7ba6bbdf85eb7d7240cfd50e44d522335bca13..0a367a92b5f62afd5a8635ad2=
-70353291cd36464 100644
---- a/net/batman-adv/distributed-arp-table.c
-+++ b/net/batman-adv/distributed-arp-table.c
-@@ -1564,7 +1564,7 @@ static int batadv_dat_get_dhcp_message_type(struct =
-sk_buff *skb)
- }
-=20
- /**
-- * batadv_dat_get_dhcp_yiaddr() - get yiaddr from a DHCP packet
-+ * batadv_dat_dhcp_get_yiaddr() - get yiaddr from a DHCP packet
-  * @skb: the DHCP packet to parse
-  * @buf: a buffer to store the yiaddr in
-  *
-diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index 854e5ff28a3fe5d2d57862142be45d56a403c448..4f250551a589ca5c7f495612e=
-826e6fd5234dc79 100644
---- a/net/batman-adv/multicast.c
-+++ b/net/batman-adv/multicast.c
-@@ -828,7 +828,7 @@ batadv_mcast_bridge_log(struct batadv_priv *bat_priv,
- }
-=20
- /**
-- * batadv_mcast_flags_logs() - output debug information about mcast flag=
- changes
-+ * batadv_mcast_flags_log() - output debug information about mcast flag =
-changes
-  * @bat_priv: the bat priv with all the soft interface information
-  * @flags: TVLV flags indicating the new multicast state
-  *
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index 97bcf149633d850ff4fcece6d7dc0d799adb1444..1c002236e351b75f8888a35c7=
-423e3ac6244df42 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -193,7 +193,7 @@ static int batadv_netlink_mesh_fill_ap_isolation(stru=
-ct sk_buff *msg,
- }
-=20
- /**
-- * batadv_option_set_ap_isolation() - Set ap_isolation from genl msg
-+ * batadv_netlink_set_mesh_ap_isolation() - Set ap_isolation from genl m=
-sg
-  * @attr: parsed BATADV_ATTR_AP_ISOLATION_ENABLED attribute
-  * @bat_priv: the bat priv with all the soft interface information
-  *
-@@ -757,7 +757,7 @@ batadv_netlink_tp_meter_start(struct sk_buff *skb, st=
-ruct genl_info *info)
- }
-=20
- /**
-- * batadv_netlink_tp_meter_start() - Cancel a running tp_meter session
-+ * batadv_netlink_tp_meter_cancel() - Cancel a running tp_meter session
-  * @skb: received netlink message
-  * @info: receiver information
-  *
-diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index d4e10005df6cd2936a3132e1ad7bd8bf3c1d99b6..f9e35a2d2b1ac15aa851c3279=
-a262827a01f9bff 100644
---- a/net/batman-adv/tp_meter.c
-+++ b/net/batman-adv/tp_meter.c
-@@ -131,7 +131,7 @@ static u32 batadv_tp_cwnd(u32 base, u32 increment, u3=
-2 min)
- }
-=20
- /**
-- * batadv_tp_updated_cwnd() - update the Congestion Windows
-+ * batadv_tp_update_cwnd() - update the Congestion Windows
-  * @tp_vars: the private data of the current TP meter session
-  * @mss: maximum segment size of transmission
-  *
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 2f96e96a5ca4ddb800f9bac66a118a6f97d86d89..490503dc5581346af7d94e9fc=
-18e6858e6ecfee1 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -228,7 +228,8 @@ struct batadv_hard_iface {
- };
-=20
- /**
-- * struct batadv_orig_ifinfo - B.A.T.M.A.N. IV private orig_ifinfo membe=
-rs
-+ * struct batadv_orig_ifinfo_bat_iv - B.A.T.M.A.N. IV private orig_ifinf=
-o
-+ *  members
-  */
- struct batadv_orig_ifinfo_bat_iv {
- 	/**
+On the warehouse floor would be some number of robots that as they
+travel would go in and out of range for an overhead access point. On
+the robot would be 2-5 computer devices that would connect to the
+access point on the robot via ethernet.
+
+Would have one gateway for the entire warehouse in that all internet
+traffic would be local.
+
+If the robot which is moving has the equivalent access point mesh node
+as the static access points overhead would want very quick handoff to
+the next access point where signal strength of the wifi would be the
+reason to pick a specific access point. The 2-5 computers on the robot
+should see the minimal impact when the access point switches to
+another overhead access point. For the 2-5 computers on the device
+want to minimize cost/wifi noise and the reason to have them plugged
+into a local switch.
+
+For batman-adv wanted to see if you could provide any guidance that it
+would work in this configuration where some number of mesh nodes are
+dynamic and are moving. It may also be optimal for a robot not in
+range of overhead wireless to connect to other moving robots that are
+mesh nodes.
