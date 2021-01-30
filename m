@@ -1,89 +1,245 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E7B30935C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 30 Jan 2021 10:28:54 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF2C309357
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 30 Jan 2021 10:27:54 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8778A8264A;
-	Sat, 30 Jan 2021 10:28:54 +0100 (CET)
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9C25D803B2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 30 Jan 2021 10:26:03 +0100 (CET)
-Received: by mail-il1-x12b.google.com with SMTP id g7so9683693iln.2
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 30 Jan 2021 01:26:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=NamMvLlB6BgOwHxPmmttTaw4EOejEW8EkCQj48q0b48=;
-        b=ZfEi5Thtw+gFdszZpBuQB2ovx5cO5gTaJtB77T9ZcfVIox6E5bstMSwM0OcjxXC0oX
-         ndztHmqJpKve3pJt3vwIc2WmX2e5keloBa7Ht4TNC/6ZS5vCCwpoPvNUANtXVxpHUoJm
-         7Nl00C780GUzSWzG1/GfMC7FqXtAtDyrcoKXYQyEEXvT2znxuXGvsYi33B+tERMCaL4F
-         A7n2bSboYi6v8oiVgQXWWgjd9evHl2o2SxbbVgYZ3mazdRlwm8uHq05pWQrL5oj98PQq
-         fT+3E5IIwiuI2xatVFTNCzC3R0rN8zQ7Mmej0yi56OpYlKF2M1tHA/JNk463DWfW0d0g
-         M/mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=NamMvLlB6BgOwHxPmmttTaw4EOejEW8EkCQj48q0b48=;
-        b=NPg5VfHsuU+I1UsX3+oAEpcp02MvpDGPKItZ44ymxMelK6E2k319KF1BGaPZb8F/8b
-         ki8xY4d4yH20yrh90MTF2ESgLZr61tRcIBG81XI7boPKIr8sMutD3Ay4q5DJSWKlCKSr
-         NiGTlfPtjsOY9dOMwqKPPZcs4VCgYQxluxAPpxTBvxDFrJNjHHGpeIwfTa3j7PTfVwZ9
-         2zqvolPCpz+vuekUHLUMSluebzBKgMd63mDmLgKtSGW8rcSfjhRBCEzsOHtgMsLaOF4a
-         xSgra4smO4zwGRY+JnXkV4grF/3QWlHh75+i4XNTmnQ6HWW4Bw8/5ZhJrQKWMCKVsfJN
-         DtDQ==
-X-Gm-Message-State: AOAM533K/FaAkiQp7yjyBe7kHk6oWsQOYzmcOVfGI2vU+/m0ZKyaQZGG
-	1apfqaZ79lIs+QuYY26cVQzDE3CD81+2mNl/g9h/eC50uZA7zAEl
-X-Google-Smtp-Source: ABdhPJxRzzkXDb8dvMkKkRAlwsfa/b3EXBWaGVtmtD0Xh+ioBSEIusEkBKEpLu0zMoSxqeviHg4edc5SRyg/uERIGyM=
-X-Received: by 2002:a05:6e02:20ee:: with SMTP id q14mr6371694ilv.259.1611998761886;
- Sat, 30 Jan 2021 01:26:01 -0800 (PST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CA32E8076E;
+	Sat, 30 Jan 2021 10:27:52 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3390580676
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 30 Jan 2021 10:27:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1611998869;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2adFcb0RvyN/jK09Z8WDvU2PLupeReeuPgQADtiPkHs=;
+	b=mHhYG0FAknwzSW84RT46BpG41FhRY5yBt9te2eKyEDQc82BeUrr3VujKmC4dy2qpZ+0EsA
+	VrFqXDMhzT9llUY0I0RwPxT7DMQtKQ4cwKPGBTfe/xU3sHxHfEQ2h9PDqJ2/eIlxLmN/Gb
+	Xvn4KL7CHEjf1HNxP83+Eg2LCPj3DnU=
+From: Sven Eckelmann <sven@narfation.org>
+To: Scooter Willis <willishf@gmail.com>
+Subject: Re: Mobile Vehicle Mesh Network
+Date: Sat, 30 Jan 2021 10:27:43 +0100
+Message-ID: <46059336.7T9GjFi5hl@sven-edge>
+In-Reply-To: <CAMjFWEOpvMmedQw7sB-G1f9pMMo6ymhZemVy07Y0UeUN+EPU1w@mail.gmail.com>
+References: <CAMjFWEOpvMmedQw7sB-G1f9pMMo6ymhZemVy07Y0UeUN+EPU1w@mail.gmail.com>
 MIME-Version: 1.0
-From: Moullick Mehra <dedamamoge@gmail.com>
-Date: Sat, 30 Jan 2021 14:55:51 +0530
-Message-ID: <CAJZjC1surX81hwZLchC6jfETiFGE9F1tZbUJKhbbwE7Q5UOqXQ@mail.gmail.com>
-Subject: batman-adv related query
-To: b.a.t.m.a.n@lists.open-mesh.org
-Content-Type: text/plain; charset="UTF-8"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1611998763; a=rsa-sha256;
+Content-Type: multipart/signed; boundary="nextPart2040151.7kSeADS9zo"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1611998870; a=rsa-sha256;
 	cv=none;
-	b=ni+BfeKvuksiPjs8Q1wOIZpmdeQc3xtqQxiZuxVGI5dDZFaz7gb7Tfw9+p6YLjMa6wJ8w5
-	Ost1gqVa8oZdVUA2Nb19HUFwEsxNhRJEj2T9k2IUfh74N2F4TWq7exLSxG0aEoEZwAzmEN
-	Jb345vgjaK41XZ/HJkEUndbCGOO+9Yg=
+	b=iFNKM3Vd1RsQQojKC+aNI9ea+3sBuSFrpdBBOo8pbkdvMVcmXd42ROuJEfqiKEUTgxomqM
+	5fSKF2x9fUwYmw8ih8Y1OSpIRQx0+YZMO0WDYvnxlSe9N5gtjP2RVj5rG+0H4Z8lICxHvU
+	W1BlgtQMrF0uwIbhhDPZU4fWmzLeU58=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b=ZfEi5Tht;
-	spf=pass (diktynna.open-mesh.org: domain of dedamamoge@gmail.com designates 2607:f8b0:4864:20::12b as permitted sender) smtp.mailfrom=dedamamoge@gmail.com
+	dkim=pass header.d=narfation.org header.s=20121 header.b=mHhYG0FA;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1611998763;
+	s=20121; t=1611998870;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 dkim-signature; bh=NamMvLlB6BgOwHxPmmttTaw4EOejEW8EkCQj48q0b48=;
-	b=EyosK+Q6Ag3tGZlQteBNVvzqnWxjfnuRKWgKFBH1GEFsJ+m55ZNeHMCAmkq0f5i5K8LXUO
-	GUA50XIfU+loCTtTijw84ppF8/Pb5WvrgBqWQHBeo5bZ1sv9sH6em8RyZjpHh7dByuvv6p
-	NgtIibbWd+eYvI9T5eWAsTqePJ9LRaw=
-X-MailFrom: dedamamoge@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: NUUW2RQ3DD72HX2OQVV3ZVF5M6LPS3LB
-X-Message-ID-Hash: NUUW2RQ3DD72HX2OQVV3ZVF5M6LPS3LB
-X-Mailman-Approved-At: Sat, 30 Jan 2021 09:28:53 +0100
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=2adFcb0RvyN/jK09Z8WDvU2PLupeReeuPgQADtiPkHs=;
+	b=xxUr6cQZuCfAiPZV5wx8YXvMTjs837dQyErcEYpsPP4USTOK9Pw07JrqvmSp7xMK3cHtIK
+	ujzRexR3oIXr3lE3QwHU4ZU20dLuQE04A4aPYVFhjMDUZKTV78O7rZ2JnHXNmK3t6XpNhV
+	hFxtyXy6PVEMISeccXffGBGeoD0aTmU=
+Message-ID-Hash: IIKBOH2JTWPSNLDWFJ63VCIW3BUK5EQK
+X-Message-ID-Hash: IIKBOH2JTWPSNLDWFJ63VCIW3BUK5EQK
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NUUW2RQ3DD72HX2OQVV3ZVF5M6LPS3LB/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IIKBOH2JTWPSNLDWFJ63VCIW3BUK5EQK/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi,
-                        I have been using BATMAN-ADV for a while now.
-Just had a question. Is there any way to add a nonce value to the
-packet header? The reason being that I want to add an authentication
-mechanism where the firewall permits only selected headers that have
-this nonce. Hope this makes sense.
+--nextPart2040151.7kSeADS9zo
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Scooter Willis <willishf@gmail.com>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: Mobile Vehicle Mesh Network
+Date: Sat, 30 Jan 2021 10:27:43 +0100
+Message-ID: <46059336.7T9GjFi5hl@sven-edge>
+In-Reply-To: <CAMjFWEOpvMmedQw7sB-G1f9pMMo6ymhZemVy07Y0UeUN+EPU1w@mail.gmail.com>
+References: <CAMjFWEOpvMmedQw7sB-G1f9pMMo6ymhZemVy07Y0UeUN+EPU1w@mail.gmail.com>
 
-Thanks and Regards
-Moullick Mehra
+On Friday, 29 January 2021 02:43:25 CET Scooter Willis wrote:
+> Doing some research to see what options are available for a hybrid
+> mobile-mesh network.
+
+Let me summarize your mail (because I had some problems with your writing 
+style):
+
+* multiple ceiling mounted "AP"s
+
+  - connected to the same network
+  - "relevant services" are behind the AP
+
+* multiple mobile clients on the floor
+
+  - roam from AP to AP
+  - client must be forwarding traffic from local devices (connected via 
+    ethernet)
+  - it is unknown what mobility can cause in quality changes
+
+    + usually the speed and therefore the gradual change in link quality is 
+      bound to a specific rate in an "open" environment"
+    + but unknown whether it is also possible that a link suddenly disappears/
+      degrades due to environment factors - which is somewhat likely in a 
+      warehouse scenario
+
+  - might be out of reach of an ceiling AP
+
+    + mesh technology should be used ensure connectivity to the relevant 
+      services
+
+
+In your original mail, you left out some information which might be relevant 
+for the discussion. So  we have to go through some of them:
+
+
+1. what technology is used for the AP to client connections?
+============================================================
+
+My first assumption would be standard wifi infrastructure mode. The APs allow 
+multiple client to connect and a client is only connected to one AP. It is 
+(from AP perspective) a star topology with the AP in the center and the client 
+as layer 2 endpoints. 
+
+But keep in mind that this mode is not meant to have multiple layer 2 devices 
+behind a single associated station. Or in other words: you cannot bridge your 
+ethernet interface with the wifi managed interface on your mobile clients.
+
+So you have some options to still get the multiple client devices connected to 
+the relevant services.
+
+* enable 4 address mode on both AP and client. And then pray that both are 
+  handling it in a compatible way. But usually works fine when both are 
+  running the same software stack (like OpenWrt with a similar set of drivers/
+  wifi firmware).
+* use a higher layer routing (like IP routing). But could be problematic when 
+  you need a layer 2 connectivity. Or can get more complex if you don't use a 
+  central place to terminate the layer 3 routes towards the network with the 
+  relevant services
+* use also a layer 2(.5) mesh technology over the links between clients and AP
+
+Another option would be to drop the standard wifi infrastructure mode setup 
+and just use the same technology between the ceiling nodes and the mobile 
+clients as you would use between the mobile clients. Of course, then you would 
+most likely need to be in "full" control of the APs and not only the clients. 
+And depending on the mesh technology, it can work a lot better or only create 
+more problems due to more links with dynamic quality characteristics.
+
+In batman-adv's case, you would have for example following differences:
+
+* ceiling node to mobile node link is NOT part of the mesh
+
+  - exchange of client information happens with TT [1] and roaming
+    features [2] - usually really fast
+  - allows APs to be bridged when the bridge loop avoidance is enabled [3]
+  - but quality information for the ceiling node to mobile node are completely 
+    missing
+
+    + so it is unknown the mobile node whether it is better to send it data 
+      first to a mobile neighbor or directly to the crappy link towards the AP
+
+* ceiling node to mobile node link IS part of the mesh
+
+  - the quality of the link between ceiling node and mobile link is measured 
+    like the other wifi links
+  - hopefully better routing decisions
+  - usually slower route switching time when comparing to the TT "roaming" 
+    times
+
+
+
+2. how important is the "wifi noise" factor?
+============================================
+
+Mesh technologies need to detect neighbors and somehow find routes between 
+nodes. This doesn't come for free - usually in form of additional data over 
+wifi, cpu and memory usage. But the details depend on the used technology.
+
+batman-adv is using OGMs to inform neighbors of their existence and let 
+receivers make informed decisions about their next hop towards a specific node 
+in the mesh. These OGMs have to be sent often to allow the nodes to converge 
+towards "good" routing decisions.
+
+This means that a lower originator interval (aka more OGM transmissions) can 
+be improve the convergence speed which is beneficial for mobile setups. This 
+should acceptable well for networks which don't have sudden loss of nodes. For 
+mesh networks were "intermediate hop" nodes suddenly disappear, it might still 
+need a significant time until the old route via this disappeared hop is 
+dropped. There were some ideas [4] how to improve this situation but they were 
+never implemented.
+
+
+3. how about new/experimental mesh technologies?
+================================================
+
+This is the B.A.T.M.A.N. mailing list and the mail explicitly asked about 
+batman-adv, but I could imagine that you could have fun playing around with 
+various technologies in a scenario with mobile node and drastic changing link 
+characteristics. While there is no magic bullet - marketing might disagree -
+at least interesting things might be out there.
+
+There are (more or less) recent research in technologies which are more focused on highly mobile setups. You'll find these kind of mesh
+technologies usually with features like
+
+* multi-path routing
+* redundancy
+* forward error correction
+* ...
+
+to achieve resilience to mobility. Often by taking advantage of the
+broadcast medium and dropping the standard paradigms of the 802.11
+medium access - which is a different concept than what batman-adv
+tries to do.
+
+(small disclaimer: At least one batman-adv [5] is doing research in related 
+technology and I could be considered slightly biased because of it).
+
+Kind regards,
+	Sven
+
+[1] https://www.open-mesh.org/projects/batman-adv/wiki/Client-announcement
+[2] https://www.open-mesh.org/projects/batman-adv/wiki/Client-roaming
+[3] https://www.open-mesh.org/projects/batman-adv/wiki/Bridge-loop-avoidance-II
+[4] https://www.open-mesh.org/projects/batman-adv/wiki/RIP
+[5] https://git.open-mesh.org/batman-adv.git/blob/HEAD:/MAINTAINERS
+--nextPart2040151.7kSeADS9zo
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmAVJo8ACgkQXYcKB8Em
+e0Ypzg/+OsOBGNgIBw3kqgTa8JDTxf0i2pYCO3/J31RzMJRIaQ6AOzhFsFlhr2JE
+YQ1A/LG0XIVFQYxoPGM02Yr8OVwLBYypyabAAXpyXq001RqxZkcbYu8gDQ7O7J65
+oog6Km6KaDKB2+Qhcn1nXlLdgjZP3X4EHSgg5NKn8XKZ4nIF7SoLk0PQijfapR2/
+lzZN1R19UuS21ipyk2oEGpnVSPPKDNX6BzQFTWU4nCQOv9/lS+i8uQ2vBDyKOVTe
+GgrZLGj8wTBs48m9gaoDmX/BI0vmaEPGETr1h0pKQk8igEO19fXFm+881y8Jp3tk
+J4HQX0VXigSEAL5gqrW/ZWvcDBvaWEg5QCa30tYuMksUGGou3aZsbVC/iwlqZukT
+ZrdOvHD0Kc5mk9P1MasYH6Y+RxkFpjq4JCfU2TRq7t5w1yQVkGNVNoLReewFsbq3
+vwXstfqZSo6eAxtb7LeK8McONlBSC/B9Nu6IsYR8TFUM9XG3Btv0CnnGKpMG3W4+
+RZqImPblpH0lFUNWZD3sn4Zb4hTd3MINtuz5OqPfdt0ddN+JMR303i8ez+MjxwQv
+p6DPGKqu1ymVFgJAW04UGx7kHXw0f5C4bl0Djda8X/swF6+cCUFzqFhfMMr7nDKb
+KvNQrp3gXZ4sSSWDtRHFxvSbWRIxmm9UCixIFi1wf6AC/Zm3Vh8=
+=HJEo
+-----END PGP SIGNATURE-----
+
+--nextPart2040151.7kSeADS9zo--
+
+
