@@ -1,63 +1,64 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E52311C1D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  6 Feb 2021 09:21:11 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C07A311C20
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  6 Feb 2021 09:25:45 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5011483B0F;
-	Sat,  6 Feb 2021 09:21:10 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6B02D83C1C;
+	Sat,  6 Feb 2021 09:25:40 +0100 (CET)
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2C46A80426
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  6 Feb 2021 09:19:10 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 79D798075B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  6 Feb 2021 09:25:36 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1612599549;
+	s=20121; t=1612599552;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=ZTFtTmykWqWRiQ9ndDXZPAZMbABR1UXqlj6TFsi7/xE=;
-	b=2TZdlm+DVHJJfV3GtgGONs8dyOuWBXpwdDXyMb0/gOYbpaIP0RQLrJFif3TrB9ivrvqsuC
-	8XM8U0+p8vmp6FRvzV4prex2xjAZJ37n7Nt1dnH4CRZkKRAVsODdiNV8GgvrpGAKa5OsFj
-	5ktrSm00rm3LoRewrzwLV5Omq5wslZ8=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ra+1IZ753Z1V9W4ynYL1EY0oY/6nDrgKb2B9jMDx2eM=;
+	b=f6csyzh5N8PwwSxkdMyhIxqXuKd0Ru8Rz/XzPwYfO6r0pYUF0BB17OuDOQdZ1YDbry2WcA
+	YSreXElkKME0/BmH2K6PIOvuvvBuDK6+TDhJgYj3XIsNRonl8LPg6J1J9V1jt/Y/p1BD70
+	gUbCv2coQLB3QtP0Wdcs6SvIDUK5aZU=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 1/3] batman-adv: Drop publication years from copyright info
-Date: Sat,  6 Feb 2021 09:18:42 +0100
-Message-Id: <20210206081844.7676-1-sven@narfation.org>
+Subject: [PATCH 2/3] batctl: Drop publication years from copyright info
+Date: Sat,  6 Feb 2021 09:18:43 +0100
+Message-Id: <20210206081844.7676-2-sven@narfation.org>
 X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210206081844.7676-1-sven@narfation.org>
+References: <20210206081844.7676-1-sven@narfation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1612599550;
+	s=20121; t=1612599936;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=ZTFtTmykWqWRiQ9ndDXZPAZMbABR1UXqlj6TFsi7/xE=;
-	b=2cIN6VZz4mlZL+HogGmnCKczDEAt3yGWNYaUGvhG6cDY6lKeavQNziYWz+TXe2kBEwSXWy
-	tEspju55Lm172HtZJ9nviwElY+Qm/v7aqIQgpshryNbS8EBzPYQ33UF2WF6C80VvNuPO3X
-	J0w2dl00x1aSN50vhctVHnxQXRUYnQg=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1612599550; a=rsa-sha256;
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=Ra+1IZ753Z1V9W4ynYL1EY0oY/6nDrgKb2B9jMDx2eM=;
+	b=hpyTbZhVu1QB2wmX/V5GcaTWDQFTbDCkz/XgwFUpWeKRvyr4pgZt8wGPijDPQgZiKgsupk
+	ccl4xoOYDPhS7Sz3jMS8KbwSjAJgLQ/DSd8n6q8u82et0KsQENBbm0PIy0PFrAsmmNZyW+
+	tsH0ZL1P8WOGQb/GTqSdn8tRNFJynz8=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1612599936; a=rsa-sha256;
 	cv=none;
-	b=OdgamTJbgIz70rE8mEe4r9xT6cd3al7YKVZqSfwYJWhuWrd8DD/ATYpthf2W27EVEZu3S2
-	0eg+vaC6dj45Zrvm1dbZ1XU63izbTO14VowFXDWnQj88csABvTVZWFBH8HIfOzitRjMIww
-	1OVsDHhoDwqCZT6DT5LLPBISPCDqkfY=
+	b=xVacGzKrtiMK02lT5bMkGqjt0HqbgPiYulMqKoFaSUGI4Z23RbmTwZEG6eyGFrlidSLBHD
+	A+LHe2EsXceFcYBc2MdIzPpndS8p7VA+A6tT+L66roJ41ihnWnZVeqeZKpphhl3F/RP3gO
+	WAO7md1Ca4+mHXj6/I1sAkkeSwq0bUI=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2TZdlm+D;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=f6csyzh5;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: WDNTKH24GCIYM2F6VMXMOR7FDVHX4A4Q
+X-Message-ID-Hash: WDNTKH24GCIYM2F6VMXMOR7FDVHX4A4Q
 X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Hits: max-recipients
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-size; news-moderation; no-subject; suspicious-header
-Message-ID-Hash: VQULNGJU3ZTR2INQP6NI3A7QBIMAQDDK
-X-Message-ID-Hash: VQULNGJU3ZTR2INQP6NI3A7QBIMAQDDK
-X-Mailman-Approved-At: Sat, 06 Feb 2021 08:21:08 +0100
-CC: Antonio Quartulli <a@unstable.cc>, Edo Monticelli <montik@autistici.org>, Jeppe Ledet-Pedersen <jlp@satlab.com>, Marek Lindner <mareklindner@neomailbox.ch>, =?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@hundeboll.net>
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Andreas Langer <an.langer@gmx.de>, Antonio Quartulli <a@unstable.cc>, Marek Lindner <mareklindner@neomailbox.ch>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VQULNGJU3ZTR2INQP6NI3A7QBIMAQDDK/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WDNTKH24GCIYM2F6VMXMOR7FDVHX4A4Q/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -70,7 +71,9 @@ as "last" year for the copyright statement. The whole source code mention=
 ed
 in the MAINTAINERS "BATMAN ADVANCED" section was handled as a single enti=
 ty
-regarding the publishing year.
+regarding the publishing year. And this was also performed the same way i=
+n
+the related projects alfred + batctl.
 
 This avoided having outdated (in sense of year information - not copyrigh=
 t
@@ -84,1002 +87,488 @@ SCM system.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
+Cc: Andreas Langer <an.langer@gmx.de>
+Cc: Andrew Lunn <andrew@lunn.ch>
 Cc: Antonio Quartulli <a@unstable.cc>
-Cc: Edo Monticelli <montik@autistici.org>
-Cc: Jeppe Ledet-Pedersen <jlp@satlab.com>
-Cc: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 Cc: Marek Lindner <mareklindner@neomailbox.ch>
-Cc: Martin Hundeb=C3=B8ll <martin@hundeboll.net>
 Cc: Matthias Schiffer <mschiffer@universe-factory.net>
 Cc: Simon Wunderlich <sw@simonwunderlich.de>
-Cc: Sven Eckelmann <sven@narfation.org>
 ---
- Makefile                               | 2 +-
- compat-include/linux/average.h         | 2 +-
- compat-include/linux/build_bug.h       | 2 +-
- compat-include/linux/cache.h           | 2 +-
- compat-include/linux/compiler.h        | 2 +-
- compat-include/linux/ethtool.h         | 2 +-
- compat-include/linux/if_bridge.h       | 2 +-
- compat-include/linux/igmp.h            | 2 +-
- compat-include/linux/minmax.h          | 2 +-
- compat-include/linux/netdevice.h       | 2 +-
- compat-include/linux/netlink.h         | 2 +-
- compat-include/linux/prandom.h         | 2 +-
- compat-include/linux/rcupdate.h        | 2 +-
- compat-include/linux/skbuff.h          | 2 +-
- compat-include/linux/stddef.h          | 2 +-
- compat-include/linux/timer.h           | 2 +-
- compat-include/linux/version.h         | 2 +-
- compat-include/net/addrconf.h          | 2 +-
- compat-include/net/cfg80211.h          | 2 +-
- compat-include/net/genetlink.h         | 2 +-
- compat.h                               | 2 +-
- gen-compat-autoconf.sh                 | 2 +-
- include/uapi/linux/batadv_packet.h     | 2 +-
- include/uapi/linux/batman_adv.h        | 2 +-
- net/batman-adv/Kconfig                 | 2 +-
- net/batman-adv/Makefile                | 2 +-
- net/batman-adv/bat_algo.c              | 2 +-
- net/batman-adv/bat_algo.h              | 2 +-
- net/batman-adv/bat_iv_ogm.c            | 2 +-
- net/batman-adv/bat_iv_ogm.h            | 2 +-
- net/batman-adv/bat_v.c                 | 2 +-
- net/batman-adv/bat_v.h                 | 2 +-
- net/batman-adv/bat_v_elp.c             | 2 +-
- net/batman-adv/bat_v_elp.h             | 2 +-
- net/batman-adv/bat_v_ogm.c             | 2 +-
- net/batman-adv/bat_v_ogm.h             | 2 +-
- net/batman-adv/bitarray.c              | 2 +-
- net/batman-adv/bitarray.h              | 2 +-
- net/batman-adv/bridge_loop_avoidance.c | 2 +-
- net/batman-adv/bridge_loop_avoidance.h | 2 +-
- net/batman-adv/distributed-arp-table.c | 2 +-
- net/batman-adv/distributed-arp-table.h | 2 +-
- net/batman-adv/fragmentation.c         | 2 +-
- net/batman-adv/fragmentation.h         | 2 +-
- net/batman-adv/gateway_client.c        | 2 +-
- net/batman-adv/gateway_client.h        | 2 +-
- net/batman-adv/gateway_common.c        | 2 +-
- net/batman-adv/gateway_common.h        | 2 +-
- net/batman-adv/hard-interface.c        | 2 +-
- net/batman-adv/hard-interface.h        | 2 +-
- net/batman-adv/hash.c                  | 2 +-
- net/batman-adv/hash.h                  | 2 +-
- net/batman-adv/log.c                   | 2 +-
- net/batman-adv/log.h                   | 2 +-
- net/batman-adv/main.c                  | 2 +-
- net/batman-adv/main.h                  | 2 +-
- net/batman-adv/multicast.c             | 2 +-
- net/batman-adv/multicast.h             | 2 +-
- net/batman-adv/netlink.c               | 2 +-
- net/batman-adv/netlink.h               | 2 +-
- net/batman-adv/network-coding.c        | 2 +-
- net/batman-adv/network-coding.h        | 2 +-
- net/batman-adv/originator.c            | 2 +-
- net/batman-adv/originator.h            | 2 +-
- net/batman-adv/routing.c               | 2 +-
- net/batman-adv/routing.h               | 2 +-
- net/batman-adv/send.c                  | 2 +-
- net/batman-adv/send.h                  | 2 +-
- net/batman-adv/soft-interface.c        | 2 +-
- net/batman-adv/soft-interface.h        | 2 +-
- net/batman-adv/tp_meter.c              | 2 +-
- net/batman-adv/tp_meter.h              | 2 +-
- net/batman-adv/trace.c                 | 2 +-
- net/batman-adv/trace.h                 | 2 +-
- net/batman-adv/translation-table.c     | 2 +-
- net/batman-adv/translation-table.h     | 2 +-
- net/batman-adv/tvlv.c                  | 2 +-
- net/batman-adv/tvlv.h                  | 2 +-
- net/batman-adv/types.h                 | 2 +-
- 79 files changed, 79 insertions(+), 79 deletions(-)
+ Makefile        | 2 +-
+ allocate.h      | 2 +-
+ bat-hosts.c     | 2 +-
+ bat-hosts.h     | 2 +-
+ batadv_packet.h | 2 +-
+ batman_adv.h    | 2 +-
+ bisect_iv.c     | 2 +-
+ bisect_iv.h     | 2 +-
+ debug.c         | 2 +-
+ debug.h         | 2 +-
+ functions.c     | 2 +-
+ functions.h     | 2 +-
+ genl.h          | 2 +-
+ hash.c          | 2 +-
+ hash.h          | 2 +-
+ icmp_helper.c   | 2 +-
+ icmp_helper.h   | 2 +-
+ interface.c     | 2 +-
+ interface.h     | 2 +-
+ ioctl.c         | 2 +-
+ ioctl.h         | 2 +-
+ list.h          | 2 +-
+ main.c          | 2 +-
+ main.h          | 2 +-
+ netlink.c       | 2 +-
+ netlink.h       | 2 +-
+ ping.c          | 2 +-
+ ping.h          | 2 +-
+ sys.c           | 2 +-
+ sys.h           | 2 +-
+ tcpdump.c       | 2 +-
+ tcpdump.h       | 2 +-
+ tp_meter.c      | 2 +-
+ tp_meter.h      | 2 +-
+ traceroute.c    | 2 +-
+ traceroute.h    | 2 +-
+ translate.c     | 2 +-
+ translate.h     | 2 +-
+ 38 files changed, 38 insertions(+), 38 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 545053b5..c29d6f5f 100644
+index 4b417d5..8e56348 100755
 --- a/Makefile
 +++ b/Makefile
-@@ -1,5 +1,5 @@
+@@ -2,7 +2,7 @@
  # SPDX-License-Identifier: GPL-2.0
--# Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+# Copyright (C) B.A.T.M.A.N. contributors:
+ # -*- makefile -*-
  #
- # Marek Lindner, Simon Wunderlich
-=20
-diff --git a/compat-include/linux/average.h b/compat-include/linux/averag=
-e.h
-index a9bd0561..4881f467 100644
---- a/compat-include/linux/average.h
-+++ b/compat-include/linux/average.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/build_bug.h b/compat-include/linux/buil=
-d_bug.h
-index 9cf28f04..0eecc688 100644
---- a/compat-include/linux/build_bug.h
-+++ b/compat-include/linux/build_bug.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/cache.h b/compat-include/linux/cache.h
-index ae0e62df..9d7efab5 100644
---- a/compat-include/linux/cache.h
-+++ b/compat-include/linux/cache.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/compiler.h b/compat-include/linux/compi=
-ler.h
-index 4aa525a5..7175cef9 100644
---- a/compat-include/linux/compiler.h
-+++ b/compat-include/linux/compiler.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/ethtool.h b/compat-include/linux/ethtoo=
-l.h
-index e9324da1..0a69fc16 100644
---- a/compat-include/linux/ethtool.h
-+++ b/compat-include/linux/ethtool.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2016-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Antonio Quartulli
-  *
-diff --git a/compat-include/linux/if_bridge.h b/compat-include/linux/if_b=
-ridge.h
-index a0c53553..da00c8b0 100644
---- a/compat-include/linux/if_bridge.h
-+++ b/compat-include/linux/if_bridge.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/igmp.h b/compat-include/linux/igmp.h
-index 09dbac8b..ce21047e 100644
---- a/compat-include/linux/igmp.h
-+++ b/compat-include/linux/igmp.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/minmax.h b/compat-include/linux/minmax.=
-h
-index b8ea5e8a..9b7269e8 100644
---- a/compat-include/linux/minmax.h
-+++ b/compat-include/linux/minmax.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/netdevice.h b/compat-include/linux/netd=
-evice.h
-index 41521705..d6342f94 100644
---- a/compat-include/linux/netdevice.h
-+++ b/compat-include/linux/netdevice.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/netlink.h b/compat-include/linux/netlin=
-k.h
-index f1fbdd1e..ef6a0358 100644
---- a/compat-include/linux/netlink.h
-+++ b/compat-include/linux/netlink.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/prandom.h b/compat-include/linux/prando=
-m.h
-index a6a448d3..7dd51ac7 100644
---- a/compat-include/linux/prandom.h
-+++ b/compat-include/linux/prandom.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/rcupdate.h b/compat-include/linux/rcupd=
-ate.h
-index aa8c09f7..29bdccd0 100644
---- a/compat-include/linux/rcupdate.h
-+++ b/compat-include/linux/rcupdate.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Antonio Quartulli
-  *
-diff --git a/compat-include/linux/skbuff.h b/compat-include/linux/skbuff.=
-h
-index 4a7f2b39..4c04f165 100644
---- a/compat-include/linux/skbuff.h
-+++ b/compat-include/linux/skbuff.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/stddef.h b/compat-include/linux/stddef.=
-h
-index e71fc78a..c4558f81 100644
---- a/compat-include/linux/stddef.h
-+++ b/compat-include/linux/stddef.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/timer.h b/compat-include/linux/timer.h
-index 56b310f5..36da61f7 100644
---- a/compat-include/linux/timer.h
-+++ b/compat-include/linux/timer.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/linux/version.h b/compat-include/linux/versio=
-n.h
-index 610fa05c..b6aefa36 100644
---- a/compat-include/linux/version.h
-+++ b/compat-include/linux/version.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/net/addrconf.h b/compat-include/net/addrconf.=
-h
-index ad64a9a6..30124124 100644
---- a/compat-include/net/addrconf.h
-+++ b/compat-include/net/addrconf.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/net/cfg80211.h b/compat-include/net/cfg80211.=
-h
-index ee8aee37..6b756007 100644
---- a/compat-include/net/cfg80211.h
-+++ b/compat-include/net/cfg80211.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat-include/net/genetlink.h b/compat-include/net/genetlin=
-k.h
-index 3eab6a77..56a9ab22 100644
---- a/compat-include/net/genetlink.h
-+++ b/compat-include/net/genetlink.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  *
-diff --git a/compat.h b/compat.h
-index 55cd93ec..86e68d83 100644
---- a/compat.h
-+++ b/compat.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/gen-compat-autoconf.sh b/gen-compat-autoconf.sh
-index 35fbf0bd..3b9fc31f 100755
---- a/gen-compat-autoconf.sh
-+++ b/gen-compat-autoconf.sh
-@@ -1,6 +1,6 @@
- #! /bin/sh
- # SPDX-License-Identifier: GPL-2.0
--# Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+# Copyright (C) B.A.T.M.A.N. contributors:
+-# Copyright (C) 2006-2018  B.A.T.M.A.N. contributors
++# Copyright (C) B.A.T.M.A.N. contributors
  #
- # Marek Lindner, Simon Wunderlich
-=20
-diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/bata=
-dv_packet.h
-index 67b773ea..ea4692c3 100644
---- a/include/uapi/linux/batadv_packet.h
-+++ b/include/uapi/linux/batadv_packet.h
+ # This program is free software; you can redistribute it and/or
+ # modify it under the terms of version 2 of the GNU General Public
+diff --git a/allocate.h b/allocate.h
+index cc4c283..7a5af4e 100644
+--- a/allocate.h
++++ b/allocate.h
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
++/* Copyright (C) B.A.T.M.A.N. contributors:
+  *
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/bat-hosts.c b/bat-hosts.c
+index 02c4d81..ebd6525 100644
+--- a/bat-hosts.c
++++ b/bat-hosts.c
+@@ -1,5 +1,5 @@
+ // SPDX-License-Identifier: GPL-2.0
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
++/* Copyright (C) B.A.T.M.A.N. contributors:
+  *
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/bat-hosts.h b/bat-hosts.h
+index 20ac32d..8e6e075 100644
+--- a/bat-hosts.h
++++ b/bat-hosts.h
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
++/* Copyright (C) B.A.T.M.A.N. contributors:
+  *
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/batadv_packet.h b/batadv_packet.h
+index 894d8d2..1f09349 100644
+--- a/batadv_packet.h
++++ b/batadv_packet.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note) */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
   * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/include/uapi/linux/batman_adv.h b/include/uapi/linux/batman_=
-adv.h
-index 27d35e7f..35dc016c 100644
---- a/include/uapi/linux/batman_adv.h
-+++ b/include/uapi/linux/batman_adv.h
+  *
+diff --git a/batman_adv.h b/batman_adv.h
+index 324a0e1..2546f44 100644
+--- a/batman_adv.h
++++ b/batman_adv.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: MIT */
--/* Copyright (C) 2016-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2016-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
   * Matthias Schiffer
-  */
-diff --git a/net/batman-adv/Kconfig b/net/batman-adv/Kconfig
-index 09cc8360..860a0786 100644
---- a/net/batman-adv/Kconfig
-+++ b/net/batman-adv/Kconfig
-@@ -1,5 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
--# Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+# Copyright (C) B.A.T.M.A.N. contributors:
- #
- # Marek Lindner, Simon Wunderlich
-=20
-diff --git a/net/batman-adv/Makefile b/net/batman-adv/Makefile
-index c5071737..3bd0760c 100644
---- a/net/batman-adv/Makefile
-+++ b/net/batman-adv/Makefile
-@@ -1,5 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
--# Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+# Copyright (C) B.A.T.M.A.N. contributors:
- #
- # Marek Lindner, Simon Wunderlich
-=20
-diff --git a/net/batman-adv/bat_algo.c b/net/batman-adv/bat_algo.c
-index 8b66a57a..4eee53d1 100644
---- a/net/batman-adv/bat_algo.c
-+++ b/net/batman-adv/bat_algo.c
+  *
+diff --git a/bisect_iv.c b/bisect_iv.c
+index d71ceda..bd01294 100644
+--- a/bisect_iv.c
++++ b/bisect_iv.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/bat_algo.h b/net/batman-adv/bat_algo.h
-index 4073fa7e..2c486374 100644
---- a/net/batman-adv/bat_algo.h
-+++ b/net/batman-adv/bat_algo.h
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/bisect_iv.h b/bisect_iv.h
+index 7932c2f..086ea5b 100644
+--- a/bisect_iv.h
++++ b/bisect_iv.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Linus L=C3=BCssing
-  */
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 4c583eec..a5e313cd 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/debug.c b/debug.c
+index 63fb633..f304cb8 100644
+--- a/debug.c
++++ b/debug.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/bat_iv_ogm.h b/net/batman-adv/bat_iv_ogm.h
-index b6e7f322..04b01bd6 100644
---- a/net/batman-adv/bat_iv_ogm.h
-+++ b/net/batman-adv/bat_iv_ogm.h
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/debug.h b/debug.h
+index 9c57aa6..ae5c0c9 100644
+--- a/debug.h
++++ b/debug.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/bat_v.c b/net/batman-adv/bat_v.c
-index 089b3e50..e1ca2b8c 100644
---- a/net/batman-adv/bat_v.c
-+++ b/net/batman-adv/bat_v.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/functions.c b/functions.c
+index e0e9978..13552ef 100644
+--- a/functions.c
++++ b/functions.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2013-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Linus L=C3=BCssing, Marek Lindner
-  */
-diff --git a/net/batman-adv/bat_v.h b/net/batman-adv/bat_v.h
-index bc07ae6a..964431f4 100644
---- a/net/batman-adv/bat_v.h
-+++ b/net/batman-adv/bat_v.h
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/functions.h b/functions.h
+index d3144d0..002cc2a 100644
+--- a/functions.h
++++ b/functions.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Linus L=C3=BCssing
-  */
-diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
-index 3f01881b..423c2d17 100644
---- a/net/batman-adv/bat_v_elp.c
-+++ b/net/batman-adv/bat_v_elp.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
   *
-  * Linus L=C3=BCssing, Marek Lindner
-  */
-diff --git a/net/batman-adv/bat_v_elp.h b/net/batman-adv/bat_v_elp.h
-index 5c678079..9e274019 100644
---- a/net/batman-adv/bat_v_elp.h
-+++ b/net/batman-adv/bat_v_elp.h
+diff --git a/genl.h b/genl.h
+index a0f05ba..26fdb7b 100644
+--- a/genl.h
++++ b/genl.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2013-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Linus L=C3=BCssing, Marek Lindner
-  */
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 20d7928c..a0a9636d 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/hash.c b/hash.c
+index e604634..1cba7a5 100644
+--- a/hash.c
++++ b/hash.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2013-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Antonio Quartulli
-  */
-diff --git a/net/batman-adv/bat_v_ogm.h b/net/batman-adv/bat_v_ogm.h
-index a509004f..edeffede 100644
---- a/net/batman-adv/bat_v_ogm.h
-+++ b/net/batman-adv/bat_v_ogm.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2013-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Antonio Quartulli
-  */
-diff --git a/net/batman-adv/bitarray.c b/net/batman-adv/bitarray.c
-index 27be6cae..649c41f3 100644
---- a/net/batman-adv/bitarray.c
-+++ b/net/batman-adv/bitarray.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2006-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2006-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
   * Simon Wunderlich, Marek Lindner
-  */
-diff --git a/net/batman-adv/bitarray.h b/net/batman-adv/bitarray.h
-index 704afafa..37f7ae41 100644
---- a/net/batman-adv/bitarray.h
-+++ b/net/batman-adv/bitarray.h
+  *
+diff --git a/hash.h b/hash.h
+index ceb1857..cb4b61d 100644
+--- a/hash.h
++++ b/hash.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2006-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2006-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
   * Simon Wunderlich, Marek Lindner
-  */
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/brid=
-ge_loop_avoidance.c
-index d4184bfb..360bdbf4 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
+  *
+diff --git a/icmp_helper.c b/icmp_helper.c
+index 00c5229..f30988f 100644
+--- a/icmp_helper.c
++++ b/icmp_helper.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Simon Wunderlich
-  */
-diff --git a/net/batman-adv/bridge_loop_avoidance.h b/net/batman-adv/brid=
-ge_loop_avoidance.h
-index 73f01206..5c22955b 100644
---- a/net/batman-adv/bridge_loop_avoidance.h
-+++ b/net/batman-adv/bridge_loop_avoidance.h
+  * Marek Lindner <mareklindner@neomailbox.ch>, Simon Wunderlich
+  *
+diff --git a/icmp_helper.h b/icmp_helper.h
+index 8075655..2d1f622 100644
+--- a/icmp_helper.h
++++ b/icmp_helper.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Simon Wunderlich
-  */
-diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/dist=
-ributed-arp-table.c
-index fcabd6b1..8c95a11a 100644
---- a/net/batman-adv/distributed-arp-table.c
-+++ b/net/batman-adv/distributed-arp-table.c
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/interface.c b/interface.c
+index ac95641..599861e 100644
+--- a/interface.c
++++ b/interface.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Antonio Quartulli
-  */
-diff --git a/net/batman-adv/distributed-arp-table.h b/net/batman-adv/dist=
-ributed-arp-table.h
-index efa2a0d0..bed7f3d2 100644
---- a/net/batman-adv/distributed-arp-table.h
-+++ b/net/batman-adv/distributed-arp-table.h
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/interface.h b/interface.h
+index 83ca129..ad38e3c 100644
+--- a/interface.h
++++ b/interface.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2011-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Antonio Quartulli
-  */
-diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentatio=
-n.c
-index 89344632..a5d9d800 100644
---- a/net/batman-adv/fragmentation.c
-+++ b/net/batman-adv/fragmentation.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/ioctl.c b/ioctl.c
+index 6f9a056..18a40eb 100644
+--- a/ioctl.c
++++ b/ioctl.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2013-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2012-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Martin Hundeb=C3=B8ll <martin@hundeboll.net>
-  */
-diff --git a/net/batman-adv/fragmentation.h b/net/batman-adv/fragmentatio=
-n.h
-index 86d6b856..dbf0871f 100644
---- a/net/batman-adv/fragmentation.h
-+++ b/net/batman-adv/fragmentation.h
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/ioctl.h b/ioctl.h
+index 1b216c0..4f0fb78 100644
+--- a/ioctl.h
++++ b/ioctl.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2013-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2012-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Martin Hundeb=C3=B8ll <martin@hundeboll.net>
-  */
-diff --git a/net/batman-adv/gateway_client.c b/net/batman-adv/gateway_cli=
-ent.c
-index 2ebfe62d..007f2827 100644
---- a/net/batman-adv/gateway_client.c
-+++ b/net/batman-adv/gateway_client.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/list.h b/list.h
+index 4e8f28f..5e23fa7 100644
+--- a/list.h
++++ b/list.h
+@@ -1,7 +1,7 @@
+ /* SPDX-License-Identifier: MIT */
+ /* Minimal Linux-like double-linked list helper functions
+  *
+- * Copyright (c) 2012-2018, Sven Eckelmann <sven@narfation.org>
++ * Copyright (c) Sven Eckelmann <sven@narfation.org>
+  *
+  * Permission is hereby granted, free of charge, to any person obtaining=
+ a copy
+  * of this software and associated documentation files (the "Software"),=
+ to deal
+diff --git a/main.c b/main.c
+index d5504e0..14344f7 100644
+--- a/main.c
++++ b/main.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2009-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner
-  */
-diff --git a/net/batman-adv/gateway_client.h b/net/batman-adv/gateway_cli=
-ent.h
-index 5c8c0b92..2ae5846e 100644
---- a/net/batman-adv/gateway_client.h
-+++ b/net/batman-adv/gateway_client.h
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/main.h b/main.h
+index 486c8bf..944c4fb 100644
+--- a/main.h
++++ b/main.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2009-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner
-  */
-diff --git a/net/batman-adv/gateway_common.c b/net/batman-adv/gateway_com=
-mon.c
-index 7208b7ad..fdde305a 100644
---- a/net/batman-adv/gateway_common.c
-+++ b/net/batman-adv/gateway_common.c
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/netlink.c b/netlink.c
+index f0fd1d9..e5dd739 100644
+--- a/netlink.c
++++ b/netlink.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2009-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner
-  */
-diff --git a/net/batman-adv/gateway_common.h b/net/batman-adv/gateway_com=
-mon.h
-index 9ccf195a..87c37f90 100644
---- a/net/batman-adv/gateway_common.h
-+++ b/net/batman-adv/gateway_common.h
+  * Marek Lindner <mareklindner@neomailbox.ch>, Andrew Lunn <andrew@lunn.=
+ch>
+  *
+diff --git a/netlink.h b/netlink.h
+index 089e25e..1fa4c3f 100644
+--- a/netlink.h
++++ b/netlink.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2009-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner
-  */
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interf=
-ace.c
-index 6e3c7a6c..4a6a25d5 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
+  * Marek Lindner <mareklindner@neomailbox.ch>, Andrew Lunn <andrew@lunn.=
+ch>
+  *
+diff --git a/ping.c b/ping.c
+index dc88e22..e825e7a 100644
+--- a/ping.c
++++ b/ping.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/hard-interface.h b/net/batman-adv/hard-interf=
-ace.h
-index bfaf4f88..83d11b46 100644
---- a/net/batman-adv/hard-interface.h
-+++ b/net/batman-adv/hard-interface.h
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/ping.h b/ping.h
+index f09ffb2..0f5d38f 100644
+--- a/ping.h
++++ b/ping.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/hash.c b/net/batman-adv/hash.c
-index 1bcfdcf4..8016e619 100644
---- a/net/batman-adv/hash.c
-+++ b/net/batman-adv/hash.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/sys.c b/sys.c
+index e0c2073..8bb2e6e 100644
+--- a/sys.c
++++ b/sys.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2006-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Simon Wunderlich, Marek Lindner
-  */
-diff --git a/net/batman-adv/hash.h b/net/batman-adv/hash.h
-index 276b3080..46696759 100644
---- a/net/batman-adv/hash.h
-+++ b/net/batman-adv/hash.h
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/sys.h b/sys.h
+index 95b2a1e..b6935de 100644
+--- a/sys.h
++++ b/sys.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2006-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Simon Wunderlich, Marek Lindner
-  */
-diff --git a/net/batman-adv/log.c b/net/batman-adv/log.c
-index 7db20058..f0e5d142 100644
---- a/net/batman-adv/log.c
-+++ b/net/batman-adv/log.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/tcpdump.c b/tcpdump.c
+index 22847ae..5ee1a75 100644
+--- a/tcpdump.c
++++ b/tcpdump.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2010-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner
-  */
-diff --git a/net/batman-adv/log.h b/net/batman-adv/log.h
-index 1f50296d..6717c965 100644
---- a/net/batman-adv/log.h
-+++ b/net/batman-adv/log.h
+  * Andreas Langer <an.langer@gmx.de>
+  *
+diff --git a/tcpdump.h b/tcpdump.h
+index f73211b..0cc95e1 100644
+--- a/tcpdump.h
++++ b/tcpdump.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index e3eadd64..e48f7ac8 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/tp_meter.c b/tp_meter.c
+index 403c884..a803740 100644
+--- a/tp_meter.c
++++ b/tp_meter.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2013-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index 1360eb09..8f0102b7 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
+  * Antonio Quartulli <a@unstable.cc>
+  *
+diff --git a/tp_meter.h b/tp_meter.h
+index 72006ba..8456d22 100644
+--- a/tp_meter.h
++++ b/tp_meter.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2013-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index ad216c42..28166402 100644
---- a/net/batman-adv/multicast.c
-+++ b/net/batman-adv/multicast.c
+  * Antonio Quartulli <a@unstable.cc>
+  *
+diff --git a/traceroute.c b/traceroute.c
+index ba7e27d..64eb3a4 100644
+--- a/traceroute.c
++++ b/traceroute.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2014-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Linus L=C3=BCssing
-  */
-diff --git a/net/batman-adv/multicast.h b/net/batman-adv/multicast.h
-index d13efd4b..9fee5da0 100644
---- a/net/batman-adv/multicast.h
-+++ b/net/batman-adv/multicast.h
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/traceroute.h b/traceroute.h
+index ffe0252..146df08 100644
+--- a/traceroute.h
++++ b/traceroute.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2014-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Linus L=C3=BCssing
-  */
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index c80527b8..f317d206 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
+  * Marek Lindner <mareklindner@neomailbox.ch>
+  *
+diff --git a/translate.c b/translate.c
+index 9059f20..f95c9ba 100644
+--- a/translate.c
++++ b/translate.c
 @@ -1,5 +1,5 @@
  // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2016-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2007-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Matthias Schiffer
-  */
-diff --git a/net/batman-adv/netlink.h b/net/batman-adv/netlink.h
-index 48455ac2..48102cc7 100644
---- a/net/batman-adv/netlink.h
-+++ b/net/batman-adv/netlink.h
+  * Andreas Langer <an.langer@gmx.de>, Marek Lindner <mareklindner@neomai=
+lbox.ch>
+  *
+diff --git a/translate.h b/translate.h
+index 8155827..02e26bc 100644
+--- a/translate.h
++++ b/translate.h
 @@ -1,5 +1,5 @@
  /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2016-2021  B.A.T.M.A.N. contributors:
+-/* Copyright (C) 2009-2018  B.A.T.M.A.N. contributors:
 +/* Copyright (C) B.A.T.M.A.N. contributors:
   *
-  * Matthias Schiffer
-  */
-diff --git a/net/batman-adv/network-coding.c b/net/batman-adv/network-cod=
-ing.c
-index 24f76101..4bb76b43 100644
---- a/net/batman-adv/network-coding.c
-+++ b/net/batman-adv/network-coding.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2012-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
+  * Marek Lindner <mareklindner@neomailbox.ch>
   *
-  * Martin Hundeb=C3=B8ll, Jeppe Ledet-Pedersen
-  */
-diff --git a/net/batman-adv/network-coding.h b/net/batman-adv/network-cod=
-ing.h
-index e7f87d32..368cc313 100644
---- a/net/batman-adv/network-coding.h
-+++ b/net/batman-adv/network-coding.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2012-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Martin Hundeb=C3=B8ll, Jeppe Ledet-Pedersen
-  */
-diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
-index 88496f4e..da724944 100644
---- a/net/batman-adv/originator.c
-+++ b/net/batman-adv/originator.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2009-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/originator.h b/net/batman-adv/originator.h
-index 620d02f7..805be87d 100644
---- a/net/batman-adv/originator.h
-+++ b/net/batman-adv/originator.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 7cc6a549..40f5cffd 100644
---- a/net/batman-adv/routing.c
-+++ b/net/batman-adv/routing.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/routing.h b/net/batman-adv/routing.h
-index 24238091..5f387786 100644
---- a/net/batman-adv/routing.h
-+++ b/net/batman-adv/routing.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
-index 990e5854..157abe92 100644
---- a/net/batman-adv/send.c
-+++ b/net/batman-adv/send.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/send.h b/net/batman-adv/send.h
-index 27c45eec..2b0daf8b 100644
---- a/net/batman-adv/send.h
-+++ b/net/batman-adv/send.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
-ace.c
-index 7395a545..6b8181bc 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/soft-interface.h b/net/batman-adv/soft-interf=
-ace.h
-index 34d4f583..38b0ad18 100644
---- a/net/batman-adv/soft-interface.h
-+++ b/net/batman-adv/soft-interface.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner
-  */
-diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index 72ec4aab..789c8517 100644
---- a/net/batman-adv/tp_meter.c
-+++ b/net/batman-adv/tp_meter.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2012-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Edo Monticelli, Antonio Quartulli
-  */
-diff --git a/net/batman-adv/tp_meter.h b/net/batman-adv/tp_meter.h
-index 0b7904bd..f0046d36 100644
---- a/net/batman-adv/tp_meter.h
-+++ b/net/batman-adv/tp_meter.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2012-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Edo Monticelli, Antonio Quartulli
-  */
-diff --git a/net/batman-adv/trace.c b/net/batman-adv/trace.c
-index b2452822..ec8b9519 100644
---- a/net/batman-adv/trace.c
-+++ b/net/batman-adv/trace.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2010-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Sven Eckelmann
-  */
-diff --git a/net/batman-adv/trace.h b/net/batman-adv/trace.h
-index bd5e4525..d673ebdd 100644
---- a/net/batman-adv/trace.h
-+++ b/net/batman-adv/trace.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2010-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Sven Eckelmann
-  */
-diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translat=
-ion-table.c
-index badf1439..f8761281 100644
---- a/net/batman-adv/translation-table.c
-+++ b/net/batman-adv/translation-table.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich, Antonio Quartulli
-  */
-diff --git a/net/batman-adv/translation-table.h b/net/batman-adv/translat=
-ion-table.h
-index 913c4455..e1285904 100644
---- a/net/batman-adv/translation-table.h
-+++ b/net/batman-adv/translation-table.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich, Antonio Quartulli
-  */
-diff --git a/net/batman-adv/tvlv.c b/net/batman-adv/tvlv.c
-index 7de7dd72..253f5a33 100644
---- a/net/batman-adv/tvlv.c
-+++ b/net/batman-adv/tvlv.c
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/tvlv.h b/net/batman-adv/tvlv.h
-index 4c3265d3..54f2a356 100644
---- a/net/batman-adv/tvlv.h
-+++ b/net/batman-adv/tvlv.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index aae7366b..7c0b475c 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -1,5 +1,5 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--/* Copyright (C) 2007-2021  B.A.T.M.A.N. contributors:
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-  *
-  * Marek Lindner, Simon Wunderlich
-  */
 --=20
 2.30.0
