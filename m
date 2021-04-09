@@ -1,86 +1,82 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC92359CFE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  9 Apr 2021 13:16:42 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id A159C359D38
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  9 Apr 2021 13:24:39 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 46FC680D22;
-	Fri,  9 Apr 2021 13:16:41 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 72C7C80623
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  9 Apr 2021 13:16:38 +0200 (CEST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A658B3E885;
-	Fri,  9 Apr 2021 13:16:36 +0200 (CEST)
-Date: Fri, 9 Apr 2021 13:16:34 +0200
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6FA90815FF;
+	Fri,  9 Apr 2021 13:24:38 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8C44580038
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  9 Apr 2021 13:24:35 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E99313E95C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  9 Apr 2021 13:24:34 +0200 (CEST)
+Date: Fri, 9 Apr 2021 13:24:32 +0200
 From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: Problems with Multiple Interfaces
-Message-ID: <20210409111634.GI2742@otheros>
-References: <20210408055629.1234.95039@diktynna.open-mesh.org>
- <3542676.qYy7ulQ77K@prime>
+Subject: Re: How to mesh over ethernet VLAN?
+Message-ID: <20210409112432.GJ2742@otheros>
+References: <CAEX-Y1Z8vHvj_TD-EL-Y9AiSeKV9WHb=BxJMwJx0h5z0xfk5OA@mail.gmail.com>
+ <20210406195122.GG2742@otheros>
+ <CAEX-Y1YfhoLgcwMJAg11H7f785kum6LUrYq=YrKg0C-9vXZ-ZQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3542676.qYy7ulQ77K@prime>
+In-Reply-To: <CAEX-Y1YfhoLgcwMJAg11H7f785kum6LUrYq=YrKg0C-9vXZ-ZQ@mail.gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Last-TLS-Session-Version: TLSv1.2
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1617966998; a=rsa-sha256;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:c2c:665b::1) smtp.mailfrom=linus.luessing@c0d3.blue
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1617967475; a=rsa-sha256;
 	cv=none;
-	b=MYQQ8EQguuNG77X0yP/ZENzdEMyahxiUcX+qggv563lISMVz4drHe+TB3qV4E9cvjDKBfM
-	3XTDtF6w1oIoL3vztLWBCI8WfhAn4JIqzVSs8OyiwFa4Zyy4ByTlBx1ZfbBV1BS4RGv2PK
-	i0a/fV8ZprGukkhEHNTOeJWmsf5xiyc=
+	b=4SGGSJ/mFwOHCZMwAXZk0UVFZuFBETCigN60Z1eNX17rYeIWwUrc4Z01V5362VLEuS8pT3
+	EJTYmQ/i0fUZgVqdQie21pJVaSU86EQ2BXRJD198baebePbiyYdhgQdPeDAWVI/+LB/euD
+	eLVLRDQa71bt1Mp8xEw21WvKgKM7H2Q=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1617966998;
+	s=20121; t=1617967475;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Y+loJdPgunkkLyHEYkSFZ93GmGHM2F9fl+2mo5dmtB4=;
-	b=ehQ/MF1IHqvd7Ouxu/8vJvaHSmPfXLnSeXMfvT13Yl53reTFKkEPaAELSDJzetVfo/0eyu
-	l95h9oVN0nSKrCcVi9h2ro2b+oVbcqp2ZOZ1xGICn1Zu3lbltZuaVGLRk8fxSFMD586ong
-	J0HCmbvXQ6pO1206Iwng3j4OfvrIKpg=
-Message-ID-Hash: 5TCQI6EDP4D5XOMIIZCX6BJOY5KZJA57
-X-Message-ID-Hash: 5TCQI6EDP4D5XOMIIZCX6BJOY5KZJA57
+	bh=MKwqi67guyouubHWii5ayPIou0AoKXsUKugaOUI6B7c=;
+	b=deInyVQ1fSzY6uHdBJ2ZVO0kIiGcsqDqcw7lfdMawi/0+DvQg3zAbWJt/eh6jMHW/4FxD9
+	GS3X53FKNYaLqRKVzCq9aupRu6e3hcySTWjdRreKAQ9E5s6qkS+DEz7KZpvccU/uD+bKyD
+	vgCEtKD33mvvnJiiSUOSGzDm98DRSXY=
+Message-ID-Hash: FXU2I75EKOD5X6AOQ6SNJZV6XEZJGIZR
+X-Message-ID-Hash: FXU2I75EKOD5X6AOQ6SNJZV6XEZJGIZR
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: joe@careyhome.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/5TCQI6EDP4D5XOMIIZCX6BJOY5KZJA57/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FXU2I75EKOD5X6AOQ6SNJZV6XEZJGIZR/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Fri, Apr 09, 2021 at 12:17:36PM +0200, Simon Wunderlich wrote:
-> On Thursday, April 8, 2021 7:56:29 AM CEST joe@careyhome.org wrote:
-> > Hi Everybody,
-> > 
-> > I'm running BATMAN v 2019.2 with ath10k on OpenWRT.  The particular router
-> > I'm using has two interfaces, 2.4 GHz and 5GHz.  With each router using
-> > single interface (e.g. 2.4 GHz), it works fine.  When I add a second
-> > interface (e.g. 5GHz), it sometimes hangs.
+On Tue, Apr 06, 2021 at 11:33:26PM +0200, Andi Depressivum wrote:
+> That was my very first configuration approach but it's rather slow
+> (about 200mbit/s over a gigabit link) compared to native VLANs. I've
+> tried to set the MTU size to 1536 for the mesh interface but for some
+> reason the MTU of the interface stays at 1500?!
 
-One more note: ath10k firmware refuses to provide an expected
-throughput for the wifi link.
+The MTU of eth0.2 or bat0?
 
-The fallback to an estimate which uses the raw tx bitrate was
-added not that long ago in batman-adv v2020.0:
+One of the performance penalties might occur when batman-adv needs
+to use fragmentation. batman-adv is going to add its own header
+on top of the 1500 byte frames received on bat0.
 
-https://www.open-mesh.org/news/95
+1536 on eth0.2 looks good though. Then 1500 bytes should fit
+without fragmentation on bat0. You can check with "batctl
+td" or Wireshark if you see batman-adv fragments on eth0.2.
 
-I'm wondering if you might have very low throughput values in
-batman-adv and if that might lead to issues with interface
-alternating.
-
-Also, would be interesting to know if you have the same issues
-when using BATMAN IV, which mainly uses a packetloss based metric.
+If 1536 is somehow not applied to eth0.2, might be a driver issue
+then. You can check wether you can manually alter an interface MTU
+with "ip link dev eth0.2 set mtu 1536", for instance.
 
 Regards, Linus
