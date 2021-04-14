@@ -2,101 +2,95 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156D035E1B5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 13 Apr 2021 16:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 385A635F282
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 14 Apr 2021 13:36:07 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CAEDE80632;
-	Tue, 13 Apr 2021 16:38:21 +0200 (CEST)
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2289D8051D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 13 Apr 2021 16:38:19 +0200 (CEST)
-Received: by mail-yb1-xb32.google.com with SMTP id n12so18367265ybf.8
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 13 Apr 2021 07:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=khnW0cl8zCiPB5jhEf7/5wGUNhbhMCdajyCYUQieRdY=;
-        b=MyhpRuE9axbGwP6lyocPmG65OEdG2gkQ5ApToizXMrUc/fdnE23XXaHjefji73G9uX
-         ViULrMzODxU8FktZ7h0Aq7WRKEVRO5r34Uc5g2L/SsAAl6MIoR5QGKr1SZzWoF4sQvnR
-         gA71rO69Bj8/ZGAYi+JToWYmjchlSNTQhBd3vPYLAxvW5yGIuPO1pF0HRusdWDdwUSK/
-         0jZp+VGftkRH5Rap4nfRPWYE1Y+Oau8qecHhqvQFuLRb5WL9Zd+11Mecpr7CYaMtUzmB
-         TjZqKobTCD0hAi8PBwwJY+MnfE+2KsGVYhvvqd6c/HT5wCJrtyPejuIredggsFJY8GNl
-         qMaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=khnW0cl8zCiPB5jhEf7/5wGUNhbhMCdajyCYUQieRdY=;
-        b=C3bK+Q7ppjJ8Nd7zi95rnPApawxt/LF3ppCdTLHcL/Ghoy7YGWoXCFXx1xp/tAYL18
-         JInusWFYmtePx1a+t8580doYk2PrCH3pXa3Mmux8lpMPbzuI5H8A376hq3AGEoENauJa
-         FIqOmWqtUa4K+YK6igIFNTTb66dXuiSAAZrt8QbPCPY8SAcQXBMr8NT7K8ejQ+8PST4U
-         BtdTGdyxneE/fKtHMAJJeejlj3rkqjWl1k1Wk+gOVZ5cApXE6amZ2lzu9zDoZzh5nf4i
-         Us2JJhEhIicLpq/HU6qoTlHoakd855aDBNU/vn+VQ52is1esNpGrGMIYsa4GeUpvda/o
-         go8w==
-X-Gm-Message-State: AOAM532NxEwcGrW3YO6j/+KXITFNw3a78yElQxSVR9oNzipcXbDFSeRe
-	hggwDBMIfo0xQKu7RNMwO/aeku3LrlpeZ3o89aQ+bER0
-X-Google-Smtp-Source: ABdhPJze8XC/judxm8Hg0vmq4a1BBPkI0lmfRKgaJwxz5TIMnI59ikVxgb1qHaqetGt2MNyq1KO2Znxanfu4Thhga38=
-X-Received: by 2002:a05:6902:4d4:: with SMTP id v20mr11714647ybs.420.1618324697574;
- Tue, 13 Apr 2021 07:38:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <3542676.qYy7ulQ77K@prime> <20210410003953.1234.9147@diktynna.open-mesh.org>
- <6830943.IaFvOplyQc@prime> <7463417.qeE93hC4D1@ripper>
-In-Reply-To: <7463417.qeE93hC4D1@ripper>
-From: Andi Depressivum <andidepressivum@gmail.com>
-Date: Tue, 13 Apr 2021 16:37:42 +0200
-Message-ID: <CAEX-Y1YnNo7OsEhmRiBSpJ-1sEw9ZiNSNu95HNn67217+ocP9Q@mail.gmail.com>
-Subject: Re: Problems with Multiple Interfaces
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E9646809ED;
+	Wed, 14 Apr 2021 13:36:05 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B04798041C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 14 Apr 2021 13:35:56 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 895A13E885
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 14 Apr 2021 13:35:55 +0200 (CEST)
+Date: Wed, 14 Apr 2021 13:35:53 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: How to mesh over ethernet VLAN?
+Message-ID: <20210414113553.GA4886@otheros>
+References: <CAEX-Y1Z8vHvj_TD-EL-Y9AiSeKV9WHb=BxJMwJx0h5z0xfk5OA@mail.gmail.com>
+ <20210406195122.GG2742@otheros>
+ <CAEX-Y1YfhoLgcwMJAg11H7f785kum6LUrYq=YrKg0C-9vXZ-ZQ@mail.gmail.com>
+ <20210409112432.GJ2742@otheros>
+ <CAEX-Y1ZnouWOpjrT4n8q4BVaRWSP30GLMbT_78Kn3_KoFELp9g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAEX-Y1ZnouWOpjrT4n8q4BVaRWSP30GLMbT_78Kn3_KoFELp9g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Last-TLS-Session-Version: TLSv1.2
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b=MyhpRuE9;
-	spf=pass (diktynna.open-mesh.org: domain of andidepressivum@gmail.com designates 2607:f8b0:4864:20::b32 as permitted sender) smtp.mailfrom=andidepressivum@gmail.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1618324699; a=rsa-sha256;
+	dkim=none;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1618400163; a=rsa-sha256;
 	cv=none;
-	b=KVvaLkm+CPsX/6eA02HZX9cgApPHRbsQMjFbjOmK6xWPOznJhW/l6GZNrGZ0QwvY3a+6wk
-	xoK/HDyedJsawcgLdGL8PjvgQIeffkDOpjKiHRuuvCW0Vryt5tMEq928MfP7deceYucpiU
-	eF3Q9xV2OIVC5qrPdZHpcdyh9DAyWxM=
+	b=YjLs/hPVUkbpUhwh6VgCZYsbY+zAaQoQS/J2roEkMCBTDiLRgIc1P5W8qGeQj/Bs22VM2J
+	tkUCl2jSNa/+RJu/mPq3NMLcReUDJIMWRarapoyTYdAtz5hZSrqIx038oLvmG3pORDe8r0
+	WLjfPOMBgDtCXh4DdfJVlADdNnuso3A=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1618324699;
+	s=20121; t=1618400163;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=khnW0cl8zCiPB5jhEf7/5wGUNhbhMCdajyCYUQieRdY=;
-	b=Dg2DSOVaK/QEKBhC7ApBa9n54uEMAr3QeZP1kfj+rmVfgZRrLxMLN0jmIVZum963skXyIH
-	FTwzO4fbXxlI1vcQEP8231tqkMxuzTHjEs8ark+ZbWxMsG8n7voFpgaTrCQSOjuNZ4Ew/w
-	hb3ZbpRxbM8ba1uBovpFAtOPHh5moqo=
-Message-ID-Hash: XED2OW4E4DFRH3Y4YQG4RNJTROLYW354
-X-Message-ID-Hash: XED2OW4E4DFRH3Y4YQG4RNJTROLYW354
-X-MailFrom: andidepressivum@gmail.com
+	 in-reply-to:in-reply-to:references:references;
+	bh=UcC4nM31vzdJmadZAiqAe0KgOah/z0RiKCgwz/8NFxs=;
+	b=B1uIsBA+g6a4AxoRDnK5BNbd9QxQnibeqQXIy5UWjsBq9sd29yTmmPoiWYQMsZY/GM0VHX
+	xNeqMXpbYP8je5IxqZ3skhMiZRcf4M9kl2QbWps8bwL4T43Xa/dS9MWo81avKb3R8s+teA
+	j9bXkSTN3Q2yYw2rEM6taLs2KRVAIDk=
+Message-ID-Hash: EE6GX2XM6S22ARYNEXPBCXPL55YVCJ46
+X-Message-ID-Hash: EE6GX2XM6S22ARYNEXPBCXPL55YVCJ46
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XED2OW4E4DFRH3Y4YQG4RNJTROLYW354/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EE6GX2XM6S22ARYNEXPBCXPL55YVCJ46/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Am Di., 13. Apr. 2021 um 14:03 Uhr schrieb Sven Eckelmann <sven@narfation.org>:
+On Fri, Apr 09, 2021 at 03:38:15PM +0200, Andi Depressivum wrote:
+> Actual OpenWRT trunk on TP-Link C7 / C2600 devices. Can decrease to
+> anything lower than 1500 but cannot raise above 1500.
 
-> Please avoid the ath10k-ct firmware. And for ath10k, please make sure to set
-> mesh_fwding=0 on the mesh(point) interface.
+Hm, yes, many/most ethernet devices don't support jumbo frames.
 
-This is true for Wave-1 chipsets (QCA98xx) but Wave-2 Chipsets
-(QCA99xx) needs the ath10-ct firmware to get 802.11s running.
+You could test with iperf3 and its --set-mss option if smaller,
+unfragmented frames have a better performance.
 
-Haven't got stable results with BATMAN V in a home mesh environment.
-Nodes could ping each other via batctl ping but IP ping often failed.
-Maybe some issues of mesh routing when many routes to the same target
-had nearly the same link speeds? I'm using a dense setup of many
-routers, so every router is seeing at least 2-3 neighbours. The
-preferred routes (marked with a [*] in batctl o ?) switched quite
-often. How is the BATMAN V metric affected by link quality & hop
-count?
+A few more options to solve this are then:
 
-Regards,
-Andi
+* using the DHCP MTU option on the DHCP server (though many
+  DHCP clients do not properly support this)
+* use iptables MSS clamping (only works for TCP and routed
+  traffic)
+* on a gateway router, set a route to the internet with a lower
+  MTU, which then results in "ICMP packet too big" messages back
+  to the client with containing the desired MTU and the initial
+  host should retry with a smaller packet size
+  (only works for routed traffic)
+
+Or if you have full control of all hosts in the network you can
+also reduce the MTU on the hosts.
+
+Also note batman-adv v2021.0 had some performance
+improvements for frames fragmented by batman-adv:
+
+https://www.open-mesh.org/news/100 ->
+* https://git.open-mesh.org/batman-adv.git/commit/92064deda9b063ca2d5a53b307c6127a9453357c
+* https://git.open-mesh.org/batman-adv.git/commit/0966d5424bb87e863037301488519ccdd69e4d26
+* https://git.open-mesh.org/batman-adv.git/commit/3e3ff987876d3be70d928561acbefe5a48ab1654
+
+Regards, Linus
