@@ -2,117 +2,157 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F3836D0BF
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 28 Apr 2021 05:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A59BB36D231
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 28 Apr 2021 08:28:27 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9AE4F8273A;
-	Wed, 28 Apr 2021 05:05:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1619579156;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 604078043E;
+	Wed, 28 Apr 2021 08:28:26 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3CDFC8043E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 28 Apr 2021 08:28:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1619591301;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 list-id:list-help:list-unsubscribe:list-subscribe:list-post;
-	bh=GcobI4vprC8qT1wtvcGOhGBl0JKphngFN0tEolMkvgs=;
-	b=2PyyI0/5SzKN2xDevGIO3zi89nzNpMamBVAYCHecqnmzjzAxlNZAUTrk/068p10jTZR5nw
-	tK+NjrJFxJ3c0x6vKsZA9R1EjDt9o3Z3GU5Da9jU35JvnQkNVW5mS69rmrOQQuYlMgLVvY
-	6d12JGib71fKkmTobhAGx7zLaQi18DQ=
-Date: Wed, 28 Apr 2021 03:05:47 +0000
+	 in-reply-to:in-reply-to:references:references;
+	bh=98RGn8/mmC0wF7LM/tbhLxDKc0cXfydQjmGXyOtABrI=;
+	b=jpgmwyWEDcmh03jmdATyA624jMoBaLRJuAVj/swrGzeZAod194hHCsPNoTb313E2cvU015
+	j9xaUt7CyNz1ODBAbxxmnHzVvg4L7uTwqRnvPup/5FDZ6qGHRlM1cemXb8mGnZqfueLBf/
+	YsR86sazcX2L4C1Cf6YHk2aBSsAI1UQ=
+From: Sven Eckelmann <sven@narfation.org>
 To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Callback Function
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-X-Mailman-Version: 3.2.1
-Precedence: list
-List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/D7GWQM6XU65KEQWMRLAYQSAPWYQXFI64/>
-List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
-List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
-List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
-List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
-List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
+Subject: Re: Callback Function
+Date: Wed, 28 Apr 2021 08:28:13 +0200
+Message-ID: <3500965.S1Hpm5EVt8@sven-l14>
+In-Reply-To: <pYxS_SbGp4jLwzdYJKID7uwQCI5M1s6eTc1Ib1EohCNZ1HeNzc341ewCY15CatPmfxur4rEV3i6KhcKPlcU_CcxpS5_VSTLwbM_OrYfIaWM=@protonmail.com>
+References: <pYxS_SbGp4jLwzdYJKID7uwQCI5M1s6eTc1Ib1EohCNZ1HeNzc341ewCY15CatPmfxur4rEV3i6KhcKPlcU_CcxpS5_VSTLwbM_OrYfIaWM=@protonmail.com>
 MIME-Version: 1.0
-Message-ID: <161957915635.1314.16696904735566517476@diktynna.open-mesh.org>
-From: "BrainGeek via B.A.T.M.A.N" <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: BrainGeek <braingeek@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============1894147942680285681=="
-
---===============1894147942680285681==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-The sender domain has a DMARC Reject/Quarantine policy which disallows
-sending mailing list messages using the original "From" header.
-
-To mitigate this problem, the original message has been wrapped
-automatically by the mailing list software.
---===============1894147942680285681==
-Content-Type: message/rfc822
-MIME-Version: 1.0
-Content-Disposition: inline
-
-Received: from mail-40135.protonmail.ch (mail-40135.protonmail.ch [185.70.40.135])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F020080024
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 28 Apr 2021 05:05:54 +0200 (CEST)
-Date: Wed, 28 Apr 2021 03:05:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail; t=1619579154;
-	bh=xF2CDAAlL8ebjOI6DLJrIaG417fp/awLAFxO7sk8XR0=;
-	h=Date:To:From:Reply-To:Subject:From;
-	b=drYGazauUAyezjAK7mAGsPqkFFMztuTM28pLI7bl9srXFXi/U7PBZEvvrCK2VGjLg
-	 BPO28HsEq6SWfaty9ZYHAsU75i7dVpCprO//kfGckuDx/upzG+9gfoxmRGMt/E45rd
-	 O0Lce608LSdCKBXRUTb3FhmE9m3tYi67DPSqSXPE=
-To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-From: BrainGeek <braingeek@protonmail.com>
-Subject: Callback Function
-Message-ID: <pYxS_SbGp4jLwzdYJKID7uwQCI5M1s6eTc1Ib1EohCNZ1HeNzc341ewCY15CatPmfxur4rEV3i6KhcKPlcU_CcxpS5_VSTLwbM_OrYfIaWM=@protonmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-	autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-	mailout.protonmail.ch
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1619579155; a=rsa-sha256;
+Content-Type: multipart/signed; boundary="nextPart1987721.Iqeva8pZxL"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1619591303; a=rsa-sha256;
 	cv=none;
-	b=G15MtSwkkbtH31FyAb79M3SuDDHgG5KLr0ZWvicdBSwCalBuwMKUCm7ttTvBYsHBCdZWAy
-	CQ31vmfBiyCLp7z47GynFlFv9pmiboawhwWG4UwDzw6M/kYqZidvEjyNxk4qLjZhg49gAW
-	fuFpjYdlh3Tre/ESSbTrFUAIKU2BuFI=
+	b=qkkPJfdJct8EZZhr7mht9T3N50olCQnpZvIFbOsALKFRIB7DjgesvUoiZrZQ52p7s5lqgn
+	N1QKlr8p8GPqMXfnBOW2CuEXLu4AthkixBG2yfTAEyUQF4ryVhi4gbIVUq28yC85KVKUfn
+	7fRZrNQhjFcR5CXim9eC6DucS7WhyeE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=protonmail.com header.s=protonmail header.b=drYGazau;
-	spf=pass (diktynna.open-mesh.org: domain of braingeek@protonmail.com designates 185.70.40.135 as permitted sender) smtp.mailfrom=braingeek@protonmail.com
+	dkim=pass header.d=narfation.org header.s=20121 header.b=jpgmwyWE;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1619579155;
-	h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=xF2CDAAlL8ebjOI6DLJrIaG417fp/awLAFxO7sk8XR0=;
-	b=kWTZqc+tLfur0pD6eXTrHmZjlmUIlNGPaB/T3N9gZwZ7LDPvpTPwmFbSUtZ0Jozw3uY1Ig
-	vV5/hXyi8YdSkBMeTQ8QZrpjSWpLIxhFUY8HGbNENfPh/tvwMjtUAydgCyd/umurR+6GKT
-	HTpakItQrx934e3vlld5v2p86e1Ta+o=
-Message-ID-Hash: D7GWQM6XU65KEQWMRLAYQSAPWYQXFI64
-X-Message-ID-Hash: D7GWQM6XU65KEQWMRLAYQSAPWYQXFI64
-X-MailFrom: braingeek@protonmail.com
+	s=20121; t=1619591303;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=98RGn8/mmC0wF7LM/tbhLxDKc0cXfydQjmGXyOtABrI=;
+	b=0PfoytPktjxuZlR0shp5GiZTHlo2cqyU4Ai0IwJdayRqJk3f1CLUCIUk7c7pdBc324fRIN
+	Kro6Eh5lYOhRbOt7B6qqITPpy7n0c3NtJNPG+xp8NwR6deZeW4NzLlQRiA4CNUSGzGfo7B
+	AY7pMIZeg1XcnpIhd4CyFdn4S+mH1Ew=
+Message-ID-Hash: JLZQNRY42XV22Q6BWJ6CTLQXA2ETLF6K
+X-Message-ID-Hash: JLZQNRY42XV22Q6BWJ6CTLQXA2ETLF6K
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: BrainGeek <braingeek@protonmail.com>, Anatoliy Lapitskiy <anatoliy.lapitskiy@gmail.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
-Reply-To: BrainGeek <braingeek@protonmail.com>, The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/D7GWQM6XU65KEQWMRLAYQSAPWYQXFI64/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JLZQNRY42XV22Q6BWJ6CTLQXA2ETLF6K/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-With ALFRED I've noticed a parameter you can pass into it labeled "-c" whic=
-h is described to be a callback. I've tried things like "-c poweroff" just =
-to make it obvious that the callback worked, but to no avail. How can I pro=
-perly use this feature and how does it work?
+--nextPart1987721.Iqeva8pZxL
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: BrainGeek <braingeek@protonmail.com>, Anatoliy Lapitskiy <anatoliy.lapitskiy@gmail.com>
+Subject: Re: Callback Function
+Date: Wed, 28 Apr 2021 08:28:13 +0200
+Message-ID: <3500965.S1Hpm5EVt8@sven-l14>
+In-Reply-To: <pYxS_SbGp4jLwzdYJKID7uwQCI5M1s6eTc1Ib1EohCNZ1HeNzc341ewCY15CatPmfxur4rEV3i6KhcKPlcU_CcxpS5_VSTLwbM_OrYfIaWM=@protonmail.com>
+References: <pYxS_SbGp4jLwzdYJKID7uwQCI5M1s6eTc1Ib1EohCNZ1HeNzc341ewCY15CatPmfxur4rEV3i6KhcKPlcU_CcxpS5_VSTLwbM_OrYfIaWM=@protonmail.com>
 
-I'm currently running ALFRED and batman-adv on my Raspberry Pi 4. All the s=
-oftware is up-to-date.
---===============1894147942680285681==--
+On Wednesday, 28 April 2021 05:05:47 CEST BrainGeek wrote:
+> With ALFRED I've noticed a parameter you can pass into it labeled "-c" which is described to be a callback. I've tried things like "-c poweroff" just to make it obvious that the callback worked, but to no avail. How can I properly use this feature and how does it work?
+
+Please have a look at the manpage [1].
+
+    Specify command to execute on data change. It will be called
+    with data-type list as arguments.
+
+As you can see, the called command will have additional values added to the 
+end. So you have to keep in mind that some commands don't like it when they 
+receive extra parameters at the end. Let us simulate this with poweroff:
+
+    $ poweroff 1
+    Too many arguments.
+
+So this will not work. You have to add some kind of wrapper which evaluates 
+the numbers and then calls poweroff at the appropriate time. Let us define 
+a small test script on host 1.
+
+    host1$ cat > /tmp/alfred_cmd.sh << "EOF"
+    #! /bin/sh
+    
+    echo "$(date): $@" >> /tmp/alfred_cmd_log
+    
+    for i in "$@"; do
+       if [ "$i" = "123" ]; then
+          poweroff
+       fi
+    done
+    EOF
+    
+    host1$ chmod +x /tmp/alfred_cmd.sh
+
+And now start the alfred instances on both hosts:
+
+    host1$  alfred -m -i bat0 -c /tmp/alfred_cmd.sh
+    host2$  alfred -m -i bat0
+
+
+You can now inject data on host2
+
+    host2$ echo foobar | alfred -s 65
+
+and see the changed data-types on host1
+
+   host1$ touch /tmp/alfred_cmd_log
+   host1$ tail -f /tmp/alfred_cmd_log
+
+
+If you write something to data-type 123 and you alfred instance is running 
+with high enough privileges then it might shut down the system.
+
+Kind regards,
+	Sven
+
+
+[1] https://downloads.open-mesh.org/batman/manpages/alfred.8.html
+--nextPart1987721.Iqeva8pZxL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmCJAH0ACgkQXYcKB8Em
+e0afhRAAx5EbwyB+6THQhLOgkPdx+0LV4uOJuRt98SW6HhFYPQxtLWTFF0xzcbfG
+Yt4sl/R60lNNwoXp+4kV03bytENM12JP3nO9htkKsaB5h7Xai1qmXyVyk+GLv6VI
+Kp1B9Auq+PA3zIADeBKxNiRHlEolY8FZb3xbYBIQVq/FjubT+nVuDbe029HVj8wP
+Yhy9cafgPZRgfRg3tnTyGMH4SvxII2m/4i9hr218bB6nkj1H+npL9sG48vk7JbEh
+CkxUR3qJvz0IZEZftATbE4Iz/UAdhn02tK/RxZJllRSUgcQusFigoihEjvPXMAx1
+O1WAF1D3Xs1FgNn9iqd1WUeGLts4WVYX4K7cibGIkHfiyIsspY/VagUvnGOJipcL
+AylqlEeguW1qzWTAfstoMuxkSWwaHUfH4oQoXBUxS/bJlp2Osj/9D54+SoI9kG2F
+eCdJ2eN4SIui9+t4wGzKBHwlqx0LcTbI8PWF9KuSmMH3Mz0NPWptoP7gRdwHF8p7
+Kpo4eCkztMKBzKYedwk8prHuCotr1NFzyhKaiBc5Ss7ORg5rIA+p/9QNWrSg/9bo
+VEibeNbq3+dVyBRejSHHqXP9pJCmIiW+y2pf8IkXSAoznxOwmyUzb4bqVsifXJ37
+jKLPbDMVF2Wg3h4jaEa8mTGgKTjIOO/sd6jR4Sijn3CI/zfhaa4=
+=eHcD
+-----END PGP SIGNATURE-----
+
+--nextPart1987721.Iqeva8pZxL--
+
+
