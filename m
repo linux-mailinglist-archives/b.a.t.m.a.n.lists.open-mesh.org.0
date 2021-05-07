@@ -1,76 +1,76 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D3437696A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 May 2021 19:20:51 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F3D2376976
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 May 2021 19:22:48 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 68CBE80701;
-	Fri,  7 May 2021 19:20:50 +0200 (CEST)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1CD5C8026B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 May 2021 19:20:46 +0200 (CEST)
-Received: by mail-wm1-x32b.google.com with SMTP id s82so5661573wmf.3
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 07 May 2021 10:20:46 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6661C80782;
+	Fri,  7 May 2021 19:22:47 +0200 (CEST)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9B60C8078B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 May 2021 19:22:43 +0200 (CEST)
+Received: by mail-wm1-x32a.google.com with SMTP id g65so5672544wmg.2
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 07 May 2021 10:22:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+pTRqh5MTjtsbALCsfMCgXFpMgKxXlX9vWz/DxIsKzI=;
-        b=jPL6717ifOx3q+RZZUhxM1wiTApIlcePAvmH/k6XsRRyJYpTzSN+0TjLXAQ/fU8KGW
-         IqgLUfwjdYHpQ4kwJTCl6vZGIseoimVN2VyHd6c9myAIvzyUm2+vdTKJkwxy3qOkxMtR
-         ZAH4cYb1uhmQZao1HhaIhoti7JowP7ux3Ogo84jZPRdUNe611DlYARLZWLEfJqNulR8E
-         D/D2mSCuM67+4fz96oNOIQR3YViHHkeACyICxY6o/dqUWPqYjDRh4l43kbjDJljrTSxZ
-         IMEgTSpiI98/DujQy4kQlfvssxs58MD9Tz+k5jxuRwCc8H5p4/fvL4G4l46VzRGDHJLe
-         Sw7Q==
+        bh=QuNNpm/02GWBjqtz+O16xdRwcWjMLRAmXRrxMGHa9ns=;
+        b=DNYXZbwdWCxDyEzKk879tJk0DjcHC1tNj22Ch9NMBo6qU0ioFsJDKgNOxsn1ZWggSj
+         ydiXrcTRwwJabQb7ae4tT7Osm9CRYdbEt/+W+vLJZQBX7ia96XP60OI6FGo8xeKBaBoQ
+         whrgIBK68U7D+ItpHhqDH21hwX3ZjbRzAseUOGsAf4QXMSKx/cY3hFB+krkp1TnAN1D4
+         xNgNZSjPrJ230cpxYsFwRt8radi+p4f/I5I3wd9WVs+z7tQ7WE1omBoQGV009lGmEleo
+         heMCq+cwh39TbmWAd0R8raxgjk2hQmalZf61aC6xyd4xw5OxOZFnP7g8HPGR0OFycitf
+         S39g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+pTRqh5MTjtsbALCsfMCgXFpMgKxXlX9vWz/DxIsKzI=;
-        b=Jl0YkUWwdz3fmPJjnZ8MCqkrkjP+ZmwEc3TCgqNGs0P7yDKKn2cn9/ov0MNdPNJuaj
-         sEMaL7PYoAM2iK9DNbIx7WfgecCz7cNmV9DpvZsZLPYmKJQted/ELEwFlX6M4R9F3NmX
-         KVRMLTfcdk0NJh0eN0kwq1+5npKzohSgt/XZP7bWEDqSZ9QubsqV7RNzxEYkmMfPSPmF
-         ZZhPtAwq7+4rfN+jx6VjnCgaoUotKrujc3SjDr1vghKfIesbemwqkuSbNKMwKHIMLa+b
-         IK7mU21oSH0qMff0/0Hc6a8w5YIexmffhG/4OTa0fNccKgJIliMN60vavB0L1riUqonT
-         TLTg==
-X-Gm-Message-State: AOAM533GunR9vXgVp9/4szfVsossAp2nnE0F0IaOWTXSJ+hRzJ+uhcaE
-	1LjHFHnoPe/bU24C4MM92+DQy6273vsiNR11
-X-Google-Smtp-Source: ABdhPJzgr9pT4GDtO/JpfDSIQ+jOPM8TokiXCDLqPv5fyHW1GzyETYkdrnSJKQexOXA+IlazXVDhCQ==
-X-Received: by 2002:a05:600c:2994:: with SMTP id r20mr22242909wmd.37.1620407664405;
-        Fri, 07 May 2021 10:14:24 -0700 (PDT)
+        bh=QuNNpm/02GWBjqtz+O16xdRwcWjMLRAmXRrxMGHa9ns=;
+        b=EIE5cxRR69qNSaVHHRDs6p3QsEv7Y8INBKNCkHHL5Lhclan7i7oFZywXQNkgezN1Eo
+         scTPiLrwfdvtt1mPbIJORc6c/PX+wXUp2kDpHac5C4v0MxgiWZgPwr+6WuXvX3dLwmid
+         CqSrnBwNJcV+MVxRHmsVX/sD3RR68rulebAwjVJNwzbsfGpkHE5JhNENusI9BtNUDcDf
+         AMpTMtNCJ7C9dFPZkj13z+6J0zCI694C1yRQmXnnnQ57s/af5DXCokzL3v+bw8CvT4cq
+         PFQXXJTjciqNWQC8aSjNjZ9xoBC7junpJcEgJOexPNzyBBxpkNrzizJ/oWChrw0hB37n
+         oWPw==
+X-Gm-Message-State: AOAM531w99PZnJrT0+3/nggXzH+tN6qFvxXVuSCoUd86VHqQO87kje98
+	qUB2Yq8BpkX2sgzdT/V33DT53lDU9ZMC7EM/
+X-Google-Smtp-Source: ABdhPJzmTnqcVuura/Zc5F+RPG0DSEepWQyvZERnSClf2MiTtp4sxkC7QVBiGAyrBaYucneDZNw9zg==
+X-Received: by 2002:a1c:7e82:: with SMTP id z124mr22497856wmc.51.1620407686215;
+        Fri, 07 May 2021 10:14:46 -0700 (PDT)
 Received: from machine.fritz.box (p4fc0a3a3.dip0.t-ipconnect.de. [79.192.163.163])
-        by smtp.googlemail.com with ESMTPSA id y14sm9572321wrr.82.2021.05.07.10.14.23
+        by smtp.googlemail.com with ESMTPSA id l12sm8897064wrm.76.2021.05.07.10.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 May 2021 10:14:23 -0700 (PDT)
+        Fri, 07 May 2021 10:14:45 -0700 (PDT)
 From: Alexander Sarmanow <asarmanow@gmail.com>
 To: sven@narfation.org
-Subject: [PATCH v2 1/2] batctl: Add generic JSON interface
-Date: Fri,  7 May 2021 19:14:14 +0200
-Message-Id: <20210507171414.369399-1-asarmanow@gmail.com>
+Subject: [PATCH v2 2/2] batctl: Add JSON debug commands
+Date: Fri,  7 May 2021 19:14:35 +0200
+Message-Id: <20210507171435.370648-1-asarmanow@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620408047; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620408163; a=rsa-sha256;
 	cv=none;
-	b=OcoryFzVS3Fnr5opKaafA1fTqMBZCbNRWOnPQQ6C/DLl/k1VMIAo5yOnLQ5a1QotPfRs5N
-	SoyNC0YinLk9dD4UljDR4rvM5YF2EyYmUM5r7ExV49Ns/PekXb4exYwhDsFAxfdU0oNE6j
-	3ycTaqOtnhqxp/u5KTRwmQMsRkCfGow=
+	b=28o/PUkG1HMF34Z+MSk36cjCCTKNCtLxHDCCcl+RTQVGVZ1piMa2vvMqBPnj6mV8w6XfA9
+	5i+zJxOYKtRjuunAuGhYB48qOQMK+o1kjZlWNprAGY2RUWkxyObH/2xlFzt5oPqyujjFc+
+	4T+BhJYTxeh2JrrBQHhSlaAvm1JlC/k=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b=jPL6717i;
-	spf=pass (diktynna.open-mesh.org: domain of asarmanow@gmail.com designates 2a00:1450:4864:20::32b as permitted sender) smtp.mailfrom=asarmanow@gmail.com
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=DNYXZbwd;
+	spf=pass (diktynna.open-mesh.org: domain of asarmanow@gmail.com designates 2a00:1450:4864:20::32a as permitted sender) smtp.mailfrom=asarmanow@gmail.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1620408047;
+	s=20121; t=1620408163;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=+pTRqh5MTjtsbALCsfMCgXFpMgKxXlX9vWz/DxIsKzI=;
-	b=FWRf/+oqH+14sD4eqbgftxvoX4E36IykhgyGrAQ8f+B3Y7vzvcvKAsm4fkK0hqDlL6VkZs
-	M53GC84mXVEy+2Hegd1lZju7KgqwNn54kGEvBD6jY156JPd5LB9SAlKbk9hZFrw3mXralM
-	eeQsNo/zOajLv/9f+UPxZvQCf1SXa9c=
+	bh=QuNNpm/02GWBjqtz+O16xdRwcWjMLRAmXRrxMGHa9ns=;
+	b=lX4hkyzDdcakQcnYYQWYgZOYIYm4Z67Ly6dIs3twEYJk1ARrShql4O63QSPA/DF8/v/TsD
+	YQSwVgvFRINbBqcIzQJgj9ZLJMLtqWtRx2U119DMnsdBRXeRoxxjV28YnkiJLum4Lzmaf/
+	1VMcWZpdgrZrse5BLdWphJRmhceDnRI=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: UK7VM2EYAVUYDO3T5ZWIDPYBD2UJSCC5
-X-Message-ID-Hash: UK7VM2EYAVUYDO3T5ZWIDPYBD2UJSCC5
+Message-ID-Hash: CRDNONPIS7U7KALMQGV43OG4T6RE52HK
+X-Message-ID-Hash: CRDNONPIS7U7KALMQGV43OG4T6RE52HK
 X-MailFrom: asarmanow@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: b.a.t.m.a.n@lists.open-mesh.org, Alexander Sarmanow <asarmanow@gmail.com>
@@ -78,600 +78,877 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UK7VM2EYAVUYDO3T5ZWIDPYBD2UJSCC5/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CRDNONPIS7U7KALMQGV43OG4T6RE52HK/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-To print JSON strings in a generic way a second nla_policy is used, with
-a name (dict key) and a callback function for each entry corresponding
-to its formats.
-There are multiple callback functions created, most of them are straight
-forward. The nljson_print_ttflags() needed more logic behind it, because
-of its dependency with the last_seen_msecs entry and whether local or
-global table is requested.
+According to part 1 of this patch following commands will be added to
+the JSON debug: meshinfo_json, originators_json, neighbors_json,
+translocal_json, transglobal_json.
 
 Signed-off-by: Alexander Sarmanow <asarmanow@gmail.com>
 ---
- backbonetable.c |   2 +-
- claimtable.c    |   2 +-
- dat_cache.c     |   2 +-
- gateways.c      |   2 +-
- main.h          |   2 +
- mcast_flags.c   |   2 +-
- neighbors.c     |   2 +-
- netlink.c       | 282 +++++++++++++++++++++++++++++++++++++++++++++++-
- netlink.h       |  37 ++++++-
- originators.c   |   2 +-
- transglobal.c   |   2 +-
- translocal.c    |   2 +-
- 12 files changed, 328 insertions(+), 11 deletions(-)
+ Makefile           |   5 ++
+ gateways.c         |   2 +-
+ main.c             |  14 +++--
+ main.h             |   1 +
+ mcast_flags.c      |   2 +-
+ meshinfo_json.c    | 139 +++++++++++++++++++++++++++++++++++++++++++++
+ neighbors_json.c   |  89 +++++++++++++++++++++++++++++
+ netlink.c          |  39 ++++++++-----
+ netlink.h          |   2 +-
+ originators.c      |   2 +-
+ originators_json.c | 107 ++++++++++++++++++++++++++++++++++
+ transglobal_json.c | 109 +++++++++++++++++++++++++++++++++++
+ translocal_json.c  | 102 +++++++++++++++++++++++++++++++++
+ 13 files changed, 592 insertions(+), 21 deletions(-)
+ create mode 100644 meshinfo_json.c
+ create mode 100644 neighbors_json.c
+ create mode 100644 originators_json.c
+ create mode 100644 transglobal_json.c
+ create mode 100644 translocal_json.c
 
-diff --git a/backbonetable.c b/backbonetable.c
-index 17fbd1d..11cec32 100644
---- a/backbonetable.c
-+++ b/backbonetable.c
-@@ -98,7 +98,7 @@ static int netlink_print_bla_backbone(struct state *sta=
-te, char *orig_iface,
- 				    orig_timeout, watch_interval,
- 				    "Originator           VID   last seen (CRC   )\n",
- 				    BATADV_CMD_GET_BLA_BACKBONE,
--				    bla_backbone_callback);
-+				    bla_backbone_callback, 0);
- }
+diff --git a/Makefile b/Makefile
+index 98bf695..0f85561 100755
+--- a/Makefile
++++ b/Makefile
+@@ -54,13 +54,16 @@ $(eval $(call add_command,interface,y))
+ $(eval $(call add_command,isolation_mark,y))
+ $(eval $(call add_command,loglevel,y))
+ $(eval $(call add_command,mcast_flags,y))
++$(eval $(call add_command,meshinfo_json,y))
+ $(eval $(call add_command,multicast_fanout,y))
+ $(eval $(call add_command,multicast_forceflood,y))
+ $(eval $(call add_command,multicast_mode,y))
+ $(eval $(call add_command,neighbors,y))
++$(eval $(call add_command,neighbors_json,y))
+ $(eval $(call add_command,network_coding,y))
+ $(eval $(call add_command,orig_interval,y))
+ $(eval $(call add_command,originators,y))
++$(eval $(call add_command,originators_json,y))
+ $(eval $(call add_command,ping,y))
+ $(eval $(call add_command,routing_algo,y))
+ $(eval $(call add_command,statistics,y))
+@@ -69,8 +72,10 @@ $(eval $(call add_command,throughput_override,y))
+ $(eval $(call add_command,throughputmeter,y))
+ $(eval $(call add_command,traceroute,y))
+ $(eval $(call add_command,transglobal,y))
++$(eval $(call add_command,transglobal_json,y))
+ $(eval $(call add_command,translate,y))
+ $(eval $(call add_command,translocal,y))
++$(eval $(call add_command,translocal_json,y))
 =20
- static struct debug_table_data batctl_debug_table_backbonetable =3D {
-diff --git a/claimtable.c b/claimtable.c
-index b6bf9f5..0bf017d 100644
---- a/claimtable.c
-+++ b/claimtable.c
-@@ -103,7 +103,7 @@ static int netlink_print_bla_claim(struct state *stat=
-e, char *orig_iface,
- 				    orig_timeout, watch_interval,
- 				    "Client               VID      Originator        [o] (CRC   )\n"=
-,
- 				    BATADV_CMD_GET_BLA_CLAIM,
--				    bla_claim_callback);
-+				    bla_claim_callback, 0);
- }
+ MANPAGE =3D man/batctl.8
 =20
- static struct debug_table_data batctl_debug_table_claimtable =3D {
-diff --git a/dat_cache.c b/dat_cache.c
-index 8d47171..109e553 100644
---- a/dat_cache.c
-+++ b/dat_cache.c
-@@ -116,7 +116,7 @@ static int netlink_print_dat_cache(struct state *stat=
-e, char *orig_iface,
- 	ret =3D netlink_print_common(state, orig_iface, read_opts,
- 				   orig_timeout, watch_interval, header,
- 				   BATADV_CMD_GET_DAT_CACHE,
--				   dat_cache_callback);
-+				   dat_cache_callback, 0);
-=20
- 	free(header);
- 	return ret;
 diff --git a/gateways.c b/gateways.c
-index 7625bd8..867c882 100644
+index 867c882..3704c99 100644
 --- a/gateways.c
 +++ b/gateways.c
-@@ -141,7 +141,7 @@ static int netlink_print_gateways(struct state *state=
+@@ -123,7 +123,7 @@ static int netlink_print_gateways(struct state *state=
 , char *orig_iface,
- 				    orig_timeout, watch_interval,
- 				    header,
- 				    BATADV_CMD_GET_GATEWAYS,
--				    gateways_callback);
-+				    gateways_callback, 0);
- }
+ 	/* only parse routing algorithm name */
+ 	last_err =3D -EINVAL;
+ 	info_header =3D netlink_get_info(state->mesh_ifindex,
+-				       BATADV_CMD_GET_ORIGINATORS, NULL);
++				       BATADV_CMD_GET_ORIGINATORS, NULL, 0);
+ 	free(info_header);
 =20
- static struct debug_table_data batctl_debug_table_gateways =3D {
+ 	if (strlen(algo_name_buf) =3D=3D 0)
+diff --git a/main.c b/main.c
+index d9b63f3..1371bc0 100644
+--- a/main.c
++++ b/main.c
+@@ -43,6 +43,10 @@ static void print_usage(void)
+ 			.label =3D "debug tables:                                   \tdisplay=
+ the corresponding debug table\n",
+ 			.types =3D BIT(DEBUGTABLE),
+ 		},
++		{
++			.label =3D "debug JSONs:                                   \tdisplay =
+the corresponding debug JSON\n",
++			.types =3D BIT(DEBUGJSON),
++		},
+ 	};
+ 	const char *default_prefixes[] =3D {
+ 		"",
+@@ -67,9 +71,9 @@ static void print_usage(void)
+ 	char buf[64];
+ 	size_t i;
+=20
+-	fprintf(stderr, "Usage: batctl [options] command|debug table [parameter=
+s]\n");
++	fprintf(stderr, "Usage: batctl [options] command|debug table|debug json=
+ [parameters]\n");
+ 	fprintf(stderr, "options:\n");
+-	fprintf(stderr, " \t-h print this help (or 'batctl <command|debug table=
+> -h' for the parameter help)\n");
++	fprintf(stderr, " \t-h print this help (or 'batctl <command|debug table=
+|debug json> -h' for the parameter help)\n");
+ 	fprintf(stderr, " \t-v print version\n");
+=20
+ 	for (i =3D 0; i < sizeof(type) / sizeof(*type); i++) {
+@@ -87,6 +91,7 @@ static void print_usage(void)
+ 				continue;
+=20
+ 			switch (cmd->type) {
++			case DEBUGJSON:
+ 			case DEBUGTABLE:
+ 			case SUBCOMMAND_MIF:
+ 				prefixes =3D meshif_prefixes;
+@@ -167,7 +172,8 @@ static const struct command *find_command(struct stat=
+e *state, const char *name)
+ 		/* fall through */
+ 	case SP_MESHIF:
+ 		types |=3D BIT(SUBCOMMAND_MIF) |
+-			 BIT(DEBUGTABLE);
++			 BIT(DEBUGTABLE)     |
++			 BIT(DEBUGJSON);
+ 		break;
+ 	case SP_VLAN:
+ 		types =3D BIT(SUBCOMMAND_VID);
+@@ -380,7 +386,7 @@ int main(int argc, char **argv)
+ 	cmd =3D find_command(&state, argv[0]);
+ 	if (!cmd) {
+ 		fprintf(stderr,
+-			"Error - no valid command or debug table specified: %s\n",
++			"Error - no valid command or debug table/JSON specified: %s\n",
+ 			argv[0]);
+ 		goto err;
+ 	}
 diff --git a/main.h b/main.h
-index 81b7a27..b1ff050 100644
+index b1ff050..2efd136 100644
 --- a/main.h
 +++ b/main.h
-@@ -44,6 +44,8 @@ extern char module_ver_path[];
+@@ -71,6 +71,7 @@ enum command_type {
+ 	SUBCOMMAND_VID,
+ 	SUBCOMMAND_HIF,
+ 	DEBUGTABLE,
++	DEBUGJSON,
+ };
 =20
- #define ARRAY_SIZE(x) (sizeof(x) / sizeof(*(x)))
-=20
-+#define BOOL_STRING(x) (x ? "true" : "false")
-+
- #ifndef container_of
- #define container_of(ptr, type, member) __extension__ ({ \
- 	const __typeof__(((type *)0)->member) *__pmember =3D (ptr); \
+ struct state {
 diff --git a/mcast_flags.c b/mcast_flags.c
-index 721f549..cb6e89d 100644
+index cb6e89d..87fb077 100644
 --- a/mcast_flags.c
 +++ b/mcast_flags.c
-@@ -147,7 +147,7 @@ static int netlink_print_mcast_flags(struct state *st=
+@@ -105,7 +105,7 @@ static int netlink_print_mcast_flags(struct state *st=
 ate, char *orig_iface,
- 	ret =3D netlink_print_common(state, orig_iface, read_opts,
- 				   orig_timeout, watch_interval, header,
- 				   BATADV_CMD_GET_MCAST_FLAGS,
--				   mcast_flags_callback);
-+				   mcast_flags_callback, 0);
 =20
- 	free(header);
- 	return ret;
-diff --git a/neighbors.c b/neighbors.c
-index af76d0f..2a50e78 100644
---- a/neighbors.c
-+++ b/neighbors.c
-@@ -114,7 +114,7 @@ static int netlink_print_neighbors(struct state *stat=
-e, char *orig_iface,
- 				    orig_timeout, watch_interval,
- 				    "IF             Neighbor              last-seen\n",
- 				    BATADV_CMD_GET_NEIGHBORS,
--				    neighbors_callback);
-+				    neighbors_callback, 0);
- }
+ 	/* only parse own multicast flags */
+ 	info_header =3D netlink_get_info(state->mesh_ifindex,
+-				       BATADV_CMD_GET_MCAST_FLAGS, NULL);
++				       BATADV_CMD_GET_MCAST_FLAGS, NULL, 0);
+ 	free(info_header);
 =20
- static struct debug_table_data batctl_debug_table_neighbors =3D {
+ 	if (mcast_flags =3D=3D -EOPNOTSUPP || mcast_flags_priv =3D=3D -EOPNOTSU=
+PP)
+diff --git a/meshinfo_json.c b/meshinfo_json.c
+new file mode 100644
+index 0000000..8c6f675
+--- /dev/null
++++ b/meshinfo_json.c
+@@ -0,0 +1,139 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (C) B.A.T.M.A.N. contributors:
++ *
++ * Alexander Sarmanow <asarmanow@gmail.com>
++ *
++ * License-Filename: LICENSES/preferred/GPL-2.0
++ */
++
++#include <errno.h>
++#include <netlink/netlink.h>
++#include <netlink/genl/genl.h>
++#include <netlink/genl/ctrl.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdint.h>
++
++#include "batman_adv.h"
++#include "debug.h"
++#include "main.h"
++#include "netlink.h"
++
++static const int info_mandatory[] =3D {
++	BATADV_ATTR_MESH_IFINDEX,
++	BATADV_ATTR_MESH_IFNAME,
++};
++
++static int meshinfo_callback(struct nl_msg *msg, void *arg)
++{
++	struct print_opts *opts =3D arg;
++	struct nlattr *attrs[BATADV_ATTR_MAX+1];
++	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
++	struct genlmsghdr *ghdr;
++	int selected_attrs[10] =3D { BATADV_ATTR_MESH_IFNAME,
++				   BATADV_ATTR_MESH_ADDRESS,
++				   BATADV_ATTR_HARD_IFNAME,
++				   BATADV_ATTR_VERSION,
++				   BATADV_ATTR_ALGO_NAME,
++				   BATADV_ATTR_HARD_ADDRESS,
++				   BATADV_ATTR_TT_TTVN };
++
++	if (!genlmsg_valid_hdr(nlh, 0)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	ghdr =3D nlmsg_data(nlh);
++
++	if (ghdr->cmd !=3D BATADV_CMD_GET_MESH_INFO)
++		return NL_OK;
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	if (missing_mandatory_attrs(attrs, info_mandatory,
++				    ARRAY_SIZE(info_mandatory))) {
++		fputs("Missing attributes from kernel\n", stderr);
++		exit(1);
++	}
++
++	netlink_print_json_entries(attrs, selected_attrs,
++				   ARRAY_SIZE(selected_attrs), opts);
++	opts->is_first =3D 0;
++
++	return NL_OK;
++}
++
++static int netlink_print_meshinfo_json(struct state *state, char *orig_i=
+face,
++				       int read_opts, float orig_timeout,
++				       float watch_interval)
++{
++	(void) orig_iface;
++	(void) orig_timeout;
++	(void) watch_interval;
++       	(void) read_opts;
++	struct nl_sock *sock;
++	struct nl_msg *msg;
++	struct nl_cb *cb;
++	struct print_opts opts =3D {
++		.is_json =3D 1,
++		.is_first =3D 1,
++	};
++	int family;
++
++	if (!state->sock) {
++		last_err =3D -EOPNOTSUPP;
++		return last_err;
++	}
++
++	sock =3D nl_socket_alloc();
++	if (!sock)
++		return -1;
++
++	genl_connect(sock);
++
++	family =3D genl_ctrl_resolve(sock, BATADV_NL_NAME);
++	if (family < 0) {
++		nl_socket_free(sock);
++		return -1;
++	}
++
++	msg =3D nlmsg_alloc();
++	if (!msg) {
++		nl_socket_free(sock);
++		return -1;
++	}
++
++	genlmsg_put(msg, NL_AUTO_PID, NL_AUTO_SEQ, family, 0, 0,
++		    BATADV_CMD_GET_MESH_INFO, 1);
++
++	nla_put_u32(msg, BATADV_ATTR_MESH_IFINDEX, state->mesh_ifindex);
++
++	nl_send_auto_complete(sock, msg);
++
++	nlmsg_free(msg);
++
++	cb =3D nl_cb_alloc(NL_CB_DEFAULT);
++	if (!cb)
++		goto err_free_sock;
++
++	nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, meshinfo_callback, &opts);
++	nl_cb_err(cb, NL_CB_CUSTOM, netlink_print_error, NULL);
++
++	nl_recvmsgs(sock, cb);
++
++err_free_sock:
++	nl_socket_free(sock);
++
++	return 0;
++}
++
++static struct debug_table_data batctl_debug_json_meshinfo =3D {
++	.netlink_fn =3D netlink_print_meshinfo_json,
++};
++
++COMMAND_NAMED(DEBUGJSON, meshinfo_json, "mij", handle_debug_table,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_debug_json_meshinfo, "");
+diff --git a/neighbors_json.c b/neighbors_json.c
+new file mode 100644
+index 0000000..5182e47
+--- /dev/null
++++ b/neighbors_json.c
+@@ -0,0 +1,89 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (C) B.A.T.M.A.N. contributors:
++ *
++ * Andrew Lunn <andrew@lunn.ch>
++ * Alexander Sarmanow <asarmanow@gmail.com>
++ *
++ * License-Filename: LICENSES/preferred/GPL-2.0
++ */
++
++#include <net/if.h>
++#include <netinet/if_ether.h>
++#include <netlink/netlink.h>
++#include <netlink/genl/genl.h>
++#include <netlink/genl/ctrl.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdint.h>
++
++#include "batadv_packet.h"
++#include "batman_adv.h"
++#include "bat-hosts.h"
++#include "debug.h"
++#include "functions.h"
++#include "main.h"
++#include "netlink.h"
++
++static const int neighbors_mandatory[] =3D {
++	BATADV_ATTR_NEIGH_ADDRESS,
++	BATADV_ATTR_HARD_IFINDEX,
++	BATADV_ATTR_LAST_SEEN_MSECS,
++};
++
++static int neighbors_json_callback(struct nl_msg *msg, void *arg)
++{
++	struct nlattr *attrs[BATADV_ATTR_MAX+1];
++	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
++	struct print_opts *opts =3D arg;
++	struct genlmsghdr *ghdr;
++	int selected_attrs[4] =3D { BATADV_ATTR_NEIGH_ADDRESS,
++				  BATADV_ATTR_HARD_IFINDEX,
++				  BATADV_ATTR_LAST_SEEN_MSECS,
++				  BATADV_ATTR_THROUGHPUT };
++
++	if (!genlmsg_valid_hdr(nlh, 0)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	ghdr =3D nlmsg_data(nlh);
++
++	if (ghdr->cmd !=3D BATADV_CMD_GET_NEIGHBORS)
++		return NL_OK;
++
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	if (missing_mandatory_attrs(attrs, neighbors_mandatory,
++				    ARRAY_SIZE(neighbors_mandatory))) {
++		fputs("Missing attributes from kernel\n", stderr);
++		exit(1);
++	}
++
++	netlink_print_json_entries(attrs, selected_attrs,
++				   ARRAY_SIZE(selected_attrs), opts);
++	opts->is_first =3D 0;
++
++	return NL_OK;
++}
++
++static int netlink_print_neighbors_json(struct state *state, char *orig_=
+iface,
++					int read_opts, float orig_timeout,
++					float watch_interval)
++{
++	return netlink_print_common(state, orig_iface, read_opts,
++				    orig_timeout, watch_interval, NULL,
++				    BATADV_CMD_GET_NEIGHBORS,
++				    neighbors_json_callback, true);
++}
++
++static struct debug_table_data batctl_debug_json_neighbors =3D {
++	.netlink_fn =3D netlink_print_neighbors_json,
++};
++
++COMMAND_NAMED(DEBUGJSON, neighbors_json, "nj", handle_debug_table,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_debug_json_neighbors, "");
 diff --git a/netlink.c b/netlink.c
-index 31c9b01..26ae5ef 100644
+index 26ae5ef..db44d82 100644
 --- a/netlink.c
 +++ b/netlink.c
-@@ -13,6 +13,7 @@
- #include <stdio.h>
- #include <string.h>
- #include <unistd.h>
-+#include <ctype.h>
- #include <errno.h>
- #include <net/ethernet.h>
- #include <net/if.h>
-@@ -116,6 +117,50 @@ struct nla_policy batadv_netlink_policy[NUM_BATADV_A=
-TTR] =3D {
- 	[BATADV_ATTR_THROUGHPUT_OVERRIDE]	=3D { .type =3D NLA_U32 },
- };
+@@ -363,17 +363,21 @@ static int info_callback(struct nl_msg *msg, void *=
+arg)
+ 		else
+ 			extra_header =3D "";
 =20
-+struct nla_policy_json batadv_netlink_policy_json[NUM_BATADV_ATTR] =3D {
-+	[BATADV_ATTR_VERSION]			=3D { .name =3D "version",
-+						    .cb =3D nljson_print_str },
-+	[BATADV_ATTR_ALGO_NAME]			=3D { .name =3D "algo",
-+						    .cb =3D nljson_print_str },
-+	[BATADV_ATTR_MESH_IFINDEX]		=3D { .name =3D "mesh_if_idx",
-+						    .cb =3D nljson_print_ifname_by_ifindex },
-+	[BATADV_ATTR_MESH_IFNAME]		=3D { .name =3D "mesh_if",
-+						    .cb =3D nljson_print_str },
-+	[BATADV_ATTR_MESH_ADDRESS]		=3D { .name =3D "mesh_address",
-+						    .cb =3D nljson_print_mac},
-+	[BATADV_ATTR_ORIG_ADDRESS]		=3D { .name =3D "originator",
-+						    .cb =3D nljson_print_mac },
-+	[BATADV_ATTR_HARD_IFINDEX]		=3D { .name =3D "hard_if_idx",
-+						    .cb =3D nljson_print_ifname_by_ifindex },
-+	[BATADV_ATTR_HARD_IFNAME]		=3D { .name =3D "hard_if",
-+						    .cb =3D nljson_print_str },
-+	[BATADV_ATTR_HARD_ADDRESS]		=3D { .name =3D "hard_addr",
-+						    .cb =3D nljson_print_mac },
-+	[BATADV_ATTR_TT_ADDRESS]		=3D { .name =3D "client",
-+						    .cb =3D nljson_print_mac },
-+	[BATADV_ATTR_TT_TTVN]			=3D { .name =3D "ttvn",
-+						    .cb =3D nljson_print_uint8_t },
-+	[BATADV_ATTR_TT_LAST_TTVN]		=3D { .name =3D "last_ttvn",
-+						    .cb =3D nljson_print_uint8_t },
-+	[BATADV_ATTR_TT_CRC32]			=3D { .name =3D "crc32",
-+						    .cb =3D nljson_print_crc32 },
-+	[BATADV_ATTR_TT_VID]			=3D { .name =3D "vid",
-+						    .cb =3D nljson_print_vid },
-+	[BATADV_ATTR_TT_FLAGS]			=3D { .name =3D "flags",
-+						    .cb =3D nljson_print_ttflags },
-+	[BATADV_ATTR_FLAG_BEST]			=3D { .name =3D "best",
-+						    .cb =3D nljson_print_bool},
-+	[BATADV_ATTR_LAST_SEEN_MSECS]		=3D { .name =3D "last_seen",
-+						    .cb =3D nljson_print_int},
-+	[BATADV_ATTR_NEIGH_ADDRESS]		=3D { .name =3D "neighbor",
-+						    .cb =3D nljson_print_mac },
-+	[BATADV_ATTR_TQ]			=3D { .name =3D "tq",
-+						    .cb =3D nljson_print_uint8_t },
-+	[BATADV_ATTR_THROUGHPUT]		=3D { .name =3D "throughput",
-+						    .cb =3D nljson_print_unsigned },
-+	[BATADV_ATTR_BLA_CRC]			=3D { .name =3D "bla_crc",},
-+};
+-		ret =3D asprintf(&opts->remaining_header,
+-			       "[B.A.T.M.A.N. adv %s, MainIF/MAC: %s/%02x:%02x:%02x:%02x:%02x=
+:%02x (%s/%02x:%02x:%02x:%02x:%02x:%02x %s)%s]\n%s",
+-			       version, primary_if,
+-			       primary_mac[0], primary_mac[1], primary_mac[2],
+-			       primary_mac[3], primary_mac[4], primary_mac[5],
+-			       mesh_name,
+-			       mesh_mac[0], mesh_mac[1], mesh_mac[2],
+-			       mesh_mac[3], mesh_mac[4], mesh_mac[5],
+-			       algo_name, extra_info, extra_header);
+-		if (ret < 0)
+-			opts->remaining_header =3D NULL;
++		if (!opts->is_json) {
++			ret =3D asprintf(&opts->remaining_header,
++				       "[B.A.T.M.A.N. adv %s, MainIF/MAC: %s/%02x:%02x:%02x:%02x:%02=
+x:%02x (%s/%02x:%02x:%02x:%02x:%02x:%02x %s)%s]\n%s",
++				       version, primary_if,
++				       primary_mac[0], primary_mac[1],
++				       primary_mac[2], primary_mac[3],
++				       primary_mac[4], primary_mac[5],
++				       mesh_name,
++				       mesh_mac[0], mesh_mac[1], mesh_mac[2],
++				       mesh_mac[3], mesh_mac[4], mesh_mac[5],
++				       algo_name, extra_info, extra_header);
 +
- int netlink_create(struct state *state)
- {
- 	int ret;
-@@ -419,7 +464,7 @@ int netlink_print_common_cb(struct nl_msg *msg, void =
-*arg)
- int netlink_print_common(struct state *state, char *orig_iface, int read=
-_opt,
- 			 float orig_timeout, float watch_interval,
- 			 const char *header, uint8_t nl_cmd,
--			 nl_recvmsg_msg_cb_t callback)
-+			 nl_recvmsg_msg_cb_t callback, uint8_t is_json)
- {
- 	struct print_opts opts =3D {
- 		.read_opt =3D read_opt,
-@@ -427,6 +472,9 @@ int netlink_print_common(struct state *state, char *o=
-rig_iface, int read_opt,
- 		.watch_interval =3D watch_interval,
- 		.remaining_header =3D NULL,
- 		.callback =3D callback,
-+		.nl_cmd =3D nl_cmd,
-+		.is_json =3D is_json,
-+		.is_first =3D 1,
- 	};
- 	int hardifindex =3D 0;
- 	struct nl_msg *msg;
-@@ -495,6 +543,238 @@ int netlink_print_common(struct state *state, char =
-*orig_iface, int read_opt,
- 	return last_err;
++			if (ret < 0)
++				opts->remaining_header =3D NULL;
++		}
+=20
+ 		if (extra_info)
+ 			free(extra_info);
+@@ -387,7 +391,8 @@ static int info_callback(struct nl_msg *msg, void *ar=
+g)
+ 	return NL_STOP;
  }
 =20
-+void netlink_print_json_entries(struct nlattr *attrs[], int selected_att=
-rs[],
-+				int arr_len, struct print_opts *opts)
-+{
-+	const char *name;
-+	uint8_t first_valid_attr =3D 1;
-+	int idx, i;
-+	struct json_opts json_opts =3D {
-+		.use_alt_int_val =3D 0,
-+		.alt_int_val =3D 0,
-+	};
-+
-+
-+	if (!opts->is_first)
-+		printf(",");
-+
-+	for (i =3D 0; i < arr_len; i++) {
-+		idx =3D selected_attrs[i];
-+
-+		if (attrs[idx] && batadv_netlink_policy_json[idx].cb) {
-+			if (!first_valid_attr)
-+				printf(",");
-+			else
-+				printf("{");
-+
-+			create_json_print_string(batadv_netlink_policy_json[idx].name,
-+						 &name);
-+			sanitize_string(name, strlen(name));
-+			printf(":");
-+			batadv_netlink_policy_json[idx].cb(&json_opts, opts,
-+							   attrs, idx);
-+
-+			first_valid_attr =3D 0;
-+		}
-+	}
-+	if (!first_valid_attr)
-+		printf("}");
-+}
-+
-+void nljson_print_str(struct json_opts *json_opts, struct print_opts *op=
-ts,
-+		      struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	const char *value;
-+	const char *value_print;
-+
-+	value =3D nla_get_string(attrs[idx]);
-+
-+	create_json_print_string(value, &value_print);
-+	sanitize_string(value_print, strlen(value_print));
-+}
-+
-+void nljson_print_ifname_by_ifindex(struct json_opts *json_opts,
-+				    struct print_opts *opts, struct nlattr *attrs[],
-+				    int idx)
-+{
-+	(void) opts;
-+	(void) json_opts;
-+	char value[IF_NAMESIZE];
-+	const char *value_buf;
-+
-+	if (!if_indextoname(nla_get_u32(attrs[idx]), value))
-+		value[0] =3D '\0';
-+
-+	create_json_print_string(value, &value_buf);
-+	sanitize_string(value_buf, strlen(value_buf));
-+}
-+
-+void nljson_print_int(struct json_opts *json_opts, struct print_opts *op=
-ts,
-+		      struct nlattr *attrs[], int idx)
-+{
-+	(void) opts;
-+	int value;
-+
-+	if (json_opts->use_alt_int_val) {
-+		json_opts->use_alt_int_val =3D 0;
-+		value =3D json_opts->alt_int_val;
-+	} else {
-+		value =3D nla_get_u32(attrs[idx]);
-+	}
-+
-+	printf("%d", value);
-+}
-+
-+void nljson_print_unsigned(struct json_opts *json_opts, struct print_opt=
-s *opts,
-+			   struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	unsigned value =3D nla_get_u32(attrs[idx]);
-+	printf("%u", value);
-+}
-+
-+void nljson_print_uint8_t(struct json_opts *json_opts, struct print_opts=
- *opts,
-+			  struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	uint8_t value =3D nla_get_u8(attrs[idx]);
-+	printf("%u", value);
-+}
-+
-+void nljson_print_mac(struct json_opts *json_opts, struct print_opts *op=
-ts,
-+		      struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	uint8_t *value =3D nla_data(attrs[idx]);
-+	printf("\"%02x:%02x:%02x:%02x:%02x:%02x\"",
-+		value[0], value[1], value[2], value[3], value[4], value[5]);
-+}
-+
-+void nljson_print_bool(struct json_opts *json_opts, struct print_opts *o=
-pts,
-+		       struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	bool value =3D nla_get_flag(attrs[idx]);
-+	printf("%s", BOOL_STRING(value));
-+}
-+
-+void nljson_print_vid(struct json_opts *json_opts, struct print_opts *op=
-ts,
-+		      struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	int16_t value =3D nla_get_u16(attrs[idx]);
-+	printf("%i", BATADV_PRINT_VID(value));
-+}
-+
-+void nljson_print_crc32(struct json_opts *json_opts, struct print_opts *=
-opts,
-+		      struct nlattr *attrs[], int idx)
-+{
-+	(void) json_opts;
-+	(void) opts;
-+	int32_t value =3D nla_get_u32(attrs[idx]);
-+	printf("\"0x%.8x\"", value);
-+}
-+
-+void nljson_print_ttflags(struct json_opts *json_opts, struct print_opts=
- *opts,
-+			  struct nlattr *attrs[], int idx)
-+{
-+	const char *key_ls;
-+	uint32_t flags;
-+	char r, n, x, w, i, p, t;
-+
-+	flags =3D nla_get_u32(attrs[idx]);
-+
-+	r =3D '.', p =3D '.', n =3D '.', x =3D '.', w =3D '.', i =3D '.', t =3D=
- '.';
-+
-+	if (opts->nl_cmd =3D=3D BATADV_CMD_GET_TRANSTABLE_LOCAL) {
-+		// last_seen =3D 0 when flags are set
-+		json_opts->use_alt_int_val =3D 0;
-+		json_opts->alt_int_val =3D 0;
-+
-+		if (flags & BATADV_TT_CLIENT_ROAM)
-+			r =3D 'R';
-+		if (flags & BATADV_TT_CLIENT_NEW)
-+			n =3D 'N';
-+		if (flags & BATADV_TT_CLIENT_PENDING)
-+			x =3D 'X';
-+		if (flags & BATADV_TT_CLIENT_WIFI)
-+			w =3D 'W';
-+		if (flags & BATADV_TT_CLIENT_ISOLA)
-+			i =3D 'I';
-+		if (flags & BATADV_TT_CLIENT_NOPURGE)  {
-+			p =3D 'P';
-+		} else {
-+			if (!attrs[BATADV_ATTR_LAST_SEEN_MSECS]) {
-+				fputs("Received invalid data from kernel.\n", stderr);
-+				exit(1);
-+			}
-+			goto print_local_table;
-+		}
-+
-+		json_opts->use_alt_int_val =3D 1;
-+		goto print_local_table;
-+	} else {
-+		if (flags & BATADV_TT_CLIENT_ROAM)
-+			r =3D 'R';
-+		if (flags & BATADV_TT_CLIENT_WIFI)
-+			w =3D 'W';
-+		if (flags & BATADV_TT_CLIENT_ISOLA)
-+			i =3D 'I';
-+		if (flags & BATADV_TT_CLIENT_TEMP)
-+			t =3D 'T';
-+
-+		goto print_global_table;
-+	}
-+
-+print_local_table:
-+	printf("\"%c%c%c%c%c%c\"", r, n, x, w, i, p);
-+
-+	printf(",");
-+	create_json_print_string(batadv_netlink_policy_json[BATADV_ATTR_LAST_SE=
-EN_MSECS].name,
-+				 &key_ls);
-+	sanitize_string(key_ls, strlen(key_ls));
-+	printf(":");
-+	nljson_print_int(json_opts, opts, attrs, BATADV_ATTR_LAST_SEEN_MSECS);
-+
-+	return;
-+
-+print_global_table:
-+	printf("\"%c%c%c%c\"", r, w, i, t);
-+}
-+
-+void create_json_print_string(const char *str, const char **str_ret)
-+{
-+	size_t needed =3D snprintf(NULL, 0, "\"%s\"", str);
-+	char  *str_buf =3D malloc(needed+1);
-+
-+	sprintf(str_buf, "\"%s\"", str);
-+
-+	*str_ret =3D str_buf;
-+}
-+
-+void sanitize_string(const char *str, int str_len)
-+{
-+	int i;
-+
-+	for (i =3D 0; i < str_len; i++) {
-+		if (str[i] =3D=3D '"')
-+			printf("\"");
-+		else if (str[i] =3D=3D '\\')
-+			printf("\\\\");
-+		else if (!isprint(str[i]))
-+			printf("\\x%02x", str[i]);
-+		else
-+			printf("%c", str[i]);
-+	}
-+}
-+
- static int nlquery_error_cb(struct sockaddr_nl *nla __maybe_unused,
- 			    struct nlmsgerr *nlerr, void *arg)
+-char *netlink_get_info(int ifindex, uint8_t nl_cmd, const char *header)
++char *netlink_get_info(int ifindex, uint8_t nl_cmd, const char *header,
++		       uint8_t is_json)
  {
+ 	struct nl_sock *sock;
+ 	struct nl_msg *msg;
+@@ -398,6 +403,7 @@ char *netlink_get_info(int ifindex, uint8_t nl_cmd, c=
+onst char *header)
+ 		.nl_cmd =3D nl_cmd,
+ 		.remaining_header =3D NULL,
+ 		.static_header =3D header,
++		.is_json =3D is_json,
+ 	};
+=20
+ 	sock =3D nl_socket_alloc();
+@@ -494,6 +500,9 @@ int netlink_print_common(struct state *state, char *o=
+rig_iface, int read_opt,
+ 		}
+ 	}
+=20
++	if (is_json)
++		printf("[");
++
+ 	bat_hosts_init(read_opt);
+=20
+ 	nl_cb_set(state->cb, NL_CB_VALID, NL_CB_CUSTOM, netlink_print_common_cb=
+, &opts);
+@@ -508,7 +517,8 @@ int netlink_print_common(struct state *state, char *o=
+rig_iface, int read_opt,
+ 		if (!(read_opt & SKIP_HEADER))
+ 			opts.remaining_header =3D netlink_get_info(state->mesh_ifindex,
+ 								 nl_cmd,
+-								 header);
++								 header,
++								 is_json);
+=20
+ 		msg =3D nlmsg_alloc();
+ 		if (!msg)
+@@ -529,6 +539,9 @@ int netlink_print_common(struct state *state, char *o=
+rig_iface, int read_opt,
+ 		last_err =3D 0;
+ 		nl_recvmsgs(state->sock, state->cb);
+=20
++		if (is_json)
++			printf("]");
++
+ 		/* the header should still be printed when no entry was received */
+ 		if (!last_err)
+ 			netlink_print_remaining_header(&opts);
 diff --git a/netlink.h b/netlink.h
-index 4ee2f39..c766741 100644
+index c766741..47390fc 100644
 --- a/netlink.h
 +++ b/netlink.h
-@@ -21,8 +21,22 @@ struct print_opts {
- 	float watch_interval;
- 	nl_recvmsg_msg_cb_t callback;
- 	char *remaining_header;
-+	char *remaining_entry;
- 	const char *static_header;
- 	uint8_t nl_cmd;
-+	uint8_t is_json;
-+	uint8_t is_first;
-+};
-+
-+struct json_opts {
-+	uint8_t use_alt_int_val;
-+	int alt_int_val;
-+};
-+
-+struct nla_policy_json {
-+	const char *name;
-+	void (*cb)(struct json_opts *json_opts, struct print_opts *opts,
-+		   struct nlattr *attrs[], int idx);
- };
+@@ -44,7 +44,7 @@ struct ether_addr;
+ int netlink_create(struct state *state);
+ void netlink_destroy(struct state *state);
 =20
- struct ether_addr;
-@@ -40,13 +54,14 @@ int get_algoname_netlink(const char *mesh_iface, char=
- *algoname,
- 			 size_t algoname_len);
-=20
- extern struct nla_policy batadv_netlink_policy[];
-+extern struct nla_policy_json batadv_netlink_policy_json[];
-=20
- int missing_mandatory_attrs(struct nlattr *attrs[], const int mandatory[=
-],
- 			    int num);
- int netlink_print_common(struct state *state, char *orig_iface, int read=
-_opt,
- 			 float orig_timeout, float watch_interval,
- 			 const char *header, uint8_t nl_cmd,
--			 nl_recvmsg_msg_cb_t callback);
-+			 nl_recvmsg_msg_cb_t callback, uint8_t is_json);
-=20
- int netlink_print_common_cb(struct nl_msg *msg, void *arg);
- int netlink_stop_callback(struct nl_msg *msg, void *arg);
-@@ -54,6 +69,26 @@ int netlink_print_error(struct sockaddr_nl *nla, struc=
-t nlmsgerr *nlerr,
- 			void *arg);
- void netlink_print_remaining_header(struct print_opts *opts);
-=20
-+void netlink_print_json_entries(struct nlattr *attrs[], int selected_att=
-rs[],
-+				int arr_len, struct print_opts *opts);
-+void netlink_print_json_entry(struct nlattr *attrs[], int idx);
-+void nljson_print_str(struct json_opts *json_opts, struct print_opts *op=
-ts, struct nlattr *attrs[], int idx);
-+void nljson_print_ifname_by_ifindex(struct json_opts *json_opts, struct =
-print_opts *opts,
-+				    struct nlattr *attrs[], int idx);
-+void nljson_print_int(struct json_opts *json_opts, struct print_opts *op=
-ts, struct nlattr *attrs[], int idx);
-+void nljson_print_unsigned(struct json_opts *json_opts, struct print_opt=
-s *opts, struct nlattr *attrs[],
-+			   int idx);
-+void nljson_print_uint8_t(struct json_opts *json_opts, struct print_opts=
- *opts, struct nlattr *attrs[],
-+			  int idx);
-+void nljson_print_vid(struct json_opts *json_opts, struct print_opts *op=
-ts, struct nlattr *attrs[], int idx);
-+void nljson_print_crc32(struct json_opts *json_opts, struct print_opts *=
-opts, struct nlattr *attrs[], int idx);
-+void nljson_print_mac(struct json_opts *json_opts, struct print_opts *op=
-ts, struct nlattr *attrs[], int idx);
-+void nljson_print_bool(struct json_opts *json_opts, struct print_opts *o=
-pts, struct nlattr *attrs[], int idx);
-+void nljson_print_ttflags(struct json_opts *json_opts, struct print_opts=
- *opts, struct nlattr *attrs[],
-+			  int idx);
-+void create_json_print_string(const char *str, const char **str_ret);
-+void sanitize_string(const char *str, int str_len);
-+
- extern char algo_name_buf[256];
- extern int last_err;
- extern int64_t mcast_flags;
+-char *netlink_get_info(int ifindex, uint8_t nl_cmd, const char *header);
++char *netlink_get_info(int ifindex, uint8_t nl_cmd, const char *header, =
+uint8_t is_json);
+ int translate_mac_netlink(const char *mesh_iface, const struct ether_add=
+r *mac,
+ 			  struct ether_addr *mac_out);
+ int get_nexthop_netlink(const char *mesh_iface, const struct ether_addr =
+*mac,
 diff --git a/originators.c b/originators.c
-index 8a29dd7..674656c 100644
+index 674656c..c3af740 100644
 --- a/originators.c
 +++ b/originators.c
-@@ -192,7 +192,7 @@ static int netlink_print_originators(struct state *st=
+@@ -175,7 +175,7 @@ static int netlink_print_originators(struct state *st=
 ate, char *orig_iface,
- 	return netlink_print_common(state, orig_iface, read_opts,
- 				    orig_timeout, watch_interval, header,
- 				    BATADV_CMD_GET_ORIGINATORS,
--				    originators_callback);
-+				    originators_callback, 0);
- }
+ 	/* only parse routing algorithm name */
+ 	last_err =3D -EINVAL;
+ 	info_header =3D netlink_get_info(state->mesh_ifindex,
+-				       BATADV_CMD_GET_ORIGINATORS, NULL);
++				       BATADV_CMD_GET_ORIGINATORS, NULL, 0);
+ 	free(info_header);
 =20
- static struct debug_table_data batctl_debug_table_originators =3D {
-diff --git a/transglobal.c b/transglobal.c
-index 4eae95d..c9312c0 100644
---- a/transglobal.c
-+++ b/transglobal.c
-@@ -132,7 +132,7 @@ static int netlink_print_transglobal(struct state *st=
-ate, char *orig_iface,
- 				    orig_timeout, watch_interval,
- 				    "   Client             VID Flags Last ttvn     Via        ttvn  =
-(CRC       )\n",
- 				    BATADV_CMD_GET_TRANSTABLE_GLOBAL,
--				    transglobal_callback);
-+				    transglobal_callback, 0);
- }
-=20
- static struct debug_table_data batctl_debug_table_transglobal =3D {
-diff --git a/translocal.c b/translocal.c
-index a3ad3da..7753010 100644
---- a/translocal.c
-+++ b/translocal.c
-@@ -128,7 +128,7 @@ static int netlink_print_translocal(struct state *sta=
-te, char *orig_iface,
- 				    orig_timeout, watch_interval,
- 				    "Client             VID Flags    Last seen (CRC       )\n",
- 				    BATADV_CMD_GET_TRANSTABLE_LOCAL,
--				    translocal_callback);
-+				    translocal_callback, 0);
- }
-=20
- static struct debug_table_data batctl_debug_table_translocal =3D {
+ 	if (strlen(algo_name_buf) =3D=3D 0)
+diff --git a/originators_json.c b/originators_json.c
+new file mode 100644
+index 0000000..91dcb44
+--- /dev/null
++++ b/originators_json.c
+@@ -0,0 +1,107 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (C) B.A.T.M.A.N. contributors:
++ *
++ * Andrew Lunn <andrew@lunn.ch>
++ * Sven Eckelmann <sven@narfation.org>
++ * Alexander Sarmanow <asarmanow@gmail.com>
++ *
++ * License-Filename: LICENSES/preferred/GPL-2.0
++ */
++
++#include <errno.h>
++#include <net/if.h>
++#include <netinet/if_ether.h>
++#include <netlink/netlink.h>
++#include <netlink/genl/genl.h>
++#include <netlink/genl/ctrl.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdint.h>
++#include <string.h>
++
++#include "batadv_packet.h"
++#include "batman_adv.h"
++#include "bat-hosts.h"
++#include "debug.h"
++#include "functions.h"
++#include "main.h"
++#include "netlink.h"
++
++static const int originators_mandatory[] =3D {
++	BATADV_ATTR_ORIG_ADDRESS,
++	BATADV_ATTR_NEIGH_ADDRESS,
++	BATADV_ATTR_HARD_IFINDEX,
++	BATADV_ATTR_LAST_SEEN_MSECS,
++};
++
++static int originators_json_callback(struct nl_msg *msg, void *arg)
++{
++	struct nlattr *attrs[BATADV_ATTR_MAX+1];
++	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
++	int last_seen_msecs;
++	struct print_opts *opts =3D arg;
++	struct genlmsghdr *ghdr;
++	float last_seen;
++	int selected_attrs[6] =3D { BATADV_ATTR_ORIG_ADDRESS,
++				  BATADV_ATTR_NEIGH_ADDRESS,
++				  BATADV_ATTR_HARD_IFINDEX,
++				  BATADV_ATTR_LAST_SEEN_MSECS,
++				  BATADV_ATTR_THROUGHPUT,
++				  BATADV_ATTR_TQ };
++
++	if (!genlmsg_valid_hdr(nlh, 0)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	ghdr =3D nlmsg_data(nlh);
++
++	if (ghdr->cmd !=3D BATADV_CMD_GET_ORIGINATORS)
++		return NL_OK;
++
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	if (missing_mandatory_attrs(attrs, originators_mandatory,
++				       ARRAY_SIZE(originators_mandatory))) {
++		fputs("Missing attributes from kernel\n", stderr);
++		exit(1);
++	}
++
++	last_seen_msecs =3D nla_get_u32(attrs[BATADV_ATTR_LAST_SEEN_MSECS]);
++	last_seen =3D (float)last_seen_msecs / 1000.0;
++
++	/* skip timed out originators */
++	if (opts->read_opt & NO_OLD_ORIGS)
++		if (last_seen > opts->orig_timeout)
++			return NL_OK;
++
++	netlink_print_json_entries(attrs, selected_attrs,
++				   ARRAY_SIZE(selected_attrs), opts);
++	opts->is_first =3D 0;
++
++	return NL_OK;
++}
++
++static int netlink_print_originators_json(struct state *state, char *ori=
+g_iface,
++					  int read_opts, float orig_timeout,
++					  float watch_interval)
++{
++	return netlink_print_common(state, orig_iface, read_opts,
++				    orig_timeout, watch_interval, NULL,
++				    BATADV_CMD_GET_ORIGINATORS,
++				    originators_json_callback, 1);
++}
++
++static struct debug_table_data batctl_debug_json_originators =3D {
++	.netlink_fn =3D netlink_print_originators_json,
++	.option_timeout_interval =3D 1,
++	.option_orig_iface =3D 1,
++};
++
++COMMAND_NAMED(DEBUGJSON, originators_json, "oj", handle_debug_table,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_debug_json_originators, "");
+diff --git a/transglobal_json.c b/transglobal_json.c
+new file mode 100644
+index 0000000..faff8ec
+--- /dev/null
++++ b/transglobal_json.c
+@@ -0,0 +1,109 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (C) B.A.T.M.A.N. contributors:
++ *
++ * Andrew Lunn <andrew(a)lunn.ch&gt;
++ * Sven Eckelmann <sven(a)narfation.org&gt;
++ * Alexander Sarmanow <asarmanow(a)gmail.com&gt;
++ *
++ * License-Filename: LICENSES/preferred/GPL-2.0
++ */
++
++#include <netinet/if_ether.h>
++#include <netlink/netlink.h>
++#include <netlink/genl/genl.h>
++#include <netlink/genl/ctrl.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdint.h>
++
++#include "batadv_packet.h"
++#include "batman_adv.h"
++#include "bat-hosts.h"
++#include "debug.h"
++#include "functions.h"
++#include "main.h"
++#include "netlink.h"
++
++static const int transglobal_mandatory[] =3D {
++	BATADV_ATTR_TT_ADDRESS,
++	BATADV_ATTR_ORIG_ADDRESS,
++	BATADV_ATTR_TT_VID,
++	BATADV_ATTR_TT_TTVN,
++	BATADV_ATTR_TT_LAST_TTVN,
++	BATADV_ATTR_TT_CRC32,
++	BATADV_ATTR_TT_FLAGS,
++};
++
++static int transglobal_json_callback(struct nl_msg *msg, void *arg)
++{
++	struct nlattr *attrs[BATADV_ATTR_MAX+1];
++	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
++	struct print_opts *opts =3D arg;
++	struct genlmsghdr *ghdr;
++	uint8_t *addr;
++	int selected_attrs[8] =3D { BATADV_ATTR_TT_ADDRESS,
++				  BATADV_ATTR_ORIG_ADDRESS,
++			      	  BATADV_ATTR_TT_VID,
++			      	  BATADV_ATTR_TT_TTVN,
++			      	  BATADV_ATTR_TT_LAST_TTVN,
++			      	  BATADV_ATTR_TT_CRC32,
++			      	  BATADV_ATTR_TT_FLAGS,
++			      	  BATADV_ATTR_FLAG_BEST };
++
++	if (!genlmsg_valid_hdr(nlh, 0)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	ghdr =3D nlmsg_data(nlh);
++
++	if (ghdr->cmd !=3D BATADV_CMD_GET_TRANSTABLE_GLOBAL)
++		return NL_OK;
++
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	if (missing_mandatory_attrs(attrs, transglobal_mandatory,
++				    ARRAY_SIZE(transglobal_mandatory))) {
++		fputs("Missing attributes from kernel\n", stderr);
++		exit(1);
++	}
++
++	addr =3D nla_data(attrs[BATADV_ATTR_TT_ADDRESS]);
++
++	if (opts->read_opt & MULTICAST_ONLY && !(addr[0] & 0x01))
++		return NL_OK;
++
++	if (opts->read_opt & UNICAST_ONLY && (addr[0] & 0x01))
++		return NL_OK;
++
++	netlink_print_json_entries(attrs, selected_attrs,
++				   ARRAY_SIZE(selected_attrs), opts);
++	opts->is_first =3D 0;
++
++
++	return NL_OK;
++}
++
++static int netlink_print_transglobal_json(struct state *state, char *ori=
+g_iface,
++					  int read_opts, float orig_timeout,
++					  float watch_interval)
++{
++	return netlink_print_common(state, orig_iface, read_opts,
++				    orig_timeout, watch_interval, NULL,
++				    BATADV_CMD_GET_TRANSTABLE_GLOBAL,
++				    transglobal_json_callback, true);
++}
++
++static struct debug_table_data batctl_debug_json_transglobal =3D {
++	.netlink_fn =3D netlink_print_transglobal_json,
++	.option_unicast_only =3D 1,
++	.option_multicast_only =3D 1,
++};
++
++COMMAND_NAMED(DEBUGJSON, transglobal_json, "tgj", handle_debug_table,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_debug_json_transglobal, "");
+diff --git a/translocal_json.c b/translocal_json.c
+new file mode 100644
+index 0000000..e78150e
+--- /dev/null
++++ b/translocal_json.c
+@@ -0,0 +1,102 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (C) B.A.T.M.A.N. contributors:
++ *
++ * Andrew Lunn <andrew@lunn.ch>
++ * Sven Eckelmann <sven@narfation.org>
++ * Alexander Sarmanow <asarmanow@gmail.com>
++ *
++ * License-Filename: LICENSES/preferred/GPL-2.0
++ */
++
++#include <netinet/if_ether.h>
++#include <netlink/netlink.h>
++#include <netlink/genl/genl.h>
++#include <netlink/genl/ctrl.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdint.h>
++
++#include "batadv_packet.h"
++#include "batman_adv.h"
++#include "bat-hosts.h"
++#include "debug.h"
++#include "functions.h"
++#include "main.h"
++#include "netlink.h"
++
++static const int translocal_mandatory[] =3D {
++	BATADV_ATTR_TT_ADDRESS,
++	BATADV_ATTR_TT_VID,
++	BATADV_ATTR_TT_CRC32,
++	BATADV_ATTR_TT_FLAGS,
++};
++
++static int translocal_json_callback(struct nl_msg *msg, void *arg)
++{
++	struct nlattr *attrs[BATADV_ATTR_MAX+1];
++	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
++	struct print_opts *opts =3D arg;
++	struct genlmsghdr *ghdr;
++	uint8_t *addr;
++	int selected_attrs[5] =3D { BATADV_ATTR_TT_ADDRESS,
++				  BATADV_ATTR_TT_VID,
++				  BATADV_ATTR_TT_CRC32,
++				  BATADV_ATTR_TT_FLAGS,
++				  BATADV_ATTR_LAST_SEEN_MSECS };
++
++	if (!genlmsg_valid_hdr(nlh, 0)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	ghdr =3D nlmsg_data(nlh);
++
++	if (ghdr->cmd !=3D BATADV_CMD_GET_TRANSTABLE_LOCAL)
++		return NL_OK;
++
++	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
++		      genlmsg_len(ghdr), batadv_netlink_policy)) {
++		fputs("Received invalid data from kernel.\n", stderr);
++		exit(1);
++	}
++
++	if (missing_mandatory_attrs(attrs, translocal_mandatory,
++				    ARRAY_SIZE(translocal_mandatory))) {
++		fputs("Missing attributes from kernel\n", stderr);
++		exit(1);
++	}
++
++	addr =3D nla_data(attrs[BATADV_ATTR_TT_ADDRESS]);
++
++	if (opts->read_opt & MULTICAST_ONLY && !(addr[0] & 0x01))
++		return NL_OK;
++
++	if (opts->read_opt & UNICAST_ONLY && (addr[0] & 0x01))
++		return NL_OK;
++
++	netlink_print_json_entries(attrs, selected_attrs,
++				   ARRAY_SIZE(selected_attrs), opts);
++	opts->is_first =3D 0;
++
++	return NL_OK;
++}
++
++static int netlink_print_translocal_json(struct state *state, char *orig=
+_iface,
++					 int read_opts, float orig_timeout,
++					 float watch_interval)
++{
++	return netlink_print_common(state, orig_iface, read_opts,
++				    orig_timeout, watch_interval, NULL,
++				    BATADV_CMD_GET_TRANSTABLE_LOCAL,
++				    translocal_json_callback, 1);
++}
++
++static struct debug_table_data batctl_debug_json_translocal =3D {
++	.netlink_fn =3D netlink_print_translocal_json,
++	.option_unicast_only =3D 1,
++	.option_multicast_only =3D 1,
++};
++
++COMMAND_NAMED(DEBUGJSON, translocal_json, "tlj", handle_debug_table,
++	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
++	      &batctl_debug_json_translocal, "");
 --=20
 2.25.1
