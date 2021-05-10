@@ -1,514 +1,193 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3877E3780FB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 May 2021 12:14:18 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9677B378C9D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 May 2021 15:15:18 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E2ACA8063F;
-	Mon, 10 May 2021 12:14:16 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 13EEC80088
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 May 2021 12:14:14 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 0E43F80537;
+	Mon, 10 May 2021 15:15:12 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id C556A83DBF
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 May 2021 15:15:01 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1620641653;
+	s=20121; t=1620651945;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=14VqB/Hlr9esJMH+VOFv4P0ShUcbqMitfMaP2M3Xets=;
-	b=ka0vKRs0D6qRNbPofv5pXu7O+HPmBG13Cgz/qUvSiF2gQDuq9uHM6QFejsuBCMXi2i4Vtz
-	69HmS44jgY39RIUJ39XxWE4rLbpHZCU5sBJghUZZBl+3MLSHJGvLJZI71Y1HuP4xd1yAS+
-	FLKb7sSGXxdTvEMymHXep0q/0y+0Kig=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=nmULHP0cXOKjrPUJY3aGYtFb8VDFkdIP2mY2hxB9/LQ=;
+	b=Bb3mXgQiEJ1I56pYhlCbzGg2qRPda05UqLQHlb6pRx+1rWxOwJ8HfVoVN7FkteoInuTHCl
+	0/dURUL0MM4f7mx4sz/z/nuO2BJk/Yy7z8NF7adv3Vf7SnSQuEWwQoJFwV6zJcvguJOg2Z
+	nMaUfKhhlJFhwyMSCmZ6lymSV3o7ACM=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v2 2/2] batctl: Add JSON debug commands
-Date: Mon, 10 May 2021 12:14:10 +0200
-Message-ID: <8402068.deHtlMXeMU@ripper>
-In-Reply-To: <20210510075826.12523.26721@diktynna.open-mesh.org>
-References: <62326514.53yIySlcTU@sven-l14> <20210510075826.12523.26721@diktynna.open-mesh.org>
+Cc: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH] batman-adv: Always send iface index+name in genlmsg
+Date: Mon, 10 May 2021 15:05:42 +0200
+Message-Id: <20210510130542.40833-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart7207813.odcMes2e8k"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620641654; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620652501; a=rsa-sha256;
 	cv=none;
-	b=Fo6ANmMX/azoDxYKwz++yclo/CTCAafBVbGM8OA7kjzcng2aTe/Dx6ZgPhrbDaQ3lsPRd8
-	GDmM3U97wpiB32g/nQHqa4R/L0DMKxiDB2RemKIDFa5DfZX908G6640g7TBC4+ughbmFcx
-	7taYl6c0DN3zestB54ayhZ+t+W2T864=
+	b=lp9z+mF8lnctMb8cBjoA/AOneOgPRTq1ONDq9K/OkVPRMwGOUUqqpgKUFMeBs45mCcLxcI
+	toLjEzUG14muBufgHv8Su8LhDTHrwYRW/MQgRvUYIfnE7riYudnofYAsaruwMhYI8qEP0Y
+	3Lrdfh06W/Fhyy57F2Bf7brEvkZxV2M=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=ka0vKRs0;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Bb3mXgQi;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1620641654;
+	s=20121; t=1620652501;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=14VqB/Hlr9esJMH+VOFv4P0ShUcbqMitfMaP2M3Xets=;
-	b=qmzTE3DpwhHMogD5i4eqLQFVl9V80cPmnsTRvJKoen1AYlAhSP6fB/ajyRDhTRqgQo+Ok7
-	FGWkr4mfKKH2LC8YTRuohKLMPJ7tRHpUFHXtGGBEmAKwoaNlsiyuinHZd8pUeTyfRE5hIr
-	59X1/5ncDAisefFOoCKx4S8ajrkyhBM=
-Message-ID-Hash: SVRZ5BIOUUCBFOXOEVLP4WXVJ2CWVWLG
-X-Message-ID-Hash: SVRZ5BIOUUCBFOXOEVLP4WXVJ2CWVWLG
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=nmULHP0cXOKjrPUJY3aGYtFb8VDFkdIP2mY2hxB9/LQ=;
+	b=CnhVbs/RFGLquUEXNnD5n6gdAbulNolRH7/2nRmD9caHFc7kVabKDuFYebU+JhpRB9TVyX
+	wlvcldYhwI1Wc0hI2JNC1MSKK6Kc9ImQ9A+Z87c4R1u0euwgrZKTqR9wWNbgDA4fHa9XNF
+	hcHjn/e3sNm0RLr6GhtEsMGfTUMPxzc=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: SAQYUZQ7I7H7VWHFPVLBUDYCFX7HNWLO
+X-Message-ID-Hash: SAQYUZQ7I7H7VWHFPVLBUDYCFX7HNWLO
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: asarmanow@gmail.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SVRZ5BIOUUCBFOXOEVLP4WXVJ2CWVWLG/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SAQYUZQ7I7H7VWHFPVLBUDYCFX7HNWLO/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart7207813.odcMes2e8k
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: asarmanow@gmail.com
-Subject: Re: [PATCH v2 2/2] batctl: Add JSON debug commands
-Date: Mon, 10 May 2021 12:14:10 +0200
-Message-ID: <8402068.deHtlMXeMU@ripper>
-In-Reply-To: <20210510075826.12523.26721@diktynna.open-mesh.org>
-References: <62326514.53yIySlcTU@sven-l14> <20210510075826.12523.26721@diktynna.open-mesh.org>
-
-On Monday, 10 May 2021 09:58:26 CEST asarmanow@gmail.com wrote:
-> Sven Eckelmann wrote:
-> 
-> > Why are you only printing selected attributes and not all?
-> I wanted to reduce the amount to query for the netlink_print_json_entries function. There are only a few of the attributes needed for each of the JSON commands. 
-
-You are doing currently two queries (one BATADV_CMD_GET_MESH_INFO and one for 
-the actual data). I want to you to get rid of the BATADV_CMD_GET_MESH_INFO and 
-print all data which was returned for the actual data query.
-
-So I don't see a reason why you're approach would help here at all. Just go 
-with netlink_print_json_entries through all entries in attrs till 
-BATADV_ATTR_MAX and check if you have a function to print them. If you have, 
-just print it.
-
-You can then also get rid of missing_mandatory_attrs and also extra checks 
-like MULTICAST_ONLY/UNICAST_ONLY/NO_OLD_ORIGS. The json is not for human 
-consumption and thus we don't need special flags to prefilter the data. The 
-consumer can take care of processing the data.
-
-Btw. I am also more of a fan of following style of struct/array 
-initialization. 
-
-    struct nla_policy_json batadv_netlink_policy_json[NUM_BATADV_ATTR] = {
-    	[BATADV_ATTR_VERSION] = {
-    		.name = "version",
-    		.cb = nljson_print_str
-    	},
-    	[.....]
-
-I have to change this at some point in netlink.c
-
-> +void create_json_print_string(const char *str, const char **str_ret)
-> +{
-> +       size_t needed = snprintf(NULL, 0, "\"%s\"", str);
-> +       char  *str_buf = malloc(needed+1);
-> +
-> +       sprintf(str_buf, "\"%s\"", str);
-> +
-> +       *str_ret = str_buf;
-> +}
-
-Another thing I saw: you allocate a lot of strings but never free them. Can we 
-just avoid to allocate them?
-
-Other than that - why? This function doesn't make a lot of sense in the first 
-place.
-
-> +       [BATADV_ATTR_FLAG_BEST]                 = { .name = "best",
-> +                                                   .cb = nljson_print_bool},
-
-
-Also: BATADV_ATTR_FLAG_BEST is not a boolean - it is a flag. So it can be 
-present and absent. So is comparable to an HTML attribute without value (for 
-example "disabled"). I think we can encode it as "best": true when it exists.
-
-> +void nljson_print_ttflags(struct json_opts *json_opts, struct print_opts *opts,
-> +                         struct nlattr *attrs[], int idx)
-> +{
-> +       const char *key_ls;
-> +       uint32_t flags;
-> +       char r, n, x, w, i, p, t;
-> +
-> +       flags = nla_get_u32(attrs[idx]);
-> +
-> +       r = '.', p = '.', n = '.', x = '.', w = '.', i = '.', t = '.';
-> +
-> +       if (opts->nl_cmd == BATADV_CMD_GET_TRANSTABLE_LOCAL) {
-[...]
-> +       } else {
-> +               if (flags & BATADV_TT_CLIENT_ROAM)
-> +                       r = 'R';
-> +               if (flags & BATADV_TT_CLIENT_WIFI)
-> +                       w = 'W';
-> +               if (flags & BATADV_TT_CLIENT_ISOLA)
-> +                       i = 'I';
-> +               if (flags & BATADV_TT_CLIENT_TEMP)
-> +                       t = 'T';
-> +
-> +               goto print_global_table;
-> +       }
-> +
-> +print_local_table:
-> +       printf("\"%c%c%c%c%c%c\"", r, n, x, w, i, p);
-> +
-> +       printf(",");
-> +       create_json_print_string(batadv_netlink_policy_json[BATADV_ATTR_LAST_SEEN_MSECS].name,
-> +                                &key_ls);
-> +       sanitize_string(key_ls, strlen(key_ls));
-> +       printf(":");
-> +       nljson_print_int(json_opts, opts, attrs, BATADV_ATTR_LAST_SEEN_MSECS);
-> +
-> +       return;
-> +
-> +print_global_table:
-> +       printf("\"%c%c%c%c\"", r, w, i, t);
-> +}
-
-
-
-nljson_print_ttflags is also odd. If you decode the binary, why are you 
-creating a compact representation again? Why aren't you just create a sub 
-object with the parsed data? And there is no need to differentiate between 
-BATADV_CMD_GET_TRANSTABLE_LOCAL and BATADV_CMD_GET_TRANSTABLE_GLOBAL.
-
-And why is there a goto in the first place at the end of each scope?
-
-
-And you interpretation of BATADV_ATTR_LAST_SEEN_MSECS seems to be really 
-messed up. Just don't print BATADV_ATTR_LAST_SEEN_MSECS when it is not there - 
-which can be evaluated automatically. And just as info: the kernel will not 
-send it when the nopurge bit is set. So it is absolutely not what you've 
-coded here.
-
-> +void nljson_print_crc32(struct json_opts *json_opts, struct print_opts *opts,
-> +                     struct nlattr *attrs[], int idx)
-> +{
-> +       (void) json_opts;
-> +       (void) opts;
-> +       int32_t value = nla_get_u32(attrs[idx]);
-> +       printf("\"0x%.8x\"", value);
-> +}
-
-Can we just print the raw 32 bit unsigned integer?
-
-Also, please not the name but the actual number in places were you are now 
-calling nljson_print_ifname_by_ifindex. Otherwise you would print the name 
-twice and make unnecessary syscalls. And if you want to print the actual name 
-for things like the originator/neighbor dump, maybe just add it to the generic 
-netlink message in the kernel.
-
-
-> +void netlink_print_json_entries(struct nlattr *attrs[], int selected_attrs[],
-> +                               int arr_len, struct print_opts *opts)
-> +{
-> +       const char *name;
-> +       uint8_t first_valid_attr = 1;
-> +       int idx, i;
-> +       struct json_opts json_opts = {
-> +               .use_alt_int_val = 0,
-> +               .alt_int_val = 0,
-> +       };
-> +
-> +
-> +       if (!opts->is_first)
-> +               printf(",");
-> +
-> +       for (i = 0; i < arr_len; i++) {
-> +               idx = selected_attrs[i];
-> +
-> +               if (attrs[idx] && batadv_netlink_policy_json[idx].cb) {
-> +                       if (!first_valid_attr)
-> +                               printf(",");
-> +                       else
-> +                               printf("{");
-> +
-> +                       create_json_print_string(batadv_netlink_policy_json[idx].name,
-> +                                                &name);
-> +                       sanitize_string(name, strlen(name));
-> +                       printf(":");
-> +                       batadv_netlink_policy_json[idx].cb(&json_opts, opts,
-> +                                                          attrs, idx);
-> +
-> +                       first_valid_attr = 0;
-> +               }
-> +       }
-> +       if (!first_valid_attr)
-> +               printf("}");
-> +}
-
-
-Why aren't you handling the is_first = 0 in this function? And why aren't you 
-printing empty objects?
-
-And please try to handle rejections and not acceptance. So instead of:
-
-           for (i = 0; i < arr_len; i++) {
-                   idx = selected_attrs[i];
-    
-                   if (attrs[idx] && batadv_netlink_policy_json[idx].cb) {
-
-Maybe something like:
-
-           for (i = 0; i < arr_len; i++) {
-                   [...]    
-                   if (!attrs[idx])
-                        continue;
-    
-                   if (!batadv_netlink_policy_json[idx].cb)
-                        continue;
-
-> +void sanitize_string(const char *str, int str_len)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < str_len; i++) {
-> +               if (str[i] == '"')
-> +                       printf("\"");
-> +               else if (str[i] == '\\')
-> +                       printf("\\\\");
-> +               else if (!isprint(str[i]))
-> +                       printf("\\x%02x", str[i]);
-> +               else
-> +                       printf("%c", str[i]);
-> +       }
-> +}
-
-I know, it is the similar in alfred but maybe you can change it to something 
-like:
-
-    void sanitize_string(const char *str)
-    {
-           while (*str) {
-                   if (*str == '"')
-                           puts("\"");
-                   else if (*str == '\\')
-                           puts("\\\\");
-                   else if (!isprint(*str))
-                           printf("\\x%02x", *str);
-                   else
-                           putc(*str);
-
-                   str++;
-          }
-   }
-
-> +static int meshinfo_callback(struct nl_msg *msg, void *arg)
-> {
-[...]
-> +       int selected_attrs[10] = { BATADV_ATTR_MESH_IFNAME,
-> +                                  BATADV_ATTR_MESH_ADDRESS,
-> +                                  BATADV_ATTR_HARD_IFNAME,
-> +                                  BATADV_ATTR_VERSION,
-> +                                  BATADV_ATTR_ALGO_NAME,
-> +                                  BATADV_ATTR_HARD_ADDRESS,
-> +                                  BATADV_ATTR_TT_TTVN };
-
-I hope to get rid of this anyway but this should have been:
-
-	static const enum batadv_nl_attrs selected_attrs[] = {
-		BATADV_ATTR_MESH_IFNAME,
-		BATADV_ATTR_MESH_ADDRESS,
-		BATADV_ATTR_HARD_IFNAME,
-		BATADV_ATTR_VERSION,
-		BATADV_ATTR_ALGO_NAME,
-		BATADV_ATTR_HARD_ADDRESS,
-		BATADV_ATTR_TT_TTVN,
-	}
-
-So no hardcoded (and wrong) length, correct type, constant, not allocated on 
-the stack, different identation.
-
-
-> +static int netlink_print_meshinfo_json(struct state *state, char *orig_iface,
-> +                                      int read_opts, float orig_timeout,
-> +                                      float watch_interval)
-> +{
-> +       (void) orig_iface;
-> +       (void) orig_timeout;
-> +       (void) watch_interval;
-> +               (void) read_opts;
-
-Please annotate unused parameters correctly with __maybe_unused
-
-Also use the already existing netlink socket and don't create a new one. Maybe 
-even with sys_simple_nlquery.
-Most functionality which creates its own batadv generic netlink socket only 
-does it because it needed to support the old sysfs functionality in parallel 
-in the past. And no on found the time to clean this up after the sysfs stuff 
-was dropped.
-
-If we don't need the "fancy" features of the debug tables then we can also use 
-the functionality sys_simple_nlquery for the rest. At least we don't have
-the bat-host handling anymore, header is dropped and the filter might be 
-dropped. And the only reason why I was against the special code to prevent
-the "watch" functionality was that we need to introduce a new hack for it.
-
-Just make sure that you allow the caller to change the 6th parameter of 
-genlmsg_put. Maybe by introducing a new function which allows to set this 
-parameter. And the sys_simple_nlquery is changed to a wrapper which omits the 
-new "flags" parameter.
-
-And then you can also add the putc for '[' and ']' directly to the caller of 
-sys_simple_nlquery (or whatever the new function will be called).
-
-> +#define BOOL_STRING(x) (x ? "true" : "false")
-> +
-
-I don't see a lot of benefit in this macro.
-
-> + * Andrew Lunn <andrew(a)lunn.ch&gt;
-> + * Sven Eckelmann <sven(a)narfation.org&gt;
-> + * Alexander Sarmanow <asarmanow(a)gmail.com&gt;
-
-No fancy html tags in headers please.
-
-
-
-Overall: please run you patches through Linux's scripts/checkpatch.pl --strict 
-and check what of the things you see is only relevant for the kernel and what 
-might be actual things you should clean up.
-
-
-> +       [BATADV_ATTR_MESH_IFNAME]               = { .name = "mesh_if",
-> +                                                   .cb = nljson_print_str },
-> +       [BATADV_ATTR_MESH_ADDRESS]              = { .name = "mesh_address",
-> +                                                   .cb = nljson_print_mac},
-> +       [BATADV_ATTR_ORIG_ADDRESS]              = { .name = "originator",
-> +                                                   .cb = nljson_print_mac },
-
-
-Please keep the same order as the attributes in batman_adv.h
-
-
-Missing print functions:
-
-* BATADV_ATTR_TPMETER_RESULT
-* BATADV_ATTR_TPMETER_TEST_TIME
-* BATADV_ATTR_TPMETER_BYTES
-* BATADV_ATTR_TPMETER_COOKIE
-* BATADV_ATTR_ACTIVE
-* BATADV_ATTR_BANDWIDTH_UP
-* BATADV_ATTR_BANDWIDTH_DOWN
-* BATADV_ATTR_ROUTER
-* BATADV_ATTR_BLA_OWN
-* BATADV_ATTR_BLA_ADDRESS
-* BATADV_ATTR_BLA_VID
-* BATADV_ATTR_BLA_BACKBONE
-* BATADV_ATTR_DAT_CACHE_IP4ADDRESS
-* BATADV_ATTR_DAT_CACHE_HWADDRESS
-* BATADV_ATTR_DAT_CACHE_VID
-* BATADV_ATTR_MCAST_FLAGS
-* BATADV_ATTR_MCAST_FLAGS_PRIV
-* BATADV_ATTR_VLANID
-* BATADV_ATTR_AGGREGATED_OGMS_ENABLED
-* BATADV_ATTR_AP_ISOLATION_ENABLED
-* BATADV_ATTR_ISOLATION_MARK
-* BATADV_ATTR_ISOLATION_MASK
-* BATADV_ATTR_BONDING_ENABLED
-* BATADV_ATTR_BRIDGE_LOOP_AVOIDANCE_ENABLED
-* BATADV_ATTR_DISTRIBUTED_ARP_TABLE_ENABLED
-* BATADV_ATTR_FRAGMENTATION_ENABLED
-* BATADV_ATTR_GW_BANDWIDTH_DOWN
-* BATADV_ATTR_GW_BANDWIDTH_UP
-* BATADV_ATTR_GW_MODE
-* BATADV_ATTR_GW_SEL_CLASS
-* BATADV_ATTR_HOP_PENALTY
-* BATADV_ATTR_LOG_LEVEL
-* BATADV_ATTR_MULTICAST_FORCEFLOOD_ENABLED
-* BATADV_ATTR_NETWORK_CODING_ENABLED
-* BATADV_ATTR_ORIG_INTERVAL
-* BATADV_ATTR_ELP_INTERVAL
-* BATADV_ATTR_THROUGHPUT_OVERRIDE
-* BATADV_ATTR_MULTICAST_FANOUT
-
-
-> +       [BATADV_ATTR_MESH_IFINDEX]              = { .name = "mesh_if_idx",
-
-meshif_idx or mesh_ifindex
-
-> +       [BATADV_ATTR_MESH_IFNAME]               = { .name = "mesh_if",
-
-meshif or mesh_ifname
-
-> +       [BATADV_ATTR_HARD_IFINDEX]              = { .name = "hard_if_idx",
-
-hardif_idx or hard_ifindex
-
-> +       [BATADV_ATTR_HARD_IFNAME]               = { .name = "hard_if",
-
-hardif or hard_ifname
-
-> +       [BATADV_ATTR_TT_ADDRESS]                = { .name = "client",
-
-why client? It is not really a  client.
-
-tt_address
-
-> +       [BATADV_ATTR_TT_VID]                    = { .name = "vid",
-
-tt_vid
-
-> +       [BATADV_ATTR_TT_FLAGS]                  = { .name = "flags",
-
-tt_flags
-
-
-> +       [BATADV_ATTR_LAST_SEEN_MSECS]           = { .name = "last_seen",
-
-last_seen_msecs
-
-> +       [BATADV_ATTR_NEIGH_ADDRESS]             = { .name = "neighbor",
-
-neigh_address
-
-> @@ -21,8 +21,22 @@ struct print_opts {
->         float watch_interval;
->         nl_recvmsg_msg_cb_t callback;
->         char *remaining_header;
-> +       char *remaining_entry;
->         const char *static_header;
->         uint8_t nl_cmd;
-> +       uint8_t is_json;
-> +       uint8_t is_first;
-> +};
-
-     uint8_t is_json:1
-     uint8_t is_first:1
-
-And what is remaining_entry?
-
-Kind regards,
-	Sven
---nextPart7207813.odcMes2e8k
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmCZB3IACgkQXYcKB8Em
-e0bsVhAArkeErtjY9dhl0rjB6HM18JH6p+0LCKoA+t/SrEXAzDgod/21X6oE+pn/
-1ymHc8TPWh699X693rg2Lm84LdvEgYS72wx5B7lQFNJ7fWQSzWndFSIm7q4RP0p5
-iA9AD5Psf8PrDPQJS0DCteCkQX+ndLrYPHqAdeXOnqn6TLbLFFYHlzisOvo2FYNq
-mwJre4Z4/nuaDz26Z+8hDfeetDZj3EcQ4+bKuk9CQmbo3w2VTwUJq+tHciwEy8wG
-+xOGMcGHrGC0X5TaTuzq890FpHASB1D7uCISl+ghQrPWsJxnUagHZAkoABZRe3ul
-uYiHLXlcQGdMJlXr3sS/41JFNHgNkfn2aKXuv8PSSOqippOTb4+VosQogBjCKLSR
-2qGhTlKhFKZ3j3QwPJIwTPL9e+ztL1feZALTmTk9gaU+QK/1NPt5lIpy8kX4+7xy
-r4hZsqsB4sjsXx6xzwEdPuW7vjbqoZZ6aovkxFHpp4uULMM3Z6sr5b3UCjyQ4jSW
-QjZZN4AJuDn7s1tHzxK/YCt1YTxQWO9OEfE5HAY82JE+JzwdHjBwLG9j/ed4W6pI
-A+44J1K0ho6WIpY40Wmlr+S9yGQtPshlPL+Dzng9VzwVCAqLwXS46KR5C1NB7Tzs
-Yl8jwZ/qcl5Dl0a4T1Ydx66dXW/C78uT2xEaDOjvwcEi3zQHjkc=
-=QIWo
------END PGP SIGNATURE-----
-
---nextPart7207813.odcMes2e8k--
-
-
+The batman-adv netlink messages often contain the interface index and
+interface name in the same message. This makes it easy for the receiver t=
+o
+operate on the incoming data when it either needs to print something or
+needs to operate on the interface index.
+
+But one of the attributes was missing for:
+
+* neighbor table dumps
+* originator table dumps
+* gateway list dumps
+* query of hardif information
+* query of vid information
+
+The userspace therefore had to implement special workarounds using
+SIOCGIFNAME or SIOCGIFINDEX depending on what was actually provided.
+Providing both information simplifies the userspace code massively withou=
+t
+adding a lot of extra overhead in the kernel portion.
+
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/bat_iv_ogm.c |  6 ++++++
+ net/batman-adv/bat_v.c      | 10 ++++++++++
+ net/batman-adv/netlink.c    |  8 ++++++++
+ 3 files changed, 24 insertions(+)
+
+diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
+index 789f257b..680def80 100644
+--- a/net/batman-adv/bat_iv_ogm.c
++++ b/net/batman-adv/bat_iv_ogm.c
+@@ -1849,6 +1849,8 @@ batadv_iv_ogm_orig_dump_subentry(struct sk_buff *ms=
+g, u32 portid, u32 seq,
+ 		    orig_node->orig) ||
+ 	    nla_put(msg, BATADV_ATTR_NEIGH_ADDRESS, ETH_ALEN,
+ 		    neigh_node->addr) ||
++	    nla_put_string(msg, BATADV_ATTR_HARD_IFNAME,
++			   neigh_node->if_incoming->net_dev->name) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
+ 			neigh_node->if_incoming->net_dev->ifindex) ||
+ 	    nla_put_u8(msg, BATADV_ATTR_TQ, tq_avg) ||
+@@ -2078,6 +2080,8 @@ batadv_iv_ogm_neigh_dump_neigh(struct sk_buff *msg,=
+ u32 portid, u32 seq,
+=20
+ 	if (nla_put(msg, BATADV_ATTR_NEIGH_ADDRESS, ETH_ALEN,
+ 		    hardif_neigh->addr) ||
++	    nla_put_string(msg, BATADV_ATTR_HARD_IFNAME,
++			   hardif_neigh->if_incoming->net_dev->name) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
+ 			hardif_neigh->if_incoming->net_dev->ifindex) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_LAST_SEEN_MSECS,
+@@ -2459,6 +2463,8 @@ static int batadv_iv_gw_dump_entry(struct sk_buff *=
+msg, u32 portid,
+ 		    router->addr) ||
+ 	    nla_put_string(msg, BATADV_ATTR_HARD_IFNAME,
+ 			   router->if_incoming->net_dev->name) ||
++	    nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
++			router->if_incoming->net_dev->ifindex) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_BANDWIDTH_DOWN,
+ 			gw_node->bandwidth_down) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_BANDWIDTH_UP,
+diff --git a/net/batman-adv/bat_v.c b/net/batman-adv/bat_v.c
+index e1ca2b8c..b98aea95 100644
+--- a/net/batman-adv/bat_v.c
++++ b/net/batman-adv/bat_v.c
+@@ -146,6 +146,8 @@ batadv_v_neigh_dump_neigh(struct sk_buff *msg, u32 po=
+rtid, u32 seq,
+=20
+ 	if (nla_put(msg, BATADV_ATTR_NEIGH_ADDRESS, ETH_ALEN,
+ 		    hardif_neigh->addr) ||
++	    nla_put_string(msg, BATADV_ATTR_HARD_IFNAME,
++			   hardif_neigh->if_incoming->net_dev->name) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
+ 			hardif_neigh->if_incoming->net_dev->ifindex) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_LAST_SEEN_MSECS,
+@@ -298,6 +300,8 @@ batadv_v_orig_dump_subentry(struct sk_buff *msg, u32 =
+portid, u32 seq,
+ 	if (nla_put(msg, BATADV_ATTR_ORIG_ADDRESS, ETH_ALEN, orig_node->orig) |=
+|
+ 	    nla_put(msg, BATADV_ATTR_NEIGH_ADDRESS, ETH_ALEN,
+ 		    neigh_node->addr) ||
++	    nla_put_string(msg, BATADV_ATTR_HARD_IFNAME,
++			   neigh_node->if_incoming->net_dev->name) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
+ 			neigh_node->if_incoming->net_dev->ifindex) ||
+ 	    nla_put_u32(msg, BATADV_ATTR_THROUGHPUT, throughput) ||
+@@ -739,6 +743,12 @@ static int batadv_v_gw_dump_entry(struct sk_buff *ms=
+g, u32 portid,
+ 		goto out;
+ 	}
+=20
++	if (nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
++			router->if_incoming->net_dev->ifindex)) {
++		genlmsg_cancel(msg, hdr);
++		goto out;
++	}
++
+ 	if (nla_put_u32(msg, BATADV_ATTR_BANDWIDTH_DOWN,
+ 			gw_node->bandwidth_down)) {
+ 		genlmsg_cancel(msg, hdr);
+diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
+index f317d206..b6cc746e 100644
+--- a/net/batman-adv/netlink.c
++++ b/net/batman-adv/netlink.c
+@@ -814,6 +814,10 @@ static int batadv_netlink_hardif_fill(struct sk_buff=
+ *msg,
+ 			bat_priv->soft_iface->ifindex))
+ 		goto nla_put_failure;
+=20
++	if (nla_put_string(msg, BATADV_ATTR_MESH_IFNAME,
++			   bat_priv->soft_iface->name))
++		goto nla_put_failure;
++
+ 	if (nla_put_u32(msg, BATADV_ATTR_HARD_IFINDEX,
+ 			net_dev->ifindex) ||
+ 	    nla_put_string(msg, BATADV_ATTR_HARD_IFNAME,
+@@ -1045,6 +1049,10 @@ static int batadv_netlink_vlan_fill(struct sk_buff=
+ *msg,
+ 			bat_priv->soft_iface->ifindex))
+ 		goto nla_put_failure;
+=20
++	if (nla_put_string(msg, BATADV_ATTR_MESH_IFNAME,
++			   bat_priv->soft_iface->name))
++		goto nla_put_failure;
++
+ 	if (nla_put_u32(msg, BATADV_ATTR_VLANID, vlan->vid & VLAN_VID_MASK))
+ 		goto nla_put_failure;
+=20
+--=20
+2.30.2
