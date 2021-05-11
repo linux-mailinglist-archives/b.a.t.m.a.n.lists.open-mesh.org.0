@@ -1,150 +1,151 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C31237A574
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 May 2021 13:09:04 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 292F337A575
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 May 2021 13:09:09 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4F83D84046;
-	Tue, 11 May 2021 13:08:59 +0200 (CEST)
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (mail-cys01nam02on060b.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe45::60b])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2627E83EEB
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 11 May 2021 11:17:09 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D7BF683F2B;
+	Tue, 11 May 2021 13:09:04 +0200 (CEST)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2087.outbound.protection.outlook.com [40.107.92.87])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0F1DB81F21
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 11 May 2021 11:20:09 +0200 (CEST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WwyuTLeprwBVzPbhqaeZrTyU6A5TutN+eWJXUhfDcegGZKli/i5t1eaPM3J9tSDzXAskBbbLZ7GJ7Huj0ybf8hyE5Ww2eyVaAXqxL+uxpUj2CD5i9oTpP5VJ7INywLV00Fqj6bSvDuGAB3m+SpoWobnZifdTOqW0p44TwMY1tV9fQx1K5UoxDTRhVYQcLaXxi9hUUqLqR5jovZ+oJqbHMr6waFgmYHINWObMvS443eVqrn4XbOSzJrAx6yta5xbxZDLFCiodb7KTQ5tDkaaCZLnxCHVlWdzh4b2VcDVUawTQ99ln8jvy1wwc1+y8+/mwc5GOWfqtITfZwPCJyUkjIQ==
+ b=Mt1GyzjqhISEzpab9/EruazEfsPQjjWlGFl8tOQmh4NaPXdRJFVd8Pe64Wew1JS0arTF9dO2xRQP9VmXAjpidI4+DlVsfgOUuInGsCjZKN+zkAdECK5ZRHaFnvw58qviOPWkA/t7ZpwdTkP+1rCbSazDFFjvH9cqaYqG1F5htD+vPLfx+J+3dJuo1UX4rFvxRX7B9AUWOu4eB4xavljy4hXqp4orWoIF25Y6okHEjswE5gM483zg02zgolz6xGM0yu0zhgdyHPBmyXuA3eVey+rd+djWjlnpfETOhEmYTHmtRHpd0MJXtYo9Tj4vLHOHRVF9YGiGQ7cqaRV7BosUEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d+/piBf48LlschlvzBayvAuu29lowlVonGdHNovQ5Jw=;
- b=OGNE59J6e/odCyDx7B+6wfSJJXaXdOIojxmedpdISq7YfbitOHhknlSX2lhz5DTiZ2iGYzzKinjn5GD/1KuGJh+cP2fZ7syht+3ip+PzPtUFPj92RP3YUA3Q6lg9UADonGQVSrb9Mmd78dfR6TRYTjUSb3X7JZXB+a/4crIReMFbgbfPBshxPb8XZxikzD/WIiYUyPc+BnSH/n2QmZdOpGnEi72pU8VWPIYUhesj55GM3T66l7aJsg8yrcljAKTRzcvFiByl7M8aP9nKI1uH92wz96iYH1TubhONaK7RuweeUKpMA30ABDSUkZ1SFp2j9osS9ITWJDVpLzuUz341cw==
+ bh=GW42DRbSEf8AdlC+pqaeyj+pJFrlKqKOjDbDsuiCFkg=;
+ b=mfXtx+ZWh+MyrFTTil0FAJCnH4lVFYc63LnGzoHa+dpBiZk9kewaxXQcvnJaL/XOsC91DsFhGtWjT/on7jzZ8c9f8rrzNgk+D+9txa6jXN9LdIgXAJc9idWgHnJTQ6cHTeQ1JdOK2Ov//H8ShjPHOzq0hPx2LplR4R1IqP+1UNki8LpArqcV/OrY1Py0TUxEAXaNhO3FnJYXU2d2RN+pBnxByzqLTc9YiI3hySU0FSOOp2vsSGRiDTnrFF51UxhVhEI06Fzw2FUPCuDO+ADo0zzVQFZpV6QOJh+LrUo8mA5RAUzIccQVfaS2Q5bt7xdiIa7xNgFJiuB/yki6a4kBmQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d+/piBf48LlschlvzBayvAuu29lowlVonGdHNovQ5Jw=;
- b=iphiAwbP8srCqKteY6esNAUUhFwFKu/VTdpIRjNauBCZkaxBoYneDZpeoLYtMerJXN1659lL6XkUhwKXit+8Bs2a61XPOjHDg4E6aRiy003TXixxwe5l4a17k7qZcIRHNQM4Pd2pXaOtAyZTX3Sb0Thce4A2HMdK7MZyd+TpEgeIxDsdq+f+6lF2wK7CfD+gVFDEmgihY1AqMwubxPJAASBsbSwQJSVTaub1nYzxsuu4FrfZiXc0LN71krmSQg1y8tBg2E3MDsV9nlJ3aKSmENH9DOD5QJzr0bFHHU2ZfLRBtFo4qHOkeTnrvs3p9zhPcgmGs5vect84FW2SbE3j+Q==
+ bh=GW42DRbSEf8AdlC+pqaeyj+pJFrlKqKOjDbDsuiCFkg=;
+ b=hibKb73kbtLFz1IJGyCV/tQzca5GMscb6CQzEDNxm3Y5SXd+nOXw9Zq9cBrh7ERKqdkXiKQSAJoXn6SLzorNzF/7xPyejUdGs/pz/Eb0pgKP5fEyh3mvW3mAgFU9CsKiS6sSPCLaNay6TwR/0JnI4RcCx7r7jSFBJxu/O/YESxxPDreUv7c3ZlujVi1nDztR8Ov4Y8r1+saTR8pW14p6r7DRhvK+PBVCPrWRQnaoWIHPHkMi4LbD/r7ZAtAqgM31Czf8r4Tks/1DSdTCFZQtVNs2wYoYhhWAIqdAGcR3vW5SIfaFXqoXVGINIWkDZ9fWqkkprkMbVqm4PuV4k3BGzw==
 Authentication-Results: vger.kernel.org; dkim=none (message not signed)
  header.d=none;vger.kernel.org; dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM4PR12MB5326.namprd12.prod.outlook.com (2603:10b6:5:39f::15) with
+ by DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25; Tue, 11 May
- 2021 09:17:06 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.28; Tue, 11 May
+ 2021 09:20:07 +0000
 Received: from DM4PR12MB5278.namprd12.prod.outlook.com
  ([fe80::d556:5155:7243:5f0f]) by DM4PR12MB5278.namprd12.prod.outlook.com
  ([fe80::d556:5155:7243:5f0f%6]) with mapi id 15.20.4108.031; Tue, 11 May 2021
- 09:17:06 +0000
-Subject: Re: [net-next v2 06/11] net: bridge: mcast: prepare expiry functions
- for mcast router split
+ 09:20:07 +0000
+Subject: Re: [net-next v2 08/11] net: bridge: mcast: split router port
+ del+notify for mcast router split
 To: =?UTF-8?Q?Linus_L=c3=bcssing?= <linus.luessing@c0d3.blue>,
  netdev@vger.kernel.org
 References: <20210509194509.10849-1-linus.luessing@c0d3.blue>
- <20210509194509.10849-7-linus.luessing@c0d3.blue>
+ <20210509194509.10849-9-linus.luessing@c0d3.blue>
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <0998c872-f18e-19a0-d137-9144dcb7b18d@nvidia.com>
-Date: Tue, 11 May 2021 12:16:59 +0300
+Message-ID: <640d2ba9-9e56-a36c-3734-44d72d8a6512@nvidia.com>
+Date: Tue, 11 May 2021 12:19:59 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
-In-Reply-To: <20210509194509.10849-7-linus.luessing@c0d3.blue>
+In-Reply-To: <20210509194509.10849-9-linus.luessing@c0d3.blue>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 X-Originating-IP: [213.179.129.39]
-X-ClientProxiedBy: ZR0P278CA0112.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:20::9) To DM4PR12MB5278.namprd12.prod.outlook.com
+X-ClientProxiedBy: ZRAP278CA0014.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:10::24) To DM4PR12MB5278.namprd12.prod.outlook.com
  (2603:10b6:5:39e::17)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.21.241.170] (213.179.129.39) by ZR0P278CA0112.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:20::9) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend Transport; Tue, 11 May 2021 09:17:04 +0000
+Received: from [10.21.241.170] (213.179.129.39) by ZRAP278CA0014.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:10::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend Transport; Tue, 11 May 2021 09:20:04 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ae5742d-99ff-4415-b43e-08d9145d8c21
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5326:
+X-MS-Office365-Filtering-Correlation-Id: 5c05fb81-5240-423e-1937-08d9145df79a
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5278:
 X-MS-Exchange-Transport-Forked: True
 X-Microsoft-Antispam-PRVS: 
-	<DM4PR12MB5326D1AB7F74C7F89A5F6721DF539@DM4PR12MB5326.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+	<DM4PR12MB5278F1E31B2851D32B339CE4DF539@DM4PR12MB5278.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	XVocSyJFN1r3D6KvnPLBI1deWX7/7Gsu5k9ewj/U1vvm+K6Pgbi2Wk1roIlcNEW8kVa3ZmPAB7YQ1kEZBnw1Yn+gU2diBKPReBSGj0SzErMEjOXE+5KrF4AOxixknxVd1TQPWclNstSo/KhVDB5Aaj+/8/B5wg5MxrRAZk/XZLOuA8jLPoXNdcnQ3PrbS5Tx3c3Xz426oIGnOG0obG8trxSAQXuBx+B3czWv69KzZlc86RzX4QTmolKE0nrfiDjgF5gkFYNcVhvewTK725YfHj8xs+O4WEnYqDnOLk2RZ7Kp0vbWTClXJmfcTEvVl7SWXoaP2uTj2IiF/MqvMmN42hiwIRclz05KAwZVBWldRhGX/dW97SCJgwD7X92Su5WHty8aZzlOngyieNY5wvAj1hbc6fy6bKPu7P1d/0mW8t+hSRjUCLsi6qYkJc9xzIAhY/ekN7mCiDtwTQ6Nk5eXiXoBoZjEqDHPOVcigsDPF2lQiBZMeSjq1hqWSFS0X23ETDHp8S/3jott5AYauXZ5o+OrJPW6aCQkPA7kUgS9A1tkVdoBWP+UQTSBFneS5/w+4pQrO50/ZbrUOOmfum0GbxxzAoT0oDpB1lAQiJ/fwSrvPbLklk9BJZQmb8TaCIeiQB+FPTaGc5d0bcvxsgwxX3xmQgiCw5nUyLZCTtATIE7dstR7CozwxGtPxAF21UwH
+	9hEMjA5iHlAlaLeeBwqodS9XPihN+ppXbNMErLlPqAL5z+xNUPadR/Lne5fK0ElpCPmP4Z/Ow+1GOMh5U6oj6yQPma49tgNBJw95M+DftN4Ll4FEy43ZVSmgcPbVtOwmlzlMCg+pIRd3Vh571KRQMe/GrhxZuZfTWJIQq2m/TqQ63XqRHBX0yU8otGzCgLgLUdy2pVkwvbS2p5cxMVPk1VHPdS2doQgGm6HHkCgPzLZuVIspoo3ENHq/4VnJqxj2EECqdKQkH4vf9QmWUJuHmoyeEpOU2zs+2zG8Leb9sxQg+ek4JyTwvW75TypEe7aKZnimvEqvfYZXdAow2SHgA3uvvtkZW6cr+Xrkcjhk7sTnDWENMruYb0OiDDxEFZ7HzonhMJ2blcnoBI0g81QMGDyC2T+LNJePCuiEe097lw5svzbmW0Tg9XHo+7e3+YY8KhR2YZOxoxYeFdPDfei4h3kVMTevY78CniLr7KLZMDjyoa/8SdRqgNHrpjTL2MfgXNB7hURZdiNWn5D3h5XlbSVXPF0TMuAvbEPL8TRYzj4bKEzzV+yKm6cV3TgPFTUloQOGxPY+RZPSStpEVGzfhGugpughr9g5Yw0BTHnXJ4BsgkBaiapgbI+GcMNzb6u47WMa/37Y+ignOmdQh78H069QjaamV5UpneJvYvASCYU7MTDtOWid2vaXq6sh2CLf
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5278.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(376002)(39860400002)(366004)(396003)(6486002)(8676002)(54906003)(478600001)(316002)(16576012)(16526019)(186003)(956004)(2616005)(2906002)(4326008)(5660300002)(31686004)(53546011)(26005)(8936002)(38100700002)(66574015)(36756003)(31696002)(86362001)(6666004)(66556008)(66946007)(66476007)(83380400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5278.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(376002)(39860400002)(396003)(316002)(8676002)(86362001)(16576012)(66574015)(31696002)(31686004)(6486002)(186003)(5660300002)(956004)(478600001)(8936002)(54906003)(2616005)(16526019)(66946007)(6666004)(83380400001)(2906002)(36756003)(4326008)(53546011)(26005)(66476007)(66556008)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?utf-8?B?R3BZSXVkK05WUmZ0T253elJjZXdxNklGc3dZdDNSU25vbC9SUkdVSXdjYkdm?=
- =?utf-8?B?R2dQL05qc0tmMkVYejVvSnNaYUdBRjIyTGI4VmxkTTNKV2Z6WGkwOWh2WHR4?=
- =?utf-8?B?anc0Q2E2aElGbUhMaHVhM3pjODM2bXVSd0FxdG42WXo2ZlovZVBhdlFYZyt1?=
- =?utf-8?B?TWNKQTdvQ3pXdS9GUmNmY3h1aGxPcUNMUDJZNnNQTjZ3UzlVclZMWWtqQmF5?=
- =?utf-8?B?Qk01ZTdXNHYrMy9hNEFyT0N0YnFxelZPU0FkWWh3eDdtSGEvdU8vQXBrSFlU?=
- =?utf-8?B?RTR0Z3FDVUp5bURybUlYWlU1Y1BZbVpDZ0ZoRWFBRGd2WFBMK3lvMDFjL1VU?=
- =?utf-8?B?b3YyZ1Z2bVVUQ3NTOFVJTHNicmV5ZFFYa0k4NmlPdFVQWDNEYWVkeGJFVmRC?=
- =?utf-8?B?UWR5RWN2UWRicnV6eEZWdkRFdVVIWXVVSVBXRVdiM0JBejl1UCsrVHVadTNJ?=
- =?utf-8?B?U3phVTUxdi9TVlNmMWFUMHNVdHYvdXIwajBYZVBydEdzd0x1SVUxL1h1dVo1?=
- =?utf-8?B?NVhUVmFneFJnUDRjY1JRbmZRUFhrQ0x6SHBBWC9yVEpGa0d4VkxOc3p6c0Iw?=
- =?utf-8?B?NkRkMzR2ck9XcGZIU0hwYjBuelgzdlN0QkFKMXVkc3czUUpLajJaaVUrbUdS?=
- =?utf-8?B?Tno1SzR6UmFEMml0aVdjbHBhSDVPelVZbjBOd3J4NmJwdXkxdjBGLzQ4OHhR?=
- =?utf-8?B?K0RlT3c0L0dCV2hqSi9sU0hFZ2VZbnlSdG0yMHZDRG1vclhTL1UyVnZoZ0s3?=
- =?utf-8?B?WFJUNm0wb3RkTnEwcnpGdU5TdUtpZmhidC9DS1JvQWtINklLM1JldThua3JQ?=
- =?utf-8?B?U2FBeXFkeExua05VZkpCNXYrby9uY2dRUUN2N0ZqTnd6d09LSkloZ1hDVFQ5?=
- =?utf-8?B?T0F0YnlxTDg1RTRiWGZaUEJJRGJzMlcyanZXODFKVDlzZnJ4Mnh6M2tTekgy?=
- =?utf-8?B?WmdyblFpZlFnem9NSFA4MUZ3WUlCcUhnYmFOaTY3MU5mWm1wdkhHcmsyNHJy?=
- =?utf-8?B?Wmp1L2FYQWdZUzkzWFcxbVNiQWR3cy9na2lwNU03eWp4Ykhnbk5IL1FBUTJO?=
- =?utf-8?B?NXdaVjFpTk01cUFPV01aaWVDVkJiSnF2UXRYK1FKWTJSUFdhRnloQ1IyRjBh?=
- =?utf-8?B?amV5K0FnZHlFTWk4ckZld2NJNnBOb0pRYWZtSk9wNnRTVmk0RFYzanJuQnBh?=
- =?utf-8?B?bWxBemlTTmo3UU52cUZwRDdzcXR0bFZPcmNWcnJpeDMwZ3JZeVg2Z2pjWUJV?=
- =?utf-8?B?eDhtOVdOVmFmRXdVbHpjdStFVFFOcHY1R0xOdnlXUDNoeWFkNmQwTHFjVitj?=
- =?utf-8?B?dFJWVStLLzFrRnRvS1hqVEg1Uzgya3NFSndxVnJjTXNjcExNVTROY3lxaTAv?=
- =?utf-8?B?Sm16Q2lpRlAxejVvS29oSVVqZWRraWlWbG11WkdXUStvNUtuV3o5bVJyUTZB?=
- =?utf-8?B?cFltSXEwTDJJMEdmMFdGLzNrWVBpUUI0dk0zL2wyYW5HRDZnQ3RwclVMVmhp?=
- =?utf-8?B?Y0NxcGgvYVI4MmFoKzNMM2dmQzEvUm9sRURDMXdMNEM1Z0dIdGJDVjBLMmgw?=
- =?utf-8?B?bXdRZnJseC85U0RYVkR1ZTkvVDJla29CNVdWSzIrNmZ5dm9jUWlIVWV4Q0dq?=
- =?utf-8?B?M1pCV0cxejgxSjR2bWtJUVlZNjNHeXNvd0tqM2VoUUlmdGp3WFlkNjluckEx?=
- =?utf-8?B?Z1lyN2RQRE92MWZVUXdNZS94ZE42b3pzUWpHUlJod25TcDNvb3kyQzh5V1Fo?=
- =?utf-8?Q?S5JOpBZe7reHWpYS80wXa6hTApsJzJrxq6vP4b2?=
+	=?utf-8?B?WnNVN1c2dGtSTTV0RWErR2pHL3c3RmpFL3BxQkJLY2RRZzBINUJDZHVOTEFV?=
+ =?utf-8?B?VWNHeGtRNSsybnJxbCtuNzJRNG92eGQzb1hjVXNhMWpIeFlvcjRxeTgvL04r?=
+ =?utf-8?B?S2IxMEhhVVg4QmFOOE05a3kvOXJrelROZFQwdmROdmZjYjMya245UDVRbTBW?=
+ =?utf-8?B?M1hGakJUWG10UC9kcWpZTWVCYkQ0dzRtLzhzdENpdTBkNmNmUEZvZHdZUTda?=
+ =?utf-8?B?UmlGeGJEVkxQZVZya1pYZVpSRHY0US9FWFZ6MVh6aGxMdHlNaWtjS2FZeTJO?=
+ =?utf-8?B?a0ZSbXBmTzRERnFjNEEvWTFZZkFXYXArNmtOOFBpNWRZTnYyOVJsdjlGVTdm?=
+ =?utf-8?B?QWJBZzJmb1Q4ZDUxcmY2bEEvM1o0NUorakxRWURYb0FNbnVzYXZpb2JzMEo3?=
+ =?utf-8?B?T2VXREc5a3FTSFNtWElQcXliY0NzTW44dnY2RVNBYjJVbENwcng3OTlOTXRT?=
+ =?utf-8?B?bGRQOW84Ym4yR3pod3ZzWTVRTkN4K0h6SGRGdlBSM2dkcm5WUEFFcGNMSUxH?=
+ =?utf-8?B?VkF3WFA3bnZrRTZDVzU2cmJZRENFSUpXUTZFLzh4c2FZZEViN2ZLTjJZMmhS?=
+ =?utf-8?B?NHplb053SmZLR2FkSE0rSXZTdU0rajdVaXYzYm0xZXR3RjlMYVpCczloR3BE?=
+ =?utf-8?B?RXphK2QwRXM2SzBOaW1SQ2ZoQk02SHpZUDNsVXFPWUFGWkdFSGJReUluUTdV?=
+ =?utf-8?B?N0VpL3lqcld5Y2xUcUpYTmkxWHFmRmxhOC9LOE95Y1pGYUxpckpOdWNHUUF0?=
+ =?utf-8?B?aFBKeW9pVC95WnBBM0ljYVBDUzNWcUJIbFNjT1NtTDNRbi82Y25xNzgxZTNh?=
+ =?utf-8?B?Q253TStlczdwdkdQdHROWkFoYVNyY1ZEaGVJY1IySXNsUGNud2tmT3ZXLzhu?=
+ =?utf-8?B?OUF3TGliWGs1T3RtSGpjaXFEcGNOMENDUzZnY2ppcE5lVm9QVml5RnExa3RO?=
+ =?utf-8?B?WlB0QzU1aURGcnBCbE9qeU9nVEdXZjVpTTVsUUxDNXpaWjQxS2dBSDhqN2hM?=
+ =?utf-8?B?UE9HdmpZYWlnTk1SZlBSOVNKSWYvRlFrd010dUNCL0xlbnVyU2JBNW5DTk9z?=
+ =?utf-8?B?NGFVbm1ENDY0TXdYNlU0dGNDNC8rNE1oRmxGa0xOWmZxNjFhQUtyUTRIT0Iy?=
+ =?utf-8?B?TzhIT3JVOG5rYWRhMy9ockpIYnJWZFJZejZHR3I5KzdUdnYvS0pheit2dGpi?=
+ =?utf-8?B?Z1lTOXdicjJEa2NsVmcreGlGZE9Zczhxcjd4Um91TEFaNjRNUXlHai95MlYz?=
+ =?utf-8?B?d253Z1VvWElid3U3UXlJMmRnTFM0Nk41dHM4WFd5WGNQRjQydTlxMGhjczNH?=
+ =?utf-8?B?LzV6djMrWlhRdy9SNFJTVkRpY1hCZWNpbVgyclhFSjNXbkNwZFJpaUt2S2hq?=
+ =?utf-8?B?b043cWE1ZWpWVXlMUHpVSDlUM1NlT21UNHo5TEUzNWxIZnBYd0tJekZPL0la?=
+ =?utf-8?B?ODA2bGR1bDRuVG1udEV2RFZ5a3drVGdUWG80aUhubS9Qc0xvVFBCTTJ4QlFN?=
+ =?utf-8?B?QWFRYWdHS1dPWU1JSlFwNE4yNkNlM2FsdkNNQ0ZPTVR1bDBGU0FXcFlrWWFa?=
+ =?utf-8?B?Q2M3YnRxdU9YQlNNdFQ0WmZpMVg4RnRTN25mZ2tISzN1bXFGaU45OVFFSDVr?=
+ =?utf-8?B?SHNKbVBPUEFWUGNqSXhqQWJ3dXF3OHZic04vM3pQTWw1NCtHRmlmbWVYQjJI?=
+ =?utf-8?B?T21UaVpkNUFybklKWFRPeVBhOTZ1bGQvZU0vWUJTNDYwYkNVUnhGeHIzcjJz?=
+ =?utf-8?Q?lppbG9DiGypRPeLuISPrtQGGjxVbe6oCOczGLm6?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ae5742d-99ff-4415-b43e-08d9145d8c21
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c05fb81-5240-423e-1937-08d9145df79a
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2021 09:17:06.8185
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2021 09:20:06.9515
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +PAq6Fc5izAhbHWwtN/nQdoHq/Fp0VtJDS/bPP2s9gjMdUsaMmaWMPFKCdzM5gUdARVc5h30oibnwTXskW/0Ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5326
-ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1620724629; a=rsa-sha256;
+X-MS-Exchange-CrossTenant-UserPrincipalName: j/E+tDP7oDuCw+tzFykUamnvorSfq3lTSOKqVoj90XhOvoxy/BojIHqL6xd3K6dKLoid6qosnclR2XASGcDeSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5278
+ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1620724809; a=rsa-sha256;
 	cv=pass;
-	b=r6p1/isj7PX/CMVa6zQHgx6iKbZ1X9CnLHu3kQGIsZRjCpdvL+9UTdKRTvnLnLWtvBxwBm
-	9S3u9WzsYHy6IuVojeFf1Zpy2xyvTdKqlmd2r9nMvZsgVlho4kXh/VLH+Q/kslYZJWPvhD
-	Otk6U7UZprsCmyVY+vQ/zbr5ZqRMWTA=
+	b=lAW6cyzg6VlqSACGolt/T5s2Bzs4Ti4F188qsm0IvaCeOkierpF/UyTykJfAo7W2UdyP/g
+	kDyR5pIoht4Ss9HjwK16GsyO7H0WomjjmJDSN3+f30mds7aIQj7aSyzH7RNyqvpymUzFbx
+	msBAefv7IwyDxCdEo0jsP74y3S5Pzxg=
 ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=iphiAwbP;
+	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=hibKb73k;
+	dmarc=pass (policy=none) header.from=nvidia.com;
 	arc=pass ("microsoft.com:s=arcselector9901:i=1");
-	spf=softfail (diktynna.open-mesh.org: 2a01:111:f400:fe45::60b is neither permitted nor denied by domain of nikolay@nvidia.com) smtp.mailfrom=nikolay@nvidia.com
+	spf=pass (diktynna.open-mesh.org: domain of nikolay@nvidia.com designates 40.107.92.87 as permitted sender) smtp.mailfrom=nikolay@nvidia.com
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1620724629;
+	s=20121; t=1620724809;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=d+/piBf48LlschlvzBayvAuu29lowlVonGdHNovQ5Jw=;
-	b=GuKBmGZY8MO1E6/HP82urGOlm3VZHCTOHBtnioRV/krcKtSYt4SBm/P/+WlbWuNIuIDD4I
-	pNkPo0rhDVGiRC4Ly5EOtEpiibNdk2ZTiPiJTeaaEduv5BQlswv72mqHL9NJ2yXpTaipt8
-	EzmwmzJ5SB5T2kYSdUD4sUMaHYH1AeM=
+	bh=GW42DRbSEf8AdlC+pqaeyj+pJFrlKqKOjDbDsuiCFkg=;
+	b=N3x+KlO3tFNeCHoNptSforjjJTqrUXDyWVvaV1MqcoIPQDT4Q5u4Mz7ZF9PIPs0OhVdE6I
+	/ZGl2oI8LnTT+ZTql5xKaiShFidiPfCbOOj2bqLcAbR6M+ZYicYQmzzrvDkNzBr4mW9Y/X
+	ktp77QvxVcHD4Dg/OvD3c2OA5Hknf68=
 Content-Transfer-Encoding: quoted-printable
 X-MailFrom: nikolay@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: 4JA2V552U7UQO3DUL7XNJJZUGC7GTZB6
-X-Message-ID-Hash: 4JA2V552U7UQO3DUL7XNJJZUGC7GTZB6
+Message-ID-Hash: 46CO7CWNWG5A4XNQ3ARW3ZA65U7HJRN4
+X-Message-ID-Hash: 46CO7CWNWG5A4XNQ3ARW3ZA65U7HJRN4
 X-Mailman-Approved-At: Tue, 11 May 2021 11:08:33 +0200
 CC: Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>, "David S . Miller" <davem@davemloft.net>, bridge@lists.linux-foundation.org, b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4JA2V552U7UQO3DUL7XNJJZUGC7GTZB6/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/46CO7CWNWG5A4XNQ3ARW3ZA65U7HJRN4/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -153,105 +154,148 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 On 09/05/2021 22:45, Linus L=C3=BCssing wrote:
 > In preparation for the upcoming split of multicast router state into
-> their IPv4 and IPv6 variants move the protocol specific timer access to
-> an ip4 wrapper function.
+> their IPv4 and IPv6 variants split router port deletion and notificatio=
+n
+> into two functions. When we disable a port for instance later we want t=
+o
+> only send one notification to switchdev and netlink for compatibility
+> and want to avoid sending one for IPv4 and one for IPv6. For that the
+> split is needed.
 >=20
 > Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 > ---
->  net/bridge/br_multicast.c | 31 ++++++++++++++++++++++---------
->  1 file changed, 22 insertions(+), 9 deletions(-)
+>  net/bridge/br_multicast.c | 40 ++++++++++++++++++++++++++++++---------
+>  1 file changed, 31 insertions(+), 9 deletions(-)
 >=20
 > diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-> index 048b5b9..6c844b2 100644
+> index 839d21b..39854d5 100644
 > --- a/net/bridge/br_multicast.c
 > +++ b/net/bridge/br_multicast.c
-> @@ -1354,16 +1354,16 @@ static int br_ip6_multicast_add_group(struct ne=
+> @@ -60,7 +60,8 @@ static void br_ip4_multicast_leave_group(struct net_b=
+ridge *br,
+>  					 const unsigned char *src);
+>  static void br_multicast_port_group_rexmit(struct timer_list *t);
+> =20
+> -static void __del_port_router(struct net_bridge_port *p);
+> +static void
+> +br_multicast_rport_del_notify(struct net_bridge_port *p, bool deleted)=
+;
+>  #if IS_ENABLED(CONFIG_IPV6)
+>  static void br_ip6_multicast_leave_group(struct net_bridge *br,
+>  					 struct net_bridge_port *port,
+> @@ -1354,11 +1355,26 @@ static int br_ip6_multicast_add_group(struct ne=
 t_bridge *br,
 >  }
 >  #endif
 > =20
-> -static void br_multicast_router_expired(struct timer_list *t)
-> +static void br_multicast_router_expired(struct net_bridge_port *port,
-> +					struct timer_list *t,
-> +					struct hlist_node *rlist)
+> +static bool br_multicast_rport_del(struct hlist_node *rlist)
+> +{
+> +	if (hlist_unhashed(rlist))
+> +		return false;
+> +
+> +	hlist_del_init_rcu(rlist);
+> +	return true;
+> +}
+> +
+> +static inline bool br_ip4_multicast_rport_del(struct net_bridge_port *=
+p)
+> +{
+> +	return br_multicast_rport_del(&p->ip4_rlist);
+> +}
+> +
+
+Same comment about inline in .c files, either drop the inline or move it =
+to br_private.h
+For functions that are not critical for performance(fast-path) I'd just d=
+rop the inline
+in the .c files and leave them there.
+
+>  static void br_multicast_router_expired(struct net_bridge_port *port,
+>  					struct timer_list *t,
+>  					struct hlist_node *rlist)
 >  {
-> -	struct net_bridge_port *port =3D
-> -			from_timer(port, t, ip4_mc_router_timer);
 >  	struct net_bridge *br =3D port->br;
+> +	bool del;
 > =20
 >  	spin_lock(&br->multicast_lock);
 >  	if (port->multicast_router =3D=3D MDB_RTR_TYPE_DISABLED ||
->  	    port->multicast_router =3D=3D MDB_RTR_TYPE_PERM ||
-> -	    timer_pending(&port->ip4_mc_router_timer))
-> +	    timer_pending(t))
+> @@ -1366,7 +1382,8 @@ static void br_multicast_router_expired(struct ne=
+t_bridge_port *port,
+>  	    timer_pending(t))
 >  		goto out;
 > =20
->  	__del_port_router(port);
-> @@ -1371,6 +1371,13 @@ out:
+> -	__del_port_router(port);
+> +	del =3D br_multicast_rport_del(rlist);
+> +	br_multicast_rport_del_notify(port, del);
+>  out:
 >  	spin_unlock(&br->multicast_lock);
 >  }
+> @@ -1706,19 +1723,20 @@ void br_multicast_disable_port(struct net_bridg=
+e_port *port)
+>  	struct net_bridge *br =3D port->br;
+>  	struct net_bridge_port_group *pg;
+>  	struct hlist_node *n;
+> +	bool del =3D false;
 > =20
-> +static void br_ip4_multicast_router_expired(struct timer_list *t)
-> +{
-> +	struct net_bridge_port *port =3D from_timer(port, t, ip4_mc_router_ti=
-mer);
-> +
-> +	br_multicast_router_expired(port, t, &port->ip4_rlist);
-> +}
-> +
->  static void br_mc_router_state_change(struct net_bridge *p,
->  				      bool is_mc_router)
->  {
-> @@ -1384,10 +1391,9 @@ static void br_mc_router_state_change(struct net=
-_bridge *p,
->  	switchdev_port_attr_set(p->dev, &attr, NULL);
->  }
-> =20
-> -static void br_multicast_local_router_expired(struct timer_list *t)
-> +static void br_multicast_local_router_expired(struct net_bridge *br,
-> +					      struct timer_list *timer)
->  {
-> -	struct net_bridge *br =3D from_timer(br, t, ip4_mc_router_timer);
-> -
 >  	spin_lock(&br->multicast_lock);
->  	if (br->multicast_router =3D=3D MDB_RTR_TYPE_DISABLED ||
->  	    br->multicast_router =3D=3D MDB_RTR_TYPE_PERM ||
-> @@ -1400,6 +1406,13 @@ out:
+>  	hlist_for_each_entry_safe(pg, n, &port->mglist, mglist)
+>  		if (!(pg->flags & MDB_PG_FLAGS_PERMANENT))
+>  			br_multicast_find_del_pg(br, pg);
+> =20
+> -	__del_port_router(port);
+> -
+> +	del |=3D br_ip4_multicast_rport_del(port);
+>  	del_timer(&port->ip4_mc_router_timer);
+>  	del_timer(&port->ip4_own_query.timer);
+>  #if IS_ENABLED(CONFIG_IPV6)
+>  	del_timer(&port->ip6_own_query.timer);
+>  #endif
+> +	br_multicast_rport_del_notify(port, del);
 >  	spin_unlock(&br->multicast_lock);
 >  }
 > =20
-> +static inline void br_ip4_multicast_local_router_expired(struct timer_=
-list *t)
-> +{
-> +	struct net_bridge *br =3D from_timer(br, t, ip4_mc_router_timer);
-> +
-> +	br_multicast_local_router_expired(br, t);
-> +}
-> +
-
-Same comment about inlines in .c files, please move them to br_private.h =
-or drop the inline
-
->  static void br_multicast_querier_expired(struct net_bridge *br,
->  					 struct bridge_mcast_own_query *query)
+> @@ -3508,11 +3526,12 @@ int br_multicast_set_router(struct net_bridge *=
+br, unsigned long val)
+>  	return err;
+>  }
+> =20
+> -static void __del_port_router(struct net_bridge_port *p)
+> +static void
+> +br_multicast_rport_del_notify(struct net_bridge_port *p, bool deleted)
 >  {
-> @@ -1615,7 +1628,7 @@ int br_multicast_add_port(struct net_bridge_port =
-*port)
->  	port->multicast_eht_hosts_limit =3D BR_MCAST_DEFAULT_EHT_HOSTS_LIMIT;
+> -	if (hlist_unhashed(&p->ip4_rlist))
+> +	if (!deleted)
+>  		return;
+> -	hlist_del_init_rcu(&p->ip4_rlist);
+> +
+>  	br_rtr_notify(p->br->dev, p, RTM_DELMDB);
+>  	br_port_mc_router_state_change(p, false);
 > =20
->  	timer_setup(&port->ip4_mc_router_timer,
-> -		    br_multicast_router_expired, 0);
-> +		    br_ip4_multicast_router_expired, 0);
->  	timer_setup(&port->ip4_own_query.timer,
->  		    br_ip4_multicast_port_query_expired, 0);
->  #if IS_ENABLED(CONFIG_IPV6)
-> @@ -3319,7 +3332,7 @@ void br_multicast_init(struct net_bridge *br)
+> @@ -3526,6 +3545,7 @@ int br_multicast_set_port_router(struct net_bridg=
+e_port *p, unsigned long val)
+>  	struct net_bridge *br =3D p->br;
+>  	unsigned long now =3D jiffies;
+>  	int err =3D -EINVAL;
+> +	bool del =3D false;
 > =20
->  	spin_lock_init(&br->multicast_lock);
->  	timer_setup(&br->ip4_mc_router_timer,
-> -		    br_multicast_local_router_expired, 0);
-> +		    br_ip4_multicast_local_router_expired, 0);
->  	timer_setup(&br->ip4_other_query.timer,
->  		    br_ip4_multicast_querier_expired, 0);
->  	timer_setup(&br->ip4_own_query.timer,
+>  	spin_lock(&br->multicast_lock);
+>  	if (p->multicast_router =3D=3D val) {
+> @@ -3539,12 +3559,14 @@ int br_multicast_set_port_router(struct net_bri=
+dge_port *p, unsigned long val)
+>  	switch (val) {
+>  	case MDB_RTR_TYPE_DISABLED:
+>  		p->multicast_router =3D MDB_RTR_TYPE_DISABLED;
+> -		__del_port_router(p);
+> +		del |=3D br_ip4_multicast_rport_del(p);
+>  		del_timer(&p->ip4_mc_router_timer);
+> +		br_multicast_rport_del_notify(p, del);
+>  		break;
+>  	case MDB_RTR_TYPE_TEMP_QUERY:
+>  		p->multicast_router =3D MDB_RTR_TYPE_TEMP_QUERY;
+> -		__del_port_router(p);
+> +		del |=3D br_ip4_multicast_rport_del(p);
+> +		br_multicast_rport_del_notify(p, del);
+>  		break;
+>  	case MDB_RTR_TYPE_PERM:
+>  		p->multicast_router =3D MDB_RTR_TYPE_PERM;
 >=20
