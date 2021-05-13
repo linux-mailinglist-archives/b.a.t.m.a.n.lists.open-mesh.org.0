@@ -1,79 +1,79 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35EC837F9A9
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 May 2021 16:28:33 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2459C37F9AA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 May 2021 16:28:39 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id AF7838405B;
-	Thu, 13 May 2021 16:28:31 +0200 (CEST)
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id A99118020F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 May 2021 16:28:23 +0200 (CEST)
-Received: by mail-ed1-x52f.google.com with SMTP id a25so7068021edr.12
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 May 2021 07:28:23 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4AB9884075;
+	Thu, 13 May 2021 16:28:37 +0200 (CEST)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 48A9E8020F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 May 2021 16:28:24 +0200 (CEST)
+Received: by mail-ej1-x631.google.com with SMTP id l1so4137557ejb.6
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 May 2021 07:28:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Xez61dVHRMEfg8cBr1awaJNs+vP6eEeF+XXQIUs2ahw=;
-        b=KM/DEE4mNT1RplLxjtP8YSO4fIm2/YOvYgC4AtKV/55kPBblJz3g3agr1tauvbOSN9
-         WfiSzDy8zvIkMBSwCSXmX7DFmpm+g212pVE4suXwDu6Bmqh7lnG2aIRqUMlelpBonW2c
-         38pV/ogXHbL9luBVWRKX30zLy92YXlLDKjWlrroOdMQ2EJDCeEOSh+ealqZl4HOkWNIk
-         hf/np9UDTWjG+aWSga10CqFFq0gPh8lRa0ESQFum4mCsjVIHZ3OdvtOF64nmrO+tfUyb
-         5jKPKuc/miztd0s9UKHX7XF9FJ/LGhPJ24LFY8YRjd38UOs8BBN95gGqUcxleNcQAdeq
-         2EPQ==
+        bh=ILXGc7pZPTVZdpBxMudBcnI0m+cQ8P0sZXkvqXOPXaM=;
+        b=RgMj8a1vK1awUP+mBZv/0nK00LhPD7zuNR74c0IYKbX2Kb9Wywn/AjbzZKYfhlkjzA
+         d8z1jR5MCgAryBpsSyAUmEkmsJWoGGXwGrmFo6BEne8VA+L2M95XE1GpObBzdZGCoIHa
+         /kT+ggn7epmR5FFf3RApWhiJWtuCCgqxhOnPC/wdYWKqyUZkD9FqaeSOZOo/K2K6DrA0
+         +71rs+L/xc5rQ41IY8LSpyjl7WValrodb8DiZ9ckle7wcXPEgscGaGmo+jo3YctJE60b
+         lJ8EHEzNMYdZUR6VbXsFaQQjo6AclyVURJja8P36pfAhkb4NKbG0FXak7M/3JBA/hTDW
+         Yy5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Xez61dVHRMEfg8cBr1awaJNs+vP6eEeF+XXQIUs2ahw=;
-        b=ActQgo3v5iN3Fl+FDkKhTZSf6u+0GDA0gfssze5WLEm5TVZQQdSidmJ88KML72hne/
-         02w2O42xMXJC9OeVJiYDe0sQWjuY32VbPijshoFe7oA9gpfoDySccxcokCiORZ7A0BKF
-         2zCkByT5PRNsvgL3gL4WPllwUP+8GpXwowjHp8roTvak59Xg+PdXUhXCQy+kCb+QSpmI
-         06yPUeERowfzSMMJvup/aTne+P3uRSYZPIRw1O004WOBPa2BByCy2ZFf5nYwu9VdCTED
-         vZFqb6TxZVPDXVZv5YArBNOhzAuJrpcQWBVo0QQdHi6OpvmKmtry9xZkR/vsOUZ719ix
-         NhwQ==
-X-Gm-Message-State: AOAM530v4XK4IeEK8B0KKEsBYcpBLaCRT1C3mosZ1FOdWKaNH5iIfeGV
-	mi4M22jQIggwTVYrUn4mraw=
-X-Google-Smtp-Source: ABdhPJzuRNvqEswR0Eb84ebcjsVfkQ0BfgOHGgHYU/2mOjmPmrAXiDdA5HXK+EHdTvvpxGzZ7iOxqA==
-X-Received: by 2002:a50:eb47:: with SMTP id z7mr51393102edp.68.1620916103301;
+        bh=ILXGc7pZPTVZdpBxMudBcnI0m+cQ8P0sZXkvqXOPXaM=;
+        b=ZzNISU1I7X2N3w8rSoCxkX8RhhD3Eq6VwnudjRX7XZE6Tm294POt924dQL2xrXcA9s
+         6aW3SznW1uf2/S3gXtTUjnj4/e2RXvQ5m/GDOFjy4ifv9J0sdomi3MPuBEw3E6Eu/FCJ
+         C2WOyPlkdj5R1AkLBuArgQ5ueC3xEuznRGgj4qFGOlS1xZEfpQ7vDsI7EgeScCPs92d2
+         mQuf6z0AqivKbJSMmJLl4W7A3U7Dr0dslE6EydFs6MeyHaCK4NXx6KburS1u9PVEtubD
+         wwmPxE8vz0Fsto1m7sDSFNKb2JDzdyqwB7O6P/Q041rTKCbt8SZg8+yUbC8lw4uWKdyv
+         kRVQ==
+X-Gm-Message-State: AOAM531zm2bsHBxOwbYgRj5JeXQhhiP2zd0Nkq7iXR87g6s0RnsqUo9K
+	Jz0ZSvcA2JjcoBgPHlBlH9k=
+X-Google-Smtp-Source: ABdhPJzI1CddQ99qc0Dbak6K+115l1cH/EAHhFDF2NC9pt2N5jCU5VSoD+Gj+1/sh69At+smJ+zIFQ==
+X-Received: by 2002:a17:906:2ed0:: with SMTP id s16mr18609548eji.543.1620916103909;
         Thu, 13 May 2021 07:28:23 -0700 (PDT)
 Received: from machine.fritz.box (p4fc0a3a3.dip0.t-ipconnect.de. [79.192.163.163])
-        by smtp.googlemail.com with ESMTPSA id yw9sm1897153ejb.91.2021.05.13.07.28.22
+        by smtp.googlemail.com with ESMTPSA id yw9sm1897153ejb.91.2021.05.13.07.28.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 13 May 2021 07:28:23 -0700 (PDT)
 From: Alexander Sarmanow <asarmanow@gmail.com>
 To: sven@narfation.org
-Subject: [PATCH v3 2/4] batctl: neighbors_json: Add neighbors_json command
-Date: Thu, 13 May 2021 16:28:10 +0200
-Message-Id: <20210513142812.1707215-3-asarmanow@gmail.com>
+Subject: [PATCH v3 3/4] batctl: transglobal_json: Add transglobal_json command
+Date: Thu, 13 May 2021 16:28:11 +0200
+Message-Id: <20210513142812.1707215-4-asarmanow@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210513142812.1707215-1-asarmanow@gmail.com>
 References: <20210513142812.1707215-1-asarmanow@gmail.com>
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620916103; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620916104; a=rsa-sha256;
 	cv=none;
-	b=ipkfOBVuiCWUBlJh9KIObIn9A1Od3sxOSt/Q3n8uNDfmOfGCYs9ln/QIDiC29szIGstVkK
-	7BT+xK6YXWqw8g+0fPC3JlKgWoIq345O7h7ZDdIbCsFABhsFNqcz4kUuzASTLZEJOTy4YR
-	WS31q0n2pkZeaRphCaBPZOMIFMxwD9s=
+	b=tRhk6lDPgzQ51uxnJFovyE2HGEqPTYVzrx3FBzzFN0H7XNIjf+ZReqehCXEekI9rURA34F
+	n4naX9J5X3BppjGuLvNwALx8ixCcRnTHGYwAel56zg/yUG5wEW4RHcPvmCwchYd3LQvmNa
+	9Il2qdauR2oaj8TFi61Chn+Xw9jSng8=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20161025 header.b="KM/DEE4m";
-	spf=pass (diktynna.open-mesh.org: domain of asarmanow@gmail.com designates 2a00:1450:4864:20::52f as permitted sender) smtp.mailfrom=asarmanow@gmail.com
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=RgMj8a1v;
+	spf=pass (diktynna.open-mesh.org: domain of asarmanow@gmail.com designates 2a00:1450:4864:20::631 as permitted sender) smtp.mailfrom=asarmanow@gmail.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1620916103;
+	s=20121; t=1620916104;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Xez61dVHRMEfg8cBr1awaJNs+vP6eEeF+XXQIUs2ahw=;
-	b=tOOBUADmXlm1uhJW6wLZ2GAQUW3e0c8zZT33aHK/FKWjl2jOtetqzF4jWBzf3Ozx+vFGKr
-	+mSZzoksolAoPooDEDjqEfhsXzeINe2lCBBLvyN1Q94Pw1ydvEzvnOvA0YcmFKr5WkqMND
-	zBvVEbKcSHraAkZxvuQ94b3tufYnUMQ=
+	bh=ILXGc7pZPTVZdpBxMudBcnI0m+cQ8P0sZXkvqXOPXaM=;
+	b=G4K/q6kb0W5CQQ5mNz9kHcwN6z8hMXKR08uiJjEHPGKniIR6BruhofNapPqYtvCYy20Ff/
+	a8ReUQ6tgvZH2x8HixagkQD+0ar5GFj1U5W2+RqzNyhCqv08AwzCQCJd2nd5VJSlbiqG6L
+	XjtWMnN3j5yqvvotTWPsw+fQ/VZapFw=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: TR5UEMQJYY4FGRYWZ2E2EPM32ULFYFNN
-X-Message-ID-Hash: TR5UEMQJYY4FGRYWZ2E2EPM32ULFYFNN
+Message-ID-Hash: Y26I64RPZJ6SALRECZPMPIMZ3QFKYP54
+X-Message-ID-Hash: Y26I64RPZJ6SALRECZPMPIMZ3QFKYP54
 X-MailFrom: asarmanow@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: b.a.t.m.a.n@lists.open-mesh.org, Alexander Sarmanow <asarmanow@gmail.com>
@@ -81,94 +81,88 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TR5UEMQJYY4FGRYWZ2E2EPM32ULFYFNN/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Y26I64RPZJ6SALRECZPMPIMZ3QFKYP54/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-This is the JSON analogue of the neighbors table. By using the
+This is the JSON analogue of the transglobal table. By using the
 netlink_query_common function to query the available netlink attributes.
 
 Signed-off-by: Alexander Sarmanow <asarmanow@gmail.com>
 ---
- Makefile         |  1 +
- README.rst       | 15 +++++++++
- man/batctl.8     |  3 ++
- neighbors_json.c | 82 ++++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 101 insertions(+)
- create mode 100644 neighbors_json.c
+ Makefile           |  1 +
+ README.rst         | 15 +++++++++
+ man/batctl.8       |  3 ++
+ transglobal_json.c | 81 ++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 100 insertions(+)
+ create mode 100644 transglobal_json.c
 
 diff --git a/Makefile b/Makefile
-index 9dfcfde..874dc2f 100755
+index 874dc2f..cea3271 100755
 --- a/Makefile
 +++ b/Makefile
-@@ -59,6 +59,7 @@ $(eval $(call add_command,multicast_fanout,y))
- $(eval $(call add_command,multicast_forceflood,y))
- $(eval $(call add_command,multicast_mode,y))
- $(eval $(call add_command,neighbors,y))
-+$(eval $(call add_command,neighbors_json,y))
- $(eval $(call add_command,network_coding,y))
- $(eval $(call add_command,orig_interval,y))
- $(eval $(call add_command,originators,y))
+@@ -72,6 +72,7 @@ $(eval $(call add_command,throughput_override,y))
+ $(eval $(call add_command,throughputmeter,y))
+ $(eval $(call add_command,traceroute,y))
+ $(eval $(call add_command,transglobal,y))
++$(eval $(call add_command,transglobal_json,y))
+ $(eval $(call add_command,translate,y))
+ $(eval $(call add_command,translocal,y))
+=20
 diff --git a/README.rst b/README.rst
-index c884bb3..f0ce43a 100644
+index f0ce43a..905e313 100644
 --- a/README.rst
 +++ b/README.rst
-@@ -371,6 +371,21 @@ Example::
-   [{"hard_ifindex":7,"orig_address":"fe:fe:00:00:01:01","best":true,"las=
-t_seen_msecs":700,"neigh_address":"fe:fe:00:00:02:01","tq":119},{"hard_if=
-index":2,"orig_address":"fe:fe:00:00:03:01","best":true,"last_seen_msecs"=
-:1040,"neigh_address":"fe:fe:00:00:02:01","tq":116},{"hard_ifindex":7,"or=
-ig_address":"fe:fe:00:00:04:01","best":true,"last_seen_msecs":700,"neigh_=
-address":"fe:fe:00:00:02:01","tq":119},{"hard_ifindex":2,"orig_address":"=
-fe:fe:00:00:05:01","best":true,"last_seen_msecs":270,"neigh_address":"fe:=
-fe:00:00:02:01","tq":140},{"hard_ifindex":2,"orig_address":"fe:fe:00:00:0=
-6:01","best":true,"last_seen_msecs":770,"neigh_address":"fe:fe:00:00:02:0=
-1","tq":91}]
+@@ -687,6 +687,21 @@ Flags that mean:
+ If any of the flags is not enabled, a '.' will substitute its symbol.
 =20
 =20
-+batctl neighbors_json
-+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++batctl transglobal_json
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 +
-+display the Neighbors JSON (analogue of the neighbors table)
++display the global translation JSON (analogue of the transglobal table)
 +
 +Usage::
 +
-+  batctl neighbors_json
++  batctl transglobal_json|tgj
 +
 +Example::
 +
-+  $ batctl neighbors_json|nj
-+  [{"hard_ifindex":2,"last_seen_msecs":650,"neigh_address":"fe:fe:00:00:=
-01:01"},{"hard_ifindex":2,"last_seen_msecs":650,"neigh_address":"fe:fe:00=
-:00:01:02"}]
++  $ batctl translglobal_json
++  [{"orig_address":"fe:fe:00:00:01:01","tt_address":"33:33:00:00:00:01",=
+"tt_ttvn":3,"last_ttvn":3,"crc32":1916279217,"tt_vid":0,"tt_flags":0,"bes=
+t":true},{"orig_address":"fe:fe:00:00:01:02","tt_address":"33:33:00:00:00=
+:02","tt_ttvn":3,"last_ttvn":3,"crc32":1916279217,"tt_vid":0,"tt_flags":0=
+}]
 +
 +
- batctl interface
- =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ batctl dat_cache
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 =20
 diff --git a/man/batctl.8 b/man/batctl.8
-index 155791d..1130a81 100644
+index 1130a81..97d5738 100644
 --- a/man/batctl.8
 +++ b/man/batctl.8
-@@ -304,6 +304,9 @@ seen by each individual node.
- .RS 7
- List of debug JSONs:
+@@ -309,6 +309,9 @@ List of debug JSONs:
  .RS 10
-+\- neighbors_json|nj
-+.RE
-+.RS 10
  \- originators_json|oj
  .RE
++.RS 10
++\- transglobal_json|tgj
++.RE
  .RE
-diff --git a/neighbors_json.c b/neighbors_json.c
+ .br
+ .IP "[\fBmeshif <netdev>\fP] \fBtranslate\fP|\fBt\fP \fBMAC_address\fP|\=
+fBbat\-host_name\fP|\fBhost_name\fP|\fBIP_address\fP"
+diff --git a/transglobal_json.c b/transglobal_json.c
 new file mode 100644
-index 0000000..7051c63
+index 0000000..612ffb8
 --- /dev/null
-+++ b/neighbors_json.c
-@@ -0,0 +1,82 @@
++++ b/transglobal_json.c
+@@ -0,0 +1,81 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/* Copyright (C) B.A.T.M.A.N. contributors:
 + *
@@ -177,7 +171,6 @@ index 0000000..7051c63
 + * License-Filename: LICENSES/preferred/GPL-2.0
 + */
 +
-+#include <net/if.h>
 +#include <netinet/if_ether.h>
 +#include <netlink/netlink.h>
 +#include <netlink/genl/genl.h>
@@ -192,12 +185,12 @@ index 0000000..7051c63
 +#include "netlink.h"
 +#include "genl_json.h"
 +
-+static int neighbors_json_callback(struct nl_msg *msg, void *arg)
++static int transglobal_json_callback(struct nl_msg *msg, void *arg)
 +{
-+	struct nlattr *attrs[BATADV_ATTR_MAX+1];
-+	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
 +	struct nlquery_opts *query_opts =3D arg;
 +	struct json_opts *json_opts;
++	struct nlattr *attrs[BATADV_ATTR_MAX+1];
++	struct nlmsghdr *nlh =3D nlmsg_hdr(msg);
 +	struct genlmsghdr *ghdr;
 +
 +	json_opts =3D container_of(query_opts, struct json_opts, query_opts);
@@ -209,7 +202,7 @@ index 0000000..7051c63
 +
 +	ghdr =3D nlmsg_data(nlh);
 +
-+	if (ghdr->cmd !=3D BATADV_CMD_GET_NEIGHBORS)
++	if (ghdr->cmd !=3D BATADV_CMD_GET_TRANSTABLE_GLOBAL)
 +		return NL_OK;
 +
 +	if (nla_parse(attrs, BATADV_ATTR_MAX, genlmsg_attrdata(ghdr, 0),
@@ -224,7 +217,7 @@ index 0000000..7051c63
 +	return NL_OK;
 +}
 +
-+static int netlink_print_neighbors_json(struct state *state)
++static int netlink_print_transglobal_json(struct state *state)
 +{
 +	int ret;
 +	struct json_opts json_opts =3D {
@@ -236,20 +229,20 @@ index 0000000..7051c63
 +
 +	putc('[', stdout);
 +	ret =3D netlink_query_common(state, state->mesh_ifindex,
-+				   BATADV_CMD_GET_NEIGHBORS,
-+				   neighbors_json_callback,
++				   BATADV_CMD_GET_TRANSTABLE_GLOBAL,
++				   transglobal_json_callback,
 +				   NLM_F_DUMP, &json_opts.query_opts);
 +	puts("]\n");
 +
 +	return ret;
 +}
 +
-+static struct debug_json_data batctl_debug_json_neighbors =3D {
-+	.netlink_fn =3D netlink_print_neighbors_json,
++static struct debug_json_data batctl_debug_json_transglobal =3D {
++	.netlink_fn =3D netlink_print_transglobal_json,
 +};
 +
-+COMMAND_NAMED(DEBUGJSON, neighbors_json, "nj", handle_debug_json,
++COMMAND_NAMED(DEBUGJSON, transglobal_json, "tgj", handle_debug_json,
 +	      COMMAND_FLAG_MESH_IFACE | COMMAND_FLAG_NETLINK,
-+	      &batctl_debug_json_neighbors, "");
++	      &batctl_debug_json_transglobal, "");
 --=20
 2.25.1
