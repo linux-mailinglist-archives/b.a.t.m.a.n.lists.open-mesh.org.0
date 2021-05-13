@@ -2,97 +2,123 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4A537A5BE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 May 2021 13:29:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D1037F95E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 May 2021 16:08:19 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9CFAC83F26;
-	Tue, 11 May 2021 13:28:59 +0200 (CEST)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5884C8051D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 11 May 2021 13:28:57 +0200 (CEST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 711293E8F5;
-	Tue, 11 May 2021 13:28:56 +0200 (CEST)
-Date: Tue, 11 May 2021 13:28:54 +0200
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: [net-next v2 09/11] net: bridge: mcast: split multicast router
- state for IPv4 and IPv6
-Message-ID: <20210511112854.GA2222@otheros>
-References: <20210509194509.10849-1-linus.luessing@c0d3.blue>
- <20210509194509.10849-10-linus.luessing@c0d3.blue>
- <f2f1c811-0502-bde4-8ece-e47b3e30dc66@nvidia.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7E7178107A;
+	Thu, 13 May 2021 16:08:19 +0200 (CEST)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3FF688078B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 May 2021 16:08:17 +0200 (CEST)
+Received: by mail-ej1-x62c.google.com with SMTP id l4so40052688ejc.10
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 May 2021 07:08:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mLjNXKegjmyKijhN9tJVn4Wp6PRvXJoNOfPECmbVEms=;
+        b=glQci4voAate0L+gB487Kd16NZSf/I0erkjC8gZMqzCsolGTaO/n55xBk3jDPSJMey
+         9lElJ5qspD5Aw22jA1bY1XTDUnQ4yphbRvbMXwU4bRs09QWEriuiDgQJqB+lSa+M9k7e
+         nsHUcfj4SC7XIVv5dV3Ch0xhgrVJT8gCU7ed0MBqwKXqxB9sPk+xLBJZONnSrSvnKWU3
+         G750HvTtdAzaCtBGtFwwDRNrQeYWkFsMrspIYCzHUEsxUovjtazEZoo1lyuKlLRLJprJ
+         6QVRguwap30rNegn8zXpkxZyCUMUIsGdqHvlzDUP1AbGXmV+9Kx5kZSEr7mh4xdr+k9M
+         R4lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mLjNXKegjmyKijhN9tJVn4Wp6PRvXJoNOfPECmbVEms=;
+        b=mZ6Me+ydl5lAYleVB+obN0nTGOmnA/JehWonbAzkpGBSGPdlYL1CSjdALT/unwaxQx
+         64Ac8JiI1GclVErCxTXoaupNh/HYYhPk1onNVWB6GyTT7DMIpiEahk19osXwf4/sBYsl
+         p83AmlFQ1Oyt9lKY+ovvywcp2uxkHIuaOGVWaDISHXVjOVPBlVvFfN+iiV1jY3nOQBQR
+         O9l22CruzdqyGC104DfvIc+pL1asWG3CbNEut8nHvXcFvqr2VFZLtZmE0qRaqb1Yeona
+         KtYNgpge6ElPHBv62dxIXKi22mEIXKre4NGN1awPFtr65SxebQXdPuxIhrf6zywN45zv
+         CxPQ==
+X-Gm-Message-State: AOAM533HxmoSNiqMmWEMXG5wFFrQJ940EvDn8H0/qCIlsCfwDqCqB74V
+	AohTqmUhzgMPD+V8ldIJoWBme0ZNKJuIlNTx
+X-Google-Smtp-Source: ABdhPJxFCHSJbbpVXrn4e9jZAEIeQcoSWXMVOhEnKKq0CV8SvweKko4Lpg7YUXafo6Wo/PGTTJlqHQ==
+X-Received: by 2002:a17:907:98a7:: with SMTP id ju7mr45071577ejc.515.1620914567162;
+        Thu, 13 May 2021 07:02:47 -0700 (PDT)
+Received: from machine.fritz.box (p4fc0a3a3.dip0.t-ipconnect.de. [79.192.163.163])
+        by smtp.googlemail.com with ESMTPSA id by20sm1825055ejc.74.2021.05.13.07.02.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 May 2021 07:02:46 -0700 (PDT)
+From: Alexander Sarmanow <asarmanow@gmail.com>
+To: sven@narfation.org
+Subject: [PATCH v3 0/2] batctl: Add generic JSON interface
+Date: Thu, 13 May 2021 16:02:32 +0200
+Message-Id: <20210513140234.1624460-1-asarmanow@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <f2f1c811-0502-bde4-8ece-e47b3e30dc66@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Last-TLS-Session-Version: TLSv1.2
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620732537; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620914897; a=rsa-sha256;
 	cv=none;
-	b=AihGXo93BGVkDjCkF7HctIQ5nfI037kZ7WCx2xnKxAMdKHNOlNhEwg1sTvuVouFOsxryGR
-	1ONk3RUCB6v8kB37KiDwiUmsR9fR03dsS5HmSDqevDC7TI/+8VZZmbyJ646tMGri/sumjI
-	9tcR5v6Cqed91YdBAQs8d8lSG/g3cZ4=
+	b=TFsIzB9PcF3+1m79VUD1kAS5XgqR9W1klAy39JJW9sIxBmQAxJVtoEjTkzJkBDYz9aDFoF
+	Zl/Grzzv+6CRyUFYn7kQyB8hPCYuRxpLMejZSd1vNvz8i2MZ/5oJRKpF5Wi/bwQiquWSgP
+	pLdEx2nsN/MFShG26dkcyL/q0nrIgF0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=glQci4vo;
+	spf=pass (diktynna.open-mesh.org: domain of asarmanow@gmail.com designates 2a00:1450:4864:20::62c as permitted sender) smtp.mailfrom=asarmanow@gmail.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1620732537;
+	s=20121; t=1620914897;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=44UrMKOpEgYUiNO89savLvoTA2ZPcTWprUDBxfbb6WU=;
-	b=thpMgWcwuG+0+/j3fk+tP9LuwM96L4uv1QsXOClnhUqSpxJboqOGlmAOEI5Izt+C92lwmZ
-	EPkkfw2Pz6KadDhoKSsMNDQ2LjPO7oknCExqbVPzR3XIGkL9wXNymwbrIt7uX8EgWUAGVH
-	zFALBFYJHNLI1zSSr8qVPgCNTUGQf00=
-Message-ID-Hash: AVMWYWPGYICR5EMDV2NC7IPV265A74UZ
-X-Message-ID-Hash: AVMWYWPGYICR5EMDV2NC7IPV265A74UZ
-X-MailFrom: linus.luessing@c0d3.blue
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=mLjNXKegjmyKijhN9tJVn4Wp6PRvXJoNOfPECmbVEms=;
+	b=squSXW4HPZjhns7Uh76jhQBKunTdVtk8hD9n5ISSPusxWqayQqhVuJ1KIYvFxtZCXrMZV2
+	dmDEHwEMSXNZvgI8v+8iCl4FCfkW4poxSpipi3Ngoq3IwMjp3iW2Lf30SDHas02CPLAYiu
+	Se8aFbRg107JyvAmGssicE9C41UCUIQ=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: STECUTMMJGHBJSEHLMDWFOA4VDDDTACS
+X-Message-ID-Hash: STECUTMMJGHBJSEHLMDWFOA4VDDDTACS
+X-MailFrom: asarmanow@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: netdev@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>, "David S . Miller" <davem@davemloft.net>, bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+CC: b.a.t.m.a.n@lists.open-mesh.org, Alexander Sarmanow <asarmanow@gmail.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AVMWYWPGYICR5EMDV2NC7IPV265A74UZ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/STECUTMMJGHBJSEHLMDWFOA4VDDDTACS/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Tue, May 11, 2021 at 12:29:41PM +0300, Nikolay Aleksandrov wrote:
-> [...]
-> > -static void br_multicast_mark_router(struct net_bridge *br,
-> > -				     struct net_bridge_port *port)
-> > +#if IS_ENABLED(CONFIG_IPV6)
-> > +struct hlist_node *
-> > +br_ip6_multicast_get_rport_slot(struct net_bridge *br, struct net_bridge_port *port)
-> > +{
-> > +	struct hlist_node *slot = NULL;
-> > +	struct net_bridge_port *p;
-> > +
-> > +	hlist_for_each_entry(p, &br->ip6_mc_router_list, ip6_rlist) {
-> > +		if ((unsigned long)port >= (unsigned long)p)
-> > +			break;
-> > +		slot = &p->ip6_rlist;
-> > +	}
-> > +
-> > +	return slot;
-> > +}
-> 
-> The ip4/ip6 get_rport_slot functions are identical, why not add a list pointer
-> and use one function ?
+For the missing JSON debug print a generic JSON print interface is
+proposed.
+A specific nla_policy is describing (a) the key name of the entry and
+(b) the corresponding callback function for printing the value.
+If the netlink attribute is not at disposal no entry for that will be
+printed.
 
-Hi Nikolay,
+This patch reffering to following patches:
 
-Thanks for all the feedback and reviewing again! I'll
-remove (most of) the inlines as the router list modifications are
-not in the fast path.
+[1] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@list=
+s.open-mesh.org/thread/SAQYUZQ7I7H7VWHFPVLBUDYCFX7HNWLO/
+[2] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@list=
+s.open-mesh.org/thread/IV2OFJ2KJX52K4ARZ5MIWZ2A42WOKJRO/
+[3] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@list=
+s.open-mesh.org/thread/EYQBFU5O7E3KKRG2YVPLRGHHN3OFIPYP/
+[4] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@list=
+s.open-mesh.org/thread/WKIBP64G27O23MBAPHECSKNJMUESWFAG/
+[5] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@list=
+s.open-mesh.org/thread/Y3XXIYCJWME4CQNWRBIRYJ6ZOL4MI2FT/
+[6] https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@list=
+s.open-mesh.org/thread/LYMU5ZA3I6YVHHRZVY3RJJR4KDHF76QI/
 
-For the get_rport_slot functions, maybe I'm missing a simple
-solution. Note that "ip6_rlist" in hlist_for_each_entry() is not a
-pointer but will be expanded by the macro. I currently don't see
-how I could solve this with just one hlist_for_each_entry().
+Alexander Sarmanow (2):
+  batctl: netlink: Make netlink_query_common non-static
+  batctl: genl_json: Add generic JSON interface
 
-Regards, Linus
+ Makefile    |   1 +
+ genl_json.c | 359 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ genl_json.h |  24 ++++
+ netlink.c   |  12 +-
+ netlink.h   |  14 ++
+ 5 files changed, 402 insertions(+), 8 deletions(-)
+ create mode 100644 genl_json.c
+ create mode 100644 genl_json.h
+
+--=20
+2.25.1
