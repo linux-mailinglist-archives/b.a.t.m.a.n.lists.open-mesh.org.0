@@ -1,378 +1,119 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5033807D2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 14 May 2021 12:58:13 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD1C38088C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 14 May 2021 13:35:39 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C58B880342;
-	Fri, 14 May 2021 12:58:12 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 70C2880054
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 May 2021 12:58:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1620989889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+vwddODvlbRqmys4XRwHGGdXkSo82wQYBa5poDg64pU=;
-	b=hKrjyoQQmCqMtTDE8sPtojaHWdCFHQcB+T8t0bnVUBgRuDQ7MG7bxVp7zS251XjX4kVdWO
-	o8YIQ0lWqA9cB8XI/CAMwFGXbcLfHky5p1B+Yoqe6vkr0Jw3vMPl16Rqf2RDdttX4yKx/l
-	63GkPtbrPDxgMF0TH1SEd+puWg0jRO4=
-From: Sven Eckelmann <sven@narfation.org>
-To: Alexander Sarmanow <asarmanow@gmail.com>
-Subject: Re: [PATCH v3 2/2] batctl: genl_json: Add generic JSON interface
-Date: Fri, 14 May 2021 12:58:07 +0200
-Message-ID: <5452292.bbYOnUf4Je@sven-desktop>
-In-Reply-To: <20210513140234.1624460-3-asarmanow@gmail.com>
-References: <20210513140234.1624460-1-asarmanow@gmail.com> <20210513140234.1624460-3-asarmanow@gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7C92A83EDC;
+	Fri, 14 May 2021 13:35:38 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id C508280024
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 May 2021 13:35:35 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EAB103E8F5
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 May 2021 13:35:34 +0200 (CEST)
+Date: Fri, 14 May 2021 13:35:32 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Subject: Re: [PATCH v2] batman-adv: bcast: queue per interface, if needed
+Message-ID: <20210514113532.GF2222@otheros>
+References: <20210427184527.9889-1-linus.luessing@c0d3.blue>
+ <3148825.KiqjeL1upR@sven-desktop>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4297162.PT8EF5Ib0W"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620989890; a=rsa-sha256;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3148825.KiqjeL1upR@sven-desktop>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Last-TLS-Session-Version: TLSv1.2
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1620992135; a=rsa-sha256;
 	cv=none;
-	b=kuPtmzyhck7wmYldcEiddAO4mx9fEYJRL3Ii50Zq0U0qZN5mSpSvuX0RPQ0SFx33bXuMx6
-	ocyEZ6t+AGcl+wsmWBN+vZTA6AcTh5MsBvw1HxjLtTX0MkOd3Pmj3fZpNvZDxoZuOnJ6qY
-	okv4dERdNU1S53WP5QFeNx0vjysRnUg=
+	b=vVMRdl1nFIB56Ej3PIzzBm3xFdmoODQeTG97sZEpdZfNDGyQptZIe0a2KfYiaTt48ZrJLJ
+	ZiPIcnyhCxHL7i5YDaDHult9yn19lsI1GUiuVnmBgsMBIevmeqJF67tpqpKQC4uuyAjS8s
+	ad+5E3FdjrZtqbi6lH7xZpNR0TpcXKo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=hKrjyoQQ;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=none;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:c2c:665b::1) smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1620989890;
+	s=20121; t=1620992135;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=+vwddODvlbRqmys4XRwHGGdXkSo82wQYBa5poDg64pU=;
-	b=dsj82dXjbC47c4RBoNK8cjhP8h7VVWf4bwhy4jizKYPM1eewwMkK8NgPQGKSvpIXWAF+4X
-	0FX6Ju8a5rNJpLs/RJ9GXKbqnbO54e9pZTDLM6WYekwhD2b/QprHkEtu+24x12OIxUpS6R
-	jn2tqyj02ILZcEzJxT8mJlLWefQrbRc=
-Message-ID-Hash: DW4PICVX2TRDGIV3RRQ2RKRTUXNOSLNF
-X-Message-ID-Hash: DW4PICVX2TRDGIV3RRQ2RKRTUXNOSLNF
-X-MailFrom: sven@narfation.org
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dvN3Ua2JV6QAy8gYpZ3kB1rJSWW4N+xFkp801hNa4EQ=;
+	b=lQ86J6vmOVtFGrA+X85TfIKD7IhBoKFt2f4UGXJg6+gx9gtfsisnOMpWChQXvMrIs5AAz1
+	nSV01pHeKiI1ZrN2VUOy8LbfX1s1h6Xge45fGBIqlNZcDuupts/i6JETRSU/SnOWQtlYdD
+	ObFHNikFAOHRGUGNmRd+9FWnQdiFZ4c=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: AFRMRZ5TMBN4MNYAFQZMRWL3M5SB7DC5
+X-Message-ID-Hash: AFRMRZ5TMBN4MNYAFQZMRWL3M5SB7DC5
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org, Alexander Sarmanow <asarmanow@gmail.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DW4PICVX2TRDGIV3RRQ2RKRTUXNOSLNF/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AFRMRZ5TMBN4MNYAFQZMRWL3M5SB7DC5/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart4297162.PT8EF5Ib0W
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Alexander Sarmanow <asarmanow@gmail.com>
-Cc: b.a.t.m.a.n@lists.open-mesh.org, sw@simonwunderlich.de, Alexander Sarmanow <asarmanow@gmail.com>
-Subject: Re: [PATCH v3 2/2] batctl: genl_json: Add generic JSON interface
-Date: Fri, 14 May 2021 12:58:07 +0200
-Message-ID: <5452292.bbYOnUf4Je@sven-desktop>
-In-Reply-To: <20210513140234.1624460-3-asarmanow@gmail.com>
-References: <20210513140234.1624460-1-asarmanow@gmail.com> <20210513140234.1624460-3-asarmanow@gmail.com>
+On Fri, May 14, 2021 at 10:28:53AM +0200, Sven Eckelmann wrote:
+> On Tuesday, 27 April 2021 20:45:27 CEST Linus L=C3=BCssing wrote:
+> > - * The skb is not consumed, so the caller should make sure that the
+> > - * skb is freed.
+> > + * This call clones the given skb, hence the caller needs to take in=
+to
+> > + * account that the data segment of the original skb might not be
+> > + * modifiable anymore.
+>=20
+> But none of your callers is now taking care of it because you've remove=
+d all=20
+> skb_copy's. All you do is to clone the control data and give it to the=20
+> underlying layers. And they may write freely to the data. Thus breaking=
+=20
+> parallel (and under some circumstances sequential) running code which o=
+perates=20
+> on the skbs.
 
-On Thursday, 13 May 2021 16:02:34 CEST Alexander Sarmanow wrote:
-> To print JSON strings in a generic way a second nla_policy is used, with
+Hi Sven,
 
-This is not a nla_policy but a private json translation "policy".
-
-[...]
-> new file mode 100644
-> index 0000000..cff54d8
-> --- /dev/null
-> +++ b/genl_json.c
-> @@ -0,0 +1,359 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/* Copyright (C) B.A.T.M.A.N. contributors:
-> + *
-> + * Alexander Sarmanow <asarmanow@gmail.com>
-> + *
-> + * License-Filename: LICENSES/preferred/GPL-2.0
-> + */
-> +
-> +#include <stdbool.h>
-> +#include <stdio.h>
-> +#include <ctype.h>
-> +#include <netlink/netlink.h>
-> +#include <netlink/attr.h>
-> +
-> +#include "genl_json.h"
-> +#include "batman_adv.h"
-> +#include "netlink.h"
-> +#include "main.h"
-
-#include "genl_json.h"
-#include "main.h"
-
-#include <ctype.h>
-#include <inttypes.h>
-#include <netlink/netlink.h>
-#include <netlink/attr.h>
-#include <stdbool.h>
-#include <stdio.h>
-
-#include "batman_adv.h"
-#include "netlink.h"
-
-> +static void nljson_print_uint8_t(struct nlattr *attrs[], int idx)
-> +{
-> +	uint8_t value = nla_get_u8(attrs[idx]);
-> +
-> +	printf("%u", value);
-> +}
-
-"%"PRIu8
-
-> +
-> +static void nljson_print_uint16_t(struct nlattr *attrs[], int idx)
-> +{
-> +	uint16_t value = nla_get_u16(attrs[idx]);
-> +
-> +	printf("%u", value);
-> +}
-
-"%"PRIu16
-
-> +
-> +static void nljson_print_uint32_t(struct nlattr *attrs[], int idx)
-> +{
-> +	uint32_t value = nla_get_u32(attrs[idx]);
-> +
-> +	printf("%u", value);
-> +}
-
-"%"PRIu32
-
-> +
-> +static void nljson_print_uint64_t(struct nlattr *attrs[], int idx)
-> +{
-> +	uint64_t value = nla_get_u64(attrs[idx]);
-> +
-> +	printf("%llu", value);
-> +}
-
-"%"PRIu64
-
-> +
-> +static void nljson_print_mac(struct nlattr *attrs[], int idx)
-> +{
-> +	uint8_t *value = nla_data(attrs[idx]);
-> +
-> +	printf("\"%02x:%02x:%02x:%02x:%02x:%02x\"",
-> +		value[0], value[1], value[2], value[3], value[4], value[5]);
-> +}
-
-Alignment
-
-> +static void nljson_print_flag(struct nlattr *attrs[], int idx)
-> +{
-> +	if (nla_get_flag(attrs[idx]))
-> +		printf("true");
-> +}
-
-The check is not necessary because it check only if attrs[idx] is != NULL - 
-which you've already checked. If this would not be the case, then this 
-function would create broken json like '{"foobar":}', right?
-
-> +
-> +void sanitize_string(const char *str)
-> +{
-> +	while (*str) {
-> +		if (*str == '"' || *str == '\\') {
-> +			putchar('\\');
-> +			putchar(*str);
-> +		} else if (*str == '\\') {
-> +			printf("\\\\");
-> +		} else if (!isprint(*str)) {
-> +			printf("\\x%02x", *str);
-> +		} else {
-> +			printf("%c", *str);
-> +		}
-
-		if (*str == '"' || *str == '\\') {
-			putchar('\\');
-			putchar(*str);
-		} else if (!isprint(*str)) {
-			printf("\\x%02x", *str);
-		} else {
-			putchar(*str);
-		}
-
-> +		str++;
-> +	}
-> +}
-
-This function should have been static and at the beginning of this file.
-
-> +
-> +void netlink_print_json_entries(struct nlattr *attrs[], struct json_opts *json_opts)
-> +{
-> +	bool first_valid_attr = true;
-> +	int i;
-> +
-> +	if (!json_opts->is_first)
-> +		printf(",");
-
-Code to handle the json_opts->is_first = false was again not added to this 
-function.
-
-> +
-> +	printf("{");
-> +	for (i = 0; i < BATADV_ATTR_MAX + 1; i++) {
-> +		if (!attrs[i])
-> +			continue;
-> +
-> +		if (!batadv_netlink_policy_json[i].cb)
-> +			continue;
-> +
-> +		if (!first_valid_attr)
-> +			printf(",");
-> +
-> +		putc('"', stdout);
-> +		sanitize_string(batadv_netlink_policy_json[i].name);
-> +		printf("\":");
-> +		batadv_netlink_policy_json[i].cb(attrs, i);
-> +
-> +		first_valid_attr = false;
-> +	}
-> +	printf("}");
-> +}
-> +
-> +
-> +struct nla_policy_json batadv_netlink_policy_json[NUM_BATADV_ATTR] = {
-
-this should have been static const
-
-> +	[BATADV_ATTR_PAD] = {
-> +		.name = "pad",
-> +	},
-
-I would guess we can ignore this one.
-
-> +	[BATADV_ATTR_TT_FLAGS] = {
-> +		.name = "tt_flags",
-> +		.cb = nljson_print_uint32_t,
-> +	},
-
-Why was the actually decoding removed?
-
-> +	[BATADV_ATTR_DAT_CACHE_IP4ADDRESS] = {
-> +		.name = "dat_cache_ip4_address",
-> +	},
-
-IPv4 print code missing
-
-[...]
-> +	[BATADV_ATTR_VLANID] = {
-> +		.name = "vlan_id",
-> +		.cb = nljson_print_uint16_t,
-> +	},
-
-wasn't this originally printed in a special way?
-
-> +	[BATADV_ATTR_AGGREGATED_OGMS_ENABLED] = {
-> +		.name = "aggregated_ogms_enabled",
-> +		.cb = nljson_print_uint8_t,
-> +	},
-
-This and other _ENABLED are booleans.
-
-[...]
-
-There were also different other weird names used. Like fragmented_enabled for 
-the fragmentation feature.
-
-> diff --git a/genl_json.h b/genl_json.h
-> new file mode 100644
-> index 0000000..0336b40
-> --- /dev/null
-> +++ b/genl_json.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/* Copyright (C) B.A.T.M.A.N. contributors:
-> + *
-> + * Alexander Sarmanow <asarmanow@gmail.com>
-> + *
-> + * License-Filename: LICENSES/preferred/GPL-2.0
-> + */
-> +
-> +#ifndef _BATCTL_GENLJSON_H
-> +#define _BATCTL_GENLJSON_H
-> +
-> +#include <stdint.h>
-> +
-> +#include "netlink.h"
-> +
-> +struct json_opts {
-> +	uint8_t is_first;
-
-is_first:1
-
-> +	struct nlquery_opts query_opts;
-> +};
-> +
-> +void netlink_print_json_entries(struct nlattr *attrs[], struct json_opts *json_opts);
-> +void sanitize_string(const char *str);
-> +
-> +#endif /* _BATCTL_GENLJSON_H */
-> diff --git a/netlink.h b/netlink.h
-> index c93f500..d96935a 100644
-> --- a/netlink.h
-> +++ b/netlink.h
-> @@ -29,6 +29,11 @@ struct nlquery_opts {
->  	int err;
->  };
->  
-> +struct nla_policy_json {
-> +	const char *name;
-> +	void (*cb)(struct nlattr *attrs[], int idx);
-> +};
-> +
-
-This doesn't belong to netlink.h. If it would really be needed outside of 
-genl_json.c then you should have added it to genl_json.h
-
->  struct ether_addr;
->  
->  int netlink_create(struct state *state);
-> @@ -44,6 +49,7 @@ int get_algoname_netlink(struct state *state, unsigned int mesh_ifindex,
->  			 char *algoname, size_t algoname_len);
->  
->  extern struct nla_policy batadv_netlink_policy[];
-> +extern struct nla_policy_json batadv_netlink_policy_json[];
-
-This doesn't belong to netlink.h. If it would really be needed outside of 
-genl_json.c then you should have added it to genl_json.h
-
-Kind regards,
-	Sven
+Thanks for looking at it so far. I'm not quite sure if the
+skb_copy() is needed though. Because there is a new skb_cow(). Let
+me explain my thoughts:
 
 
---nextPart4297162.PT8EF5Ib0W
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+We have two cases: A) Packet originating from ourself, via
+batadv_interface_tx(). Or B) received+forwarded from a neighbor
+node via batadv_recv_bcast_packet().
 
------BEGIN PGP SIGNATURE-----
+For case A), self generated:
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmCeV78ACgkQXYcKB8Em
-e0Z6+BAAoQvK2/RTeN1pvnI4k8DwkeiOkxoWZ8YHeF/P1VS0mOKrmiCK/rAi6jTL
-uWvngTt/XjtmftptbiG1P727Aa8QwhnZWMgViOvHCtSGn/67iWM8e3Lmt6dVp9Jj
-lCOz3chRKauowUfEZ9Scw7vwKB4cuMn0T2yc4psysqa7eTieblaplb9kmIXf/S9F
-JiHQ7Wz539d96c9PNYsAdOuKqYqBxPaB5Nima6TkFA2nONNmVEDGpKCF1UwoV5t7
-h1+td566WWtNA6rc12ZsNL8ZHgl/NRtsBBoVmscaB0OBMUhu/GbnJ+xh8bxCszDY
-KdXOmUp+fkwAGnxJfax+HcBXKSI9g8/dWPtdQuaoVngOaDBM4Ow5hXDASKSvqTSC
-npvt4USn+1Eqk93EjL2PbnqwDAhzuKwvGxYwJQFhBz2BvNQW+RrSpdOUNKr3xbO2
-lTGdvZbCWUSA96TH1oz/CuTnshHx4/cvXCt+EWNVdCaFqEtjROUoSZOl7pQfUtHf
-ey1JF5U0ptQT4BYUsWs+ahvOuk2CiA9Y3g3rt2yFJnCmx8nGVGfA0ZofNRVlV17g
-jyrjBuqgT4yeIQPnkfWPJ8+n5e4WZiI3Ive/v+Jfin6f58zGv8+V5bN0QnGtjAOn
-I1lkTDVixfQmWteIkyA9VzkxL52ZokTN5+pqAIEhIvhO1Ok5Oeo=
-=8J1Y
------END PGP SIGNATURE-----
+When we send the packet multiple times, for each rebroadcast or
+interface we will push the ethernet header and write the ether-src,
+ether-dest and ether protocol in  batadv_send_skb_packet(). Before that
+batadv_send_skb_packet() calls batadv_skb_head_push() which calls
+skb_cow_head(). So the ethernet header should be modifiable safely then,
+even if it is an skb clone.
 
---nextPart4297162.PT8EF5Ib0W--
+For case B), received/forwarded:
 
+Rebroadcasts same as in A), but additionally after rebroadcasting
+with potential requeuing in batadv_recv_bcast_packet() via
+batadv_forw_bcast_packet() we will also call
+batadv_interface_rx() and strip the batman header. Betweeen these
+calls there is the following though:
 
+batadv_forw_bcast_packet(skb, ...)
+-> __batadv_forw_bcast_packet(skb, ...);
+   ...
+   skb_cow(skb, 0)
+
+So the original skb will have been made uncloned/writeable again
+via the skb_cow() before being handed to batadv_interface_rx().
+
+Let me know if I'm missing something.
+
+Regards, Linus
