@@ -1,113 +1,215 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63BE6380E0A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 14 May 2021 18:18:30 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D0638198B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 15 May 2021 17:22:20 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 33EA980088;
-	Fri, 14 May 2021 18:18:29 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id E0B9384083
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 14 May 2021 18:18:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1621009106;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RBDO1TmWMZe1SxkAJK/mU9/TwHFLWku07uT/3SABEuk=;
-	b=Y9XUsopOe5+AYoYcSNxBjySuUbLlVS3rq0LjjpX8C/KfSOcfamAZtu/m5M0JbqmoWFMs+r
-	AenjuLDc2AASR0rSmQ+2eXFnibqw5HCJqsd1HG+qrWb0ATGEj9TGVOGbMl8vCt5MS586MK
-	E6VxVIiF8BxN/+mS69dcsWf3f7Z1hqw=
-From: Sven Eckelmann <sven@narfation.org>
-To: Alexander Sarmanow <asarmanow@gmail.com>
-Subject: Re: [PATCH v3 0/4] batctl: Add JSON debug commands
-Date: Fri, 14 May 2021 18:18:21 +0200
-Message-ID: <23505348.pnZsyTnv5I@sven-desktop>
-In-Reply-To: <20210513142812.1707215-1-asarmanow@gmail.com>
-References: <20210513142812.1707215-1-asarmanow@gmail.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 83267810C1;
+	Sat, 15 May 2021 17:22:18 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B41EB8035A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 15 May 2021 17:22:15 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EC0033E906;
+	Sat, 15 May 2021 17:22:13 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+Subject: [PATCH] batman-adv: mcast: add MRD + routable IPv4 multicast with bridges support
+Date: Sat, 15 May 2021 17:22:08 +0200
+Message-Id: <20210515152208.3969-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4421445.FzZahCnmo4"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1621009106; a=rsa-sha256;
+Content-Type: text/plain; charset=UTF-8
+X-Last-TLS-Session-Version: TLSv1.2
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1621092135; a=rsa-sha256;
 	cv=none;
-	b=h838TEZH5RvQCoeHG0tXBy/vDjQ/AeNbXlvf6zDrbj2VtNpIVwt82hZrs6uqR6i44I9DMs
-	9yV610IZzMBc/0NUM7xIrNd1B89AoWVAW7PlPI9Pay2pfhETVHg0hDfajHF2niRbFJAAQn
-	KgWDPXqGAVV3pXXv6Ka1DOPtXSaeHbY=
+	b=zSgSwVd5JwcPisdE3h65bDl9rnkkre9pGQG5Rmd6c1FhMxDRp9tnu313KifMT1RWXd2gK6
+	ifXyG9LNceScjUPEMWOINVz0/l6v7rebORtKeMh8MEXUJoBsDTzfGndNQmnhXJYSmbPvce
+	+F8iXjcwGqhlMuYtkFtMF/7yt+RWgtk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Y9XUsopO;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=none;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1621009106;
+	s=20121; t=1621092135;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=RBDO1TmWMZe1SxkAJK/mU9/TwHFLWku07uT/3SABEuk=;
-	b=2aUw4f52OE2tBlGjeFmqpqEpYTM76fGgkYnwwcxGoZhWOhX4aGVmNIVmgNLR9IAptrGOiF
-	j5IzKolNdZvlTt+SH/NR3640ITs4iXFZz4W98ROItt//hmfll8e2VtS5QCY6Um7+BWKKOr
-	QgIdw40/RZvAxctapijBZ1CItVcrkQY=
-Message-ID-Hash: NDLIIZB2U6O37B4S6F7JPAD7QSW5D3P5
-X-Message-ID-Hash: NDLIIZB2U6O37B4S6F7JPAD7QSW5D3P5
-X-MailFrom: sven@narfation.org
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iD4CDIDKzGdpjZ6RU2iBLNQ3HfxxkhqAG0xRGtA3Uic=;
+	b=SDWbOKjRuD6NDDzrQsC86kkVkeTw5bU7VHe2zogSjdQTmzsUlFu/+i3TylI9huyMcGxCN9
+	FnsU3PdjD773vtU7DVIBPehT5MB52bnEAVJ+hKmWb+ItxesbvJX8CHn/GZUyy3vjcet1ET
+	S4GsUXq+XjyzvFL2ztrYnTcMYWENTXo=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 76PAKBSK6WVITQI72CMRPWE35OLABDOK
+X-Message-ID-Hash: 76PAKBSK6WVITQI72CMRPWE35OLABDOK
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NDLIIZB2U6O37B4S6F7JPAD7QSW5D3P5/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/76PAKBSK6WVITQI72CMRPWE35OLABDOK/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart4421445.FzZahCnmo4
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Alexander Sarmanow <asarmanow@gmail.com>
-Cc: b.a.t.m.a.n@lists.open-mesh.org, sw@simonwunderlich.de
-Subject: Re: [PATCH v3 0/4] batctl: Add JSON debug commands
-Date: Fri, 14 May 2021 18:18:21 +0200
-Message-ID: <23505348.pnZsyTnv5I@sven-desktop>
-In-Reply-To: <20210513142812.1707215-1-asarmanow@gmail.com>
-References: <20210513142812.1707215-1-asarmanow@gmail.com>
+This adds support for routable IPv4 multicast addresses
+(224.0.0.0/4, excluding 224.0.0.0/24) in bridged setups.
 
-On Thursday, 13 May 2021 16:28:08 CEST Alexander Sarmanow wrote:
-> Following JSON debug commands will be added: originators_json,
-> neighbors_json, translocal_json, transglobal_json.
+This utilizes the Multicast Router Discovery (MRD, RFC4286) support
+in the Linux bridge. batman-adv will now query the Linux bridge for
+IPv4 multicast routers, which the bridge has previously learned about
+via MRD.
 
-Seems like this patchset is full of duplicated code which would have belonged 
-as shared code in an earlier patch.
+This allows us to then safely send routable IPv4 multicast packets in
+bridged setups to multicast listeners and multicast routers only. Before
+we had to flood such packets to avoid potential multicast packet loss to
+IPv4 multicast routers, which we were not able to detect before.
 
-At the same time, a lot of functionality (batadv genl query commands) is 
-missing - even stuff which was present in an earlier version of the patchset.
+With the bridge MRD integration, we are now also able to perform more
+fine-grained detection of IPv6 multicast routers in bridged setups:
+Before we were "guessing" IPv6 multicast routers by looking up multicast
+listeners for the link-local All Routers multicast address (ff02::2),
+which every IPv6 multicast router is listening to. However this would
+also include more nodes than necessary: For instance nodes which are
+just a router for unicast, but not multicast would be included, too.
 
-Kind regards,
-	Sven
---nextPart4421445.FzZahCnmo4
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+---
 
------BEGIN PGP SIGNATURE-----
+Please double check the Linux version in
+compat-include/linux/if_bridge.h.
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmCeos0ACgkQXYcKB8Em
-e0ZSGRAAvM1qLSukY4jNUKnyYAwmyubbFEskRZoZmJo7QPGrkrh7mGUIirSh3bNO
-JqA198L+DUqWOcA4Ue4CfH1CeazUHzmjdzQIWVsKlsPyQRvKFdVGoq1tS4dNOM/z
-BLuYotfGuixuv9vK7kS2EHfByzToPgSzgkwe+GEW+hvnk7S60ryMuyphLnqThFe9
-lSRL6CtRxPFfBgwPD4Pu2jk3H16L5Gp1QFzEpFkggG2NqefVtKBu4GxPv19S1LUv
-yyqJcWM4AUVcoeaRxh5h1V2VklZvHNhyptuS6VwN7ocdng9rzjL6e0RaoscUoQ0U
-18sdKhP1rD2kfbCj7D4hfhdz70DxKucx7ULR4GCPxOF6+WxDRKYS7ZnJH8X81fvm
-dJnbadXAYmBLwKsYZhm6POC9gRKi5hSlkWaqG3sM44haDR4sWgjCr6BimvwSOvK+
-DoHbOd0sLXQKAGdQ8cLFsnMUjvdKc9P/lQ99XoyhfdDGpXQq8f1l0qfcPZMfM10N
-YQarzbokHBMSIXvRSSnPOeR2olx/ZXii3diZQco0w5gDXyjiM8mwJSEN3ZiMbHme
-1OpM5v6IpfdpoL79fwk4ho0hq2uZTNG7BoQXv072pWPgSrkXBcCUV7RO2RSZgiSu
-jMrA77O7hDAAgaeGk4xdzw2oYRGmvq4a8n18X7qrAuDFOTpBn0s=
-=zUr0
------END PGP SIGNATURE-----
+Commit 3b85f9ba3480c1 ("net: bridge: mcast: export multicast router prese=
+nce adjacent to a port")
+was added to net-next just recently
+(CommitDate: Thu May 13 14:04:31 2021 -0700).
+So br_multicast_has_router_adjacent() should be part of >=3D 5.14?
 
---nextPart4421445.FzZahCnmo4--
+ compat-include/linux/if_bridge.h | 42 ++++++++++++++++++++++++++++++++
+ net/batman-adv/multicast.c       | 41 ++++---------------------------
+ 2 files changed, 47 insertions(+), 36 deletions(-)
 
-
+diff --git a/compat-include/linux/if_bridge.h b/compat-include/linux/if_b=
+ridge.h
+index da00c8b0..dfc4a092 100644
+--- a/compat-include/linux/if_bridge.h
++++ b/compat-include/linux/if_bridge.h
+@@ -53,4 +53,46 @@ inline void __batadv_br_ip_list_check(void)
+=20
+ #endif /* LINUX_VERSION_IS_LESS(5, 10, 0) */
+=20
++#if LINUX_VERSION_IS_LESS(5, 14, 0)
++
++#include <net/addrconf.h>
++
++#if IS_ENABLED(CONFIG_IPV6)
++static inline bool
++br_multicast_has_router_adjacent(struct net_device *dev, int proto)
++{
++	struct list_head bridge_mcast_list =3D LIST_HEAD_INIT(bridge_mcast_list=
+);
++	struct br_ip_list *br_ip_entry, *tmp;
++	int ret;
++
++	if (proto !=3D ETH_P_IPV6)
++		return true;
++
++	ret =3D br_multicast_list_adjacent(dev, &bridge_mcast_list);
++	if (ret < 0)
++		return true;
++
++	ret =3D false;
++
++	list_for_each_entry_safe(br_ip_entry, tmp, &bridge_mcast_list, list) {
++		if (br_ip_entry->addr.proto =3D=3D htons(ETH_P_IPV6) &&
++		    ipv6_addr_is_ll_all_routers(&br_ip_entry->addr.dst.ip6))
++			ret =3D true;
++
++		list_del(&br_ip_entry->list);
++		kfree(br_ip_entry);
++	}
++
++	return ret;
++}
++#else
++static inline bool
++br_multicast_has_router_adjacent(struct net_device *dev, int proto)
++{
++	return true;
++}
++#endif
++
++#endif /* LINUX_VERSION_IS_LESS(5, 14, 0) */
++
+ #endif /* _NET_BATMAN_ADV_COMPAT_LINUX_IF_BRIDGE_H_ */
+diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
+index 1d63c8cb..923e2197 100644
+--- a/net/batman-adv/multicast.c
++++ b/net/batman-adv/multicast.c
+@@ -193,53 +193,22 @@ static u8 batadv_mcast_mla_rtr_flags_softif_get(str=
+uct batadv_priv *bat_priv,
+  *	BATADV_MCAST_WANT_NO_RTR6: No IPv6 multicast router is present
+  *	The former two OR'd: no multicast router is present
+  */
+-#if IS_ENABLED(CONFIG_IPV6)
+ static u8 batadv_mcast_mla_rtr_flags_bridge_get(struct batadv_priv *bat_=
+priv,
+ 						struct net_device *bridge)
+ {
+-	struct list_head bridge_mcast_list =3D LIST_HEAD_INIT(bridge_mcast_list=
+);
+ 	struct net_device *dev =3D bat_priv->soft_iface;
+-	struct br_ip_list *br_ip_entry, *tmp;
+-	u8 flags =3D BATADV_MCAST_WANT_NO_RTR6;
+-	int ret;
++	u8 flags =3D BATADV_NO_FLAGS;
+=20
+ 	if (!bridge)
+ 		return BATADV_MCAST_WANT_NO_RTR4 | BATADV_MCAST_WANT_NO_RTR6;
+=20
+-	/* TODO: ask the bridge if a multicast router is present (the bridge
+-	 * is capable of performing proper RFC4286 multicast router
+-	 * discovery) instead of searching for a ff02::2 listener here
+-	 */
+-	ret =3D br_multicast_list_adjacent(dev, &bridge_mcast_list);
+-	if (ret < 0)
+-		return BATADV_NO_FLAGS;
+-
+-	list_for_each_entry_safe(br_ip_entry, tmp, &bridge_mcast_list, list) {
+-		/* the bridge snooping does not maintain IPv4 link-local
+-		 * addresses - therefore we won't find any IPv4 multicast router
+-		 * address here, only IPv6 ones
+-		 */
+-		if (br_ip_entry->addr.proto =3D=3D htons(ETH_P_IPV6) &&
+-		    ipv6_addr_is_ll_all_routers(&br_ip_entry->addr.dst.ip6))
+-			flags &=3D ~BATADV_MCAST_WANT_NO_RTR6;
+-
+-		list_del(&br_ip_entry->list);
+-		kfree(br_ip_entry);
+-	}
++	if (!br_multicast_has_router_adjacent(dev, ETH_P_IP))
++		flags |=3D BATADV_MCAST_WANT_NO_RTR4;
++	if (!br_multicast_has_router_adjacent(dev, ETH_P_IPV6))
++		flags |=3D BATADV_MCAST_WANT_NO_RTR6;
+=20
+ 	return flags;
+ }
+-#else
+-static inline u8
+-batadv_mcast_mla_rtr_flags_bridge_get(struct batadv_priv *bat_priv,
+-				      struct net_device *bridge)
+-{
+-	if (bridge)
+-		return BATADV_NO_FLAGS;
+-	else
+-		return BATADV_MCAST_WANT_NO_RTR4 | BATADV_MCAST_WANT_NO_RTR6;
+-}
+-#endif
+=20
+ /**
+  * batadv_mcast_mla_rtr_flags_get() - get multicast router flags
+--=20
+2.31.0
