@@ -2,95 +2,117 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE8539407A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 May 2021 11:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED7D39408B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 May 2021 12:00:53 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 97BA582229;
-	Fri, 28 May 2021 11:58:31 +0200 (CEST)
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 231A7804CC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 May 2021 11:56:42 +0200 (CEST)
-Received: from dggeml751-chm.china.huawei.com (unknown [172.30.72.56])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4Fs0Nq2lZTz65Yq;
-	Fri, 28 May 2021 17:52:59 +0800 (CST)
-Received: from dggpeml500023.china.huawei.com (7.185.36.114) by
- dggeml751-chm.china.huawei.com (10.1.199.150) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Fri, 28 May 2021 17:56:38 +0800
-Received: from localhost.localdomain (10.69.192.56) by
- dggpeml500023.china.huawei.com (7.185.36.114) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 28 May 2021 17:56:38 +0800
-From: Shaokun Zhang <zhangshaokun@hisilicon.com>
-To: <b.a.t.m.a.n@lists.open-mesh.org>, <netdev@vger.kernel.org>
-Subject: [PATCH] batman-adv: Remove the repeated declaration
-Date: Fri, 28 May 2021 17:56:25 +0800
-Message-ID: <1622195785-55920-1-git-send-email-zhangshaokun@hisilicon.com>
-X-Mailer: git-send-email 2.7.4
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 05349807D5;
+	Fri, 28 May 2021 12:00:52 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 08F98801FD
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 May 2021 12:00:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1622196048;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=OmS3Xtoeak6MRLd+5GYFy0/qSh91YuShKZQkQq6q3tc=;
+	b=BC4HaLgk117+A05W0eex0XQnSrfDPYaM/eij1TE1dXG98iHLqI8vHjpsXVsc4W9RILSXNX
+	vYXu4OFwtNobXCMEfJHLI7Rql6r/ZjByHVUnpVRzJlhpVLKGZ+fzDc9dw8BbdTPRZRcL04
+	Zi6y0D5HPms5ZLvvuySVka6+m/AOrLc=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, Shaokun Zhang <zhangshaokun@hisilicon.com>
+Subject: Re: [PATCH] batman-adv: Remove the repeated declaration
+Date: Fri, 28 May 2021 12:00:44 +0200
+Message-ID: <56516093.ber78CngbM@ripper>
+In-Reply-To: <1622195785-55920-1-git-send-email-zhangshaokun@hisilicon.com>
+References: <1622195785-55920-1-git-send-email-zhangshaokun@hisilicon.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.69.192.56]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpeml500023.china.huawei.com (7.185.36.114)
-X-CFilter-Loop: Reflected
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1622195803; a=rsa-sha256;
+Content-Type: multipart/signed; boundary="nextPart13351496.OZpsN2k5gf"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1622196049; a=rsa-sha256;
 	cv=none;
-	b=KafEYv64fcxGPUoygIJ2KHOTUWWwsA34YG8TaHo1Dy9uPoRvjQAFH58eJaUKL0vX2fkNJS
-	0LKfP3IjwPWG6+Uvk99aR1RmRY/GLB4KKfK2g2//vu+6/LxSQ0rywM4IeyupMfxzQIzEOd
-	riZ719G5YMBMW/eTlT2qxaGA5blUDSI=
+	b=WDQim/q6NR0k0KL8HligWnGoRyEwwBDC13kh7gTtUXgokK6sdeF14AmyikdZ0m9we1aFVG
+	6fy/sVTsww3TP3c1XeAZM+x64zbP/UL3xJZ0HxqIFZ6w/54h6HQD82pzqfeJlusIv0TomW
+	eu1Sf4sTeEB/dnQOzpDuwi92Pw5w9Xc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of zhangshaokun@hisilicon.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=zhangshaokun@hisilicon.com
+	dkim=pass header.d=narfation.org header.s=20121 header.b=BC4HaLgk;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1622195803;
+	s=20121; t=1622196049;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type;
-	bh=HgAJJUKJyBXg5gJzUIPils3qALGiMyCVdEllkNW7JGc=;
-	b=k8RtdaiHO0LVtSuS0arSuPTfiS9IxBHGcu+OhYyVZWj9Tt1lWlh2yX89W6stLvh5ZfDZko
-	9Ej+LBuEFcBZSCfi8dDecjDV0BByysPx5ahCjRzFunlMezHQzXiukbJDs72FlkvqJTdBvq
-	FS3JVX5ygiFWcAi/tHDRISvETVZSo1k=
-X-MailFrom: zhangshaokun@hisilicon.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: TQPXXSERQDWJYYTCGJRGDYJEDT63SFV7
-X-Message-ID-Hash: TQPXXSERQDWJYYTCGJRGDYJEDT63SFV7
-X-Mailman-Approved-At: Fri, 28 May 2021 09:58:29 +0200
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=OmS3Xtoeak6MRLd+5GYFy0/qSh91YuShKZQkQq6q3tc=;
+	b=X1R9ZnxDStOFWg5f8YDdiXVZIAZdmoz6dQWAD08tHUkU/nQPhJzo6EfZLYaktvXyA/PtsS
+	ZM/+uIb2PXHvNHRYdwnhfTVFTeaRPDgMCrTSNqeGWGF7OQeLKZCOGFAByqZX1weYTbv0mp
+	W0+NOpZiAtH8kvtfJHf2d57OU0A8pa4=
+Message-ID-Hash: HVR63PIOMG6Y6YDKBLXBNVS75QQ3AMFP
+X-Message-ID-Hash: HVR63PIOMG6Y6YDKBLXBNVS75QQ3AMFP
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: Shaokun Zhang <zhangshaokun@hisilicon.com>, Marek Lindner <mareklindner@neomailbox.ch>, Antonio Quartulli <a@unstable.cc>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TQPXXSERQDWJYYTCGJRGDYJEDT63SFV7/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HVR63PIOMG6Y6YDKBLXBNVS75QQ3AMFP/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Function 'batadv_bla_claim_dump' is declared twice, so remove the
-repeated declaration.
+--nextPart13351496.OZpsN2k5gf
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, Shaokun Zhang <zhangshaokun@hisilicon.com>
+Cc: Shaokun Zhang <zhangshaokun@hisilicon.com>, Marek Lindner <mareklindner@neomailbox.ch>, Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>
+Subject: Re: [PATCH] batman-adv: Remove the repeated declaration
+Date: Fri, 28 May 2021 12:00:44 +0200
+Message-ID: <56516093.ber78CngbM@ripper>
+In-Reply-To: <1622195785-55920-1-git-send-email-zhangshaokun@hisilicon.com>
+References: <1622195785-55920-1-git-send-email-zhangshaokun@hisilicon.com>
 
-Cc: Marek Lindner <mareklindner@neomailbox.ch>
-Cc: Simon Wunderlich <sw@simonwunderlich.de>
-Cc: Antonio Quartulli <a@unstable.cc>
-Cc: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Shaokun Zhang <zhangshaokun@hisilicon.com>
----
- net/batman-adv/bridge_loop_avoidance.h | 1 -
- 1 file changed, 1 deletion(-)
+On Friday, 28 May 2021 11:56:25 CEST Shaokun Zhang wrote:
+> Function 'batadv_bla_claim_dump' is declared twice, so remove the
+> repeated declaration.
+> 
+> Cc: Marek Lindner <mareklindner@neomailbox.ch>
+> Cc: Simon Wunderlich <sw@simonwunderlich.de>
+> Cc: Antonio Quartulli <a@unstable.cc>
+> Cc: Sven Eckelmann <sven@narfation.org>
+> Signed-off-by: Shaokun Zhang <zhangshaokun@hisilicon.com>
+> ---
+>  net/batman-adv/bridge_loop_avoidance.h | 1 -
+>  1 file changed, 1 deletion(-)
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.h b/net/batman-adv/bridge_loop_avoidance.h
-index 5c22955bb9d5..8673a265995f 100644
---- a/net/batman-adv/bridge_loop_avoidance.h
-+++ b/net/batman-adv/bridge_loop_avoidance.h
-@@ -52,7 +52,6 @@ void batadv_bla_update_orig_address(struct batadv_priv *bat_priv,
- void batadv_bla_status_update(struct net_device *net_dev);
- int batadv_bla_init(struct batadv_priv *bat_priv);
- void batadv_bla_free(struct batadv_priv *bat_priv);
--int batadv_bla_claim_dump(struct sk_buff *msg, struct netlink_callback *cb);
- #ifdef CONFIG_BATMAN_ADV_DAT
- bool batadv_bla_check_claim(struct batadv_priv *bat_priv, u8 *addr,
- 			    unsigned short vid);
--- 
-2.7.4
+Applied
+
+Thanks,
+	Sven
+--nextPart13351496.OZpsN2k5gf
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmCwv00ACgkQXYcKB8Em
+e0bgmQ/7Bfub8mMSSR8Q3Rp9lJk0s7uHkLHB+M5TxDZTCKTpxCPvWANddLrD4cPy
+FmrjUMXKIyIE9KSGiX+C/XLB7cMNpH5gyuiZ1xuVOtw5zqyNqliTqOvx8ODOUQ27
+NvsFKDvBl3TwhqCfDHwp7xWssLDCx5Yisc0SSlGC/Ev+0g55PMHL7IiMaALFrjnZ
+2WWatv2D7GoSeDSNgRi9rHQUeUXpo6nKDSy99DDQHPt2iHsAErZvN65lSt0wzkGC
+M1TcsZmE9+QTwnHKdbwwsoEZ1IFU59ovxfoQ8KCBw+0t/UAoTvMN7hSB8Ph7Ar8a
+UrsMBL4T/NpOmNFYiaLjHfIjd6AKHUhv4kFTWtY7e9MkhF2LMyi9oNqjiX1LwlIO
+RxI7jyyiUW5z4Jz+ioxOG60UD5Q9GEgJ1/5Ecb4U43HYBBUy3DaCLHXIxXhjoQgG
+z9uARVB0xfGuvegJElr59eNRGoAN9EbL6AlJQRb4kuF78fHRP8gYD1u3OswTkSHt
+om6WIlsFqXTRuz5W1dT72TQ4LLTpHziCV0B9ZWiYrL7mrjwi03RcnwbAIe7bS/us
+wGqIbdpny63hiOD+wpjqr7lt653p9KOlDn/10JIip2W4tkRjBzRriKU+qLxFjMf5
+7M6+0uKaRa6vfRZ4N9jW0dAO+EEzFBsOOs5OMbssO/Ij6d1+UEI=
+=36As
+-----END PGP SIGNATURE-----
+
+--nextPart13351496.OZpsN2k5gf--
+
+
