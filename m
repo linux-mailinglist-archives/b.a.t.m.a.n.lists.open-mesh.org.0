@@ -2,100 +2,104 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96839396C92
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Jun 2021 07:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BBC939727A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Jun 2021 13:35:46 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 42F47809F3;
-	Tue,  1 Jun 2021 07:00:16 +0200 (CEST)
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9976480631
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Jun 2021 07:00:11 +0200 (CEST)
-Received: by mail-il1-f198.google.com with SMTP id s3-20020a92c5c30000b02901bc737e231eso9312190ilt.13
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 31 May 2021 22:00:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
-         :from:to;
-        bh=HZoCrhifvFqebweO5oM8sTQXrnYAq0UL7ZIrots2vSc=;
-        b=nTUQo//XfRI578hBvt3J0g4jDfqlDV1Dlxbqnh9f1Aj6Fw1L9eViBQKs/9XU1YddrF
-         8ohnIu/QQXG4IG+JZG1zx5q6rE1AwZpedSqVMk8NBBtbP/9QjuMuL3emkyniKiXASkvG
-         YK5N/pYrssWDoqQhA7qcFaCFs9hjzVRQNeXxpVizeBZVhn7wn5Kjl/SW+QnMagnU7g3E
-         Y+DSV3B4aen9+ejbsOJjbjmArjaQhbxn8KdTW2gsFz128PD7xcFAaHdkgEZ2k2Wpf686
-         c4NEqhBWo3y/BJiInVY4MkILrzAVj6FMLjPJLAtL/QMz63KS6JR4yU6iFF4slSDCNn7j
-         2q+w==
-X-Gm-Message-State: AOAM531MClDHvpNTXgUAX8hmrdMNIW0C/qctIX9D3lzUFt0aEE6/DJe9
-	Wmkw0yS6oIYGnAlSKbt/wAVU52mgkW8YCcuLBzKKOY9cWSyg
-X-Google-Smtp-Source: ABdhPJyDPqVeQwFPYxvwDFNm5lVzsEmrtB9fOyxrUNzo2mPUK0UzLNL7BZ0jpoGpdR7H0zY1Wl5YoHHlpd3CmiPaYpmOLCQaOLqA
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CF75980031;
+	Tue,  1 Jun 2021 13:35:44 +0200 (CEST)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.23])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 83E4F801CB
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Jun 2021 13:35:42 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; t=1622547342; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Azot6or4Xq8/ZvWx0u1lhTb1RtOU/4TWj8FLY76EGF1WRfEozUb/fPf2leWWYS67O/
+    txqaqHzL0FjlI0mC5XwHGm8X666N/eJ5ijv8nYmRtOJoOAyZPsD8d9MUyfryccQ2FdCK
+    jvW1iACBZZ7Dt+7LF3LWNwjKQfp5Uj3X+BbliDicqg6bExnG+FGWn78r23HFfnvq9RcZ
+    tTzaY1Da6aiD5kBoLHuYcKSJS+CKzQLIlvJPdcFCWFzvti/HODuPo7kfeZecdZjYoPbq
+    FcvoFfYNWnGer77O+AIcqZj4guA8nWlgMm9gSvISR4qpAbNDKv5gkgeMRbvPBnMZplS0
+    n/Ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1622547342;
+    s=strato-dkim-0002; d=strato.com;
+    h=Date:Message-ID:Subject:From:To:Cc:Date:From:Subject:Sender;
+    bh=bRDb+Y6uX8TnoPYOfz5GGGrA2sbrAG2PwcCsVYAcmYQ=;
+    b=SBMUq5ZUTOeyEcrRIGT3l9aJ9w3Fdy7uJPS1QSf8sqgQJJvaPtxBSIJe8VN/hQPTD+
+    a8/Xm5h03aGD3HZ3ntg5OkAQ0Z3z8U0RPOHmtRFfzteP/b5DZA1NqV6/Es30Tbs25Ot4
+    lXeYNIal+WPk7BnrV0+wb2W69lsBcbqD/HVsocclj9TIqyYcWrVCyaKwztdfXGTi9AKv
+    Vl/7sMV2bVwr1/zaNTfAHgw/kqwmKJsMzdRt2KQ4/z2JOwxLp2EwFiwlzWtTUS4EmmIN
+    +HxOhMUfMxu/9Z+XZUXcsd+faw4x8wNVV5JjwNpq34WIf0bv+3HNXFChvrWOhwq2jHOc
+    ZusQ==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1622547342;
+    s=strato-dkim-0002; d=aiyionpri.me;
+    h=Date:Message-ID:Subject:From:To:Cc:Date:From:Subject:Sender;
+    bh=bRDb+Y6uX8TnoPYOfz5GGGrA2sbrAG2PwcCsVYAcmYQ=;
+    b=oyTqITgR49ww68P5r0DAv4CbOXShxs8xebGDsYze6brUBkwraS7eBB7/+dgSsdCdhk
+    DDANjnSTQo1iO1Asl9fIOrQJyxdstK8LcaHr1U/ZdrhMd6AvkA3ezGvvnHfy8R1+SYzk
+    XaFJfSa52O/XAJmBAFxykF7z+Bl2tmiuUPNv8m2FfeIe+t/Fn7KEnElMLFLWwyjV2fBa
+    JffibrpjDu7vo8uTHYJiy750gX3ROnbW3I1trJ94syGj58HGpNpJViUH+yCO4XphR8MU
+    IRke3tSgKJyYF82ZRFy+BPi2/yqJxXUp0xJC4EG/+t9NepxIoZDsA0yizkoQ+aYeH8Wi
+    4+9Q==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":IWkkdEmxcvCtRDtHUQOu48a0Nfy9hOkbpbRt4aM2x33iJsZ8F6ZSMCbAg3MdK/jjPIlb/q84QRNo8MmcRpDJ/D7ooUkQRAG4Hw=="
+X-RZG-CLASS-ID: mo00
+Received: from [IPv6:2003:e7:9f15:a380:8405:5e7d:275f:82d9]
+    by smtp.strato.de (RZmta 47.26.3 AUTH)
+    with ESMTPSA id t0079bx51BZgJCu
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate)
+    for <b.a.t.m.a.n@lists.open-mesh.org>;
+    Tue, 1 Jun 2021 13:35:42 +0200 (CEST)
+To: b a t m a n <b.a.t.m.a.n@lists.open-mesh.org>
+From: "Aiyion.Prime" <batman@aiyionpri.me>
+Subject: irc update
+Message-ID: <03d08eeb-a314-1fbb-aafd-1461826feaad@aiyionpri.me>
+Date: Tue, 1 Jun 2021 13:35:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-X-Received: by 2002:a92:d201:: with SMTP id y1mr19795884ily.103.1622523610124;
- Mon, 31 May 2021 22:00:10 -0700 (PDT)
-Date: Mon, 31 May 2021 22:00:10 -0700
-In-Reply-To: <000000000000f32b3c05958ed0eb@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000006bd5ff05c3ad37da@google.com>
-Subject: Re: [syzbot] INFO: task hung in register_netdevice_notifier (2)
-From: syzbot <syzbot+355f8edb2ff45d5f95fa@syzkaller.appspotmail.com>
-To: a@unstable.cc, ast@kernel.org, b.a.t.m.a.n@lists.open-mesh.org,
-	bpf@vger.kernel.org, brouer@redhat.com, daniel@iogearbox.net,
-	davem@davemloft.net, hawk@kernel.org, jakub.kicinski@netronome.com,
-	john.fastabend@gmail.com, kafai@fb.com, kuba@kernel.org,
-	linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
-	mareklindner@neomailbox.ch, mkl@pengutronix.de, netdev@vger.kernel.org,
-	socketcan@hartkopp.net, songliubraving@fb.com, sw@simonwunderlich.de,
-	syzkaller-bugs@googlegroups.com, xdp-newbies@vger.kernel.org, yhs@fb.com
-Content-Type: text/plain; charset="UTF-8"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1622523611; a=rsa-sha256;
-	cv=none;
-	b=l8OWsc4p09nYO0IMkPTanPIarFlzwmYfnE9NxdJXT/r1lo03kUpa5P/fpHv7/qVQVDP7aK
-	va/6Zvil6RJDFaV4wSGUgfSlE6w4XPXa4yw5OfaWCq8hxa5XMy1JQBpstsu+OZ5xKD4+86
-	1h2DlmfXo+kkzEzmkC7JugCNh3dk5Ms=
-ARC-Authentication-Results: i=1;
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: 7bit
+ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1622547342; a=rsa-sha256;
+	cv=pass;
+	b=xDGy4pSu9lK+Sw4eOdvedvRGH/a2zSnJY2q4CyktUPkksHaRb84p+FpOg7/jAqdaX6bNOo
+	NuP0TVeU8QuEvCcw4iiJEGyBsk1JQjzhbsFVVEJBcI14okgPifD0bRPYvomfraAQbIICjp
+	uJ4NLuY/WaGoV8BtdiB+iFxCxR4fuKg=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of 32r61YAkbADspvwhXiiboXmmfa.dlldibrpboZlkqbkq.Zlj@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.198 as permitted sender) smtp.mailfrom=32r61YAkbADspvwhXiiboXmmfa.dlldibrpboZlkqbkq.Zlj@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1622523611;
+	dkim=pass header.d=aiyionpri.me header.s=strato-dkim-0002 header.b=oyTqITgR;
+	arc=pass ("strato.com:s=strato-dkim-0002:i=1");
+	spf=none (diktynna.open-mesh.org: domain of batman@aiyionpri.me has no SPF policy when checking 85.215.255.23) smtp.mailfrom=batman@aiyionpri.me
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1622547342;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to; bh=HZoCrhifvFqebweO5oM8sTQXrnYAq0UL7ZIrots2vSc=;
-	b=Tg6NBA8FQYhuX3bjnoPAtd2Ur+XkBVMnvTXSJwOoeSP3QQ5CrRrlUJlop6Ojqizi4e+5bh
-	AKM7IhRezrknPtLYuijZXxmK7XQRfuVc+QBkam+092jSTcUG5Otd/4Zk1OI16/JoYKHwZW
-	dIGG5/PSl2BmfPts64wWJJVFRusuaR0=
-Message-ID-Hash: Y3LYD6LYS2WX3MRQEK4T52FCH5BKKHCL
-X-Message-ID-Hash: Y3LYD6LYS2WX3MRQEK4T52FCH5BKKHCL
-X-MailFrom: 32r61YAkbADspvwhXiiboXmmfa.dlldibrpboZlkqbkq.Zlj@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=bRDb+Y6uX8TnoPYOfz5GGGrA2sbrAG2PwcCsVYAcmYQ=;
+	b=CFMWB6sVcptKtHf0RkbPl/D+6mhPoS7tQ6Ldqh/qQAV43P8j/1QBE2NajCHOVnXYhWUGK3
+	XZxXqNN9km5+8Urnp2jU0Pbc6+uh2CVBc002ZH9ZymP85BHOcRkLdnKjgHLt2bqOXEH2v/
+	/K5M7NQr0tjlOWpGO0ZoqPS+vQrO6e4=
+Message-ID-Hash: CSTQYNS6PECJXX4KMOWO6XNRIEEMASEE
+X-Message-ID-Hash: CSTQYNS6PECJXX4KMOWO6XNRIEEMASEE
+X-MailFrom: batman@aiyionpri.me
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Y3LYD6LYS2WX3MRQEK4T52FCH5BKKHCL/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CSTQYNS6PECJXX4KMOWO6XNRIEEMASEE/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-syzbot has bisected this issue to:
+Hey there;
+I just dropped my freenode connection for good and wanted to ask,
+whether it'd be possible to announce via mail, if and where #batman
+migrates?
 
-commit 6bf071bf09d4b2ff3ee8783531e2ce814f0870cb
-Author: Jesper Dangaard Brouer <brouer@redhat.com>
-Date:   Tue Jun 18 13:05:27 2019 +0000
-
-    xdp: page_pool related fix to cpumap
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1397c4a7d00000
-start commit:   7ac3a1c1 Merge tag 'mtd/fixes-for-5.13-rc4' of git://git.k..
-git tree:       upstream
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=1057c4a7d00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=1797c4a7d00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=266cda122a0b56c
-dashboard link: https://syzkaller.appspot.com/bug?extid=355f8edb2ff45d5f95fa
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=16cc630fd00000
-
-Reported-by: syzbot+355f8edb2ff45d5f95fa@syzkaller.appspotmail.com
-Fixes: 6bf071bf09d4 ("xdp: page_pool related fix to cpumap")
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+Thanks in advance,
+Aiyion
