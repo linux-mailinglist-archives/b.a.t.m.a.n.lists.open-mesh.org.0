@@ -1,105 +1,108 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBC939727A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Jun 2021 13:35:46 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D65EB3972C6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Jun 2021 13:49:07 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CF75980031;
-	Tue,  1 Jun 2021 13:35:44 +0200 (CEST)
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.23])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 83E4F801CB
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Jun 2021 13:35:42 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; t=1622547342; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=Azot6or4Xq8/ZvWx0u1lhTb1RtOU/4TWj8FLY76EGF1WRfEozUb/fPf2leWWYS67O/
-    txqaqHzL0FjlI0mC5XwHGm8X666N/eJ5ijv8nYmRtOJoOAyZPsD8d9MUyfryccQ2FdCK
-    jvW1iACBZZ7Dt+7LF3LWNwjKQfp5Uj3X+BbliDicqg6bExnG+FGWn78r23HFfnvq9RcZ
-    tTzaY1Da6aiD5kBoLHuYcKSJS+CKzQLIlvJPdcFCWFzvti/HODuPo7kfeZecdZjYoPbq
-    FcvoFfYNWnGer77O+AIcqZj4guA8nWlgMm9gSvISR4qpAbNDKv5gkgeMRbvPBnMZplS0
-    n/Ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1622547342;
-    s=strato-dkim-0002; d=strato.com;
-    h=Date:Message-ID:Subject:From:To:Cc:Date:From:Subject:Sender;
-    bh=bRDb+Y6uX8TnoPYOfz5GGGrA2sbrAG2PwcCsVYAcmYQ=;
-    b=SBMUq5ZUTOeyEcrRIGT3l9aJ9w3Fdy7uJPS1QSf8sqgQJJvaPtxBSIJe8VN/hQPTD+
-    a8/Xm5h03aGD3HZ3ntg5OkAQ0Z3z8U0RPOHmtRFfzteP/b5DZA1NqV6/Es30Tbs25Ot4
-    lXeYNIal+WPk7BnrV0+wb2W69lsBcbqD/HVsocclj9TIqyYcWrVCyaKwztdfXGTi9AKv
-    Vl/7sMV2bVwr1/zaNTfAHgw/kqwmKJsMzdRt2KQ4/z2JOwxLp2EwFiwlzWtTUS4EmmIN
-    +HxOhMUfMxu/9Z+XZUXcsd+faw4x8wNVV5JjwNpq34WIf0bv+3HNXFChvrWOhwq2jHOc
-    ZusQ==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1622547342;
-    s=strato-dkim-0002; d=aiyionpri.me;
-    h=Date:Message-ID:Subject:From:To:Cc:Date:From:Subject:Sender;
-    bh=bRDb+Y6uX8TnoPYOfz5GGGrA2sbrAG2PwcCsVYAcmYQ=;
-    b=oyTqITgR49ww68P5r0DAv4CbOXShxs8xebGDsYze6brUBkwraS7eBB7/+dgSsdCdhk
-    DDANjnSTQo1iO1Asl9fIOrQJyxdstK8LcaHr1U/ZdrhMd6AvkA3ezGvvnHfy8R1+SYzk
-    XaFJfSa52O/XAJmBAFxykF7z+Bl2tmiuUPNv8m2FfeIe+t/Fn7KEnElMLFLWwyjV2fBa
-    JffibrpjDu7vo8uTHYJiy750gX3ROnbW3I1trJ94syGj58HGpNpJViUH+yCO4XphR8MU
-    IRke3tSgKJyYF82ZRFy+BPi2/yqJxXUp0xJC4EG/+t9NepxIoZDsA0yizkoQ+aYeH8Wi
-    4+9Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":IWkkdEmxcvCtRDtHUQOu48a0Nfy9hOkbpbRt4aM2x33iJsZ8F6ZSMCbAg3MdK/jjPIlb/q84QRNo8MmcRpDJ/D7ooUkQRAG4Hw=="
-X-RZG-CLASS-ID: mo00
-Received: from [IPv6:2003:e7:9f15:a380:8405:5e7d:275f:82d9]
-    by smtp.strato.de (RZmta 47.26.3 AUTH)
-    with ESMTPSA id t0079bx51BZgJCu
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate)
-    for <b.a.t.m.a.n@lists.open-mesh.org>;
-    Tue, 1 Jun 2021 13:35:42 +0200 (CEST)
-To: b a t m a n <b.a.t.m.a.n@lists.open-mesh.org>
-From: "Aiyion.Prime" <batman@aiyionpri.me>
-Subject: irc update
-Message-ID: <03d08eeb-a314-1fbb-aafd-1461826feaad@aiyionpri.me>
-Date: Tue, 1 Jun 2021 13:35:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A95FE80815;
+	Tue,  1 Jun 2021 13:49:06 +0200 (CEST)
+Received: from simonwunderlich.de (packetmixer.de [IPv6:2001:4d88:2000:24::c0de])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id A204180302
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Jun 2021 13:49:03 +0200 (CEST)
+Received: from prime.localnet (p200300c597130de0acca9100f03fa09c.dip0.t-ipconnect.de [IPv6:2003:c5:9713:de0:acca:9100:f03f:a09c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by simonwunderlich.de (Postfix) with ESMTPSA id 37B1D17401C;
+	Tue,  1 Jun 2021 13:49:03 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: irc update
+Date: Tue, 01 Jun 2021 13:49:02 +0200
+Message-ID: <1780221.LRIVs05ek3@prime>
+In-Reply-To: <03d08eeb-a314-1fbb-aafd-1461826feaad@aiyionpri.me>
+References: <03d08eeb-a314-1fbb-aafd-1461826feaad@aiyionpri.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: 7bit
-ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1622547342; a=rsa-sha256;
-	cv=pass;
-	b=xDGy4pSu9lK+Sw4eOdvedvRGH/a2zSnJY2q4CyktUPkksHaRb84p+FpOg7/jAqdaX6bNOo
-	NuP0TVeU8QuEvCcw4iiJEGyBsk1JQjzhbsFVVEJBcI14okgPifD0bRPYvomfraAQbIICjp
-	uJ4NLuY/WaGoV8BtdiB+iFxCxR4fuKg=
-ARC-Authentication-Results: i=2;
+Content-Type: multipart/signed; boundary="nextPart3515367.95OOGIM4RP"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1622548143; a=rsa-sha256;
+	cv=none;
+	b=ZDQBYZXIQ7P6W2k91sPJBUWXCAhPTh9VRNmc7YJzEjbXb+X4Fa8pEJScdNjKKtO9noroQG
+	6PWa/9L+OLMppalO6O865Onk5/oht2y9BQolAsVpIkAHYh60UskKKoA1bIz1bz5UJZ1eyp
+	ocPf9TJmZEXcuS2X0xx/AcVD0fJweHc=
+ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=aiyionpri.me header.s=strato-dkim-0002 header.b=oyTqITgR;
-	arc=pass ("strato.com:s=strato-dkim-0002:i=1");
-	spf=none (diktynna.open-mesh.org: domain of batman@aiyionpri.me has no SPF policy when checking 85.215.255.23) smtp.mailfrom=batman@aiyionpri.me
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1622547342;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 2001:4d88:2000:24::c0de as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1622548143;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=bRDb+Y6uX8TnoPYOfz5GGGrA2sbrAG2PwcCsVYAcmYQ=;
-	b=CFMWB6sVcptKtHf0RkbPl/D+6mhPoS7tQ6Ldqh/qQAV43P8j/1QBE2NajCHOVnXYhWUGK3
-	XZxXqNN9km5+8Urnp2jU0Pbc6+uh2CVBc002ZH9ZymP85BHOcRkLdnKjgHLt2bqOXEH2v/
-	/K5M7NQr0tjlOWpGO0ZoqPS+vQrO6e4=
-Message-ID-Hash: CSTQYNS6PECJXX4KMOWO6XNRIEEMASEE
-X-Message-ID-Hash: CSTQYNS6PECJXX4KMOWO6XNRIEEMASEE
-X-MailFrom: batman@aiyionpri.me
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m6AadKE44UNFG5gP8pG6S3mrbroptF0weaLNB+v8fwY=;
+	b=UF2GpYnERI+kVIKgv1fwzqAbB73pH0/2axJvQpTRXARr6DMsRHiXlghQduBDxW6GgFVp6h
+	aYuY5KPvwonxFVw3+d+nbkI5pZzIDw1ZKdix60GqGTVimQpuISpRBaFivW64+9Gm/OJ3Xv
+	dZkg+2V0NJCzbNR+nZrNBFiX3X4yxNs=
+Message-ID-Hash: KNXGWQ76ZFTFVRCXDRLHAOBDZ4332A3D
+X-Message-ID-Hash: KNXGWQ76ZFTFVRCXDRLHAOBDZ4332A3D
+X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: "Aiyion.Prime" <batman@aiyionpri.me>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CSTQYNS6PECJXX4KMOWO6XNRIEEMASEE/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KNXGWQ76ZFTFVRCXDRLHAOBDZ4332A3D/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hey there;
-I just dropped my freenode connection for good and wanted to ask,
-whether it'd be possible to announce via mail, if and where #batman
-migrates?
+--nextPart3515367.95OOGIM4RP
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Thanks in advance,
-Aiyion
+Hi Aiyion,
+
+it's a good idea, if we migrate we will announce it here and on our website on 
+open-mesh.org as well. We have not made a decision yet.
+
+Cheers,
+      Simon
+
+On Tuesday, June 1, 2021 1:35:42 PM CEST Aiyion.Prime wrote:
+> Hey there;
+> I just dropped my freenode connection for good and wanted to ask,
+> whether it'd be possible to announce via mail, if and where #batman
+> migrates?
+> 
+> Thanks in advance,
+> Aiyion
+
+
+--nextPart3515367.95OOGIM4RP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAmC2Hq4ACgkQoSvjmEKS
+nqGhRQ/+N7iDHKf9Yjg8Nvif0n5aB5IqZE7Q2BpYMVtHwxvm0lImd7m3VrBWKCeF
+mSQIWExPsyEzprfTeZfI66/UzGahDbyTqqyzqU/k4PdPd/er78cMVBXxoNvV7YYM
+nIxCfq/84KZW2HT7ZqwkrpkGaO6wansYT/ticdCs0dNH1sM6vbJ/JyQ2NikDhCZV
+0X2bzK5YDG6niYSm16ECLLL4IqNkY7zDEEyJBmlUofI8y5qlLc0hpKVsjDwrefxL
+8F0tlAHldZ9U7IGkJhsiHwxT3Lh5CJMDUrLpYKbTmmcGhLz3GULSspMvCnr6tO4R
+k+iGtiEqWCpaxfGtb9lNf8Xh27SXv5eOJKCeKzPXYiXKvkvY0QSlnMiVuBalDRtS
+HxnCHBHLFvKnfBoqbhigJdljbUo9znlO8PLh09iUv6v9IVZY4DamF3qCeo0X2GL7
+bXpboDaJrh2GXGte+OHH3n5OGD44MK4vp5foBXxkTlZE8AiqjPacgJpkeySMDHI3
+RgN/a9QjOmpO/CI1fiwebcqfrImAYqh8NzWlUSFaYaEQ0X061vM+5SucIb/vXfUE
+Vv5dutwK1xg9tl+V6/W5jq5AU020ijqvHH3LRr8Avn85EyJE2md2cCMG4MF4lXgj
+YhF37yBSRNexOKkjc7yQxEDNMkbyl+vByriCTR2YAy7GwwAEMH4=
+=86xw
+-----END PGP SIGNATURE-----
+
+--nextPart3515367.95OOGIM4RP--
+
+
