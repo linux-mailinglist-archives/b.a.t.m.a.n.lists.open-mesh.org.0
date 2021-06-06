@@ -1,120 +1,112 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1301D39C84C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  5 Jun 2021 14:55:58 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DF839CF8D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  6 Jun 2021 16:34:40 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C5F31806A9;
-	Sat,  5 Jun 2021 14:55:56 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C3282806A9
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  5 Jun 2021 14:55:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1622897153;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cZWpimm/lJXXDeAgFsZFzBzZDMd+lgP9xWUUTKJhA7I=;
-	b=cyCGeaU4+FS7QvZ/kqCLwH7qty0XuUoXJADWvUgJE5NuPfFm2Ugbv2yX5Ei/yvqY1E8O6h
-	L9wuOC9vL7bl8Dwl2RSpI+KmxzTlVrBLXV31zhzyIhTi73M2/LIOEGr8izDZx+kYVyGmXR
-	tLH/oi5JSh9vSG79ku/wXo1o3tYIW5o=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: [RFC PATCH 2/2] batctl: Fix build with lld-13 or ld 2.37 start-stop-gc
-Date: Sat,  5 Jun 2021 14:45:49 +0200
-Message-Id: <20210605124549.94021-1-sven@narfation.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210605124511.92537-1-sven@narfation.org>
-References: <20210605124511.92537-1-sven@narfation.org>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CDC1F807AA;
+	Sun,  6 Jun 2021 16:34:38 +0200 (CEST)
+Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0018980613
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  6 Jun 2021 16:28:25 +0200 (CEST)
+Received: from fsav109.sakura.ne.jp (fsav109.sakura.ne.jp [27.133.134.236])
+	by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 156ESLF3091944;
+	Sun, 6 Jun 2021 23:28:21 +0900 (JST)
+	(envelope-from penguin-kernel@i-love.sakura.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav109.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav109.sakura.ne.jp);
+ Sun, 06 Jun 2021 23:28:21 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav109.sakura.ne.jp)
+Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
+	(authenticated bits=0)
+	by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 156ESLoB091938
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+	Sun, 6 Jun 2021 23:28:21 +0900 (JST)
+	(envelope-from penguin-kernel@i-love.sakura.ne.jp)
+Subject: [PATCH] batman-adv: don't warn when enslaving hard interface failed
+From: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
+To: Marek Lindner <mareklindner@neomailbox.ch>,
+        Simon Wunderlich <sw@simonwunderlich.de>,
+        Antonio Quartulli <a@unstable.cc>, Sven Eckelmann <sven@narfation.org>
+References: <04896d08-4bc0-019b-966e-41064effdef6@i-love.sakura.ne.jp>
+Message-ID: <99650324-734d-54ed-cd9a-e7b55b8f3630@i-love.sakura.ne.jp>
+Date: Sun, 6 Jun 2021 23:28:17 +0900
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1622897752; a=rsa-sha256;
+In-Reply-To: <04896d08-4bc0-019b-966e-41064effdef6@i-love.sakura.ne.jp>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1622989707; a=rsa-sha256;
 	cv=none;
-	b=ijjVNB7yty+U+LaFFMIJPMfsgwGpegrVilGbfyF865213kqYAnQUZBXzjY8E/v0Jx5f5vh
-	c5yHwjv4uYwdB3jT1qDiNKG2HDqTiZRFFdu+UHnodIe4MEdG4WMVcZbTGepcM4m3kCfhVr
-	HyB6VW6cbzu6/gKmtW7fhahEB+OVW3A=
+	b=HzZuQ1TogNhFUnenAFtRMCbZd30LxHk2Mw/m5XSX/cA5AY2aQbu4OHYEOVt5NU4aPO9WbT
+	4cqkZoDsehBKparENtS1gGkRp7l/3F/aHLV8y/07vtLVqKE39iFq/YqhlySCjqkQtMN3JH
+	96Pvv1qpqcp2NMvBghpR5ftbSKs2kno=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=cyCGeaU4;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=none;
+	spf=none (diktynna.open-mesh.org: domain of penguin-kernel@i-love.sakura.ne.jp has no SPF policy when checking 202.181.97.72) smtp.mailfrom=penguin-kernel@i-love.sakura.ne.jp
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1622897752;
+	s=20121; t=1622989707;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=cZWpimm/lJXXDeAgFsZFzBzZDMd+lgP9xWUUTKJhA7I=;
-	b=F6SjBm2CIjLGX/hg5GVj4xt1q9aEVb/2s+p4xWiuR7d7nZSQP+S4e0ATmrElIm8n10TWP7
-	/WySQ77FKHtj3uWXZjKoo8etw12eZVRvktd37Bcl7lkMAVyl3AvFsYbK3sWrwWBr41vtJh
-	hPGOpshK6KlRXeMBYTzRrXhdrQ8ja+I=
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: JS57MHSREABKRC65KRHEINSWVQLV43XC
-X-Message-ID-Hash: JS57MHSREABKRC65KRHEINSWVQLV43XC
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	 in-reply-to:in-reply-to:references:references;
+	bh=atCeOTQzY5+cFXJAxGIcACUHgekjVOtq1vX8KqLoYo8=;
+	b=fAv1eukQMzFsHtAwClRBgYUw3oVikmt6NHRqYMBU3fCVcHpDhoXsL/U8n5NaUqD4muNHFB
+	EKI2F5WMrDtLFGKNrziJoaH2I4RvfooAXwWuEYiiIlaPaxLjt2uUCuhy2rgWZk4Om1uMjV
+	reOuAg1Nl6HGFz2Ld6aZGmTO1FvRgpA=
+X-MailFrom: penguin-kernel@i-love.sakura.ne.jp
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: E57L3PWHGAFZ7YX53LAMACJAKHPPANYW
+X-Message-ID-Hash: E57L3PWHGAFZ7YX53LAMACJAKHPPANYW
+X-Mailman-Approved-At: Sun, 06 Jun 2021 14:34:36 +0200
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JS57MHSREABKRC65KRHEINSWVQLV43XC/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/E57L3PWHGAFZ7YX53LAMACJAKHPPANYW/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-If ld 2.37 with -Wl,-z,start-stop-gc -Wl,--gc-sections or lld-13 with
--Wl,--gc-sections, the build with either fail with
+syzbot is hitting
 
-  ld.lld: error: undefined symbol: __start___command
-  >>> referenced by main.c
-  >>>               main.o:(main)
-  >>> referenced by main.c
-  >>>               main.o:(main)
-  >>> referenced by main.c
-  >>>               main.o:(print_usage)
-  >>> referenced 1 more time
+  WARN_ON(forw_packet->if_outgoing->soft_iface != soft_iface)
 
-Or in case of ld 2.37 just show a single command (aggregation). A new
-attribute retain was introduced which is then emitting the ELF flag
-SHF_GNU_RETAIN. This will cause the garbage collector to retain this
-section.
+at batadv_iv_ogm_emit() [1], for forw_packet->if_outgoing->soft_iface
+can remain NULL if batadv_hardif_enable_interface() failed due to e.g.
+memory allocation fault injection.
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Link: https://syzkaller.appspot.com/bug?id=9dc0c4cd70ad72df352243e887fd7e18901e7cee [1]
+Reported-by: syzbot <syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com>
+Tested-by: syzbot <syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com>
+Signed-off-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+Fixes: ef0a937f7a1450d3 ("batman-adv: consider outgoing interface in OGM sending")
 ---
- main.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ net/batman-adv/bat_iv_ogm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/main.h b/main.h
-index 00b2ab3..6b11acc 100644
---- a/main.h
-+++ b/main.h
-@@ -101,6 +101,12 @@ struct command {
- 	const char *usage;
- };
-=20
-+#if defined(__has_attribute) && __has_attribute(retain)
-+#define start_stop_retain __attribute__((retain))
-+#else
-+#define start_stop_retain
-+#endif
+diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
+index 789f257be24f..d24853c16ea5 100644
+--- a/net/batman-adv/bat_iv_ogm.c
++++ b/net/batman-adv/bat_iv_ogm.c
+@@ -409,6 +409,9 @@ static void batadv_iv_ogm_emit(struct batadv_forw_packet *forw_packet)
+ 	if (WARN_ON(!forw_packet->if_outgoing))
+ 		return;
+ 
++	if (!forw_packet->if_outgoing->soft_iface)
++		return;
 +
- #define COMMAND_NAMED(_type, _name, _abbr, _handler, _flags, _arg, _usag=
-e) \
- 	static const struct command command_ ## _name ## _ ## _type =3D { \
- 		.type =3D (_type), \
-@@ -112,7 +118,7 @@ struct command {
- 		.usage =3D (_usage), \
- 	}; \
- 	static const struct command *__command_ ## _name ## _ ## _type \
--	__attribute__((__used__,__section__ ("__command"))) =3D &command_ ## _n=
-ame ## _ ## _type
-+	__attribute__((__used__,__section__ ("__command"))) start_stop_retain =3D=
- &command_ ## _name ## _ ## _type
-=20
- #define COMMAND(_type, _handler, _abbr, _flags, _arg, _usage) \
- 	COMMAND_NAMED(_type, _handler, _abbr, _handler, _flags, _arg, _usage)
---=20
-2.30.2
+ 	if (WARN_ON(forw_packet->if_outgoing->soft_iface != soft_iface))
+ 		return;
+ 
+-- 
+2.18.4
+
