@@ -2,52 +2,49 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC0139FAE7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Jun 2021 17:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 967A739FAEB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Jun 2021 17:36:14 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8ADDC83EE6;
-	Tue,  8 Jun 2021 17:35:50 +0200 (CEST)
-Received: from simonwunderlich.de (packetmixer.de [IPv6:2001:4d88:2000:24::c0de])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C189583EB0
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Jun 2021 17:35:29 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B6C7883F1D;
+	Tue,  8 Jun 2021 17:36:09 +0200 (CEST)
+Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 038F281708
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Jun 2021 17:35:30 +0200 (CEST)
 Received: from kero.packetmixer.de (p200300c5970dd3e020a52263b5aabfb3.dip0.t-ipconnect.de [IPv6:2003:c5:970d:d3e0:20a5:2263:b5aa:bfb3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id D1ABA17405B;
-	Tue,  8 Jun 2021 17:27:06 +0200 (CEST)
+	by simonwunderlich.de (Postfix) with ESMTPSA id 0498B17405C;
+	Tue,  8 Jun 2021 17:29:53 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Subject: [PATCH 11/11] batman-adv: Drop reduntant batadv interface check
-Date: Tue,  8 Jun 2021 17:27:00 +0200
-Message-Id: <20210608152700.30315-12-sw@simonwunderlich.de>
+To: davem@davemloft.net,
+	kuba@kernel.org
+Subject: [PATCH 0/1] pull request for net: batman-adv 2021-06-08
+Date: Tue,  8 Jun 2021 17:29:46 +0200
+Message-Id: <20210608152947.30833-1-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210608152700.30315-1-sw@simonwunderlich.de>
-References: <20210608152700.30315-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623166529; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623166530; a=rsa-sha256;
 	cv=none;
-	b=YcZi1sOz0VOaW/5yxQ+xBtMyxM591Ch6dlFYXyJm1xWM8xFTV39tDhj1WIJcCCvdOPpCQ3
-	s70iF67XuwYry23rerJQb2VNMZPAzgac2JFfKnBu8qvW+x1gcOMDPOX/BQ8lyWhY7GpcsM
-	0xkTfRbG+tZoH99EGMEcM0l5bXM1yEY=
+	b=gPUFqTcLp/r5JkvyhD8NIjDWlZGAx7DdTvE7JoG9PK8X0CcnA7Z8orIZgIjqNo8J8XF+dO
+	trVrkQhzqXI4XItAvFKS+AzKT+ehJQfpn5SjwrwA8S3cGB8JXfeqTxobE08AqVYY4Yua9r
+	xOQGMftzPxyZAvaalynOi61gsyIB+YM=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 2001:4d88:2000:24::c0de as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1623166529;
+	s=20121; t=1623166530;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=685FmGYBFfHstXKa9+hghaVbaypVKzK+nfXeC96OjYI=;
-	b=s0C+gSAxg6s5wN75ej8e1lSlCoEj+Lsc4wJmJE4OcSSjS0hZ9Iv1sqGjir/fNlFGCVt069
-	xf/4DD1x4vZjpUKiP5XsEGQbn/8j1iGiaSDjajAbbyIaxfh2CoSXP2Vlp/z08qVKZLrAyd
-	unykiUoIzSLB0WypAyz2f9wp3rUIHWI=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hHQYlclDw7MTvncAYAGAkHtoRIbbIICcDRtSa3Uzmw4=;
+	b=wRa+9jrQxTncHSEYMzG2N+4dp7+9MYUyM3FQLmZhjongg19lDAWKppLiQv3qVib3DQH5cy
+	+Sb7S+B2Y8ocJBaTzVWaYvHhbYkBwW9zWIEjuIjnkJPMx0Fwj8PPfcQ2k92r0FuRwK0RTm
+	tQTTmyp+xGm324s3l3+F/ZZMlcWs5sw=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: GLDHJFHMUMYE2SGX7BYPWS3T5EYTE5EB
-X-Message-ID-Hash: GLDHJFHMUMYE2SGX7BYPWS3T5EYTE5EB
+Message-ID-Hash: UGSLVQXSLOXDJ5INTAMLTAVGNDASYGSA
+X-Message-ID-Hash: UGSLVQXSLOXDJ5INTAMLTAVGNDASYGSA
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
@@ -55,54 +52,47 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GLDHJFHMUMYE2SGX7BYPWS3T5EYTE5EB/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UGSLVQXSLOXDJ5INTAMLTAVGNDASYGSA/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+Hi David, hi Jakub,
 
-If batadv_hardif_enable_interface is called then its called from its
-callback ndo_add_slave. It is therefore not necessary to check if it is a
-batadv interface.
+here is a bugfix for batman-adv which we would like to have integrated in=
+to net.
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/hard-interface.c | 9 ---------
- 1 file changed, 9 deletions(-)
+Please pull or let me know of any problem!
 
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interf=
-ace.c
-index 44b0aa30c30a..55d97e18aa4a 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -9,7 +9,6 @@
-=20
- #include <linux/atomic.h>
- #include <linux/byteorder/generic.h>
--#include <linux/errno.h>
- #include <linux/gfp.h>
- #include <linux/if.h>
- #include <linux/if_arp.h>
-@@ -698,14 +697,6 @@ int batadv_hardif_enable_interface(struct batadv_har=
-d_iface *hard_iface,
- 	kref_get(&hard_iface->refcount);
-=20
- 	dev_hold(soft_iface);
--
--	if (!batadv_softif_is_valid(soft_iface)) {
--		pr_err("Can't create batman mesh interface %s: already exists as regul=
-ar interface\n",
--		       soft_iface->name);
--		ret =3D -EINVAL;
--		goto err_dev;
--	}
--
- 	hard_iface->soft_iface =3D soft_iface;
- 	bat_priv =3D netdev_priv(hard_iface->soft_iface);
-=20
---=20
-2.20.1
+Thank you,
+      Simon
+
+The following changes since commit b741596468b010af2846b75f5e75a842ce344a=
+6e:
+
+  Merge tag 'riscv-for-linus-5.13-mw1' of git://git.kernel.org/pub/scm/li=
+nux/kernel/git/riscv/linux (2021-05-08 11:52:37 -0700)
+
+are available in the Git repository at:
+
+  git://git.open-mesh.org/linux-merge.git tags/batadv-net-pullrequest-202=
+10608
+
+for you to fetch changes up to 9f460ae31c4435fd022c443a6029352217a16ac1:
+
+  batman-adv: Avoid WARN_ON timing related checks (2021-05-18 21:10:01 +0=
+200)
+
+----------------------------------------------------------------
+Here is a batman-adv bugfix:
+
+ - Avoid WARN_ON timing related checks, by Sven Eckelmann
+
+----------------------------------------------------------------
+Sven Eckelmann (1):
+      batman-adv: Avoid WARN_ON timing related checks
+
+ net/batman-adv/bat_iv_ogm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
