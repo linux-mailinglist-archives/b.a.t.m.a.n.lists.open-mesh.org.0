@@ -1,98 +1,102 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967A739FAEB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Jun 2021 17:36:14 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9ED39FAE8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Jun 2021 17:36:00 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B6C7883F1D;
-	Tue,  8 Jun 2021 17:36:09 +0200 (CEST)
-Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 038F281708
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Jun 2021 17:35:30 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8075183F22;
+	Tue,  8 Jun 2021 17:35:56 +0200 (CEST)
+Received: from simonwunderlich.de (packetmixer.de [IPv6:2001:4d88:2000:24::c0de])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 45F2E81708
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Jun 2021 17:35:29 +0200 (CEST)
 Received: from kero.packetmixer.de (p200300c5970dd3e020a52263b5aabfb3.dip0.t-ipconnect.de [IPv6:2003:c5:970d:d3e0:20a5:2263:b5aa:bfb3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id 0498B17405C;
-	Tue,  8 Jun 2021 17:29:53 +0200 (CEST)
+	by simonwunderlich.de (Postfix) with ESMTPSA id 6F9B217405D;
+	Tue,  8 Jun 2021 17:29:54 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Subject: [PATCH 0/1] pull request for net: batman-adv 2021-06-08
-Date: Tue,  8 Jun 2021 17:29:46 +0200
-Message-Id: <20210608152947.30833-1-sw@simonwunderlich.de>
+Subject: [PATCH 1/1] batman-adv: Avoid WARN_ON timing related checks
+Date: Tue,  8 Jun 2021 17:29:47 +0200
+Message-Id: <20210608152947.30833-2-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210608152947.30833-1-sw@simonwunderlich.de>
+References: <20210608152947.30833-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623166530; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623166529; a=rsa-sha256;
 	cv=none;
-	b=gPUFqTcLp/r5JkvyhD8NIjDWlZGAx7DdTvE7JoG9PK8X0CcnA7Z8orIZgIjqNo8J8XF+dO
-	trVrkQhzqXI4XItAvFKS+AzKT+ehJQfpn5SjwrwA8S3cGB8JXfeqTxobE08AqVYY4Yua9r
-	xOQGMftzPxyZAvaalynOi61gsyIB+YM=
+	b=LbyJef2VNNLvR/XGmqNts7WirZZbN9gYY22039gDeksdRjh60TEA26tfOLV1/4rJ7/qJ2+
+	k5jsQdfPlwNsB3VaBsh7hl2H6wVZ5H9R+sCy4348F/JX8q3QEXenvL54UJK2EGjDdINdk8
+	Xgy87tO4XpoTQHlnu8bTOWcdHO9BeOw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 2001:4d88:2000:24::c0de as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1623166530;
+	s=20121; t=1623166529;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=hHQYlclDw7MTvncAYAGAkHtoRIbbIICcDRtSa3Uzmw4=;
-	b=wRa+9jrQxTncHSEYMzG2N+4dp7+9MYUyM3FQLmZhjongg19lDAWKppLiQv3qVib3DQH5cy
-	+Sb7S+B2Y8ocJBaTzVWaYvHhbYkBwW9zWIEjuIjnkJPMx0Fwj8PPfcQ2k92r0FuRwK0RTm
-	tQTTmyp+xGm324s3l3+F/ZZMlcWs5sw=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0fqWiq6suCtvs5P/w7XJcEx7Ieyw2OjkWP5JV5pESEo=;
+	b=rwT2LUZAxL9zIScGbLhrxBT6th4MxZZFtk65x9HrtMgow7QXQwc4LLz6xhfHJP5NMf/dZy
+	pNvZ/Ci3pjvQ+JlsCeWir1BR/seN7FkK2dtTqft+fYlqRIhRKANdXXzM7b+mg2V3lPKM4W
+	jCgq+Hh9KR4q7i7Z6Riq2O7q2mN+Wv0=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: UGSLVQXSLOXDJ5INTAMLTAVGNDASYGSA
-X-Message-ID-Hash: UGSLVQXSLOXDJ5INTAMLTAVGNDASYGSA
+Message-ID-Hash: U6WWC6ROIXWGZ4LRAW3KKJHX5SAWC3V2
+X-Message-ID-Hash: U6WWC6ROIXWGZ4LRAW3KKJHX5SAWC3V2
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>, syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UGSLVQXSLOXDJ5INTAMLTAVGNDASYGSA/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/U6WWC6ROIXWGZ4LRAW3KKJHX5SAWC3V2/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi David, hi Jakub,
+From: Sven Eckelmann <sven@narfation.org>
 
-here is a bugfix for batman-adv which we would like to have integrated in=
-to net.
+The soft/batadv interface for a queued OGM can be changed during the time
+the OGM was queued for transmission and when the OGM is actually
+transmitted by the worker.
 
-Please pull or let me know of any problem!
+But WARN_ON must be used to denote kernel bugs and not to print simple
+warnings. A warning can simply be printed using pr_warn.
 
-Thank you,
-      Simon
-
-The following changes since commit b741596468b010af2846b75f5e75a842ce344a=
-6e:
-
-  Merge tag 'riscv-for-linus-5.13-mw1' of git://git.kernel.org/pub/scm/li=
-nux/kernel/git/riscv/linux (2021-05-08 11:52:37 -0700)
-
-are available in the Git repository at:
-
-  git://git.open-mesh.org/linux-merge.git tags/batadv-net-pullrequest-202=
-10608
-
-for you to fetch changes up to 9f460ae31c4435fd022c443a6029352217a16ac1:
-
-  batman-adv: Avoid WARN_ON timing related checks (2021-05-18 21:10:01 +0=
-200)
-
-----------------------------------------------------------------
-Here is a batman-adv bugfix:
-
- - Avoid WARN_ON timing related checks, by Sven Eckelmann
-
-----------------------------------------------------------------
-Sven Eckelmann (1):
-      batman-adv: Avoid WARN_ON timing related checks
-
+Reported-by: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
+Reported-by: syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com
+Fixes: ef0a937f7a14 ("batman-adv: consider outgoing interface in OGM send=
+ing")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+---
  net/batman-adv/bat_iv_ogm.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
+index 789f257be24f..fc8be49010b9 100644
+--- a/net/batman-adv/bat_iv_ogm.c
++++ b/net/batman-adv/bat_iv_ogm.c
+@@ -409,8 +409,10 @@ static void batadv_iv_ogm_emit(struct batadv_forw_pa=
+cket *forw_packet)
+ 	if (WARN_ON(!forw_packet->if_outgoing))
+ 		return;
+=20
+-	if (WARN_ON(forw_packet->if_outgoing->soft_iface !=3D soft_iface))
++	if (forw_packet->if_outgoing->soft_iface !=3D soft_iface) {
++		pr_warn("%s: soft interface switch for queued OGM\n", __func__);
+ 		return;
++	}
+=20
+ 	if (forw_packet->if_incoming->if_status !=3D BATADV_IF_ACTIVE)
+ 		return;
+--=20
+2.20.1
