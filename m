@@ -2,52 +2,52 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6997739FAD8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Jun 2021 17:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E00639FAEA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  8 Jun 2021 17:36:11 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 1A17083EB7;
-	Tue,  8 Jun 2021 17:35:33 +0200 (CEST)
-Received: from simonwunderlich.de (packetmixer.de [IPv6:2001:4d88:2000:24::c0de])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 431B580BE6
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Jun 2021 17:35:29 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 2F64883F21;
+	Tue,  8 Jun 2021 17:36:09 +0200 (CEST)
+Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 086E583ED2
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  8 Jun 2021 17:35:30 +0200 (CEST)
 Received: from kero.packetmixer.de (p200300c5970dd3e020a52263b5aabfb3.dip0.t-ipconnect.de [IPv6:2003:c5:970d:d3e0:20a5:2263:b5aa:bfb3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id 44B6517402C;
+	by simonwunderlich.de (Postfix) with ESMTPSA id 077F4174059;
 	Tue,  8 Jun 2021 17:27:05 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: kuba@kernel.org,
 	davem@davemloft.net
-Subject: [PATCH 08/11] batman-adv: Drop implicit creation of batadv net_devices
-Date: Tue,  8 Jun 2021 17:26:57 +0200
-Message-Id: <20210608152700.30315-9-sw@simonwunderlich.de>
+Subject: [PATCH 09/11] batman-adv: Avoid name based attaching of hard interfaces
+Date: Tue,  8 Jun 2021 17:26:58 +0200
+Message-Id: <20210608152700.30315-10-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210608152700.30315-1-sw@simonwunderlich.de>
 References: <20210608152700.30315-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623166529; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623166530; a=rsa-sha256;
 	cv=none;
-	b=4LjGle2Pn2MNnCdQ2cVMgJ8bv11cL4MKjq5n/lnqVmEIausmxPKs5AC+O28ISJGjsH03oM
-	vyj+8bw0GQu86T8bZkgUAP3yrB734uto242I5v71fRAlN94O4rqUSiiH+NcFGKnFeFkaNZ
-	7sJ/G6wwth/dbnIRVKCIglpOdCPGPNQ=
+	b=RlJWqSqqaQyS76TiwL4r1ikHc7z4LKTW1c5dj6h4GPfI+0DqCzf5h3E4pMUG0EfbHea/lG
+	C/nPXM+MZZkDBMjOMuxxt2xYFF21X/g6hBiewoeUODEepfbyKhznBKlhvXjvMUmmjhhdln
+	FX1ka1vJm+BTK8b4eNmYRPgbbgLtoD0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 2001:4d88:2000:24::c0de as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1623166529;
+	s=20121; t=1623166530;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=0XyTrZGzSZBEaN3pmW0mbiE04GCdXFAfIUZXXjg7hx8=;
-	b=Qeqvp4OtXEo3VLO1sp61O+jggsQdESFIXV+hfD3RWK5fv0ADsM7TMUot9MeAlXQZwl0uqN
-	uXxjmAR+Ywrlged21ngDJjCL6EM/pznhNUzE5xZCgvEwpqcvWLLn570hZOh0lPq89qemwX
-	cCj4y6kXeYZbdYs5z0+YoSfAmZSly/E=
+	bh=e++4wshDCMta8ofBdc1aOQGEwcGCkDfIc6vw+66K7ug=;
+	b=0puXMJxUX3oyukjyiPxBEAJgBvHfaVujvZvq+UBe02mCo2EBZpEs9BPZ5FQJFcMu46Ot/4
+	hnn5ycTrHD13ODIUslgfVl/o7+5cJOHHKVI1+FeOTxA8neP3Y0SLjAPbPPBxbsQUW3tiOH
+	GNmcjUKhbsaKye8dEi02kBMnqziAscc=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: T6Z4ZSNQGNL2P76UW4XHW4FJ26KFCI3Q
-X-Message-ID-Hash: T6Z4ZSNQGNL2P76UW4XHW4FJ26KFCI3Q
+Message-ID-Hash: PICFU2QJPVUSGENAITVJM6UPQF5JN7DX
+X-Message-ID-Hash: PICFU2QJPVUSGENAITVJM6UPQF5JN7DX
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
@@ -55,7 +55,7 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/T6Z4ZSNQGNL2P76UW4XHW4FJ26KFCI3Q/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PICFU2QJPVUSGENAITVJM6UPQF5JN7DX/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -64,130 +64,125 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 From: Sven Eckelmann <sven@narfation.org>
 
-The sysfs code in batman-adv was could create a new batadv interfaces on
-demand when a string (interface name) was written to the
-batman-adv/mesh_iface file. But the code no longer exists in the current
-batman-adv codebase. The helper code to implement this behavior must be
-considered as unused and can be dropped.
+The sysfs code for the batman-adv/mesh_iface file was receiving a string =
+of
+the batadv interface. This interface name was then provided to the code
+which shared sysfs+rtnetlink code for attaching an hard-interface to an
+batadv interface. The rtnetlink code was also using the (extracted)
+interface name from the ndo_add_slave callback to increase the shared cod=
+e
+- even when it would have been more efficient to use the provided
+net_device object directly instead of searching it again (based on its
+name) in batadv_hardif_enable_interface.
+
+But this indirect handling is no longer necessary because the sysfs code
+was dropped. There is now only a single code path which is using
+batadv_hardif_enable_interface.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/hard-interface.c | 12 ++----------
- net/batman-adv/soft-interface.c | 34 +--------------------------------
- net/batman-adv/soft-interface.h |  2 --
- 3 files changed, 3 insertions(+), 45 deletions(-)
+ net/batman-adv/hard-interface.c | 14 ++++----------
+ net/batman-adv/hard-interface.h |  3 +--
+ net/batman-adv/soft-interface.c |  3 +--
+ 3 files changed, 6 insertions(+), 14 deletions(-)
 
 diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interf=
 ace.c
-index b99f64f483fc..a638f35598f0 100644
+index a638f35598f0..81d201cc343d 100644
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -725,17 +725,9 @@ int batadv_hardif_enable_interface(struct batadv_har=
+@@ -705,16 +705,15 @@ static int batadv_master_del_slave(struct batadv_ha=
+rd_iface *slave,
+ /**
+  * batadv_hardif_enable_interface() - Enslave hard interface to soft int=
+erface
+  * @hard_iface: hard interface to add to soft interface
+- * @net: the applicable net namespace
+- * @iface_name: name of the soft interface
++ * @soft_iface: netdev struct of the mesh interface
+  *
+  * Return: 0 on success or negative error number in case of failure
+  */
+ int batadv_hardif_enable_interface(struct batadv_hard_iface *hard_iface,
+-				   struct net *net, const char *iface_name)
++				   struct net_device *soft_iface)
+ {
+ 	struct batadv_priv *bat_priv;
+-	struct net_device *soft_iface, *master;
++	struct net_device *master;
+ 	__be16 ethertype =3D htons(ETH_P_BATMAN);
+ 	int max_header_len =3D batadv_max_header_len();
+ 	int ret;
+@@ -724,11 +723,7 @@ int batadv_hardif_enable_interface(struct batadv_har=
 d_iface *hard_iface,
+=20
  	kref_get(&hard_iface->refcount);
 =20
- 	soft_iface =3D dev_get_by_name(net, iface_name);
--
- 	if (!soft_iface) {
--		soft_iface =3D batadv_softif_create(net, iface_name);
--
--		if (!soft_iface) {
--			ret =3D -ENOMEM;
--			goto err;
--		}
--
--		/* dev_get_by_name() increases the reference counter for us */
--		dev_hold(soft_iface);
-+		ret =3D -EINVAL;
-+		goto err;
- 	}
+-	soft_iface =3D dev_get_by_name(net, iface_name);
+-	if (!soft_iface) {
+-		ret =3D -EINVAL;
+-		goto err;
+-	}
++	dev_hold(soft_iface);
 =20
  	if (!batadv_softif_is_valid(soft_iface)) {
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
-ace.c
-index a21884c0d47f..0c5b34251a6d 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -26,7 +26,6 @@
- #include <linux/netdevice.h>
- #include <linux/netlink.h>
- #include <linux/percpu.h>
--#include <linux/printk.h>
- #include <linux/random.h>
- #include <linux/rculist.h>
- #include <linux/rcupdate.h>
-@@ -37,6 +36,7 @@
- #include <linux/stddef.h>
- #include <linux/string.h>
- #include <linux/types.h>
-+#include <net/net_namespace.h>
- #include <net/netlink.h>
- #include <uapi/linux/batadv_packet.h>
- #include <uapi/linux/batman_adv.h>
-@@ -1086,38 +1086,6 @@ static int batadv_softif_newlink(struct net *src_n=
-et, struct net_device *dev,
- 	return register_netdevice(dev);
+ 		pr_err("Can't create batman mesh interface %s: already exists as regul=
+ar interface\n",
+@@ -802,7 +797,6 @@ int batadv_hardif_enable_interface(struct batadv_hard=
+_iface *hard_iface,
+ err_dev:
+ 	hard_iface->soft_iface =3D NULL;
+ 	dev_put(soft_iface);
+-err:
+ 	batadv_hardif_put(hard_iface);
+ 	return ret;
  }
-=20
--/**
-- * batadv_softif_create() - Create and register soft interface
-- * @net: the applicable net namespace
-- * @name: name of the new soft interface
-- *
-- * Return: newly allocated soft_interface, NULL on errors
-- */
--struct net_device *batadv_softif_create(struct net *net, const char *nam=
-e)
--{
--	struct net_device *soft_iface;
--	int ret;
--
--	soft_iface =3D alloc_netdev(sizeof(struct batadv_priv), name,
--				  NET_NAME_UNKNOWN, batadv_softif_init_early);
--	if (!soft_iface)
--		return NULL;
--
--	dev_net_set(soft_iface, net);
--
--	soft_iface->rtnl_link_ops =3D &batadv_link_ops;
--
--	ret =3D register_netdevice(soft_iface);
--	if (ret < 0) {
--		pr_err("Unable to register the batman interface '%s': %i\n",
--		       name, ret);
--		free_netdev(soft_iface);
--		return NULL;
--	}
--
--	return soft_iface;
--}
--
- /**
-  * batadv_softif_destroy_netlink() - deletion of batadv_soft_interface v=
-ia
-  *  netlink
-diff --git a/net/batman-adv/soft-interface.h b/net/batman-adv/soft-interf=
+diff --git a/net/batman-adv/hard-interface.h b/net/batman-adv/hard-interf=
 ace.h
-index 38b0ad182584..67a2ddd6832f 100644
---- a/net/batman-adv/soft-interface.h
-+++ b/net/batman-adv/soft-interface.h
-@@ -12,14 +12,12 @@
- #include <linux/netdevice.h>
- #include <linux/skbuff.h>
+index 83d11b46a9d8..8cb2a1f10080 100644
+--- a/net/batman-adv/hard-interface.h
++++ b/net/batman-adv/hard-interface.h
+@@ -16,7 +16,6 @@
+ #include <linux/rcupdate.h>
+ #include <linux/stddef.h>
  #include <linux/types.h>
 -#include <net/net_namespace.h>
- #include <net/rtnetlink.h>
 =20
- int batadv_skb_head_push(struct sk_buff *skb, unsigned int len);
- void batadv_interface_rx(struct net_device *soft_iface,
- 			 struct sk_buff *skb, int hdr_size,
- 			 struct batadv_orig_node *orig_node);
--struct net_device *batadv_softif_create(struct net *net, const char *nam=
+ /**
+  * enum batadv_hard_if_state - State of a hard interface
+@@ -75,7 +74,7 @@ bool batadv_is_wifi_hardif(struct batadv_hard_iface *ha=
+rd_iface);
+ struct batadv_hard_iface*
+ batadv_hardif_get_by_netdev(const struct net_device *net_dev);
+ int batadv_hardif_enable_interface(struct batadv_hard_iface *hard_iface,
+-				   struct net *net, const char *iface_name);
++				   struct net_device *soft_iface);
+ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_ifac=
 e);
- bool batadv_softif_is_valid(const struct net_device *net_dev);
- extern struct rtnl_link_ops batadv_link_ops;
- int batadv_softif_create_vlan(struct batadv_priv *bat_priv, unsigned sho=
-rt vid);
+ int batadv_hardif_min_mtu(struct net_device *soft_iface);
+ void batadv_update_min_mtu(struct net_device *soft_iface);
+diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
+ace.c
+index 0c5b34251a6d..ae368a42a4ad 100644
+--- a/net/batman-adv/soft-interface.c
++++ b/net/batman-adv/soft-interface.c
+@@ -842,14 +842,13 @@ static int batadv_softif_slave_add(struct net_devic=
+e *dev,
+ 				   struct netlink_ext_ack *extack)
+ {
+ 	struct batadv_hard_iface *hard_iface;
+-	struct net *net =3D dev_net(dev);
+ 	int ret =3D -EINVAL;
+=20
+ 	hard_iface =3D batadv_hardif_get_by_netdev(slave_dev);
+ 	if (!hard_iface || hard_iface->soft_iface)
+ 		goto out;
+=20
+-	ret =3D batadv_hardif_enable_interface(hard_iface, net, dev->name);
++	ret =3D batadv_hardif_enable_interface(hard_iface, dev);
+=20
+ out:
+ 	if (hard_iface)
 --=20
 2.20.1
