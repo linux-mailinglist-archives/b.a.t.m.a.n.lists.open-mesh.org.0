@@ -2,129 +2,104 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB25C3A3C39
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 11 Jun 2021 08:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FF073A5941
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 13 Jun 2021 17:11:09 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9BF4480631;
-	Fri, 11 Jun 2021 08:48:17 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id DD70583F11;
+	Sun, 13 Jun 2021 17:11:03 +0200 (CEST)
 Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id CC8A580611
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 11 Jun 2021 08:48:14 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5B33F80960
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 13 Jun 2021 17:10:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1623394094;
+	s=20121; t=1623596513;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yC7DYQZ6KnzuPIK3qEDW/n0fnsnwbGps1v7M2TXyDLc=;
-	b=swXHPndtlXdYhyBAr+hOfZAzG8OrLusjps7b/RFJn8T83q5Yl0tdc2mYWD58QFVVKfruqu
-	kkJxg9fXZds2ObFjlGyzhXRiGyatoKFqUTSY3BGRyPuWxt7SLGMVSNRFTXlrbZ3/ByWeD6
-	fCp2ENfsvRRb7tYQXLrQ7agSfmiUVs0=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=EnyMv3SUxLe29zeomMewjxzWxiZ+ncGV7jUMZUceEtU=;
+	b=RC/QAU4KoXR2tgtxqllDTZzN1QSYIk0DxgsJqY55p1W20HCHEo9pcXa8HqnDQoa1CQPXcf
+	dqZkvIBKY7Z/jG53OaxS1lbS5iXGIQMLaNCdZOPSzpdAcDX7OKj7xXXmtCBFNUihq4uuWW
+	aMbacKLQzALCI6dTBYmbxHYWjX845Q4=
 From: Sven Eckelmann <sven@narfation.org>
-To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: Re: MediaTek MT7612u and IBSS mode
-Date: Fri, 11 Jun 2021 08:48:10 +0200
-Message-ID: <4182303.XkkeXVZP1n@ripper>
-In-Reply-To: <4E744A61-BBA0-404E-B435-23C26ACF031B@windtalker.com>
-References: <4E744A61-BBA0-404E-B435-23C26ACF031B@windtalker.com>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH 1/2] batman-adv: Move IRC channel to hackint.org
+Date: Sun, 13 Jun 2021 17:01:43 +0200
+Message-Id: <20210613150144.525655-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3186444.dtHR1CuC4E"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623394094; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1623597059; a=rsa-sha256;
 	cv=none;
-	b=goig0NRTHzAOclkQ9sCNyFpY2megLnUmd/yuGHflRBts+ZVAbyfknyVXftmPYhw9qA03kq
-	O4/II/ZkpVADuJzh8ACbZcLgfiTvEd6/14cdvay1RGnzAmCoCQGRev2QGAmyoBNOjEhnOh
-	52FY9fUUDpv54A1sxwXzw+Z/n5jCj9E=
+	b=yIPMs8+pi+HhP+uMAYtD8aBiGoPdxPfxC3m/ORXVVSJrN7GqFtMsYS9O3XCnIXCsQZ384Z
+	PvQAlgaNBA3uJI83/BFWIgMcWy1drf4mek4qf0ZkNXPwqQV2OrNUxCDY0b0fYsYytUtCzk
+	pWL1jS60URpEHF5YrPtPA34b9jkq6rc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=swXHPndt;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="RC/QAU4K";
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1623394094;
+	s=20121; t=1623597059;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=yC7DYQZ6KnzuPIK3qEDW/n0fnsnwbGps1v7M2TXyDLc=;
-	b=gUMx+SiY8qQc/A9OyTX0TeXhbcknbGSR3rzsHp9sHja9qjmJWyaXAbYcJ5EY+Kiu9kd08U
-	6FCBtc/TwkOIugYJ2+mqwgR6BopGiUWuyQV8vGTCTK6mxSYWar2vgZBiTdEHV5Mdr8KcVX
-	ueF+G1gIAzlKkyJpeMMEPvCY1vOMp8A=
-Message-ID-Hash: BL3EM6ZKKDIZO4QSE3GK44AMK2UVFNOW
-X-Message-ID-Hash: BL3EM6ZKKDIZO4QSE3GK44AMK2UVFNOW
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=EnyMv3SUxLe29zeomMewjxzWxiZ+ncGV7jUMZUceEtU=;
+	b=cUA2UWXJadu3RHJcS/uf2F96M3CqzdMYJJMnojTPQdNY73uxnApljYHprnL/ZhHRy/TAcC
+	IIChIUo9QtUmD2oefO6pLheBO7JLANjVQdMpiwoKzpu319gSnZNTcs4eeJgSa3FF7aGeHk
+	gAiFC0M4w2/6Oas/YViTzDuWDT4q8bk=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: TGRTFW6OD2WGXUZL42ZDPXRCGNVJ2GML
+X-Message-ID-Hash: TGRTFW6OD2WGXUZL42ZDPXRCGNVJ2GML
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Maurice Smulders <Maurice.Smulders@windtalker.com>, linux-wireless@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BL3EM6ZKKDIZO4QSE3GK44AMK2UVFNOW/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TGRTFW6OD2WGXUZL42ZDPXRCGNVJ2GML/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart3186444.dtHR1CuC4E
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Maurice Smulders <Maurice.Smulders@windtalker.com>, linux-wireless@vger.kernel.org
-Subject: Re: MediaTek MT7612u and IBSS mode
-Date: Fri, 11 Jun 2021 08:48:10 +0200
-Message-ID: <4182303.XkkeXVZP1n@ripper>
-In-Reply-To: <4E744A61-BBA0-404E-B435-23C26ACF031B@windtalker.com>
-References: <4E744A61-BBA0-404E-B435-23C26ACF031B@windtalker.com>
+Due to recent developments around the Freenode.org IRC network, the
+opinions about the usage of this service shifted dramatically. The majori=
+ty
+of the still active users of the #batman channel prefers a move to the
+hackint.org network.
 
-On Friday, 11 June 2021 03:55:29 CEST Maurice Smulders wrote:
-> Platform: Raspberry Pi 4B / CM4 with CentOS 8 stream 64 bit - 5.10.42 kernel
-> 
-> Trying to use this Mediatek USB device and I notice a - quite nasty - problem using IBSS mode. On startup of the IBSS network, there is a chance the Pi goes into a tizzy 	https://github.com/openwrt/mt76/issues/543 - when it's the first (and only) node.
-> I was able to dupe it consistently in my home - fairly static network - but not anymore in a lab environment. I cannot easily go back home - it's ~3000km from where I am at temporarily.
-> 
-> Does anyone have experience with these MediaTek devices and B.A.T.M.A.N. on lower performance nodes like a Raspberry Pi...
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ Documentation/networking/batman-adv.rst | 2 +-
+ MAINTAINERS                             | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-It doesn't seem to me like this is batman-adv or batmand related. So I would 
-most likely better to ask on linux-wireless@vger.kernel.org too
-
-And is IBSS mode really required or would meshpoint with mesh_fwding set 0 
-also work?
-
-    iw phy0 interface add mesh0 type mp
-    ip link set up dev mesh0
-    iw dev mesh0 mesh join 11s-bat freq 2412 HT20 mcast-rate 18 beacon-interval 1000
-
-    iw dev mesh0 set mesh_param mesh_fwding 0
-    # please make sure that it is actually 0 with: iw dev mesh0 get mesh_param mesh_fwding
-
-    ip link set master bat0 dev mesh0
-
-> I have ascertained that NONE of the USB Realtek dongles work, as the kernel driver is missing IBSS support at this time...
-> 
-> I'm against an urgent deadline, and trying to understand what I can do to make this work
-
-Kind regards,
-	Sven
---nextPart3186444.dtHR1CuC4E
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmDDByoACgkQXYcKB8Em
-e0ZEvRAArrEZQKItYRDBcWQkhHGIYMrm9SDMPNU942EUUeR20vTjFQAfxFo2mrNL
-0umJZ04+tK6DyifCWdobfsXq9pjKOXierYpET/4GVFEaD9T6RjzgoycKVom4Lh8/
-8cg+k3TdU6I0MtQAeMKhRDWZNrzA/Y6iqi45uGUGJmBPiB9Q7gQSgO6X1YeSTpuR
-s81X8AGL/8aWcpvMvmYGa2Ond9wDqA3pQLGtilQgKvOfMtG8X8jNu0eRqumLqeU8
-Ga3SHO7DfLVcU0USmJRx2YVPrPgDM6qjcOM7NcWVP19tIWv1VayEu/9ZufjI1ezr
-IjQ0JZSuPB0rCjec6YWRXLktNVPWz5GAElDDg72U0c7dlnR7fhymR1J66BV5LPl+
-Kwg487eXgrASPgXchxSEoPdxXifget0pyXpx/UcNXEpOfcsUpSXeTZxJ4T3ZJ+t6
-kXyr3/3cJgnuQ8qa8ELwKIiTYbHNIEubI4Oxmd9ACxbxqoH0G+htEgexuOMqfO6b
-G21P2J8S4sJumja8A3xjkZD4rFzQHHgBQ3YQqa2DLatEdWfnycIysLS7LouiBsEk
-iO45SQupbEaRU861l8+Zfh2yVilgjbBSnr1AeR3nCCA0alj++nFeDhbTw97HgiUP
-zL4Y+jkwLTHK2PFyjJI9BBPL9Dp9JAkiKTYe+PKqdRt+iMeAQU4=
-=PMMc
------END PGP SIGNATURE-----
-
---nextPart3186444.dtHR1CuC4E--
-
-
+diff --git a/Documentation/networking/batman-adv.rst b/Documentation/netw=
+orking/batman-adv.rst
+index 74821d29a22f..b85563ea3682 100644
+--- a/Documentation/networking/batman-adv.rst
++++ b/Documentation/networking/batman-adv.rst
+@@ -157,7 +157,7 @@ Contact
+ Please send us comments, experiences, questions, anything :)
+=20
+ IRC:
+-  #batman on irc.freenode.org
++  #batadv on ircs://irc.hackint.org/
+ Mailing-list:
+   b.a.t.m.a.n@open-mesh.org (optional subscription at
+   https://lists.open-mesh.org/mailman3/postorius/lists/b.a.t.m.a.n.lists=
+.open-mesh.org/)
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c6cdd550cd3a..b0cebd3a2e21 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3169,7 +3169,7 @@ S:	Maintained
+ W:	https://www.open-mesh.org/
+ Q:	https://patchwork.open-mesh.org/project/batman/list/
+ B:	https://www.open-mesh.org/projects/batman-adv/issues
+-C:	irc://chat.freenode.net/batman
++C:	ircs://irc.hackint.org/batadv
+ T:	git https://git.open-mesh.org/linux-merge.git
+ F:	Documentation/networking/batman-adv.rst
+ F:	include/uapi/linux/batadv_packet.h
+--=20
+2.30.2
