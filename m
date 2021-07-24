@@ -1,94 +1,114 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A72C3D3EA4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 23 Jul 2021 19:28:51 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFB13D4897
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 24 Jul 2021 18:24:42 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4885E8239D;
-	Fri, 23 Jul 2021 19:28:46 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CC64F80B9F;
+	Sat, 24 Jul 2021 18:24:40 +0200 (CEST)
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4F2C280040
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 23 Jul 2021 19:28:41 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8FAF68026E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 24 Jul 2021 18:24:37 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1627061012;
+	s=20121; t=1627143876;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1qYYHcEIF3WKLET5KtpdI6VoVyjwTOlmU5B3Rr4plD8=;
-	b=wikA8tkj6rJGVef5B0nHMN1SdQyIOBOxmNENkEiIaaAShfwHoWkPyrI2iIbsxC8mUdNxtx
-	cWdar8CIEyTKLs40AOL2uYDJFtAja0Rvk0NG8udwnhylkF06JFjZdEOx9EO6RrclbbRccH
-	tlX46sZLcqgTZouyLoO6LNoYZjxLIiE=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VlraKBfCz4HcEEphEEUFJxpqY7WKDh5jCjkPEkIoSOo=;
+	b=vraSgcfngtPJ5cG1c7K18mNFPKbUyQjtOynHdMdNi/mqG7QZjlTI4A9H+HrArp5Xd3oJW4
+	3WH9aXK5UEKQeKJUTAwqd55zEujLFbycKYr8elquAXYlfNOQ2GlEpzNoQzAv3bBlJGGtvR
+	5mXHQ5YkNe+mpvctxK67f4mfT4hjRBQ=
 From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH 2/2] batman-adv: Switch to kstrtox.h for kstrtou64
-Date: Fri, 23 Jul 2021 19:23:17 +0200
-Message-Id: <20210723172317.323199-2-sven@narfation.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH] asm-generic: avoid sparse {get,put}_unaligned warning
+Date: Sat, 24 Jul 2021 18:24:29 +0200
+Message-Id: <20210724162429.394792-1-sven@narfation.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210723172317.323199-1-sven@narfation.org>
-References: <20210723172317.323199-1-sven@narfation.org>
 MIME-Version: 1.0
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1627061321;
+	s=20121; t=1627143877;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=1qYYHcEIF3WKLET5KtpdI6VoVyjwTOlmU5B3Rr4plD8=;
-	b=y3xsT6PlxcJl30XUoUBiLYgY/6rBCyL7zc3MBamFtKt2Nr7nbj0GOce9CL1wBjOq+2IpTU
-	/EDy0fIvW78yrTUUYcx/0TCKTWmctL1yGD/6edaUX5zAd4RiE24TEr4FOExFKXuRhxIB6j
-	vVb9LZvhIEU7Vl3BFrKhWpDWFwZ9Yao=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1627061321; a=rsa-sha256;
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=VlraKBfCz4HcEEphEEUFJxpqY7WKDh5jCjkPEkIoSOo=;
+	b=U0wtRpwLbco0hyWylPQcGFd/T7K95k63Js9PvXbxrOrci1heWcBJf+Imm2S89YvbShTHv/
+	Fj3ITL0fAi9RFHlGD8NLKxZnHHM2ebMkfP180Sf5xQLLQ29JrSXhzR+FJS4dBmzVrUN84e
+	Zx/T5gEDi0EB7mM3BlUUtlUWvEFDsPM=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1627143877; a=rsa-sha256;
 	cv=none;
-	b=Bks1ZD9hcQhDD5m8AIvATt68xVUaubhMEKHp3tnaVNSj8FpH+k1YV2xr8QW1NWTSRIWPpr
-	ssJWIYpxbb3ksPRI2BmxkrUlmKQgN/cH7rPmtvL2wBSpO/ml72h4M8DFGYaZDrMMNVlvx1
-	BQZTRD5Vp1qLwOGmEivPkzQqDoAyBSI=
+	b=a9/r8j0MMliHv7ZsFqB3L6UWT1ZejHDaEhXlSu31NoEnlFT6ewMuukgbcVc2fTpBIqVgiX
+	tnCDh70eaagIdZ4g/sdbU9Mfc3ZvOJDHwbv9eeMeyqSswN+CpUvqoehmQlOjcnFY29A8u6
+	i2QoaELtP6hZZdVM8j4afOEFQKMcR90=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=wikA8tkj;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=vraSgcfn;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: NVHG7WYTIN53JS2ICEFVXTYTSPWYXOKR
-X-Message-ID-Hash: NVHG7WYTIN53JS2ICEFVXTYTSPWYXOKR
+Message-ID-Hash: YZBJRJUXUJIMOHE4ZROTPV75QFI2J23E
+X-Message-ID-Hash: YZBJRJUXUJIMOHE4ZROTPV75QFI2J23E
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: b.a.t.m.a.n@lists.open-mesh.org, linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NVHG7WYTIN53JS2ICEFVXTYTSPWYXOKR/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YZBJRJUXUJIMOHE4ZROTPV75QFI2J23E/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-The commit 4c52729377ea ("kernel.h: split out kstrtox() and simple_strtox=
-()
-to a separate header") moved the kstrtou64 function to a new header calle=
-d
-linux/kstrtox.h.
+Sparse will try to check casting of simple integer types which are marked
+as __bitwise. This for example "disallows" simple casting of __be{16,32,6=
+4}
+or __le{16,32,64} to other types. This is also true for pointers to
+variables with this type.
 
+But the new generic {get,put}_unaligned is doing that by (reinterpret)
+casting the original pointer to a new (anonymous) struct pointer. This wi=
+ll
+then create warnings like:
+
+  net/batman-adv/distributed-arp-table.c:1461:19: warning: cast from rest=
+ricted __be32 *
+  net/batman-adv/distributed-arp-table.c:1510:23: warning: cast from rest=
+ricted __be32 [usertype] *[assigned] magic
+  net/batman-adv/distributed-arp-table.c:1588:24: warning: cast from rest=
+ricted __be32 [usertype] *[assigned] yiaddr
+
+The special attribute force must be used in such statements when the cast
+is known to be safe to avoid these warnings.
+
+Fixes: 803f4e1eab7a ("asm-generic: simplify asm/unaligned.h")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/gateway_common.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/asm-generic/unaligned.h | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/net/batman-adv/gateway_common.c b/net/batman-adv/gateway_com=
-mon.c
-index fdde305a..9349c76f 100644
---- a/net/batman-adv/gateway_common.c
-+++ b/net/batman-adv/gateway_common.c
-@@ -10,7 +10,7 @@
- #include <linux/atomic.h>
- #include <linux/byteorder/generic.h>
- #include <linux/errno.h>
--#include <linux/kernel.h>
-+#include <linux/kstrtox.h>
- #include <linux/limits.h>
- #include <linux/math64.h>
- #include <linux/netdevice.h>
+diff --git a/include/asm-generic/unaligned.h b/include/asm-generic/unalig=
+ned.h
+index 1c4242416c9f..e2b23e5bf945 100644
+--- a/include/asm-generic/unaligned.h
++++ b/include/asm-generic/unaligned.h
+@@ -10,12 +10,13 @@
+ #include <asm/byteorder.h>
+=20
+ #define __get_unaligned_t(type, ptr) ({						\
+-	const struct { type x; } __packed *__pptr =3D (typeof(__pptr))(ptr);	\
++	const struct { type x; } __packed *__pptr;				\
++	__pptr =3D (__force typeof(__pptr))(ptr);					\
+ 	__pptr->x;								\
+ })
+=20
+ #define __put_unaligned_t(type, val, ptr) do {					\
+-	struct { type x; } __packed *__pptr =3D (typeof(__pptr))(ptr);		\
++	struct { type x; } __packed *__pptr =3D (__force typeof(__pptr))(ptr);	=
+\
+ 	__pptr->x =3D (val);							\
+ } while (0)
+=20
 --=20
 2.30.2
