@@ -1,157 +1,182 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2655C3F1D16
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 19 Aug 2021 17:41:42 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F7E3F26EB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Aug 2021 08:41:19 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id D690282623;
-	Thu, 19 Aug 2021 17:41:24 +0200 (CEST)
-Received: from simonwunderlich.de (packetmixer.de [IPv6:2001:4d88:2000:24::c0de])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 786A182608
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 19 Aug 2021 17:41:15 +0200 (CEST)
-Received: from kero.packetmixer.de (p200300c5971402c0773d8e0e2371531e.dip0.t-ipconnect.de [IPv6:2003:c5:9714:2c0:773d:8e0e:2371:531e])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id 0862D174029;
-	Thu, 19 Aug 2021 17:33:43 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Subject: [PATCH 6/6] batman-adv: bcast: remove remaining skb-copy calls
-Date: Thu, 19 Aug 2021 17:33:34 +0200
-Message-Id: <20210819153334.18850-7-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210819153334.18850-1-sw@simonwunderlich.de>
-References: <20210819153334.18850-1-sw@simonwunderlich.de>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 68A4880297;
+	Fri, 20 Aug 2021 08:41:18 +0200 (CEST)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 10AD1803F8
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Aug 2021 14:01:56 +0200 (CEST)
+Received: by mail-lj1-x235.google.com with SMTP id i28so5468189ljm.7
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 16 Aug 2021 05:01:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=r9qun9RBfDRUM5T4sfZ2VeCEDVk102Kw4ULHeddtzpM=;
+        b=sNCk2U79PhKTpz1SMogAaQAC2vqp0InA8igcTnnuPut7N3g/rWMM8yieUDw4nKHqeF
+         LeAnzH90rNv8P1AKfWTOTBAOTFkWmGufH2ynZbCbhRl2M1SKdfvk1ZW2zoH/KRkkdzLF
+         AfxDwiFlwJ1XPzOTLwJ44k9PD3HAD4gSYaUzmPbihSV30jvu7J/EvZthmoAezoiyD8gA
+         x31TjvNxv18VGnDu3aM9WDa6Ku+OBlGZ5jFx4spYE9tx2rGm4bz4lbEm1dl3fI59Hkcr
+         oenXEpYX6sISq5zWzzNbsPcl/W1NG8ASrf/yTjt4Wo9ZUMi8vjpQ4D9aTyRhLTSQTcWA
+         gSMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=r9qun9RBfDRUM5T4sfZ2VeCEDVk102Kw4ULHeddtzpM=;
+        b=SOnqSTkrF7zjAFIEXo1lejOo0eCppd6w7eAOXoNhaxCNgIDyJsOdV1bFuafJYdMo4E
+         yaEzBT+0f2EHt1j9Mxe/IOQzvVuq5FPovioIdUBlqXRbAe2I9+OnrF9/y789qdYUgwpC
+         paWmLBX63/BUQaQjRYeKNHnM4rDQ4SuTOAsHtDuyy/ln31Y8sAL1+YpTiagiYthsO9Vu
+         BU/s9OEF+203k70SK6WX9zUCXWV4XQcGnVkA96cyv88hbtmFagDbflgdB7EtqnAQzXY2
+         r0vjWZU5VIV7WuOPmypN/gcxmj7flzYKZrz1lg+JAaKvW0vO4JJVN4QXKIRdFklOrbK9
+         0H4Q==
+X-Gm-Message-State: AOAM532t4/b5H1aA9Nejxdwyxx6VBxM54nKxsqjvr3y18yr0rCiQ5z34
+	t9/kTINArenkvInHDD6YjaM=
+X-Google-Smtp-Source: ABdhPJxuYhEPGRg17h72OgDLrTQHor7wWefUEVKkFHjFduPkrGcO9uLTm2NRnsnQPoF3U3HDOEQ2Fw==
+X-Received: by 2002:a2e:a806:: with SMTP id l6mr12775879ljq.91.1629115315306;
+        Mon, 16 Aug 2021 05:01:55 -0700 (PDT)
+Received: from localhost.localdomain ([46.61.204.59])
+        by smtp.gmail.com with ESMTPSA id p3sm928679lfa.228.2021.08.16.05.01.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Aug 2021 05:01:54 -0700 (PDT)
+Subject: Re: [syzbot] WARNING in __v9fs_get_acl
+To: syzbot <syzbot+56fdf7f6291d819b9b19@syzkaller.appspotmail.com>,
+ a@unstable.cc, asmadeus@codewreck.org, b.a.t.m.a.n@lists.open-mesh.org,
+ davem@davemloft.net, ericvh@gmail.com, linux-kernel@vger.kernel.org,
+ lucho@ionkov.net, lucien.xin@gmail.com, mareklindner@neomailbox.ch,
+ netdev@vger.kernel.org, nhorman@tuxdriver.com, sw@simonwunderlich.de,
+ syzkaller-bugs@googlegroups.com, v9fs-developer@lists.sourceforge.net
+References: <000000000000789bcd05c9aa3d5d@google.com>
+From: Pavel Skripkin <paskripkin@gmail.com>
+Message-ID: <d40528c5-aa3c-45ff-ed99-e741b63f6351@gmail.com>
+Date: Mon, 16 Aug 2021 15:01:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <000000000000789bcd05c9aa3d5d@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 2001:4d88:2000:24::c0de as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629387675; a=rsa-sha256;
+	dkim=pass header.d=gmail.com header.s=20161025 header.b=sNCk2U79;
+	spf=pass (diktynna.open-mesh.org: domain of paskripkin@gmail.com designates 2a00:1450:4864:20::235 as permitted sender) smtp.mailfrom=paskripkin@gmail.com
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629115317; a=rsa-sha256;
 	cv=none;
-	b=jdfSLQnB29sht7a91XmUWEUajrnjs3dGd8dDN4V4ZXl4Eg/xTDJqUYyQZSk9+9zTERlQVT
-	H3XdZ1SQ5U+CEcg48qizjl5JE6k/O128gAIvX/jFItwBEAHKIkfgXrlz0r5MERCIZ+zXdC
-	1PvR/zKVaN3/3qC66XogGEtuxhUhYDo=
+	b=dm51aJagujAvfiddeOgBn18bz14A+ZKe0r+gMIY1D108BZZ6OiiJ52ekHSHd5zel/iCqt/
+	mofo3VDP+/Ppw61ADSHHdztjPzAthjgNscFgo4pXrzCIFsj6UDTTz10gXeyYvHhMkKiQbk
+	/wl060G4gbAhcHEvWb600RrLfU/xr0E=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1629387675;
+	s=20121; t=1629115317;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cRhvXrW3u8a11StXbIatzDT879zXAEebn8HO/6CT5AA=;
-	b=n5D5x7Wavrv35ln+9gYxK9HCERei8QKou3bS7hug8opQ7pFeE25FIc2eLQkP67gjyXnQnt
-	ZT4iY3MQXIyc4+5GqXcnrG5baPRzKKN+qQrBVsZmew84zsPEupsrG3CEbdmtbKJNIA4pIt
-	awDbLGyE3sgf9gpFxUQGfn4ELNf3BwQ=
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: TQLUZIBOLB5AAKSBEHMFMSOE52NZUGDU
-X-Message-ID-Hash: TQLUZIBOLB5AAKSBEHMFMSOE52NZUGDU
-X-MailFrom: sw@simonwunderlich.de
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=r9qun9RBfDRUM5T4sfZ2VeCEDVk102Kw4ULHeddtzpM=;
+	b=AprXnWFlfyUS0f+p6SUB9FrbB8yHxmhk3Fp19MuSqVGn0cslmFTLtfXtiovI/i6IC3HObY
+	uD6o97dubAil1UpGJW1bz4WnkoXSvjLTDJoYquD5eFr/9H7mIkZntrqO30RrY21DpxL0ys
+	JZP0iT9L9LmqVAPk9t1qqpdaU9WDcYs=
+X-MailFrom: paskripkin@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: PYFWCAZWK2JAJLS6YFOTMSPLJ377SB6U
+X-Message-ID-Hash: PYFWCAZWK2JAJLS6YFOTMSPLJ377SB6U
+X-Mailman-Approved-At: Fri, 20 Aug 2021 06:41:16 +0200
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TQLUZIBOLB5AAKSBEHMFMSOE52NZUGDU/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PYFWCAZWK2JAJLS6YFOTMSPLJ377SB6U/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+On 8/16/21 12:58 PM, syzbot wrote:
+> Hello,
+> 
+> syzbot found the following issue on:
+> 
+> HEAD commit:    761c6d7ec820 Merge tag 'arc-5.14-rc6' of git://git.kernel...
+> git tree:       upstream
+> console output: https://syzkaller.appspot.com/x/log.txt?x=11d87ca1300000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=730106bfb5bf8ace
+> dashboard link: https://syzkaller.appspot.com/bug?extid=56fdf7f6291d819b9b19
+> compiler:       Debian clang version 11.0.1-2, GNU ld (GNU Binutils for Debian) 2.35.1
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12ca6029300000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=13bf42a1300000
+> 
+> The issue was bisected to:
+> 
+> commit 0ac1077e3a549bf8d35971613e2be05bdbb41a00
+> Author: Xin Long <lucien.xin@gmail.com>
+> Date:   Tue Oct 16 07:52:02 2018 +0000
+> 
+>      sctp: get pr_assoc and pr_stream all status with SCTP_PR_SCTP_ALL instead
+> 
+> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=16f311fa300000
+> final oops:     https://syzkaller.appspot.com/x/report.txt?x=15f311fa300000
+> console output: https://syzkaller.appspot.com/x/log.txt?x=11f311fa300000
+> 
+> IMPORTANT: if you fix the issue, please add the following tag to the commit:
+> Reported-by: syzbot+56fdf7f6291d819b9b19@syzkaller.appspotmail.com
+> Fixes: 0ac1077e3a54 ("sctp: get pr_assoc and pr_stream all status with SCTP_PR_SCTP_ALL instead")
+> 
+> ------------[ cut here ]------------
+> WARNING: CPU: 1 PID: 8426 at mm/page_alloc.c:5366 __alloc_pages+0x588/0x5f0 mm/page_alloc.c:5413
+> Modules linked in:
+> CPU: 1 PID: 8426 Comm: syz-executor477 Not tainted 5.14.0-rc5-syzkaller #0
+> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+> RIP: 0010:__alloc_pages+0x588/0x5f0 mm/page_alloc.c:5413
+> Code: 00 48 ba 00 00 00 00 00 fc ff df e9 5e fd ff ff 89 f9 80 e1 07 80 c1 03 38 c1 0f 8c 6d fd ff ff e8 bd 62 0a 00 e9 63 fd ff ff <0f> 0b 45 31 e4 e9 7a fd ff ff 48 8d 4c 24 50 80 e1 07 80 c1 03 38
+> RSP: 0018:ffffc90000fff9a0 EFLAGS: 00010246
+> RAX: dffffc0000000000 RBX: 0000000000000014 RCX: 0000000000000000
+> RDX: 0000000000000028 RSI: 0000000000000000 RDI: ffffc90000fffa28
+> RBP: ffffc90000fffaa8 R08: dffffc0000000000 R09: ffffc90000fffa00
+> R10: fffff520001fff45 R11: 0000000000000000 R12: 0000000000040d40
+> R13: ffffc90000fffa00 R14: 1ffff920001fff3c R15: 1ffff920001fff38
+> FS:  000000000148e300(0000) GS:ffff8880b9c00000(0000) knlGS:0000000000000000
+> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: 00007fa1e9a97740 CR3: 000000003406e000 CR4: 00000000001506f0
+> DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+> Call Trace:
+>   kmalloc_order+0x41/0x170 mm/slab_common.c:955
+>   kmalloc_order_trace+0x15/0x70 mm/slab_common.c:971
+>   kmalloc_large include/linux/slab.h:520 [inline]
+>   __kmalloc+0x292/0x390 mm/slub.c:4101
+>   kmalloc include/linux/slab.h:596 [inline]
+>   kzalloc include/linux/slab.h:721 [inline]
+>   __v9fs_get_acl+0x40/0x110 fs/9p/acl.c:36
+>   v9fs_get_acl+0xa5/0x290 fs/9p/acl.c:71
 
-We currently have two code paths for broadcast packets:
 
-A) self-generated, via batadv_interface_tx()->
-   batadv_send_bcast_packet().
-B) received/forwarded, via batadv_recv_bcast_packet()->
-   batadv_forw_bcast_packet().
+Looks like syzbot tries to mount malicious image. Easy fix just for 
+thoughts:
 
-For A), self-generated broadcast packets:
+diff --git a/fs/9p/acl.c b/fs/9p/acl.c
+index bb1b286c49ae..242a3bc7aaee 100644
+--- a/fs/9p/acl.c
++++ b/fs/9p/acl.c
+@@ -33,7 +33,7 @@ static struct posix_acl *__v9fs_get_acl(struct p9_fid 
+*fid, char *name)
 
-The only modifications to the skb data is the ethernet header which is
-added/pushed to the skb in
-batadv_send_broadcast_skb()->batadv_send_skb_packet(). However before
-doing so, batadv_skb_head_push() is called which calls skb_cow_head() to
-unshare the space for the to be pushed ethernet header. So for this
-case, it is safe to use skb clones.
+  	size = v9fs_fid_xattr_get(fid, name, NULL, 0);
+  	if (size > 0) {
+-		value = kzalloc(size, GFP_NOFS);
++		value = kzalloc(size, GFP_NOFS | __GFP_NOWARN);
+  		if (!value)
+  			return ERR_PTR(-ENOMEM);
+  		size = v9fs_fid_xattr_get(fid, name, value, size);
 
-For B), received/forwarded packets:
 
-The same applies as in A) for the to be forwarded packets. Only the
-ethernet header is added. However after (queueing for) forwarding the
-packet in batadv_recv_bcast_packet()->batadv_forw_bcast_packet(), a
-packet is additionally decapsulated and is sent up the stack through
-batadv_recv_bcast_packet()->batadv_interface_rx().
 
-Protocols higher up the stack are already required to check if the
-packet is shared and create a copy for further modifications. When the
-next (protocol) layer works correctly, it cannot happen that it tries to
-operate on the data behind the skb clone which is still queued up for
-forwarding.
 
-Co-authored-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/send.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
-index 2a33458be65c..477d85a3b558 100644
---- a/net/batman-adv/send.c
-+++ b/net/batman-adv/send.c
-@@ -742,6 +742,10 @@ void batadv_forw_packet_ogmv1_queue(struct batadv_pr=
-iv *bat_priv,
-  * Adds a broadcast packet to the queue and sets up timers. Broadcast pa=
-ckets
-  * are sent multiple times to increase probability for being received.
-  *
-+ * This call clones the given skb, hence the caller needs to take into
-+ * account that the data segment of the original skb might not be
-+ * modifiable anymore.
-+ *
-  * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
-  */
- static int batadv_forw_bcast_packet_to_list(struct batadv_priv *bat_priv=
-,
-@@ -755,7 +759,7 @@ static int batadv_forw_bcast_packet_to_list(struct ba=
-tadv_priv *bat_priv,
- 	unsigned long send_time =3D jiffies;
- 	struct sk_buff *newskb;
-=20
--	newskb =3D skb_copy(skb, GFP_ATOMIC);
-+	newskb =3D skb_clone(skb, GFP_ATOMIC);
- 	if (!newskb)
- 		goto err;
-=20
-@@ -794,6 +798,10 @@ static int batadv_forw_bcast_packet_to_list(struct b=
-atadv_priv *bat_priv,
-  * or if a delay is given after that. Furthermore, queues additional
-  * retransmissions if this interface is a wireless one.
-  *
-+ * This call clones the given skb, hence the caller needs to take into
-+ * account that the data segment of the original skb might not be
-+ * modifiable anymore.
-+ *
-  * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
-  */
- static int batadv_forw_bcast_packet_if(struct batadv_priv *bat_priv,
-@@ -808,7 +816,7 @@ static int batadv_forw_bcast_packet_if(struct batadv_=
-priv *bat_priv,
- 	int ret =3D NETDEV_TX_OK;
-=20
- 	if (!delay) {
--		newskb =3D skb_copy(skb, GFP_ATOMIC);
-+		newskb =3D skb_clone(skb, GFP_ATOMIC);
- 		if (!newskb)
- 			return NETDEV_TX_BUSY;
-=20
---=20
-2.20.1
+With regards,
+Pavel Skripkin
