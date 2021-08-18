@@ -1,136 +1,163 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74D63EEC60
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 17 Aug 2021 14:24:44 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940B43F0970
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Aug 2021 18:44:53 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 55176810E1;
-	Tue, 17 Aug 2021 14:24:43 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 34D41803A8
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 17 Aug 2021 14:24:39 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7722781003;
+	Wed, 18 Aug 2021 18:44:52 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B3B7780122
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Aug 2021 18:44:49 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1629203079;
+	s=20121; t=1629305088;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=435H3ICio+BN6Aq4JcA32tOyyuO4ld/UvqM7R3DI88w=;
-	b=uFuaB0c+3XPpRUrb5V2CjoSDWdl88DTjhYdkGdlsiu+tVyoVXyXoNLISQRdXJfFLlacvOg
-	COw2O7YSLmWOMc1zpmgwot5SogLrzK4PjfApyy5Lwy8GJk2K4du8c9qMOKHdRlmb9cRAtx
-	iguzje4oGg4aNQe2GLUhkrhF9EMSS0I=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jj8t068nAP86yyqFBBUJ0hC/CGr67f/mjjpVCkT7BVA=;
+	b=EdMmLmJOWY8qELF1N0c2oiwfqtkFcL1YOOuaJQpcszg8JS29sj4f54W1Q0FIbKdz12LMax
+	WFWN6MHBR/6ptHspJzoK+A/Yp79+1Nxkr0+p5nZRBbm8eELkW7Y8nMTsy7pSovArqAJHsZ
+	8eRKJZ5VeXWOtTmHrAmzHM87i/TD1CA=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Subject: Re: [PATCH v3 3/3] batman-adv: bcast: remove remaining skb-copy calls for broadcasts
-Date: Tue, 17 Aug 2021 14:24:36 +0200
-Message-ID: <8357888.XYH0bx1MCn@ripper>
-In-Reply-To: <20210516223309.12596-3-linus.luessing@c0d3.blue>
-References: <20210516223309.12596-1-linus.luessing@c0d3.blue> <20210516223309.12596-3-linus.luessing@c0d3.blue>
+Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>,
+	Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH v4] batman-adv: bcast: remove remaining skb-copy calls
+Date: Wed, 18 Aug 2021 18:44:33 +0200
+Message-Id: <20210818164433.1873433-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4234697.lddkiTJQAK"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=UTF-8
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=uFuaB0c+;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629203080; a=rsa-sha256;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=EdMmLmJO;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629305089; a=rsa-sha256;
 	cv=none;
-	b=2xrSSu/iuJQ7c9W7V006/RyV/OzjWLaZPA+8yHNyr/YYm/ulwuZgPh2EnNJWMcHasHsgKY
-	0GiJlwzQr7Z4CA3csupHAXzZ7l8bumG77FGWNdchTbuMOPpqOlO3SZtgUPNkb6rgaQ97TO
-	8UvZLhtCYqk4UpUhGyYvFm+Vn4r3dGY=
+	b=0w0bbl13cT2mDtKAwUGiRz97tl6ldCUFHVftAdeuPjW0bxJQGGTGINLJzn8CJHS1cGlHRq
+	vc6bPYz8EvK183EtOm/dkn8FnytwyXVdbrrCa6B/Q4g02aRKoyXb6z+kL09Jk0dVA8Q07i
+	mneEtJtgC48M0DU1kUdwP65PDWDC/Z4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1629203080;
+	s=20121; t=1629305089;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=435H3ICio+BN6Aq4JcA32tOyyuO4ld/UvqM7R3DI88w=;
-	b=fC/bUtOIfungi5XLq+BttGFdYchbGyF2XJ8t5Q5g0/hcIcPttJ9BoHUPpKTlTTRAP9PB8b
-	4u8yzzP+3CIpNqgnUxJYWnwKCkM/NSMvatopWkXPeQ8UD3mlVC8idfKONAESJzPWwlMm6Y
-	pat68I+XrhyfKTDtyUlsVmRLhq1jMeA=
-Message-ID-Hash: E4IG7RMCGGDRDKZAUBI6LKVCOJJRGSCI
-X-Message-ID-Hash: E4IG7RMCGGDRDKZAUBI6LKVCOJJRGSCI
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=jj8t068nAP86yyqFBBUJ0hC/CGr67f/mjjpVCkT7BVA=;
+	b=gfyxz4rCglu4BIFJzBmQFpqrnB83O7thnPdo64m3gAIdN55J4QcmDIp2mkdm0RfKgAIvyj
+	47D8zlmyMpqszhYz6YnG4NbrXbyxH44wjMxHaLPWkoLD6yGB3YN+/4p0nBPVUctzBWqOet
+	8d1GusrescamsLAMxKufQVCQEoGhy48=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: JZOFAJHM2DRQ4BUQKCCAOWQ33UHELAB3
+X-Message-ID-Hash: JZOFAJHM2DRQ4BUQKCCAOWQ33UHELAB3
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/E4IG7RMCGGDRDKZAUBI6LKVCOJJRGSCI/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JZOFAJHM2DRQ4BUQKCCAOWQ33UHELAB3/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart4234697.lddkiTJQAK
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Subject: Re: [PATCH v3 3/3] batman-adv: bcast: remove remaining skb-copy calls for broadcasts
-Date: Tue, 17 Aug 2021 14:24:36 +0200
-Message-ID: <8357888.XYH0bx1MCn@ripper>
-In-Reply-To: <20210516223309.12596-3-linus.luessing@c0d3.blue>
-References: <20210516223309.12596-1-linus.luessing@c0d3.blue> <20210516223309.12596-3-linus.luessing@c0d3.blue>
+From: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 
-On Monday, 17 May 2021 00:33:09 CEST Linus L=FCssing wrote:
-> +       /* __batadv_forw_bcast_packet clones, make sure original
-> +        * skb stays writeable
-> +        */
-> +       return (skb_cow(skb, 0) < 0) ? NETDEV_TX_BUSY : NETDEV_TX_OK;
+We currently have two code paths for broadcast packets:
 
-Just because we had this discussion a couple of hours ago: My last comment=
+A) self-generated, via batadv_interface_tx()->
+   batadv_send_bcast_packet().
+B) received/forwarded, via batadv_recv_bcast_packet()->
+   batadv_forw_bcast_packet().
+
+For A), self-generated broadcast packets:
+
+the only modifications to the skb data is the ethernet header which is
+added/pushed to the skb in
+batadv_send_broadcast_skb()->batadv_send_skb_packet(). However before
+doing so, batadv_skb_head_push() is called which calls skb_cow_head() to
+unshare the space for the to be pushed ethernet header. So for this
+case, it is safe to use skb clones.
+
+For B), received/forwarded packets:
+
+the same applies as in A) for the to be forwarded packets. Only the
+ethernet header is added. However after (queueing for) forwarding the
+packet in batadv_recv_bcast_packet()->batadv_forw_bcast_packet(), a
+packet is additionally decapsulated and is sent up the stack through
+batadv_recv_bcast_packet()->batadv_interface_rx().
+
+Protocols higher up the stack are already required to check if the
+packet is shared and create a copy for further modifications. When the
+next (protocol) layer works correctly, it cannot happen that ot tries to
+operate on the data behind the skb clone which is still queued up for
+forwarding.
+
+Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+Co-authored-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+v3:
+* newly added this patch, to move skb_copy()->skb_clone() changes from
+  PATCH 01/03 to a separate patch with its own explanation
+v4:
+* dropped skb_cow call in __batadv_forw_bcast_packet and adjusted the
+  text for B) to explain the reasoning behind it
+
+ net/batman-adv/send.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
+index 0b9dd29d..b1cb9eb3 100644
+--- a/net/batman-adv/send.c
++++ b/net/batman-adv/send.c
+@@ -748,6 +748,10 @@ void batadv_forw_packet_ogmv1_queue(struct batadv_pr=
+iv *bat_priv,
+  * Adds a broadcast packet to the queue and sets up timers. Broadcast pa=
+ckets
+  * are sent multiple times to increase probability for being received.
+  *
++ * This call clones the given skb, hence the caller needs to take into
++ * account that the data segment of the original skb might not be
++ * modifiable anymore.
++ *
+  * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
+  */
+ static int batadv_forw_bcast_packet_to_list(struct batadv_priv *bat_priv=
+,
+@@ -761,7 +765,7 @@ static int batadv_forw_bcast_packet_to_list(struct ba=
+tadv_priv *bat_priv,
+ 	unsigned long send_time =3D jiffies;
+ 	struct sk_buff *newskb;
 =20
-from May was that the skb_cow might be unnecessary - not that you need a=20
-skb_copy.
-
-You wrote (for situation B):
-
-> a packet is
-> additionally decapsulated and is sent up the stack through
-> batadv_recv_bcast_packet()->batadv_interface_rx(). Which needs an
-> unshared skb data for potential modifications from other protocols.
-
-And my reply to this was:
-
-> Take for example the bridge code. You can find the skb_share_check in=20
-> br_handle_frame. Afterwards, it knows that it has a clone of the skb (but=
- not=20
-> necessarily a private copy of the actual data). If it needs to modify the=
- data=20
-> then it is copying the skb.
->=20
-> Another example is the IPv4 code. One of the first things it does is to c=
-heck=20
-> in ip_rcv_core for the shared skb. And if it needs to modify it (for exam=
-ple=20
-> by forwarding it in ip_forward), it uses skb_cow directly.
-
-Kind regards,
-	Sven
---nextPart4234697.lddkiTJQAK
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmEbqoQACgkQXYcKB8Em
-e0bxkg/+KWAcW3cOzs8V4EWWFVHIj8j2DKTPEz8+G86hYBwqq+UUB428zjuYUgle
-3SeUViw8ktYppp/yrmqyFTcSqt0Cc00K+Ik1qhXqRm1LGrueNV2PMd6PxVVf92sY
-s52xmqIBt2bwlPwI3s7+Th2jN5OjxTCpFP0ZmDnuepLmOqhyzvlH0wlgd3bC3w7Y
-4PloqfuF5xjMPNroSKRO0AoFsa2h25kvPIA6Mgv+sHbTiIg/aHf23kUxcCvyO8wI
-qsEcqlbtH4k8XtOj0NdNFC3q2sX14rr84KSFo/hmrebGwG9ligft+HxH/1OSEcgw
-bjg25KT8EhcmA4OlRFdN9pwpH4IYgTG+i86khX3EzApymVfk8SJTY8ZiMM+3ODMx
-hU7TmzFTRimtil8mq94NaUedEytdfJnCx6cXM+Xl/6Y52g7jnUt1ikRY1THul7m7
-JdykHW748cng01wadAxuz2Vod6NDA/aSK66cUETT+Kl6QVZslggp/+zDcTq75+x0
-iIFx7jiA24U664iwIoeMIy87dGZoppwcGsufUnHy8b8kanzxjCdBIWOFHXBg4+sC
-Gx8WRx5p8qgFRpiLMJ70xJyhjpTSNYo0c49qOn6WnVceHrDrkzmiGxy4W215iail
-TuRtOIWmvnjm5GdsU6yQAuPpgHrqDBgAY0mk8pI8QsCr5+dBm+c=
-=HEd6
------END PGP SIGNATURE-----
-
---nextPart4234697.lddkiTJQAK--
-
-
+-	newskb =3D skb_copy(skb, GFP_ATOMIC);
++	newskb =3D skb_clone(skb, GFP_ATOMIC);
+ 	if (!newskb)
+ 		goto err;
+=20
+@@ -800,6 +804,10 @@ static int batadv_forw_bcast_packet_to_list(struct b=
+atadv_priv *bat_priv,
+  * or if a delay is given after that. Furthermore, queues additional
+  * retransmissions if this interface is a wireless one.
+  *
++ * This call clones the given skb, hence the caller needs to take into
++ * account that the data segment of the original skb might not be
++ * modifiable anymore.
++ *
+  * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
+  */
+ static int batadv_forw_bcast_packet_if(struct batadv_priv *bat_priv,
+@@ -814,7 +822,7 @@ static int batadv_forw_bcast_packet_if(struct batadv_=
+priv *bat_priv,
+ 	int ret =3D NETDEV_TX_OK;
+=20
+ 	if (!delay) {
+-		newskb =3D skb_copy(skb, GFP_ATOMIC);
++		newskb =3D skb_clone(skb, GFP_ATOMIC);
+ 		if (!newskb)
+ 			return NETDEV_TX_BUSY;
+=20
+--=20
+2.30.2
