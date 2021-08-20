@@ -1,89 +1,147 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000033F26ED
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Aug 2021 08:41:29 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF10D3F2873
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Aug 2021 10:33:08 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 48E2082654;
-	Fri, 20 Aug 2021 08:41:22 +0200 (CEST)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id A491A803A9
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 19 Aug 2021 22:52:41 +0200 (CEST)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A5ECA60200;
-	Thu, 19 Aug 2021 20:52:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1629406359;
-	bh=wdL8a/fXPWpVp5mfgdFlPXoXUvv9vnXL6JSjBLeymuA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=fAiHeT3YvAA2PDxj2uln6KTyXKsqvS1Q7M0MsIjyuP0Z3OQCcgjajHVxwJPkdyE8G
-	 NN8L6aaHNVimj+xOGnS1m5NW8Pt0Z0fdLI7NSBpKfZJszK1C3ubFiAbYrLHeXRCiJt
-	 GJYQQHKfV/x/Z5bOsaryf7ogxJos/ajVRKEqHl6A/3LROdeoFiCoIZGbtwzyE3d89J
-	 g6iD/dYRatDTFbwgFFW0iu63WmFuVh+2iAmxRTspzWUc8PiwfFnAH/ARAH+3mKHEVW
-	 NXXTv3ZdKdLnIYOIghhA9jkzUoK/HHKwZSgA8siuNM7nXPlxTHDeVQxyVVDDulrEtO
-	 SLlokJTA/fwug==
-Date: Thu, 19 Aug 2021 13:52:38 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Simon Wunderlich <sw@simonwunderlich.de>
-Subject: Re: [PATCH 2/6] batman-adv: Move IRC channel to hackint.org
-Message-ID: <20210819135238.354db062@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210819153334.18850-3-sw@simonwunderlich.de>
-References: <20210819153334.18850-1-sw@simonwunderlich.de>
-	<20210819153334.18850-3-sw@simonwunderlich.de>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D9175825E8;
+	Fri, 20 Aug 2021 10:33:07 +0200 (CEST)
+Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0A28B80122
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 20 Aug 2021 10:33:04 +0200 (CEST)
+Received: from kero.packetmixer.de (p200300c5970e73c0a32126881010a2d4.dip0.t-ipconnect.de [IPv6:2003:c5:970e:73c0:a321:2688:1010:a2d4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by simonwunderlich.de (Postfix) with ESMTPSA id 96A5E17401E;
+	Fri, 20 Aug 2021 10:33:04 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: kuba@kernel.org,
+	davem@davemloft.net
+Subject: [PATCH 0/6] (updated) pull request for net-next: batman-adv 2021-08-20
+Date: Fri, 20 Aug 2021 10:32:54 +0200
+Message-Id: <20210820083300.32289-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=fAiHeT3Y;
-	spf=pass (diktynna.open-mesh.org: domain of kuba@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=kuba@kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629406361; a=rsa-sha256;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629448385; a=rsa-sha256;
 	cv=none;
-	b=T//D6oR12tiKQBcaS7t8aWfNDObiVuCt7BeleJ27Q5F+nzfH3nVo2w/POXg58Paid+t+mF
-	pCNeMprGtI0eWkylBDMhn8uoIK/QZAIlg7c8mwd5NrLobG0Lg4kPRcI4RDts0BtLG6kqT7
-	oCPUpMQ6YJKet+6JutjFJT4Dhnyqsb0=
+	b=NAwkX4obvTM5+lfHTHFDs1kaK5ccwQlizR87jZlEtg2uDtjU7d7SbOVpVa0wWFkRfQXJ/9
+	QCbCQC/QvvGMwPmnjTu9qrj8eSPw2WyCVe4c1S0sBiI+cpYOKm4kIXLQGDame3u5AqIBod
+	0BcTfSrKkOYMLwkdMATcArMZXS8yof4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1629406361;
+	s=20121; t=1629448385;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=eNVn574/G732fdQgC/XuoDt1qUDUPq4fxcB9a5UsW1k=;
-	b=sEEs+gHxfscHjXFVuOxM/1BwX5jCo4Euj2f5T3hoaWgpX3DwWJxEerTV8b5inAzB1ulydm
-	GPMPQsmc6HwtpgENEXgZv7sGHOfpxbVkSqT1b0rCP58vdYbtLmRT2pJuaiTiXunmEwf6nf
-	xeXbBm3Y4gPjaLSlg5FuMHSSif13iJQ=
-X-MailFrom: kuba@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: OTQXPAMDNDVMJBCATC5HCC2D62YLVN43
-X-Message-ID-Hash: OTQXPAMDNDVMJBCATC5HCC2D62YLVN43
-X-Mailman-Approved-At: Fri, 20 Aug 2021 06:41:16 +0200
-CC: davem@davemloft.net, netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=JktC5n2P5BBHykKbMQriuA+V+8RyBKw7gI/GmIMG21A=;
+	b=2ZTGc2pR6mYGPTw7NpK4NBtgIouEShcLoeoc6hbwxA+TUVVXC8+tqAcBfqnBxh//ua8AMe
+	I2hU3l/2++Ji1i859c6rtilpi3/qz1rYxQE207jsWPEpumPZQb/WYe2f+appJg6UjMob3m
+	o+ybKYB+uRI+GdOiWesRKcZS9Cq7FsQ=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: JMM7YXZQWQUD5FRL3M6A5ZJHWN4AEJMG
+X-Message-ID-Hash: JMM7YXZQWQUD5FRL3M6A5ZJHWN4AEJMG
+X-MailFrom: sw@simonwunderlich.de
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OTQXPAMDNDVMJBCATC5HCC2D62YLVN43/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JMM7YXZQWQUD5FRL3M6A5ZJHWN4AEJMG/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Thu, 19 Aug 2021 17:33:30 +0200 Simon Wunderlich wrote:
-> From: Sven Eckelmann <sven@narfation.org>
-> 
-> Due to recent developments around the Freenode.org IRC network, the
-> opinions about the usage of this service shifted dramatically. The majority
-> of the still active users of the #batman channel prefers a move to the
-> hackint.org network.
-> 
-> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Hi Jakub,
 
-This one is missing your sign-off:
+here is the updated pull request of batman-adv, with the missing sign-off
+added which you pointed out yesterday.
 
-Commit 71d41c09f1fa ("batman-adv: Move IRC channel to hackint.org")
-	committer Signed-off-by missing
-	author email:    sven@narfation.org
-	committer email: sw@simonwunderlich.de
-	Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Please pull or let me know of any problem!
+
+Thank you,
+      Simon
+
+The following changes since commit b37a466837393af72fe8bcb8f1436410f3f173=
+f3:
+
+  netdevice: add the case if dev is NULL (2021-08-05 13:29:26 +0100)
+
+are available in the Git repository at:
+
+  git://git.open-mesh.org/linux-merge.git tags/batadv-next-pullrequest-20=
+210820
+
+for you to fetch changes up to a006aa51ea27fa64afc7990f8f100ff0baa92413:
+
+  batman-adv: bcast: remove remaining skb-copy calls (2021-08-20 08:17:10=
+ +0200)
+
+----------------------------------------------------------------
+This (updated) cleanup patchset includes the following patches:
+
+ - bump version strings, by Simon Wunderlich
+
+ - update docs about move IRC channel away from freenode,
+   by Sven Eckelmann (updated, added missing sign-off)
+
+ - Switch to kstrtox.h for kstrtou64, by Sven Eckelmann
+
+ - Update NULL checks, by Sven Eckelmann (2 patches)
+
+ - remove remaining skb-copy calls for broadcast packets,
+   by Linus L=C3=BCssing
+
+----------------------------------------------------------------
+Linus L=C3=BCssing (1):
+      batman-adv: bcast: remove remaining skb-copy calls
+
+Simon Wunderlich (1):
+      batman-adv: Start new development cycle
+
+Sven Eckelmann (4):
+      batman-adv: Move IRC channel to hackint.org
+      batman-adv: Switch to kstrtox.h for kstrtou64
+      batman-adv: Check ptr for NULL before reducing its refcnt
+      batman-adv: Drop NULL check before dropping references
+
+ Documentation/networking/batman-adv.rst |   2 +-
+ MAINTAINERS                             |   2 +-
+ net/batman-adv/bat_iv_ogm.c             |  75 ++++++++---------------
+ net/batman-adv/bat_v.c                  |  30 ++++------
+ net/batman-adv/bat_v_elp.c              |   9 +--
+ net/batman-adv/bat_v_ogm.c              |  39 ++++--------
+ net/batman-adv/bridge_loop_avoidance.c  |  33 +++++------
+ net/batman-adv/distributed-arp-table.c  |  24 ++++----
+ net/batman-adv/fragmentation.c          |   6 +-
+ net/batman-adv/gateway_client.c         |  57 +++++-------------
+ net/batman-adv/gateway_client.h         |  16 ++++-
+ net/batman-adv/gateway_common.c         |   2 +-
+ net/batman-adv/hard-interface.c         |  21 +++----
+ net/batman-adv/hard-interface.h         |   3 +
+ net/batman-adv/main.h                   |   2 +-
+ net/batman-adv/multicast.c              |   2 +-
+ net/batman-adv/netlink.c                |   6 +-
+ net/batman-adv/network-coding.c         |  24 ++++----
+ net/batman-adv/originator.c             | 102 +++++---------------------=
+------
+ net/batman-adv/originator.h             |  96 ++++++++++++++++++++++++++=
++---
+ net/batman-adv/routing.c                |  39 ++++--------
+ net/batman-adv/send.c                   |  33 ++++++-----
+ net/batman-adv/soft-interface.c         |  27 ++-------
+ net/batman-adv/soft-interface.h         |  16 ++++-
+ net/batman-adv/tp_meter.c               |  27 ++++-----
+ net/batman-adv/translation-table.c      | 100 +++++++++++---------------=
+-----
+ net/batman-adv/translation-table.h      |  18 +++++-
+ net/batman-adv/tvlv.c                   |   9 ++-
+ 28 files changed, 364 insertions(+), 456 deletions(-)
