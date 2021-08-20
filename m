@@ -2,156 +2,110 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D533F2881
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Aug 2021 10:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A353F2E79
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Aug 2021 17:03:25 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C8CF0827E1;
-	Fri, 20 Aug 2021 10:33:15 +0200 (CEST)
-Received: from simonwunderlich.de (simonwunderlich.de [79.140.42.25])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5CDC4810E3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 20 Aug 2021 10:33:07 +0200 (CEST)
-Received: from kero.packetmixer.de (p200300c5970e73c0a32126881010a2d4.dip0.t-ipconnect.de [IPv6:2003:c5:970e:73c0:a321:2688:1010:a2d4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id 1287A174029;
-	Fri, 20 Aug 2021 10:33:07 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Subject: [PATCH 6/6] batman-adv: bcast: remove remaining skb-copy calls
-Date: Fri, 20 Aug 2021 10:33:00 +0200
-Message-Id: <20210820083300.32289-7-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210820083300.32289-1-sw@simonwunderlich.de>
-References: <20210820083300.32289-1-sw@simonwunderlich.de>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5E9A380671;
+	Fri, 20 Aug 2021 17:03:24 +0200 (CEST)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 817358035A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 20 Aug 2021 14:52:33 +0200 (CEST)
+Received: by mail.kernel.org (Postfix) with ESMTPS id 9E083610CC;
+	Fri, 20 Aug 2021 12:52:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1629463951;
+	bh=PvLygdkRwhGOuqZPClClVkX9QulBbtkOMymA4jk7Tbg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=sM/eiOXcKxk39Cl2RoLJzg2I6WznjGAKvRK0HvHXKMDtRvzB/7i4LkF6P+DEqvwiD
+	 ojQ/62/Rzzs5wRGxodE3e2cKoZ4ByCFf0kRC0aA/I0LBBykkQgFioN0QvHBTru8Y3G
+	 jgLrFmzWR/87bOy3Ww3la8cAdWvDJJ7fw6dchkeM7h8UwEPKXayoDstlL1WVuZE7MM
+	 uk+MAVWHhpNtYBl3Eqb9DA7wGJcORz9e3fPiV7Zex/EILTJxfz5jAVs/EMkzyMwJvN
+	 uQSqoRMlrVVqc3OfBrVN1U95QdKcaJuq1tpyDuxZJTDLD8W0inZJDnAsTsdqIuOnl8
+	 IAUg0UaemoQEA==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 9324160A6B;
+	Fri, 20 Aug 2021 12:52:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/6] batman-adv: Start new development cycle
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <162946395159.27725.6381822484284696109.git-patchwork-notify@kernel.org>
+Date: Fri, 20 Aug 2021 12:52:31 +0000
+References: <20210820083300.32289-2-sw@simonwunderlich.de>
+In-Reply-To: <20210820083300.32289-2-sw@simonwunderlich.de>
+To: Simon Wunderlich <sw@simonwunderlich.de>
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 79.140.42.25 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629448387; a=rsa-sha256;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="sM/eiOXc";
+	dmarc=pass (policy=none) header.from=kernel.org;
+	spf=pass (diktynna.open-mesh.org: domain of patchwork-bot+netdevbpf@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629463953; a=rsa-sha256;
 	cv=none;
-	b=EHrWWh8Ddq52wb133uG/NkTn05OMgs2qvbJL14L0RJfdkSu/OMUe2lnOgpcizAAY/mkWeA
-	VDn2jJ8EunCWebGaTClY7GMHE+P9EcuAC4mQzJwg51Q0I0UoLUfFTxLvmBzd2HoEEQBqIM
-	FajeSgqCr7eCI1sMYBfoOWRvxvgd0O8=
+	b=bjKhlPq0RHK+31vUSjBTVBlVjoRws0v3NqGUND2KX2flAZ27Tzy36tnyhfl8tD2o2jcJCY
+	zL3JdoUKvdqbmX6nTY0xFSzFE4zjiCZUcywim/QNbdFaWnht57HCZpkdzZcknBrTlqUc9D
+	mkmIfaJFD+LNCcVxl0dCRnTbzOZdyCQ=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1629448387;
+	s=20121; t=1629463953;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cRhvXrW3u8a11StXbIatzDT879zXAEebn8HO/6CT5AA=;
-	b=Iu5FbwARpMvz7JjAJcKLsPzhlwO6njd1X3c1hUJyTSQiGWds6IAquCOZoCq4ecAycZ7NG+
-	+F3Yk9iindWmA2daM9EXO3UGqllkg1C7tSovqVjcJnPFIbyg1YTEF96BpvfHrlF//6pa5+
-	JiqqrBVk2d/lD0YoxVvG4RF/TxBhkyM=
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=tvHFHjoM1FXVba3N3XYgh+Ot62kXhspzlp+9EKs0MIw=;
+	b=Fgl8R2iAh5Oc9dtBF0aRX9zO3arzxuVbL09RiD2Gr/z/cTk17stekOaEetOmZ2M6WMCK6U
+	ttSZamNqBiOLkXZzWjcOFKbxXWXQPufB3WxSrYplJVz6a4KNBogWF4l3vLUhrVWw+Eurno
+	UC/84VHHGgbhftd6dSXuYr2Inu605zY=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: LQMJIFUFIEO2VYJ4ROQXTN5JGWTFIHLI
-X-Message-ID-Hash: LQMJIFUFIEO2VYJ4ROQXTN5JGWTFIHLI
-X-MailFrom: sw@simonwunderlich.de
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: G33XUY3XPO62F2JCORWRUKQN2JRKCKSG
+X-Message-ID-Hash: G33XUY3XPO62F2JCORWRUKQN2JRKCKSG
+X-Mailman-Approved-At: Fri, 20 Aug 2021 15:03:21 +0200
+CC: kuba@kernel.org, davem@davemloft.net, netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LQMJIFUFIEO2VYJ4ROQXTN5JGWTFIHLI/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3S4PU2NLIDI63V4MJGGBXVJ2IYYU32TV/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+Hello:
 
-We currently have two code paths for broadcast packets:
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-A) self-generated, via batadv_interface_tx()->
-   batadv_send_bcast_packet().
-B) received/forwarded, via batadv_recv_bcast_packet()->
-   batadv_forw_bcast_packet().
+On Fri, 20 Aug 2021 10:32:55 +0200 you wrote:
+> This version will contain all the (major or even only minor) changes fo=
+r
+> Linux 5.15.
+>=20
+> The version number isn't a semantic version number with major and minor
+> information. It is just encoding the year of the expected publishing as
+> Linux -rc1 and the number of published versions this year (starting at =
+0).
+>=20
+> [...]
 
-For A), self-generated broadcast packets:
+Here is the summary with links:
+  - [1/6] batman-adv: Start new development cycle
+    https://git.kernel.org/netdev/net-next/c/53972e43d4a7
+  - [2/6] batman-adv: Move IRC channel to hackint.org
+    https://git.kernel.org/netdev/net-next/c/71d41c09f1fa
+  - [3/6] batman-adv: Switch to kstrtox.h for kstrtou64
+    https://git.kernel.org/netdev/net-next/c/70eeb75d4c4d
+  - [4/6] batman-adv: Check ptr for NULL before reducing its refcnt
+    https://git.kernel.org/netdev/net-next/c/6340dcbd6194
+  - [5/6] batman-adv: Drop NULL check before dropping references
+    https://git.kernel.org/netdev/net-next/c/79a0bffb835a
+  - [6/6] batman-adv: bcast: remove remaining skb-copy calls
+    https://git.kernel.org/netdev/net-next/c/808cfdfad579
 
-The only modifications to the skb data is the ethernet header which is
-added/pushed to the skb in
-batadv_send_broadcast_skb()->batadv_send_skb_packet(). However before
-doing so, batadv_skb_head_push() is called which calls skb_cow_head() to
-unshare the space for the to be pushed ethernet header. So for this
-case, it is safe to use skb clones.
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-For B), received/forwarded packets:
-
-The same applies as in A) for the to be forwarded packets. Only the
-ethernet header is added. However after (queueing for) forwarding the
-packet in batadv_recv_bcast_packet()->batadv_forw_bcast_packet(), a
-packet is additionally decapsulated and is sent up the stack through
-batadv_recv_bcast_packet()->batadv_interface_rx().
-
-Protocols higher up the stack are already required to check if the
-packet is shared and create a copy for further modifications. When the
-next (protocol) layer works correctly, it cannot happen that it tries to
-operate on the data behind the skb clone which is still queued up for
-forwarding.
-
-Co-authored-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/send.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
-index 2a33458be65c..477d85a3b558 100644
---- a/net/batman-adv/send.c
-+++ b/net/batman-adv/send.c
-@@ -742,6 +742,10 @@ void batadv_forw_packet_ogmv1_queue(struct batadv_pr=
-iv *bat_priv,
-  * Adds a broadcast packet to the queue and sets up timers. Broadcast pa=
-ckets
-  * are sent multiple times to increase probability for being received.
-  *
-+ * This call clones the given skb, hence the caller needs to take into
-+ * account that the data segment of the original skb might not be
-+ * modifiable anymore.
-+ *
-  * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
-  */
- static int batadv_forw_bcast_packet_to_list(struct batadv_priv *bat_priv=
-,
-@@ -755,7 +759,7 @@ static int batadv_forw_bcast_packet_to_list(struct ba=
-tadv_priv *bat_priv,
- 	unsigned long send_time =3D jiffies;
- 	struct sk_buff *newskb;
-=20
--	newskb =3D skb_copy(skb, GFP_ATOMIC);
-+	newskb =3D skb_clone(skb, GFP_ATOMIC);
- 	if (!newskb)
- 		goto err;
-=20
-@@ -794,6 +798,10 @@ static int batadv_forw_bcast_packet_to_list(struct b=
-atadv_priv *bat_priv,
-  * or if a delay is given after that. Furthermore, queues additional
-  * retransmissions if this interface is a wireless one.
-  *
-+ * This call clones the given skb, hence the caller needs to take into
-+ * account that the data segment of the original skb might not be
-+ * modifiable anymore.
-+ *
-  * Return: NETDEV_TX_OK on success and NETDEV_TX_BUSY on errors.
-  */
- static int batadv_forw_bcast_packet_if(struct batadv_priv *bat_priv,
-@@ -808,7 +816,7 @@ static int batadv_forw_bcast_packet_if(struct batadv_=
-priv *bat_priv,
- 	int ret =3D NETDEV_TX_OK;
-=20
- 	if (!delay) {
--		newskb =3D skb_copy(skb, GFP_ATOMIC);
-+		newskb =3D skb_clone(skb, GFP_ATOMIC);
- 		if (!newskb)
- 			return NETDEV_TX_BUSY;
-=20
---=20
-2.20.1
