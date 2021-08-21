@@ -1,111 +1,102 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A353F2E79
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 20 Aug 2021 17:03:25 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA693F390B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 21 Aug 2021 08:38:07 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5E9A380671;
-	Fri, 20 Aug 2021 17:03:24 +0200 (CEST)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 817358035A
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 20 Aug 2021 14:52:33 +0200 (CEST)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 9E083610CC;
-	Fri, 20 Aug 2021 12:52:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1629463951;
-	bh=PvLygdkRwhGOuqZPClClVkX9QulBbtkOMymA4jk7Tbg=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=sM/eiOXcKxk39Cl2RoLJzg2I6WznjGAKvRK0HvHXKMDtRvzB/7i4LkF6P+DEqvwiD
-	 ojQ/62/Rzzs5wRGxodE3e2cKoZ4ByCFf0kRC0aA/I0LBBykkQgFioN0QvHBTru8Y3G
-	 jgLrFmzWR/87bOy3Ww3la8cAdWvDJJ7fw6dchkeM7h8UwEPKXayoDstlL1WVuZE7MM
-	 uk+MAVWHhpNtYBl3Eqb9DA7wGJcORz9e3fPiV7Zex/EILTJxfz5jAVs/EMkzyMwJvN
-	 uQSqoRMlrVVqc3OfBrVN1U95QdKcaJuq1tpyDuxZJTDLD8W0inZJDnAsTsdqIuOnl8
-	 IAUg0UaemoQEA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 9324160A6B;
-	Fri, 20 Aug 2021 12:52:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CFB8582428;
+	Sat, 21 Aug 2021 08:38:06 +0200 (CEST)
+Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 284E681463
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 21 Aug 2021 05:49:33 +0200 (CEST)
+Received: from cwcc.thunk.org (pool-72-74-133-215.bstnma.fios.verizon.net [72.74.133.215])
+	(authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+	by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 17L3hoN2017864
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Aug 2021 23:43:51 -0400
+Received: by cwcc.thunk.org (Postfix, from userid 15806)
+	id 6D62315C3DBB; Fri, 20 Aug 2021 23:43:50 -0400 (EDT)
+Date: Fri, 20 Aug 2021 23:43:50 -0400
+From: "Theodore Ts'o" <tytso@mit.edu>
+To: syzbot <syzbot+13146364637c7363a7de@syzkaller.appspotmail.com>
+Subject: Re: [syzbot] KASAN: slab-out-of-bounds Write in
+ ext4_write_inline_data_end
+Message-ID: <YSB2dsveNTr9G3Mq@mit.edu>
+References: <000000000000e5080305c9e51453@google.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/6] batman-adv: Start new development cycle
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <162946395159.27725.6381822484284696109.git-patchwork-notify@kernel.org>
-Date: Fri, 20 Aug 2021 12:52:31 +0000
-References: <20210820083300.32289-2-sw@simonwunderlich.de>
-In-Reply-To: <20210820083300.32289-2-sw@simonwunderlich.de>
-To: Simon Wunderlich <sw@simonwunderlich.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <000000000000e5080305c9e51453@google.com>
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b="sM/eiOXc";
-	dmarc=pass (policy=none) header.from=kernel.org;
-	spf=pass (diktynna.open-mesh.org: domain of patchwork-bot+netdevbpf@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629463953; a=rsa-sha256;
+	dkim=none;
+	dmarc=none;
+	spf=pass (diktynna.open-mesh.org: domain of tytso@mit.edu designates 18.9.28.11 as permitted sender) smtp.mailfrom=tytso@mit.edu
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629517774; a=rsa-sha256;
 	cv=none;
-	b=bjKhlPq0RHK+31vUSjBTVBlVjoRws0v3NqGUND2KX2flAZ27Tzy36tnyhfl8tD2o2jcJCY
-	zL3JdoUKvdqbmX6nTY0xFSzFE4zjiCZUcywim/QNbdFaWnht57HCZpkdzZcknBrTlqUc9D
-	mkmIfaJFD+LNCcVxl0dCRnTbzOZdyCQ=
+	b=dKnw7ovDYe03mLa5lwqZAdOuWq1eNLTeZHG6rwWIH6yc/TAaNwdI571wlTP5GHpzUYOulc
+	78OZ9t0RVDjz4K9ArVRDINoVPM2how1pxwr+CujbVxfP6m6zQY+O7PNxJ97M2y3BpnMNNB
+	EnIW1AKZWjrYksYXnpIeU9F4u/eYPCU=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1629463953;
+	s=20121; t=1629517774;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=tvHFHjoM1FXVba3N3XYgh+Ot62kXhspzlp+9EKs0MIw=;
-	b=Fgl8R2iAh5Oc9dtBF0aRX9zO3arzxuVbL09RiD2Gr/z/cTk17stekOaEetOmZ2M6WMCK6U
-	ttSZamNqBiOLkXZzWjcOFKbxXWXQPufB3WxSrYplJVz6a4KNBogWF4l3vLUhrVWw+Eurno
-	UC/84VHHGgbhftd6dSXuYr2Inu605zY=
-Content-Transfer-Encoding: quoted-printable
-X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+	 in-reply-to:in-reply-to:references:references;
+	bh=PUvemS9NGvgCZFcNpZ251QHTXDDiBT6IQHiJ9lg/AfY=;
+	b=Zb+X2k22S+BQB6e+sqMiF/Ob5gDJl++6ZKB0jQiNTd+oXnYLIkb6E+oztPBPITKmFicNx8
+	+rKW4cH7k6PmRMvz2nHn4PE7TXnDEVib7ghNLS7gR9KgH6jk46Ee4LVH5y/07pbAjpSl9q
+	VyK/eqrrMrud7lDfRw6Q4BPZ/eIVNQg=
+X-MailFrom: tytso@mit.edu
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: G33XUY3XPO62F2JCORWRUKQN2JRKCKSG
-X-Message-ID-Hash: G33XUY3XPO62F2JCORWRUKQN2JRKCKSG
-X-Mailman-Approved-At: Fri, 20 Aug 2021 15:03:21 +0200
-CC: kuba@kernel.org, davem@davemloft.net, netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+Message-ID-Hash: 7CRMA7UQAK5G53K52BZ3XXXVHUMUR2IW
+X-Message-ID-Hash: 7CRMA7UQAK5G53K52BZ3XXXVHUMUR2IW
+X-Mailman-Approved-At: Sat, 21 Aug 2021 06:38:04 +0200
+CC: a@unstable.cc, adilger.kernel@dilger.ca, arnd@arndb.de, b.a.t.m.a.n@lists.open-mesh.org, christian@brauner.io, davem@davemloft.net, linux-ext4@vger.kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3S4PU2NLIDI63V4MJGGBXVJ2IYYU32TV/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7CRMA7UQAK5G53K52BZ3XXXVHUMUR2IW/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello:
+On Thu, Aug 19, 2021 at 01:10:18AM -0700, syzbot wrote:
+> Hello,
+> 
+> syzbot found the following issue on:
+> 
+> HEAD commit:    614cb2751d31 Merge tag 'trace-v5.14-rc6' of git://git.kern..
+> git tree:       upstream
+> console output: https://syzkaller.appspot.com/x/log.txt?x=130112c5300000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=f61012d0b1cd846f
+> dashboard link: https://syzkaller.appspot.com/bug?extid=13146364637c7363a7de
+> compiler:       Debian clang version 11.0.1-2, GNU ld (GNU Binutils for Debian) 2.35.1
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=104d7cc5300000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1333ce0e300000
+> 
+> The issue was bisected to:
+> 
+> commit a154d5d83d21af6b9ee32adc5dbcea5ac1fb534c
+> Author: Arnd Bergmann <arnd@arndb.de>
+> Date:   Mon Mar 4 20:38:03 2019 +0000
+> 
+>     net: ignore sysctl_devconf_inherit_init_net without SYSCTL
+> 
+> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=13f970b6300000
+> final oops:     https://syzkaller.appspot.com/x/report.txt?x=100570b6300000
+> console output: https://syzkaller.appspot.com/x/log.txt?x=17f970b6300000
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+In case it wasn't obvious, this is a bogus bisection.  It's a bug
+ext4's inline_data support where there is a race between writing to an
+inline_data file against setting extended attributes on that same
+inline_data file.
 
-On Fri, 20 Aug 2021 10:32:55 +0200 you wrote:
-> This version will contain all the (major or even only minor) changes fo=
-r
-> Linux 5.15.
->=20
-> The version number isn't a semantic version number with major and minor
-> information. It is just encoding the year of the expected publishing as
-> Linux -rc1 and the number of published versions this year (starting at =
-0).
->=20
-> [...]
+Fix is coming up....
 
-Here is the summary with links:
-  - [1/6] batman-adv: Start new development cycle
-    https://git.kernel.org/netdev/net-next/c/53972e43d4a7
-  - [2/6] batman-adv: Move IRC channel to hackint.org
-    https://git.kernel.org/netdev/net-next/c/71d41c09f1fa
-  - [3/6] batman-adv: Switch to kstrtox.h for kstrtou64
-    https://git.kernel.org/netdev/net-next/c/70eeb75d4c4d
-  - [4/6] batman-adv: Check ptr for NULL before reducing its refcnt
-    https://git.kernel.org/netdev/net-next/c/6340dcbd6194
-  - [5/6] batman-adv: Drop NULL check before dropping references
-    https://git.kernel.org/netdev/net-next/c/79a0bffb835a
-  - [6/6] batman-adv: bcast: remove remaining skb-copy calls
-    https://git.kernel.org/netdev/net-next/c/808cfdfad579
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+					- Ted
