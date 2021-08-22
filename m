@@ -1,102 +1,135 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA693F390B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 21 Aug 2021 08:38:07 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3813F3EB9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 22 Aug 2021 10:53:59 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CFB8582428;
-	Sat, 21 Aug 2021 08:38:06 +0200 (CEST)
-Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 284E681463
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 21 Aug 2021 05:49:33 +0200 (CEST)
-Received: from cwcc.thunk.org (pool-72-74-133-215.bstnma.fios.verizon.net [72.74.133.215])
-	(authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-	by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 17L3hoN2017864
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Aug 2021 23:43:51 -0400
-Received: by cwcc.thunk.org (Postfix, from userid 15806)
-	id 6D62315C3DBB; Fri, 20 Aug 2021 23:43:50 -0400 (EDT)
-Date: Fri, 20 Aug 2021 23:43:50 -0400
-From: "Theodore Ts'o" <tytso@mit.edu>
-To: syzbot <syzbot+13146364637c7363a7de@syzkaller.appspotmail.com>
-Subject: Re: [syzbot] KASAN: slab-out-of-bounds Write in
- ext4_write_inline_data_end
-Message-ID: <YSB2dsveNTr9G3Mq@mit.edu>
-References: <000000000000e5080305c9e51453@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <000000000000e5080305c9e51453@google.com>
-ARC-Authentication-Results: i=1;
-	diktynna.open-mesh.org;
-	dkim=none;
-	dmarc=none;
-	spf=pass (diktynna.open-mesh.org: domain of tytso@mit.edu designates 18.9.28.11 as permitted sender) smtp.mailfrom=tytso@mit.edu
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629517774; a=rsa-sha256;
-	cv=none;
-	b=dKnw7ovDYe03mLa5lwqZAdOuWq1eNLTeZHG6rwWIH6yc/TAaNwdI571wlTP5GHpzUYOulc
-	78OZ9t0RVDjz4K9ArVRDINoVPM2how1pxwr+CujbVxfP6m6zQY+O7PNxJ97M2y3BpnMNNB
-	EnIW1AKZWjrYksYXnpIeU9F4u/eYPCU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1629517774;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8EBAB810E3;
+	Sun, 22 Aug 2021 10:53:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1629622438;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PUvemS9NGvgCZFcNpZ251QHTXDDiBT6IQHiJ9lg/AfY=;
-	b=Zb+X2k22S+BQB6e+sqMiF/Ob5gDJl++6ZKB0jQiNTd+oXnYLIkb6E+oztPBPITKmFicNx8
-	+rKW4cH7k6PmRMvz2nHn4PE7TXnDEVib7ghNLS7gR9KgH6jk46Ee4LVH5y/07pbAjpSl9q
-	VyK/eqrrMrud7lDfRw6Q4BPZ/eIVNQg=
-X-MailFrom: tytso@mit.edu
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: 7CRMA7UQAK5G53K52BZ3XXXVHUMUR2IW
-X-Message-ID-Hash: 7CRMA7UQAK5G53K52BZ3XXXVHUMUR2IW
-X-Mailman-Approved-At: Sat, 21 Aug 2021 06:38:04 +0200
-CC: a@unstable.cc, adilger.kernel@dilger.ca, arnd@arndb.de, b.a.t.m.a.n@lists.open-mesh.org, christian@brauner.io, davem@davemloft.net, linux-ext4@vger.kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch, netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com
+	 list-id:list-help:list-unsubscribe:list-subscribe:list-post;
+	bh=pQVnRT3VRJR2AqULm6Il2jPb37IBi/a7hihHqYn3FgQ=;
+	b=CqTt28OXn66ebjvecLjKel6sfN0THeeyfmLEFd/uncJajlGck3srRDwp/keUD7akjER+LP
+	0iTeZbvRhlnLIuFa+kso2n0hno2Qv3BQ4L8CSmfVJlXjxVgZJ1NPOaIz7YPzWGIRkDlR06
+	S0LZePlu/Ls9pf8L2rI/XG3i636LPsM=
+Date: Sun, 22 Aug 2021 14:23:14 +0530
+Subject: Python script to setup batman networks
+To: b.a.t.m.a.n@lists.open-mesh.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+X-Mailman-Version: 3.2.1
+Precedence: list
+List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/U2IUBM5OUBNTO3IGKJIUTRRUJ43OFXBZ/>
+List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
+List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
+List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
+List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
+List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
+MIME-Version: 1.0
+Message-ID: <162962243714.1204.9511892100308152763@diktynna.open-mesh.org>
+From: "Pranav Jerry via B.A.T.M.A.N" <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Pranav Jerry <libreinator@disroot.org>
+Content-Type: multipart/mixed; boundary="===============7234066923234824652=="
+
+--===============7234066923234824652==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+The sender domain has a DMARC Reject/Quarantine policy which disallows
+sending mailing list messages using the original "From" header.
+
+To mitigate this problem, the original message has been wrapped
+automatically by the mailing list software.
+--===============7234066923234824652==
+Content-Type: message/rfc822
+MIME-Version: 1.0
+Content-Disposition: inline
+
+Received: from knopi.disroot.org (knopi.disroot.org [178.21.23.139])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id D715F803A0
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 22 Aug 2021 10:53:54 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 87286637A0
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 22 Aug 2021 10:53:54 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at disroot.org
+Received: from knopi.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fgcj_9tbWm3P for <b.a.t.m.a.n@lists.open-mesh.org>;
+	Sun, 22 Aug 2021 10:53:53 +0200 (CEST)
+Date: Sun, 22 Aug 2021 14:23:14 +0530
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1629622433; bh=C5/Ruilkw11fam63Ts94m+ldyqVSXrYGwz/E6RzAjQc=;
+	h=Date:From:Subject:To;
+	b=DFdT6via787/iIuH95ttPEIQv2VxQd50L9vWFnPz1y+9J4ZYEIu7TTQ/cKoI+E+o2
+	 dJDR2a1J17SGnA5N/KpUj0jhWaO+LwWpJCi9miLWbKn49kra7ynaluOCM0VHb62Mr7
+	 lLIR+1X/pOAD/7EiRVsGT5klTgVGUQiurksMOk+hl4KsprRBIU4zICfNP0TqMwi6ay
+	 eAxLTZUcGCNQTu9qUZr9Da9i3VDkJZ3CJ9YHr4cAEAQaE1dL0MyJ+JFL+CMI/WDnDG
+	 DdWaVMU9vCwIvCWOrkD6TeiDg1wSR3iUpazadx8/SJbjh69SBxNVNTvEuJM9oaPzeU
+	 mLffqzpPUCzqA==
+From: Pranav Jerry <libreinator@disroot.org>
+Subject: Python script to setup batman networks
+To: b.a.t.m.a.n@lists.open-mesh.org
+Message-Id: <QOG8YQ.NVVN3QKSHSCP2@disroot.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+ARC-Authentication-Results: i=1;
+	diktynna.open-mesh.org;
+	dkim=pass header.d=disroot.org header.s=mail header.b=DFdT6via;
+	dmarc=pass (policy=quarantine) header.from=disroot.org;
+	spf=pass (diktynna.open-mesh.org: domain of libreinator@disroot.org designates 178.21.23.139 as permitted sender) smtp.mailfrom=libreinator@disroot.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1629622434; a=rsa-sha256;
+	cv=none;
+	b=qh2Ok+W4qKhpAyGFIKkJeq1rxbi2ctjX18UrI+okzG4CKdSb6OpuPAUkU9quGhhc6xkxXL
+	3rvNGnDylijKNFcFri3nklV/sZvBrPdMO2H5tgBOgMtMJFT/ohdLL5i2Pbc4ivodDLfy/V
+	MDna5Z6xPk4HsCyryzLgot1wcietrkM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1629622434;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 dkim-signature; bh=C5/Ruilkw11fam63Ts94m+ldyqVSXrYGwz/E6RzAjQc=;
+	b=uV9s+7RE+OuW/2h9Fqm97k4qVKSMRnVc2zGNioUXNlxq9Gye76mxp+hKIPuDNCgtd568oH
+	2qlMvqTTfwKSF61iIKB8/ie8Bq2+wXjgwMxKSPRGjOVMM+vI89B2lmKj1bu2wD1LORpsEX
+	q0q4cGhzS0qmw3B2dqtXZWeTCn2ccsc=
+Message-ID-Hash: U2IUBM5OUBNTO3IGKJIUTRRUJ43OFXBZ
+X-Message-ID-Hash: U2IUBM5OUBNTO3IGKJIUTRRUJ43OFXBZ
+X-MailFrom: libreinator@disroot.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7CRMA7UQAK5G53K52BZ3XXXVHUMUR2IW/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/U2IUBM5OUBNTO3IGKJIUTRRUJ43OFXBZ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Thu, Aug 19, 2021 at 01:10:18AM -0700, syzbot wrote:
-> Hello,
-> 
-> syzbot found the following issue on:
-> 
-> HEAD commit:    614cb2751d31 Merge tag 'trace-v5.14-rc6' of git://git.kern..
-> git tree:       upstream
-> console output: https://syzkaller.appspot.com/x/log.txt?x=130112c5300000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=f61012d0b1cd846f
-> dashboard link: https://syzkaller.appspot.com/bug?extid=13146364637c7363a7de
-> compiler:       Debian clang version 11.0.1-2, GNU ld (GNU Binutils for Debian) 2.35.1
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=104d7cc5300000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1333ce0e300000
-> 
-> The issue was bisected to:
-> 
-> commit a154d5d83d21af6b9ee32adc5dbcea5ac1fb534c
-> Author: Arnd Bergmann <arnd@arndb.de>
-> Date:   Mon Mar 4 20:38:03 2019 +0000
-> 
->     net: ignore sysctl_devconf_inherit_init_net without SYSCTL
-> 
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=13f970b6300000
-> final oops:     https://syzkaller.appspot.com/x/report.txt?x=100570b6300000
-> console output: https://syzkaller.appspot.com/x/log.txt?x=17f970b6300000
+Hi!
 
-In case it wasn't obvious, this is a bogus bisection.  It's a bug
-ext4's inline_data support where there is a race between writing to an
-inline_data file against setting extended attributes on that same
-inline_data file.
+I have made a python script [1] to setup batman-adv networks using
+systemd-networkd. It requires iwd and systemd-networkd v248 or above.
 
-Fix is coming up....
+It starts an adhoc network on wlan0 (or any other wireless interface)
+and adds it to bat0. To allow non-mesh clients to connect to
+the mesh, if there are two WiFi adapters, the script starts an
+AP on one of the adapters.
 
-					- Ted
+The script is supposed to be run as a systemd service, since
+it can ensure that the dependencies are started before it is run.
+The network is configured with systemd-networkd runtime configs
+(since it has not implemented configuration via D-Bus)
+and the iwd D-Bus API.
+
+All suggestions, criticism and contributions are welcome.
+
+[1]: https://git.disroot.org/pranav/naxalnet
+
+
+--===============7234066923234824652==--
