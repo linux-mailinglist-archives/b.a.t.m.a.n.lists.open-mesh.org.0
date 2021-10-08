@@ -2,330 +2,176 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4743C414CBC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 22 Sep 2021 17:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B31426224
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  8 Oct 2021 03:46:24 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 224D582560;
-	Wed, 22 Sep 2021 17:10:10 +0200 (CEST)
-Received: from mta-us-central-03.viasat.com (mta-us-central-03.viasat.com [8.37.103.60])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6FBC18064C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 22 Sep 2021 17:10:06 +0200 (CEST)
-Received: from pps.filterd (wdc1mta02.viasat.com [127.0.0.1])
-	by wdc1mta02.viasat.com (8.16.0.43/8.16.0.43) with SMTP id 18MF3dHJ015858;
-	Wed, 22 Sep 2021 15:10:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=viasat.com; h=from : to : subject :
- date : message-id : references : in-reply-to : content-type :
- mime-version; s=pp1; bh=zhrb1NPjKPRbImZ9zI2JnHffWz6F5y5JLMmf6feP4ao=;
- b=y4R+3iBmh4bI9tTisH8S7u3huq80I3+WB8XU5aGK3jpmEEw5ejwTL0tdT4tBtbz93WLU
- G9svKAOUQQoRnNHGj0fmcmAr0S8rZAYtGDZFnAdOXTAcQqRWUoR2N768D7k2/Ullq9wz
- Cw4J1GisR6WTn2q8Hnn5vx2X0QA31eRUXRoidLD3KrECbslBALwrY+jco3V5syXYnnVP
- sxThrkl+7PkgG4OpJ2KR2oqZgw0+FMS0rHo8vPz0jOB3XPRBHFsU9OrNgjXxOBLpqE8a
- RBKp+0yhpLxpUB/ZavaiLh8kYTefrt9N+QG/BJQNJwUaPUJ4peIozmWYoWE8IjAR4mE2 Tg==
-From: "Edmisten, Brian" <Brian.Edmisten@viasat.com>
-To: Simon Wunderlich <sw@simonwunderlich.de>,
-        "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>
-Subject: RE: Bonding Alternating
-Thread-Topic: Bonding Alternating
-Thread-Index: AQHXphOoP6gXJotlh0KJSfnzkSEapauh/diCgAHI05CAAVe6AIAAGbTwgAnG3ID//6xSYIABe5CAgAATzjA=
-Date: Wed, 22 Sep 2021 15:10:01 +0000
-Message-ID: <48ae7df0caa241f196067aba594f3805@viasat.com>
-References: <8679334.VDzE56WMh6@prime> <4948508.lctyQggAPn@prime>
- <da01e7af03f44c5c90f2cad227721ce9@viasat.com> <2193349.8FveGl8YFJ@prime>
-In-Reply-To: <2193349.8FveGl8YFJ@prime>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-tm-snts-smtp: 7B3506F614A7636B58B92D0D3072EE39C95CFC46314F985ADBC038744946B7D72000:8
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_003B_01D7AF89.3D016180"
+	by diktynna.open-mesh.org (Postfix) with ESMTP id AEF32807B5;
+	Fri,  8 Oct 2021 03:46:23 +0200 (CEST)
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3DC9080487
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  8 Oct 2021 03:46:21 +0200 (CEST)
+Received: by mail-il1-f198.google.com with SMTP id x17-20020a927c11000000b0024da94ff1a6so5062014ilc.15
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 07 Oct 2021 18:46:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=3V0gMQArySAZVecQuHcle8YsXw0+et6jEaMN+U7Pngk=;
+        b=yBeq5n9MzttJMZlPLrVypFYhC4tYZHf751cXN8fHgyyXEnREXCf22wtP1b0s0UQXAf
+         wlUNRUT5DdpiVKzg/BW/6iuhaRgeOwMLE05kqKlugDqdf6jj1FodHSvDf/RZHj0WZp50
+         p/9F9YMU32TR+oxTmpnHhUuwwVfa7u3CIdIcmnq4G0wp81iKRJBTkSw8nOrNEXC2hPMG
+         QAr7yGtMQw3cj8hTyg+bXLoi+un+wAAC/ACN9M7Tg5wd3SG4JxACYNbUF97gqpZo1qmM
+         pTT6qeoOTtORSwR8M1HxCCdtS56tj2zWcoeKlj7VSr88MUajZCaDbFpOYCxI3kZZsMR7
+         JtGQ==
+X-Gm-Message-State: AOAM532lweX9eaN2GajY7CmxFztpmRTxZJUQhXaknMti+as8TRWe0oYa
+	sB6z2fENq0SzzgZaF2/1EniZgPCQwNeJh7zSvMiPx6fTt5NQ
+X-Google-Smtp-Source: ABdhPJzExBXOVo0euzkjGnBooFDPofT/nUJi+B2M6P3x4ZtZn8xYiJgGPzOYdaQ6dNPjY3xa8gU+n1OBIpmmt5nGc89O8i+Sm+sw
 MIME-Version: 1.0
-X-Proofpoint-ORIG-GUID: zegsdbOcP_jQTMiwH_F_1mdU_ssQKt5K
-X-Proofpoint-GUID: zegsdbOcP_jQTMiwH_F_1mdU_ssQKt5K
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-09-22_05:2021-09-22,2021-09-22 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- phishscore=0 suspectscore=0 adultscore=0 malwarescore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=958 mlxscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109200000 definitions=main-2109220107
+X-Received: by 2002:a5d:944b:: with SMTP id x11mr5580437ior.110.1633657579796;
+ Thu, 07 Oct 2021 18:46:19 -0700 (PDT)
+Date: Thu, 07 Oct 2021 18:46:19 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000ba80b905cdcd8b19@google.com>
+Subject: [syzbot] WARNING: ODEBUG bug in batadv_v_ogm_free
+From: syzbot <syzbot+0ef06384b5f39a16ebb9@syzkaller.appspotmail.com>
+To: Jason@zx2c4.com, a@unstable.cc, amcohen@nvidia.com,
+	b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, dsahern@kernel.org,
+	edumazet@google.com, fw@strlen.de, idosch@OSS.NVIDIA.COM,
+	justin.iurman@uliege.be, kuba@kernel.org, linux-kernel@vger.kernel.org,
+	mareklindner@neomailbox.ch, netdev@vger.kernel.org, praveen5582@gmail.com,
+	sven@narfation.org, sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com,
+	willemb@google.com, yoshfuji@linux-ipv6.org, zxu@linkedin.com
+Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1632323406;
+	s=20121; t=1633657581;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=zhrb1NPjKPRbImZ9zI2JnHffWz6F5y5JLMmf6feP4ao=;
-	b=aJ2Hi3G59f+vGq3Bo1YKKC2U1mJZ4y8UpZfE7VRe/dL/K9YajnuzGeLv6WcL2xsS58FyN4
-	xMbowG/V28nxOEdx3PPRWDWmewOZQds1Mq49me6z5E5dLmHAKWdKLkdhedT8ksawuAVPMl
-	fF6nntRBmmEr3gdr1Sx9FFGP10o7rK8=
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=3V0gMQArySAZVecQuHcle8YsXw0+et6jEaMN+U7Pngk=;
+	b=xTuDFRRjLE1G85+2UiKLNbi0c+qTQ2GujYvFTAGRoa0BqMhspAynDAmEn89VTp9jlB76uM
+	Vj8MUgm/2ffQmaJR1KzCsuGd+zFM9Jh+FdaLew3UYrjS8LSs0x20/ZPXBOastbd9fLUfU6
+	wrvW52COLwpKTvNFOlRRN3payZkheoU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=viasat.com header.s=pp1 header.b=y4R+3iBm;
-	dmarc=pass (policy=none) header.from=viasat.com;
-	spf=pass (diktynna.open-mesh.org: domain of "prvs=4899d8026c=brian.edmisten@viasat.com" designates 8.37.103.60 as permitted sender) smtp.mailfrom="prvs=4899d8026c=brian.edmisten@viasat.com"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1632323406; a=rsa-sha256;
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=appspotmail.com (policy=none);
+	spf=pass (diktynna.open-mesh.org: domain of 366JfYQkbAMAy45qgrrkxgvvoj.muumrk0ykxiutzktz.ius@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.198 as permitted sender) smtp.mailfrom=366JfYQkbAMAy45qgrrkxgvvoj.muumrk0ykxiutzktz.ius@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1633657581; a=rsa-sha256;
 	cv=none;
-	b=v3z/eZ8aCW+KAJsXDKxBCs88RrkG+iVqQOtRj1EL1PI5zBvyU53jd+upLM0Ay5JNBH41Vc
-	XuVGN86lY5ySqmqyMPO084u2k/2UUkx3ok5eVewTiOpZT4IYWPWF2e6dyy0hPPRXKV0lAu
-	m6FpP7gEyspO9A8Nzehn/+cd3rqyxJg=
-Message-ID-Hash: XP2OFXARUZNGWTXZY5QZEMN2YXWJTM3C
-X-Message-ID-Hash: XP2OFXARUZNGWTXZY5QZEMN2YXWJTM3C
-X-MailFrom: prvs=4899d8026c=brian.edmisten@viasat.com
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+	b=g83aD5A7Zw+cWu88Wg74vGJ6/Oj0WGEU0M1tjBxzBFmqIxuOTt0RFVlfPV6MoJH9lugRNL
+	rhTWa1ms3w78zfphsVfprYj5u4czPW2BFiggMNhJeoBdMkHPtEpV0d8tfQrQrfrLx9Ncv/
+	NAk/Jo6RPHoEx9ZGdewIyo6w2hAGnRw=
+Message-ID-Hash: 7WSESGYOWXUBFSM3HC6E7UR6JMTJCSBW
+X-Message-ID-Hash: 7WSESGYOWXUBFSM3HC6E7UR6JMTJCSBW
+X-MailFrom: 366JfYQkbAMAy45qgrrkxgvvoj.muumrk0ykxiutzktz.ius@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XP2OFXARUZNGWTXZY5QZEMN2YXWJTM3C/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7WSESGYOWXUBFSM3HC6E7UR6JMTJCSBW/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-------=_NextPart_000_003B_01D7AF89.3D016180
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Hello,
 
-Simon,
+syzbot found the following issue on:
 
-Thanks for clearing up the hop information.
+HEAD commit:    44cc24b04bed Merge tag 'wireless-drivers-next-2021-10-07' ..
+git tree:       net-next
+console output: https://syzkaller.appspot.com/x/log.txt?x=130661b8b00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=97f67871098c6901
+dashboard link: https://syzkaller.appspot.com/bug?extid=0ef06384b5f39a16ebb9
+compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1361e884b00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1472de98b00000
 
-The radios are not exactly the same throughput wise, but are similar at
-short distance.  One is about 80% of the other.
+The issue was bisected to:
 
-Regards,
-Brian Edmisten
+commit 9ee11f0fff205b4b3df9750bff5e94f97c71b6a0
+Author: Justin Iurman <justin.iurman@uliege.be>
+Date:   Tue Jul 20 19:42:57 2021 +0000
 
------Original Message-----
-From: Simon Wunderlich [mailto:sw@simonwunderlich.de] 
-Sent: Wednesday, September 22, 2021 12:55 AM
-To: b.a.t.m.a.n@lists.open-mesh.org; Edmisten, Brian
-<Brian.Edmisten@viasat.com>
-Subject: Re: Bonding Alternating
+    ipv6: ioam: Data plane support for Pre-allocated Trace
 
-Hi Brian,
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12c661b8b00000
+final oops:     https://syzkaller.appspot.com/x/report.txt?x=11c661b8b00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=16c661b8b00000
 
-please see inline:
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+0ef06384b5f39a16ebb9@syzkaller.appspotmail.com
+Fixes: 9ee11f0fff20 ("ipv6: ioam: Data plane support for Pre-allocated Trace")
 
-On Tuesday, September 21, 2021 5:41:07 PM CEST Edmisten, Brian wrote:
-> Simon,
-> 
-> The current scenario we are working with we have two different radio 
-> systems that already provide a layer 2 mesh network each.  To the user 
-> they look like two Ethernet interfaces one for one wave form and one for
-the other.
-> BATMAN so far is making it more stable in that the convergence of the 
-> network is much faster.  There is an opportunity for 3 different radio 
-> systems, but the third vendor is unconfirmed.  There was an ask to try 
-> to increase bandwidth if the nodes were known to be close together.  
-> We were trying out BATMAN's bonding features as using it could 
-> simplify our setup and reduce some of the overhead we are getting with 
-> the layers or software we are currently using.
-
-Thank you for elaborating! Are these radios providing the same throughput?
-One thing I noted when doing tests back then is that the slower link will
-slow down the combined link, since it is sending packets in a round robin
-fashion. 
-In other words, with two links, if the slow link has half the throughput of
-the fast link, you will not have any benefit.
-
-> 
-> When you say one hop, do you mean one BATMAN hop or something else?  If it
-> makes a difference my testing was direct but I think the radios will
-> actually look like there is a switch between the nodes.
-
-Whether there is a switch or not doesn't matter to BATMAN. By one hop I
-meant 
-they are directly connected via Layer 2, there is no intermediate BATMAN hop
-
-acting as a relay.
-
-Since you will be using Ethernet links and not WiFi links, BATMAN will not
-be 
-able to detect that you are actually using radio links, since its only 
-checking kernel internal structures (whether the device uses cfg80211 or 
-wext). I'm adding a patch to generally treat interfaces like wireless 
-interfaces from a routing perspective, this could also make a difference for
-
-your VM tests.
-
-> 
-> Thank you for looking in to this for me.  BATMAN is doing great for our
-> first use case.
-
-Great to hear :)
-
-Good luck using it and thank you for your feedback!
-
-Cheers,
-      Simon
-
-> 
-> Thank you,
-> Brian Edmisten
-> 
-> -----Original Message-----
-> From: Simon Wunderlich [mailto:sw@simonwunderlich.de]
-> Sent: Tuesday, September 21, 2021 7:16 AM
-> To: b.a.t.m.a.n@lists.open-mesh.org; Edmisten, Brian
-> <Brian.Edmisten@viasat.com>
-> Subject: Re: Bonding Alternating
-> 
-> Hi Brian,
-> 
-> I've checked it out and can confirm your issues. The bonding code as
-> currently implemented is trying to use a different router from each
-routing
-> table towards the same originator[1]. However, with 1-hop Ethernet links
-> those routers are always the same in all the routing tables. With WiFi
-that
-> would be a bit different (I've commented out the WiFi penalty check), but
-> even then it only alternates between two of the three interfaces.
-> 
-> At this point I don't have a straight forward fix for this. Will you use
-> three Ethernet devices in your later deployment, or will those be WiFi
-> interfaces?
-> Also, would it be useful for you to consider bonding/teams interfaces of
-the
-> Linux kernel to bond the link, and give that to batman-adv?
-> 
-> Cheers,
->        Simon
-> 
-> [1]
->
-https://www.open-mesh.org/projects/batman-adv/wiki/Network-wide-multi-link-o
-> ptimization
-> 
-> On Wednesday, September 15, 2021 4:58:58 PM CEST Edmisten, Brian wrote:
-> > Simon,
-> > 
-> > Thank you. I appreciate you looking at this.
-> > 
-> > Regards,
-> > Brian Edmisten
-> > 
-> > -----Original Message-----
-> > From: Simon Wunderlich [mailto:sw@simonwunderlich.de]
-> > Sent: Wednesday, September 15, 2021 12:26 AM
-> > To: b.a.t.m.a.n@lists.open-mesh.org; Edmisten, Brian
-> > <Brian.Edmisten@viasat.com>
-> > Subject: Re: Bonding Alternating
-> > 
-> > Hi Brian,
-> > 
-> > hmm, I see. I will try to set up this scenario over the next few days
-> > and let you know. I haven't used bonding for quite a while now, but I
-> > also don't think that we had changes in the code which would break it.
-> > 
-> > Anyway, will test and let you know.
-> > 
-> > Cheers,
-> > 
-> >       Simon
-> > 
-> > On Tuesday, September 14, 2021 6:57:37 PM CEST Edmisten, Brian wrote:
-> > > Simon,
-> > > 
-> > > I did check again.  batctl bonding responds with enabled.
-> > > 
-> > > Cheers,
-> > > Brian Edmisten
+R13: 00007ffc310f3710 R14: 00007ffc310f3760 R15: 0000000000000001
+------------[ cut here ]------------
+ODEBUG: assert_init not available (active state 0) object type: timer_list hint: 0x0
+WARNING: CPU: 1 PID: 6548 at lib/debugobjects.c:505 debug_print_object+0x16e/0x250 lib/debugobjects.c:505
+Modules linked in:
+CPU: 1 PID: 6548 Comm: syz-executor580 Not tainted 5.15.0-rc3-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:debug_print_object+0x16e/0x250 lib/debugobjects.c:505
+Code: ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 af 00 00 00 48 8b 14 dd c0 3e e4 89 4c 89 ee 48 c7 c7 c0 32 e4 89 e8 29 8d 16 05 <0f> 0b 83 05 55 18 91 09 01 48 83 c4 18 5b 5d 41 5c 41 5d 41 5e c3
+RSP: 0018:ffffc90002bdee90 EFLAGS: 00010082
+RAX: 0000000000000000 RBX: 0000000000000005 RCX: 0000000000000000
+RDX: ffff88801c395580 RSI: ffffffff815dbbc8 RDI: fffff5200057bdc4
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff815d596e R11: 0000000000000000 R12: ffffffff898de200
+R13: ffffffff89e43940 R14: ffffffff8164b870 R15: 1ffff9200057bddd
+FS:  000055555617e300(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f868a8856c0 CR3: 0000000024660000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ debug_object_assert_init lib/debugobjects.c:895 [inline]
+ debug_object_assert_init+0x1f4/0x2e0 lib/debugobjects.c:866
+ debug_timer_assert_init kernel/time/timer.c:739 [inline]
+ debug_assert_init kernel/time/timer.c:784 [inline]
+ del_timer+0x6d/0x110 kernel/time/timer.c:1204
+ try_to_grab_pending+0x6d/0xd0 kernel/workqueue.c:1270
+ __cancel_work_timer+0xa6/0x570 kernel/workqueue.c:3129
+ batadv_v_ogm_free+0x1f/0xd0 net/batman-adv/bat_v_ogm.c:1076
+ batadv_mesh_free+0x75/0x170 net/batman-adv/main.c:244
+ batadv_mesh_init+0x62f/0x710 net/batman-adv/main.c:226
+ batadv_softif_init_late+0xad4/0xdd0 net/batman-adv/soft-interface.c:804
+ register_netdevice+0x51e/0x1500 net/core/dev.c:10236
+ batadv_softif_newlink+0x6e/0x90 net/batman-adv/soft-interface.c:1068
+ __rtnl_newlink+0x106d/0x1750 net/core/rtnetlink.c:3458
+ rtnl_newlink+0x64/0xa0 net/core/rtnetlink.c:3506
+ rtnetlink_rcv_msg+0x413/0xb80 net/core/rtnetlink.c:5572
+ netlink_rcv_skb+0x153/0x420 net/netlink/af_netlink.c:2485
+ netlink_unicast_kernel net/netlink/af_netlink.c:1314 [inline]
+ netlink_unicast+0x533/0x7d0 net/netlink/af_netlink.c:1340
+ netlink_sendmsg+0x86d/0xda0 net/netlink/af_netlink.c:1910
+ sock_sendmsg_nosec net/socket.c:704 [inline]
+ sock_sendmsg+0xcf/0x120 net/socket.c:724
+ __sys_sendto+0x21c/0x320 net/socket.c:2036
+ __do_sys_sendto net/socket.c:2048 [inline]
+ __se_sys_sendto net/socket.c:2044 [inline]
+ __x64_sys_sendto+0xdd/0x1b0 net/socket.c:2044
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f4cb72c2829
+Code: b2 01 00 85 c0 b8 00 00 00 00 48 0f 44 c3 5b c3 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc310f36a8 EFLAGS: 00000246 ORIG_RAX: 000000000000002c
+RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 00007f4cb72c2829
+RDX: 000000000000ad2a RSI: 0000000020000000 RDI: 0000000000000004
+RBP: 00007ffc310f3710 R08: 0000000000000000 R09: 4b6ae4f95a5de394
+R10: 0000000000007812 R11: 0000000000000246 R12: 0000000000000005
+R13: 00007ffc310f3710 R14: 00007ffc310f3760 R15: 0000000000000001
 
 
-------=_NextPart_000_003B_01D7AF89.3D016180
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-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
-VR0OBBYEFBsH5+9JSPJWkcVvR29Ihy7Bwyu0MB8GA1UdIwQYMBaAFCi8Gj/qVzdVQhZMUychdZKi
-LYolMIIBHQYDVR0fBIIBFDCCARAwggEMoIIBCKCCAQSGNWh0dHA6Ly9jcmwudmlhc2F0LmNvbS9j
-cmwvVmlhc2F0JTIwU0hBJTIwMiUyMENBLTYuY3JshoHKbGRhcDovLy9DTj1WaWFzYXQlMjBTSEEl
-MjAyJTIwQ0EtNixDTj12Y2FzaGEyY2FwMDYsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZp
-Y2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9Y29ycCxEQz12aWFzYXQsREM9Y29t
-P2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRp
-b25Qb2ludDCCAV0GCCsGAQUFBwEBBIIBTzCCAUswYQYIKwYBBQUHMAKGVWh0dHA6Ly9jcmwudmlh
-c2F0LmNvbS9jcmwvdmNhc2hhMmNhcDA2LmhxLmNvcnAudmlhc2F0LmNvbV9WaWFzYXQlMjBTSEEl
-MjAyJTIwQ0EtNi5jcnQwJgYIKwYBBQUHMAGGGmh0dHA6Ly9jcmwudmlhc2F0LmNvbS9vY3NwMIG9
-BggrBgEFBQcwAoaBsGxkYXA6Ly8vQ049Vmlhc2F0JTIwU0hBJTIwMiUyMENBLTYsQ049QUlBLENO
-PVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9
-Y29ycCxEQz12aWFzYXQsREM9Y29tP2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0
-aWZpY2F0aW9uQXV0aG9yaXR5MAsGA1UdDwQEAwIF4DA8BgkrBgEEAYI3FQcELzAtBiUrBgEEAYI3
-FQiFwrFU+p8hoYMphKH+SIKdo2+BfIfjhj2EyZRxAgFkAgF6MBMGA1UdJQQMMAoGCCsGAQUFBwME
-MBsGCSsGAQQBgjcVCgQOMAwwCgYIKwYBBQUHAwQwJAYDVR0RBB0wG4EZQnJpYW4uRWRtaXN0ZW5A
-dmlhc2F0LmNvbTBEBgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAIC
-AIAwBwYFKw4DAgcwCgYIKoZIhvcNAwcwDQYJKoZIhvcNAQELBQADggEBAIAIqjbR9cebVJvFw6H3
-Ey/MoQI3DLSf6jQyM4CtGuEfOlRJpVuNEj5gn+89zIQMk80nNDLApQh8CwwwUX9hCwnkHW61/hOn
-og9CbFT98Z9shlUQLUAYumU28Mxk+TJN5uB0L0qVNwhkzeT8AvoUILufrifKe5v0RynfP2kh30mm
-h7X6O0uARHXE0frQr2J3HHFXCjTOkX9R+T8Pk6WwnGNwXaeFHdxgpsW6BJAcfYZ1XZiZu/Ejgrx2
-bGs+UTC7/DrCWk+Lclka5fHFn3Y2DWp8BO5imd4MsIk1z66b8jv9rdNh0om6pfdEhCBTW0/vSmak
-BEGkKRMfEaI8GqXaXu0xggPnMIID4wIBATCBijBzMRMwEQYKCZImiZPyLGQBGRYDY29tMRYwFAYK
-CZImiZPyLGQBGRYGdmlhc2F0MRQwEgYKCZImiZPyLGQBGRYEY29ycDESMBAGCgmSJomT8ixkARkW
-AmhxMRowGAYDVQQDExFWaWFzYXQgU0hBIDIgQ0EtNgITbwAADtzJnoHDZwcIiQAAAAAO3DAJBgUr
-DgMCGgUAoIICMTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTA5
-MjIxNTA5NTlaMCMGCSqGSIb3DQEJBDEWBBQy8zTVHAK3n+NicLtgoqDjydVURTCBkwYJKoZIhvcN
-AQkPMYGFMIGCMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCgYIKoZIhvcNAwcwCwYJYIZIAWUD
-BAECMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMCGjALBglghkgBZQMEAgMw
-CwYJYIZIAWUDBAICMAsGCWCGSAFlAwQCATCBmwYJKwYBBAGCNxAEMYGNMIGKMHMxEzARBgoJkiaJ
-k/IsZAEZFgNjb20xFjAUBgoJkiaJk/IsZAEZFgZ2aWFzYXQxFDASBgoJkiaJk/IsZAEZFgRjb3Jw
-MRIwEAYKCZImiZPyLGQBGRYCaHExGjAYBgNVBAMTEVZpYXNhdCBTSEEgMiBDQS02AhNvAAAO3Mme
-gcNnBwiJAAAAAA7cMIGdBgsqhkiG9w0BCRACCzGBjaCBijBzMRMwEQYKCZImiZPyLGQBGRYDY29t
-MRYwFAYKCZImiZPyLGQBGRYGdmlhc2F0MRQwEgYKCZImiZPyLGQBGRYEY29ycDESMBAGCgmSJomT
-8ixkARkWAmhxMRowGAYDVQQDExFWaWFzYXQgU0hBIDIgQ0EtNgITbwAADtzJnoHDZwcIiQAAAAAO
-3DANBgkqhkiG9w0BAQEFAASCAQA2VbxM/Pjt5aSE7XyKqWZKKMHeQm0kRjcfUWKMij8/774FuI3J
-DijCwkZUasK8y530S+W3oWS08R0dtifXkbJnbPqcgHLRmrZD1UauDyR0EckR7356kdwHIwXNZJYX
-NOaGWsT/AmMmbTqp/a2eg+L5jH4MOhfVnQ4lI/8z89NV/YFwEzMThHj2oKIU2zsnfQeoN0Y5Plai
-c7sIQ+5DHx4kxawkgzRRLJ49xpVHOnqN3LzPrqyjYrCzGtFbXmm2t1q1N5AePqGg/+EEcREL9xo/
-gXRC1Ys+zS7/MJxScwpnYuHBeOLldcX10wkRI1xDyHHBCfRptcsjZEE1/bFGrzqAAAAAAAAA
-
-------=_NextPart_000_003B_01D7AF89.3D016180--
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+syzbot can test patches for this issue, for details see:
+https://goo.gl/tpsmEJ#testing-patches
