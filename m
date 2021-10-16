@@ -2,253 +2,298 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7CF430288
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Oct 2021 14:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01ECC430289
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Oct 2021 14:13:52 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A080082482;
-	Sat, 16 Oct 2021 14:13:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634386426;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3CC6282602;
+	Sat, 16 Oct 2021 14:13:48 +0200 (CEST)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id D1E028064C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Oct 2021 13:21:46 +0200 (CEST)
+Received: by mail-pj1-x1033.google.com with SMTP id ls18so9015281pjb.3
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Oct 2021 04:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v+ROWip2DOu/ejvMTpR01JMqGD3ACZ+pK2z8e30nwBU=;
+        b=U6gEy6R2isS5ApGPffAomw4itnMKRCLFRnH5F1vc3cmy3P5fxilDkNWDakQPr6TEn5
+         nY0UTdBZDHpe8Eq9unND/qfujdHhpqp2zCGE+IKpJagGKhMNfSHSVVKPgbHj9+LLW5J6
+         Ekgfu3L/E+Z8d8XQ4c9MDyKQYL2PKl1TtMGnRr+qrzXE7CiAJf2Jzj4KhS3wPv17TUeR
+         5vp5S3rilwTz3+CWsIMVSno2bSXDhtkmZ2m4RZsPJyQ1HNWjdv3RIuob6PT99l4g5nKW
+         EJ015IviUY6BL4tidEGWSu61iZzKrxHS7a6v2cdioxum98KfoxgWB15si2tUKEv7F5Qe
+         hDsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v+ROWip2DOu/ejvMTpR01JMqGD3ACZ+pK2z8e30nwBU=;
+        b=XFaam0tOxE0V3IonI09fuh0EOmwVYx5dc++10NJODtJamUTLoLAZCINwK/gtE568qq
+         MNpS+N52rHsN3vNIhkqSPtniL9X2KBoSXnKaavhbdUOPLfgxAyw8lEFznOxE6lVulcxT
+         o1NXW/EwhRsfbL3BOhNXffReG42dQprmvOdOD/uknL/sRNZ8YNiFTVbGsbNdDUm8EryI
+         9r+/667RO5jmd+kGoKxdRv9Weqa5orzpJbG4O9KH7s9n+5VLzDk05+FqOpfsSI7N0z2L
+         UrrM5J2miYcA2aGHIjo0jLPVzADfs0nz2fdO08dAwFwQ8zdiZFls7zxPExib0PlT/1uF
+         DGow==
+X-Gm-Message-State: AOAM532zo2M6U0T/CMUxsPoFMPjDdQynx+NvuIT7R4F7ZPNlWWx/7w8t
+	8yWTDo6WmB2MKwrX67LFkv0=
+X-Google-Smtp-Source: ABdhPJyaV9NtD0ddKyNyjSDHSOdDhYIYDTt623NEd5phUE6MFqERN6ln5jxLvm5swtvCYllDVMQSbg==
+X-Received: by 2002:a17:90b:4b03:: with SMTP id lx3mr19636771pjb.162.1634383304729;
+        Sat, 16 Oct 2021 04:21:44 -0700 (PDT)
+Received: from rok-te3.kortoor.gmail.com.beta.tailscale.net ([211.250.198.237])
+        by smtp.googlemail.com with ESMTPSA id b16sm7905873pfm.58.2021.10.16.04.21.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Oct 2021 04:21:44 -0700 (PDT)
+From: Kyungrok Chung <acadx0@gmail.com>
+To: Marek Lindner <mareklindner@neomailbox.ch>,
+	Simon Wunderlich <sw@simonwunderlich.de>,
+	Antonio Quartulli <a@unstable.cc>,
+	Sven Eckelmann <sven@narfation.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Roopa Prabhu <roopa@nvidia.com>,
+	Nikolay Aleksandrov <nikolay@nvidia.com>,
+	Pablo Neira Ayuso <pablo@netfilter.org>,
+	Jozsef Kadlecsik <kadlec@netfilter.org>,
+	Florian Westphal <fw@strlen.de>
+Subject: [PATCH v3 net-next] net: make use of helper netif_is_bridge_master()
+Date: Sat, 16 Oct 2021 20:21:36 +0900
+Message-Id: <20211016112137.18858-1-acadx0@gmail.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1634383306;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:list-id:list-help:
-	 list-unsubscribe:list-subscribe:list-post;
-	bh=dwu0TB2B+2eN2a5fSLD+t6psoAOW80L/c0RTBSwvbtU=;
-	b=dFG26Nq6K4WAA43phHcoeHkoRiOsjYFhP3XFgLaRJhNVJNQhgzHbvJm02wFHLGRkjuQrrz
-	iIamS+GRIYFN1iIkVda16t8ylv7YfcBXRORGBXGYrY+zOSAwmTjdJVCWX27GPXtLKfoI8f
-	yctdqMsfEda0X1EIOuseRASvi4J0ZFo=
-Date: Sat, 16 Oct 2021 13:56:26 +0300
-Subject: Re: [PATCH v2 net-next] net: make use of helper
- netif_is_bridge_master()
-To: Kyungrok Chung <acadx0@gmail.com>,
- Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>,
- Sven Eckelmann <sven@narfation.org>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
-References: <20211016050439.2592877-1-acadx0@gmail.com>
-In-Reply-To: <20211016050439.2592877-1-acadx0@gmail.com>
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-X-Mailman-Approved-At: Sat, 16 Oct 2021 12:13:44 +0200
-X-Mailman-Version: 3.2.1
-Precedence: list
-List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HRDLJ6Y2PXUM4FZ4GZM7RBM6RBQF572M/>
-List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
-List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
-List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
-List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
-List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-MIME-Version: 1.0
-Message-ID: <163438642535.1238.4979707345497493282@diktynna.open-mesh.org>
-From: "Nikolay Aleksandrov via B.A.T.M.A.N" <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org, coreteam@netfilter.org, Nikolay Aleksandrov <nikolay@nvidia.com>
-Content-Type: multipart/mixed; boundary="===============2237591043305863380=="
-
---===============2237591043305863380==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-The sender domain has a DMARC Reject/Quarantine policy which disallows
-sending mailing list messages using the original "From" header.
-
-To mitigate this problem, the original message has been wrapped
-automatically by the mailing list software.
---===============2237591043305863380==
-Content-Type: message/rfc822
-MIME-Version: 1.0
-Content-Disposition: inline
-
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on20629.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::629])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3797C811F5
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Oct 2021 12:56:39 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LEGvVNFQC5B0sfCTDOAtp6pVBrAbtmV+hrFGfzHiTyQwYidYpoaCZN2QeIHjPq3kGSORaS/RlvaP9nss/vtpTuXNbd59kYKISFsT1g2N3sQyHSiYhMVwhsHb2DD0cy+BuQF+8tP/tX9Qyhv9s0mrpc/ZqHxofVsNfK1LxTutAVwXStt+jKb9yMPevZHQXccGMjllsF+x9lPkyiNRjjKXXfJUlSUVvg8Put56cF1bR/zBmIkGJIkQZcGISjN+1gtcKxc2cQ4M0cC9vPOlvbaKJSpyiGJ71sh6rA+o+86goSovaHQPLRKfSXaazY0tbGkcYvIS0FjdZeK4JjgR2LUwoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AUniiJ6OeGLbG1wAJSEpLFfBJJ74i9fSehgCxYgN2+c=;
- b=lj4npjBkxpcCsnc76EFC0RErF21uaZbb7hH9nbQ8lK9v5C3I41OKYapyL20TSgSNyQrwZ4jzbxaBmYWjKzJ9swymt99fo5DAJWcJG7ArVWr5S3YhxE5UYOSduV4lmOWN/BAJXcWtmuOCOp+ywlCOijXvzVPOj4r28UzFFHetEJIJDfLRmQqipfmIMbPFlCw5y28JLnyNW/rgss0OKAI/SkQKWp+B60cEGL4Fro97u+Q+4b1BzeNV+tZOSTJVYPDC+dfoT7jGEO9Wz0DiABojjh5TvugWWVPM/j+bnAN5jDDirYWAPVEf5htCKiaair7iU8ibQqzd13bOUD1cUkz+lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AUniiJ6OeGLbG1wAJSEpLFfBJJ74i9fSehgCxYgN2+c=;
- b=PIz5G9by3kgNh9tIF0M/s2JcFADqltX4LJG0oWIGr8/5GDWdHrNFIUCrU5+zXW5Us/tm1HLryTOCwWC/CTYy4e4xm/hEHNy9R8nx7PgF4JzTvvH3S5oTeOXJoO7VWGpNzWbHaNv0qjA3yNVj6AigQ4OLp8y0Ar4NcrOa6ANWhEd+PoEmupckkQD+i9QLy0ngXgwOTWMIX10P+GhXRHCeR7UT2EB+FyZFGqdHnkqaP8r5dh/KnsG/NKYEpVI3rBSjOONogJlcoIZlpS8lXHuwJzKlB5B0M7eCqXCguMcLoeKEeFIBBY387j+puUvQvY6W7UEjYOihk0DITXqkmnVTRA==
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM4PR12MB5167.namprd12.prod.outlook.com (2603:10b6:5:396::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Sat, 16 Oct
- 2021 10:56:36 +0000
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea]) by DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea%8]) with mapi id 15.20.4608.018; Sat, 16 Oct 2021
- 10:56:36 +0000
-Message-ID: <badf4e55-ddeb-cfdd-4162-b8b9ae3fed04@nvidia.com>
-Date: Sat, 16 Oct 2021 13:56:26 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Subject: Re: [PATCH v2 net-next] net: make use of helper
- netif_is_bridge_master()
-Content-Language: en-US
-To: Kyungrok Chung <acadx0@gmail.com>,
- Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>,
- Sven Eckelmann <sven@narfation.org>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
-References: <20211016050439.2592877-1-acadx0@gmail.com>
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-In-Reply-To: <20211016050439.2592877-1-acadx0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR0P278CA0054.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1d::23) To DM4PR12MB5278.namprd12.prod.outlook.com
- (2603:10b6:5:39e::17)
-MIME-Version: 1.0
-Received: from [10.21.240.28] (213.179.129.39) by ZR0P278CA0054.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1d::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.22 via Frontend Transport; Sat, 16 Oct 2021 10:56:32 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 69fc3f0d-b4a0-4459-7940-08d990939f76
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5167:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: 
-	<DM4PR12MB5167072F4BCE23C06DBEB117DFBA9@DM4PR12MB5167.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1775;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	J3kT00u8s714I0t/388AlVjTwv+54M1VfbiCB9t7UnRXcO9QnoltfgMTtJWt93jSqYWr+lwwOzidNJsqHp7AULVRJjIFDf6vYfuzX+ddXIak2+nkHfp+8qzOLt8eOU/doH3DjEBdVhEsSS4yNRL4XTQgtigZCGyTrASBxfjcbBYY2egZDn0G5XQ5NaDUp73gNnL6mEJOSL6QbL5kvf4NR8dUfKuu3yiC9gjPJ5abVJUGDKfL/2B+AsMG4ApqLh5LRQhVFqGB+f1h2qfV43H5bcn2EJq5q1ldtdiKE6HSRi0BKgll86hN2bvuDylw3TS7UW5Eo/laiQd1NPrBRP5EMVG/vdwzkfE61Fg434FhRVYXBK1HBlzEla2Qze38V3iJT1ZeR7Z5g6fXrL760UIRBCnBK94J2u6qM67PA5qFYuMOuYtMnNoXeetyVRzIRi1EwYyhyAXPyO6xoMZZDuH4IVjzWwggsdgBxQebkV8KLPjOADZaNKtuLNIVmXI5fPsU1l2bepHiMVbh38dILKMtoJ9m/kQ8BLDNpCI/1/rpTnhMz/wo9RZhSE1QXTogGiLtntQtKMR6wYA1Ebl8Sw7zComVpLhk+afjk+yt207NN7fWKUn1cvsR+tVNANEQ4wuvlvDCLFbFoO+EWwj2cDWTX3bG2w97XZQR2p+MUXlfFf8aq38kYziTRZeeS6V34O9Uj4y5lMIbB75sWKfCT0kUg1OQfL+YxGXm95J559o9P9IIwiCuezPP6dDro18FRvcwwRMNAu8y7K6dK8TNFBrWzg==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5278.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(316002)(31696002)(16576012)(956004)(38100700002)(921005)(5660300002)(83380400001)(186003)(31686004)(2616005)(53546011)(8676002)(6486002)(508600001)(2906002)(7416002)(66946007)(66556008)(66476007)(86362001)(36756003)(110136005)(4326008)(8936002)(26005)(6666004)(781001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?TTMxY1BEVmV2dEU1Z1dpOHRFSXU5RTU4Qyt2dXdDVVVJUXkwVHo3eXdvUm5R?=
- =?utf-8?B?UkIrYjhoUG10c3JUbFh2bTVWTm5PMjAwOFFmMjZib05OQnVFSkxPRFA1bCtE?=
- =?utf-8?B?YXY1akVrcTVVYnBrc045WW5MWlM3R2lKWXpVT29Ha1ZGZ1YzWDVLUy9VQTgx?=
- =?utf-8?B?TnV5bFRQbGdJQkR5TTlXNzlISEpnVVBvYjRFdzdXNGVSNFNaRHdsT2hqZ0hq?=
- =?utf-8?B?TXVtbmRSTGhOTHI0U1BhYlkvTitUdWFxbFpBZStoUGJiNzl3aUxMbTVubTNp?=
- =?utf-8?B?TzN4S3BWLzcydWtSOGhCNi96elp1dlFQVlhPRENNK0JyMHg2NFJkTVM5OXdh?=
- =?utf-8?B?WWNUck1XeVZwVDdobGZ5bmxvdStBdW94MEVzbTRtSDZlTG1oTDduMkRiMnpt?=
- =?utf-8?B?RHBjTmtWNlhleVpQRU5EUkF1bW9OTU5GbUFObXVMdEtHbVU5Rmw1WExIWHAz?=
- =?utf-8?B?WldjT1RDV0R2ajB0c2VHZnk4dGdja0ozcmx5UXJaQ1JlMDdVTW5JQ0ZVanhH?=
- =?utf-8?B?VVVNSDZiTHRCQXpRSWNlSGJxcERmNUdhdGNpeWpPMjNwd0pFSm9xUzZLWUsv?=
- =?utf-8?B?ZUwycjNnMkRDejNnS2g0RmNobk9ieHZZQ0dwRlgwVnN4WlhKQnFzZllqTkJ1?=
- =?utf-8?B?RlpIVXZDeVZEakpSNHFUazlTOFhtSzZiOVFmRjl0d3BsZFVXb0wyTEJ0L2hW?=
- =?utf-8?B?b01DYXhjY2FtNm1nZjNGZ1FRWENmK28xejhWMVJwSnFvdk5IVUsxRU9TYXFy?=
- =?utf-8?B?S0loL29UVFVEcFJzazMxRzA5eWZQYVZKSU16U3pkV08veGo2VnB5eFptTCtP?=
- =?utf-8?B?dWEzeisxQjNxT2dwdmZFZElXbEhkOVNHZEpaN1ZndjhvSTIxRDcvbXBDVjdD?=
- =?utf-8?B?eUdDSVc2MzlqSWZWL3F2R2FCT2ptZmt4VXc1ZGpwMEc0U0w2TGdLelZ0azNs?=
- =?utf-8?B?eTlTbWExdXAzK0N5NkVwRHBRTk5ZR3ArQ2JzK01YRWhPLzZqdzhMMUNIUGdn?=
- =?utf-8?B?UllGRjhRMEI1dlVZNzh1T2RWUU11L2dlSmlFTWFtNHZWLzhsOStTZERTQ0l0?=
- =?utf-8?B?S1RZTHE4K1FVaWVTQldrMXlkb0tlMFpMMVdpckxjZHFrWnp3bkdGM0VJRVpl?=
- =?utf-8?B?Q3Y1blJxeWZWVTcvM1JsVm5WVFZ1V2xaM21OZzlNejVsMmg1MUZGay94ZGtn?=
- =?utf-8?B?VjdQbWZuRFNiU0xsMDU5Rmw4MGpRTmhHQnNDZVNPTmp0MGEySUM4OUdaQkp6?=
- =?utf-8?B?bVA4MTEreFg1a0tQUVpqdjFHWVh5aDhTSnN6UTNlQVkxMTY4UmVnY1ovbTBD?=
- =?utf-8?B?aG1Da3hxdHBCdkxLNmZOR3dpaC80ZmF6WVVVZGJmcDRKcXdvK1RWSDB3K3p3?=
- =?utf-8?B?VG1GL1pDUUZ1TVI5VGozWmJ4dFZHODZnMEl4ZW5LVjZDZy9lNEpsVG9ZcmhF?=
- =?utf-8?B?a2xEWnJXUnFyaElaUHh3cjhXQWluL2dOTk83SHF5VWFiK2hLY29uVVloeWpw?=
- =?utf-8?B?WkhlOFpTYWEzSkRlYUN3dXVFUmhleWdnRXlHS1JYWFgzSVE5bkZOZG1ZQTZ5?=
- =?utf-8?B?SFFFMDVXbzRyL1FNeG1FeXo1NWJHekFBV3BYRDBDTjRhTS9RWHdUUW9ZWS9z?=
- =?utf-8?B?dUJlZ2cwalZtblMzbW92YjZhcWU1RHJZZFQxbFc1ZVJDb1krRGx4MVBORVpX?=
- =?utf-8?B?V09QTFJVT2dsbE5lVmVYbk1qaTJwaUdaTEJUdThvREtMRVhGcGU3V3VMUWt1?=
- =?utf-8?Q?IAsrNbg4vJFJddryuxK3+JhB9uwoOD6IYR9PdZx?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69fc3f0d-b4a0-4459-7940-08d990939f76
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2021 10:56:36.2705
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: e68Lp+naZFLSw7fdEhH/nVAqoQNSPbW0pfX7nyklLqOsZB+Ez47AiWvE5QVjf1jzSdOKme8HJHw4tDLSt3uz7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5167
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634381799;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=AUniiJ6OeGLbG1wAJSEpLFfBJJ74i9fSehgCxYgN2+c=;
-	b=VdI37FBB0c+atXzzsFD8SJXGDyCqaUFVDf1QgUHQvpoC/RbzzkDUp1T1y0T34cnTQfBYrk
-	N8Vd4/2iLhpNWX1Miu7uBy7tjZ6tbqTlOKYASC7OZ8Nr6hWAQZnne8BpaWE7LxKuMwfAAi
-	OCAB6ceNUvrVfnQD1x3JeA7jVlAbvXE=
-ARC-Authentication-Results: i=2;
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=v+ROWip2DOu/ejvMTpR01JMqGD3ACZ+pK2z8e30nwBU=;
+	b=lu6V9M61jgblnzuDRykklt0UWJCjuhdLMkxxl+43GN1hGNaqJrFRyEpdRo3RxoCKTZdXxn
+	vUxDqXcDNHb4IkbjaAkUDkmS2/jp2SwaQeC22oG6sQOAkVaRzC5ZCtIPY3zADze9HPGBJb
+	q/mDanYWOxNY2GlMzfUMQtExWZWW4Tk=
+ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=PIz5G9by;
-	dmarc=pass (policy=quarantine) header.from=nvidia.com;
-	arc=pass ("microsoft.com:s=arcselector9901:i=1");
-	spf=pass (diktynna.open-mesh.org: domain of nikolay@nvidia.com designates 2a01:111:f400:7eae::629 as permitted sender) smtp.mailfrom=nikolay@nvidia.com
-ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1634381799; a=rsa-sha256;
-	cv=pass;
-	b=bS1aBkH4//GWuUGxH45jn7/EotNWZHaI8zdy0UdyeM8Og5sQ6hBy6lVuOReb1K5KOqV1c0
-	Zib/aFL50q/Uh3SboD+NewUy/VQt3x7/WsIm1UDbMHF0jLo8rt6fkKz3yp1Lh7aUBDzMHQ
-	Yb5EQuljioH3p/Z9henf54vc1NghUdI=
-X-MailFrom: nikolay@nvidia.com
+	dkim=pass header.d=gmail.com header.s=20210112 header.b=U6gEy6R2;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (diktynna.open-mesh.org: domain of acadx0@gmail.com designates 2607:f8b0:4864:20::1033 as permitted sender) smtp.mailfrom=acadx0@gmail.com
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634383306; a=rsa-sha256;
+	cv=none;
+	b=U34lvoC2MZDvIaVPPsVTUJeGz/7ocfLth0qIWgHEIsCMPEkwXG7Dj/aDAHMHvua9JAHLcq
+	LcUeX/8xqqPNibjrK1BmPiL+qDOdeUC6MZbxEri4U42ub5BA8xIsIRznQbKKiIYWr33vpR
+	IOVfneRaK87+um83dPt6a1+zx6dokHY=
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: acadx0@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: HRDLJ6Y2PXUM4FZ4GZM7RBM6RBQF572M
-X-Message-ID-Hash: HRDLJ6Y2PXUM4FZ4GZM7RBM6RBQF572M
+Message-ID-Hash: NJL6SRON24HH4V6QSJZBC6A3ERPMJF3Q
+X-Message-ID-Hash: NJL6SRON24HH4V6QSJZBC6A3ERPMJF3Q
 X-Mailman-Approved-At: Sat, 16 Oct 2021 12:13:44 +0200
 CC: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org, coreteam@netfilter.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HRDLJ6Y2PXUM4FZ4GZM7RBM6RBQF572M/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NJL6SRON24HH4V6QSJZBC6A3ERPMJF3Q/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On 16/10/2021 08:04, Kyungrok Chung wrote:
-> Make use of netdev helper functions to improve code readability.
-> Replace 'dev->priv_flags & IFF_EBRIDGE' with netif_is_bridge_master(dev).
-> 
-> Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
-> ---
-> 
-> v1->v2:
->   - Apply fixes to batman-adv, core too.
-> 
->  net/batman-adv/multicast.c      | 2 +-
->  net/bridge/br.c                 | 4 ++--
->  net/bridge/br_fdb.c             | 6 +++---
->  net/bridge/br_if.c              | 2 +-
->  net/bridge/br_ioctl.c           | 2 +-
->  net/bridge/br_mdb.c             | 4 ++--
->  net/bridge/br_netfilter_hooks.c | 2 +-
->  net/bridge/br_netlink.c         | 4 ++--
->  net/core/rtnetlink.c            | 2 +-
->  9 files changed, 14 insertions(+), 14 deletions(-)
-> 
-[snip]
->  	err = br_afspec(br, p, afspec, RTM_DELLINK, &changed, NULL);
-> diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
-> index 2dc1b209ba91..d3676666a529 100644
-> --- a/net/core/rtnetlink.c
-> +++ b/net/core/rtnetlink.c
-> @@ -4384,7 +4384,7 @@ static int rtnl_fdb_dump(struct sk_buff *skb, struct netlink_callback *cb)
->  					continue;
->  
->  				if (br_dev != netdev_master_upper_dev_get(dev) &&
-> -				    !(dev->priv_flags & IFF_EBRIDGE))
-> +				    netif_is_bridge_master(dev))
->  					continue;
->  				cops = ops;
->  			}
-> 
+Make use of netdev helper functions to improve code readability.
+Replace 'dev->priv_flags & IFF_EBRIDGE' with netif_is_bridge_master(dev).
 
-This looks wrong, the original check is if it's _not_ a bridge master.
---===============2237591043305863380==--
+Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
+---
+
+v1->v2:
+  - Apply fixes to batman-adv, core too.
+
+v2->v3:
+  - Fix wrong logic.
+
+ net/batman-adv/multicast.c      | 2 +-
+ net/bridge/br.c                 | 4 ++--
+ net/bridge/br_fdb.c             | 6 +++---
+ net/bridge/br_if.c              | 2 +-
+ net/bridge/br_ioctl.c           | 2 +-
+ net/bridge/br_mdb.c             | 4 ++--
+ net/bridge/br_netfilter_hooks.c | 2 +-
+ net/bridge/br_netlink.c         | 4 ++--
+ net/core/rtnetlink.c            | 2 +-
+ 9 files changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
+index a3b6658ed789..433901dcf0c3 100644
+--- a/net/batman-adv/multicast.c
++++ b/net/batman-adv/multicast.c
+@@ -89,7 +89,7 @@ static struct net_device *batadv_mcast_get_bridge(struc=
+t net_device *soft_iface)
+ 	rcu_read_lock();
+ 	do {
+ 		upper =3D netdev_master_upper_dev_get_rcu(upper);
+-	} while (upper && !(upper->priv_flags & IFF_EBRIDGE));
++	} while (upper && !netif_is_bridge_master(upper));
+=20
+ 	dev_hold(upper);
+ 	rcu_read_unlock();
+diff --git a/net/bridge/br.c b/net/bridge/br.c
+index d3a32c6813e0..1fac72cc617f 100644
+--- a/net/bridge/br.c
++++ b/net/bridge/br.c
+@@ -36,7 +36,7 @@ static int br_device_event(struct notifier_block *unuse=
+d, unsigned long event, v
+ 	bool changed_addr;
+ 	int err;
+=20
+-	if (dev->priv_flags & IFF_EBRIDGE) {
++	if (netif_is_bridge_master(dev)) {
+ 		err =3D br_vlan_bridge_event(dev, event, ptr);
+ 		if (err)
+ 			return notifier_from_errno(err);
+@@ -349,7 +349,7 @@ static void __net_exit br_net_exit(struct net *net)
+=20
+ 	rtnl_lock();
+ 	for_each_netdev(net, dev)
+-		if (dev->priv_flags & IFF_EBRIDGE)
++		if (netif_is_bridge_master(dev))
+ 			br_dev_delete(dev, &list);
+=20
+ 	unregister_netdevice_many(&list);
+diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
+index 46812b659710..a6a68e18c70a 100644
+--- a/net/bridge/br_fdb.c
++++ b/net/bridge/br_fdb.c
+@@ -825,7 +825,7 @@ int br_fdb_dump(struct sk_buff *skb,
+ 	struct net_bridge_fdb_entry *f;
+ 	int err =3D 0;
+=20
+-	if (!(dev->priv_flags & IFF_EBRIDGE))
++	if (!netif_is_bridge_master(dev))
+ 		return err;
+=20
+ 	if (!filter_dev) {
+@@ -1076,7 +1076,7 @@ int br_fdb_add(struct ndmsg *ndm, struct nlattr *tb=
+[],
+ 		return -EINVAL;
+ 	}
+=20
+-	if (dev->priv_flags & IFF_EBRIDGE) {
++	if (netif_is_bridge_master(dev)) {
+ 		br =3D netdev_priv(dev);
+ 		vg =3D br_vlan_group(br);
+ 	} else {
+@@ -1173,7 +1173,7 @@ int br_fdb_delete(struct ndmsg *ndm, struct nlattr =
+*tb[],
+ 	struct net_bridge *br;
+ 	int err;
+=20
+-	if (dev->priv_flags & IFF_EBRIDGE) {
++	if (netif_is_bridge_master(dev)) {
+ 		br =3D netdev_priv(dev);
+ 		vg =3D br_vlan_group(br);
+ 	} else {
+diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
+index 4a02f8bb278a..c11bba3e7ec0 100644
+--- a/net/bridge/br_if.c
++++ b/net/bridge/br_if.c
+@@ -471,7 +471,7 @@ int br_del_bridge(struct net *net, const char *name)
+ 	if (dev =3D=3D NULL)
+ 		ret =3D  -ENXIO; 	/* Could not find device */
+=20
+-	else if (!(dev->priv_flags & IFF_EBRIDGE)) {
++	else if (!netif_is_bridge_master(dev)) {
+ 		/* Attempt to delete non bridge device! */
+ 		ret =3D -EPERM;
+ 	}
+diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
+index 49c268871fc1..db4ab2c2ce18 100644
+--- a/net/bridge/br_ioctl.c
++++ b/net/bridge/br_ioctl.c
+@@ -26,7 +26,7 @@ static int get_bridge_ifindices(struct net *net, int *i=
+ndices, int num)
+ 	for_each_netdev_rcu(net, dev) {
+ 		if (i >=3D num)
+ 			break;
+-		if (dev->priv_flags & IFF_EBRIDGE)
++		if (netif_is_bridge_master(dev))
+ 			indices[i++] =3D dev->ifindex;
+ 	}
+ 	rcu_read_unlock();
+diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+index 0281453f7766..61ccf46fcc21 100644
+--- a/net/bridge/br_mdb.c
++++ b/net/bridge/br_mdb.c
+@@ -422,7 +422,7 @@ static int br_mdb_dump(struct sk_buff *skb, struct ne=
+tlink_callback *cb)
+ 	cb->seq =3D net->dev_base_seq;
+=20
+ 	for_each_netdev_rcu(net, dev) {
+-		if (dev->priv_flags & IFF_EBRIDGE) {
++		if (netif_is_bridge_master(dev)) {
+ 			struct net_bridge *br =3D netdev_priv(dev);
+ 			struct br_port_msg *bpm;
+=20
+@@ -1016,7 +1016,7 @@ static int br_mdb_parse(struct sk_buff *skb, struct=
+ nlmsghdr *nlh,
+ 		return -ENODEV;
+ 	}
+=20
+-	if (!(dev->priv_flags & IFF_EBRIDGE)) {
++	if (!netif_is_bridge_master(dev)) {
+ 		NL_SET_ERR_MSG_MOD(extack, "Device is not a bridge");
+ 		return -EOPNOTSUPP;
+ 	}
+diff --git a/net/bridge/br_netfilter_hooks.c b/net/bridge/br_netfilter_ho=
+oks.c
+index 8edfb98ae1d5..b5af68c105a8 100644
+--- a/net/bridge/br_netfilter_hooks.c
++++ b/net/bridge/br_netfilter_hooks.c
+@@ -968,7 +968,7 @@ static int brnf_device_event(struct notifier_block *u=
+nused, unsigned long event,
+ 	struct net *net;
+ 	int ret;
+=20
+-	if (event !=3D NETDEV_REGISTER || !(dev->priv_flags & IFF_EBRIDGE))
++	if (event !=3D NETDEV_REGISTER || !netif_is_bridge_master(dev))
+ 		return NOTIFY_DONE;
+=20
+ 	ASSERT_RTNL();
+diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+index 5c6c4305ed23..0c8b5f1a15bc 100644
+--- a/net/bridge/br_netlink.c
++++ b/net/bridge/br_netlink.c
+@@ -106,7 +106,7 @@ static size_t br_get_link_af_size_filtered(const stru=
+ct net_device *dev,
+ 		p =3D br_port_get_check_rcu(dev);
+ 		if (p)
+ 			vg =3D nbp_vlan_group_rcu(p);
+-	} else if (dev->priv_flags & IFF_EBRIDGE) {
++	} else if (netif_is_bridge_master(dev)) {
+ 		br =3D netdev_priv(dev);
+ 		vg =3D br_vlan_group_rcu(br);
+ 	}
+@@ -1050,7 +1050,7 @@ int br_dellink(struct net_device *dev, struct nlmsg=
+hdr *nlh, u16 flags)
+=20
+ 	p =3D br_port_get_rtnl(dev);
+ 	/* We want to accept dev as bridge itself as well */
+-	if (!p && !(dev->priv_flags & IFF_EBRIDGE))
++	if (!p && !netif_is_bridge_master(dev))
+ 		return -EINVAL;
+=20
+ 	err =3D br_afspec(br, p, afspec, RTM_DELLINK, &changed, NULL);
+diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+index 2dc1b209ba91..564d24c451af 100644
+--- a/net/core/rtnetlink.c
++++ b/net/core/rtnetlink.c
+@@ -4384,7 +4384,7 @@ static int rtnl_fdb_dump(struct sk_buff *skb, struc=
+t netlink_callback *cb)
+ 					continue;
+=20
+ 				if (br_dev !=3D netdev_master_upper_dev_get(dev) &&
+-				    !(dev->priv_flags & IFF_EBRIDGE))
++				    !netif_is_bridge_master(dev))
+ 					continue;
+ 				cops =3D ops;
+ 			}
+--=20
+2.33.0
