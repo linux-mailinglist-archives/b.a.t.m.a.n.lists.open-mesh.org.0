@@ -2,242 +2,102 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB76D43028A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Oct 2021 14:13:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7938E4318FD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 18 Oct 2021 14:23:12 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4825D82617;
-	Sat, 16 Oct 2021 14:13:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634386429;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:list-id:list-help:
-	 list-unsubscribe:list-subscribe:list-post;
-	bh=n+vJO9Dr4JzWBI6RnEMkEVDA/hFg93TphgHRaFPNKjA=;
-	b=Sw5L9jAKyZ6b5x+xZGyo6Sy/eVvWq+SCv6OJkMmuoOhd81XkTMQMRcYKDtvl2cMY4hMSYr
-	jHo8PK9k4H1yOHLA2OUZBWZIaImkkiJw9LVqD0FTbWcszA+4xunquIbn6Un6JBMxvaf21t
-	/m1jUj7l3VLHm1dxfYTqV313iD7WFsg=
-Date: Sat, 16 Oct 2021 14:56:00 +0300
-Subject: Re: [PATCH v3 net-next] net: make use of helper
- netif_is_bridge_master()
-To: Kyungrok Chung <acadx0@gmail.com>,
- Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>,
- Sven Eckelmann <sven@narfation.org>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4FEBD80E8A;
+	Mon, 18 Oct 2021 14:23:11 +0200 (CEST)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0191580671
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 18 Oct 2021 14:10:12 +0200 (CEST)
+Received: by mail.kernel.org (Postfix) with ESMTPS id 3D2D161351;
+	Mon, 18 Oct 2021 12:10:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1634559011;
+	bh=HqaSPhUMlFlcfNoprF3LE///eSpUVIhd/IiotTyQ6o4=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=lNk3VSo6ST1EAX8d4naHiv4PcjmuiBL57/1MdRtVgD7TbouYUP39Vpq49Kye9Xy3Z
+	 MU9nso5x0zCzVmXkWgqgUHwttllaNAfhyTMT2lHxtsdZYdEf+V4hs9BtqCSUKmei8D
+	 4ItRpDCRo56EtBYbwfG2jjvKakDUCqHWp42FTtBbUgusyvJOv6Ds54oM6yyjzEZKSx
+	 MtoDJeRoGFa1z8j3rS5q5h/6HMrLOz02OLcXVSFMCt51gnhljdrrZXwMkb/b6pdLeo
+	 xlvJ4RmqV+F9YipzHKdvRFNmFFNWYMlSvMgWR3XU0CjYAvtCp3w+jrzZS5p2uVd093
+	 jCsDbtQ0BtXKw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 35F0860971;
+	Mon, 18 Oct 2021 12:10:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Subject: Re: [PATCH v3 net-next] net: make use of helper netif_is_bridge_master()
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <163455901121.7340.10701802688930426386.git-patchwork-notify@kernel.org>
+Date: Mon, 18 Oct 2021 12:10:11 +0000
 References: <20211016112137.18858-1-acadx0@gmail.com>
 In-Reply-To: <20211016112137.18858-1-acadx0@gmail.com>
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-X-Mailman-Approved-At: Sat, 16 Oct 2021 12:13:44 +0200
-X-Mailman-Version: 3.2.1
-Precedence: list
-List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4RCWVITJKB47O5KAQKOSMBDUGDTHGWKT/>
-List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
-List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
-List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
-List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
-List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-MIME-Version: 1.0
-Message-ID: <163438642600.1238.8920739489340577077@diktynna.open-mesh.org>
-From: "Nikolay Aleksandrov via B.A.T.M.A.N" <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org, coreteam@netfilter.org, Nikolay Aleksandrov <nikolay@nvidia.com>
-Content-Type: multipart/mixed; boundary="===============3360754389599398120=="
-
---===============3360754389599398120==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-The sender domain has a DMARC Reject/Quarantine policy which disallows
-sending mailing list messages using the original "From" header.
-
-To mitigate this problem, the original message has been wrapped
-automatically by the mailing list software.
---===============3360754389599398120==
-Content-Type: message/rfc822
-MIME-Version: 1.0
-Content-Disposition: inline
-
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2048.outbound.protection.outlook.com [40.107.244.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1C8D98031B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Oct 2021 13:56:12 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oJvhw74yJt9albnb7opX0NynW1ExN1w7c/ASsc37wwqGqKDy1MTPtfk5w73y7Dt9SpIkn9e3qSm+Uov8N3VxGcEyveDJWmg263DFNrJmLrq/C4C24NWcWRD+VqRy4wIKUOfoEkmkm+aW5QYqPzMhRIZcjNhhLIyLf1jtxccXWjvSo4hJBDHeX9OSCyQtnBz4Ck3A+X6Xn+c4Odjto/JHNpoABZp9FBG8JTlVcaYCFDqeZC3xsR+cwLIZScJcnX4kBm1aCXwFNYeEEc+I3HnCYRXIzQAM3n/CtfOEiOLrycPXNAR646HvGeR3HGd88e2LEgEWg7xVjmxVaE7/Zvmr0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wRRU9DkAx1sHIJ3WLpRQZB7LbZN0ArSSkzpxjncPtn0=;
- b=UkPr1eCID8aCEjUmJfgO/kGx074CPIdePcw4TKQOVIEQlqstnMpVYWn/l5MhvmA+PyeBs3eYz1snXQqY5gj8yLGVrcBbC6nEkCj7KfveA/zth05QIiXv/T4hYiO4sYaq8Nw9zPS60FgeDF3n72WYpsYCvgJsiwrj5/r/GT8zjmE0xk0/G3iEvpm53xOsPVSrrfSWBzEl/bYxXtl7VZF2sAnggkNHs5KJ/7mSsbP+NjZ7TUDgICgckIfa4HGAqRgTEAELnA0mqqxWEl3p2fLBO2WP361B4f407EZFGbXY2FVxk2O5d7OvCMTGrNhhkDNPfaJ908SyCbcjJqmxge+bCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wRRU9DkAx1sHIJ3WLpRQZB7LbZN0ArSSkzpxjncPtn0=;
- b=gX05H2BZpNOxoZ28d8pzfoXyLiq3YHb7BqtCtoxdDXILTZsGznE5Pk1upFwCzS1uzfff7LPHLqC9D71Mi6sR/4Btwx5xzZHuOFSf92Ho+QbegfF6bedWSZTrBpD4CvasgzS/2hzHlTUrKmFdPihvMiTpgHw3EtCXLpN1vw5up0QiseJZ4QWzYMsgrgQT6oNoZNxNzW3S5KRqpZoMKCbfTcv7tBmtIu3DVe90BKkEskfA3YTMPuXoRpasdl0R9oBEWiU7Ra0vCWsfw4ACNBVAvXRGaszftQjw0+7tWWU3+KXKR0144Dodbxgmm3lZdKNscth4N9kv7E+ieN3gTfKsVw==
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM6PR12MB5567.namprd12.prod.outlook.com (2603:10b6:5:1ba::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Sat, 16 Oct
- 2021 11:56:09 +0000
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea]) by DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea%8]) with mapi id 15.20.4608.018; Sat, 16 Oct 2021
- 11:56:09 +0000
-Message-ID: <75a38832-b638-a95a-7ba7-f144cd05d978@nvidia.com>
-Date: Sat, 16 Oct 2021 14:56:00 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Subject: Re: [PATCH v3 net-next] net: make use of helper
- netif_is_bridge_master()
-Content-Language: en-US
-To: Kyungrok Chung <acadx0@gmail.com>,
- Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>,
- Sven Eckelmann <sven@narfation.org>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
-References: <20211016112137.18858-1-acadx0@gmail.com>
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-In-Reply-To: <20211016112137.18858-1-acadx0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR0P278CA0074.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:22::7) To DM4PR12MB5278.namprd12.prod.outlook.com
- (2603:10b6:5:39e::17)
-MIME-Version: 1.0
-Received: from [10.21.240.28] (213.179.129.39) by ZR0P278CA0074.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:22::7) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend Transport; Sat, 16 Oct 2021 11:56:05 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3d116dc1-9dcd-4aac-f643-08d9909bf178
-X-MS-TrafficTypeDiagnostic: DM6PR12MB5567:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: 
-	<DM6PR12MB55676487F1E1BC51DC888501DFBA9@DM6PR12MB5567.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:741;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	0x5VXotzjNSGYupGMxJF79WF9ipA8wHdu7Xqi5//e5ymcrsOawJ2GQXdKBPOuVsFs1e2EhRlj76QMMS3ymHGM50sZ6PJKEvmpRWooPk1h00dCVq08frWsjp8CIpdy7WzAEPMS6lDIlUqo4/MEBHryzXdZGYgfTIO/+kV4mnnScsdh6xyFXWHcLF6hacagTWdnFZ5Y14rB8GPYfxdRzh8w0M7mJbtctGkq770Oj0xT1lgUsMPFVX/9lLWQxBOmNpO5MYMv1Jm50aBlGeTmLII+b5/D5Mo6TpVJf7I3TFyIgXZ5rWiI17NFzPqv1fDsUOOihrhZzUDttePo16wdJ3ZxyS9i34rOQW7Jv4EnsvZwySsVJc5xBk4yYE0Hffox1bZgpvi57lP7q1OGs9LqXCd6jgUjM5Pc5OUtUfTuumexfD/zsTEcllW6sfM5UahZvfP/6IsqWwmyxiegDNodJGGkeDTyk/PMCuMww47gCGO1yC3aY/VlkpwiPiXk3RUhCJ09ZwtdwnbDcfPUtX+rO0orzaXaya1ljSchlTQV8H1uKrKVJc5R6EryX6KqDVYLnG69j9ffwmnr/QMMLEbogdsH3rGTmQi4/ztNGCs4wsHtE2zaZ1ZCNn7ZiIXuz4+2i1A7bV+Q4T/NhzqdK40mnLi3r0ScWtmXFyJ4d5omrEj71qSszz3LgRFqou4NXpLV1GMbgZmRMn89CNpTtkPt541wAUIElBcs2Zc4CNNEQ5m4N9fqAjvCJxJaFP0+pLBUb44bI9zx+cc263bog1MKnz0Nw==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5278.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(956004)(2906002)(2616005)(86362001)(4326008)(6486002)(36756003)(508600001)(66476007)(66946007)(26005)(53546011)(5660300002)(316002)(38100700002)(16576012)(8676002)(8936002)(110136005)(186003)(6666004)(66556008)(4744005)(921005)(83380400001)(31686004)(7416002)(31696002)(781001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MzNkaHpybEJNb0FhNjhLbTdGNDlTcFVnQnFVdXVZQU9MSGR5VDlrTHhXYmZG?=
- =?utf-8?B?T2IyQWcxN1FrZlVoTC9lQWlvSXNGQ1VUYjlEUEhKWXZFUEYvU0duSGVCeURn?=
- =?utf-8?B?RTM3V25CazlMeGhPM3dENW5DWGZ0bExHSGxnRmZVaWlrS2ZUR01OVHVQRlo0?=
- =?utf-8?B?ZHZjd08zWmVuNUx5Q0dSVWU1NUg2ZFo0UkQ4d2ZNdEp0UUtZVFVoaFFPcm9R?=
- =?utf-8?B?aWlHZHFkbEJOQ0FjczBVUGIwb092Y2pXcnkwL1N6T25jT2ZCSnM4NTh4em9k?=
- =?utf-8?B?U041bHNuODlLbVJsTGsvL09HN3ZjNmhITFI2TW9SRTBjdXpDbTRvL0JHdHlP?=
- =?utf-8?B?clo5d3FzSFZTNTVoRU5hZjFlL2ZhYTF5OGFaa1ZOT3NyQmovamxhTWhuUUxJ?=
- =?utf-8?B?T3ZyUnE5YkE5Zy92SlJoWCtrOFVYNXdWeHpJbFM4VmN5dWlWam5KdU45TUls?=
- =?utf-8?B?elh5ZXNNQmtUMGsrem84Y1k2UVZjMzhzM3R1RU1iS2dLNE8xOURxZ0JvS2lV?=
- =?utf-8?B?R0orYXBkODdBeDJCbytVUXBJazI1Rnk1OGtHK0tpUExBZExNcmpWa1QwUUpE?=
- =?utf-8?B?M05NV1pXNmRyZXBIY0RLdlBHK2FEZVBCczZvS3FzdTRTbXdGZFE3K0xJakxU?=
- =?utf-8?B?NUNoN3lJak9UMlNBNTRLSHpjYUpITmtZL2VZd3paWUEzbGlVc3lLNWcyZUhu?=
- =?utf-8?B?MFpZV04xSG1xNXRNdDB5WkFtUnN6aU43cEtTRjIySGNaYUJuTWtNQlRrRjQx?=
- =?utf-8?B?SC9oV2cybjhFV1hkSjZJZUZoSGFtK3M4S3VpcTA4MFJzY3NMMjdEM2hxV1V5?=
- =?utf-8?B?bS9JU09aS0FXMUdYRVkvTWtHbStNNmI4a2ZmTUE2L3loNXBkb3NVMER1N3h2?=
- =?utf-8?B?dml2Nk02Z0hidmt5ODdWSXZRR3NXS2ZyZGtMTnJvc3dPZlFXNXg2QzhaY09O?=
- =?utf-8?B?bmNmMVFXNTk3Y0UyR2I0UzI1aXA0OFRVN1VIVGMyYWN2d1ovbzMzT2ROT0xo?=
- =?utf-8?B?K1UxQ3RwTTQ1QU9ReGRmZ05PZmF0TnZvbDhEbGpDTU5jbjZ0b2FaRVVUTFFT?=
- =?utf-8?B?WW5zZ20xRHBlb1pTejNtM0QwcUw2UTJMU08yUEpLNGNwQjlkbmhhdlNlM3J3?=
- =?utf-8?B?NHN3SUtvUzU4a3FDUUw4S2xMaXg4LzhaU1daMjZZVUg5Uld4TEVwWnZtd0M0?=
- =?utf-8?B?RFhxclRVRUlQK1RnTU5lekhuTHVKZFZvQ1FTWDM0VkNTQlhYWXFJZEg2YWF5?=
- =?utf-8?B?cTNUV1dMcUZiYnlMUDRycFY1SFhxR3ByaTV5bkNjdklsQVNvRHhVcTJFckJt?=
- =?utf-8?B?MFZ4Y04vR3o5M1YxbHRrckFVOEUvR1lobnJzWExQWXhBRXJOWC8vUVhSU21u?=
- =?utf-8?B?RnF5VGRPUkhIRlFXUDBSMWdpRWlNeWlzbmdGVjZZbTk2bndXQ0lDb01BY3Q3?=
- =?utf-8?B?L0JYMTk2Wk9ENVc3Szc1NjgvM1dBY1RHRGdtWkcxb3VnSXZ1bzRONnhYTk4z?=
- =?utf-8?B?ZG5oNmVWTHhZd20veXJ2Z0RFZ2NSVWttN3hCTW9SMExZcFpwSTJZcDlQTkhG?=
- =?utf-8?B?NzE4STNITHk3Q0lDUkMyQXpLZlF3YzJpaGNYSGxIVFVXZkJaWFZCZDNvdWpY?=
- =?utf-8?B?OWMyQW9wK0RZM1FXbkd2emNhNWNTa255RDhsd010eiszaW5IUnc1am9YNXN5?=
- =?utf-8?B?N2w3OGNvME5JRGxMQUtqcVdDOGptK2x0RGU3d0p1ZVJBeHQ0cTVudURkb1VD?=
- =?utf-8?Q?ZEShiBFRFvyT9h7PgM8QlFlsune/Km7wvV6zBhe?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d116dc1-9dcd-4aac-f643-08d9909bf178
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2021 11:56:09.7263
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QRXg2h4KywanajeHWgQajlvfiE2vghZOCXm5obif6XEU/I/aJd5IprQbiGjxj/QLynasyFQgC3n4fyx5L2cjaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5567
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634385373;
+To: Kyungrok Chung <acadx0@gmail.com>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1634559013;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=wRRU9DkAx1sHIJ3WLpRQZB7LbZN0ArSSkzpxjncPtn0=;
-	b=caLAeztVfbUNwH6cQ6Nn/TOigRr9ntveVIzlBFsS3lG2J5z3YtW3PefknQwtoR2+MA385f
-	QuBTwP2YrX8Vy2mXJp5zWknkAo7Wq6r9JkbH/evZIVL7sh/fAjybQO+16DjQxzkvoaA4Gm
-	SFh2fZ/YAuODWQj3zW5llwaLMpeTHUE=
-ARC-Authentication-Results: i=2;
+	bh=8NfvmKnG0k+zA04xPheBKom28BVySssYzgbRz10JYE0=;
+	b=CmX+iLgCJWEX8iSmtDHuk3Tm0w/j0jHE7t6vaYVem4ZorC4xC6yw7fjNfSpqPDpkmfeteE
+	m6yJMGLvB5gG7f4etQztUPLqVPypLedX0ZQG8k4ILjWG3KfyaQByJVqfqIT0y0QySDWeHA
+	7Md9E9biEbeBjQjRisybGzPCSiKdlck=
+ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=gX05H2BZ;
-	dmarc=pass (policy=quarantine) header.from=nvidia.com;
-	arc=pass ("microsoft.com:s=arcselector9901:i=1");
-	spf=pass (diktynna.open-mesh.org: domain of nikolay@nvidia.com designates 40.107.244.48 as permitted sender) smtp.mailfrom=nikolay@nvidia.com
-ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1634385373; a=rsa-sha256;
-	cv=pass;
-	b=xq6VVP235ZlhwK/1SDahh7EsItskhKulbiEooehmlhuZUdYySl/Sb3UuujqfeXmpPgB5YW
-	HSO0IP7kJgQ7YQIhql8qyQXbOJwgcaWhN7f5ArwpPocmWHfKH/m7kparwwHoGqWG+DvAte
-	5qgX8WXixI34JC5AsuUvND+vNtj1kVs=
-X-MailFrom: nikolay@nvidia.com
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=lNk3VSo6;
+	dmarc=pass (policy=none) header.from=kernel.org;
+	spf=pass (diktynna.open-mesh.org: domain of patchwork-bot+netdevbpf@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634559013; a=rsa-sha256;
+	cv=none;
+	b=BsevWGGarQ70YZjfu3zh4uMrTXJz6X86b+BfKmQUWSCZ9z4P28rcAebtJXLX+lnsySPzrl
+	ZPTnuvVvWfLaBIQiQYCDBZIA+Ev9VHAQ/JjmIvJB/wPoLZCC/LJZy2ayoq3Z+1gB5Ojl83
+	WMyUSsNlmTeIsPT0D372hXNxyFjnURQ=
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: patchwork-bot+netdevbpf@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: 4RCWVITJKB47O5KAQKOSMBDUGDTHGWKT
-X-Message-ID-Hash: 4RCWVITJKB47O5KAQKOSMBDUGDTHGWKT
-X-Mailman-Approved-At: Sat, 16 Oct 2021 12:13:44 +0200
-CC: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org, coreteam@netfilter.org
+Message-ID-Hash: DXDBDOFTJZXMMIZFQBERUVT3RDUZXR36
+X-Message-ID-Hash: DXDBDOFTJZXMMIZFQBERUVT3RDUZXR36
+X-Mailman-Approved-At: Mon, 18 Oct 2021 12:23:08 +0200
+CC: mareklindner@neomailbox.ch, a@unstable.cc, davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com, nikolay@nvidia.com, pablo@netfilter.org, kadlec@netfilter.org, fw@strlen.de, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org, coreteam@netfilter.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4RCWVITJKB47O5KAQKOSMBDUGDTHGWKT/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GGKULRRX62ZNITZXD5J54MUYOL62KGE7/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On 16/10/2021 14:21, Kyungrok Chung wrote:
+Hello:
+
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
+
+On Sat, 16 Oct 2021 20:21:36 +0900 you wrote:
 > Make use of netdev helper functions to improve code readability.
-> Replace 'dev->priv_flags & IFF_EBRIDGE' with netif_is_bridge_master(dev).
-> 
+> Replace 'dev->priv_flags & IFF_EBRIDGE' with netif_is_bridge_master(dev=
+).
+>=20
 > Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
 > ---
-> 
+>=20
 > v1->v2:
 >   - Apply fixes to batman-adv, core too.
-> 
-> v2->v3:
->   - Fix wrong logic.
-> 
->  net/batman-adv/multicast.c      | 2 +-
->  net/bridge/br.c                 | 4 ++--
->  net/bridge/br_fdb.c             | 6 +++---
->  net/bridge/br_if.c              | 2 +-
->  net/bridge/br_ioctl.c           | 2 +-
->  net/bridge/br_mdb.c             | 4 ++--
->  net/bridge/br_netfilter_hooks.c | 2 +-
->  net/bridge/br_netlink.c         | 4 ++--
->  net/core/rtnetlink.c            | 2 +-
->  9 files changed, 14 insertions(+), 14 deletions(-)
-> 
+>=20
+> [...]
 
-LGTM,
-Reviewed-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+Here is the summary with links:
+  - [v3,net-next] net: make use of helper netif_is_bridge_master()
+    https://git.kernel.org/netdev/net-next/c/254ec036db11
 
---===============3360754389599398120==--
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
