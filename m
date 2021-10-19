@@ -1,113 +1,104 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A66D433DFB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 Oct 2021 20:03:03 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1032F433F12
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 Oct 2021 21:14:26 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8090682614;
-	Tue, 19 Oct 2021 20:03:02 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 67E43808DE
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 Oct 2021 20:02:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1634666578;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ln6fDIelQdu7pPt1Ea6IyCGF5H+PqfVVx6cMKX9jpGE=;
-	b=zhiWMjjt9fhFCKQvndXY3K5+G4AELPlwAkF/EyxP5o9aUymSwlfcrI9wTNDt4W0LfcbBFe
-	IpfcA95RGHNR+nq+UGIOGNHlBKeHHvJmvYZjLgei//MpWhUWUwjw4wnmFIrGWFFj0NNV4f
-	1hgAnedJgrgaWxHvTSKbtWU0Fh03M6g=
-From: Sven Eckelmann <sven@narfation.org>
-To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, mareklindner@neomailbox.ch
-Subject: Re: [PATCH] batman-adv: prepare for const netdev->dev_addr
-Date: Tue, 19 Oct 2021 20:02:52 +0200
-Message-ID: <33425786.lHEVMZF3NE@sven-desktop>
-In-Reply-To: <20211019163007.1384352-1-kuba@kernel.org>
-References: <20211019163007.1384352-1-kuba@kernel.org>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id DCE0380DA8;
+	Tue, 19 Oct 2021 21:14:24 +0200 (CEST)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8A58E807ED
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 Oct 2021 21:06:57 +0200 (CEST)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7B9D36128B;
+	Tue, 19 Oct 2021 19:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1634670415;
+	bh=AXSOkY7Mcf7e8JYLN4hVaBs7Lp9bwvDRFybLH77JABA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=onAcnHjpFPVGjsIIlUEbPv72fc1H6A+wfqosFMSCH0mmWJzaJLigqAFBuB1A5GkQk
+	 Qsjo3Y+vSRZBkBxVNRDi9MK7aqcU292AwSVftd7hmWafiWIvOn74O4Pga86Rb1DTXJ
+	 0lA9MFJ+LXfrjtDNSzuV7dNSDs9MKvFEZQUoZrT9U2u3w2BTeHDXRsdupjKMGkXNPY
+	 KiAR+Z1h+MSj4jgUvcOK2NHLnmkqpxwLtcgXwFlQ7JB64aIgrOTrWTH1yDkvqP/Jui
+	 YfzpyGou4hziijkjXcQfZLp+aAbnJPbMOlfqko5d/JkTu9TlbMByy4PDfBmUjNqz6K
+	 Xxr8cVXQvkcQA==
+Date: Tue, 19 Oct 2021 12:06:54 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: sven@narfation.org
+Subject: Re: [PATCH] batman-adv: use eth_hw_addr_set() instead of
+ ether_addr_copy()
+Message-ID: <20211019120654.6dee21b5@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211019163927.1386289-1-kuba@kernel.org>
+References: <20211019163927.1386289-1-kuba@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3738197.mCjuJMru3Q"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634666579;
+	s=20121; t=1634670417;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=ln6fDIelQdu7pPt1Ea6IyCGF5H+PqfVVx6cMKX9jpGE=;
-	b=4Io1T9DrETRPgNxLVV8SSizUt/WHRJqQmTmLZnPG9zvzoDkt2DK0+jwOjywg90otW9nxd+
-	FVbD7Hlc3dvxSd3KSQzUZhu5Dnu9Zt4gnnuxHDM+aXyuRQ1IgLADs4L2zDldHzQhXquf5E
-	54sFRmxUwnSYBn2wBqxzqAO//V///XU=
+	bh=weBa4lDjsbuX0S2tiK0Q21RmNqOD5qSA/NFuYO/OgwY=;
+	b=AoWThPRNqN9OdPhYunszga45yrkIXAVKel5AOtvRhrlTFaeTKZDDBdxo7BhU8kVmVDOIXw
+	I8olxq3cS5TAn0J4xIjrA1LSeVGF3FzCz+VaX9YIYfO/fNoO33J80MO1WR9KGJTRBAPmaP
+	TaakFAIO+fXy+an85kfpcauQPY1oPoE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=zhiWMjjt;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634666579; a=rsa-sha256;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=onAcnHjp;
+	dmarc=pass (policy=none) header.from=kernel.org;
+	spf=pass (diktynna.open-mesh.org: domain of kuba@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=kuba@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634670417; a=rsa-sha256;
 	cv=none;
-	b=X99WWcmbSVWtoWINoRu5Z6qIzPrBlXKKBLMXVkZNvXU6Ukvc15UohTDOMmzgjZVRYpRdKm
-	mt87vsRcLEXOKr7oegsSjkzEmINw+YyirK9hYQbLuGEs/XqiLryN/2yAVyB8+b5hnN7A1g
-	bR1ps/Pm23knJn1Mvi2rjHN40UEyQg0=
-Message-ID-Hash: 5UX6VWWTTVYR5FRMK7V5TCSZOR37QZYI
-X-Message-ID-Hash: 5UX6VWWTTVYR5FRMK7V5TCSZOR37QZYI
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org
+	b=XuvubuhiMV4Ea1YDlwgvL9JohWDFhEgmE0+mnR9nQVWNqcalmbOckgEM2BgOnuxB/ts/Bq
+	bXl1/xc9p1/o9n5or6LWdJTxp3WX/g13R2FEbHe9q4xK8d6PsQgCwImWS6y25TPZ82sh8l
+	iPSxles8BnFZO+1WbufMgP3bQD/Vtf4=
+X-MailFrom: kuba@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: 37P6TCKSETW6OTGACV7RXVRPIJVJO5R4
+X-Message-ID-Hash: 37P6TCKSETW6OTGACV7RXVRPIJVJO5R4
+X-Mailman-Approved-At: Tue, 19 Oct 2021 19:14:21 +0200
+CC: netdev@vger.kernel.org, mareklindner@neomailbox.ch, b.a.t.m.a.n@lists.open-mesh.org, a@unstable.cc
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/5UX6VWWTTVYR5FRMK7V5TCSZOR37QZYI/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/37P6TCKSETW6OTGACV7RXVRPIJVJO5R4/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart3738197.mCjuJMru3Q
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, mareklindner@neomailbox.ch
-Cc: sw@simonwunderlich.de, a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH] batman-adv: prepare for const netdev->dev_addr
-Date: Tue, 19 Oct 2021 20:02:52 +0200
-Message-ID: <33425786.lHEVMZF3NE@sven-desktop>
-In-Reply-To: <20211019163007.1384352-1-kuba@kernel.org>
-References: <20211019163007.1384352-1-kuba@kernel.org>
-
-On Tuesday, 19 October 2021 18:30:07 CEST Jakub Kicinski wrote:
-> netdev->dev_addr will be constant soon, make sure
-> the qualifier is propagated thru batman-adv.
+On Tue, 19 Oct 2021 09:39:27 -0700 Jakub Kicinski wrote:
+> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
+> of VLANs...") introduced a rbtree for faster Ethernet address look
+> up. To maintain netdev->dev_addr in this tree we need to make all
+> the writes to it got through appropriate helpers.
+> 
+> Convert batman from ether_addr_copy() to eth_hw_addr_set():
+> 
+>   @@
+>   expression dev, np;
+>   @@
+>   - ether_addr_copy(dev->dev_addr, np)
+>   + eth_hw_addr_set(dev, np)
 > 
 > Signed-off-by: Jakub Kicinski <kuba@kernel.org>
 
-Acked-by: Sven Eckelmann <sven@narfation.org>
+Extending CC list.
 
-Kind regards,
-	Sven
-
---nextPart3738197.mCjuJMru3Q
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmFvCEwACgkQXYcKB8Em
-e0Y5ARAAzLudn8YgxZr1hwMPId7eiSbHQAAuDyqwyaB8ktJvIULjzmLUcD4PsqzR
-lrHIA2L1JGu5fmlKsCK+axL43zgYAnVYrFWAwdDgYEm3DLBR8B+Ntv7qcfb8NxuJ
-8OrlUwyD8MfkaHMbXR5XRv2OcLFIMplT1qsEYiZvnK8mo3eFvQ3C33kDIL93owT0
-+eyPZ0lsClVqpNiREngLv8TQ5NrxMhOWcm/LAQycWtk/JH2fLU1oEZkg6eZnPG8B
-1hbqlz7TooVjJee99nL4EuFdg2KAfE6+0sgluTShLPf1qaq9AkK682qWK9o7JT65
-qBmCA4yW8dDtZizOYDUWwl2wUDhMDDupSkIwIy//DVt3L9SFOujD/DmoEnTE8uV3
-A3cNbtzF5Iv7GD0B4QfyY+hyTvvCgyodbNmL1bes70y8CdjnSDQSvpv9Ft31Ba8A
-rPnD3xTcJ02OK8tB37bE6vqVpAWMKceIYz6mUnEXlxZ1zZb4gJY+emZmGSOkxklt
-cmFcoJsz5gzqFkRbb23djPgrjp5675BsaiPNxNjXsTj1De5Pkn0bVDuckCrtZvGX
-2MkyzivLQ8vTpBn1iQOv8kgr+i+87QbKmXo6gee33rwgubTDCKlY2YxpBz+R42Mg
-WOLdSHNt/S7G+Ov7lPCsUEYdROfwLET0hf/g2oyWuneGq93onbg=
-=rpsb
------END PGP SIGNATURE-----
-
---nextPart3738197.mCjuJMru3Q--
-
-
+> diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interface.c
+> index 0604b0279573..7ee09337fc40 100644
+> --- a/net/batman-adv/soft-interface.c
+> +++ b/net/batman-adv/soft-interface.c
+> @@ -134,7 +134,7 @@ static int batadv_interface_set_mac_addr(struct net_device *dev, void *p)
+>  		return -EADDRNOTAVAIL;
+>  
+>  	ether_addr_copy(old_addr, dev->dev_addr);
+> -	ether_addr_copy(dev->dev_addr, addr->sa_data);
+> +	eth_hw_addr_set(dev, addr->sa_data);
+>  
+>  	/* only modify transtable if it has been initialized before */
+>  	if (atomic_read(&bat_priv->mesh_state) != BATADV_MESH_ACTIVE)
