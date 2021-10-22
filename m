@@ -1,94 +1,95 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B6D438225
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Oct 2021 09:08:45 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D04B438226
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Oct 2021 09:08:50 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DCA5082F35;
-	Sat, 23 Oct 2021 09:08:40 +0200 (CEST)
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1CDBF8054E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 22:57:17 +0200 (CEST)
-Received: by mail-lj1-x231.google.com with SMTP id 145so847110ljj.1
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 13:57:17 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 41E0A8323C;
+	Sat, 23 Oct 2021 09:08:42 +0200 (CEST)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id EC4FD80615
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 22:58:16 +0200 (CEST)
+Received: by mail-lf1-x12b.google.com with SMTP id bp15so2327188lfb.4
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 13:58:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=/2Oyx3gtUUIUVbpFEL+V2b/0RPstg82IKKmaTuTPF5M=;
-        b=XxKnOMpxXJvFfeTn4AT3QvMuXQ6NfP8Fkj5P01SZraLEXMOMhgkNmjBEr38AgqP87l
-         ggmwm9k2sTRECttFpJZucPOuq/jlzPGr2q0Y6wSKanvppW5YbQFHlsnG3yb5LIQvpe2k
-         txNoRL7mxnnruWP30TS0X8waG9IqgzNBcCWHHRuNLHZrkfnV3WtwuPWkN51p1C+/JYGb
-         Zhe+adLbWnSR6M7MhTYDcr+nMLQ/S4emqAjdm7vw56d2ibt+RwSG3qtJ0XhDLU2BynS1
-         T2exY/IHKbwTQ+QkBhftnGLPXC8IRjzlX1+bI9r6/w3CYVrXCUvyW4MDcN8g7pdbjnLA
-         kAtQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:references:in-reply-to;
+        bh=DvZRyK8W4taoJI0w6BsZtI1Rsk5Ek0pe9nbSOny/XQk=;
+        b=ez4gPpN/IOR6H0XxlZCC1Rb4J+1SYLTTIYzHc3i8NDdOz+jcagq/G2sF1SkQ281m4y
+         xeL9LKXQqZKeI99HmADhMqlRewoNQYwjo4qyB3xQIw3E5pkmmKop9/HrBW2+nZEAkZHp
+         GO7R+Wo/DIpCJgAJdQMhxAtoPyJhipDRyEWIiERGFxn52pvPswhe+jVjGDai8N+fNzYU
+         CAoPkwigyl13PukTRVuIbihfzdrromlY4ArIwmPvFscRioWlWkf5xmDpZ3lXk6ut8vGQ
+         Dno9T1ftluLFnrt8Jls13D8VnK3nkNhYSiCrQa9BKL1ejNocJh8TIv2ZR+rKH9p2Q2yL
+         qNkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=/2Oyx3gtUUIUVbpFEL+V2b/0RPstg82IKKmaTuTPF5M=;
-        b=ps3n1+5VLp8hxrucn57ii88ce+qjxfYpZVOcRWCKhG9mQGQL13FVMlr3uCjJKw6VF6
-         tCs0V2MnvtbXBeK5MdwXC781IfSYa67NBCO1gqf/ztN5yBwpuomFC9a3ZWJ7I/jdDvPV
-         W125pVwZrqWHXFpYRtn5Q2Y8g+u8GiRWzQaSwJFvJFY3Xc/v3x4bYtW4bAszl0Lw0+mB
-         3RpMfqR1qw3TNr79iyX+wv7NlnoSiaY3G/OPQKKSL/t6t0veclWgR+OP6qrPRGVIqRDV
-         DePxD9a8NIiBnsJNWTVF/CB0LNDYBTm+DbB1xqgs8jHvVGBjnHQlYHJ8Lvl3Nsp0WuDs
-         +eZQ==
-X-Gm-Message-State: AOAM5327YncvL7Ykyrxpg5XRPPHhrVHK/+Zmj/9rhwRX05vykwS8tqFY
-	PS50wKAI+yhZp/A7lf+Nfxk=
-X-Google-Smtp-Source: ABdhPJzpzVVQLw6PNdKy/N5vkE4MIanTP1RRNGfKqJJrMiGyg+yL+TYsJSesiblMBoX3ihMc1iWugA==
-X-Received: by 2002:a2e:760d:: with SMTP id r13mr2277581ljc.355.1634936236326;
-        Fri, 22 Oct 2021 13:57:16 -0700 (PDT)
+         :content-language:from:to:references:in-reply-to;
+        bh=DvZRyK8W4taoJI0w6BsZtI1Rsk5Ek0pe9nbSOny/XQk=;
+        b=RJkCWCH3xYyG5o+FIu3kVGQ2tnGjqwg3V5zlPsumXeqfJYz5Hj4iA6pNyb2/O8wf1T
+         Do5p6N1MASLU1NNASf3KHt8pq2VU7spUBtYK50whVAyfNITYUuBp8cdOnS3IAmQNv33s
+         4tlLmholSCZTpT9xq2O+Jg6FJHevD7yv2RBXdEP+0cRTTH92SHm5hlNlh5enJub4xvNC
+         ufkSLXIlp5CNbO7GWyK1+AfupDD/nQr+g+kF3HdiUeTjYz11Mu4HUGBD56rsiXN0xgHX
+         Iz9srMaU+kaswRJ/FcVzK0s6jZXSE/2B2ojSH/SZTGc9hiNNTUsudsdUbLPsIZAZaNYt
+         qICA==
+X-Gm-Message-State: AOAM532oqmIq93Aw0SoCZA+ima+71Qxc+zmRS54r7mmn0TwEFickbEaN
+	mMpXB8ztpYibLZnG0cSnOpo=
+X-Google-Smtp-Source: ABdhPJy5N91FS9EFCKgLOEAgSnE0AQ+7LDZTXcIR7z3f2NjdZKLAt8iwZ4v7LYfBiY2a6Tjfzme4NQ==
+X-Received: by 2002:a05:6512:3501:: with SMTP id h1mr1879903lfs.235.1634936296265;
+        Fri, 22 Oct 2021 13:58:16 -0700 (PDT)
 Received: from [192.168.1.11] ([94.103.235.181])
-        by smtp.gmail.com with ESMTPSA id a16sm966763ljk.100.2021.10.22.13.57.15
+        by smtp.gmail.com with ESMTPSA id l4sm995215ljc.133.2021.10.22.13.58.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Oct 2021 13:57:15 -0700 (PDT)
-Content-Type: multipart/mixed; boundary="------------XP0ezmYVfmtBDjzAIPdDrp9W"
-Message-ID: <1639fcba-e543-e071-f17c-941b8c7a948f@gmail.com>
-Date: Fri, 22 Oct 2021 23:57:14 +0300
+        Fri, 22 Oct 2021 13:58:15 -0700 (PDT)
+Content-Type: multipart/mixed; boundary="------------CvkaH0ihFkENdKmg5e7QlCGq"
+Message-ID: <5e29e63c-d2b5-ae72-0e33-5a22e727be3c@gmail.com>
+Date: Fri, 22 Oct 2021 23:58:15 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.0
 Subject: Re: [syzbot] WARNING in batadv_nc_mesh_free
 Content-Language: en-US
+From: Pavel Skripkin <paskripkin@gmail.com>
 To: syzbot <syzbot+28b0702ada0bf7381f58@syzkaller.appspotmail.com>,
  a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
  kuba@kernel.org, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch,
  netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de,
  syzkaller-bugs@googlegroups.com
 References: <000000000000c87fbd05cef6bcb0@google.com>
-From: Pavel Skripkin <paskripkin@gmail.com>
-In-Reply-To: <000000000000c87fbd05cef6bcb0@google.com>
+ <1639fcba-e543-e071-f17c-941b8c7a948f@gmail.com>
+In-Reply-To: <1639fcba-e543-e071-f17c-941b8c7a948f@gmail.com>
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634936237;
+	s=20121; t=1634936297;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=/2Oyx3gtUUIUVbpFEL+V2b/0RPstg82IKKmaTuTPF5M=;
-	b=E5dz16pJhVp7GKDD6ASTRTJ7OtnDAbiRaiCONduQ4RJPDpMc8qdppTSciZTeJ/OV6jE9GS
-	mpOKcQyBjPxUTfcW4AqJ4dsafm1xOxsrkoxaQDTEx1LJvdlCjvc1hpfZVy4+Ls1vMmDKgU
-	GKYdLowrz9RG2FyI+l2ZkTON+QhhOXk=
+	bh=DvZRyK8W4taoJI0w6BsZtI1Rsk5Ek0pe9nbSOny/XQk=;
+	b=JkP+6ZuQZPKy1iVnlOlfadGf4jn0I81Y76EMzpDxBWXhGD/UHOh5SNS/brXVZrcKtxalTx
+	TQGQ5JIVIgR2+JGSuoKmz/qkvuklZrzfgnOQb4EcMYrFFZkB4wIIG5BKvEZtDMk7pMi1kl
+	skq4YU2iF6JCChwyx8oweQQrCFZTvKQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20210112 header.b=XxKnOMpx;
+	dkim=pass header.d=gmail.com header.s=20210112 header.b="ez4gPpN/";
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (diktynna.open-mesh.org: domain of paskripkin@gmail.com designates 2a00:1450:4864:20::231 as permitted sender) smtp.mailfrom=paskripkin@gmail.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634936237; a=rsa-sha256;
+	spf=pass (diktynna.open-mesh.org: domain of paskripkin@gmail.com designates 2a00:1450:4864:20::12b as permitted sender) smtp.mailfrom=paskripkin@gmail.com
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634936297; a=rsa-sha256;
 	cv=none;
-	b=fNoKTp5a7+AMg+nveOy3P6heAyAcYhCCl0azCpERJRZxEUiQ14yKbTu7uj/VEB6+7urgMC
-	zgfutHge+w/wyW+YejXl0BlzJkSKxt53ZhRIiloCy48MmEv4dNvMLO1+Go5amG+U2vqjY0
-	tOdD9fAoJtH6Sf228ys7d2CfYyzRCe4=
+	b=GCx82IAjnAdhGYfHeoV3DmS6fmpwMAz5MSqEfKagnd4uNIxC85Zor699nK7VQlH5cVCDdb
+	leDwmZg1gOFjY4euycKBzVYgGGFnvD9GnaD+wdbpjY/sjHO1Pj+prPlXZucENLJweOdlwo
+	lIb1F6GMDj4vzeuKQJB/7JlOdCNqUxg=
 X-MailFrom: paskripkin@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: ISZOW6IEAGHQBPJNPACLZG2HGKEJQNS6
-X-Message-ID-Hash: ISZOW6IEAGHQBPJNPACLZG2HGKEJQNS6
+Message-ID-Hash: JTYZYB5KWPKKQHWPOL7ZZDUEQZDQOT25
+X-Message-ID-Hash: JTYZYB5KWPKKQHWPOL7ZZDUEQZDQOT25
 X-Mailman-Approved-At: Sat, 23 Oct 2021 07:08:38 +0200
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ISZOW6IEAGHQBPJNPACLZG2HGKEJQNS6/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JTYZYB5KWPKKQHWPOL7ZZDUEQZDQOT25/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -96,35 +97,43 @@ List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 This is a multi-part message in MIME format.
---------------XP0ezmYVfmtBDjzAIPdDrp9W
+--------------CvkaH0ihFkENdKmg5e7QlCGq
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/22/21 23:20, syzbot wrote:
-> Hello,
+On 10/22/21 23:57, Pavel Skripkin wrote:
+> On 10/22/21 23:20, syzbot wrote:
+>> Hello,
+>> 
+>> syzbot has tested the proposed patch but the reproducer is still triggering an issue:
+>> general protection fault in batadv_nc_purge_paths
 > 
-> syzbot has tested the proposed patch but the reproducer is still triggering an issue:
-> general protection fault in batadv_nc_purge_paths
+> 
+> Oh, ok. Next clean up call in batadv_nc_mesh_free() caused GPF, since
+> fields are not initialized. Let's try to clean up one by one and do not
+> break dependencies.
+> 
+> Quite ugly one, but idea is correct, I guess
+> 
+> Also, make each *_init() call clean up all allocated stuff to not call
+> corresponding *_free() on error handling path, since it introduces
+> problems, as syzbot reported
+> 
+> 
+> 
+> 
 
+Whooops.... Forgot to ask syzbot to test the patch
 
-Oh, ok. Next clean up call in batadv_nc_mesh_free() caused GPF, since 
-fields are not initialized. Let's try to clean up one by one and do not 
-break dependencies.
-
-Quite ugly one, but idea is correct, I guess
-
-Also, make each *_init() call clean up all allocated stuff to not call 
-corresponding *_free() on error handling path, since it introduces 
-problems, as syzbot reported
+#syz test
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
 
 
 
 
 With regards,
 Pavel Skripkin
-
-
---------------XP0ezmYVfmtBDjzAIPdDrp9W
+--------------CvkaH0ihFkENdKmg5e7QlCGq
 Content-Type: text/plain; charset=UTF-8; name="ph"
 Content-Disposition: attachment; filename="ph"
 Content-Transfer-Encoding: base64
@@ -200,4 +209,4 @@ CWlmIChyZXQgPCAwKSB7CisJCWJhdGFkdl90dF9nbG9iYWxfdGFibGVfZnJlZShiYXRfcHJp
 dik7CiAJCXJldHVybiByZXQ7CisJfQogCiAJYmF0YWR2X3R2bHZfaGFuZGxlcl9yZWdpc3Rl
 cihiYXRfcHJpdiwgYmF0YWR2X3R0X3R2bHZfb2dtX2hhbmRsZXJfdjEsCiAJCQkJICAgICBi
 YXRhZHZfdHRfdHZsdl91bmljYXN0X2hhbmRsZXJfdjEsCg==
---------------XP0ezmYVfmtBDjzAIPdDrp9W--
+--------------CvkaH0ihFkENdKmg5e7QlCGq--
