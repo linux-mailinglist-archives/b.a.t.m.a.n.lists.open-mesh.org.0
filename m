@@ -2,38 +2,38 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB772437F46
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Oct 2021 22:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB82A4381E6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Oct 2021 06:50:15 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B19AE804BC;
-	Fri, 22 Oct 2021 22:20:12 +0200 (CEST)
-Received: from mail-io1-f70.google.com (mail-io1-f70.google.com [209.85.166.70])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6E57C8030E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 22:20:09 +0200 (CEST)
-Received: by mail-io1-f70.google.com with SMTP id n10-20020a056602340a00b005de2be80c34so3963012ioz.18
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 13:20:09 -0700 (PDT)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A13A981242;
+	Sat, 23 Oct 2021 06:50:14 +0200 (CEST)
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com [209.85.166.72])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id D61B2806F6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 23 Oct 2021 06:50:11 +0200 (CEST)
+Received: by mail-io1-f72.google.com with SMTP id y11-20020a056602164b00b005de32183909so4640049iow.10
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Oct 2021 21:50:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
          :from:to;
-        bh=6SshvQoAb1qCnuZwFL8aCZKQBiGLMPXUkOLXN32/nLs=;
-        b=s/mr37J8WVfwVVW9DJ9YYx4OtUlSMtbhA6K5tTTLe3VaLLOfb2cpEU63nqDlWOIdut
-         zjvZ4K0KNm+WgxOqHYoQcvUIHUI3TyLK5vL8HlU3y16TfNpBU8TzFERVPuaC8hlvxOK7
-         FlAnAEsQ3yiOIEXR2NcuXhdcCTior9lHlFZjSbdLXoNUKr2Wy/M4tL62VrPe0MzGEe/o
-         a44g03VXfU8Zg/NunZyPK6KmY4iTzLYMzH1QhRo4whRcqN3DafDjTtnYZtl1CX2p/bJW
-         tX4VDBtn/xSws5a7N44UfulO+LKsMbctHEa9cJ8IyPRUWurCa9ATBN0ldbnSrnGrnIDv
-         2SQQ==
-X-Gm-Message-State: AOAM531WkNaAZ/FLJlipfebVYK8heMUeUVfwbxhKAq14DtVzeSQnMWvX
-	dzshlx1sv8Rvqrf5uHMDtcYOJWyhpEkqvU2OF/GzO+7tDOpW
-X-Google-Smtp-Source: ABdhPJzXIEwLNIKuCGZS1MPOtRtv3TaniSIjoqCwG7uF1DKFgmGmgvhXCPQ1RvIMxaGC7zCWTkQFb8xqAiXDKWcJchonDNWj4YuB
+        bh=mvePd5L1eky6kii+wlkb5JDOZo/0Hv/Enm522ESKj7E=;
+        b=Xhh++lecBnZ5JdqxRd+wrPpLbxutnQkbgbEKWLsm9bqPsWJMnb2E0wK+A1N8gpTLOo
+         7kC1NejfNfOd3r8Z0eU13khcJvOEWs4UyqTwt9gqei4EaNPiL8ERKjxpL/5iFbNpkXMj
+         SSCV5js5Dk8uB8YB8Xwz0o55Yn3PtNHoZo+Yh2w0VMLccNTyphBdcOaGmMedcjEyHn0X
+         FUD32lPx4wuPLw851yVxdAL+WkkHlvBZ0DzT616Or73e/A58nYxR0/O8I4GUI2uKLriR
+         dR++Bs6BrkkRE6XqQeYVXEx3GBxivnzbYUr1GJHSJvNWWwptCkgbg0zw3JlJHGb2BWm3
+         71Dg==
+X-Gm-Message-State: AOAM530fE7VtwTPq/do3nifDjGwaLF1EyjVLJg8X+TNMBHD/+TqHBk5M
+	4ktnOfNg8g18bYlvQ4PMUy2MYVryJHrH667GloO1Gek/ZH5b
+X-Google-Smtp-Source: ABdhPJzRejzoVuLjfxevXfIloGzhEE6WWMlDeOnHot44VK+A6KSR1zzyIrdx+0ZzffS+srM4B1JAZTs2vGvwqF8jcfAbuC1g48SW
 MIME-Version: 1.0
-X-Received: by 2002:a05:6e02:1689:: with SMTP id f9mr1330382ila.216.1634934008084;
- Fri, 22 Oct 2021 13:20:08 -0700 (PDT)
-Date: Fri, 22 Oct 2021 13:20:08 -0700
-In-Reply-To: <b792adc1-ebf2-d0f7-4007-ed5c99ec3f79@gmail.com>
+X-Received: by 2002:a05:6602:1504:: with SMTP id g4mr2343090iow.133.1634964610411;
+ Fri, 22 Oct 2021 21:50:10 -0700 (PDT)
+Date: Fri, 22 Oct 2021 21:50:10 -0700
+In-Reply-To: <5e29e63c-d2b5-ae72-0e33-5a22e727be3c@gmail.com>
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000c87fbd05cef6bcb0@google.com>
+Message-ID: <000000000000d2f5fa05cefddcf0@google.com>
 Subject: Re: [syzbot] WARNING in batadv_nc_mesh_free
 From: syzbot <syzbot+28b0702ada0bf7381f58@syzkaller.appspotmail.com>
 To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
@@ -42,33 +42,33 @@ To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net,
 	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1634934009;
+	s=20121; t=1634964611;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to; bh=6SshvQoAb1qCnuZwFL8aCZKQBiGLMPXUkOLXN32/nLs=;
-	b=kmuDBDJx53wmywgC4E895ablCPOUL9kNl64tuwwR+bkJrV2yHILMtP2UdBl2sgu3d4WtEe
-	j78CYfVugFAz7laMxZOqXszRC8Yfp+fTNdMT7n6ZJ1H0JNE1IHJWthxwNsMI6j0O3HWCDe
-	FGpnPbm5brVs9lsDtLkpr4OjzopiE44=
+	 in-reply-to:in-reply-to; bh=mvePd5L1eky6kii+wlkb5JDOZo/0Hv/Enm522ESKj7E=;
+	b=CRGo5oJlI0/TyF4gcYgZ5S67SG4TMlMK2TmPmrpJh+4v55uaRAVNC1al0SWdJmhXATsJoF
+	4L31ZqUz+w22ihyDvreJeXX3ba6lKgu59YicqLNszl8/wLbKcF7rZZZsfPJthYCLb+uq4U
+	5aYdLbfHa8+21nGhJa/fotZpNR6ztfA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of 3-BxzYQkbABE9FG1r22v8r66zu.x55x2vB9v8t54Av4A.t53@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.70 as permitted sender) smtp.mailfrom=3-BxzYQkbABE9FG1r22v8r66zu.x55x2vB9v8t54Av4A.t53@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
+	spf=pass (diktynna.open-mesh.org: domain of 3gpRzYQkbAIs7DEzp00t6p44xs.v33v0t97t6r328t28.r31@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.72 as permitted sender) smtp.mailfrom=3gpRzYQkbAIs7DEzp00t6p44xs.v33v0t97t6r328t28.r31@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
 	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=appspotmail.com (policy=none)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634934009; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1634964611; a=rsa-sha256;
 	cv=none;
-	b=B2NdGTnaYjXhDlMAIdaQCbM2Ux20Z+CNcbu7SDTglxMpExYjT7cwqrFA9xdW4qBwh1C9QG
-	gP5S27fl734bIkxU1ZouUUcf2WxtUC/SMMaQRApBK+DYCbAdrN+IjZ4eZQ1AqtN/Uw96z+
-	QTY55kGFdXM72ZLKdv+K3Yqem3xW9AE=
-Message-ID-Hash: XNCAE6JOEB5B4U7AJGEIZ3MP4T6CEX5M
-X-Message-ID-Hash: XNCAE6JOEB5B4U7AJGEIZ3MP4T6CEX5M
-X-MailFrom: 3-BxzYQkbABE9FG1r22v8r66zu.x55x2vB9v8t54Av4A.t53@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+	b=cPqgLR1VHu73T8yA7pr03GpaqeGXNUUFzhMFfanpwuDQvSSaiA59ZNiffqMhNhfbpXsEji
+	2q1bRI7Ky1IKbf+nnYscfs37n4Uu07hQ40+f3kk1GT/69zsem+sRZdLQDEfFr45oYF/5AL
+	cuA+9QGkixwJYw3X/X/elCl3gve9dTE=
+Message-ID-Hash: OUU3ANCQK46AIVHLRARGWNQVUIXH6T4B
+X-Message-ID-Hash: OUU3ANCQK46AIVHLRARGWNQVUIXH6T4B
+X-MailFrom: 3gpRzYQkbAIs7DEzp00t6p44xs.v33v0t97t6r328t28.r31@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XNCAE6JOEB5B4U7AJGEIZ3MP4T6CEX5M/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OUU3ANCQK46AIVHLRARGWNQVUIXH6T4B/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -77,102 +77,17 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 Hello,
 
-syzbot has tested the proposed patch but the reproducer is still triggering an issue:
-general protection fault in batadv_nc_purge_paths
+syzbot has tested the proposed patch and the reproducer did not trigger any issue:
 
-RBP: 00007fe7b40631d0 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000002
-R13: 00007ffe7ffd3def R14: 00007fe7b4063300 R15: 0000000000022000
-general protection fault, probably for non-canonical address 0xdffffc0000000002: 0000 [#1] PREEMPT SMP KASAN
-KASAN: null-ptr-deref in range [0x0000000000000010-0x0000000000000017]
-CPU: 1 PID: 9061 Comm: syz-executor.0 Not tainted 5.15.0-rc6-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-RIP: 0010:batadv_nc_purge_paths+0x38/0x3f0 net/batman-adv/network-coding.c:437
-Code: 48 89 d3 49 89 f6 48 89 7c 24 58 49 bd 00 00 00 00 00 fc ff df e8 38 48 ab f7 4d 8d 7e 10 4c 89 f8 48 c1 e8 03 48 89 44 24 48 <42> 8a 04 28 84 c0 0f 85 88 03 00 00 41 8b 2f 31 ff 89 ee e8 20 4c
-RSP: 0018:ffffc9000d04eac0 EFLAGS: 00010202
-RAX: 0000000000000002 RBX: 0000000000000000 RCX: ffff888078270000
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88807ec2cc80
-RBP: 00000000fffffff4 R08: ffffffff8154e5b4 R09: ffffed100fd85adc
-R10: ffffed100fd85adc R11: 0000000000000000 R12: ffff88807ec2cc80
-R13: dffffc0000000000 R14: 0000000000000000 R15: 0000000000000010
-FS:  00007fe7b4063700(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f359172e000 CR3: 000000005e749000 CR4: 00000000003506e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- batadv_nc_mesh_free+0x7a/0xf0 net/batman-adv/network-coding.c:1869
- batadv_mesh_free+0x6f/0x140 net/batman-adv/main.c:249
- batadv_mesh_init+0x5b1/0x620 net/batman-adv/main.c:230
- batadv_softif_init_late+0x8fe/0xd70 net/batman-adv/soft-interface.c:804
- register_netdevice+0x826/0x1c30 net/core/dev.c:10229
- __rtnl_newlink net/core/rtnetlink.c:3458 [inline]
- rtnl_newlink+0x14b3/0x1d10 net/core/rtnetlink.c:3506
- rtnetlink_rcv_msg+0x934/0xe60 net/core/rtnetlink.c:5572
- netlink_rcv_skb+0x200/0x470 net/netlink/af_netlink.c:2510
- netlink_unicast_kernel net/netlink/af_netlink.c:1319 [inline]
- netlink_unicast+0x814/0x9f0 net/netlink/af_netlink.c:1345
- netlink_sendmsg+0xa29/0xe50 net/netlink/af_netlink.c:1935
- sock_sendmsg_nosec net/socket.c:704 [inline]
- sock_sendmsg net/socket.c:724 [inline]
- ____sys_sendmsg+0x5b9/0x910 net/socket.c:2409
- ___sys_sendmsg net/socket.c:2463 [inline]
- __sys_sendmsg+0x36f/0x450 net/socket.c:2492
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x44/0xd0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x44/0xae
-RIP: 0033:0x7fe7b48eda39
-Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007fe7b4063188 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
-RAX: ffffffffffffffda RBX: 00007fe7b49f0f60 RCX: 00007fe7b48eda39
-RDX: 0000000000000000 RSI: 0000000020000140 RDI: 0000000000000003
-RBP: 00007fe7b40631d0 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000002
-R13: 00007ffe7ffd3def R14: 00007fe7b4063300 R15: 0000000000022000
-Modules linked in:
----[ end trace 67ff054734964acf ]---
-RIP: 0010:batadv_nc_purge_paths+0x38/0x3f0 net/batman-adv/network-coding.c:437
-Code: 48 89 d3 49 89 f6 48 89 7c 24 58 49 bd 00 00 00 00 00 fc ff df e8 38 48 ab f7 4d 8d 7e 10 4c 89 f8 48 c1 e8 03 48 89 44 24 48 <42> 8a 04 28 84 c0 0f 85 88 03 00 00 41 8b 2f 31 ff 89 ee e8 20 4c
-RSP: 0018:ffffc9000d04eac0 EFLAGS: 00010202
-RAX: 0000000000000002 RBX: 0000000000000000 RCX: ffff888078270000
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88807ec2cc80
-RBP: 00000000fffffff4 R08: ffffffff8154e5b4 R09: ffffed100fd85adc
-R10: ffffed100fd85adc R11: 0000000000000000 R12: ffff88807ec2cc80
-R13: dffffc0000000000 R14: 0000000000000000 R15: 0000000000000010
-FS:  00007fe7b4063700(0000) GS:ffff8880b9c00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007fc230f87020 CR3: 000000005e749000 CR4: 00000000003506f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-----------------
-Code disassembly (best guess):
-   0:	48 89 d3             	mov    %rdx,%rbx
-   3:	49 89 f6             	mov    %rsi,%r14
-   6:	48 89 7c 24 58       	mov    %rdi,0x58(%rsp)
-   b:	49 bd 00 00 00 00 00 	movabs $0xdffffc0000000000,%r13
-  12:	fc ff df
-  15:	e8 38 48 ab f7       	callq  0xf7ab4852
-  1a:	4d 8d 7e 10          	lea    0x10(%r14),%r15
-  1e:	4c 89 f8             	mov    %r15,%rax
-  21:	48 c1 e8 03          	shr    $0x3,%rax
-  25:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
-* 2a:	42 8a 04 28          	mov    (%rax,%r13,1),%al <-- trapping instruction
-  2e:	84 c0                	test   %al,%al
-  30:	0f 85 88 03 00 00    	jne    0x3be
-  36:	41 8b 2f             	mov    (%r15),%ebp
-  39:	31 ff                	xor    %edi,%edi
-  3b:	89 ee                	mov    %ebp,%esi
-  3d:	e8                   	.byte 0xe8
-  3e:	20                   	.byte 0x20
-  3f:	4c                   	rex.WR
-
+Reported-and-tested-by: syzbot+28b0702ada0bf7381f58@syzkaller.appspotmail.com
 
 Tested on:
 
-commit:         1d4590f5 Merge tag 'acpi-5.15-rc7' of git://git.kernel..
+commit:         9c0c4d24 Merge tag 'block-5.15-2021-10-22' of git://gi..
 git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=156e86c4b00000
 kernel config:  https://syzkaller.appspot.com/x/.config?x=d95853dad8472c91
 dashboard link: https://syzkaller.appspot.com/bug?extid=28b0702ada0bf7381f58
 compiler:       Debian clang version 11.0.1-2, GNU ld (GNU Binutils for Debian) 2.35.2
-patch:          https://syzkaller.appspot.com/x/patch.diff?x=16cb3daf300000
+patch:          https://syzkaller.appspot.com/x/patch.diff?x=1553d4c4b00000
+
+Note: testing is done by a robot and is best-effort only.
