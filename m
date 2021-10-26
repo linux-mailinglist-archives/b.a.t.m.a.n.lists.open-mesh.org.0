@@ -2,114 +2,103 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57BDA43AC78
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 Oct 2021 08:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A90F43B4A5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 Oct 2021 16:46:12 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 542F08279B;
-	Tue, 26 Oct 2021 08:51:55 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C5360803C8
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 26 Oct 2021 08:51:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1635231087;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sXZPCO+K9iz6r8Jr0Y1Mf/siG+PaXpPzZyiBwgb6O9w=;
-	b=yxR4432YXVP55R6tvO9S7z0V7PS37LdEYb0R6SB3NftKxzUdLTprlerIIvTqdsvF63HsUJ
-	GFpZKCGbof7ydV/7Mf/6vLVbrhBjye+5wgonKlzuVZALn5Y2qFYLM5VbKY0anjb6DuqEly
-	RslbsRh6W9Q2JrouFJumUJumaDivKI4=
-From: Sven Eckelmann <sven@narfation.org>
-To: mareklindner@neomailbox.ch, Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH] net: batman-adv: fix error handling
-Date: Tue, 26 Oct 2021 08:51:20 +0200
-Message-ID: <2283323.BJRDQVktmA@ripper>
-In-Reply-To: <20211025174950.1bec22fb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-References: <2056331.oJahCzYEoq@sven-desktop> <2526100.mKikVBQdmv@sven-l14> <20211025174950.1bec22fb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id EA8C580905;
+	Tue, 26 Oct 2021 16:46:10 +0200 (CEST)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8E40E803DC
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 26 Oct 2021 15:50:08 +0200 (CEST)
+Received: by mail.kernel.org (Postfix) with ESMTPS id C24EE61002;
+	Tue, 26 Oct 2021 13:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1635256206;
+	bh=e2eq+OvgX7av0CHumTLIbp3yo/firkDnnaRKg2NNHAY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=oWREKgZA4a+FsvnRax7ajgDugmRAv4c3Xhy7nKsm6ld5LlTy49DxL/7PgcE6AP5bn
+	 vQuNU72Ue8aQNSnLEYDqsw76cmavZr9ctLYEof91PMOIyYb0+gMBt4MfHPV/fVMUZt
+	 B6Pts1mdKCAjtyOHQbpHTwxsahbNP1Wufy7spM1IsRftynAze0HlzzfwIpBByUVYHY
+	 FfOoXG7z4pr2uyapRjnGlw+w9yaUiwh38KRcKPAekHlcaHw0bYJY38CVfyfX9S5WGe
+	 qYK3cPUnDIrnhtzsEf6GTyGuYW8S+W7YQ6SlFr9POi3N6m1FUvmGfwb7Rq0yrYF6e0
+	 LkQ2ac1OeKQaw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id B4C1D60726;
+	Tue, 26 Oct 2021 13:50:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1884404.dNYcoPC7rg"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Subject: Re: [PATCH] net: batman-adv: fix error handling
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <163525620673.3700.4010737178045204457.git-patchwork-notify@kernel.org>
+Date: Tue, 26 Oct 2021 13:50:06 +0000
+References: <20211024131356.10699-1-paskripkin@gmail.com>
+In-Reply-To: <20211024131356.10699-1-paskripkin@gmail.com>
+To: Pavel Skripkin <paskripkin@gmail.com>
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1635231087;
+	s=20121; t=1635256208;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=sXZPCO+K9iz6r8Jr0Y1Mf/siG+PaXpPzZyiBwgb6O9w=;
-	b=Ui7CJhPgi9CnNAw74XiyRsm1wK54+pDnsHhVQvzXdDrAVsS5d4zNBuo8avnQIXb/KVcBIt
-	CvpcnXH7EaMYqe1ARsEe1lEoRACgXKRHQwgWneZx5vQngmqHXtbhuXN7cQl4GOF4APOx20
-	qlPusOMHju+bP9MYC9RvgJqmFZiwAFk=
+	bh=0mknEJpBrGGinpL8pzZP8SZgh/w3ikJeoQ8zzpYLqSY=;
+	b=OG9GKg3gLD8OYWYBGV/jfWPmjHM7KCxqXJJWUIDRdsSk6/7DPw334fHqdFcu9QCk3816bR
+	AKaBHkW9MLtgXwxNz2HBAKEU67gVHGnl4Skt1b2sSMsy1bv/n8+PCDwyOpvEvfOBsXeF63
+	gLhN7FgLCSsC9M1OqObldbUeIcBlgtg=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=yxR4432Y;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1635231087; a=rsa-sha256;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=oWREKgZA;
+	dmarc=pass (policy=none) header.from=kernel.org;
+	spf=pass (diktynna.open-mesh.org: domain of patchwork-bot+netdevbpf@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1635256208; a=rsa-sha256;
 	cv=none;
-	b=Z37HMzKV2bmBlF6J0c3mauyILmyQoeimE4shJKPgYgpfDkF5m7dQJcdyWH6nxJ08oXXoKy
-	LtgJI2r0qjXAnxLIUXMqQ7NA6epTxHLdrJg8vry4Bh7Hk5jm7ZGI8ynoxgHNJ4CXBNnWxA
-	7j+QjCoI4/pppuuSiwhEqkr83QGZIBE=
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Hits: max-recipients
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-size; news-moderation; no-subject; suspicious-header
-Message-ID-Hash: ZAAROIZ74V4MWJ2TPFBGJE55A7XRCC6J
-X-Message-ID-Hash: ZAAROIZ74V4MWJ2TPFBGJE55A7XRCC6J
-X-Mailman-Approved-At: Tue, 26 Oct 2021 06:51:51 +0200
-CC: a@unstable.cc, davem@davemloft.net, Pavel Skripkin <paskripkin@gmail.com>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, syzbot+28b0702ada0bf7381f58@syzkaller.appspotmail.com
+	b=NI7ObSELe0ZrI39w3MiOLUKUW3GdHFyOXXjrHuwRAi8H+gGh12XxwwMDDgzwB7wKOTzhhY
+	EHzzvIh2xmvAT7xorpwmtntYf9EnRfj2xD4lT7nq9YvRmN9JknsDjUcFvW98Qh8uNzcx6y
+	l2dXNyRXs65pyPG97kSrdlI1+nGIA8I=
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: 7J3WM7XIJAGO2P53PVVKPAGWJ4OWNR2T
+X-Message-ID-Hash: 7J3WM7XIJAGO2P53PVVKPAGWJ4OWNR2T
+X-Mailman-Approved-At: Tue, 26 Oct 2021 14:46:08 +0200
+CC: mareklindner@neomailbox.ch, a@unstable.cc, davem@davemloft.net, kuba@kernel.org, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, syzbot+28b0702ada0bf7381f58@syzkaller.appspotmail.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZAAROIZ74V4MWJ2TPFBGJE55A7XRCC6J/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CF7LSNNGV6N77UILI4E576PROLHQUIET/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart1884404.dNYcoPC7rg
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: mareklindner@neomailbox.ch, Jakub Kicinski <kuba@kernel.org>
-Cc: sw@simonwunderlich.de, a@unstable.cc, davem@davemloft.net, Pavel Skripkin <paskripkin@gmail.com>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, syzbot+28b0702ada0bf7381f58@syzkaller.appspotmail.com
-Subject: Re: [PATCH] net: batman-adv: fix error handling
-Date: Tue, 26 Oct 2021 08:51:20 +0200
-Message-ID: <2283323.BJRDQVktmA@ripper>
-In-Reply-To: <20211025174950.1bec22fb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-References: <2056331.oJahCzYEoq@sven-desktop> <2526100.mKikVBQdmv@sven-l14> <20211025174950.1bec22fb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Hello:
 
-On Tuesday, 26 October 2021 02:49:50 CEST Jakub Kicinski wrote:
-[...]
-> > Acked-by: Sven Eckelmann <sven@narfation.org>
-> 
-> FWIW I'm marking this as "Awaiting upstream" in netdev patchwork,
-> please LMK if you prefer for it to be applied directly.
+This patch was applied to netdev/net.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-Please apply this directly. Thanks
+On Sun, 24 Oct 2021 16:13:56 +0300 you wrote:
+> Syzbot reported ODEBUG warning in batadv_nc_mesh_free(). The problem wa=
+s
+> in wrong error handling in batadv_mesh_init().
+>=20
+> Before this patch batadv_mesh_init() was calling batadv_mesh_free() in =
+case
+> of any batadv_*_init() calls failure. This approach may work well, when
+> there is some kind of indicator, which can tell which parts of batadv a=
+re
+> initialized; but there isn't any.
+>=20
+> [...]
 
-Kind regards,
-	Sven
---nextPart1884404.dNYcoPC7rg
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Here is the summary with links:
+  - net: batman-adv: fix error handling
+    https://git.kernel.org/netdev/net/c/6f68cd634856
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmF3pWgACgkQXYcKB8Em
-e0ZXrRAAz8YPPokOa159qdcM2v2sLSPMwVaTHKdKXPXvXPJa5pZuzHLvHw/JB/+M
-TjW4etUJiDDzrwG9Aqhc7jzAYSZYqLVJWU01NKtE7ZO5LcC/nutOFy6jjP/AhzAX
-O+NTKuCK6hIsLhwqdmXWsH/1erL4VB0yPhOeVS97ue0cK4gnF8dwABguDCZQwMhc
-cEYyDB3D9UO132lIHXagjTnVe5BSjFhDMragJOyhAScxRF+ky5F9P7Z0NuoKD7l8
-ExOb2hhWtSzPengt+Y5cGh3DygrhDLxisWFD+k05xj2KvhGWH6+oD8xsI8GppL9u
-H1AJrzKGNRt9w7qEAAU2hH957NzkMnTplGCPtjnaSGDb4UtqVDthYPcIsXF7qW/N
-+QASHuogp8zoavb+5eRgRI0dEfPr0epwAwT8VeBpMD4Ia8+RZeoKv89koXM85O3m
-MxvQ2uhCUAASNvhkcSVK5dK51kg3WJ7YBCofIU+882wOeb8Ooz0qR0cyOLACV1MV
-zZx4DFRsBOSSrL2TL2f3ljG30hyH4m0jIZ+TWewfQYl5E4kXnT15rrDFL/yL7MXD
-j1BJuZ0mR3276a1MOh2rAJ0w//xOVLjIRe5ogTXPoB8K49tTjwxYasfZQPu7v6R5
-vQzWC6AHBvxMXu3S/+mX0YosasEQItbsGZq4TDGBqegGFaw5hr4=
-=o3a0
------END PGP SIGNATURE-----
-
---nextPart1884404.dNYcoPC7rg--
-
+You are awesome, thank you!
+--=20
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
