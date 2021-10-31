@@ -1,55 +1,55 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F794410EC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 31 Oct 2021 22:06:52 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63AAE4410FF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 31 Oct 2021 22:30:29 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9125380B67;
-	Sun, 31 Oct 2021 22:06:51 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5023F825E1;
+	Sun, 31 Oct 2021 22:30:28 +0100 (CET)
 Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 16EBD807E3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 31 Oct 2021 22:06:47 +0100 (CET)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DEBC53EA35;
-	Sun, 31 Oct 2021 22:06:45 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2AE388077B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 31 Oct 2021 22:30:25 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 29FE53E8B9;
+	Sun, 31 Oct 2021 22:30:23 +0100 (CET)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH] batman-adv: allow netlink usage in unprivileged containers
-Date: Sun, 31 Oct 2021 22:06:42 +0100
-Message-Id: <20211031210642.2388-1-linus.luessing@c0d3.blue>
+Subject: [PATCHv2] batman-adv: allow netlink usage in unprivileged containers
+Date: Sun, 31 Oct 2021 22:30:12 +0100
+Message-Id: <20211031213012.2446-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 X-Last-TLS-Session-Version: TLSv1.3
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1635714408;
+	s=20121; t=1635715825;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=9zsDOXeT6fNH7HHQ5lSy/Mxgb7uzkvXtea/ZWSA9qj0=;
-	b=25mxuWZJwZnc9EE/pwLdhHMZTooDSEMSACAb5O/8G5OALA+uFI3eFsNvAvv8dAF850YZxQ
-	wPE15HsmFQHxBap0hb6pBJ+NGWpVMbqiGGkVUmyuM8bZO0zznjyXDKraVN2Vb6GrF6XM3w
-	5sPyEWxyAA9UmTPuVWeaeVgzHDKWK3k=
+	bh=xejtTuaAiWzHIuJEwJx7cBUEAkdAQy1WF1K4uyzQ01s=;
+	b=y0BFIXS9a7EAvZ5p1tf15GFclFtzTN7npblErGv5NuiQzbCgZrlxlLgxXAl5F2ZDvJ8GTm
+	a8iKbNofkadKK6RWpn/HkUhx6aRICvd+CquIauWowB8qDdM+xfRdhQ/NxC8mW1PEPDzA+/
+	I4IpnL4Jqe8VL/pGMKyFMigBQsA+SC4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue;
 	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1635714408; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1635715825; a=rsa-sha256;
 	cv=none;
-	b=h2V0C/UeIZqLW3vai5JrK/Pm/idFYIQU4nFvlkPB35o/kqV3Py+Jrskq3uDAsylSWsGFf7
-	CrL7Rzhdo/F1ccJExUTPu23jNgNV1Yz0gxbtsDRqE/v1saOTtqoy5ZrNdhtMVOlMyfVWU1
-	duXkFwrIo/kYufCu2EEHpWE/U2l/0KI=
+	b=ZNhHbNMjGTo2S3pYbbs62Ym4ZYBF0U6jB8W0u/HbfPZhpljrpPDXtzpBzrtxtchB03jvSR
+	G7WZSDfcl/uXnRMjVfnqfBrmE5y+7A5X3P/MwN+LqcwnQSilLUj7L7AoTpieQiwF+LljKS
+	NF6gssCbf9KMrKUlzXhtfaNmSQFqNmg=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: T2JGI754L2Z5RW656IPPPBTE4YZ35PPS
-X-Message-ID-Hash: T2JGI754L2Z5RW656IPPPBTE4YZ35PPS
+Message-ID-Hash: 77TUMZETETX42A62CJRH2YCQJMJ5N7MB
+X-Message-ID-Hash: 77TUMZETETX42A62CJRH2YCQJMJ5N7MB
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Tycho Andersen <tycho.andersen@canonical.com>
+CC: Tycho Andersen <tycho@tycho.pizza>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/T2JGI754L2Z5RW656IPPPBTE4YZ35PPS/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/77TUMZETETX42A62CJRH2YCQJMJ5N7MB/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -88,9 +88,14 @@ use the newly introduced "batctl if create routing_algo RA_NAME" /
 IFLA_BATADV_ALGO_NAME to set the routing algorithm on interface
 creation, which already works fine in an unprivileged container.
 
-Cc: Tycho Andersen <tycho.andersen@canonical.com>
+Cc: Tycho Andersen <tycho@tycho.pizza>
 Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 ---
+
+Changelog v2:
+* updating Tycho Andersen's email in Cc as @canonical.com returned an
+  "Undelivered Mail Returned to Sender"
+
 Cc'ing Tycho Andersen as he introduced the GENL_UNS_ADMIN_PERM in the=20
 following commit:
 
