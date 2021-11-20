@@ -1,108 +1,112 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB531457E59
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 20 Nov 2021 13:40:35 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB0AD457E5A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 20 Nov 2021 13:40:39 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0117881A7E;
-	Sat, 20 Nov 2021 13:39:57 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 49E3F83DBD
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 20 Nov 2021 13:39:48 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 609D28166D;
+	Sat, 20 Nov 2021 13:40:08 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3A69383E07
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 20 Nov 2021 13:40:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1637411987;
+	s=20121; t=1637412006;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4maUAAS44X66FxWwAzQabuiiYD7i+Wp6i2zb+oOcTlg=;
-	b=lPRpHNnNnRf9/6aY+Y/kI+k7HE3xH3EOkP3uTDMovdz/YQvHnUmC1tAxh77aQ5m6U8iguP
-	0IK7r2+TDGdsQNJK2gGRztKs/pNp/snz3cE5J1aUWm1qBsgjF63NCQ9LtPzJOep3iENp+g
-	9ze9w2Y6xd1dOItWXLu3xKleXtNxKh4=
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=qLLq3fj17J46k64ugYLdpOib5/vxhkCELZ10FySSXSw=;
+	b=xG2R9qv8bGF/CTNE6S8dXRfpVg4QajF99KEs4aMixdkERi6Ah1wgMl3MH7LJjpUY18jvHe
+	80hAcYrKMi8G6KgIORCYcHK3mvHCL72Kq1RzDz/SoP+ei0IwV/3HHBdE0Q67lLGKO7jrQ5
+	RC8krL2j37dfd7cFPYHgoLftV/TnCM0=
 From: Sven Eckelmann <sven@narfation.org>
 To: stable@vger.kernel.org
-Subject: [PATCH 4.4 11/11] batman-adv: Avoid WARN_ON timing related checks
-Date: Sat, 20 Nov 2021 13:39:39 +0100
-Message-Id: <20211120123939.260723-12-sven@narfation.org>
+Subject: [PATCH 4.9 0/7] batman-adv: Fixes for stable/linux-4.9.y
+Date: Sat, 20 Nov 2021 13:39:51 +0100
+Message-Id: <20211120123958.260826-1-sven@narfation.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211120123939.260723-1-sven@narfation.org>
-References: <20211120123939.260723-1-sven@narfation.org>
 MIME-Version: 1.0
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637411988; a=rsa-sha256;
+Content-Type: text/plain; charset=UTF-8
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637412006; a=rsa-sha256;
 	cv=none;
-	b=rNi4DwhS6MvMHrj3p6umvxEEEvsGRrkGd360kjvmwPmEUpfCUkVBGPQAqhIOjkvLLV9855
-	RiirUJ5SevwJsWEgkuNe42dyW3xJaBMB/+XwY3gVzb4rFQVBLGoGUFZPZGrI3sCVNnNaqh
-	OFhyhHqRrk9Bs10PdupPevdX8IjIEj4=
+	b=hRB0xMaEd+/ShjvT9Gdk/mXle3LePCXGfHuy6ZZjR6cdt7zcxdTwAuv6aUNxmQipR786AP
+	C8mM272qCuiQkmSUv6z/SB7nOhXmbexnDdifaueO3eWH2SE0lXSg+PRqiY9XBJw/W4cNVZ
+	noIwQf4cOGNf8VmOksF+KzI4GJWvfdw=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1637411988;
+	s=20121; t=1637412006;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=4maUAAS44X66FxWwAzQabuiiYD7i+Wp6i2zb+oOcTlg=;
-	b=jj3ngFUHRSdn3uTV3SGLnbHneJjAHt1lZ9XoFUxeGeIxcw9dVzB56yZGgMNReV0YvMMIX6
-	shvJwW52ICik3VangWiCnJpJgCu50+n5S4YGqZ6NekVLjxjrhvhJJnIwEaLo76ceP1FvMR
-	DxGgb1hnHT8JSq2hG0tXsZx80Smw9uQ=
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=qLLq3fj17J46k64ugYLdpOib5/vxhkCELZ10FySSXSw=;
+	b=mr+JZq8OHAPZYbeX5huurohOP9enj+W7GA8nz8Ma3qIIfWr4yCpCZGhvKE4yvxqRuTstJ/
+	l90RMOeaYazx3rCmPHrwanw98vmVdDi5AnhqmLP7IloBKWcu1xBL4ZYJp3UcZwVhw9HiwS
+	XEUGNbHog6GWHMl1c5xiPEri0xMnVxY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=lPRpHNnN;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=xG2R9qv8;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: DULIJR5ZXAF35A5RD3YMUXECT66KQG7T
-X-Message-ID-Hash: DULIJR5ZXAF35A5RD3YMUXECT66KQG7T
+Message-ID-Hash: KKSKJQDRWVU626KSHQR4HLWPNCS4XMEJ
+X-Message-ID-Hash: KKSKJQDRWVU626KSHQR4HLWPNCS4XMEJ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org, Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>, syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DULIJR5ZXAF35A5RD3YMUXECT66KQG7T/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KKSKJQDRWVU626KSHQR4HLWPNCS4XMEJ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-commit 9f460ae31c4435fd022c443a6029352217a16ac1 upstream.
+Hi,
 
-The soft/batadv interface for a queued OGM can be changed during the time
-the OGM was queued for transmission and when the OGM is actually
-transmitted by the worker.
+I went through  all changes in batman-adv since v4.9 with a Fixes: line
+and checked whether they were backported to the LTS kernels. The ones whi=
+ch
+weren't ported and applied to this branch are now part of this patch seri=
+es.
 
-But WARN_ON must be used to denote kernel bugs and not to print simple
-warnings. A warning can simply be printed using pr_warn.
+There are also following three patches included:
 
-Reported-by: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
-Reported-by: syzbot+c0b807de416427ff3dd1@syzkaller.appspotmail.com
-Fixes: ef0a937f7a14 ("batman-adv: consider outgoing interface in OGM send=
-ing")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-[ bp: 4.4 backported: adjust context. ]
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- net/batman-adv/bat_iv_ogm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+* batman-adv: Consider fragmentation for needed_headroom
+* batman-adv: Reserve needed_*room for fragments
+* batman-adv: Don't always reallocate the fragmentation skb head
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index caea5bb38d4b..6f8d2fe114f6 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -526,8 +526,10 @@ static void batadv_iv_ogm_emit(struct batadv_forw_pa=
-cket *forw_packet)
- 	if (WARN_ON(!forw_packet->if_outgoing))
- 		goto out;
-=20
--	if (WARN_ON(forw_packet->if_outgoing->soft_iface !=3D soft_iface))
-+	if (forw_packet->if_outgoing->soft_iface !=3D soft_iface) {
-+		pr_warn("%s: soft interface switch for queued OGM\n", __func__);
- 		goto out;
-+	}
-=20
- 	if (forw_packet->if_incoming->if_status !=3D BATADV_IF_ACTIVE)
- 		goto out;
+which could in some circumstances cause packet loss but which were create=
+d
+to fix high CPU load/low throughput problems. But I've added them here
+anyway because the corresponding VXLAN patches were also added to stable.
+And some stable kernels also got these fixes a while back.
+
+Kind regards,
+	Sven
+
+Linus L=C3=BCssing (3):
+  batman-adv: Fix own OGM check in aggregated OGMs
+  batman-adv: mcast: fix duplicate mcast packets in BLA backbone from
+    LAN
+  batman-adv: mcast: fix duplicate mcast packets from BLA backbone to
+    mesh
+
+Sven Eckelmann (4):
+  batman-adv: Keep fragments equally sized
+  batman-adv: Consider fragmentation for needed_headroom
+  batman-adv: Reserve needed_*room for fragments
+  batman-adv: Don't always reallocate the fragmentation skb head
+
+ net/batman-adv/bat_v_ogm.c             |  11 +--
+ net/batman-adv/bridge_loop_avoidance.c | 103 +++++++++++++++++++++----
+ net/batman-adv/fragmentation.c         |  42 ++++++----
+ net/batman-adv/hard-interface.c        |   3 +
+ net/batman-adv/multicast.c             |  31 ++++++++
+ net/batman-adv/multicast.h             |  15 ++++
+ net/batman-adv/soft-interface.c        |   5 +-
+ 7 files changed, 172 insertions(+), 38 deletions(-)
+
 --=20
 2.30.2
