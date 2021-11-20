@@ -1,54 +1,58 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA822457E77
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 20 Nov 2021 13:41:50 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0757457E78
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 20 Nov 2021 13:41:53 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E658A8449A;
-	Sat, 20 Nov 2021 13:41:02 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 76D9483DF5;
+	Sat, 20 Nov 2021 13:41:04 +0100 (CET)
 Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5BA7883DEC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 20 Nov 2021 13:41:00 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 22D4383EED
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 20 Nov 2021 13:41:01 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
 	s=20121; t=1637412060;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=t7wbxovLoX7LRwlLOel7o2Ymj+dtVX9lRg/4gewPTQk=;
-	b=1r5RT5rWdN4r6tse23U/puZ/UqDahbQaUyy3Pew9hKKnmd3AYVAjxI7pdPKrEDUwHWjI46
-	2Vo8RPA27yju39rbn1WYdjdDo0jqKBVO4o5G+l20zm1tVI0OPXMl5QGzq8tKCRxu+WM1Bi
-	bTbspJfiwaCCHgQJmgzHa3rfzr1hpfY=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZpdsrkCS3uAi4Z7sRXf+IT4tYwKyqPJtQ31TxLsuk5M=;
+	b=KxMMN2uBySDradiGEHSnHkaERoyCS0+E+DpFKFFe9PSZSNtu9xXzm7gp1MFigsiBtk1Mr0
+	UuNwV7SXeRXU7MyATS1Qf71qhKyzl2/7NMufXv4bsc1Xlob6a8XHH67jyrsajiUaJRYHhn
+	ttBRm/sZYt5fWxrTEhb/NCfG5O4/9ow=
 From: Sven Eckelmann <sven@narfation.org>
 To: stable@vger.kernel.org
-Subject: [PATCH 5.4 0/3] batman-adv: Fixes for stable/linux-4.19.y
-Date: Sat, 20 Nov 2021 13:40:50 +0100
-Message-Id: <20211120124053.261156-1-sven@narfation.org>
+Subject: [PATCH 5.4 1/3] batman-adv: Consider fragmentation for needed_headroom
+Date: Sat, 20 Nov 2021 13:40:51 +0100
+Message-Id: <20211120124053.261156-2-sven@narfation.org>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211120124053.261156-1-sven@narfation.org>
+References: <20211120124053.261156-1-sven@narfation.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637412060; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637412061; a=rsa-sha256;
 	cv=none;
-	b=xJtlwi0EtTB2H0Aj6KqY92jYxT72EA63hk4OpyfS3KytV+NiUJE7/SXZ1RfVMQtjccjOgL
-	nQJ0e0gLf1xtNvcB+nUH+soAbZe4uyN5znluUhmXR6u6dMISVByOD4e0gt50KGCkHuL7WK
-	F5fheh6arQy8v5rhS4zCGGnOz738QCw=
+	b=3puuKFQlPL/NYaOtt0PuvFES0lXWIuAaftrQ0fCxyNHp8PLPuL5rY20Yqbp0izLde0uEpT
+	kpPWyqhkE6AqE2+lhKETuyBd5wJ4OhJ329+TbmwLph+I1r2eC5XwIkj8BA1+jQAr9REGft
+	xDF5jwn28ks3D/c6Qr9t2ZfXLlXBY4M=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1637412060;
+	s=20121; t=1637412061;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=t7wbxovLoX7LRwlLOel7o2Ymj+dtVX9lRg/4gewPTQk=;
-	b=V/uIxmUqSspmE4M/swqKBOYorajh9FSCS7xYD7s27dFCspBDlj55fu/nW/IRpZx/QU/JQu
-	xXsL43xcDRfEnKRyS3EnRxB7sSzrxV5V8PtoYWiqJ7BG6oMKd5nGaoczwdFpvBXiuudHeH
-	3ftMOzWp6QvYG++j3ldxyABtTFCPS64=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=ZpdsrkCS3uAi4Z7sRXf+IT4tYwKyqPJtQ31TxLsuk5M=;
+	b=PWlTxOu8fU23S/r9+GDDtw6TnQP1Hl+hMpc5ChmwkpWJMpLeEFX1cPneEixAeHuyAPLRjh
+	NXMe2Q1tnfGqXW+CUsKJm/G8DQLkkdQlpMqZmjiY1apW57h6UUGQCbgiLV04IDbY3uFNNf
+	x+jcFoRUQAgff+CaS51UY8Eev7WdHXQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=1r5RT5rW;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=KxMMN2uB;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: IX74YV6RDRNDLHXWSYKSPYLL5FFBC74B
-X-Message-ID-Hash: IX74YV6RDRNDLHXWSYKSPYLL5FFBC74B
+Message-ID-Hash: M5GBMP2G3PXFQZZJHQVGC63NCUUYEWVL
+X-Message-ID-Hash: M5GBMP2G3PXFQZZJHQVGC63NCUUYEWVL
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: b.a.t.m.a.n@lists.open-mesh.org
@@ -56,44 +60,49 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IX74YV6RDRNDLHXWSYKSPYLL5FFBC74B/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/M5GBMP2G3PXFQZZJHQVGC63NCUUYEWVL/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi,
+commit 4ca23e2c2074465bff55ea14221175fecdf63c5f upstream.
 
-I went through  all changes in batman-adv since v4.19 with a Fixes: line
-and checked whether they were backported to the LTS kernels. The ones whi=
-ch
-weren't ported and applied to this branch are now part of this patch seri=
-es.
+If a batman-adv packets has to be fragmented, then the original batman-ad=
+v
+packet header is not stripped away. Instead, only a new header is added i=
+n
+front of the packet after it was split.
 
-For this kernel version, I only found following three patches:
+This size must be considered to avoid cost intensive reallocations during
+the transmission through the various device layers.
 
-* batman-adv: Consider fragmentation for needed_headroom
-* batman-adv: Reserve needed_*room for fragments
-* batman-adv: Don't always reallocate the fragmentation skb head
+Fixes: 7bca68c7844b ("batman-adv: Add lower layer needed_(head|tail)room =
+to own ones")
+Reported-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/hard-interface.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-which could in some circumstances cause packet loss but which were create=
-d
-to fix high CPU load/low throughput problems. But I've added them here
-anyway because the corresponding VXLAN patches were also added to stable.
-And some stable kernels also got these fixes a while back.
-
-Kind regards,
-	Sven
-
-Sven Eckelmann (3):
-  batman-adv: Consider fragmentation for needed_headroom
-  batman-adv: Reserve needed_*room for fragments
-  batman-adv: Don't always reallocate the fragmentation skb head
-
- net/batman-adv/fragmentation.c  | 26 ++++++++++++++++----------
- net/batman-adv/hard-interface.c |  3 +++
- 2 files changed, 19 insertions(+), 10 deletions(-)
-
+diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interf=
+ace.c
+index afb52282d5bd..18e644f3cb30 100644
+--- a/net/batman-adv/hard-interface.c
++++ b/net/batman-adv/hard-interface.c
+@@ -554,6 +554,9 @@ static void batadv_hardif_recalc_extra_skbroom(struct=
+ net_device *soft_iface)
+ 	needed_headroom =3D lower_headroom + (lower_header_len - ETH_HLEN);
+ 	needed_headroom +=3D batadv_max_header_len();
+=20
++	/* fragmentation headers don't strip the unicast/... header */
++	needed_headroom +=3D sizeof(struct batadv_frag_packet);
++
+ 	soft_iface->needed_headroom =3D needed_headroom;
+ 	soft_iface->needed_tailroom =3D lower_tailroom;
+ }
 --=20
 2.30.2
