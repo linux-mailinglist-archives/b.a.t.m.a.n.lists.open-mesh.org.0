@@ -2,56 +2,56 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C842745A2F0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 23 Nov 2021 13:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6106D45A2F7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 23 Nov 2021 13:43:34 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 005EB844AE;
-	Tue, 23 Nov 2021 13:43:14 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8E047844F5;
+	Tue, 23 Nov 2021 13:43:29 +0100 (CET)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id E141384264
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 23 Nov 2021 13:43:10 +0100 (CET)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3097D60F9F;
-	Tue, 23 Nov 2021 12:43:09 +0000 (UTC)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6183284481
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 23 Nov 2021 13:43:27 +0100 (CET)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BD2ED60F50;
+	Tue, 23 Nov 2021 12:43:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1637671389;
-	bh=XbXGlu8rVBmsxtG1b8J1iDuY/SUsjJbobewnvQY2SbY=;
+	s=korg; t=1637671406;
+	bh=6+37Ad5n8ucYt1xn0lEDVd0FqX4hEGx2+HNzV/TsOaU=;
 	h=Subject:To:Cc:From:Date:In-Reply-To:From;
-	b=Qz+VwynUkvFM3dGr5QhJZRIuc3UjiQ+6nUOUWeNSKx78j57N4hCdEh6LykRj8RmJR
-	 +rP7/LCvlBTNfN1XZQs07jZlcHncSVZuy1/MV6rg8W1Tv199i4yDWvljjBzaadjb7T
-	 p9fxqyBCoMAs3VEmTtfNwUqxglfq7+bXVFlcUJ1c=
-Subject: Patch "batman-adv: Prevent duplicated softif_vlan entry" has been added to the 4.4-stable tree
+	b=K652OMGeR5TQf+7JElr888W7kw/ekjcg3gkNa/FH2qY1C5wH281ZvCZ8uQUD81UTV
+	 M1o7kpJkYxtnBa5hP0a9CutZlZQg/waGBZ/gNw05ogJysRQTtEPvTVLojl0gBsKbZd
+	 +K+Phy0TFJddXUf0Lctl5A3I7RKGrpw5YBzAJ9DU=
+Subject: Patch "batman-adv: Don't always reallocate the fragmentation skb head" has been added to the 4.9-stable tree
 To: b.a.t.m.a.n@lists.open-mesh.org,gregkh@linuxfoundation.org,sven@narfation.org,sw@simonwunderlich.de
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 23 Nov 2021 13:42:44 +0100
-In-Reply-To: <20211120123939.260723-4-sven@narfation.org>
-Message-ID: <1637671364136221@kroah.com>
+Date: Tue, 23 Nov 2021 13:43:01 +0100
+In-Reply-To: <20211120123958.260826-8-sven@narfation.org>
+Message-ID: <163767138113686@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ANSI_X3.4-1968
 X-stable: commit
 X-Patchwork-Hint: ignore 
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637671391; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637671407; a=rsa-sha256;
 	cv=none;
-	b=ZwD/t67YpF8v08LY2HLUEpQCUEmdEGAk6kxrPPzJwCDuOU+iPOy4Q7gAlDgSWrt8mLYHrZ
-	SAqakQ7lC+teNqAeZagce8pMZg8gBsYX4uM3yexoFfR1kYRpulb9Y9uFwZ1aJxyZ3aXfWP
-	tTmbfD909+T8930gmne9ikYv8DCGdus=
+	b=VTfA/lcP8w/l08TKaEjBrnpWbuZoNhezcQ531kN562yfU6UlEllaCKGlYurJX/A9irvIcn
+	FjX+YiY3r/qysuXlA3J+jZBxXuJMqd/uEr7rfmbNGJZ5Q2U5Wpr/hqPBnu+am02Aj71WC7
+	4LmD5AElTjuYaHSDdUfWFPaJ/GG8duc=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1637671391;
+	s=20121; t=1637671407;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:dkim-signature;
-	bh=nG1q33X/FkCV21Dc+NTc4Opa8F+m7PlK3ro/XVxopPM=;
-	b=ehDUwzuhrh70NOZ0XQOQHBHOy8cwbrPu3sGqMzcSIa/SSbaH+oESeCAmODM6YdS5gA6b2r
-	J6viQ7SocWYj1bYHJq5BVv3iBu8IPiAzX0qjOYF6sxxjgHuNBGuo4RPn+cQl7bXlV5tMOd
-	0CJFLhy7GMoA0YBECi+1/WtwzRVeJyw=
+	bh=VhAoqv5AQMXrhqjjeqC5URerupCgHr/EI0Xi+GNqi6Q=;
+	b=a8xWzlGoFBw5LOZXHvRVem31mTy6AKgkJNPt7BS6dXjMpXzD/4k0znaujN/23pRTVQLKQX
+	nnmsCTyM+HPE1lv1OxBh1L3AM4M2FdhRSfDviglKziJw+f/8k/FX8ZH6qQTZ2LEWx2TVkH
+	ZgtcHTIRM1o5MV4RE+YLjeSFlzhpRYs=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=Qz+VwynU;
+	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=K652OMGe;
 	spf=pass (diktynna.open-mesh.org: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
 	dmarc=pass (policy=none) header.from=linuxfoundation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: RAR5AZGQRYP4WT27A4GRRC5KOJGFAIFK
-X-Message-ID-Hash: RAR5AZGQRYP4WT27A4GRRC5KOJGFAIFK
+Message-ID-Hash: COJSTORM3TO5OGOIF4FOE6LHJY7WOTF3
+X-Message-ID-Hash: COJSTORM3TO5OGOIF4FOE6LHJY7WOTF3
 X-MailFrom: gregkh@linuxfoundation.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
@@ -60,7 +60,7 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RAR5AZGQRYP4WT27A4GRRC5KOJGFAIFK/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/COJSTORM3TO5OGOIF4FOE6LHJY7WOTF3/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -70,125 +70,91 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 This is a note to let you know that I've just added the patch titled
 
-    batman-adv: Prevent duplicated softif_vlan entry
+    batman-adv: Don't always reallocate the fragmentation skb head
 
-to the 4.4-stable tree which can be found at:
+to the 4.9-stable tree which can be found at:
     http://www.kernel.org/git/?p=3Dlinux/kernel/git/stable/stable-queue.g=
 it;a=3Dsummary
 
 The filename of the patch is:
-     batman-adv-prevent-duplicated-softif_vlan-entry.patch
-and it can be found in the queue-4.4 subdirectory.
+     batman-adv-don-t-always-reallocate-the-fragmentation-skb-head.patch
+and it can be found in the queue-4.9 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
 
 
-From foo@baz Tue Nov 23 01:39:02 PM CET 2021
+From foo@baz Tue Nov 23 01:37:10 PM CET 2021
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 20 Nov 2021 13:39:31 +0100
-Subject: batman-adv: Prevent duplicated softif_vlan entry
+Date: Sat, 20 Nov 2021 13:39:58 +0100
+Subject: batman-adv: Don't always reallocate the fragmentation skb head
 To: stable@vger.kernel.org
 Cc: b.a.t.m.a.n@lists.open-mesh.org, Sven Eckelmann <sven@narfation.org>,=
  Simon Wunderlich <sw@simonwunderlich.de>
-Message-ID: <20211120123939.260723-4-sven@narfation.org>
+Message-ID: <20211120123958.260826-8-sven@narfation.org>
 
 From: Sven Eckelmann <sven@narfation.org>
 
-commit 94cb82f594ed86be303398d6dfc7640a6f1d45d4 upstream.
+commit 992b03b88e36254e26e9a4977ab948683e21bd9f upstream.
 
-The function batadv_softif_vlan_get is responsible for adding new
-softif_vlan to the softif_vlan_list. It first checks whether the entry
-already is in the list or not. If it is, then the creation of a new entry
-is aborted.
+When a packet is fragmented by batman-adv, the original batman-adv header
+is not modified. Only a new fragmentation is inserted between the origina=
+l
+one and the ethernet header. The code must therefore make sure that it ha=
+s
+a writable region of this size in the skbuff head.
 
-But the lock for the list is only held when the list is really modified.
-This could lead to duplicated entries because another context could creat=
-e
-an entry with the same key between the check and the list manipulation.
+But it is not useful to always reallocate the skbuff by this size even wh=
+en
+there would be more than enough headroom still in the skb. The reallocati=
+on
+is just to costly during in this codepath.
 
-The check and the manipulation of the list must therefore be in the same
-locked code section.
-
-Fixes: 5d2c05b21337 ("batman-adv: add per VLAN interface attribute framew=
-ork")
+Fixes: ee75ed88879a ("batman-adv: Fragment and send skbs larger than mtu"=
+)
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-[ bp: 4.4 backport: switch back to atomic_t based reference counting. ]
+[ bp: 4.9 backported: adjust context. ]
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- net/batman-adv/soft-interface.c |   20 ++++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+ net/batman-adv/fragmentation.c |    9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -539,15 +539,20 @@ int batadv_softif_create_vlan(struct bat
- 	struct batadv_softif_vlan *vlan;
- 	int err;
-=20
-+	spin_lock_bh(&bat_priv->softif_vlan_list_lock);
-+
- 	vlan =3D batadv_softif_vlan_get(bat_priv, vid);
- 	if (vlan) {
- 		batadv_softif_vlan_free_ref(vlan);
-+		spin_unlock_bh(&bat_priv->softif_vlan_list_lock);
- 		return -EEXIST;
+--- a/net/batman-adv/fragmentation.c
++++ b/net/batman-adv/fragmentation.c
+@@ -528,11 +528,14 @@ int batadv_frag_send_packet(struct sk_bu
+ 		frag_header.no++;
  	}
 =20
- 	vlan =3D kzalloc(sizeof(*vlan), GFP_ATOMIC);
--	if (!vlan)
-+	if (!vlan) {
-+		spin_unlock_bh(&bat_priv->softif_vlan_list_lock);
- 		return -ENOMEM;
-+	}
-=20
- 	vlan->bat_priv =3D bat_priv;
- 	vlan->vid =3D vid;
-@@ -555,16 +560,19 @@ int batadv_softif_create_vlan(struct bat
-=20
- 	atomic_set(&vlan->ap_isolation, 0);
-=20
-+	hlist_add_head_rcu(&vlan->list, &bat_priv->softif_vlan_list);
-+	spin_unlock_bh(&bat_priv->softif_vlan_list_lock);
-+
-+	/* batadv_sysfs_add_vlan cannot be in the spinlock section due to the
-+	 * sleeping behavior of the sysfs functions and the fs_reclaim lock
+-	/* Make room for the fragment header. */
+-	if (batadv_skb_head_push(skb, header_size) < 0 ||
+-	    pskb_expand_head(skb, header_size + ETH_HLEN, 0, GFP_ATOMIC) < 0)
++	/* make sure that there is at least enough head for the fragmentation
++	 * and ethernet headers
 +	 */
- 	err =3D batadv_sysfs_add_vlan(bat_priv->soft_iface, vlan);
- 	if (err) {
--		kfree(vlan);
-+		/* ref for the list */
-+		batadv_softif_vlan_free_ref(vlan);
- 		return err;
- 	}
++	ret =3D skb_cow_head(skb, ETH_HLEN + header_size);
++	if (ret < 0)
+ 		goto out;
 =20
--	spin_lock_bh(&bat_priv->softif_vlan_list_lock);
--	hlist_add_head_rcu(&vlan->list, &bat_priv->softif_vlan_list);
--	spin_unlock_bh(&bat_priv->softif_vlan_list_lock);
--
- 	/* add a new TT local entry. This one will be marked with the NOPURGE
- 	 * flag
- 	 */
++	skb_push(skb, header_size);
+ 	memcpy(skb->data, &frag_header, header_size);
+=20
+ 	/* Send the last fragment */
 
 
 Patches currently in stable-queue which might be from sven@narfation.org =
 are
 
-queue-4.4/batman-adv-consider-fragmentation-for-needed_headroom.patch
-queue-4.4/ath9k-fix-potential-interrupt-storm-on-queue-reset.patch
-queue-4.4/batman-adv-set-.owner-to-this_module.patch
-queue-4.4/batman-adv-mcast-fix-duplicate-mcast-packets-from-bla-backbone-=
+queue-4.9/batman-adv-consider-fragmentation-for-needed_headroom.patch
+queue-4.9/ath9k-fix-potential-interrupt-storm-on-queue-reset.patch
+queue-4.9/batman-adv-mcast-fix-duplicate-mcast-packets-from-bla-backbone-=
 to-mesh.patch
-queue-4.4/batman-adv-fix-multicast-tt-issues-with-bogus-roam-flags.patch
-queue-4.4/batman-adv-mcast-fix-duplicate-mcast-packets-in-bla-backbone-fr=
+queue-4.9/ath10k-fix-max-antenna-gain-unit.patch
+queue-4.9/batman-adv-mcast-fix-duplicate-mcast-packets-in-bla-backbone-fr=
 om-lan.patch
-queue-4.4/batman-adv-reserve-needed_-room-for-fragments.patch
-queue-4.4/net-batman-adv-fix-error-handling.patch
-queue-4.4/batman-adv-keep-fragments-equally-sized.patch
-queue-4.4/batman-adv-avoid-warn_on-timing-related-checks.patch
-queue-4.4/batman-adv-prevent-duplicated-softif_vlan-entry.patch
-queue-4.4/batman-adv-don-t-always-reallocate-the-fragmentation-skb-head.p=
+queue-4.9/batman-adv-reserve-needed_-room-for-fragments.patch
+queue-4.9/batman-adv-fix-own-ogm-check-in-aggregated-ogms.patch
+queue-4.9/batman-adv-keep-fragments-equally-sized.patch
+queue-4.9/batman-adv-don-t-always-reallocate-the-fragmentation-skb-head.p=
 atch
-queue-4.4/batman-adv-mcast-fix-duplicate-mcast-packets-in-bla-backbone-fr=
-om-mesh.patch
