@@ -1,57 +1,57 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FE5245A2D3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 23 Nov 2021 13:39:01 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C3C845A2D1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 23 Nov 2021 13:38:51 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C041884497;
-	Tue, 23 Nov 2021 13:38:59 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E907E83EFE;
+	Tue, 23 Nov 2021 13:38:49 +0100 (CET)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3540D84481
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 23 Nov 2021 13:38:56 +0100 (CET)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F079860E95;
-	Tue, 23 Nov 2021 12:38:53 +0000 (UTC)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9C94584139
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 23 Nov 2021 13:38:47 +0100 (CET)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 783F460F26;
+	Tue, 23 Nov 2021 12:38:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1637671135;
-	bh=8nHAK1vQBoTX9G3Qwk5wYdZjq9vztjeK7g8WhSYzd/A=;
+	s=korg; t=1637671126;
+	bh=TzdN/SUC2o27AgEJTZq57sH00xehcx4sv9LdgVoXQbY=;
 	h=Subject:To:Cc:From:Date:In-Reply-To:From;
-	b=BjNGv8c7SCiE4YxitCyZLh8OYxH0r31Kwsewq5BFIizBcYJrU/9M8jhb/aPfL/1Yn
-	 kI/ca6dv1ZQsO+p9MCir3Bxa3BTJj7gRjs8f1gP8/CjDRAKA/iYn7MFHVgdataIvbT
-	 1rKpNqP6WbkVz7P1nouiWUDPLX1Js3kyfcDbAE7A=
-Subject: Patch "batman-adv: Don't always reallocate the fragmentation skb head" has been added to the 4.14-stable tree
-To: b.a.t.m.a.n@lists.open-mesh.org,gregkh@linuxfoundation.org,sven@narfation.org,sw@simonwunderlich.de
+	b=egrk5s6ZDSBATrue57yVl2ph6Di39+NPqFgh58TlWHB0Reoo23IGf2Hs2NpSrl5dI
+	 wxA7FZ/ZGnP9BtLoNI1vjON0b11g51mBDx3xihKUwv3Urrj0suW7R6YHDAMLCnPkep
+	 gxKKoI1VCI5SRNwU2O8x4CxkKzBXNFw2qwWAtG/U=
+Subject: Patch "batman-adv: mcast: fix duplicate mcast packets in BLA backbone from LAN" has been added to the 4.14-stable tree
+To: b.a.t.m.a.n@lists.open-mesh.org,gregkh@linuxfoundation.org,linus.luessing@c0d3.blue,sven@narfation.org,sw@simonwunderlich.de
 From: <gregkh@linuxfoundation.org>
 Date: Tue, 23 Nov 2021 13:38:33 +0100
-In-Reply-To: <20211120124018.260907-6-sven@narfation.org>
-Message-ID: <16376711132197@kroah.com>
+In-Reply-To: <20211120124018.260907-2-sven@narfation.org>
+Message-ID: <1637671113224104@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Type: text/plain; charset=ISO-8859-1
 X-stable: commit
 X-Patchwork-Hint: ignore 
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637671136; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637671127; a=rsa-sha256;
 	cv=none;
-	b=DzTJx9Q8GHSDrO6qFFjrd+61MdOlk8FgCRjEor1OOVCD6i/IqNW6tuaILLFO3109sJvPDb
-	xOhgdTPzwfxR6B0H1CJJz3qeEycWeDyk3fO1r4719tuBxeKg8Nn4Y1rXZRhbR/iYm0dlM3
-	mcg7eebeQFvzH8Ixe9VVxuw/j+74fCg=
+	b=tnzN2KofCGTsxUKjlr9V7x2c+bxFKWmxTdVMa/2Kpxi/b06isVpsjdZ+QEIwgpOi2WjdIj
+	mk6CSBAsQDzd7cmtDO4E2iaAgeNNUaecwpAPbvpszqkifhu1MErGPEPGaLq9N+B/EYwYyl
+	DXtrUGLxJOlunePfeePJP7VHJaCmxW0=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1637671136;
+	s=20121; t=1637671127;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:dkim-signature;
-	bh=CbDzKhbkkVAUx4wOGYdtG8G6kQZfCwY361DPGlA5wv8=;
-	b=QbeVRX/XWOYfiYsy5K/5nEt5NplzvjYq9rsTO57yhPzIGnrpCjr9kU60oGkd4NhMTHIOHH
-	+r4951Z8HwDlMnVO99OpfrxZG3I/XZlp/y8B9noTPn4cu5YHpbWjXSqfADaNcLvfFR0fsJ
-	q900A/tsuQ3WigbCHKakxA/tJdY8N/4=
+	bh=uSby0kW9TbBNssNtI+PNVZhI4Gmw/QwU4Ctn0zmkXg8=;
+	b=LxxpRrKoSY/vsP49lvMvPeSQB+qPXpcLVnBgbhJvhnau2XFscS4z7mRmz6EAp2eamqqlw1
+	kAeJVgRa9TmaunidB7LVQ5jdu+ti2qCVAr7gZ0xqAMI4x37DFVA/zOKSwKYPszx4WT2TCs
+	zmOybSPgIKfqrFbtz5/B/xKvnE2fJf0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=BjNGv8c7;
+	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=egrk5s6Z;
 	spf=pass (diktynna.open-mesh.org: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
 	dmarc=pass (policy=none) header.from=linuxfoundation.org
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: V2Q42I6O36V6JTFZOJIVDYQLIVGMVHIC
-X-Message-ID-Hash: V2Q42I6O36V6JTFZOJIVDYQLIVGMVHIC
+Message-ID-Hash: GZ4UE73AQCQGNZQKTUBVY3OOB4KBEO3R
+X-Message-ID-Hash: GZ4UE73AQCQGNZQKTUBVY3OOB4KBEO3R
 X-MailFrom: gregkh@linuxfoundation.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
@@ -60,7 +60,7 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/V2Q42I6O36V6JTFZOJIVDYQLIVGMVHIC/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GZ4UE73AQCQGNZQKTUBVY3OOB4KBEO3R/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -70,14 +70,16 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 This is a note to let you know that I've just added the patch titled
 
-    batman-adv: Don't always reallocate the fragmentation skb head
+    batman-adv: mcast: fix duplicate mcast packets in BLA backbone from L=
+AN
 
 to the 4.14-stable tree which can be found at:
     http://www.kernel.org/git/?p=3Dlinux/kernel/git/stable/stable-queue.g=
 it;a=3Dsummary
 
 The filename of the patch is:
-     batman-adv-don-t-always-reallocate-the-fragmentation-skb-head.patch
+     batman-adv-mcast-fix-duplicate-mcast-packets-in-bla-backbone-from-la=
+n.patch
 and it can be found in the queue-4.14 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
@@ -86,62 +88,165 @@ please let <stable@vger.kernel.org> know about it.
 
 From foo@baz Tue Nov 23 01:35:28 PM CET 2021
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 20 Nov 2021 13:40:18 +0100
-Subject: batman-adv: Don't always reallocate the fragmentation skb head
+Date: Sat, 20 Nov 2021 13:40:14 +0100
+Subject: batman-adv: mcast: fix duplicate mcast packets in BLA backbone f=
+rom LAN
 To: stable@vger.kernel.org
-Cc: b.a.t.m.a.n@lists.open-mesh.org, Sven Eckelmann <sven@narfation.org>,=
- Simon Wunderlich <sw@simonwunderlich.de>
-Message-ID: <20211120124018.260907-6-sven@narfation.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org, "Linus L=FCssing" <linus.luessing@c0=
+d3.blue>, "Simon Wunderlich" <sw@simonwunderlich.de>, "Sven Eckelmann" <s=
+ven@narfation.org>
+Message-ID: <20211120124018.260907-2-sven@narfation.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+From: Linus L=FCssing <linus.luessing@c0d3.blue>
 
-commit 992b03b88e36254e26e9a4977ab948683e21bd9f upstream.
+commit 3236d215ad38a3f5372e65cd1e0a52cf93d3c6a2 upstream.
 
-When a packet is fragmented by batman-adv, the original batman-adv header
-is not modified. Only a new fragmentation is inserted between the origina=
-l
-one and the ethernet header. The code must therefore make sure that it ha=
-s
-a writable region of this size in the skbuff head.
+Scenario:
+* Multicast frame send from a BLA backbone (multiple nodes with
+  their bat0 bridged together, with BLA enabled)
 
-But it is not useful to always reallocate the skbuff by this size even wh=
-en
-there would be more than enough headroom still in the skb. The reallocati=
-on
-is just to costly during in this codepath.
+Issue:
+* BLA backbone nodes receive the frame multiple times on bat0
 
-Fixes: ee75ed88879a ("batman-adv: Fragment and send skbs larger than mtu"=
-)
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+For multicast frames received via batman-adv broadcast packets the
+originator of the broadcast packet is checked before decapsulating and
+forwarding the frame to bat0 (batadv_bla_is_backbone_gw()->
+batadv_recv_bcast_packet()). If it came from a node which shares the
+same BLA backbone with us then it is not forwarded to bat0 to avoid a
+loop.
+
+When sending a multicast frame in a non-4-address batman-adv unicast
+packet we are currently missing this check - and cannot do so because
+the batman-adv unicast packet has no originator address field.
+
+However, we can simply fix this on the sender side by only sending the
+multicast frame via unicasts to interested nodes which do not share the
+same BLA backbone with us. This also nicely avoids some unnecessary
+transmissions on mesh side.
+
+Note that no infinite loop was observed, probably because of dropping
+via batadv_interface_tx()->batadv_bla_tx(). However the duplicates still
+utterly confuse switches/bridges, ICMPv6 duplicate address detection and
+neighbor discovery and therefore leads to long delays before being able
+to establish TCP connections, for instance. And it also leads to the Linu=
+x
+bridge printing messages like:
+"br-lan: received packet on eth1 with own address as source address ..."
+
+Fixes: 1d8ab8d3c176 ("batman-adv: Modified forwarding behaviour for multi=
+cast packets")
+Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+[ bp: 4.14 backport: drop usage in non-existing batadv_mcast_forw_*,
+  correct fixes line ]
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- net/batman-adv/fragmentation.c |   11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ net/batman-adv/multicast.c      |   31 +++++++++++++++++++++++++++++++
+ net/batman-adv/multicast.h      |   15 +++++++++++++++
+ net/batman-adv/soft-interface.c |    5 ++---
+ 3 files changed, 48 insertions(+), 3 deletions(-)
 
---- a/net/batman-adv/fragmentation.c
-+++ b/net/batman-adv/fragmentation.c
-@@ -538,13 +538,14 @@ int batadv_frag_send_packet(struct sk_bu
- 		frag_header.no++;
- 	}
+--- a/net/batman-adv/multicast.c
++++ b/net/batman-adv/multicast.c
+@@ -55,10 +55,12 @@
+ #include <net/ip.h>
+ #include <net/ipv6.h>
 =20
--	/* Make room for the fragment header. */
--	if (batadv_skb_head_push(skb, header_size) < 0 ||
--	    pskb_expand_head(skb, header_size + ETH_HLEN, 0, GFP_ATOMIC) < 0) {
--		ret =3D -ENOMEM;
-+	/* make sure that there is at least enough head for the fragmentation
-+	 * and ethernet headers
++#include "bridge_loop_avoidance.h"
+ #include "hard-interface.h"
+ #include "hash.h"
+ #include "log.h"
+ #include "packet.h"
++#include "send.h"
+ #include "translation-table.h"
+ #include "tvlv.h"
+=20
+@@ -1291,6 +1293,35 @@ void batadv_mcast_free(struct batadv_pri
+ }
+=20
+ /**
++ * batadv_mcast_forw_send_orig() - send a multicast packet to an origina=
+tor
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the multicast packet to send
++ * @vid: the vlan identifier
++ * @orig_node: the originator to send the packet to
++ *
++ * Return: NET_XMIT_DROP in case of error or NET_XMIT_SUCCESS otherwise.
++ */
++int batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
++				struct sk_buff *skb,
++				unsigned short vid,
++				struct batadv_orig_node *orig_node)
++{
++	/* Avoid sending multicast-in-unicast packets to other BLA
++	 * gateways - they already got the frame from the LAN side
++	 * we share with them.
++	 * TODO: Refactor to take BLA into account earlier, to avoid
++	 * reducing the mcast_fanout count.
 +	 */
-+	ret =3D skb_cow_head(skb, ETH_HLEN + header_size);
-+	if (ret < 0)
- 		goto put_primary_if;
--	}
++	if (batadv_bla_is_backbone_gw_orig(bat_priv, orig_node->orig, vid)) {
++		dev_kfree_skb(skb);
++		return NET_XMIT_SUCCESS;
++	}
++
++	return batadv_send_skb_unicast(bat_priv, skb, BATADV_UNICAST, 0,
++				       orig_node, vid);
++}
++
++/**
+  * batadv_mcast_purge_orig - reset originator global mcast state modific=
+ations
+  * @orig: the originator which is going to get purged
+  */
+--- a/net/batman-adv/multicast.h
++++ b/net/batman-adv/multicast.h
+@@ -43,6 +43,11 @@ enum batadv_forw_mode
+ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
+,
+ 		       struct batadv_orig_node **mcast_single_orig);
 =20
-+	skb_push(skb, header_size);
- 	memcpy(skb->data, &frag_header, header_size);
++int batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
++				struct sk_buff *skb,
++				unsigned short vid,
++				struct batadv_orig_node *orig_node);
++
+ void batadv_mcast_init(struct batadv_priv *bat_priv);
 =20
- 	/* Send the last fragment */
+ int batadv_mcast_flags_seq_print_text(struct seq_file *seq, void *offset=
+);
+@@ -65,6 +70,16 @@ static inline int batadv_mcast_init(stru
+ 	return 0;
+ }
+=20
++static inline int
++batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
++			    struct sk_buff *skb,
++			    unsigned short vid,
++			    struct batadv_orig_node *orig_node)
++{
++	kfree_skb(skb);
++	return NET_XMIT_DROP;
++}
++
+ static inline void batadv_mcast_free(struct batadv_priv *bat_priv)
+ {
+ }
+--- a/net/batman-adv/soft-interface.c
++++ b/net/batman-adv/soft-interface.c
+@@ -359,9 +359,8 @@ send:
+ 				goto dropped;
+ 			ret =3D batadv_send_skb_via_gw(bat_priv, skb, vid);
+ 		} else if (mcast_single_orig) {
+-			ret =3D batadv_send_skb_unicast(bat_priv, skb,
+-						      BATADV_UNICAST, 0,
+-						      mcast_single_orig, vid);
++			ret =3D batadv_mcast_forw_send_orig(bat_priv, skb, vid,
++							  mcast_single_orig);
+ 		} else {
+ 			if (batadv_dat_snoop_outgoing_arp_request(bat_priv,
+ 								  skb))
 
 
 Patches currently in stable-queue which might be from sven@narfation.org =
