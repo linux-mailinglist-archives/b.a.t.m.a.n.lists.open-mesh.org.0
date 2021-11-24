@@ -2,199 +2,101 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAEC45A2FC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 23 Nov 2021 13:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A4A45CB4F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 24 Nov 2021 18:42:16 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id F0D7183F06;
-	Tue, 23 Nov 2021 13:43:46 +0100 (CET)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B1D2D844EC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 23 Nov 2021 13:43:41 +0100 (CET)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E679660F50;
-	Tue, 23 Nov 2021 12:43:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1637671420;
-	bh=atDVeWuVQjBha3CCE2PLZtxaZEIMMb79zwGfDKaDmDQ=;
-	h=Subject:To:Cc:From:Date:In-Reply-To:From;
-	b=kcxo6HkX9Thj5v1xCrwlmhAXTUS15fPgM6w02ZQXqcnyfGP5OTKiL6C/Mdi5+teju
-	 RLx1bHUwWMrXBRXy1ET3BLOQjwZkeD43hAqsBFp6ZJgeVezlzG24+78gr038+IBseO
-	 p7km1U5DFI5lLmmdxH76PDLYODqxsNp9PIL+8Enc=
-Subject: Patch "batman-adv: Reserve needed_*room for fragments" has been added to the 4.9-stable tree
-To: b.a.t.m.a.n@lists.open-mesh.org,gregkh@linuxfoundation.org,sven@narfation.org,sw@simonwunderlich.de
-From: <gregkh@linuxfoundation.org>
-Date: Tue, 23 Nov 2021 13:43:02 +0100
-In-Reply-To: <20211120123958.260826-7-sven@narfation.org>
-Message-ID: <16376713826943@kroah.com>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 329BB8250E;
+	Wed, 24 Nov 2021 18:42:15 +0100 (CET)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com [209.85.166.69])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id BAAED80394
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 24 Nov 2021 18:42:11 +0100 (CET)
+Received: by mail-io1-f69.google.com with SMTP id 85-20020a6b0258000000b005ed47a95f03so1719081ioc.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 24 Nov 2021 09:42:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=h0kvn1BdxoP46i2HNoKMazuHRf6SKPJskeY6V4kDJOE=;
+        b=CG0DTGAh/REDlIZ7RnEvLjJN0AmOxxMIgGN5kpT0HKMD2oAPY9ZSnsxMpDzyJKXx46
+         jC+EiWG1sYQqwfVqaLbWvNxW6lCUXTYBcWCfFjpVWuhF1t5TnubH/hpxJs/sbXInUPh2
+         +6vu2wNlw9eJwhBZoerVpD5sBgGIqwcLtTXupdi1+pdlXXiay2EsXCjUcFd9Nexfio7J
+         jkb9k7io6+2sU+KMreh5szIPsfM5caXMFUzZhttEv5KwNxiUOeJvZVHhEH/m5m53ZCDz
+         TI4SgAGcD9UJloK5aTCf15UfWKlbLHtslv9UIML+v8XkqJRTPnX2ByTCMfPgqmy9/qWm
+         cELA==
+X-Gm-Message-State: AOAM533UFFnagckY7jiJrJWXxG/E0xC/AXml7RRy5aB9sctNsf/3/YOD
+	Ntdpn3P0G1eQIWN3RML+0hM7TURok7cs+QdrMMVBjEpwjRD9
+X-Google-Smtp-Source: ABdhPJwb7HvyUqHy3UoRecfI82f0bvHWHU2TDeSHzrJEyGEuUEO081UcqCkKr9ePW6QOXrKgj7ioth7zzj1e0gFO8okXtgY78HTC
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-X-stable: commit
-X-Patchwork-Hint: ignore 
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637671422; a=rsa-sha256;
+X-Received: by 2002:a5d:9cd4:: with SMTP id w20mr17292523iow.178.1637775730232;
+ Wed, 24 Nov 2021 09:42:10 -0800 (PST)
+Date: Wed, 24 Nov 2021 09:42:10 -0800
+In-Reply-To: <000000000000ba80b905cdcd8b19@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000009f52f205d18c60a7@google.com>
+Subject: Re: [syzbot] WARNING: ODEBUG bug in batadv_v_ogm_free
+From: syzbot <syzbot+0ef06384b5f39a16ebb9@syzkaller.appspotmail.com>
+To: Jason@zx2c4.com, a@unstable.cc, amcohen@nvidia.com,
+	b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, dsahern@kernel.org,
+	edumazet@google.com, fw@strlen.de, idosch@OSS.NVIDIA.COM,
+	justin.iurman@uliege.be, kuba@kernel.org, linux-kernel@vger.kernel.org,
+	mareklindner@neomailbox.ch, netdev@vger.kernel.org, paskripkin@gmail.com,
+	praveen5582@gmail.com, sven@narfation.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com, willemb@google.com, yoshfuji@linux-ipv6.org,
+	zxu@linkedin.com
+Content-Type: text/plain; charset="UTF-8"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637775731; a=rsa-sha256;
 	cv=none;
-	b=RmvoN7ITzJzwZ2HKdzNXDS9Z+HWahkrLG4F90+kEqJE8Go/UTsfa/6YOWLRR2+scQPyb+4
-	yiJuX31bzyQFvNmFp3UclSkz5HlAEugAAolfbg9r/ridnlPYy1DVYcBI7aYuAc/E5oZI2O
-	eCRkgdnbAZraIRAmUzD0D2nQZyAqr/4=
+	b=lpdbM5/0iQzacuHtbscHq++KPl+uztZvdR78xFWy4DiJg7WS7RFCGL/a5WvFhbRtSQqvIZ
+	bfU99DIpem44eD1kEdn7cAUBlEE4qR/L+WTjqy+olBPZ/ZgutDdOidL1PFLvyqiSBP6b5b
+	f+ktIuPp/NyLyG+XotmA/3wYws9s7dk=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1637671422;
+	s=20121; t=1637775731;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:dkim-signature;
-	bh=mijp0TuEBVuvEl9H5uwHd4V+ZICCVqJ6qDCEPf/X6wU=;
-	b=yacVrCnVf18leM1gCLYzZjCA0RqQ0PQycDrL9S6Fr/DBnfcOeCz+sCj50R4jwxMNoxFpr4
-	l6pXzFXl9jhX+dNH6aZDKffVzMUSSDDST8ZKo57mAuDlpaNOGjpHgdICDUh7hvqkbj2lrE
-	JoMuhOvW4AUGJIiLY1fAmWMYOE5plbE=
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=h0kvn1BdxoP46i2HNoKMazuHRf6SKPJskeY6V4kDJOE=;
+	b=z7jw05UG+QWZEP7CaVmy9ZwYwIbq8Y+UBcVSj2UdpyRMnExV8rPlrjwPNsN3mcbIsQU+2w
+	qa4Z3/2y5Xs5Gv0R1TpP4jvcPeheWqXpdC/6jqlAPdkyw3Bf9bn6YbhelY57EGF8WROvjG
+	9tG978XRrl88Ei6ZHI9iQyxSV0/YthA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=kcxo6HkX;
-	spf=pass (diktynna.open-mesh.org: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
-	dmarc=pass (policy=none) header.from=linuxfoundation.org
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: HZOMBWSHKAGXZAG2BUFMGTS4VGTF2FYK
-X-Message-ID-Hash: HZOMBWSHKAGXZAG2BUFMGTS4VGTF2FYK
-X-MailFrom: gregkh@linuxfoundation.org
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3cnmeYQkbAPElrsdTeeXkTiibW.ZhhZeXnlXkVhgmXgm.Vhf@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.69 as permitted sender) smtp.mailfrom=3cnmeYQkbAPElrsdTeeXkTiibW.ZhhZeXnlXkVhgmXgm.Vhf@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=appspotmail.com (policy=none)
+Message-ID-Hash: 26VDNXMGSOVEHYTJ77XM3T5DIZHOFFJD
+X-Message-ID-Hash: 26VDNXMGSOVEHYTJ77XM3T5DIZHOFFJD
+X-MailFrom: 3cnmeYQkbAPElrsdTeeXkTiibW.ZhhZeXnlXkVhgmXgm.Vhf@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: stable-commits@vger.kernel.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HZOMBWSHKAGXZAG2BUFMGTS4VGTF2FYK/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/26VDNXMGSOVEHYTJ77XM3T5DIZHOFFJD/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
+syzbot suspects this issue was fixed by commit:
 
-This is a note to let you know that I've just added the patch titled
+commit 6f68cd634856f8ca93bafd623ba5357e0f648c68
+Author: Pavel Skripkin <paskripkin@gmail.com>
+Date:   Sun Oct 24 13:13:56 2021 +0000
 
-    batman-adv: Reserve needed_*room for fragments
+    net: batman-adv: fix error handling
 
-to the 4.9-stable tree which can be found at:
-    http://www.kernel.org/git/?p=3Dlinux/kernel/git/stable/stable-queue.g=
-it;a=3Dsummary
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=114e3c16b00000
+start commit:   cf52ad5ff16c Merge tag 'driver-core-5.15-rc6' of git://git..
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=9479508d7bb83ad9
+dashboard link: https://syzkaller.appspot.com/bug?extid=0ef06384b5f39a16ebb9
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17af7344b00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=15dc02fb300000
 
-The filename of the patch is:
-     batman-adv-reserve-needed_-room-for-fragments.patch
-and it can be found in the queue-4.9 subdirectory.
+If the result looks correct, please mark the issue as fixed by replying with:
 
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
+#syz fix: net: batman-adv: fix error handling
 
-
-From foo@baz Tue Nov 23 01:37:10 PM CET 2021
-From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 20 Nov 2021 13:39:57 +0100
-Subject: batman-adv: Reserve needed_*room for fragments
-To: stable@vger.kernel.org
-Cc: b.a.t.m.a.n@lists.open-mesh.org, Sven Eckelmann <sven@narfation.org>,=
- Simon Wunderlich <sw@simonwunderlich.de>
-Message-ID: <20211120123958.260826-7-sven@narfation.org>
-
-From: Sven Eckelmann <sven@narfation.org>
-
-commit c5cbfc87558168ef4c3c27ce36eba6b83391db19 upstream.
-
-The batadv net_device is trying to propagate the needed_headroom and
-needed_tailroom from the lower devices. This is needed to avoid cost
-intensive reallocations using pskb_expand_head during the transmission.
-
-But the fragmentation code split the skb's without adding extra room at t=
-he
-end/beginning of the various fragments. This reduced the performance of
-transmissions over complex scenarios (batadv on vxlan on wireguard) becau=
-se
-the lower devices had to perform the reallocations at least once.
-
-Fixes: ee75ed88879a ("batman-adv: Fragment and send skbs larger than mtu"=
-)
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-[ bp: 4.9 backported: adjust context. ]
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- net/batman-adv/fragmentation.c |   15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
-
---- a/net/batman-adv/fragmentation.c
-+++ b/net/batman-adv/fragmentation.c
-@@ -394,6 +394,7 @@ out:
-=20
- /**
-  * batadv_frag_create - create a fragment from skb
-+ * @net_dev: outgoing device for fragment
-  * @skb: skb to create fragment from
-  * @frag_head: header to use in new fragment
-  * @fragment_size: size of new fragment
-@@ -404,22 +405,25 @@ out:
-  *
-  * Return: the new fragment, NULL on error.
-  */
--static struct sk_buff *batadv_frag_create(struct sk_buff *skb,
-+static struct sk_buff *batadv_frag_create(struct net_device *net_dev,
-+					  struct sk_buff *skb,
- 					  struct batadv_frag_packet *frag_head,
- 					  unsigned int fragment_size)
- {
-+	unsigned int ll_reserved =3D LL_RESERVED_SPACE(net_dev);
-+	unsigned int tailroom =3D net_dev->needed_tailroom;
- 	struct sk_buff *skb_fragment;
- 	unsigned int header_size =3D sizeof(*frag_head);
- 	unsigned int mtu =3D fragment_size + header_size;
-=20
--	skb_fragment =3D netdev_alloc_skb(NULL, mtu + ETH_HLEN);
-+	skb_fragment =3D dev_alloc_skb(ll_reserved + mtu + tailroom);
- 	if (!skb_fragment)
- 		goto err;
-=20
- 	skb_fragment->priority =3D skb->priority;
-=20
- 	/* Eat the last mtu-bytes of the skb */
--	skb_reserve(skb_fragment, header_size + ETH_HLEN);
-+	skb_reserve(skb_fragment, ll_reserved + header_size);
- 	skb_split(skb, skb_fragment, skb->len - fragment_size);
-=20
- 	/* Add the header */
-@@ -443,11 +447,12 @@ int batadv_frag_send_packet(struct sk_bu
- 			    struct batadv_orig_node *orig_node,
- 			    struct batadv_neigh_node *neigh_node)
- {
-+	struct net_device *net_dev =3D neigh_node->if_incoming->net_dev;
- 	struct batadv_priv *bat_priv;
- 	struct batadv_hard_iface *primary_if =3D NULL;
- 	struct batadv_frag_packet frag_header;
- 	struct sk_buff *skb_fragment;
--	unsigned int mtu =3D neigh_node->if_incoming->net_dev->mtu;
-+	unsigned int mtu =3D net_dev->mtu;
- 	unsigned int header_size =3D sizeof(frag_header);
- 	unsigned int max_fragment_size, num_fragments;
- 	int ret =3D -1;
-@@ -503,7 +508,7 @@ int batadv_frag_send_packet(struct sk_bu
- 			goto out;
- 		}
-=20
--		skb_fragment =3D batadv_frag_create(skb, &frag_header,
-+		skb_fragment =3D batadv_frag_create(net_dev, skb, &frag_header,
- 						  max_fragment_size);
- 		if (!skb_fragment)
- 			goto out;
-
-
-Patches currently in stable-queue which might be from sven@narfation.org =
-are
-
-queue-4.9/batman-adv-consider-fragmentation-for-needed_headroom.patch
-queue-4.9/ath9k-fix-potential-interrupt-storm-on-queue-reset.patch
-queue-4.9/batman-adv-mcast-fix-duplicate-mcast-packets-from-bla-backbone-=
-to-mesh.patch
-queue-4.9/ath10k-fix-max-antenna-gain-unit.patch
-queue-4.9/batman-adv-mcast-fix-duplicate-mcast-packets-in-bla-backbone-fr=
-om-lan.patch
-queue-4.9/batman-adv-reserve-needed_-room-for-fragments.patch
-queue-4.9/batman-adv-fix-own-ogm-check-in-aggregated-ogms.patch
-queue-4.9/batman-adv-keep-fragments-equally-sized.patch
-queue-4.9/batman-adv-don-t-always-reallocate-the-fragmentation-skb-head.p=
-atch
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
