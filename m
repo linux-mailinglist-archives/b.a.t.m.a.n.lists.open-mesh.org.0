@@ -1,133 +1,102 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92DE45CC1C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 24 Nov 2021 19:32:41 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CB1463B94
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Nov 2021 17:19:17 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id AD57184483;
-	Wed, 24 Nov 2021 19:32:40 +0100 (CET)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6903A807D5
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 24 Nov 2021 18:43:18 +0100 (CET)
-Received: by mail-lf1-x12f.google.com with SMTP id bu18so9447150lfb.0
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 24 Nov 2021 09:43:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=HaFcpK/P/GGsknj1HL812X9ZdJDmKc2b6kicKM3XERg=;
-        b=VIuEhf0iRw2Yk5ATNVLXlqFx3lDuSFDLdKrsl/pWwxrquwVRMzO/fO85W8kVjSxKrR
-         fOaU21uR4K5y9fWA3HZ8+W7J7StqXDqFr+XKipq1KAwaVgTBb27xPEkYyqr1mpR3MY1B
-         5u5z06CURxeptEzBkuk3Rr383Cr64v4DMHG1zNeDr93M2NOWxFEAjIQjvdgff72Anu9r
-         D6XYEy5r/NkyrUvbaM282gRpt2AYz56+0mo3QZ6UHwpHrGOmkUlg9H53pITiXKj3V9U2
-         2sfa5oGTuNJ80ssdH5so4G7wjalQG8haCbnaRqwyv3BvR2sWhkEZdBE4jzvK+NqXaNb1
-         1MCA==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D478081003;
+	Tue, 30 Nov 2021 17:19:15 +0100 (CET)
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0E22C807DA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 30 Nov 2021 17:19:11 +0100 (CET)
+Received: by mail-il1-f198.google.com with SMTP id l3-20020a056e021c0300b0029fcec8f2ccso27574563ilh.9
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 30 Nov 2021 08:19:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HaFcpK/P/GGsknj1HL812X9ZdJDmKc2b6kicKM3XERg=;
-        b=s84io9YDK2+zwW3UG3rtN/wjBdHvIhfw6X5poexDox5I+9wJoP4DCngesDLxOk7g7g
-         55rB0P30Dqg99r7X24uoAnaraihslBRk5kbaEaP0bYNnOvLqw3YINHOpy61PGyBs3TpX
-         ZNoABgvW19CEVgV0JrL6sA34F4A2A7K1wQ+nvvf83FU+iLLSTX5dcKm2IpATTProT7/1
-         4J+aOdApNfQKelpk4WOdfMnxj9CheiVMTszjhrEMLBEJsVkiJpg5Z0hN0P8jhK81tDWV
-         8JFHzRHuqttSkF4coNYP+7YhRw4AAIHdqQMSrB0Z89TLdUdaf2x1COcBdhCXMBtOmaHS
-         Vaag==
-X-Gm-Message-State: AOAM532YJ+47KVimuJARcxbTGDjtc9ZKmvJLJhzskwkPiwZ7SwabPS1C
-	TLdGpSTOXTC1qnrPmMv4GfA=
-X-Google-Smtp-Source: ABdhPJz2AdPeAnDvJ7NGF6iYGbDdqLkFASTmqUMDU+WcZZ1wXrsHr7fvkSRXg4XxLG0fZ/R3VjGXcg==
-X-Received: by 2002:a05:6512:a81:: with SMTP id m1mr16200807lfu.306.1637775797333;
-        Wed, 24 Nov 2021 09:43:17 -0800 (PST)
-Received: from [192.168.1.11] ([217.117.245.63])
-        by smtp.gmail.com with ESMTPSA id b12sm44026lfv.91.2021.11.24.09.43.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 09:43:17 -0800 (PST)
-Message-ID: <3233c950-3bec-99c8-4afe-efe6392c929d@gmail.com>
-Date: Wed, 24 Nov 2021 20:43:15 +0300
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=82PcJsGJmWA9J7EfSsaBo8R7BvPCcHNRldX54MbqtUk=;
+        b=1j/LfnHY3WqUZeOJ+ZcWQpvCZlY3dEcq8NTGw5VmIbT3l/uVROsXv5L6FXnFUMDZxV
+         JSGjCvCj+RAI8bkQC+/LfrlKhPiWd8/BxhMPspVxPyg8TLNxy5Md5AQ64UJSKs6VlVjA
+         JicTQFQ/0LT2dOzmbPtpH23c7wVVQiJ1nyQpn/i+utCyOXavg2KABbmnlzE1oqCF9abO
+         Xw3/J3NjwBWn8o6UXDb0Sg8T0vEc/E5wuy+MlRGIkVYrmnrIDgvyNVn5yO9IjdW2vbT5
+         v2emTh2zC19rIED1rkdzy+0yV7dok014gQDDawJCY+3VewUd3G50d5E/OTzpyy7SrdTP
+         wBNA==
+X-Gm-Message-State: AOAM533C9yMqRBl1FPpb+yXyvdfeyLwtS4H8yV3IREsnvut0FZr2HXvn
+	MkIrqVNP1PTpi+fmrGVYSV32rKWcX4WUtLMEvLX6oTZ9mLmv
+X-Google-Smtp-Source: ABdhPJyxuzWxbXXQxXt/uLUyAQu5gmBfd3on9w/gXZzhkfqblOPzJkm/nRXJfXP2GwX0YVZSMLpgNz44tT0MMcAsVMq1dotg6xoH
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [syzbot] WARNING: ODEBUG bug in batadv_v_ogm_free
-Content-Language: en-US
-To: syzbot <syzbot+0ef06384b5f39a16ebb9@syzkaller.appspotmail.com>,
- Jason@zx2c4.com, a@unstable.cc, amcohen@nvidia.com,
- b.a.t.m.a.n@lists.open-mesh.org, davem@davemloft.net, dsahern@kernel.org,
- edumazet@google.com, fw@strlen.de, idosch@OSS.NVIDIA.COM,
- justin.iurman@uliege.be, kuba@kernel.org, linux-kernel@vger.kernel.org,
- mareklindner@neomailbox.ch, netdev@vger.kernel.org, praveen5582@gmail.com,
- sven@narfation.org, sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com,
- willemb@google.com, yoshfuji@linux-ipv6.org, zxu@linkedin.com
-References: <0000000000009f52f205d18c60a7@google.com>
-From: Pavel Skripkin <paskripkin@gmail.com>
-In-Reply-To: <0000000000009f52f205d18c60a7@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1637775798; a=rsa-sha256;
+X-Received: by 2002:a92:d8cf:: with SMTP id l15mr1635ilo.59.1638289150573;
+ Tue, 30 Nov 2021 08:19:10 -0800 (PST)
+Date: Tue, 30 Nov 2021 08:19:10 -0800
+In-Reply-To: <000000000000f5964705b7d47d8c@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000dc091705d203eac6@google.com>
+Subject: Re: [syzbot] INFO: trying to register non-static key in l2cap_sock_teardown_cb
+From: syzbot <syzbot+a41dfef1d2e04910eb2e@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, bobo.shaobowang@huawei.com,
+	davem@davemloft.net, hdanton@sina.com, johan.hedberg@gmail.com,
+	kuba@kernel.org, linux-bluetooth@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	luiz.dentz@gmail.com, luiz.von.dentz@intel.com, marcel@holtmann.org,
+	mareklindner@neomailbox.ch, miklos@szeredi.hu, mszeredi@redhat.com,
+	netdev@vger.kernel.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1638289152; a=rsa-sha256;
 	cv=none;
-	b=t+fAW7lNxRLu6WLIiviT9EM4/KCQkif7bidV0yenURYtIf2iS3yMV/MDDvO/UDfeHa6mKn
-	UxiL/vMI92yfHHaqbm9boeU6dAN5IxvrmSYOhstrwW91IlBp96Wurim8LluRuly8XMVNkJ
-	OE/AO4f+T4tz4yTFYZ5t98rHxYobs+U=
+	b=Ioo50KdWs8rcJkW7Hhpeoxz0WgNdHufLSN/pIFAMAb7C3i65blB5Gv5QYAa4C/5kpZjcfq
+	y/MaGm3pcgj4VdyMI9YN6Cxgr8VxVyR/VenVMhG7lVw+o3gwPWETYOsyeWyVcm9ckUAs9L
+	HUrdjgunE3BEVw5YoGL7L7tYCz52q70=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1637775798;
+	s=20121; t=1638289152;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=HaFcpK/P/GGsknj1HL812X9ZdJDmKc2b6kicKM3XERg=;
-	b=BXjiu4AK8UzAftaYAtP62m4C+rg5NsyG/D2wg45sCabPyzF2l/EgXoT83JO7xAPB8RGjnX
-	KJXMeqZQCv6SOrCiQN/bZ9L+flM0QCPkqKJJJ5keZgUg17CnBNG8ukKQQTG+syWhMpxdLe
-	9V9SGez1ROc/gWVgNcyT+C0pEEn0PXY=
+	 in-reply-to:in-reply-to; bh=82PcJsGJmWA9J7EfSsaBo8R7BvPCcHNRldX54MbqtUk=;
+	b=tkL3wxyGE8Ys+uvQNhbNvQLRoHZwylpSORSq7I8GFKvYFWWLIK8GvHY90k4zi5YNt006qE
+	UiUbvxfpUWvyXtMT9Q4j1snNgGhjfg0v72aXmsHkjXJ/8sXTJv9KHkl3YAMswbQw9ZULnh
+	JrFlibmHU2KAE3VLETZKUw6XcnmuPkE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20210112 header.b=VIuEhf0i;
-	spf=pass (diktynna.open-mesh.org: domain of paskripkin@gmail.com designates 2a00:1450:4864:20::12f as permitted sender) smtp.mailfrom=paskripkin@gmail.com;
-	dmarc=pass (policy=none) header.from=gmail.com
-X-MailFrom: paskripkin@gmail.com
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3_k6mYQkbAEk39Avlwwp2l00to.rzzrwp53p2nzy4py4.nzx@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.198 as permitted sender) smtp.mailfrom=3_k6mYQkbAEk39Avlwwp2l00to.rzzrwp53p2nzy4py4.nzx@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=appspotmail.com (policy=none)
+Message-ID-Hash: 3LOBS5FTT2FM4OILWDD7MBQ7H6KVZH2S
+X-Message-ID-Hash: 3LOBS5FTT2FM4OILWDD7MBQ7H6KVZH2S
+X-MailFrom: 3_k6mYQkbAEk39Avlwwp2l00to.rzzrwp53p2nzy4py4.nzx@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: 6HVZ6AP27V7UAKO4PQUWBREKHP5R4THK
-X-Message-ID-Hash: 6HVZ6AP27V7UAKO4PQUWBREKHP5R4THK
-X-Mailman-Approved-At: Wed, 24 Nov 2021 18:32:38 +0100
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6HVZ6AP27V7UAKO4PQUWBREKHP5R4THK/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3LOBS5FTT2FM4OILWDD7MBQ7H6KVZH2S/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On 11/24/21 20:42, syzbot wrote:
-> syzbot suspects this issue was fixed by commit:
-> 
-> commit 6f68cd634856f8ca93bafd623ba5357e0f648c68
-> Author: Pavel Skripkin <paskripkin@gmail.com>
-> Date:   Sun Oct 24 13:13:56 2021 +0000
-> 
->      net: batman-adv: fix error handling
-> 
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=114e3c16b00000
-> start commit:   cf52ad5ff16c Merge tag 'driver-core-5.15-rc6' of git://git..
-> git tree:       upstream
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=9479508d7bb83ad9
-> dashboard link: https://syzkaller.appspot.com/bug?extid=0ef06384b5f39a16ebb9
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17af7344b00000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=15dc02fb300000
-> 
-> If the result looks correct, please mark the issue as fixed by replying with:
-> 
-> #syz fix: net: batman-adv: fix error handling
-> 
+syzbot suspects this issue was fixed by commit:
 
+commit 1bff51ea59a9afb67d2dd78518ab0582a54a472c
+Author: Wang ShaoBo <bobo.shaobowang@huawei.com>
+Date:   Wed Sep 1 00:35:37 2021 +0000
 
-#syz fix: net: batman-adv: fix error handling
+    Bluetooth: fix use-after-free error in lock_sock_nested()
 
-Looks valid
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=134c881eb00000
+start commit:   73b7a6047971 net: dsa: bcm_sf2: support BCM4908's integrat..
+git tree:       net-next
+kernel config:  https://syzkaller.appspot.com/x/.config?x=9ce34124da4c882b
+dashboard link: https://syzkaller.appspot.com/bug?extid=a41dfef1d2e04910eb2e
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=166ee4cf500000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1337172f500000
 
+If the result looks correct, please mark the issue as fixed by replying with:
 
-With regards,
-Pavel Skripkin
+#syz fix: Bluetooth: fix use-after-free error in lock_sock_nested()
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
