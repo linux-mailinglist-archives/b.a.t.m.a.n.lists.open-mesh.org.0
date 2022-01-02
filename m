@@ -2,19 +2,19 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D024482AD3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jan 2022 12:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B97482AD4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jan 2022 12:32:30 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E6E7883E7A;
-	Sun,  2 Jan 2022 12:32:09 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7214583E68;
+	Sun,  2 Jan 2022 12:32:30 +0100 (CET)
 Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id E887883E8B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jan 2022 12:32:06 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id C078A83E4F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jan 2022 12:32:26 +0100 (CET)
 From: Marek Lindner <mareklindner@neomailbox.ch>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 2/4] alfred: Allow operating without any interface specified
-Date: Sun,  2 Jan 2022 12:31:34 +0100
-Message-Id: <20220102113136.470299-2-mareklindner@neomailbox.ch>
+Subject: [PATCH 3/4] alfred: introduce 'change batman-adv interface' IPC call
+Date: Sun,  2 Jan 2022 12:31:35 +0100
+Message-Id: <20220102113136.470299-3-mareklindner@neomailbox.ch>
 In-Reply-To: <20220102113136.470299-1-mareklindner@neomailbox.ch>
 References: <3748133.vRqKQLy7FI@rousseau>
  <20220102113136.470299-1-mareklindner@neomailbox.ch>
@@ -24,24 +24,24 @@ ARC-Authentication-Results: i=1;
 	dkim=none;
 	spf=pass (diktynna.open-mesh.org: domain of mareklindner@neomailbox.ch designates 5.148.176.60 as permitted sender) smtp.mailfrom=mareklindner@neomailbox.ch;
 	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641123127; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641123147; a=rsa-sha256;
 	cv=none;
-	b=lUOAOUgh4SujOiOsIjI0T398jfch9d+UGpCdYHxKbAVt+1u/SuBalQ9DOtxR5yh7/iE03i
-	1DEIVP+Qc0b4fOzXnr9GAqcMFApJQl/6rGRS8nPSRjRpStF2wb9Um/aSGLES4oYVQPSGjX
-	TyHG00RetmwXFnzW/oX002QbC05mS0E=
+	b=KEZ/uPVEgfT6NX56GVNgYkarM2pd73bIRznbKkKmRGwNEdr4I3Kz7tGs9zjkemV/JOehHV
+	+eVA07ctShQbHMQATcoq8CRXFnPTv2hPE0Cvn+YNvKboCkycEPpvjqVn5RnjcTUXkoqGmc
+	YUg4FeSpRDSsJByXkKwUWg/X60uaB8g=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1641123127;
+	s=20121; t=1641123147;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=CJZLnxR5yxGwTxDBbxc6v6ppVbyEExquS8yjEheveQM=;
-	b=ZbAKlQw6ZPd+WQXqQBgE81ju1xtuTS8WI0xJlRFIsbGs4EgS2PMiG2a//3e3jzXmnXIDFJ
-	XkUOq4/aUuXu/h7FKeL2isf7fgS6Cn0iXlGaaubLZbE4fpysFqziAOXYJFsX/oIhR81xCF
-	Qqsr7RFsA2I8MkTQ92blrJgQicguH9E=
+	bh=J2KkfWWEMjXIJvlCOcfJAz638xf1rnGLP24QdM1pI8U=;
+	b=C6OUn4iHFXYu6grzBDoeCocTwycJn6CXoJMytTBQQTTftS17BBnk9l5hqO8Q5wjlDvr301
+	0lR9kx9AMkGBB+LNn7e979BiXVvTXJ27MTfVaPoc2FrMfJSOJAT5o9t9jfgpb7oDkT2RHl
+	H/YzLEx8mIzAL5os4u4219rypsi+dxo=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 67UQP5BSN3HUSE2AA4MXBZTHKPL6TYR4
-X-Message-ID-Hash: 67UQP5BSN3HUSE2AA4MXBZTHKPL6TYR4
+Message-ID-Hash: 3JHEEIZJFNFSOX4ID5ICWKXSVYWO2K6L
+X-Message-ID-Hash: 3JHEEIZJFNFSOX4ID5ICWKXSVYWO2K6L
 X-MailFrom: mareklindner@neomailbox.ch
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: Marek Lindner <mareklindner@neomailbox.ch>
@@ -49,184 +49,257 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/67UQP5BSN3HUSE2AA4MXBZTHKPL6TYR4/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3JHEEIZJFNFSOX4ID5ICWKXSVYWO2K6L/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-The '-i' commandline parameter to specify interface names
-no longer is mandatory. Specifying interface 'none' or
-sending a 'none' interface string within the
-ALFRED_CHANGE_INTERFACE unix socket command disables
-all interfaces operations at runtime.
+The batman-adv interface used by alfred can be changed at
+runtime by sending the CHANGE_BAT_IFACE command via unix
+socket.
 
 Signed-off-by: Marek Lindner <mareklindner@neomailbox.ch>
 ---
- README.rst   |  6 +++++-
- alfred.h     |  1 -
- man/alfred.8 |  6 +++++-
- netsock.c    | 23 ++++-------------------
- server.c     | 12 ------------
- 5 files changed, 14 insertions(+), 34 deletions(-)
+ alfred.h     |  4 +++-
+ client.c     | 37 +++++++++++++++++++++++++++++++++++++
+ main.c       | 10 +++++++++-
+ man/alfred.8 |  3 +++
+ packet.h     | 14 ++++++++++++++
+ unix_sock.c  | 27 ++++++++++++++++++++++++++-
+ 6 files changed, 92 insertions(+), 3 deletions(-)
 
-diff --git a/README.rst b/README.rst
-index 33200e4..7f44db6 100644
---- a/README.rst
-+++ b/README.rst
-@@ -82,7 +82,8 @@ documentation how to configure alfred in this case. In =
-any event, you can
- still run alfred from the command line. The relevant options are (for a =
-full
- list of options, run alfred -h):
-=20
--  -i, --interface             specify the interface to listen on
-+  -i, --interface             specify the interface to listen on. use 'n=
-one'
-+                              to disable interface operations
-   -b                          specify the batman-adv interface configure=
-d on
-                               the system (default: bat0). use 'none' to =
-disable
-                               the batman-adv based best server selection
-@@ -90,6 +91,9 @@ list of options, run alfred -h):
-                               accepts data from secondaries and syncs it=
- with
-                               other primaries
-=20
-+The interface option '-i' is optional. If interface 'none' is specified,=
- the
-+alfred daemon will not communicate with other alfred instances on the
-+network unless the interface list is modified at runtime via the unix so=
-cket.
- The -b option is optional, and only needed if you run alfred on a batman=
--adv
- interface not called bat0, or if you don't use batman-adv at all
- (use '-b none'). In this case, alfred will still work but will not be ab=
-le to
 diff --git a/alfred.h b/alfred.h
-index d844261..57d7daf 100644
+index 57d7daf..0fc6dc6 100644
 --- a/alfred.h
 +++ b/alfred.h
-@@ -182,7 +182,6 @@ int unix_sock_req_data_finish(struct globals *globals=
-,
- /* vis.c */
- int vis_update_data(struct globals *globals);
- /* netsock.c */
--int netsock_open_all(struct globals *globals);
- size_t netsocket_count_interfaces(struct globals *globals);
- void netsock_close_all(struct globals *globals);
- int netsock_set_interfaces(struct globals *globals, char *interfaces);
-diff --git a/man/alfred.8 b/man/alfred.8
-index 18e008e..ff9b315 100644
---- a/man/alfred.8
-+++ b/man/alfred.8
-@@ -95,12 +95,16 @@ Change the alfred server to use the new \fBinterface\=
-fP(s)
- .SH SERVER OPTIONS
- .TP
- \fB\-i\fP, \fB\-\-interface\fP \fIiface\fP
--Specify the interface (or comma separated list of interfaces) to listen =
-on
-+Specify the interface (or comma separated list of interfaces) to listen =
-on.
-+Use 'none' to disable interface operations.
- .TP
- \fB\-b\fP \fIbatmanif\fP
- Specify the batman-adv interface configured on the system (default: bat0=
-).
- Use 'none' to disable the batman-adv based best server selection.
+@@ -89,6 +89,7 @@ enum clientmode {
+ 	CLIENT_SET_DATA,
+ 	CLIENT_MODESWITCH,
+ 	CLIENT_CHANGE_INTERFACE,
++	CLIENT_CHANGE_BAT_IFACE,
+ };
 =20
-+The interface option \fB\-i\fP is optional. If interface 'none' is speci=
-fied, the
-+alfred daemon will not communicate with other alfred instances on the
-+network unless the interface list is modified at runtime via the unix so=
-cket.
- The \fB\-b\fP option is optional, and only needed if you run alfred on a
- batman-adv interface not called bat0, or if you don't use batman-adv at =
-all
- (use '\fB\-b\fP none'). In this case, alfred will still work but will no=
-t be
-diff --git a/netsock.c b/netsock.c
-index 84b0ec3..7bc49b4 100644
---- a/netsock.c
-+++ b/netsock.c
-@@ -116,6 +116,10 @@ int netsock_set_interfaces(struct globals *globals, =
-char *interfaces)
+ struct interface {
+@@ -110,7 +111,7 @@ struct globals {
 =20
- 	netsock_close_all(globals);
+ 	char *change_interface;
+ 	struct server *best_server;	/* NULL if we are a server ourselves */
+-	const char *mesh_iface;
++	char *mesh_iface;
+ 	enum opmode opmode;
+ 	enum clientmode clientmode;
+ 	int clientmode_arg;
+@@ -150,6 +151,7 @@ int alfred_client_request_data(struct globals *global=
+s);
+ int alfred_client_set_data(struct globals *globals);
+ int alfred_client_modeswitch(struct globals *globals);
+ int alfred_client_change_interface(struct globals *globals);
++int alfred_client_change_bat_iface(struct globals *globals);
+ /* recv.c */
+ int recv_alfred_packet(struct globals *globals, struct interface *interf=
+ace,
+ 		       int recv_sock);
+diff --git a/client.c b/client.c
+index dc643f3..e1107bf 100644
+--- a/client.c
++++ b/client.c
+@@ -296,3 +296,40 @@ int alfred_client_change_interface(struct globals *g=
+lobals)
 =20
-+	/* interface 'none' disables all interface operations */
-+	if (strcmp(interfaces, "none") =3D=3D 0)
-+		return 0;
-+
- 	input =3D interfaces;
- 	while ((token =3D strtok_r(input, ",", &saveptr))) {
- 		input =3D NULL;
-@@ -452,25 +456,6 @@ err:
- 	return -1;
+ 	return 0;
  }
++
++int alfred_client_change_bat_iface(struct globals *globals)
++{
++	unsigned char buf[MAX_PAYLOAD];
++	struct alfred_change_bat_iface_v0 *change_bat_iface;
++	int ret, len;
++	size_t interface_len;
++
++	if (unix_sock_open_client(globals))
++		return -1;
++
++	interface_len =3D strlen(globals->mesh_iface);
++	if (interface_len > sizeof(change_bat_iface->bat_iface)) {
++		fprintf(stderr, "%s: batman-adv interface name list too long, not chan=
+ging\n",
++			__func__);
++		return 0;
++	}
++
++	change_bat_iface =3D (struct alfred_change_bat_iface_v0 *)buf;
++	len =3D sizeof(*change_bat_iface);
++
++	change_bat_iface->header.type =3D ALFRED_CHANGE_BAT_IFACE;
++	change_bat_iface->header.version =3D ALFRED_VERSION;
++	change_bat_iface->header.length =3D htons(len - sizeof(change_bat_iface=
+->header));
++	strncpy(change_bat_iface->bat_iface, globals->mesh_iface,
++		sizeof(change_bat_iface->bat_iface));
++	change_bat_iface->bat_iface[sizeof(change_bat_iface->bat_iface) - 1] =3D=
+ '\0';
++
++	ret =3D write(globals->unix_sock, buf, len);
++	if (ret !=3D len)
++		fprintf(stderr, "%s: only wrote %d of %d bytes: %s\n",
++			__func__, ret, len, strerror(errno));
++
++	unix_sock_close(globals);
++
++	return 0;
++}
+diff --git a/main.c b/main.c
+index ad317cf..2cb6d44 100644
+--- a/main.c
++++ b/main.c
+@@ -37,6 +37,7 @@ static void alfred_usage(void)
+ 	printf("  -M, --modeswitch primary            switch daemon to mode pri=
+mary\n");
+ 	printf("                   secondary          switch daemon to mode sec=
+ondary\n");
+ 	printf("  -I, --change-interface [interface]  change to the specified i=
+nterface(s)\n");
++	printf("  -B, --change-bat-iface [interface]  change to the specified b=
+atman-adv interface\n");
+ 	printf("\n");
+ 	printf("server mode options:\n");
+ 	printf("  -i, --interface                     specify the interface (or=
+ comma separated list of interfaces) to listen on\n");
+@@ -160,6 +161,7 @@ static struct globals *alfred_init(int argc, char *ar=
+gv[])
+ 		{"req-version",		required_argument,	NULL,	'V'},
+ 		{"modeswitch",		required_argument,	NULL,	'M'},
+ 		{"change-interface",	required_argument,	NULL,	'I'},
++		{"change-bat-iface",	required_argument,	NULL,	'B'},
+ 		{"unix-path",		required_argument,	NULL,	'u'},
+ 		{"update-command",	required_argument,	NULL,	'c'},
+ 		{"version",		no_argument,		NULL,	'v'},
+@@ -194,7 +196,7 @@ static struct globals *alfred_init(int argc, char *ar=
+gv[])
 =20
--int netsock_open_all(struct globals *globals)
--{
--	int num_socks =3D 0;
--	int ret;
--	struct interface *interface;
--
--	list_for_each_entry(interface, &globals->interfaces, list) {
--		if (globals->ipv4mode)
--			ret =3D netsock_open4(interface);
--		else
--			ret =3D netsock_open(interface);
--
--		if (ret >=3D 0)
--			num_socks++;
--	}
--
--	return num_socks;
--}
--
- size_t netsocket_count_interfaces(struct globals *globals)
- {
- 	struct interface *interface;
-diff --git a/server.c b/server.c
-index 85bf453..39206bf 100644
---- a/server.c
-+++ b/server.c
-@@ -372,7 +372,6 @@ int alfred_server(struct globals *globals)
- 	struct timespec last_check, now, tv;
- 	fd_set fds, errfds;
- 	size_t num_interfaces;
--	int num_socks;
+ 	time_random_seed();
 =20
- 	if (create_hashes(globals))
- 		return -1;
-@@ -380,11 +379,6 @@ int alfred_server(struct globals *globals)
- 	if (unix_sock_open_daemon(globals))
- 		return -1;
-=20
--	if (list_empty(&globals->interfaces)) {
--		fprintf(stderr, "Can't start server: interface missing\n");
--		return -1;
--	}
--
- 	if (strcmp(globals->mesh_iface, "none") !=3D 0 &&
- 	    batadv_interface_check(globals->mesh_iface) < 0 &&
- 	    !globals->force) {
-@@ -393,12 +387,6 @@ int alfred_server(struct globals *globals)
- 		return -1;
+-	while ((opt =3D getopt_long(argc, argv, "ms:r:hi:b:vV:M:I:u:dc:p:4:f", =
+long_options,
++	while ((opt =3D getopt_long(argc, argv, "ms:r:hi:b:vV:M:I:B:u:dc:p:4:f"=
+, long_options,
+ 				  &opt_ind)) !=3D -1) {
+ 		switch (opt) {
+ 		case 'r':
+@@ -252,6 +254,10 @@ static struct globals *alfred_init(int argc, char *a=
+rgv[])
+ 			globals->clientmode =3D CLIENT_CHANGE_INTERFACE;
+ 			globals->change_interface =3D strdup(optarg);
+ 			break;
++		case 'B':
++			globals->clientmode =3D CLIENT_CHANGE_BAT_IFACE;
++			globals->mesh_iface =3D strdup(optarg);
++			break;
+ 		case 'u':
+ 			globals->unix_path =3D optarg;
+ 			break;
+@@ -313,6 +319,8 @@ int main(int argc, char *argv[])
+ 		return alfred_client_modeswitch(globals);
+ 	case CLIENT_CHANGE_INTERFACE:
+ 		return alfred_client_change_interface(globals);
++	case CLIENT_CHANGE_BAT_IFACE:
++		return alfred_client_change_bat_iface(globals);
  	}
 =20
--	num_socks =3D netsock_open_all(globals);
--	if (num_socks <=3D 0 && !globals->force) {
--		fprintf(stderr, "Failed to open interfaces\n");
--		return -1;
--	}
+ 	return 0;
+diff --git a/man/alfred.8 b/man/alfred.8
+index ff9b315..74814e0 100644
+--- a/man/alfred.8
++++ b/man/alfred.8
+@@ -91,6 +91,9 @@ to 0 ('\fB\-V\fP 0').
+ .TP
+ \fB\-I\fP, \fB\-\-change\-interface\fP \fIinterface\fP
+ Change the alfred server to use the new \fBinterface\fP(s)
++.TP
++\fB\-B\fP, \fB\-\-change\-bat\-iface\fP \fIinterface\fP
++Change the alfred server to use the new \fBbatman-adv interface\fP
+ .
+ .SH SERVER OPTIONS
+ .TP
+diff --git a/packet.h b/packet.h
+index 678f939..94c6a77 100644
+--- a/packet.h
++++ b/packet.h
+@@ -68,6 +68,7 @@ enum alfred_packet_type {
+ 	ALFRED_STATUS_ERROR =3D 4,
+ 	ALFRED_MODESWITCH =3D 5,
+ 	ALFRED_CHANGE_INTERFACE =3D 6,
++	ALFRED_CHANGE_BAT_IFACE =3D 7,
+ };
+=20
+ /* packets */
+@@ -147,6 +148,19 @@ struct alfred_change_interface_v0 {
+ 	char ifaces[IFNAMSIZ * 16];
+ } __packed;
+=20
++/**
++ * struct alfred_change_bat_iface_v0 - Request to change the
++ * batman-adv interface
++ * @header: TLV header describing the complete packet
++ * @bat_iface: interface to be changed to
++ *
++ * Sent to the daemon by client
++ */
++struct alfred_change_bat_iface_v0 {
++	struct alfred_tlv header;
++	char bat_iface[IFNAMSIZ];
++} __packed;
++
+ /**
+  * struct alfred_status_v0 - Status info of a transaction
+  * @header: TLV header describing the complete packet
+diff --git a/unix_sock.c b/unix_sock.c
+index d9ad07b..bc39199 100644
+--- a/unix_sock.c
++++ b/unix_sock.c
+@@ -345,6 +345,27 @@ err:
+ 	return ret;
+ }
+=20
++static int
++unix_sock_change_bat_iface(struct globals *globals,
++			   struct alfred_change_bat_iface_v0 *change_bat_iface,
++			   int client_sock)
++{
++	int len, ret =3D -1;
++
++	len =3D ntohs(change_bat_iface->header.length);
++
++	if (len < (int)(sizeof(*change_bat_iface) - sizeof(change_bat_iface->he=
+ader)))
++		goto err;
++
++	free(globals->mesh_iface);
++	globals->mesh_iface =3D strdup(change_bat_iface->bat_iface);
++
++	ret =3D 0;
++err:
++	close(client_sock);
++	return ret;
++}
++
+ int unix_sock_read(struct globals *globals)
+ {
+ 	int client_sock;
+@@ -402,7 +423,11 @@ int unix_sock_read(struct globals *globals)
+ 					     (struct alfred_change_interface_v0 *)packet,
+ 					     client_sock);
+ 		break;
 -
- 	num_interfaces =3D netsocket_count_interfaces(globals);
- 	if (num_interfaces > 1 && globals->opmode =3D=3D OPMODE_SECONDARY) {
- 		fprintf(stderr, "More than one interface specified in secondary mode\n=
-");
++	case ALFRED_CHANGE_BAT_IFACE:
++		ret =3D unix_sock_change_bat_iface(globals,
++						 (struct alfred_change_bat_iface_v0 *)packet,
++						 client_sock);
++		break;
+ 	default:
+ 		/* unknown packet type */
+ 		ret =3D -1;
 --=20
 2.32.0.rc0
