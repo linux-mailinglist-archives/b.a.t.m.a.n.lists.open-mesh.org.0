@@ -2,381 +2,130 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ADD7482AD5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jan 2022 12:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D91B5482B8B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  2 Jan 2022 15:20:27 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0139983EC4;
-	Sun,  2 Jan 2022 12:32:41 +0100 (CET)
-Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5E66A83E7C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jan 2022 12:32:38 +0100 (CET)
-From: Marek Lindner <mareklindner@neomailbox.ch>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH 4/4] alfred: introduce 'server status' IPC call
-Date: Sun,  2 Jan 2022 12:31:36 +0100
-Message-Id: <20220102113136.470299-4-mareklindner@neomailbox.ch>
-In-Reply-To: <20220102113136.470299-1-mareklindner@neomailbox.ch>
-References: <3748133.vRqKQLy7FI@rousseau>
- <20220102113136.470299-1-mareklindner@neomailbox.ch>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B75AA83E79;
+	Sun,  2 Jan 2022 15:20:26 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 929D08074D
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  2 Jan 2022 15:20:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1641133223;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8Pgg3UriPJfryULF24okCObwbdXKymf5zuWD8goKesA=;
+	b=nO39K06lLdGBaxCKwgZrGiDeER5LOY48C6InPDuaQfnx+fihuS99EpTBEYC2MTUIOZtHyF
+	gGFVFB3olkhhjPrceQNiYG6G6iy48wh/itO7pgf1Ep8xustYYJEVv4tIEJh/FZ/sAKK1nu
+	QXau4tmjF5SP3pQ/A0ZbJFRnHcsXGBs=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
+Subject: Re: [PATCH 2/4] alfred: Allow operating without any interface specified
+Date: Sun, 02 Jan 2022 15:20:20 +0100
+Message-ID: <2887321.KE3FGX6OkO@sven-l14>
+In-Reply-To: <20220102113136.470299-2-mareklindner@neomailbox.ch>
+References: <3748133.vRqKQLy7FI@rousseau> <20220102113136.470299-1-mareklindner@neomailbox.ch> <20220102113136.470299-2-mareklindner@neomailbox.ch>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart3555316.B6yQ7zIYFZ"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of mareklindner@neomailbox.ch designates 5.148.176.60 as permitted sender) smtp.mailfrom=mareklindner@neomailbox.ch;
-	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641123158; a=rsa-sha256;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=nO39K06l;
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641133223; a=rsa-sha256;
 	cv=none;
-	b=T5p5MKjmoEh3IHmUulKbH+mkG5uAYAQ/G80uqfmx76LYwksHcJSWVluBnLQA/logXvv0qV
-	DQe/jRZAlQARgNXX293lkacyyjjYIXbyFvF99RjY7UEERHH3U3JhWUFdW3fICzX2IOKkqF
-	+AtjlGcd1qjCon6X1+eKA9ghbuFojDw=
+	b=HkTt3Tjg0wajAiZzLmMeCYCwBbTRbWrg8YyaFAs316LlE1vTtOvVbBNVVDfLF0WcUH53/G
+	rljXVr6AHhT/jxcHpe9sXJ2cj3vR6r+ge2Pz9tRZIzsFkvKp6f6i+8wgaXHIXK3kJIYGDf
+	cnYk23h6k/qgYWdjT5HML1AjBVWOv1c=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1641123158;
+	s=20121; t=1641133223;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YlKSHDHKcX/W4MbGRt8y7KI5R/GfDahgwGzQFgRyKk4=;
-	b=URWtjwh0y64ES0B/Kd5PGyBOgjYXsHSJKg/E/9x/0zfDOjfzvg3Nc8MFhq1dkZMu4SC2rt
-	RatMh8sTBOHRP6TFi0Cry5kG6Wklo7yI4CzNGlktwoHfGKXfXm7VlQTNwTxwBi4i50H64q
-	7LLpzhU7G9di61ga+8AFsxVR9Ld96Rg=
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: CHJL7G3FDBUKHNKKK7J5MGWPCPXONXA4
-X-Message-ID-Hash: CHJL7G3FDBUKHNKKK7J5MGWPCPXONXA4
-X-MailFrom: mareklindner@neomailbox.ch
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=8Pgg3UriPJfryULF24okCObwbdXKymf5zuWD8goKesA=;
+	b=CWnjSPVSBcZM9D/M4t6mFIZGvWGL2cQpPtPb6kz+avXfs6SCE08dBK3wb9iJ5973MO4+fa
+	nI16zrhw5wCtf/hfE8APz+cvGR5bzI0qizrE/64Oh4Ugfys7EFRGwy17yJ4lO6dp5HLBWt
+	qmiJHyhSa9S5AToiKMJVF4Y8Ro4hlec=
+Message-ID-Hash: 4JHDZKNJDWAHGDS5C5KWEY6N2RHTGZ7L
+X-Message-ID-Hash: 4JHDZKNJDWAHGDS5C5KWEY6N2RHTGZ7L
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Marek Lindner <mareklindner@neomailbox.ch>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CHJL7G3FDBUKHNKKK7J5MGWPCPXONXA4/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4JHDZKNJDWAHGDS5C5KWEY6N2RHTGZ7L/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-The 'server status' call exports the 'mode' as well as interface
-status via IPC. Both parameters can be modified at runtime via the
-IPC and as such, the current configuration is dynamic and not
-necessarily obvious.
+--nextPart3555316.B6yQ7zIYFZ
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
+Subject: Re: [PATCH 2/4] alfred: Allow operating without any interface specified
+Date: Sun, 02 Jan 2022 15:20:20 +0100
+Message-ID: <2887321.KE3FGX6OkO@sven-l14>
+In-Reply-To: <20220102113136.470299-2-mareklindner@neomailbox.ch>
+References: <3748133.vRqKQLy7FI@rousseau> <20220102113136.470299-1-mareklindner@neomailbox.ch> <20220102113136.470299-2-mareklindner@neomailbox.ch>
 
-The server status 'request' and 'reply' packet types are added
-to allow the IPC client to initiate the status retrieval. The
-server will respond with the 'reply' message.
+On Sunday, 2 January 2022 12:31:34 CET Marek Lindner wrote:
+[...]
+> diff --git a/README.rst b/README.rst
+[...]
+>  	if (strcmp(globals->mesh_iface, "none") != 0 &&
+>  	    batadv_interface_check(globals->mesh_iface) < 0 &&
+>  	    !globals->force) {
+> @@ -393,12 +387,6 @@ int alfred_server(struct globals *globals)
+>  		return -1;
+>  	}
+>  
+> -	num_socks = netsock_open_all(globals);
+> -	if (num_socks <= 0 && !globals->force) {
+> -		fprintf(stderr, "Failed to open interfaces\n");
+> -		return -1;
+> -	}
+> -
+>  	num_interfaces = netsocket_count_interfaces(globals);
+>  	if (num_interfaces > 1 && globals->opmode == OPMODE_SECONDARY) {
+>  		fprintf(stderr, "More than one interface specified in secondary mode\n");
+> 
 
-Signed-off-by: Marek Lindner <mareklindner@neomailbox.ch>
----
- alfred.h     |  2 ++
- client.c     | 87 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- main.c       |  9 +++++-
- man/alfred.8 |  3 ++
- packet.h     | 26 ++++++++++++++++
- unix_sock.c  | 50 ++++++++++++++++++++++++++++++
- 6 files changed, 176 insertions(+), 1 deletion(-)
+This now causes the "--force" option (+its storage in the globals data 
+structure) to be completely useless. I would prefer to have this handling
+still be there when !list_empty(&globals->interfaces).
 
-diff --git a/alfred.h b/alfred.h
-index 0fc6dc6..8ee7b21 100644
---- a/alfred.h
-+++ b/alfred.h
-@@ -90,6 +90,7 @@ enum clientmode {
- 	CLIENT_MODESWITCH,
- 	CLIENT_CHANGE_INTERFACE,
- 	CLIENT_CHANGE_BAT_IFACE,
-+	CLIENT_SERVER_STATUS,
- };
-=20
- struct interface {
-@@ -152,6 +153,7 @@ int alfred_client_set_data(struct globals *globals);
- int alfred_client_modeswitch(struct globals *globals);
- int alfred_client_change_interface(struct globals *globals);
- int alfred_client_change_bat_iface(struct globals *globals);
-+int alfred_client_server_status(struct globals *globals);
- /* recv.c */
- int recv_alfred_packet(struct globals *globals, struct interface *interf=
-ace,
- 		       int recv_sock);
-diff --git a/client.c b/client.c
-index e1107bf..d540a9f 100644
---- a/client.c
-+++ b/client.c
-@@ -333,3 +333,90 @@ int alfred_client_change_bat_iface(struct globals *g=
-lobals)
-=20
- 	return 0;
- }
-+
-+int alfred_client_server_status(struct globals *globals)
-+{
-+	unsigned char buf[MAX_PAYLOAD];
-+	struct alfred_server_status_req_v0 *status_req;
-+	struct alfred_server_status_rep_v0 *status_rep;
-+	struct alfred_tlv *packet;
-+	int ret, len, headsize, i;
-+
-+	if (unix_sock_open_client(globals))
-+		return -1;
-+
-+	status_req =3D (struct alfred_server_status_req_v0 *)buf;
-+	len =3D sizeof(*status_req);
-+
-+	status_req->header.type =3D ALFRED_SERVER_STATUS;
-+	status_req->header.version =3D ALFRED_VERSION;
-+	status_req->header.length =3D 0;
-+
-+	ret =3D write(globals->unix_sock, buf, len);
-+	if (ret !=3D len)
-+		fprintf(stderr, "%s: only wrote %d of %d bytes: %s\n",
-+			__func__, ret, len, strerror(errno));
-+
-+	len =3D read(globals->unix_sock, buf, sizeof(buf));
-+	if (len <=3D 0) {
-+		perror("read from unix socket failed");
-+		goto err;
-+	}
-+
-+	ret =3D -1;
-+
-+	/* drop too small packets */
-+	headsize =3D sizeof(*packet);
-+	if (len < headsize) {
-+		perror("unexpected header size received from unix socket");
-+		goto err;
-+	}
-+
-+	packet =3D (struct alfred_tlv *)buf;
-+
-+	if ((len - headsize) < ((int)ntohs(packet->length))) {
-+		perror("unexpected packet size received from unix socket");
-+		goto err;
-+	}
-+
-+	if (packet->version !=3D ALFRED_VERSION) {
-+		perror("alfred version mismatch");
-+		goto err;
-+	}
-+
-+	status_rep =3D (struct alfred_server_status_rep_v0 *)buf;
-+	headsize =3D ntohs(status_rep->header.length);
-+
-+	if (headsize < (int)(sizeof(*status_rep) - sizeof(status_rep->header)))
-+		goto err;
-+
-+	fprintf(stdout, "alfred status:\n");
-+
-+	switch (status_rep->mode) {
-+	case ALFRED_MODESWITCH_SECONDARY:
-+		fprintf(stdout, "- mode: secondary\n");
-+		break;
-+	case ALFRED_MODESWITCH_PRIMARY:
-+		fprintf(stdout, "- mode: primary\n");
-+		break;
-+	default:
-+		fprintf(stderr, "- mode: unknown\n");
-+		break;
-+	}
-+
-+	fprintf(stderr, "- interfaces:\n");
-+
-+	for (i =3D 0; i < 16; i++) {
-+		if (strlen(status_rep->ifaces[i].name) =3D=3D 0)
-+			continue;
-+
-+		fprintf(stderr, "\t- name: %s\n",
-+			status_rep->ifaces[i].name);
-+	}
-+
-+	fprintf(stdout, "- batman-adv interface: %s\n", status_rep->bat_iface);
-+
-+err:
-+	unix_sock_close(globals);
-+	return 0;
-+}
-diff --git a/main.c b/main.c
-index 2cb6d44..e2ac576 100644
---- a/main.c
-+++ b/main.c
-@@ -38,6 +38,7 @@ static void alfred_usage(void)
- 	printf("                   secondary          switch daemon to mode sec=
-ondary\n");
- 	printf("  -I, --change-interface [interface]  change to the specified i=
-nterface(s)\n");
- 	printf("  -B, --change-bat-iface [interface]  change to the specified b=
-atman-adv interface\n");
-+	printf("  -S, --server-status                 request server status inf=
-o such as mode & interfaces\n");
- 	printf("\n");
- 	printf("server mode options:\n");
- 	printf("  -i, --interface                     specify the interface (or=
- comma separated list of interfaces) to listen on\n");
-@@ -162,6 +163,7 @@ static struct globals *alfred_init(int argc, char *ar=
-gv[])
- 		{"modeswitch",		required_argument,	NULL,	'M'},
- 		{"change-interface",	required_argument,	NULL,	'I'},
- 		{"change-bat-iface",	required_argument,	NULL,	'B'},
-+		{"server-status",	required_argument,	NULL,	'S'},
- 		{"unix-path",		required_argument,	NULL,	'u'},
- 		{"update-command",	required_argument,	NULL,	'c'},
- 		{"version",		no_argument,		NULL,	'v'},
-@@ -196,7 +198,7 @@ static struct globals *alfred_init(int argc, char *ar=
-gv[])
-=20
- 	time_random_seed();
-=20
--	while ((opt =3D getopt_long(argc, argv, "ms:r:hi:b:vV:M:I:B:u:dc:p:4:f"=
-, long_options,
-+	while ((opt =3D getopt_long(argc, argv, "ms:r:hi:b:vV:M:I:B:Su:dc:p:4:f=
-", long_options,
- 				  &opt_ind)) !=3D -1) {
- 		switch (opt) {
- 		case 'r':
-@@ -258,6 +260,9 @@ static struct globals *alfred_init(int argc, char *ar=
-gv[])
- 			globals->clientmode =3D CLIENT_CHANGE_BAT_IFACE;
- 			globals->mesh_iface =3D strdup(optarg);
- 			break;
-+		case 'S':
-+			globals->clientmode =3D CLIENT_SERVER_STATUS;
-+			break;
- 		case 'u':
- 			globals->unix_path =3D optarg;
- 			break;
-@@ -321,6 +326,8 @@ int main(int argc, char *argv[])
- 		return alfred_client_change_interface(globals);
- 	case CLIENT_CHANGE_BAT_IFACE:
- 		return alfred_client_change_bat_iface(globals);
-+	case CLIENT_SERVER_STATUS:
-+		return alfred_client_server_status(globals);
- 	}
-=20
- 	return 0;
-diff --git a/man/alfred.8 b/man/alfred.8
-index 74814e0..cf0eafc 100644
---- a/man/alfred.8
-+++ b/man/alfred.8
-@@ -94,6 +94,9 @@ Change the alfred server to use the new \fBinterface\fP=
-(s)
- .TP
- \fB\-B\fP, \fB\-\-change\-bat\-iface\fP \fIinterface\fP
- Change the alfred server to use the new \fBbatman-adv interface\fP
-+.TP
-+\fB\-S\fP, \fB\-\-server\-status\fP
-+Request server status information such as mode & interfaces\fP
- .
- .SH SERVER OPTIONS
- .TP
-diff --git a/packet.h b/packet.h
-index 94c6a77..b9e1f2e 100644
---- a/packet.h
-+++ b/packet.h
-@@ -69,6 +69,7 @@ enum alfred_packet_type {
- 	ALFRED_MODESWITCH =3D 5,
- 	ALFRED_CHANGE_INTERFACE =3D 6,
- 	ALFRED_CHANGE_BAT_IFACE =3D 7,
-+	ALFRED_SERVER_STATUS =3D 8,
- };
-=20
- /* packets */
-@@ -159,6 +160,31 @@ struct alfred_change_interface_v0 {
- struct alfred_change_bat_iface_v0 {
- 	struct alfred_tlv header;
- 	char bat_iface[IFNAMSIZ];
-+};
-+
-+/**
-+ * struct alfred_server_status_req_v0 - server status request
-+ * @header: TLV header describing the complete packet
-+ *
-+ * Sent to the daemon by client
-+ */
-+struct alfred_server_status_req_v0 {
-+	struct alfred_tlv header;
-+} __packed;
-+
-+/**
-+ * struct alfred_server_status_req_v0 - server status reply
-+ * @header: TLV header describing the complete packet
-+ *
-+ * Sent by the daemon to client in response to status request
-+ */
-+struct alfred_server_status_rep_v0 {
-+	struct alfred_tlv header;
-+	uint8_t mode;
-+	struct {
-+		char name[IFNAMSIZ];
-+	} ifaces[16];
-+	char bat_iface[IFNAMSIZ];
- } __packed;
-=20
- /**
-diff --git a/unix_sock.c b/unix_sock.c
-index bc39199..22a6805 100644
---- a/unix_sock.c
-+++ b/unix_sock.c
-@@ -366,6 +366,53 @@ err:
- 	return ret;
- }
-=20
-+static int unix_sock_server_status(struct globals *globals, int client_s=
-ock)
-+{
-+	unsigned char buf[MAX_PAYLOAD];
-+	struct alfred_server_status_rep_v0 *status_rep;
-+	struct interface *interface;
-+	int ret, len, iface_count;
-+
-+	status_rep =3D (struct alfred_server_status_rep_v0 *)buf;
-+	len =3D sizeof(*status_rep);
-+
-+	status_rep->header.type =3D ALFRED_SERVER_STATUS;
-+	status_rep->header.version =3D ALFRED_VERSION;
-+	status_rep->header.length =3D htons(len - sizeof(status_rep->header));
-+
-+	switch (globals->opmode) {
-+	case OPMODE_SECONDARY:
-+		status_rep->mode =3D ALFRED_MODESWITCH_SECONDARY;
-+		break;
-+	case OPMODE_PRIMARY:
-+		status_rep->mode =3D ALFRED_MODESWITCH_PRIMARY;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	iface_count =3D 0;
-+
-+	list_for_each_entry(interface, &globals->interfaces, list) {
-+		strncpy(status_rep->ifaces[iface_count].name,
-+			interface->interface,
-+			sizeof(status_rep->ifaces[iface_count].name));
-+
-+		iface_count++;
-+	}
-+
-+	strncpy(status_rep->bat_iface, globals->mesh_iface,
-+		sizeof(status_rep->bat_iface));
-+
-+	ret =3D write(client_sock, buf, len);
-+	if (ret =3D=3D len)
-+		return 0;
-+
-+	fprintf(stderr, "%s: only wrote %d of %d bytes: %s\n",
-+		__func__, ret, len, strerror(errno));
-+	return -1;
-+}
-+
- int unix_sock_read(struct globals *globals)
- {
- 	int client_sock;
-@@ -428,6 +475,9 @@ int unix_sock_read(struct globals *globals)
- 						 (struct alfred_change_bat_iface_v0 *)packet,
- 						 client_sock);
- 		break;
-+	case ALFRED_SERVER_STATUS:
-+		ret =3D unix_sock_server_status(globals, client_sock);
-+		break;
- 	default:
- 		/* unknown packet type */
- 		ret =3D -1;
---=20
-2.32.0.rc0
+And why is it necessary to not open the sockets on startup when interfaces are 
+already given?
+
+Kind regards,
+	Sven
+--nextPart3555316.B6yQ7zIYFZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmHRtKQACgkQXYcKB8Em
+e0Y/wBAAr4/e+kitdyYNx0/IDpoylufZ/1vsPngknN2yG0PQoyPxt3FYqotA3ZZ9
+H/oCi6YKHSN9VsKsQLgysTBMJAlVOa/nSrcke6XDMdfKqkWyVo7VpK6w34XtiFsr
+PLO/WXjR8CJxlH/V3Wx6TLZejdsFqeHR4aIZRe1B5dlJZnuTi8dltLoVvw5uUhE8
+lgggUWTed6S6oMbJyjl3K3Cgy+iWrHsHdbpD/Qr/jUs7wbgLnBWzjSsQddaRbANg
+Thsgumsv8Zikapcq0p3L+zEpF9tZL9YFswqypiwXgYikN2ih73UImFOgdS9R2vA4
+xSZMYg6D8IYKUEuS1HupXugBd3WyV/LlmswdCZVirC8EPYOmxXgR/28Luf1fJWoZ
+fR8GmA2trrIB/e+N3wM0AudGChL8hx5Jx4Uwss9D1HSXTqOFvoPJPDpHqeAu3WZF
+Bdl6FLgq6gnp9O/cyt1/3fpmMJwrxcZakb9wDZVnAwgKHsBVohiagAFCIiyOGqpn
+ISa7jFBS6en3zyNL08zDgmOqATI4x01ipDsJGPZ77kX0g5wQkVDiEUZQN0k1cSq1
+Xanr39iF3aGNh09sh/X5RH8MBvJd3ju8cXKgZl9EaaEhqBwy7NOoFfbgYvI8tjN4
+agb4cCtEyOmwwkneaYLYAw/gFRc8PedDDkeqxSVZOduOaynWnmk=
+=mnex
+-----END PGP SIGNATURE-----
+
+--nextPart3555316.B6yQ7zIYFZ--
+
+
