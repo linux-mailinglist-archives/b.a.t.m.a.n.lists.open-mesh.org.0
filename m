@@ -2,100 +2,108 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF58483572
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  3 Jan 2022 18:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0623C483D37
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  4 Jan 2022 08:52:25 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E11BD84380;
-	Mon,  3 Jan 2022 18:18:00 +0100 (CET)
-Received: from simonwunderlich.de (simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id D597683EFC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon,  3 Jan 2022 18:17:52 +0100 (CET)
-Received: from kero.packetmixer.de (p200300c597476fC09aF9daD664F33736.dip0.t-ipconnect.de [IPv6:2003:c5:9747:6fc0:9af9:dad6:64f3:3736])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E959983DEC;
+	Tue,  4 Jan 2022 08:52:23 +0100 (CET)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id CF5C080220
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  4 Jan 2022 05:00:13 +0100 (CET)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id 8709DFA1C3;
-	Mon,  3 Jan 2022 18:17:52 +0100 (CET)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Subject: [PATCH 3/3] batman-adv: remove unneeded variable in batadv_nc_init
-Date: Mon,  3 Jan 2022 18:17:22 +0100
-Message-Id: <20220103171722.1126109-4-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220103171722.1126109-1-sw@simonwunderlich.de>
-References: <20220103171722.1126109-1-sw@simonwunderlich.de>
+	by ams.source.kernel.org (Postfix) with ESMTPS id 3740CB81142;
+	Tue,  4 Jan 2022 04:00:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D7BE7C36AEF;
+	Tue,  4 Jan 2022 04:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1641268811;
+	bh=6LKcbLDBAWDxgGS1n/i55l5BNGoGk778boBlco/391w=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=T5wwpWpDJgyc/axSvP4MoN3kP8v3lwPNwy2R3h5x+5z3EFX5SY9DsF2+6NIuMd6It
+	 lPKXf00j0Nhcd6kfidpxWTwvXMwENTwxIjQdVxD+hHTuqC7jfty5bt3s8nysUaLloO
+	 RJXJqnAnUdzKsxV6RKmj8oOdRe8jjfIMD2Qt8G0XKV23KolwI5KT/KrEkSgaQCW38s
+	 Yq6MbbWm5soEwP8n68ctk5jViYEy9nOt8hlYaKKjZYJsoXRasu8CyagMUHMt/9SlH0
+	 nE1XD2eQqgQ7ey/LEjdvpj+c+nvHeKOMsyPiu3Zte6LIDj22S50dzM46btQO231B16
+	 fspAKzTg4o++A==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BA90FF79400;
+	Tue,  4 Jan 2022 04:00:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/1] batman-adv: mcast: don't send link-local multicast to
+ mcast routers
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <164126881175.32247.1012598310655037825.git-patchwork-notify@kernel.org>
+Date: Tue, 04 Jan 2022 04:00:11 +0000
+References: <20220103171203.1124980-2-sw@simonwunderlich.de>
+In-Reply-To: <20220103171203.1124980-2-sw@simonwunderlich.de>
+To: Simon Wunderlich <sw@simonwunderlich.de>
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
-	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641230272; a=rsa-sha256;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=T5wwpWpD;
+	dmarc=pass (policy=none) header.from=kernel.org;
+	spf=pass (diktynna.open-mesh.org: domain of patchwork-bot+netdevbpf@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641268813; a=rsa-sha256;
 	cv=none;
-	b=qfEpKYbQI8IbG/emzFjxcDZuGPduOGtf4gUwTI8R2PqmDew1iFVG/CFH2M2Av1D8xjGaXI
-	d+C3A1hbuB6YwkQ3A8/iiKi6uuTKmN+K/Yaeo6LpPP3UrCj0lPUkyKM1c5PbAiqFOliWzS
-	OLPkcBidnLrWowvRln+iuVB50vv4Xd8=
+	b=thj1iNoWj+4PB3mAzXoE06HtH9iyGvaEP0eMJOyQhtmseYQWT/cXz8QP0Z1ICJh9yPT55o
+	qiNYCKlf1z+5h2pmIP37Fpg6Eb3GyOea37+bh6MyChPsb2sS/e6f0AGZ9fsZ7EyiaN4A0d
+	PAJYu+RBUTsz6vS4Ep8bCn25A++Lxug=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1641230272;
+	s=20121; t=1641268813;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ev+/OIM+wV84WSG7N/9B9acRz9TKDK8FkZG4OOnne4U=;
-	b=iPCvE0IJoGmSrB7oT20f+kdCDCZbOv81hwY4ts/hOROD6Bg2AgnGbU7a698BaBTEPtjpqh
-	gJ60/FXRHxzwpoGsq0AUT89JygkwwHqBgAn8NCrsKVjncAX51dYltiSMGANeUBFIX1GWoC
-	NPOIPOWG8OoSDUJo1J5yCN5D1hnpYrM=
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=nIAjmR9WE9Blh7Qjyhj9u/97z5CFlkwDKqylLRyx23w=;
+	b=dRGXlMrJDXR9RE7kMYyZM7pA860xoGXXcfWjRV1t6nqIPiRVFEhQ16M62Jsl04AmSjsu8+
+	/S2x8QfqbVa4mjHdM+pWqLg7nelTi6va2FxCR7H7zJyeEE67+4M8TkNH0JPCbUF8KwPcZp
+	8b1LOV5vUPAwbMpkuSVQ+w6gnUUJ+0Y=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: BES5S6RMXLPHKGUWBILMUOFKAJBJMM47
-X-Message-ID-Hash: BES5S6RMXLPHKGUWBILMUOFKAJBJMM47
-X-MailFrom: sw@simonwunderlich.de
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org, Minghao Chi <chi.minghao@zte.com.cn>, Zeal Robot <zealci@zte.com.cn>
+X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: TGWBRUCBNSLTQKDA6NGRZYPDSP2QDVKF
+X-Message-ID-Hash: TGWBRUCBNSLTQKDA6NGRZYPDSP2QDVKF
+X-Mailman-Approved-At: Tue, 04 Jan 2022 07:52:21 +0100
+CC: davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BES5S6RMXLPHKGUWBILMUOFKAJBJMM47/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FITUX42DYXKJ4LEUBBFM23SN2YMCCH3P/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Minghao Chi <chi.minghao@zte.com.cn>
+Hello:
 
-Return status directly from function called.
+This patch was applied to netdev/net.git (master)
+by Simon Wunderlich <sw@simonwunderlich.de>:
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: Minghao Chi <chi.minghao@zte.com.cn>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/network-coding.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+On Mon,  3 Jan 2022 18:12:03 +0100 you wrote:
+> From: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+>=20
+> The addition of routable multicast TX handling introduced a
+> bug/regression for packets with a link-local multicast destination:
+> These packets would be sent to all batman-adv nodes with a multicast
+> router and to all batman-adv nodes with an old version without multicas=
+t
+> router detection.
+>=20
+> [...]
 
-diff --git a/net/batman-adv/network-coding.c b/net/batman-adv/network-cod=
-ing.c
-index 0a7f1d36a6a8..974d726fabb9 100644
---- a/net/batman-adv/network-coding.c
-+++ b/net/batman-adv/network-coding.c
-@@ -58,13 +58,9 @@ static int batadv_nc_recv_coded_packet(struct sk_buff =
-*skb,
-  */
- int __init batadv_nc_init(void)
- {
--	int ret;
--
- 	/* Register our packet type */
--	ret =3D batadv_recv_handler_register(BATADV_CODED,
--					   batadv_nc_recv_coded_packet);
--
--	return ret;
-+	return batadv_recv_handler_register(BATADV_CODED,
-+					    batadv_nc_recv_coded_packet);
- }
-=20
- /**
+Here is the summary with links:
+  - [1/1] batman-adv: mcast: don't send link-local multicast to mcast rou=
+ters
+    https://git.kernel.org/netdev/net/c/938f2e0b57ff
+
+You are awesome, thank you!
 --=20
-2.30.2
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
