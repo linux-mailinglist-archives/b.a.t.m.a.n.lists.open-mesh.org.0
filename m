@@ -2,82 +2,76 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06C62484166
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  4 Jan 2022 13:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 292D6489679
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 10 Jan 2022 11:37:26 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 00B43840B2;
-	Tue,  4 Jan 2022 13:01:07 +0100 (CET)
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 55D63808D4
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  4 Jan 2022 12:49:04 +0100 (CET)
-Received: by mail-yb1-xb30.google.com with SMTP id d201so83352115ybc.7
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 04 Jan 2022 03:49:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=aKx3+tDPcj0JF44p7/MvIZ+G++iiA8Hgo2dF/3xk24k=;
-        b=kwAdwg2pdZxRi0A6vSRDtSWR8w8ErXepolc7pgl3HRBrv6RBIvpNIPO08Y8SSxYcrQ
-         QWr2KTK9V7K1SvGKdVsk2TbUkWkINo9cpt0LFtseRlqoardlCZuhFFsuciUsTVCRBZ4M
-         bYQlgL1k6z0ttq258GKZbfSPO9QVWxklLMb/GirQ74wx9DF7MmjrBpavufd6AQ5bbGeu
-         LCZuuYLRimgQU5xQT0VXVjBBD9HFvDSDazYhW+uNK0/OU1R16rZK9fLRaBbDU+hplyYd
-         ZfKeLkrnhpvysy5Di6vijDAohR0tBlRJCZkvinl/jkP2fW3A1+E5O/MQ5XcLLx81B5j/
-         /X1g==
+	by diktynna.open-mesh.org (Postfix) with ESMTP id F2B5E8046C;
+	Mon, 10 Jan 2022 11:37:24 +0100 (CET)
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com [209.85.166.71])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id D4D7C803F7
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jan 2022 11:37:20 +0100 (CET)
+Received: by mail-io1-f71.google.com with SMTP id r74-20020a6b8f4d000000b0060447822f65so10735001iod.20
+        for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 10 Jan 2022 02:37:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=aKx3+tDPcj0JF44p7/MvIZ+G++iiA8Hgo2dF/3xk24k=;
-        b=Tm/diTddeV37KgLc5t0hkh63cHi2TPugfg0BTS2vid5vX79IBUsWZJlmQaiL88jGgT
-         wd0jUkQxi/K5Fpo1HqqSxVtyq0l8gAKUJS70ZwK5nZKJPxdQlvVa2WTt6jBeoq3gu+s3
-         Al0FdsfQP7dMUyCWUVb9Ir83RoFzjJvE2lPo72GtGM2UkNR92Rvudyp+bBGOh/WCtqfa
-         +eBFZQN4zXGHuFQYONZH+vcB5AJmGKUG/wlMQnOcfemMbMJvKkunT1Sw8T2cQ9+isKWm
-         wgsmBmNdYZYxZy6Z0hubMIZQJ17V6jzx8+Fv1yzGpZk4ijd8Z9I/YlzpSl8ygYqfi2QV
-         VZ1w==
-X-Gm-Message-State: AOAM533VTpWoic7nFHnq1F6Kt9ffxBXFkmOKV7tngSkLlErIiLF6RADJ
-	kXfDmMHpA2wKBDWvIXMByZGpNraA/qbx9YN48+E=
-X-Google-Smtp-Source: ABdhPJyR7/GLWvw9QFOzCFVQP1WenrmDNVj+rySOayu3zzHV7DbySbQJdeTzC+Q/RY18bDlI2lmm+U1G+1rX3edABI0=
-X-Received: by 2002:a25:da0e:: with SMTP id n14mr51428336ybf.35.1641296943059;
- Tue, 04 Jan 2022 03:49:03 -0800 (PST)
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=28Zn727PbkOa9e5z/Te0bGji+C0r00GDui6Opfz/fgY=;
+        b=MbKMXKoEfiRhVjXQtKEpzAtDunOGC3tjZzQAdg4okJrPMEcEEOu4Tt9tP4rDzd4qwX
+         f0To1Eu9skIoRmyR621VQJXgc5OorbGioOa/LhcLcFyJwbnz9E+Aa8VQVbMP8rCsAPj3
+         Wrlz2pl+TOEjA1I/5/ygxZld15PLjiNXLci1DgY9W/PG02wKYcZ/IkbgEU/jaSzm0E8t
+         LA8f8VNXkpJl0dXpW98vHHgybdBWkhmPpDXwWLqo2YH9Wul+XI9v2iEMH3gOeLLUHbHU
+         EVml2xtEq3S7gd/umCnwN0R8wJiSUVBSPNlO6HMfadrfkqzuci2pQAlLGjKPtn4UVLTs
+         JpRw==
+X-Gm-Message-State: AOAM532ZqcrFyvC6lYLkJ0HCZiLXWfxDtr8uNejYbymj0T0MoRK6O0Xc
+	uyxJc4kCo2/rL4v/qYCKUqVW86S8x9yhnWz4ufJgoM/sXb/9
+X-Google-Smtp-Source: ABdhPJxkWJglLMH3JYkAs5xRuRcpxjI7rYX9TuzOm255LBfzxK0nlisfIObbM2ncvDqJUr2+cbUo4jJfvo5yCLgKxSReC+qt7bFu
 MIME-Version: 1.0
-From: kvartet <xyru1999@gmail.com>
-Date: Tue, 4 Jan 2022 19:48:52 +0800
-Message-ID: <CAFkrUsi8CXPZZ4=iRn2HsH7a86PfcuHCBuD3hsLW2jWP2PS=aQ@mail.gmail.com>
-Subject: INFO: rcu detected stall in batadv_purge_orig
-To: Marek Lindner <mareklindner@neomailbox.ch>, Simon Wunderlich <sw@simonwunderlich.de>,
-	Antonio Quartulli <a@unstable.cc>, Sven Eckelmann <sven@narfation.org>,
-	"David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, b.a.t.m.a.n@lists.open-mesh.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	syzkaller-bugs@googlegroups.com
+X-Received: by 2002:a6b:ba05:: with SMTP id k5mr35882555iof.194.1641811039359;
+ Mon, 10 Jan 2022 02:37:19 -0800 (PST)
+Date: Mon, 10 Jan 2022 02:37:19 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000ca1d2005d537ebac@google.com>
+Subject: [syzbot] WARNING: suspicious RCU usage in __dev_queue_xmit
+From: syzbot <syzbot+e163f2ff7c3f7efd8203@syzkaller.appspotmail.com>
+To: a@unstable.cc, alobakin@pm.me, andrii@kernel.org, ast@kernel.org,
+	atenart@kernel.org, b.a.t.m.a.n@lists.open-mesh.org, bpf@vger.kernel.org,
+	coreteam@netfilter.org, daniel@iogearbox.net, davem@davemloft.net,
+	fw@strlen.de, john.fastabend@gmail.com, jonathan.lemon@gmail.com,
+	kadlec@netfilter.org, kafai@fb.com, kpsingh@kernel.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, lukas@wunner.de, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, netfilter-devel@vger.kernel.org, pablo@netfilter.org,
+	songliubraving@fb.com, sven@narfation.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com, yhs@fb.com
 Content-Type: text/plain; charset="UTF-8"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20210112 header.b=kwAdwg2p;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (diktynna.open-mesh.org: domain of xyru1999@gmail.com designates 2607:f8b0:4864:20::b30 as permitted sender) smtp.mailfrom=xyru1999@gmail.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641296944; a=rsa-sha256;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of 3XwzcYQkbAPww23oeppivettmh.ksskpiywivgsrxirx.gsq@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com designates 209.85.166.71 as permitted sender) smtp.mailfrom=3XwzcYQkbAPww23oeppivettmh.ksskpiywivgsrxirx.gsq@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=appspotmail.com (policy=none)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1641811040; a=rsa-sha256;
 	cv=none;
-	b=0C0o1240FBAgY2k63WNKd4naDSEkmo12bi/f4j3rMj8u+GjFHnWfKJGlA+r5lvMSNp40ov
-	5JL1vUZXwKXPKpbXs9Lm/UzajQCrPtQ6dWBwvd8n1T2wtKIHL2N06Gf2oYHo0pEd/h8JlO
-	cRqEtypHZ29fBQR2csWRdn2sbGVjK34=
+	b=3e/b3SXjNwAl54wjZgOUwxHScPM2WGBVEyOiIoqyIBOi8hsP7ZIeQel78TZIIaw761MaCh
+	cpJSm92KLMbFX/sdszBuBzLq85VuYETzWjS5vwb5M3s4W3S3iY1JqPySL7nRV2ahWxwMRu
+	HQ5wUBtUEWrMRTiR+hZsMf7RU7hkwP0=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1641296944;
+	s=20121; t=1641811040;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 dkim-signature; bh=aKx3+tDPcj0JF44p7/MvIZ+G++iiA8Hgo2dF/3xk24k=;
-	b=DbAvZgzRy3zrYnWUcuQ/UAUKCXdpwg9SGOZ3r8hT4cYWiKu3Ub6DK+3GXbk3IBTmAiPF9X
-	kOvZTuRdFb8wjU3hWEW/q4dbRiEQdPaifI2gzP14FM2dg/B+HMNrCl219OGaCBdu2Mx/n0
-	YwwdHgol2uiOCv+k9IV6/rngBL/0Q5c=
-X-MailFrom: xyru1999@gmail.com
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=28Zn727PbkOa9e5z/Te0bGji+C0r00GDui6Opfz/fgY=;
+	b=sZ/uNQJZ07tbK8tdGFn8hCJnbyGCIfUrvnk7qc4juLG4Ci06b91u8nVnElcwLIwm4O2tSE
+	61Q9s8LPKSd1PNBoCBozzvqv5zHR/Dzx7MCuTDZf4jvODL3hxP8xjes3CGUWqsk2EBckOQ
+	wTPxeyTJAvUMiPIUEm5JH5zDMXuOZ7I=
+Message-ID-Hash: LUQCHUBAKUDPBZNWEP3FCLLEXC2GC72K
+X-Message-ID-Hash: LUQCHUBAKUDPBZNWEP3FCLLEXC2GC72K
+X-MailFrom: 3XwzcYQkbAPww23oeppivettmh.ksskpiywivgsrxirx.gsq@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: 6MLXH6HJLUPA746EL2GEJKT7WKS3YS3U
-X-Message-ID-Hash: 6MLXH6HJLUPA746EL2GEJKT7WKS3YS3U
-X-Mailman-Approved-At: Tue, 04 Jan 2022 12:01:05 +0100
-CC: sunhao.th@gmail.com
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6MLXH6HJLUPA746EL2GEJKT7WKS3YS3U/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LUQCHUBAKUDPBZNWEP3FCLLEXC2GC72K/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -86,129 +80,81 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 Hello,
 
-When using Syzkaller to fuzz the latest Linux kernel, the following
-crash was triggered.
+syzbot found the following issue on:
 
-HEAD commit: a7904a538933 Linux 5.16-rc6
-git tree: upstream
-console output: https://paste.ubuntu.com/p/V4fvMdr76R/plain/
-kernel config: https://paste.ubuntu.com/p/FDDNHDxtwz/plain/
+HEAD commit:    4c375272fb0b Merge branch 'net-add-preliminary-netdev-refc..
+git tree:       net-next
+console output: https://syzkaller.appspot.com/x/log.txt?x=164749a9b00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=2b8e24e3a80e3875
+dashboard link: https://syzkaller.appspot.com/bug?extid=e163f2ff7c3f7efd8203
+compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=11493641b00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=11ac6aceb00000
 
-Sorry, I don't have a reproducer for this crash, hope the symbolized
-report can help.
+The issue was bisected to:
 
-If you fix this issue, please add the following tag to the commit:
-Reported-by: Yiru Xu <xyru1999@gmail.com>
+commit 42df6e1d221dddc0f2acf2be37e68d553ad65f96
+Author: Lukas Wunner <lukas@wunner.de>
+Date:   Fri Oct 8 20:06:03 2021 +0000
+
+    netfilter: Introduce egress hook
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1236329db00000
+final oops:     https://syzkaller.appspot.com/x/report.txt?x=1136329db00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=1636329db00000
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+e163f2ff7c3f7efd8203@syzkaller.appspotmail.com
+Fixes: 42df6e1d221d ("netfilter: Introduce egress hook")
+
+=============================
+WARNING: suspicious RCU usage
+5.16.0-rc3-syzkaller #0 Not tainted
+-----------------------------
+include/linux/netfilter_netdev.h:97 suspicious rcu_dereference_check() usage!
+
+other info that might help us debug this:
 
 
-rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-(detected by 1, t=10502 jiffies, g=150425, q=70254)
-rcu: All QSes seen, last rcu_preempt kthread activity 10500
-(4295046532-4295036032), jiffies_till_next_fqs=1, root ->qsmask 0x0
-rcu: rcu_preempt kthread timer wakeup didn't happen for 10499 jiffies!
-g150425 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x200
-rcu: Possible timer handling issue on cpu=3 timer-softirq=70438
-rcu: rcu_preempt kthread starved for 10500 jiffies! g150425 f0x2
-RCU_GP_WAIT_FQS(5) ->state=0x200 ->cpu=3
-rcu: Unless rcu_preempt kthread gets sufficient CPU time, OOM is now
-expected behavior.
-rcu: RCU grace-period kthread stack dump:
-task:rcu_preempt     state:R stack:28416 pid:   16 ppid:     2 flags:0x00004000
+rcu_scheduler_active = 2, debug_locks = 1
+3 locks held by kworker/u4:2/49:
+ #0: ffff88814b0fe938 ((wq_completion)bat_events){+.+.}-{0:0}, at: arch_atomic64_set arch/x86/include/asm/atomic64_64.h:34 [inline]
+ #0: ffff88814b0fe938 ((wq_completion)bat_events){+.+.}-{0:0}, at: arch_atomic_long_set include/linux/atomic/atomic-long.h:41 [inline]
+ #0: ffff88814b0fe938 ((wq_completion)bat_events){+.+.}-{0:0}, at: atomic_long_set include/linux/atomic/atomic-instrumented.h:1198 [inline]
+ #0: ffff88814b0fe938 ((wq_completion)bat_events){+.+.}-{0:0}, at: set_work_data kernel/workqueue.c:635 [inline]
+ #0: ffff88814b0fe938 ((wq_completion)bat_events){+.+.}-{0:0}, at: set_work_pool_and_clear_pending kernel/workqueue.c:662 [inline]
+ #0: ffff88814b0fe938 ((wq_completion)bat_events){+.+.}-{0:0}, at: process_one_work+0x896/0x1690 kernel/workqueue.c:2269
+ #1: ffffc9000119fdb0 ((work_completion)(&(&forw_packet_aggr->delayed_work)->work)){+.+.}-{0:0}, at: process_one_work+0x8ca/0x1690 kernel/workqueue.c:2273
+ #2: ffffffff8bb83b00 (rcu_read_lock_bh){....}-{1:2}, at: __dev_queue_xmit+0x1e3/0x3640 net/core/dev.c:4036
+
+stack backtrace:
+CPU: 1 PID: 49 Comm: kworker/u4:2 Not tainted 5.16.0-rc3-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Workqueue: bat_events batadv_iv_send_outstanding_bat_ogm_packet
 Call Trace:
  <TASK>
- context_switch kernel/sched/core.c:4972 [inline]
- __schedule+0xcd9/0x2530 kernel/sched/core.c:6253
- schedule+0xd2/0x260 kernel/sched/core.c:6326
- schedule_timeout+0x4ce/0x890 kernel/time/timer.c:1881
- rcu_gp_fqs_loop+0x4a1/0x860 kernel/rcu/tree.c:1955
- rcu_gp_kthread+0x1de/0x320 kernel/rcu/tree.c:2128
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ nf_hook_egress include/linux/netfilter_netdev.h:97 [inline]
+ __dev_queue_xmit+0x2eac/0x3640 net/core/dev.c:4053
+ batadv_send_skb_packet+0x4a9/0x5f0 net/batman-adv/send.c:108
+ batadv_iv_ogm_send_to_if net/batman-adv/bat_iv_ogm.c:393 [inline]
+ batadv_iv_ogm_emit net/batman-adv/bat_iv_ogm.c:421 [inline]
+ batadv_iv_send_outstanding_bat_ogm_packet+0x6d7/0x8e0 net/batman-adv/bat_iv_ogm.c:1701
+ process_one_work+0x9b2/0x1690 kernel/workqueue.c:2298
+ worker_thread+0x658/0x11f0 kernel/workqueue.c:2445
  kthread+0x405/0x4f0 kernel/kthread.c:327
  ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
  </TASK>
-rcu: Stack dump where RCU GP kthread last ran:
-Sending NMI from CPU 1 to CPUs 3:
-NMI backtrace for cpu 3
-CPU: 3 PID: 8 Comm: kworker/u8:0 Not tainted 5.16.0-rc6 #9
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS
-1.13.0-1ubuntu1.1 04/01/2014
-Workqueue: bat_events batadv_purge_orig
-RIP: 0010:kvm_wait+0xb3/0x110 arch/x86/kernel/kvm.c:1001
-Code: 40 38 c6 74 1b 48 83 c4 10 c3 c3 e8 f7 f4 49 00 eb 07 0f 00 2d
-be 8a 75 08 fb f4 48 83 c4 10 c3 eb 07 0f 00 2d ae 8a 75 08 f4 <48> 83
-c4 10 c3 89 74 24 0c 48 89 3c 24 e8 1b f3 49 00 8b 74 24 0c
-RSP: 0018:ffffc900008a0b58 EFLAGS: 00000046
-RAX: 0000000000000003 RBX: 0000000000000000 RCX: ffffffff815cf9a9
-RDX: 0000000000000000 RSI: 0000000000000003 RDI: ffff888018e80338
-RBP: ffff888018e80338 R08: 0000000000000004 R09: ffffed10031d0068
-R10: ffff888018e80338 R11: ffffed10031d0067 R12: 0000000000000000
-R13: ffffed10031d0067 R14: 0000000000000001 R15: ffff888135d3a880
-FS:  0000000000000000(0000) GS:ffff888135d00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 000000c00062055c CR3: 0000000017e2c000 CR4: 0000000000350ee0
-Call Trace:
- <IRQ>
- pv_wait arch/x86/include/asm/paravirt.h:603 [inline]
- pv_wait_head_or_lock kernel/locking/qspinlock_paravirt.h:470 [inline]
- __pv_queued_spin_lock_slowpath+0x923/0xb80 kernel/locking/qspinlock.c:508
- pv_queued_spin_lock_slowpath arch/x86/include/asm/paravirt.h:591 [inline]
- queued_spin_lock_slowpath arch/x86/include/asm/qspinlock.h:51 [inline]
- queued_spin_lock include/asm-generic/qspinlock.h:85 [inline]
- do_raw_spin_lock+0x204/0x2d0 kernel/locking/spinlock_debug.c:115
- spin_lock include/linux/spinlock.h:349 [inline]
- drm_handle_vblank+0x126/0xc70 drivers/gpu/drm/drm_vblank.c:1951
- vkms_vblank_simulate+0xd0/0x3c0 drivers/gpu/drm/vkms/vkms_crtc.c:29
- __run_hrtimer kernel/time/hrtimer.c:1685 [inline]
- __hrtimer_run_queues+0x1b8/0xdf0 kernel/time/hrtimer.c:1749
- hrtimer_interrupt+0x31c/0x790 kernel/time/hrtimer.c:1811
- local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1086 [inline]
- __sysvec_apic_timer_interrupt+0x146/0x540 arch/x86/kernel/apic/apic.c:1103
- sysvec_apic_timer_interrupt+0x8e/0xc0 arch/x86/kernel/apic/apic.c:1097
- </IRQ>
- <TASK>
- asm_sysvec_apic_timer_interrupt+0x12/0x20 arch/x86/include/asm/idtentry.h:638
-RIP: 0010:__local_bh_enable_ip+0xa8/0x110 kernel/softirq.c:390
-Code: 1d 2d 86 bb 7e 65 8b 05 26 86 bb 7e a9 00 ff ff 00 74 45 bf 01
-00 00 00 e8 95 54 09 00 e8 e0 96 36 00 fb 65 8b 05 08 86 bb 7e <85> c0
-74 4a 5b 5d c3 65 8b 05 56 8d bb 7e 85 c0 75 a2 0f 0b eb 9e
-RSP: 0018:ffffc900006b7c00 EFLAGS: 00000206
-RAX: 0000000080000000 RBX: 00000000fffffe00 RCX: 1ffffffff1ff8f0e
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-RBP: ffffffff88e0aba3 R08: 0000000000000001 R09: fffffbfff1fee145
-R10: 0000000000000001 R11: fffffbfff1fee144 R12: ffff888024e64ac8
-R13: ffff8880183d4dd0 R14: 0000000000000159 R15: ffff888010c71800
- spin_unlock_bh include/linux/spinlock.h:394 [inline]
- batadv_purge_orig_ref+0xe43/0x1500 net/batman-adv/originator.c:1259
- batadv_purge_orig+0x17/0x60 net/batman-adv/originator.c:1272
- process_one_work+0x9df/0x16d0 kernel/workqueue.c:2298
- worker_thread+0x90/0xed0 kernel/workqueue.c:2445
- kthread+0x405/0x4f0 kernel/kthread.c:327
- ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
- </TASK>
-----------------
-Code disassembly (best guess):
-   0: 40 38 c6              cmp    %al,%sil
-   3: 74 1b                je     0x20
-   5: 48 83 c4 10          add    $0x10,%rsp
-   9: c3                    retq
-   a: c3                    retq
-   b: e8 f7 f4 49 00        callq  0x49f507
-  10: eb 07                jmp    0x19
-  12: 0f 00 2d be 8a 75 08 verw   0x8758abe(%rip)        # 0x8758ad7
-  19: fb                    sti
-  1a: f4                    hlt
-  1b: 48 83 c4 10          add    $0x10,%rsp
-  1f: c3                    retq
-  20: eb 07                jmp    0x29
-  22: 0f 00 2d ae 8a 75 08 verw   0x8758aae(%rip)        # 0x8758ad7
-  29: f4                    hlt
-* 2a: 48 83 c4 10          add    $0x10,%rsp <-- trapping instruction
-  2e: c3                    retq
-  2f: 89 74 24 0c          mov    %esi,0xc(%rsp)
-  33: 48 89 3c 24          mov    %rdi,(%rsp)
-  37: e8 1b f3 49 00        callq  0x49f357
-  3c: 8b 74 24 0c          mov    0xc(%rsp),%esi
 
 
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-Best Regards,
-Yiru
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+syzbot can test patches for this issue, for details see:
+https://goo.gl/tpsmEJ#testing-patches
