@@ -1,248 +1,120 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52523491824
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 18 Jan 2022 03:44:53 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id B931249495D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 20 Jan 2022 09:25:39 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3D863825DA;
-	Tue, 18 Jan 2022 03:44:52 +0100 (CET)
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id BD5A781DD5
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 18 Jan 2022 03:44:49 +0100 (CET)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 50413B81239;
-	Tue, 18 Jan 2022 02:44:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA476C36AEB;
-	Tue, 18 Jan 2022 02:44:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1642473888;
-	bh=J50OZHN0zvd2GM4+rHZ4BtCzAMe4iStWevzL2oEi4hY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SNG4+y2v9oauG8Prlidiv8+aOZEGFYX7LT3oyq0tOYNMBEUHF2ulvplxnjM/HKoOr
-	 h8wWhvKNETznR4EwgTlSlGQGxu49wS2xO4WOV9Aw9Ri20oL8zz3E9WIht5BZZ6r5ME
-	 Iibit9vUkrFrc1nf65cno9M1nJkIbC7N1CDAJBliPzTa2wa5R1r7ZFUER2qvkqhc3Z
-	 Grndgt6fOnpo8oqTcbVLctq3/JylcMDgCOoKLWru5VfGFLj/nunj/56neuKc9BST0G
-	 0Gu1cQhCV/6NX49m1FyJfOb9L1xrolSYrso1sm7M1bOprESxPwhkWVDO6NwoTlDO5s
-	 8FPlTPfhsCUcw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 08/73] batman-adv: allow netlink usage in unprivileged containers
-Date: Mon, 17 Jan 2022 21:43:27 -0500
-Message-Id: <20220118024432.1952028-8-sashal@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220118024432.1952028-1-sashal@kernel.org>
-References: <20220118024432.1952028-1-sashal@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-ARC-Authentication-Results: i=1;
-	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=SNG4+y2v;
-	dmarc=pass (policy=none) header.from=kernel.org;
-	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates 2604:1380:4601:e00::1 as permitted sender) smtp.mailfrom=sashal@kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1642473889; a=rsa-sha256;
-	cv=none;
-	b=fjfuTn0krO4xYdZ4robOaVLut+aS5x/6himWeNVEaoIg8kt/xO8V5Aluxu+Do96P7UKaVQ
-	oxyywatFrLXdRwyXeRIIf6GvAxYwsGpBPmKlMdWVy2CETdSOMfoXSloBRi4C1IbtwoohAE
-	dIYKKEH4XfgH5CxJcI8Mpmul/qt6fUk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1642473889;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6893183DC4;
+	Thu, 20 Jan 2022 09:25:38 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 338BF8085B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 20 Jan 2022 09:25:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1642667135;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nBEaSdy48uZEx6YxGMpDAv0H/5W5LnGc/2ZdqSG3Na0=;
+	b=jXwRHN2wyFSQn42e+xWXyJNAZhl4wRogrFE/m0IeErPe1144kTC7JPup/KhvUZL01UsexM
+	UFJT5kn9OgYnbzYXWjj/ggj/cEigX55y57b8l3o8H3fU2DZUl+yyl6KKvafwHR+PezbL4d
+	8JoyO6vZuSBdVCQL0EXWSr7UHNfeyj4=
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: [PATCH 4/4] alfred: introduce 'server status' IPC call
+Date: Thu, 20 Jan 2022 09:25:32 +0100
+Message-ID: <57523634.IhAzvE0y8L@ripper>
+In-Reply-To: <4305571.4q7vW2cpkv@rousseau>
+References: <3748133.vRqKQLy7FI@rousseau> <3214693.Z0pQRKLR2l@sven-l14> <4305571.4q7vW2cpkv@rousseau>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart4008829.gq60Wp5BfP"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Authentication-Results: i=1;
+	diktynna.open-mesh.org;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=jXwRHN2w;
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1642667136; a=rsa-sha256;
+	cv=none;
+	b=h6eiMpG5hsNQx9/gpDHyfrpqWT4pzbpsE0r5qu4B28VZAH0HcJM0nVhRIfJZvZcaOHmIS1
+	GcpxlpJghqO5o/O3UinwLVQ9yiXMgKDRHRwNC8QYUY4ZoiNPrD3s9mClMHNqkCasMXiSkM
+	iNUM3uVQMNyEy/xLMiq5omAFIQ6EfOQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1642667136;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=hr2pVoJqj8hXa3GWpzJDQG8yuQry2y4ic9KqZmaAIhg=;
-	b=lvdUdMZ1JeuomywARkI8un+GAW2OR8ngu58y8Vg71N2eaprPXGg3Zg+24vBg8S7QRTyOpz
-	7KZu6ylB7BZd+xXuwGGvHlYJKHf1CK3co9DTduoeEvDZuzmZDikqt4Dqe+zy6ZXbm5WgTh
-	AgXnZUqcDUW1dZiP1jfJdzdP9emqGWE=
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: Y67NGHTGVSC7JOERCH5QK7D2ZC4ZLECJ
-X-Message-ID-Hash: Y67NGHTGVSC7JOERCH5QK7D2ZC4ZLECJ
-X-MailFrom: sashal@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-CC: Tycho Andersen <tycho@tycho.pizza>, Sasha Levin <sashal@kernel.org>, mareklindner@neomailbox.ch, a@unstable.cc, davem@davemloft.net, kuba@kernel.org, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org
+	bh=nBEaSdy48uZEx6YxGMpDAv0H/5W5LnGc/2ZdqSG3Na0=;
+	b=Dq9rfADz1J+j50yF/WaGlG0//H3hAJFIsfhnFQ1lSp4eULGzDQ/Q1BgYQposfaCu5r6n0r
+	g128o7d3n0ICt5PDifrSuGzXqfX2R+6SBjrlPNp+rFL8Hizp9a/i77FmzvqPqvzxlIHMtY
+	FTS4jedqvqkh/JIohGff/7XEXpjUGc0=
+Message-ID-Hash: W7XV56GQ3FWA4WQFXS63BT4LVALHWARZ
+X-Message-ID-Hash: W7XV56GQ3FWA4WQFXS63BT4LVALHWARZ
+X-MailFrom: sven@narfation.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Marek Lindner <mareklindner@neomailbox.ch>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Y67NGHTGVSC7JOERCH5QK7D2ZC4ZLECJ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/W7XV56GQ3FWA4WQFXS63BT4LVALHWARZ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
+--nextPart4008829.gq60Wp5BfP
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Marek Lindner <mareklindner@neomailbox.ch>
+Subject: Re: [PATCH 4/4] alfred: introduce 'server status' IPC call
+Date: Thu, 20 Jan 2022 09:25:32 +0100
+Message-ID: <57523634.IhAzvE0y8L@ripper>
+In-Reply-To: <4305571.4q7vW2cpkv@rousseau>
+References: <3748133.vRqKQLy7FI@rousseau> <3214693.Z0pQRKLR2l@sven-l14> <4305571.4q7vW2cpkv@rousseau>
 
-[ Upstream commit 9057d6c23e7388ee9d037fccc9a7bc8557ce277b ]
+On Wednesday, 12 January 2022 22:14:15 CET Marek Lindner wrote:
+> On Sunday, 2 January 2022 15:43:37 CET Sven Eckelmann wrote:
+> > @Simon, would you prefer to have a global "status" message (which cannot be
+> > extended in the future) or separate "GET" queries for the existing commands:
+> > 
+> > * ALFRED_MODESWITCH -> ALFRED_GET_MODE
+> > * ALFRED_CHANGE_INTERFACE -> ALFRED_GET_INTERFACES
+> > * ALFRED_CHANGE_BAT_IFACE -> ALFRED_GET_BAT_IFACE
+> 
+> Another option would be to work with TLVs inside a single server status 
+> request. This would minimize the number of added packet definitions and retain 
+> future extensibility.
 
-Currently, creating a batman-adv interface in an unprivileged LXD
-container and attaching secondary interfaces to it with "ip" or "batctl"
-works fine. However all batctl debug and configuration commands
-fail:
+Just asked Simon directly and he seems to prefer the sub-TLV solution over the 
+single requests.
 
-  root@container:~# batctl originators
-  Error received: Operation not permitted
-  root@container:~# batctl orig_interval
-  1000
-  root@container:~# batctl orig_interval 2000
-  root@container:~# batctl orig_interval
-  1000
+Kind regards,
+	Sven
+--nextPart4008829.gq60Wp5BfP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-To fix this change the generic netlink permissions from GENL_ADMIN_PERM
-to GENL_UNS_ADMIN_PERM. This way a batman-adv interface is fully
-maintainable as root from within a user namespace, from an unprivileged
-container.
+-----BEGIN PGP SIGNATURE-----
 
-All except one batman-adv netlink setting are per interface and do not
-leak information or change settings from the host system and are
-therefore save to retrieve or modify as root from within an unprivileged
-container.
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmHpHHwACgkQXYcKB8Em
+e0YlKxAAkY0BPvW21IkFU+DS4dGf2w7ls97KkXv1O1VPh6t6B9iipp6M9C88szKf
+2yUsiSO2u0VgYT8i0AfeJDMu97YOnKYF4ZKopp90bvEX2SYo5wLwb6AKC5GSwZkH
+jY/9ubW0TfLRRwSY0+ZMFKe3ZOcwmj4DHnd5ta9yzcMH7bbcwXjnm9qJUjNsHIOM
+oxOPXSYrl6UZN6+gYysSlCTV5XMZd5GyGAq0Qr+V7qk4WxpD9CIdRWMS+TtKMAML
+ERDkloMjDgrIT6ctnGqQWib25Si/d5HU3QHqNUxDkiODvceXzIZcjltUXMlAsRRW
+izxtGiXmnqyd0VVWQdXJDGRzbvk8sOKaEUQawjY1gTUYyvF6/ElkoWRFuKdanyQS
+iH1u+gDXhecIG4+KHRakj0Un4ODZwdAw+bqmGaNvZseJQWIpHWQuK4uK+oju/QN2
+TiiYifNrYfNXI7SGkdq7wN8tnOERmG5TK2R97p5a5Wqh+Mm7V/7pTTGbOPWxGh9t
+o4FkK4JAyQYMcWhNK0a1cAXoX6xgMX6+lxGnAuE5lFj2qxqz4heXp8MaGKGV+Yoh
+lDUqYOO0gLqG+ayf4nVOjgZ+F4ga9xCph2SoxCd6TrXg2kx4IVamFSQDCx/5ZD2X
+mVxn9OExRMShcfE5d8WyMAYUwhBBUFOkF90Czab0Y5X0qWLpwWw=
+=BHbG
+-----END PGP SIGNATURE-----
 
-"batctl routing_algo" / BATADV_CMD_GET_ROUTING_ALGOS is the only
-exception: It provides the batman-adv kernel module wide default routing
-algorithm. However it is read-only from netlink and an unprivileged
-container is still not allowed to modify
-/sys/module/batman_adv/parameters/routing_algo. Instead it is advised to
-use the newly introduced "batctl if create routing_algo RA_NAME" /
-IFLA_BATADV_ALGO_NAME to set the routing algorithm on interface
-creation, which already works fine in an unprivileged container.
+--nextPart4008829.gq60Wp5BfP--
 
-Cc: Tycho Andersen <tycho@tycho.pizza>
-Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- net/batman-adv/netlink.c | 30 +++++++++++++++---------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index 7e052d6f759b6..e59c5aa27ee0b 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -1351,21 +1351,21 @@ static const struct genl_ops batadv_netlink_ops[]=
- =3D {
- 	{
- 		.cmd =3D BATADV_CMD_TP_METER,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.doit =3D batadv_netlink_tp_meter_start,
- 		.internal_flags =3D BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_TP_METER_CANCEL,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.doit =3D batadv_netlink_tp_meter_cancel,
- 		.internal_flags =3D BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_ROUTING_ALGOS,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_algo_dump,
- 	},
- 	{
-@@ -1380,68 +1380,68 @@ static const struct genl_ops batadv_netlink_ops[]=
- =3D {
- 	{
- 		.cmd =3D BATADV_CMD_GET_TRANSTABLE_LOCAL,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_tt_local_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_TRANSTABLE_GLOBAL,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_tt_global_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_ORIGINATORS,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_orig_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_NEIGHBORS,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_hardif_neigh_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_GATEWAYS,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_gw_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_BLA_CLAIM,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_bla_claim_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_BLA_BACKBONE,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_bla_backbone_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_DAT_CACHE,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_dat_cache_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_GET_MCAST_FLAGS,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.dumpit =3D batadv_mcast_flags_dump,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_SET_MESH,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.doit =3D batadv_netlink_set_mesh,
- 		.internal_flags =3D BATADV_FLAG_NEED_MESH,
- 	},
- 	{
- 		.cmd =3D BATADV_CMD_SET_HARDIF,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.doit =3D batadv_netlink_set_hardif,
- 		.internal_flags =3D BATADV_FLAG_NEED_MESH |
- 				  BATADV_FLAG_NEED_HARDIF,
-@@ -1457,7 +1457,7 @@ static const struct genl_ops batadv_netlink_ops[] =3D=
- {
- 	{
- 		.cmd =3D BATADV_CMD_SET_VLAN,
- 		.validate =3D GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
--		.flags =3D GENL_ADMIN_PERM,
-+		.flags =3D GENL_UNS_ADMIN_PERM,
- 		.doit =3D batadv_netlink_set_vlan,
- 		.internal_flags =3D BATADV_FLAG_NEED_MESH |
- 				  BATADV_FLAG_NEED_VLAN,
---=20
-2.34.1
