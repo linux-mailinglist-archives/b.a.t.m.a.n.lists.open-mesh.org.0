@@ -1,120 +1,157 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B931249495D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 20 Jan 2022 09:25:39 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95EAA49622B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 21 Jan 2022 16:34:58 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6893183DC4;
-	Thu, 20 Jan 2022 09:25:38 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 338BF8085B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 20 Jan 2022 09:25:36 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5DD0E82FEE;
+	Fri, 21 Jan 2022 16:34:57 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 57DCC81445
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 21 Jan 2022 16:34:54 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1642667135;
+	s=20121; t=1642779293;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nBEaSdy48uZEx6YxGMpDAv0H/5W5LnGc/2ZdqSG3Na0=;
-	b=jXwRHN2wyFSQn42e+xWXyJNAZhl4wRogrFE/m0IeErPe1144kTC7JPup/KhvUZL01UsexM
-	UFJT5kn9OgYnbzYXWjj/ggj/cEigX55y57b8l3o8H3fU2DZUl+yyl6KKvafwHR+PezbL4d
-	8JoyO6vZuSBdVCQL0EXWSr7UHNfeyj4=
+	bh=s4c6cXGbulAjvnuPoGNKxmBY+oVKPTdy8QQwqKh9O1Q=;
+	b=kuporLKllr04P3G9LgsSPwnNKDTpSO74xGI9AnNUE8hEAfALapH8xHNCmsDT9E5c0Ls0Ms
+	DtnCXg/EpoSCyCEav6viix2NYbnEpQQrpOlp4azXgHkVQW75FgV+sfqfOurCl5P2fgI6y6
+	W0mt9bUD4jws+bLA9NPMgSvpOaS2b80=
 From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH 4/4] alfred: introduce 'server status' IPC call
-Date: Thu, 20 Jan 2022 09:25:32 +0100
-Message-ID: <57523634.IhAzvE0y8L@ripper>
-In-Reply-To: <4305571.4q7vW2cpkv@rousseau>
-References: <3748133.vRqKQLy7FI@rousseau> <3214693.Z0pQRKLR2l@sven-l14> <4305571.4q7vW2cpkv@rousseau>
+To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
+Subject: Re: [PATCH 3/3] alfred: properly initialize stack buffer before sending over unix socket
+Date: Fri, 21 Jan 2022 16:34:50 +0100
+Message-ID: <2782676.din1RKh0Nb@sven-l14>
+In-Reply-To: <20220112210506.3488775-3-mareklindner@neomailbox.ch>
+References: <10410848.OOsao9LFFs@rousseau> <20220112210506.3488775-1-mareklindner@neomailbox.ch> <20220112210506.3488775-3-mareklindner@neomailbox.ch>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4008829.gq60Wp5BfP"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: multipart/signed; boundary="nextPart68452153.uK6Os5FGOv"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=jXwRHN2w;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=kuporLKl;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1642667136; a=rsa-sha256;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1642779294; a=rsa-sha256;
 	cv=none;
-	b=h6eiMpG5hsNQx9/gpDHyfrpqWT4pzbpsE0r5qu4B28VZAH0HcJM0nVhRIfJZvZcaOHmIS1
-	GcpxlpJghqO5o/O3UinwLVQ9yiXMgKDRHRwNC8QYUY4ZoiNPrD3s9mClMHNqkCasMXiSkM
-	iNUM3uVQMNyEy/xLMiq5omAFIQ6EfOQ=
+	b=1sxicJvEhvoPyNEVY22Q/YNb0JkSTZv2fhHnztE9wchX7wU8OIHqs29PQONgW2aZfVqWm5
+	HkVT2SWgrvS29tvmOO6TPvcTh87bD8SW+zkm8r5ZeSc1zAEKYBDY/W257HqWt9mLHfzdzY
+	O+gUsC4OqrtcBmckyZozYraD00NRszU=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1642667136;
+	s=20121; t=1642779294;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=nBEaSdy48uZEx6YxGMpDAv0H/5W5LnGc/2ZdqSG3Na0=;
-	b=Dq9rfADz1J+j50yF/WaGlG0//H3hAJFIsfhnFQ1lSp4eULGzDQ/Q1BgYQposfaCu5r6n0r
-	g128o7d3n0ICt5PDifrSuGzXqfX2R+6SBjrlPNp+rFL8Hizp9a/i77FmzvqPqvzxlIHMtY
-	FTS4jedqvqkh/JIohGff/7XEXpjUGc0=
-Message-ID-Hash: W7XV56GQ3FWA4WQFXS63BT4LVALHWARZ
-X-Message-ID-Hash: W7XV56GQ3FWA4WQFXS63BT4LVALHWARZ
+	bh=s4c6cXGbulAjvnuPoGNKxmBY+oVKPTdy8QQwqKh9O1Q=;
+	b=o/C+h1nE++mq+Ema3Ubxmp7HtX6GnEmTsL+RrgEWOf3GIdxAa51vXhbRHKTvqRdrJhFE1f
+	EL1HRZ6WmpzGd4BGdd/ZgGD5FX5k+A74n+dwfUVryGV9S4FM1ypQVGAcNcHVm7mhfPGxwW
+	2ZMNvQjaVHYBwhpH1dfcSUgNPdJuxd0=
+Message-ID-Hash: 7V6MWVW4CT2WQECUJZ76N2FBNOZOQNDM
+X-Message-ID-Hash: 7V6MWVW4CT2WQECUJZ76N2FBNOZOQNDM
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: Marek Lindner <mareklindner@neomailbox.ch>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/W7XV56GQ3FWA4WQFXS63BT4LVALHWARZ/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7V6MWVW4CT2WQECUJZ76N2FBNOZOQNDM/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart4008829.gq60Wp5BfP
+--nextPart68452153.uK6Os5FGOv
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
 From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Marek Lindner <mareklindner@neomailbox.ch>
-Subject: Re: [PATCH 4/4] alfred: introduce 'server status' IPC call
-Date: Thu, 20 Jan 2022 09:25:32 +0100
-Message-ID: <57523634.IhAzvE0y8L@ripper>
-In-Reply-To: <4305571.4q7vW2cpkv@rousseau>
-References: <3748133.vRqKQLy7FI@rousseau> <3214693.Z0pQRKLR2l@sven-l14> <4305571.4q7vW2cpkv@rousseau>
+To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
+Subject: Re: [PATCH 3/3] alfred: properly initialize stack buffer before sending over unix socket
+Date: Fri, 21 Jan 2022 16:34:50 +0100
+Message-ID: <2782676.din1RKh0Nb@sven-l14>
+In-Reply-To: <20220112210506.3488775-3-mareklindner@neomailbox.ch>
+References: <10410848.OOsao9LFFs@rousseau> <20220112210506.3488775-1-mareklindner@neomailbox.ch> <20220112210506.3488775-3-mareklindner@neomailbox.ch>
 
-On Wednesday, 12 January 2022 22:14:15 CET Marek Lindner wrote:
-> On Sunday, 2 January 2022 15:43:37 CET Sven Eckelmann wrote:
-> > @Simon, would you prefer to have a global "status" message (which cannot be
-> > extended in the future) or separate "GET" queries for the existing commands:
-> > 
-> > * ALFRED_MODESWITCH -> ALFRED_GET_MODE
-> > * ALFRED_CHANGE_INTERFACE -> ALFRED_GET_INTERFACES
-> > * ALFRED_CHANGE_BAT_IFACE -> ALFRED_GET_BAT_IFACE
+On Wednesday, 12 January 2022 22:05:06 CET Marek Lindner wrote:
+[...]
+> diff --git a/client.c b/client.c
+> index b5d8943..cf15ff4 100644
+> --- a/client.c
+> +++ b/client.c
+> @@ -35,6 +35,7 @@ int alfred_client_request_data(struct globals *globals)
+>  		return -1;
+>  
+>  	len = sizeof(request);
+> +	memset(&request, 0, len);
+>  
+>  	request.header.type = ALFRED_REQUEST;
+>  	request.header.version = ALFRED_VERSION;
+
+All bytes (also all bits) are overwritten in the lines below the memset. So I 
+don't see why memset would be required here.
+
+> @@ -184,6 +185,7 @@ int alfred_client_modeswitch(struct globals *globals)
+>  		return -1;
+>  
+>  	len = sizeof(modeswitch);
+> +	memset(&modeswitch, 0, len);
+>  
+>  	modeswitch.header.type = ALFRED_MODESWITCH;
+>  	modeswitch.header.version = ALFRED_VERSION;
+
+Same here - with a minor exception. When mode is not written then the data is 
+not written to the socket.
+
+> @@ -260,6 +262,7 @@ int alfred_client_change_interface(struct globals *globals)
+>  	}
+>  
+>  	len = sizeof(change_interface);
+> +	memset(&change_interface, 0, len);
+>  
+>  	change_interface.header.type = ALFRED_CHANGE_INTERFACE;
+>  	change_interface.header.version = ALFRED_VERSION;\
+
+Same here.
+
+> @@ -308,6 +311,7 @@ int alfred_client_change_bat_iface(struct globals *globals)
+>  	}
+>  
+>  	len = sizeof(change_bat_iface);
+> +	memset(&change_bat_iface, 0, len);
+>  
+>  	change_bat_iface.header.type = ALFRED_CHANGE_BAT_IFACE;
+>  	change_bat_iface.header.version = ALFRED_VERSION;
 > 
-> Another option would be to work with TLVs inside a single server status 
-> request. This would minimize the number of added packet definitions and retain 
-> future extensibility.
 
-Just asked Simon directly and he seems to prefer the sub-TLV solution over the 
-single requests.
+Same here.
 
 Kind regards,
 	Sven
---nextPart4008829.gq60Wp5BfP
+
+
+--nextPart68452153.uK6Os5FGOv
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmHpHHwACgkQXYcKB8Em
-e0YlKxAAkY0BPvW21IkFU+DS4dGf2w7ls97KkXv1O1VPh6t6B9iipp6M9C88szKf
-2yUsiSO2u0VgYT8i0AfeJDMu97YOnKYF4ZKopp90bvEX2SYo5wLwb6AKC5GSwZkH
-jY/9ubW0TfLRRwSY0+ZMFKe3ZOcwmj4DHnd5ta9yzcMH7bbcwXjnm9qJUjNsHIOM
-oxOPXSYrl6UZN6+gYysSlCTV5XMZd5GyGAq0Qr+V7qk4WxpD9CIdRWMS+TtKMAML
-ERDkloMjDgrIT6ctnGqQWib25Si/d5HU3QHqNUxDkiODvceXzIZcjltUXMlAsRRW
-izxtGiXmnqyd0VVWQdXJDGRzbvk8sOKaEUQawjY1gTUYyvF6/ElkoWRFuKdanyQS
-iH1u+gDXhecIG4+KHRakj0Un4ODZwdAw+bqmGaNvZseJQWIpHWQuK4uK+oju/QN2
-TiiYifNrYfNXI7SGkdq7wN8tnOERmG5TK2R97p5a5Wqh+Mm7V/7pTTGbOPWxGh9t
-o4FkK4JAyQYMcWhNK0a1cAXoX6xgMX6+lxGnAuE5lFj2qxqz4heXp8MaGKGV+Yoh
-lDUqYOO0gLqG+ayf4nVOjgZ+F4ga9xCph2SoxCd6TrXg2kx4IVamFSQDCx/5ZD2X
-mVxn9OExRMShcfE5d8WyMAYUwhBBUFOkF90Czab0Y5X0qWLpwWw=
-=BHbG
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmHq0poACgkQXYcKB8Em
+e0a5Xw/+OVjV5ooaVxh8drOTTg38Uiz6psm8oIvQT+KNQuB3bZP7HapYih4dmxRw
+a0iln9o6cK6MTkDOyIcy+PrANjA5MXMMdqjewc0ZUsYFq53t9THipHXuPzRwiixM
+wTQWDDlsqwyRe3/2Xww3gAP2mX0//FpvOK0i/edtFgGh2mZEqtRRYL7vETpoW834
+xbuVikOM/y7nISgykxN097wAWHS8jX0H9grpMyRrVJTXnMvzY4j8KL9VdyRKH/Cq
+Q4iz33MaTGl6OqEqCwGV/VLIxQqkjuL/uklDCLePCeEBawNjiQPRqS+nSS5QPyKC
+4PFBvrtmTIDPzEMzHDvRTu5m6qBSfJr3IsrDLzL09HIhVMMx4xEDRYDUW/eZRGOl
+uDrUGpgxuLYDl0cX/lkCIaI0j0PRTg6vdr/lP+W2ODuSIALIDZowgg5/NLgdQ9kB
+6LvlKeCGpNfrhTrPrvX2gMo/i4B5jxbwtAoqN/eTcGq/HPHwUSpKovh8OhY4WSmK
+6YzxLZLt8ZKEC3+ZRz6p8MqZbQtg51YBGCQFuENj/qe63NK9J4rjdijxCPnu+wSi
+GzjRwXim5r2si9deKfEAnLmFfTcsaGZ/QEIWJwRwRrKzXILAveYn7C/5SO4apg+8
+IWd00wuC930b4Zlfqx0Ul2zJvqTpH8Vp2ZUUAlFRsaBLhWfGrUk=
+=NkAU
 -----END PGP SIGNATURE-----
 
---nextPart4008829.gq60Wp5BfP--
+--nextPart68452153.uK6Os5FGOv--
 
 
