@@ -2,129 +2,495 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45114497181
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 23 Jan 2022 13:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 249544AB2EB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  7 Feb 2022 01:18:19 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id EDAF082508;
-	Sun, 23 Jan 2022 13:39:52 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7D4BF807DD
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 23 Jan 2022 13:39:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1642941589;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=7MjWG2BrKTtJiPqm6l/C8yIAEEx4gmEYww5hVW27ASo=;
-	b=aSe3tUEaut3eU9WkXp4anfKeIfA8guxd4GxmulHGZfGxKvxeGlyhzq5HuZDHC9T0oEfOzi
-	jOSC4zk6AJiWX5wLRaXK9RR3965BwUBZzjFq9lo8It4jqKRjn5MNUcq8RiXqM1C18p+UBW
-	Mpj52GHB4ujzk/xCqdQINa1Wwcaa3x8=
-From: Sven Eckelmann <sven@narfation.org>
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E63C080537;
+	Mon,  7 Feb 2022 01:18:17 +0100 (CET)
+Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B5B9480300
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon,  7 Feb 2022 01:18:14 +0100 (CET)
+From: Marek Lindner <mareklindner@neomailbox.ch>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH] batman-adv: compat: Fix linux/build_bug.h include for Linux 4.9.297
-Date: Sun, 23 Jan 2022 13:39:41 +0100
-Message-Id: <20220123123941.132618-1-sven@narfation.org>
-X-Mailer: git-send-email 2.30.2
+Subject: [PATCH v2] alfred: introduce 'server status' IPC call
+Date: Mon,  7 Feb 2022 01:18:00 +0100
+Message-Id: <20220207001800.73490-1-mareklindner@neomailbox.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=aSe3tUEa;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1642941590; a=rsa-sha256;
+	dkim=none;
+	dmarc=none;
+	spf=pass (diktynna.open-mesh.org: domain of mareklindner@neomailbox.ch designates 5.148.176.60 as permitted sender) smtp.mailfrom=mareklindner@neomailbox.ch
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1644193095; a=rsa-sha256;
 	cv=none;
-	b=cFNrNaufLcweEKIhSeIjwbteYj9guX3mQNo0W/rOVwA5MX/PeVeANqDVVzAsRPl7U/7hfT
-	vXPWgmSX8bKwiImvdIQrYLIwPHgPiGW4GrNchUntRUxMqQMrD8RXOV6/4UPTpGHk7YXds2
-	wpXEWo7fEQmS0RiGTTGAkbBWwKpcv70=
+	b=ZssvTAbql9rvbWcOg6akycSAMTbZBM49fR/yO+XhAPvNarP9xJ9sqkeI2WWaSAXx0IeH0T
+	uL+S5NcCtxqDcwNaEl4adj5hIibgu44eWMlWeN23UZIrgSritqU4B2uNNu02Lwpe9QHzRt
+	ZG8ls4daw3QEuOkjqVYxMC8r1I9U/AE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1642941590;
+	s=20121; t=1644193095;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=7MjWG2BrKTtJiPqm6l/C8yIAEEx4gmEYww5hVW27ASo=;
-	b=pu7VC6ilmuyeDmcxjSD+w4uFc3RAhylT3VDVqDsZrDXFwTKlaLT8rJkTz4xOeKp5lEEKGF
-	j79YjBuG0vNNhp8mh6aLljYfB5erPAC4MIDACxZyIePkTXNhjJw6J+t/BHD41HDBNxvlYJ
-	8gyHzSy2A9vqFtmeW+5sVKivBohgcA0=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=lalMLJ78+4KNPEpofDUtX5ojVa1wcLLLUI+rfPLV/0M=;
+	b=3+n4N1E40CbpjdbO/d5YhqjNGKRCp0hrZRAbABESBEL9g1eNgNoaOjoCz43Q81SEGHIRUD
+	2y6ZVe8Zo3FZiuliqKC3lTf0Ud8FfLXVxRwnkTLGuQduBO2kwJBjjUD6Mfcde518Qs+gDl
+	n3kZi/X+WI+ZNU65RCZOoZdlf++NTKo=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: WGO4VIL3YE65T77YOAWQDNZ3V7R6QT3P
-X-Message-ID-Hash: WGO4VIL3YE65T77YOAWQDNZ3V7R6QT3P
-X-MailFrom: sven@narfation.org
+Message-ID-Hash: KI3K6PGVGIKT5XJAEAIRIBN5XKTJ3I4O
+X-Message-ID-Hash: KI3K6PGVGIKT5XJAEAIRIBN5XKTJ3I4O
+X-MailFrom: mareklindner@neomailbox.ch
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Marek Lindner <mareklindner@neomailbox.ch>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WGO4VIL3YE65T77YOAWQDNZ3V7R6QT3P/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KI3K6PGVGIKT5XJAEAIRIBN5XKTJ3I4O/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Linux 4.9.297 doesn't provide BUILD_BUG_ON anymore in linux/bug.h also
-identified itself with the version number 4.9.255 when decoding the
-LINUX_VERSION_CODE. So we have to try to guess now if we need to include
-linux/build_bug.h based on whether BUILD_BUG_ON is defined or not after
-including linux/bug.h.
+The 'server status' call exports the 'mode' as well as interface
+status via IPC. Both parameters can be modified at runtime via the
+IPC and as such, the current configuration is dynamic and not
+necessarily obvious.
 
-If not doing this, the build will fail with errors like:
+The server status 'request' and 'reply' packet types are added
+to allow the IPC client to initiate the status retrieval. The
+server will respond with the 'reply' message.
 
-  net/batman-adv/bat_algo.c:146:1: error: undefined identifier 'BUILD_BUG=
-_ON_ZERO'
-  net/batman-adv/bat_algo.c:146:1: error: undefined identifier 'BUILD_BUG=
-_ON_ZERO'
-  net/batman-adv/bat_algo.c:146:1: error: undefined identifier 'BUILD_BUG=
-_ON_ZERO'
-  net/batman-adv/bat_algo.c:146:1: error: undefined identifier 'BUILD_BUG=
-_ON_ZERO'
-  net/batman-adv/bat_algo.c:146:1: error: undefined identifier 'BUILD_BUG=
-_ON_ZERO'
-  net/batman-adv/bat_algo.c:146:1: error: undefined identifier 'BUILD_BUG=
-_ON_ZERO'
-  In file included from ./arch/x86/include/asm/cpufeatures.h:5,
-                   from ./arch/x86/include/asm/cmpxchg.h:5,
-                   from ./arch/x86/include/asm/atomic.h:7,
-                   from ./include/linux/atomic.h:4,
-                   from net/batman-adv/main.h:207,
-                   from net/batman-adv/bat_algo.c:7:
-  ./arch/x86/include/asm/qspinlock.h: In function =E2=80=98virt_spin_lock=
-=E2=80=99:
-  ./arch/x86/include/asm/required-features.h:104:29: error: implicit decl=
-aration of function =E2=80=98BUILD_BUG_ON_ZERO=E2=80=99 [-Werror=3Dimplic=
-it-function-declaration]
+The information is encapsulated in TLV data chunks allowing for
+future backward compatible extension of the server status call.
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Marek Lindner <mareklindner@neomailbox.ch>
 ---
- compat-include/linux/build_bug.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ alfred.h     |   2 +
+ client.c     | 116 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ main.c       |   9 +++-
+ man/alfred.8 |   3 ++
+ packet.h     |  65 +++++++++++++++++++++++++++++
+ unix_sock.c  |  83 ++++++++++++++++++++++++++++++++++++
+ 6 files changed, 277 insertions(+), 1 deletion(-)
 
-diff --git a/compat-include/linux/build_bug.h b/compat-include/linux/buil=
-d_bug.h
-index 0eecc688..1002431d 100644
---- a/compat-include/linux/build_bug.h
-+++ b/compat-include/linux/build_bug.h
-@@ -15,6 +15,17 @@
- #include_next <linux/build_bug.h>
- #else
- #include <linux/bug.h>
-+
-+/* Linux 4.9.297 doesn't provide BUILD_BUG_ON anymore in linux/bug.h
-+ * also identified itself with the version number 4.9.255 when decoding =
-the
-+ * LINUX_VERSION_CODE. So we have to try to guess now if we need to incl=
-ude
-+ * linux/build_bug.h based on whether BUILD_BUG_ON is defined  or not af=
-ter
-+ * including linux/bug.h
-+ */
-+#ifndef BUILD_BUG_ON
-+#include_next <linux/build_bug.h>
-+#endif
-+
- #endif
+diff --git a/alfred.h b/alfred.h
+index 9ab92a2..3d1d72a 100644
+--- a/alfred.h
++++ b/alfred.h
+@@ -93,6 +93,7 @@ enum clientmode {
+ 	CLIENT_MODESWITCH,
+ 	CLIENT_CHANGE_INTERFACE,
+ 	CLIENT_CHANGE_BAT_IFACE,
++	CLIENT_SERVER_STATUS,
+ };
 =20
- #endif /* _NET_BATMAN_ADV_COMPAT_LINUX_BUILD_BUG_H_ */
+ struct interface {
+@@ -155,6 +156,7 @@ int alfred_client_set_data(struct globals *globals);
+ int alfred_client_modeswitch(struct globals *globals);
+ int alfred_client_change_interface(struct globals *globals);
+ int alfred_client_change_bat_iface(struct globals *globals);
++int alfred_client_server_status(struct globals *globals);
+ /* recv.c */
+ int recv_alfred_packet(struct globals *globals, struct interface *interf=
+ace,
+ 		       int recv_sock);
+diff --git a/client.c b/client.c
+index b5d8943..41ee640 100644
+--- a/client.c
++++ b/client.c
+@@ -325,3 +325,119 @@ int alfred_client_change_bat_iface(struct globals *=
+globals)
+=20
+ 	return 0;
+ }
++
++int alfred_client_server_status(struct globals *globals)
++{
++	struct alfred_server_status_net_iface *status_net_iface;
++	struct alfred_server_status_bat_iface *status_bat_iface;
++	struct alfred_server_status_op_mode *status_op_mode;
++	struct alfred_server_status_req_v0 status_req;
++	struct alfred_server_status_rep_v0 *status_rep;
++	int ret, tlvsize, headsize, len, consumed;
++	struct alfred_tlv *status_tlv;
++	uint8_t buf[MAX_PAYLOAD];
++
++	if (unix_sock_open_client(globals))
++		return -1;
++
++	len =3D sizeof(status_req);
++	memset(&status_req, 0, len);
++
++	status_req.header.type =3D ALFRED_SERVER_STATUS;
++	status_req.header.version =3D ALFRED_VERSION;
++	status_req.header.length =3D 0;
++
++	ret =3D write(globals->unix_sock, (unsigned char *)&status_req, len);
++	if (ret !=3D len)
++		fprintf(stderr, "%s: only wrote %d of %d bytes: %s\n",
++			__func__, ret, len, strerror(errno));
++
++	len =3D read(globals->unix_sock, buf, sizeof(buf));
++	if (len <=3D 0) {
++		perror("read from unix socket failed");
++		goto err;
++	}
++
++	ret =3D -1;
++	status_rep =3D (struct alfred_server_status_rep_v0 *)buf;
++
++	/* drop too small packets */
++	headsize =3D sizeof(status_rep->header);
++	if (len < headsize) {
++		perror("unexpected header size received from unix socket");
++		goto err;
++	}
++
++	if ((len - headsize) < ((int)ntohs(status_rep->header.length))) {
++		perror("unexpected packet size received from unix socket");
++		goto err;
++	}
++
++	if (status_rep->header.version !=3D ALFRED_VERSION) {
++		perror("alfred version mismatch");
++		goto err;
++	}
++
++	headsize =3D ntohs(status_rep->header.length);
++
++	if (headsize < (int)(sizeof(*status_rep) - sizeof(status_rep->header)))
++		goto err;
++
++	consumed =3D sizeof(*status_rep);
++
++	while (len - consumed > 0) {
++		if (len - consumed < (int)sizeof(*status_tlv))
++			break;
++
++		status_tlv =3D (struct alfred_tlv *)(buf + consumed);
++		consumed +=3D sizeof(*status_tlv);
++
++		tlvsize =3D ntohs(status_tlv->length);
++		if (len - consumed < tlvsize)
++			break;
++
++		switch (status_tlv->type) {
++		case ALFRED_SERVER_OP_MODE:
++			if (tlvsize !=3D sizeof(*status_op_mode))
++				break;
++
++			status_op_mode =3D (struct alfred_server_status_op_mode *)(buf + cons=
+umed);
++
++			switch (status_op_mode->mode) {
++			case ALFRED_MODESWITCH_SECONDARY:
++				fprintf(stdout, "- mode: secondary\n");
++				break;
++			case ALFRED_MODESWITCH_PRIMARY:
++				fprintf(stdout, "- mode: primary\n");
++				break;
++			default:
++				fprintf(stderr, "- mode: unknown\n");
++				break;
++			}
++
++			break;
++		case ALFRED_SERVER_NET_IFACE:
++			if (tlvsize !=3D sizeof(struct alfred_server_status_net_iface))
++				break;
++
++			status_net_iface =3D (struct alfred_server_status_net_iface *)(buf + =
+consumed);
++			fprintf(stderr, "- interface: %s\n", status_net_iface->net_iface);
++			fprintf(stderr, "\t- status: %s\n",
++				status_net_iface->active =3D=3D 1 ? "active" : "inactive");
++			break;
++		case ALFRED_SERVER_BAT_IFACE:
++			if (tlvsize !=3D sizeof(struct alfred_server_status_bat_iface))
++				break;
++
++			status_bat_iface =3D (struct alfred_server_status_bat_iface *)(buf + =
+consumed);
++			fprintf(stdout, "- batman-adv interface: %s\n", status_bat_iface->bat=
+_iface);
++			break;
++		}
++
++		consumed +=3D tlvsize;
++	}
++
++err:
++	unix_sock_close(globals);
++	return 0;
++}
+diff --git a/main.c b/main.c
+index d40a0cc..68d6efd 100644
+--- a/main.c
++++ b/main.c
+@@ -38,6 +38,7 @@ static void alfred_usage(void)
+ 	printf("                   secondary          switch daemon to mode sec=
+ondary\n");
+ 	printf("  -I, --change-interface [interface]  change to the specified i=
+nterface(s)\n");
+ 	printf("  -B, --change-bat-iface [interface]  change to the specified b=
+atman-adv interface\n");
++	printf("  -S, --server-status                 request server status inf=
+o such as mode & interfaces\n");
+ 	printf("\n");
+ 	printf("server mode options:\n");
+ 	printf("  -i, --interface                     specify the interface (or=
+ comma separated list of interfaces) to listen on\n");
+@@ -162,6 +163,7 @@ static struct globals *alfred_init(int argc, char *ar=
+gv[])
+ 		{"modeswitch",		required_argument,	NULL,	'M'},
+ 		{"change-interface",	required_argument,	NULL,	'I'},
+ 		{"change-bat-iface",	required_argument,	NULL,	'B'},
++		{"server-status",	required_argument,	NULL,	'S'},
+ 		{"unix-path",		required_argument,	NULL,	'u'},
+ 		{"update-command",	required_argument,	NULL,	'c'},
+ 		{"version",		no_argument,		NULL,	'v'},
+@@ -196,7 +198,7 @@ static struct globals *alfred_init(int argc, char *ar=
+gv[])
+=20
+ 	time_random_seed();
+=20
+-	while ((opt =3D getopt_long(argc, argv, "ms:r:hi:b:vV:M:I:B:u:dc:p:4:f"=
+, long_options,
++	while ((opt =3D getopt_long(argc, argv, "ms:r:hi:b:vV:M:I:B:Su:dc:p:4:f=
+", long_options,
+ 				  &opt_ind)) !=3D -1) {
+ 		switch (opt) {
+ 		case 'r':
+@@ -258,6 +260,9 @@ static struct globals *alfred_init(int argc, char *ar=
+gv[])
+ 			globals->clientmode =3D CLIENT_CHANGE_BAT_IFACE;
+ 			globals->mesh_iface =3D strdup(optarg);
+ 			break;
++		case 'S':
++			globals->clientmode =3D CLIENT_SERVER_STATUS;
++			break;
+ 		case 'u':
+ 			globals->unix_path =3D optarg;
+ 			break;
+@@ -321,6 +326,8 @@ int main(int argc, char *argv[])
+ 		return alfred_client_change_interface(globals);
+ 	case CLIENT_CHANGE_BAT_IFACE:
+ 		return alfred_client_change_bat_iface(globals);
++	case CLIENT_SERVER_STATUS:
++		return alfred_client_server_status(globals);
+ 	}
+=20
+ 	return 0;
+diff --git a/man/alfred.8 b/man/alfred.8
+index 74814e0..cf0eafc 100644
+--- a/man/alfred.8
++++ b/man/alfred.8
+@@ -94,6 +94,9 @@ Change the alfred server to use the new \fBinterface\fP=
+(s)
+ .TP
+ \fB\-B\fP, \fB\-\-change\-bat\-iface\fP \fIinterface\fP
+ Change the alfred server to use the new \fBbatman-adv interface\fP
++.TP
++\fB\-S\fP, \fB\-\-server\-status\fP
++Request server status information such as mode & interfaces\fP
+ .
+ .SH SERVER OPTIONS
+ .TP
+diff --git a/packet.h b/packet.h
+index 94c6a77..4b6bde5 100644
+--- a/packet.h
++++ b/packet.h
+@@ -69,6 +69,7 @@ enum alfred_packet_type {
+ 	ALFRED_MODESWITCH =3D 5,
+ 	ALFRED_CHANGE_INTERFACE =3D 6,
+ 	ALFRED_CHANGE_BAT_IFACE =3D 7,
++	ALFRED_SERVER_STATUS =3D 8,
+ };
+=20
+ /* packets */
+@@ -159,6 +160,70 @@ struct alfred_change_interface_v0 {
+ struct alfred_change_bat_iface_v0 {
+ 	struct alfred_tlv header;
+ 	char bat_iface[IFNAMSIZ];
++};
++
++/**
++ * enum alfred_packet_type - Types of packet stored in the main alfred_t=
+lv
++ * @ALFRED_SERVER_MODE: Contains alfred mode information*
++ * @ALFRED_SERVER_NET_IFACE: Contains alfred network interface informati=
+on*
++ * @ALFRED_SERVER_BAT_IFACE: Contains alfred batman interface informatio=
+n*
++ */
++enum alfred_server_status_type {
++	ALFRED_SERVER_OP_MODE =3D 0,
++	ALFRED_SERVER_NET_IFACE =3D 1,
++	ALFRED_SERVER_BAT_IFACE =3D 2,
++};
++
++/**
++ * struct alfred_server_status_req_v0 - server status request
++ * @header: TLV header describing the complete packet
++ *
++ * Sent to the daemon by client
++ */
++struct alfred_server_status_req_v0 {
++	struct alfred_tlv header;
++} __packed;
++
++/**
++ * struct alfred_server_status_op_mode - server op mode status informati=
+on
++ * @op_mode: active op mode
++ *
++ * Sent to the client by daemon in response to status request
++ */
++struct alfred_server_status_op_mode {
++	uint8_t mode;
++} __packed;
++
++/**
++ * struct alfred_server_status_net_iface - server net iface status infor=
+mation
++ * @net_iface: configured network interface
++ * @active: network interface active/inactive status info
++ *
++ * Sent to the client by daemon in response to status request
++ */
++struct alfred_server_status_net_iface {
++	char net_iface[IFNAMSIZ];
++	uint8_t active;
++} __packed;
++
++/**
++ * struct alfred_server_status_bat_iface - server bat iface status infor=
+mation
++ * @op_mode: configured batman interface
++ *
++ * Sent to the client by daemon in response to status request
++ */
++struct alfred_server_status_bat_iface {
++	char bat_iface[IFNAMSIZ];
++} __packed;
++
++/**
++ * struct alfred_server_status_rep_v0 - server status reply
++ * @header: TLV header describing the complete packet
++ *
++ * Sent by the daemon to client in response to status request
++ */
++struct alfred_server_status_rep_v0 {
++	struct alfred_tlv header;
+ } __packed;
+=20
+ /**
+diff --git a/unix_sock.c b/unix_sock.c
+index bc39199..2e113df 100644
+--- a/unix_sock.c
++++ b/unix_sock.c
+@@ -366,6 +366,86 @@ err:
+ 	return ret;
+ }
+=20
++static int unix_sock_server_status(struct globals *globals, int client_s=
+ock)
++{
++	struct alfred_server_status_net_iface *status_net_iface;
++	struct alfred_server_status_bat_iface *status_bat_iface;
++	struct alfred_server_status_op_mode *status_op_mode;
++	struct alfred_server_status_rep_v0 *status_rep;
++	struct alfred_tlv *status_tlv;
++	struct interface *interface;
++	uint8_t buf[MAX_PAYLOAD];
++	int ret, len;
++
++	len =3D sizeof(*status_rep);
++
++	status_rep =3D (struct alfred_server_status_rep_v0 *)buf;
++	status_rep->header.type =3D ALFRED_SERVER_STATUS;
++	status_rep->header.version =3D ALFRED_VERSION;
++	status_rep->header.length =3D len;
++
++	status_tlv =3D (struct alfred_tlv *)(buf + len);
++	status_tlv->type =3D ALFRED_SERVER_OP_MODE;
++	status_tlv->version =3D ALFRED_VERSION;
++	status_tlv->length =3D htons(sizeof(*status_op_mode));
++	len +=3D sizeof(*status_tlv);
++
++	status_op_mode =3D (struct alfred_server_status_op_mode *)(buf + len);
++
++	switch (globals->opmode) {
++	case OPMODE_SECONDARY:
++		status_op_mode->mode =3D ALFRED_MODESWITCH_SECONDARY;
++		break;
++	case OPMODE_PRIMARY:
++		status_op_mode->mode =3D ALFRED_MODESWITCH_PRIMARY;
++		break;
++	default:
++		break;
++	}
++
++	len +=3D sizeof(*status_op_mode);
++
++	list_for_each_entry(interface, &globals->interfaces, list) {
++		status_tlv =3D (struct alfred_tlv *)(buf + len);
++		status_tlv->type =3D ALFRED_SERVER_NET_IFACE;
++		status_tlv->version =3D ALFRED_VERSION;
++		status_tlv->length =3D htons(sizeof(*status_net_iface));
++		len +=3D sizeof(*status_tlv);
++
++		status_net_iface =3D (struct alfred_server_status_net_iface *)(buf + l=
+en);
++		strncpy(status_net_iface->net_iface, interface->interface,
++			sizeof(status_net_iface->net_iface));
++		status_net_iface->net_iface[sizeof(status_net_iface->net_iface) - 1] =3D=
+ '\0';
++		if (interface->netsock > -1)
++			status_net_iface->active =3D 1;
++		else
++			status_net_iface->active =3D 0;
++		len +=3D sizeof(*status_net_iface);
++	}
++
++	status_tlv =3D (struct alfred_tlv *)(buf + len);
++	status_tlv->type =3D ALFRED_SERVER_BAT_IFACE;
++	status_tlv->version =3D ALFRED_VERSION;
++	status_tlv->length =3D htons(sizeof(*status_bat_iface));
++	len +=3D sizeof(*status_tlv);
++
++	status_bat_iface =3D (struct alfred_server_status_bat_iface *)(buf + le=
+n);
++	strncpy(status_bat_iface->bat_iface, globals->mesh_iface,
++		sizeof(status_bat_iface->bat_iface));
++	status_bat_iface->bat_iface[sizeof(status_bat_iface->bat_iface) - 1] =3D=
+ '\0';
++	len +=3D sizeof(*status_bat_iface);
++
++	status_rep->header.length =3D htons(len - sizeof(status_rep->header));
++
++	ret =3D write(client_sock, buf, len);
++	if (ret =3D=3D len)
++		return 0;
++
++	fprintf(stderr, "%s: only wrote %d of %d bytes: %s\n",
++		__func__, ret, len, strerror(errno));
++	return -1;
++}
++
+ int unix_sock_read(struct globals *globals)
+ {
+ 	int client_sock;
+@@ -428,6 +508,9 @@ int unix_sock_read(struct globals *globals)
+ 						 (struct alfred_change_bat_iface_v0 *)packet,
+ 						 client_sock);
+ 		break;
++	case ALFRED_SERVER_STATUS:
++		ret =3D unix_sock_server_status(globals, client_sock);
++		break;
+ 	default:
+ 		/* unknown packet type */
+ 		ret =3D -1;
 --=20
-2.30.2
+2.32.0.rc0
