@@ -1,88 +1,362 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5997E4BC6D2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 19 Feb 2022 08:54:38 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429FB4BCD75
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 20 Feb 2022 10:20:28 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3995980871;
-	Sat, 19 Feb 2022 08:54:37 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1B0D28260E;
+	Sun, 20 Feb 2022 10:20:27 +0100 (CET)
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B63E28068E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 19 Feb 2022 08:54:34 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 72D8981478
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 20 Feb 2022 10:20:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1645257274;
+	s=20121; t=1645348822;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=8yt7/DwbsJL052ziDBSwPRpWXN23lZKAETGAdNz6ILI=;
-	b=HIdjX/RctCpqrsk4xHQt/OxDA0LhFBpeHSpKgsPB2Xr7kPN1SY+mQY5vE5EvEWoMAR98K4
-	M9WHcpSPyWtkgCde+6Ye3GUGZvGfXBCX7T4TKYNGJiZMPvxHIRBKmYZR1mZUWCo22jp7zu
-	b1yyJo98lXQ43U7e6AOQ/Ryff1NRnmE=
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=65GVTgUvuRHndMEf29ObUiW0A8Q1Q2xiumwb4qOyYQc=;
+	b=hOAc5Ig4vLkknRxKwEhRyYIvePwl70gbIOdIwd/Osb7uEVPnqNwSixZSgwZWjji1p2aYnW
+	eQoiE/f0Hz7DHtXt0xi3RZwo7ZTa6R+CeuegBg7N6NciWwoLqaoNXtdw4EAyRZTAGwOdGv
+	99jC1ow8bwsX02ozxiAPaFiYpAYPhnI=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH] alfred: Ensure processed change_iface packet is 0-terminated
-Date: Sat, 19 Feb 2022 08:54:24 +0100
-Message-Id: <20220219075424.802930-1-sven@narfation.org>
-X-Mailer: git-send-email 2.30.2
+Subject: Re: [PATCH v3] alfred: introduce 'server status' IPC call
+Date: Sun, 20 Feb 2022 10:20:12 +0100
+Message-ID: <1889892.ZFYyhI4GPy@sven-l14>
+In-Reply-To: <20220209164354.652077-1-mareklindner@neomailbox.ch>
+References: <20220209164354.652077-1-mareklindner@neomailbox.ch>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart2787033.lrMdBXi4Pi"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b="HIdjX/Rc";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=hOAc5Ig4;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1645257274; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1645348823; a=rsa-sha256;
 	cv=none;
-	b=VoxNnqtTrR40Gq4N3oQ6GKmy7/WRKaQIESJRD/Va+25tkDxl5t5MkNj3tvHL55IYvG/Kd1
-	R8HxjgFq7WDC0C2gs70ACY3IQdPboaPjt9ctTRF8HrLH6FRlrxT6VoiQ6on/1b6Lcp74Cn
-	aJB1qni52/CvTW0++DltQOOFZEKjSzE=
+	b=3cUcx523+vxX1iuR/rKxtvpmPoZwkb3lRUvIM6zkQ1eUfs5j9UchBjnE8XFP21cQwd82pr
+	qxG0uyZ2wKqt9YVhctEyCctsSEdTX0eMkjIWXziL4nImcRG4/qQjW5x16xTreTayj/luyM
+	+fDwDHMaZDWFS5hbEI3RiBPFFZqFN7E=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1645257274;
+	s=20121; t=1645348823;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=8yt7/DwbsJL052ziDBSwPRpWXN23lZKAETGAdNz6ILI=;
-	b=QYn1lquY99bcsqKrDM6EoTYAH50P8whTu6mBlNMOTcNpjhSo/Vqbwq/I90ihIlZVpiOc9R
-	NK9B4OwQdgR2IL9SyE3NKbpsydQkHrOzWY5GUs1+H9BP2BDuFYRTo4+SJO5AkHYn+HvAOg
-	V4OfFBzQXZgLm+CLHgn1ZTjC6y/yFo0=
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: QRYEJB5RDAL3UI24KEFYSA36UYNXW6UW
-X-Message-ID-Hash: QRYEJB5RDAL3UI24KEFYSA36UYNXW6UW
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=65GVTgUvuRHndMEf29ObUiW0A8Q1Q2xiumwb4qOyYQc=;
+	b=nkD/UNBY54YNGaKNueW8wrAmJlsSsg+gOI+NVkUcnPOYe5BIDf04VSOe6dJWNHO4fuZScU
+	08b+WcpBya30WR8aOHcvaBFsCBHIso2qJzPRqKtBo8fQiiUqV0nxZhe8+y1WR8dqyQLQL7
+	jzyRix5WJ0QPlgcVEAKZ9e7uCanwp5A=
+Message-ID-Hash: 7UWT2TTCVNGFIETY2VGFFHLXGWHNECW4
+X-Message-ID-Hash: 7UWT2TTCVNGFIETY2VGFFHLXGWHNECW4
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: Marek Lindner <mareklindner@neomailbox.ch>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QRYEJB5RDAL3UI24KEFYSA36UYNXW6UW/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7UWT2TTCVNGFIETY2VGFFHLXGWHNECW4/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-A client sending a alfred_change_interface_v0 packet to the alfred server
-might have forgotten to 0-terminate the string. In this case, strstr in
-unix_sock_change_iface might read outside of the available buffer.
+--nextPart2787033.lrMdBXi4Pi
+Content-Type: multipart/mixed; boundary="nextPart2044400.i0DohVNyHK"; protected-headers="v1"
+Content-Transfer-Encoding: 7Bit
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Marek Lindner <mareklindner@neomailbox.ch>
+Subject: Re: [PATCH v3] alfred: introduce 'server status' IPC call
+Date: Sun, 20 Feb 2022 10:20:12 +0100
+Message-ID: <1889892.ZFYyhI4GPy@sven-l14>
+In-Reply-To: <20220209164354.652077-1-mareklindner@neomailbox.ch>
+References: <20220209164354.652077-1-mareklindner@neomailbox.ch>
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- unix_sock.c | 2 ++
- 1 file changed, 2 insertions(+)
+This is a multi-part message in MIME format.
 
+--nextPart2044400.i0DohVNyHK
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Wednesday, 9 February 2022 17:43:54 CET Marek Lindner wrote:
+> The 'server status' call exports the 'mode' as well as interface
+> status via IPC. Both parameters can be modified at runtime via the
+> IPC and as such, the current configuration is dynamic and not
+> necessarily obvious.
+> 
+> The server status 'request' and 'reply' packet types are added
+> to allow the IPC client to initiate the status retrieval. The
+> server will respond with the 'reply' message.
+> 
+> The information is encapsulated in TLV data chunks allowing for
+> future backward compatible extension of the server status call.
+> 
+> Signed-off-by: Marek Lindner <mareklindner@neomailbox.ch>
+> ---
+> v3:
+>  - close client socket at the end of unix_sock_server_status()
+
+Things I've noticed are:
+
+* there are no safety checks for the buffer size in the server code
+* the packet/tlv type definitions don't include the header (unlike the rest of 
+  the code)
+* version checks for the "sub tlv" types is missing
+
+Attached is a rough sketch of potential changes.
+
+Kind regards,
+	Sven
+
+--nextPart2044400.i0DohVNyHK
+Content-Disposition: attachment; filename="include-tlv-in-packet.patch"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/x-patch; charset="UTF-8"; name="include-tlv-in-packet.patch"
+
+diff --git a/client.c b/client.c
+index 41ee640..6a58196 100644
+--- a/client.c
++++ b/client.c
+@@ -328,9 +328,9 @@ int alfred_client_change_bat_iface(struct globals *globals)
+ 
+ int alfred_client_server_status(struct globals *globals)
+ {
+-	struct alfred_server_status_net_iface *status_net_iface;
+-	struct alfred_server_status_bat_iface *status_bat_iface;
+-	struct alfred_server_status_op_mode *status_op_mode;
++	struct alfred_server_status_net_iface_v0 *status_net_iface;
++	struct alfred_server_status_bat_iface_v0 *status_bat_iface;
++	struct alfred_server_status_op_mode_v0 *status_op_mode;
+ 	struct alfred_server_status_req_v0 status_req;
+ 	struct alfred_server_status_rep_v0 *status_rep;
+ 	int ret, tlvsize, headsize, len, consumed;
+@@ -390,9 +390,11 @@ int alfred_client_server_status(struct globals *globals)
+ 			break;
+ 
+ 		status_tlv = (struct alfred_tlv *)(buf + consumed);
+-		consumed += sizeof(*status_tlv);
++		if (status_tlv->version != ALFRED_VERSION)
++			break;
+ 
+ 		tlvsize = ntohs(status_tlv->length);
++		tlvsize += sizeof(*status_tlv);
+ 		if (len - consumed < tlvsize)
+ 			break;
+ 
+@@ -401,7 +403,7 @@ int alfred_client_server_status(struct globals *globals)
+ 			if (tlvsize != sizeof(*status_op_mode))
+ 				break;
+ 
+-			status_op_mode = (struct alfred_server_status_op_mode *)(buf + consumed);
++			status_op_mode = (struct alfred_server_status_op_mode_v0 *)(buf + consumed);
+ 
+ 			switch (status_op_mode->mode) {
+ 			case ALFRED_MODESWITCH_SECONDARY:
+@@ -417,19 +419,19 @@ int alfred_client_server_status(struct globals *globals)
+ 
+ 			break;
+ 		case ALFRED_SERVER_NET_IFACE:
+-			if (tlvsize != sizeof(struct alfred_server_status_net_iface))
++			if (tlvsize != sizeof(*status_net_iface))
+ 				break;
+ 
+-			status_net_iface = (struct alfred_server_status_net_iface *)(buf + consumed);
++			status_net_iface = (struct alfred_server_status_net_iface_v0 *)(buf + consumed);
+ 			fprintf(stderr, "- interface: %s\n", status_net_iface->net_iface);
+ 			fprintf(stderr, "\t- status: %s\n",
+ 				status_net_iface->active == 1 ? "active" : "inactive");
+ 			break;
+ 		case ALFRED_SERVER_BAT_IFACE:
+-			if (tlvsize != sizeof(struct alfred_server_status_bat_iface))
++			if (tlvsize != sizeof(*status_bat_iface))
+ 				break;
+ 
+-			status_bat_iface = (struct alfred_server_status_bat_iface *)(buf + consumed);
++			status_bat_iface = (struct alfred_server_status_bat_iface_v0 *)(buf + consumed);
+ 			fprintf(stdout, "- batman-adv interface: %s\n", status_bat_iface->bat_iface);
+ 			break;
+ 		}
+diff --git a/packet.h b/packet.h
+index 4b6bde5..0c1a2eb 100644
+--- a/packet.h
++++ b/packet.h
+@@ -185,34 +185,37 @@ struct alfred_server_status_req_v0 {
+ } __packed;
+ 
+ /**
+- * struct alfred_server_status_op_mode - server op mode status information
++ * struct alfred_server_status_op_mode_v0 - server op mode status information
+  * @op_mode: active op mode
+  *
+  * Sent to the client by daemon in response to status request
+  */
+-struct alfred_server_status_op_mode {
++struct alfred_server_status_op_mode_v0 {
++	struct alfred_tlv header;
+ 	uint8_t mode;
+ } __packed;
+ 
+ /**
+- * struct alfred_server_status_net_iface - server net iface status information
++ * struct alfred_server_status_net_iface_v0 - server net iface status information
+  * @net_iface: configured network interface
+  * @active: network interface active/inactive status info
+  *
+  * Sent to the client by daemon in response to status request
+  */
+-struct alfred_server_status_net_iface {
++struct alfred_server_status_net_iface_v0 {
++	struct alfred_tlv header;
+ 	char net_iface[IFNAMSIZ];
+ 	uint8_t active;
+ } __packed;
+ 
+ /**
+- * struct alfred_server_status_bat_iface - server bat iface status information
++ * struct alfred_server_status_bat_iface_v0 - server bat iface status information
+  * @op_mode: configured batman interface
+  *
+  * Sent to the client by daemon in response to status request
+  */
+-struct alfred_server_status_bat_iface {
++struct alfred_server_status_bat_iface_v0 {
++	struct alfred_tlv header;
+ 	char bat_iface[IFNAMSIZ];
+ } __packed;
+ 
 diff --git a/unix_sock.c b/unix_sock.c
-index bc39199..8c2b762 100644
+index af5206b..b2727ad 100644
 --- a/unix_sock.c
 +++ b/unix_sock.c
-@@ -329,6 +329,8 @@ unix_sock_change_iface(struct globals *globals,
- 	if (len < (int)(sizeof(*change_iface) - sizeof(change_iface->header)))
- 		goto err;
-=20
-+	change_iface->ifaces[sizeof(change_iface->ifaces) - 1] =3D '\0';
+@@ -370,29 +370,38 @@ err:
+ 
+ static int unix_sock_server_status(struct globals *globals, int client_sock)
+ {
+-	struct alfred_server_status_net_iface *status_net_iface;
+-	struct alfred_server_status_bat_iface *status_bat_iface;
+-	struct alfred_server_status_op_mode *status_op_mode;
++	struct alfred_server_status_net_iface_v0 *status_net_iface;
++	struct alfred_server_status_bat_iface_v0 *status_bat_iface;
++	struct alfred_server_status_op_mode_v0 *status_op_mode;
+ 	struct alfred_server_status_rep_v0 *status_rep;
+-	struct alfred_tlv *status_tlv;
+ 	struct interface *interface;
+ 	uint8_t buf[MAX_PAYLOAD];
+-	int ret, len;
++	int ret = -1;
++	int len;
 +
- 	if (globals->opmode =3D=3D OPMODE_SECONDARY) {
- 		if (strstr(change_iface->ifaces, ",") !=3D NULL) {
- 			ret =3D -EINVAL;
---=20
-2.30.2
++	len = 0;
+ 
+-	len = sizeof(*status_rep);
++	/* too large? - should never happen */
++	if (sizeof(*status_rep) + len > sizeof(buf)) {
++		fprintf(stderr, "ERROR: send buffer too small for server_status\n");
++		goto err;
++	}
+ 
+ 	status_rep = (struct alfred_server_status_rep_v0 *)buf;
+ 	status_rep->header.type = ALFRED_SERVER_STATUS;
+ 	status_rep->header.version = ALFRED_VERSION;
+-	status_rep->header.length = len;
++	len += sizeof(*status_rep);
+ 
+-	status_tlv = (struct alfred_tlv *)(buf + len);
+-	status_tlv->type = ALFRED_SERVER_OP_MODE;
+-	status_tlv->version = ALFRED_VERSION;
+-	status_tlv->length = htons(sizeof(*status_op_mode));
+-	len += sizeof(*status_tlv);
++	/* too large? - should never happen */
++	if (sizeof(*status_op_mode) + len > sizeof(buf)) {
++		fprintf(stderr, "ERROR: send buffer too small for server_status op_mode\n");
++		goto err;
++	}
+ 
+ 	status_op_mode = (struct alfred_server_status_op_mode *)(buf + len);
++	status_op_mode->header.type = ALFRED_SERVER_OP_MODE;
++	status_op_mode->header.version = ALFRED_VERSION;
++	status_op_mode->header.length = FIXED_TLV_LEN(*status_op_mode);
+ 
+ 	switch (globals->opmode) {
+ 	case OPMODE_SECONDARY:
+@@ -408,13 +417,17 @@ static int unix_sock_server_status(struct globals *globals, int client_sock)
+ 	len += sizeof(*status_op_mode);
+ 
+ 	list_for_each_entry(interface, &globals->interfaces, list) {
+-		status_tlv = (struct alfred_tlv *)(buf + len);
+-		status_tlv->type = ALFRED_SERVER_NET_IFACE;
+-		status_tlv->version = ALFRED_VERSION;
+-		status_tlv->length = htons(sizeof(*status_net_iface));
+-		len += sizeof(*status_tlv);
++		/* too large? - should never happen */
++		if (sizeof(*status_net_iface) + len > sizeof(buf)) {
++			fprintf(stderr, "ERROR: send buffer too small for server_status iface\n");
++			goto err;
++		}
+ 
+ 		status_net_iface = (struct alfred_server_status_net_iface *)(buf + len);
++		status_net_iface->header.type = ALFRED_SERVER_NET_IFACE;
++		status_net_iface->header.version = ALFRED_VERSION;
++		status_net_iface->header.length = FIXED_TLV_LEN(*status_net_iface);
++
+ 		strncpy(status_net_iface->net_iface, interface->interface,
+ 			sizeof(status_net_iface->net_iface));
+ 		status_net_iface->net_iface[sizeof(status_net_iface->net_iface) - 1] = '\0';
+@@ -422,16 +435,21 @@ static int unix_sock_server_status(struct globals *globals, int client_sock)
+ 			status_net_iface->active = 1;
+ 		else
+ 			status_net_iface->active = 0;
++
+ 		len += sizeof(*status_net_iface);
+ 	}
+ 
+-	status_tlv = (struct alfred_tlv *)(buf + len);
+-	status_tlv->type = ALFRED_SERVER_BAT_IFACE;
+-	status_tlv->version = ALFRED_VERSION;
+-	status_tlv->length = htons(sizeof(*status_bat_iface));
+-	len += sizeof(*status_tlv);
++	/* too large? - should never happen */
++	if (sizeof(*status_bat_iface) + len > sizeof(buf)) {
++		fprintf(stderr, "ERROR: send buffer too small for server_status op_mode\n");
++		goto err;
++	}
+ 
+ 	status_bat_iface = (struct alfred_server_status_bat_iface *)(buf + len);
++	status_bat_iface->header.type = ALFRED_SERVER_BAT_IFACE;
++	status_bat_iface->header.version = ALFRED_VERSION;
++	status_bat_iface->header.length = FIXED_TLV_LEN(*status_bat_iface);
++
+ 	strncpy(status_bat_iface->bat_iface, globals->mesh_iface,
+ 		sizeof(status_bat_iface->bat_iface));
+ 	status_bat_iface->bat_iface[sizeof(status_bat_iface->bat_iface) - 1] = '\0';
+
+--nextPart2044400.i0DohVNyHK--
+
+--nextPart2787033.lrMdBXi4Pi
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmISB8wACgkQXYcKB8Em
+e0YElRAA1i9u+f+8sgBKb+sAWueXVaPQeSOT2PEKZIgKZlteCa9DIWGiaK8WsfWa
+yxrLtsxRx0D6spbk+j5k/wt9A3JoOzW64RqDkRhG3O5v5SHZ+bTcPyinUX8DKpeM
+3v/oFpAv7HYhvS0nGoyCLvd/WVAJOEgqUgsy1g9/CUVpEwFbv6IJwFc4n6ziCwEC
+8aJANy+abU79OJmsmqqnv2lXHpoGchatldCpcC/ReJ+fJuvoAtChbCqiayu42Q4A
+FgKephSWal4W6u7vJfwiWyO50v+9tZf3WariB9e059HGZgRD82I+pY8tzZdxiqKN
+nvWUAxrhe/kQDT0SZBtYtRjDYTtKdOZZo0dI6Dx79Zp4HGuDS8GdDKUYIRDClvIg
+nXg8R1DBeDARaFAkXuGU1MsE7sJF65Skz6Me1RJqrD3EtbRTHzD7ng8Q24BnI9IS
+ZXtWf0Zl+/xP/iUn96Do8Js7YIqImgYnyG2MJG3TFqdzZRqu/W+U4Ld4atNryr/1
+cBIf/RZtiXhizYgC9mEYubxP8AaIHBhFrJq5FrietkvT/NDvq9kbZ2fJBhRDQzDP
+5C6yavLMoJH1SYwv3QbhvTD9GgqwDoN8979FevKoR0646BtVpIsiq+Wt/op0qFt4
+VCEUmGxykoQ4ufLKzZEFEDtcIoC6kT1Ka/ppUQTdR27uw+j6PCk=
+=g8Br
+-----END PGP SIGNATURE-----
+
+--nextPart2787033.lrMdBXi4Pi--
+
+
