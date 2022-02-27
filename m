@@ -1,116 +1,115 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646BE4BEDCD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 22 Feb 2022 00:23:20 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 201444C5FF2
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 28 Feb 2022 00:53:16 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 303CA80C89;
-	Tue, 22 Feb 2022 00:23:19 +0100 (CET)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 965CF80709
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 22 Feb 2022 00:23:16 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B4C0180FB1;
+	Mon, 28 Feb 2022 00:53:12 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id CDD498073E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 28 Feb 2022 00:53:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1645485796;
+	s=20121; t=1646005989;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TKxTcrA5OKBdT23aE7HISz/gTefhsGtQJztQCPNHPFA=;
-	b=Qa359pml3+vTl+gMkbeIqy2l+Jnvj/dITvARAwd/rucMKrhe/khXCU+InllFjZP1IhdZlR
-	PJPMGp/KZzJiXhrCuIJvKWvR9KclIVnJ8N43uvdxcT/GUpD3hPLusaRXShjJDQeaUIOzjg
-	Rn4j5yvL57D0nJ4la3rhotbbs9Sq1Gk=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=68B4uCg0jgF4vh/DBlT6MDT+JLmCPlWhaTKMCs2/zwQ=;
+	b=Dj9XYRn7Bm+cmDhtFG/dRe+xFE7sjEVX3nato4LHhQnt3fs8JKz3hQfNw7akmUpKkFPUit
+	lNy2+wuamol+4iTpT7NVRUYZ7Y5lAi5L+RvWL7vBKwHGIDm11WHpn51y9bHzaQMqvGpRst
+	k6Bftejm06BGnjeeDWPS+oiGrMp76Pg=
 From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
-Subject: Re: [PATCH v4] alfred: introduce 'server status' IPC call
-Date: Tue, 22 Feb 2022 00:23:00 +0100
-Message-ID: <16344215.j3Ck3xriDr@sven-l14>
-In-Reply-To: <2116595.VMJfFIaldL@rousseau>
-References: <20220220183614.54865-1-mareklindner@neomailbox.ch> <49865018.WmOq9pY62i@ripper> <2116595.VMJfFIaldL@rousseau>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>
+Subject: [RFC PATCH 1/4] batman-adv: Request iflink once in batadv-on-batadv check
+Date: Mon, 28 Feb 2022 00:52:54 +0100
+Message-Id: <20220227235257.1324636-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart20119176.fR0bjONF2F"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Qa359pml;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Dj9XYRn7;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1645485796; a=rsa-sha256;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1646005989; a=rsa-sha256;
 	cv=none;
-	b=FW1IFPMXEPHJKZMwehQwpg/CNlWPpJR2+GF0EJh5dy18UpCdrUkzrmcupRAQtaHH1/75Y2
-	brsuA1St3EkrxatoJRuj8MA+mXmCX4i0lQd+NCecL7JwPn/vjo3UCRsKGoYwp8eXzpxvEX
-	SJjO41+DFTdJ/YPmQr/3KABTHOAlPTs=
+	b=RdyGn8CaaZs/M5t5L4yrhz0Vy2RAP4I4w/sSe8dbSJJBPISZKiha3BZautVqSKxJynM5Rx
+	IkDyxQSH0p1Ub4tFsuTN8WU0t9c/4lF6NOnm4f1fBEM2MtodzC96RbZ7Mgng2WuAMCsSCf
+	DKoKJNXnwAHK+9bySE9v99WntRdIaEw=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1645485796;
+	s=20121; t=1646005989;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=TKxTcrA5OKBdT23aE7HISz/gTefhsGtQJztQCPNHPFA=;
-	b=s3XXhqv6tNCF9p/sL5AJ4Aj0izROV4hywlPPRJVWJzpXFiVBd7m/Dvk4j5NIdzOTMn0l07
-	V9/ED0BcyenDucNusi8AEcNoO+5bD/7VpKfEvs9emI5br3PQUCvhwmMUxw3zyRUDAeC5ZY
-	/t9t71fDKnshaV0kuWbLzV+dznLT5BU=
-Message-ID-Hash: TKJTRKGBXHJKBYKLLCKUVIQM6VJER5FC
-X-Message-ID-Hash: TKJTRKGBXHJKBYKLLCKUVIQM6VJER5FC
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=68B4uCg0jgF4vh/DBlT6MDT+JLmCPlWhaTKMCs2/zwQ=;
+	b=z/yhoy4vVMzhixzkpB4ILnaRq2Evdzhg5AzEo/sqZKZWrIvjaNUGDsb31ZUo1bXq/tNcFz
+	OLNaoT9nXaR0YRbrG5xascmzPuTgygXPNvo9DSxRSGOdBwEkWDouLErrekoyI6G7mV+sGu
+	lGi1C4NAteSXLHQoNZVrF+Gg5etgzKw=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: DHIUQTJZIM5IAO7UZ24VEVRDW54FPGVZ
+X-Message-ID-Hash: DHIUQTJZIM5IAO7UZ24VEVRDW54FPGVZ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TKJTRKGBXHJKBYKLLCKUVIQM6VJER5FC/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DHIUQTJZIM5IAO7UZ24VEVRDW54FPGVZ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart20119176.fR0bjONF2F
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
-Subject: Re: [PATCH v4] alfred: introduce 'server status' IPC call
-Date: Tue, 22 Feb 2022 00:23:00 +0100
-Message-ID: <16344215.j3Ck3xriDr@sven-l14>
-In-Reply-To: <2116595.VMJfFIaldL@rousseau>
-References: <20220220183614.54865-1-mareklindner@neomailbox.ch> <49865018.WmOq9pY62i@ripper> <2116595.VMJfFIaldL@rousseau>
+There is no need to call dev_get_iflink multiple times for the same
+net_device in batadv_is_on_batman_iface. And since some of the
+.ndo_get_iflink callbacks are dynamic (for example via RCUs like in
+vxcan_get_iflink), it could easily happen that the returned values are no=
+t
+stable. The pre-checks before __dev_get_by_index are then of course bogus=
+.
 
-On Tuesday, 22 February 2022 00:19:43 CET Marek Lindner wrote:
-> Your proposal did no compile and the master branch now also does not compile
-> on ipq40xx:
-> 
-> unix_sock.c: In function 'unix_sock_server_status':
-> alfred.h:34:46: error: 'status_op_mode' is a pointer; did you mean to use '->'?
->   htons(sizeof(__tlv_type) - sizeof(__tlv_type.header))
+Fixes: 3d48811b27f5 ("batman-adv: prevent using any virtual device create=
+d on batman-adv as hard-interface")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/hard-interface.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Are you sure you are using the master branch? Because the macro looks quite 
-different to what you are showing here. See
-https://git.open-mesh.org/alfred.git/blob/5a7d28b1866d1ba13f570551cea177187f9e54ff:/alfred.h#l33
-and the commit
-https://git.open-mesh.org/alfred.git/commit/f9cf9d22c8bdc8c675c5080d9a26a21082aa1d77 which changed the macro.
-
-Kind regards,
-	Sven
---nextPart20119176.fR0bjONF2F
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmIUHtQACgkQXYcKB8Em
-e0a0sg/5Ac9WkZH1Jvz6b5rrD+12cfYv1rRytFlu7YeBa44tilSmeQsKzFMAwIh8
-zWnq5tMgyApDYU4vH2KpNRzjYWiYhOVcwvJ8i5lUA7G7IVMCOhHkLnjS8moMc+r4
-5A+qTWBgxXTBrLQHoKw6teVVe7uElfqrfIFN7cGEwaUBnRSEv7XWlRnyawLYVVea
-WAaYiotRINBGZqoOxixAfUFlswMCCaZtm6JQI/I2Tk2vDacRg7+phvI0T/EFQC0x
-MrT2jpimk9yQM4vfnohxigJ1SnQ52ngMHNltqpu08uzX2vs/cVMno6kqXvuBPYRc
-gwaTkePeEEZ04ZB4iMXBstYMIJ9mVS5KBrqD/Q2KBJ2ImTOaEpwVUogxbBrKlcmR
-lO0xlXlc1An6ZGFxSulbP0wiyI/sZoQqWWwZUNDRk223mVvUcE+E5Hj+n1hx0A55
-PdD5fc/gLvN30sajuD6LLvgJuErIQYhg0HggvmGCNVXQG8moGEmmAuKGdlWatbry
-kbVwZowHvHXqBem1V2K0YdkdaX65W8ds2ttjp7cqXRnzIloFuadxsZWA74+354yD
-EzPg8Pf9rXeaKRorPaHqbYh5CsQarqyIQoB24iGWpXCk6kGVLSmaIVqRq1IDTvAp
-6f42+NvFwiVQ3Mkqrkkj/RT5ihVn1wjmGvl4Ynz4YAEOpWvgHuc=
-=+iPI
------END PGP SIGNATURE-----
-
---nextPart20119176.fR0bjONF2F--
-
-
+diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interf=
+ace.c
+index 59d19097..774a26c5 100644
+--- a/net/batman-adv/hard-interface.c
++++ b/net/batman-adv/hard-interface.c
+@@ -149,22 +149,23 @@ static bool batadv_is_on_batman_iface(const struct =
+net_device *net_dev)
+ 	struct net *net =3D dev_net(net_dev);
+ 	struct net_device *parent_dev;
+ 	struct net *parent_net;
++	int iflink;
+ 	bool ret;
+=20
+ 	/* check if this is a batman-adv mesh interface */
+ 	if (batadv_softif_is_valid(net_dev))
+ 		return true;
+=20
++	iflink =3D dev_get_iflink(net_dev);
++
+ 	/* no more parents..stop recursion */
+-	if (dev_get_iflink(net_dev) =3D=3D 0 ||
+-	    dev_get_iflink(net_dev) =3D=3D net_dev->ifindex)
++	if (iflink =3D=3D 0 || iflink =3D=3D net_dev->ifindex)
+ 		return false;
+=20
+ 	parent_net =3D batadv_getlink_net(net_dev, net);
+=20
+ 	/* recurse over the parent device */
+-	parent_dev =3D __dev_get_by_index((struct net *)parent_net,
+-					dev_get_iflink(net_dev));
++	parent_dev =3D __dev_get_by_index((struct net *)parent_net, iflink);
+ 	/* if we got a NULL parent_dev there is something broken.. */
+ 	if (!parent_dev) {
+ 		pr_err("Cannot find parent device\n");
+--=20
+2.30.2
