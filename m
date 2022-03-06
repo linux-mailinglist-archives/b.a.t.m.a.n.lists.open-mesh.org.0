@@ -1,113 +1,116 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB7F4CB78B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  3 Mar 2022 08:16:27 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9C14CF28A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  7 Mar 2022 08:24:33 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0C79F844B6;
-	Thu,  3 Mar 2022 08:16:24 +0100 (CET)
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8F034805DA
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  3 Mar 2022 07:10:15 +0100 (CET)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id EAE61B823F1;
-	Thu,  3 Mar 2022 06:10:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 23FF1C340F3;
-	Thu,  3 Mar 2022 06:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1646287813;
-	bh=QeiWLA8P3C7WPC5i3YJOZzowxr3+zfZgljiExCND4ss=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=fYBH5jA1BSJMoEwHKvuUsLmLuZ8skdFWiIovG3zQHTTba6ohBopA9juoedUg569T8
-	 BAwTshUHRj4Of6IahU6OQhqETk2PfHMSntyczsleYciNxB6DiXUYt+9JLF4nkBfvIC
-	 EK6X6JcWmqEdYbrPQybdGxtpf/gWOtaWOAVabOGkGNbJqq7viIy4SQ+hy8iZk7z9RS
-	 05yn97DKq3Gigjnv+YmloBEYd+PEitK3HSoonwHdBxuYb+3/nUPoesDi1zIVao5inX
-	 qNFhA+lOmehRb6dwVK7wB0ftKIFR0lP9uDMw98o735ylxRBqAxKjLeIJ7zdKOA0eVx
-	 dzdtgJAiStVBg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 022CAEAC096;
-	Thu,  3 Mar 2022 06:10:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7722280D22;
+	Mon,  7 Mar 2022 08:24:29 +0100 (CET)
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8B2B580794
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  6 Mar 2022 22:58:01 +0100 (CET)
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1646603881;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=OLij3hLq/ByEiIvsKO2mUqNMbWd2cFRiFv/iL/CpBCk=;
+	b=tUne71KCZTwV5KHN/PA2BeuDU0Ui2RmzmR06wo5VCgSnXvcNJ6gUdlowRejfyJNqosczI0
+	XyIRewLv9JIHiQHH8tPt2M+F4beDGD/0Yt9G+nD/DvgMbBI64JFULurNIZzsA0PINVVvbJ
+	1QmKMsvsr8OT4Dt1Kql7HOdKoTP+eJN1PnsOPhvPeyuU0o0fqW5DVr/vBOLYy2td0FE4iD
+	mI6Bh7LRqEVP0JG44lJL9GazmWDjSATwFYGnODpUEoEwH3i8Qxyw9zG+Pj3ogW8w9lOUAq
+	htbT4393p5kH+q1pUt6hS94uyx81KNWM5UWwCA2zec7l3KTSzI3/u1bWwA9cSw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1646603881;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=OLij3hLq/ByEiIvsKO2mUqNMbWd2cFRiFv/iL/CpBCk=;
+	b=rkxcvxvK79CfwpOoWAKzxP921+aI4UP2669w0fns34DkINPs693vfhMMINY9U6iEsbZWfw
+	PeHf6FpY2DQ8tJBQ==
+To: netdev@vger.kernel.org
+Subject: [PATCH net-next 00/10] net: Convert user to netif_rx(), part 3.
+Date: Sun,  6 Mar 2022 22:57:43 +0100
+Message-Id: <20220306215753.3156276-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/4] batman-adv: Start new development cycle
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <164628781300.31171.6191462436150067665.git-patchwork-notify@kernel.org>
-Date: Thu, 03 Mar 2022 06:10:13 +0000
-References: <20220302163522.102842-2-sw@simonwunderlich.de>
-In-Reply-To: <20220302163522.102842-2-sw@simonwunderlich.de>
-To: Simon Wunderlich <sw@simonwunderlich.de>
+Content-Transfer-Encoding: quoted-printable
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=fYBH5jA1;
-	dmarc=pass (policy=none) header.from=kernel.org;
-	spf=pass (diktynna.open-mesh.org: domain of patchwork-bot+netdevbpf@kernel.org designates 2604:1380:4601:e00::1 as permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1646287815; a=rsa-sha256;
+	dkim=pass header.d=linutronix.de header.s=2020 header.b=tUne71KC;
+	dkim=pass header.d=linutronix.de header.s=2020e header.b=rkxcvxvK;
+	dmarc=pass (policy=none) header.from=linutronix.de;
+	spf=pass (diktynna.open-mesh.org: domain of bigeasy@linutronix.de designates 193.142.43.55 as permitted sender) smtp.mailfrom=bigeasy@linutronix.de
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1646603881; a=rsa-sha256;
 	cv=none;
-	b=nqDBicmIuazMyRf4R0CqJDiDndNeltaukfd3Ww3FsOGoSiI5F/tKSIJKRUbZVaf8APWPb4
-	ZytF3Rr0G2illv8aq9ca0dpdwxl3jXvQAdndVm/6/GpZalAG2wnzI1m8TZhshhWbMNJaUI
-	ZxmaKhutb1w8vmaw7z5SBy91kWCZTIQ=
+	b=LNHZhWGrgf2HA1KY9aIv0YdcFANy2v55cOmM+rqlI7HjIVQxI/Ax9aPSUTL176ux3bXI5x
+	RwgT6CUC3pedXPuHSDsrqZKqYjunV5kH3bYiMx4AjC/8MJEDV4rJCgCgPSwbUnRVUaVqyi
+	8pkFwj6RSJIEL1lRXQ8v9aTF09Vh0ss=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1646287815;
+	s=20121; t=1646603881;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=zaiKyxquR8WGf/P6Eb6enQJ1HKxDg7YQIrw5V6Jwsoo=;
-	b=MoAmnxmReJTf0EQnyshHoYsRnQ1T2G1o3IVeC5Hny2RNOIkMoqvPGoi8W6XHPpfa4/W0Ml
-	jxi0jqF4Mg7IQ++/3RANKuziT2rR2L3nRAL+ycOC6qpW6JR7WgRKMoDmOVq7+7Wn9+M8KX
-	B2t0m/WIKP/oXD9vKcx8sN4nOB3KIRY=
-Content-Transfer-Encoding: quoted-printable
-X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=OLij3hLq/ByEiIvsKO2mUqNMbWd2cFRiFv/iL/CpBCk=;
+	b=cjNnG8651ldXXvXLI+eN3BN/B6LvDr2P5suV1etbNyiZ3zUjQLay954i87JaPvRfc622Gi
+	00OGAHcTpgNZddx+o/zS9jSluUD+svcfuWnd8MyCu2rKypZZM5ta9EF+GjZSe9eoBLxLiJ
+	ncq7iH3Ey6MGVABIZIMiinusndzRPcM=
+X-MailFrom: bigeasy@linutronix.de
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: B4CQWTYFBAGIOASF44AJIEY3LEY55GXV
-X-Message-ID-Hash: B4CQWTYFBAGIOASF44AJIEY3LEY55GXV
-X-Mailman-Approved-At: Thu, 03 Mar 2022 07:16:20 +0100
-CC: kuba@kernel.org, davem@davemloft.net, netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+Message-ID-Hash: LAL34W7W7R3Q4JICQJKYP4ALNECWK47B
+X-Message-ID-Hash: LAL34W7W7R3Q4JICQJKYP4ALNECWK47B
+X-Mailman-Approved-At: Mon, 07 Mar 2022 07:24:24 +0100
+CC: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Alexander Gordeev <agordeev@linux.ibm.com>, Alexandra Winter <wintera@linux.ibm.com>, Antonio Quartulli <a@unstable.cc>, b.a.t.m.a.n@lists.open-mesh.org, Christian Borntraeger <borntraeger@linux.ibm.com>, Divya Koppera <Divya.Koppera@microchip.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens <hca@linux.ibm.com>, Heiner Kallweit <hkallweit1@gmail.com>, Johan Hedberg <johan.hedberg@gmail.com>, Jon Maloy <jmaloy@redhat.com>, linux-bluetooth@vger.kernel.org, linux-s390@vger.kernel.org, linux-staging@lists.linux.dev, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Marcel Holtmann <marcel@holtmann.org>, Marek Lindner <mareklindner@neomailbox.ch>, Remi Denis-Courmont <courmisch@gmail.com>, Russell King <linux@armlinux.org.uk>, Sven Schnelle <svens@linux.ibm.com>, tipc-discussion@lists.sourceforge.net, Vasily Gorbik <gor@linux.ibm.com>, Wenjia Zhang <wenjia
+ @linux.ibm.com>, Ying Xue <ying.xue@windriver.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DI3IZK6A4MURKHKKO3NRL3PWUD4MQYGX/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LAL34W7W7R3Q4JICQJKYP4ALNECWK47B/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello:
+This is the third and last batch of converting netif_rx_ni() caller to
+netif_rx(). The change making this possible is net-next and
+netif_rx_ni() is a wrapper around netif_rx(). This is a clean up in
+order to remove netif_rx_ni().
 
-This series was applied to netdev/net-next.git (master)
-by Simon Wunderlich <sw@simonwunderlich.de>:
+The micrel phy driver is patched twice within this series: the first is
+is to replace netif_rx_ni() and second to move netif_rx() outside of the
+IRQ-off section. It is probably simpler to keep it within this series.
 
-On Wed,  2 Mar 2022 17:35:19 +0100 you wrote:
-> This version will contain all the (major or even only minor) changes fo=
-r
-> Linux 5.18.
->=20
-> The version number isn't a semantic version number with major and minor
-> information. It is just encoding the year of the expected publishing as
-> Linux -rc1 and the number of published versions this year (starting at =
-0).
->=20
-> [...]
+Cc: Alexander Gordeev <agordeev@linux.ibm.com>
+Cc: Alexandra Winter <wintera@linux.ibm.com>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Antonio Quartulli <a@unstable.cc>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Christian Borntraeger <borntraeger@linux.ibm.com>
+Cc: Divya Koppera <Divya.Koppera@microchip.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Heiko Carstens <hca@linux.ibm.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Johan Hedberg <johan.hedberg@gmail.com>
+Cc: Jon Maloy <jmaloy@redhat.com>
+Cc: linux-bluetooth@vger.kernel.org
+Cc: linux-s390@vger.kernel.org
+Cc: linux-staging@lists.linux.dev
+Cc: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>
+Cc: Marek Lindner <mareklindner@neomailbox.ch>
+Cc: Remi Denis-Courmont <courmisch@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Simon Wunderlich <sw@simonwunderlich.de>
+Cc: Sven Eckelmann <sven@narfation.org>
+Cc: Sven Schnelle <svens@linux.ibm.com>
+Cc: tipc-discussion@lists.sourceforge.net
+Cc: Vasily Gorbik <gor@linux.ibm.com>
+Cc: Wenjia Zhang <wenjia@linux.ibm.com>
+Cc: Ying Xue <ying.xue@windriver.com>
 
-Here is the summary with links:
-  - [1/4] batman-adv: Start new development cycle
-    https://git.kernel.org/netdev/net-next/c/94ea9392e113
-  - [2/4] batman-adv: Remove redundant 'flush_workqueue()' calls
-    https://git.kernel.org/netdev/net-next/c/c138f67ad472
-  - [3/4] batman-adv: Migrate to linux/container_of.h
-    https://git.kernel.org/netdev/net-next/c/eb7da4f17dfc
-  - [4/4] batman-adv: Demote batadv-on-batadv skip error message
-    https://git.kernel.org/netdev/net-next/c/6ee3c393eeb7
-
-You are awesome, thank you!
---=20
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Sebastian
 
