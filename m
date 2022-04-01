@@ -1,67 +1,67 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C044EF07D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  1 Apr 2022 16:34:30 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 349EC4EF0BE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  1 Apr 2022 16:39:04 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 292D582640;
-	Fri,  1 Apr 2022 16:34:29 +0200 (CEST)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C3CB881D85
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  1 Apr 2022 16:34:24 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 2753382721;
+	Fri,  1 Apr 2022 16:39:03 +0200 (CEST)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3D352803E2
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  1 Apr 2022 16:39:01 +0200 (CEST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A420C60A67;
-	Fri,  1 Apr 2022 14:34:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86396C34111;
-	Fri,  1 Apr 2022 14:34:21 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 1C4E760F45;
+	Fri,  1 Apr 2022 14:39:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0290BC340EE;
+	Fri,  1 Apr 2022 14:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1648823663;
-	bh=6ofM+DEm0Sb91xORAMMNN6wfHsIeX5+RWcmzILaw8HM=;
+	s=k20201202; t=1648823939;
+	bh=x6ZZfmO9uJBp7EUHhM/+68+SBhKvgX4JLPlKnCuVO60=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hdOu7OWBGVfIV3KEKYMtqnPTEBjj4TkyjXBEgD2CMGFdDvjGTWU9K0PCIXqfsSLky
-	 qDovaM4nk/WT/1UDny4vqfEM6keUihQ+wOowcnB1rIA+g1DDBgBDrYFsEvHLqQWQ0z
-	 mOGncQkCz5c75igWOzzd/7acqnUqREvFQDM6R2OEuNn/QtV5L9Bc1Dia8SVN/1lcaG
-	 1sWcQL430MFbg2REemBEp9Pum/PlgVLXNxZnQVF1CfcPHwNJs9FKkl/LrQ65a9D2B2
-	 Au1cSwiZFt36SPrhBSiDztU56r+S8NB3Kl18kIaCd+xiY/PsKWkRi2AX3fOB7e7dn4
-	 DQL9mSUYMpk2g==
+	b=rts8kLffl6oXQeUvnPC9o/D+il41kcFZMXLtz6KIAH+7j7cUDIm6/fgGnunZ3dTFG
+	 zd2earHjKfj/TvpCy4zEDkiNwacLHxMYkyttSB29vwmDy8Guj1yEc+1bP6rrR01A1P
+	 kzio0dqVqqMoF39C1KBkp9IcOie9Myp4o2mPTDeohCoE0tXXXV3dbRNpbGPBO68t8w
+	 QYnRnboNGm6xahbcRqD36O6pkzoxBHGEsuaDHXq5/7W9x4c/4YK9JYgkXmT3ruSAJQ
+	 ZX+WsQMVYr7DdS154gGE0bXa38ClapUXMQIsukCMm2EtfhBsVkynwsWpfX4o3MlpqQ
+	 Hm0sycPXzcMlg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.16 033/109] ipv6: make mc_forwarding atomic
-Date: Fri,  1 Apr 2022 10:31:40 -0400
-Message-Id: <20220401143256.1950537-33-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 27/98] ipv6: make mc_forwarding atomic
+Date: Fri,  1 Apr 2022 10:36:31 -0400
+Message-Id: <20220401143742.1952163-27-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220401143256.1950537-1-sashal@kernel.org>
-References: <20220401143256.1950537-1-sashal@kernel.org>
+In-Reply-To: <20220401143742.1952163-1-sashal@kernel.org>
+References: <20220401143742.1952163-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=hdOu7OWB;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=rts8kLff;
 	dmarc=pass (policy=none) header.from=kernel.org;
-	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates 2604:1380:4641:c500::1 as permitted sender) smtp.mailfrom=sashal@kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1648823665; a=rsa-sha256;
+	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates 139.178.84.217 as permitted sender) smtp.mailfrom=sashal@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1648823941; a=rsa-sha256;
 	cv=none;
-	b=mh/A9uqk2a7xazd6J0TSp8bE7DdjUrTw9hhYTHqeN6yblSzmDB/z6LKEooanRSQml8KOfj
-	HIlnYzLLXw9YCUiOWwKCYVnIjaJisi7PkpbeCUdpPl+Fmf8jJmjTSbfdqYFPZh7GF/5iLl
-	5p4ROXcY9ozHHOMHUI1rDYjNvLOlo+E=
+	b=k63OsXZ4r6O5qI7eu3vtYKmmuEiSSfZgy4q4yLEl9KmmxglXdYxXMq5+Q2+LGTyedvl5T7
+	vSrP72DBsRQN3UkRu+EnqOQKs9emZxPTvbJ4Brre90RXkpMfO/WstGmlLsVquFD1KSuEwL
+	cLcMaiFDKrAWdxO2bGxVGmb3ej0vIyA=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1648823665;
+	s=20121; t=1648823941;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=N4gYpkWSNdp5aI6e8SrPyeIJYTnG71PR0GkqkkfqUeQ=;
-	b=NWcdPr+IgUEplTKQD5r9zxsUXH/hXZxcamSY+eoq4B13RLeENQ56RJPvCLcf8H8kcbUFpH
-	YhsHgQWMgfVYAsvZ7NPIto2swz/FkBSapc61PrEK0l+vkTslIIuovagPhCa2rFvp0tZoKP
-	R8DsnAdgzSlPUHXKYBiIl2rNLABQa4k=
+	bh=fdKAaDC1k9l6yjCWiVZAkNq8KmPuvcnPZIWj+0vdSOs=;
+	b=xiKAICGtzZImNWX5pFYeCUuEdVPoQ4nHdjVuDyTCePZnbbD2eBj9T/5ktDSv6MaT549Hh/
+	OYcRB18iH+Yct/TxzpfvCq8achzD2Dlvae+8sYsDSIb6L7YmBohJ5XaE2eX6NdCyuhvsMB
+	GnnmZvzpYmp3qdT/mBESiYgxjdjZxLM=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: YYKLEBZYRL3PE5FTGKJZLWFKCKGS6FOE
-X-Message-ID-Hash: YYKLEBZYRL3PE5FTGKJZLWFKCKGS6FOE
+Message-ID-Hash: XBEHCNZMJJXHGCTUTF64TJMU554YPS6A
+X-Message-ID-Hash: XBEHCNZMJJXHGCTUTF64TJMU554YPS6A
 X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
@@ -70,7 +70,7 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YYKLEBZYRL3PE5FTGKJZLWFKCKGS6FOE/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XBEHCNZMJJXHGCTUTF64TJMU554YPS6A/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -96,7 +96,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  5 files changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/include/linux/ipv6.h b/include/linux/ipv6.h
-index a59d25f19385..b8641dc0ee66 100644
+index 07cba0b3496d..d1f386430795 100644
 --- a/include/linux/ipv6.h
 +++ b/include/linux/ipv6.h
 @@ -51,7 +51,7 @@ struct ipv6_devconf {
@@ -109,7 +109,7 @@ index a59d25f19385..b8641dc0ee66 100644
  	__s32		disable_ipv6;
  	__s32		drop_unicast_in_l2_multicast;
 diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index f4004cf0ff6f..9f311fddfaf9 100644
+index 6e3419beca09..2853634a3979 100644
 --- a/net/batman-adv/multicast.c
 +++ b/net/batman-adv/multicast.c
 @@ -134,7 +134,7 @@ static u8 batadv_mcast_mla_rtr_flags_softif_get_ipv6(=
@@ -123,10 +123,10 @@ struct net_device *dev)
  	else
  		return BATADV_MCAST_WANT_NO_RTR6;
 diff --git a/net/ipv6/addrconf.c b/net/ipv6/addrconf.c
-index e92ca415756a..4f64fb285af7 100644
+index 1fe27807e471..3a8838b79bb6 100644
 --- a/net/ipv6/addrconf.c
 +++ b/net/ipv6/addrconf.c
-@@ -554,7 +554,7 @@ static int inet6_netconf_fill_devconf(struct sk_buff =
+@@ -552,7 +552,7 @@ static int inet6_netconf_fill_devconf(struct sk_buff =
 *skb, int ifindex,
  #ifdef CONFIG_IPV6_MROUTE
  	if ((all || type =3D=3D NETCONFA_MC_FORWARDING) &&
@@ -136,7 +136,7 @@ index e92ca415756a..4f64fb285af7 100644
  		goto nla_put_failure;
  #endif
  	if ((all || type =3D=3D NETCONFA_PROXY_NEIGH) &&
-@@ -5539,7 +5539,7 @@ static inline void ipv6_store_devconf(struct ipv6_d=
+@@ -5537,7 +5537,7 @@ static inline void ipv6_store_devconf(struct ipv6_d=
 evconf *cnf,
  	array[DEVCONF_USE_OPTIMISTIC] =3D cnf->use_optimistic;
  #endif
