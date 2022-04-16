@@ -1,134 +1,92 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B93205036F6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Apr 2022 16:01:32 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8BA0503710
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Apr 2022 16:21:25 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7437382E28;
-	Sat, 16 Apr 2022 16:01:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1650117691;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:list-id:list-help:
-	 list-unsubscribe:list-subscribe:list-post;
-	bh=G7iOBW0kzPjL3DlS/72GoRUTbF7ZWeXR4lJ7xvi/yaQ=;
-	b=y2OvlYrWZEaEAs357AJqFqA6uUGXfDqJJgsaa2ssD1yw+hLV0ym8f9BRKnAaAy6Lorto0K
-	WHdF+VIRhLHsh+YUHwANz+dsYrFqsAOSYL/6rrFzBMdjLe7NSZjUSi63zY2ATlz2m6TRvc
-	gllGfNHkqMd3BM0bgllLJ7JF9NulYXY=
-Date: Sat, 16 Apr 2022 10:01:25 -0400
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C539D82E7D;
+	Sat, 16 Apr 2022 16:21:24 +0200 (CEST)
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 41E2082832
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Apr 2022 16:21:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=pIkxUfBd9og1mttPYy1XFMzd8Nf60u+JQ2zumMFTEGM=; b=zMqBfkDaGBcCmpsGt2IY3G8yxc
+	FtdddOojNGPCnL08ExR99cU1MJvgVlDkA12EdGxlha+wyvbSUTSddLQGRiJn+Qp5A2OJRgjkfS7R8
+	QvcbKhTPuN6/44POMYIHtLlQu3GTaSjVe7ABto3k27s7W2EJFgcEUmigCVBsFELwzfQk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1nfjId-00G6sg-KN; Sat, 16 Apr 2022 16:21:19 +0200
+Date: Sat, 16 Apr 2022 16:21:19 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
+Cc: Sven Eckelmann <sven@narfation.org>, Felix Kaechele <felix@kaechele.ca>
 Subject: Re: [PATCH] batman-adv: Don't skb_split skbuffs with frag_list
-To: Sven Eckelmann <sven@narfation.org>, b.a.t.m.a.n@lists.open-mesh.org
+Message-ID: <YlrQ306LD4luXaeJ@lunn.ch>
 References: <20220416122434.33061-1-sven@narfation.org>
-In-Reply-To: <20220416122434.33061-1-sven@narfation.org>
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-X-Mailman-Version: 3.2.1
-Precedence: list
-List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CAP4PFHFLQI5HZWVCE74X76T24J7FA6O/>
-List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
-List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
-List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
-List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
-List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 MIME-Version: 1.0
-Message-ID: <165011769041.26690.10778801125078465694@diktynna.open-mesh.org>
-From: "Felix Kaechele via B.A.T.M.A.N" <b.a.t.m.a.n@lists.open-mesh.org>
-Cc: Felix Kaechele <felix@kaechele.ca>
-Content-Type: multipart/mixed; boundary="===============9222170974571496165=="
-
---===============9222170974571496165==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-
-The sender domain has a DMARC Reject/Quarantine policy which disallows
-sending mailing list messages using the original "From" header.
-
-To mitigate this problem, the original message has been wrapped
-automatically by the mailing list software.
---===============9222170974571496165==
-Content-Type: message/rfc822
-MIME-Version: 1.0
-Content-Disposition: inline
-
-Received: from mail.kaechele.ca (mail.kaechele.ca [54.39.219.105])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 51F64807C2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Apr 2022 16:01:28 +0200 (CEST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0A027C005F;
-	Sat, 16 Apr 2022 10:02:43 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaechele.ca; s=201907;
-	t=1650117764; h=from:subject:date:message-id:to:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=AG66uDJmwb5438qh6lMF8528PBHQHwcQtRSOe0TcuLM=;
-	b=IGeQzEDX5AlUFi/CoV+0Cznzbhdg1xJJFf+N/y1UP7KWyKohPtvS+lb8/5rxCPg/teOoeD
-	LTP5U10ekdJuLc8ocxTsxxiHCphkMe6WDNnmyI3lBhKE15e6Dtdgo3QaLgIyWU4IZA1fFJ
-	++sXiaZq5oDO47oSr1zsTqWOYujH4+U=
-Message-ID: <bf02aeff-210c-a5e0-47d7-c5b276c9b794@kaechele.ca>
-Date: Sat, 16 Apr 2022 10:01:25 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH] batman-adv: Don't skb_split skbuffs with frag_list
-Content-Language: en-US
-To: Sven Eckelmann <sven@narfation.org>, b.a.t.m.a.n@lists.open-mesh.org
-References: <20220416122434.33061-1-sven@narfation.org>
-From: Felix Kaechele <felix@kaechele.ca>
 In-Reply-To: <20220416122434.33061-1-sven@narfation.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1650117688; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1650118881; a=rsa-sha256;
 	cv=none;
-	b=fzX0Htl+B5oOxA3yRLltL7LVAJcusRMMMExl2u5X7LwfJyBwgojHPsUnOuZNGkcos0rxXH
-	ucEhhsEPduiCt+qvtQ8xQFtGybXVv5pAVp1fQDPHAbMH0Ac1QHFMkVs4geZo6ndOqj/LgK
-	rJ3wKiQxFiI9XTp14kdFLru5uMHXH9Y=
+	b=q1Vo8pdyBdma5QnLv1rsxmA0vKBe73p18YOW5RIxsAQpTm2bj6XLQnzI4OGBUxlgJM0CyP
+	Y6vt6UGN1mT8E4mEAcT3WoGtaziCjFmzmlFWRqe+DhZs4dNdtpdnGYKAMdEAMrtUikQagX
+	8mS6WE+M7Syd8w4UxeyHKfH6buSaFnY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kaechele.ca header.s=201907 header.b=IGeQzEDX;
-	spf=pass (diktynna.open-mesh.org: domain of felix@kaechele.ca designates 54.39.219.105 as permitted sender) smtp.mailfrom=felix@kaechele.ca;
-	dmarc=pass (policy=reject) header.from=kaechele.ca
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=zMqBfkDa;
+	spf=pass (diktynna.open-mesh.org: domain of andrew@lunn.ch designates 185.16.172.187 as permitted sender) smtp.mailfrom=andrew@lunn.ch;
+	dmarc=none
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1650117688;
+	s=20121; t=1650118881;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=AG66uDJmwb5438qh6lMF8528PBHQHwcQtRSOe0TcuLM=;
-	b=oI8XJ0o28+5ljgM+cKGw7lKwzotWjo1EPcxSHjo3UNaYYzOoO4aWhzzMhF8bABsRrGnq3V
-	+gq+WvDvshMwda33pTY9XHEgscisjTRmQk7/zmX8zPY7YzaRG9nSH/CxcgrUcSbztIO1ZZ
-	bnOtsBicUXMtXK4LEqVGmgLkS+xmnyY=
-Message-ID-Hash: CAP4PFHFLQI5HZWVCE74X76T24J7FA6O
-X-Message-ID-Hash: CAP4PFHFLQI5HZWVCE74X76T24J7FA6O
-X-MailFrom: felix@kaechele.ca
+	bh=pIkxUfBd9og1mttPYy1XFMzd8Nf60u+JQ2zumMFTEGM=;
+	b=Ml/06FnP+k3wvs7LDR3V37kRUXlBbFXNMqGfKN4rsYrLCyUySfqNROE6atq50RB3JY7pvb
+	QOGYuZmaH7YtNnob0rXjsxKdx4uh3kkKDsTUUjSww+BP5Qs8bVC96gR/FEfTPGDpLKC3XL
+	gmynxAD2CRrvyBByxVI8b6MTy4yIHCk=
+Message-ID-Hash: 5HVNKUBTSBMGQQ4MDRFRMVETS6FKJJPT
+X-Message-ID-Hash: 5HVNKUBTSBMGQQ4MDRFRMVETS6FKJJPT
+X-MailFrom: andrew@lunn.ch
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CAP4PFHFLQI5HZWVCE74X76T24J7FA6O/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/5HVNKUBTSBMGQQ4MDRFRMVETS6FKJJPT/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi there,
+On Sat, Apr 16, 2022 at 02:24:34PM +0200, Sven Eckelmann wrote:
+> The receiving interface might have used GRO to receive more fragments than
+> MAX_SKB_FRAGS fragments. In this case, these will not be stored in
+> skb_shinfo(skb)->frags but merged into the frag list.
+> 
+> batman-adv relies on the function skb_split to split packets up into
+> multiple smaller packets which are not larger than the MTU on the outgoing
+> interface. But this function cannot handle frag_list entries and is only
+> operating on skb_shinfo(skb)->frags. If it is then still trying to split
+> such an skb and xmit'ing it on an interface without support for
+> NETIF_F_FRAGLIST then validate_xmit_skb() will try to linearize it. But
+> this fails due to inconsistent information and __pskb_pull_tail will
+> trigger a BUG_ON after skb_copy_bits() returns an error.
+> 
+> In case of entries in frag_list, just linearize the skb before operating on
+> it with skb_split().
 
-initial testing shows that this patch seems to fix the issue.
-We are currently at 30 minutes of uptime on our fairly busy mesh which 
-is already 15-30 times better than before.
+Hi Sven
 
-Thanks for the super quick turnaround on this one, especially on easter 
-weekend.
+This is not an area of the kernel i'm very familiar with. But i'm
+wondering, is this a BATMAN specific problem, or a generic problem?
+Should the fix be in BATMAN, or the core?
 
-I will report back after some more uptime, but I have a feeling that if 
-it is working right now it will probably continue to function just fine.
-
-Thanks again!
-
-Regards,
-Felix
---===============9222170974571496165==--
+       Andrew
