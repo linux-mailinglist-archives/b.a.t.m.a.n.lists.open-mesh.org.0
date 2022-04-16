@@ -1,319 +1,116 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662985035E7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Apr 2022 12:09:08 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC7B503698
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 Apr 2022 14:25:10 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4417F807E3;
-	Sat, 16 Apr 2022 12:09:07 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 73A37807E3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Apr 2022 12:09:03 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 2899582E47;
+	Sat, 16 Apr 2022 14:25:09 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1A5358072F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 Apr 2022 14:25:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1650103742;
+	s=20121; t=1650111906;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D3m6jtZvHhaADqoWPPCSr7yYU9lTNQYK++uNzAdHHeA=;
-	b=lHLqWdGlH6UYQ4Mr2CJ6l0Hh0bacoejmhPk52zZHBGBwaPSTUJKdE1CfYJdcN1bm3BWCQC
-	rvrPat1/BXmo1sZG+UOhCLF6l2f74Pys/TOKQZuaPn0hmSUS2nKitATSBKKfiepZImQ2FO
-	D449UK4Xa7C7TAa/2jFOOeA8O7yA5R8=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=5gRVsR+k88icLnAey0T70AAH6oNT5lNOUkoxchzsRPM=;
+	b=i0RK3PU/DoVn4u0RdPUi7bseSOcd+0YYoxH0rqT2Zu296Dfi8fyxkovp9uxEdMik15dVdM
+	UzqxRdZpG8Q1C9+Fi4KXpvdvQ6dYaxzn9lHzSY2C9b60zLYmjqfWoEsYTXEE2vKcTiUh+X
+	HfIW5qdgQtJ9O3bRUAwHVZ53VMfUEJg=
 From: Sven Eckelmann <sven@narfation.org>
-To: Felix Kaechele <felix@kaechele.ca>
-Subject: Re: Kernel crash when using batman-adv 2022.0 over VXLAN
-Date: Sat, 16 Apr 2022 12:08:54 +0200
-Message-ID: <3014612.pz5OENx0Be@sven-l14>
-In-Reply-To: <3a4465b0-ddf6-151f-0082-0d4533a7eff0@kaechele.ca>
-References: <3a4465b0-ddf6-151f-0082-0d4533a7eff0@kaechele.ca>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>,
+	Felix Kaechele <felix@kaechele.ca>
+Subject: [PATCH] batman-adv: Don't skb_split skbuffs with frag_list
+Date: Sat, 16 Apr 2022 14:24:34 +0200
+Message-Id: <20220416122434.33061-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2030628.CM80vvO7ju"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1650103743; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1650111907; a=rsa-sha256;
 	cv=none;
-	b=1OCr5raeAmpS9orfYE5udr+bWxt/NYYCztNXc7dbBOY+bneG+z4sGjA5rnhKB/zbS2TXY1
-	yD2wr0qmNCfFJOCEDNxSb0sqnwUK1r8OCw4o4mUuZZMH44KuKZoX8ZRnhi+RJY/RmMZr3q
-	IXouip5myZ8kc1lpIptlNC4MN0as+mI=
+	b=tQJgHBI3wdlZ7sGXb9IPyS+tkZjT2+paYv5a1AcAojj2jaxqInnnRGwh0h2wQBWJUaMqUb
+	WFRuDs/+T9dN86IPAhe1Oi21H1V3A5i87u7rloHneoEnbYSqzoypLz3+TVE/eTTGI1ln+K
+	uQK2LQaJEi0l+KaFaNuQzKxQT1y7BiE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=lHLqWdGl;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="i0RK3PU/";
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1650103743;
+	s=20121; t=1650111907;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=D3m6jtZvHhaADqoWPPCSr7yYU9lTNQYK++uNzAdHHeA=;
-	b=DQC+Eu77Uo+n76ZZ1gBACRLFShjgeUSg692fmRWLCjdfBLRCu+HAbfeFJxVO1Y+OisQJYU
-	qUGbTbn1dmyk+7P3RWzHzdpWPQ1ZAjFCmVyCQKqzWQnn7c5dM2FScsrDVaAbiOtHqvBztH
-	xPX9l3tjfayFFmLnsRVPqiPMiAKvgIo=
-Message-ID-Hash: X5XRGWKPGD5TO54TRNIEAICQNUHIG65W
-X-Message-ID-Hash: X5XRGWKPGD5TO54TRNIEAICQNUHIG65W
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=5gRVsR+k88icLnAey0T70AAH6oNT5lNOUkoxchzsRPM=;
+	b=dWCQpUmbJRNQmGO6kGLrF37i7+uPX3e2m9TZJt6Kt5TKaVVAD8rdgsRFCO36AFex6n70Sa
+	zNg3orcms8e2MzhVbZKgfr4m3KCsqBau3R9XB+/fQ56wSfp+uYGO20ftOZqK4koTYLWDNn
+	bBRVQ5hjpAnogoWrlm1w5kfrxKExXpY=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: VBWJGIW5MY6QZBWLESUVN2DJZBI4XKWD
+X-Message-ID-Hash: VBWJGIW5MY6QZBWLESUVN2DJZBI4XKWD
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/X5XRGWKPGD5TO54TRNIEAICQNUHIG65W/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VBWJGIW5MY6QZBWLESUVN2DJZBI4XKWD/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2030628.CM80vvO7ju
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Felix Kaechele <felix@kaechele.ca>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: Kernel crash when using batman-adv 2022.0 over VXLAN
-Date: Sat, 16 Apr 2022 12:08:54 +0200
-Message-ID: <3014612.pz5OENx0Be@sven-l14>
-In-Reply-To: <3a4465b0-ddf6-151f-0082-0d4533a7eff0@kaechele.ca>
-References: <3a4465b0-ddf6-151f-0082-0d4533a7eff0@kaechele.ca>
+The receiving interface might have used GRO to receive more fragments tha=
+n
+MAX_SKB_FRAGS fragments. In this case, these will not be stored in
+skb_shinfo(skb)->frags but merged into the frag list.
 
-On Saturday, 16 April 2022 02:23:59 CEST Felix Kaechele wrote:
-> Hi there,
-> 
-> I am seeing odd kernel crashes when using batman-adv over VXLAN.
-> This is in a Freifunk environment on our VPN gateway side where clients 
-> connect using L2TPv3 tunnels and the gateways are interconnected using 
-> VXLAN.
-> 
-> The setup is as follows on both ends:
-> 
-> - Both machines are Hetzner Cloud VMs (CX11)
-> - OS: Fedora 36 (Pre-release) / Kernel 5.17.2-300.fc36.x86_64
+batman-adv relies on the function skb_split to split packets up into
+multiple smaller packets which are not larger than the MTU on the outgoin=
+g
+interface. But this function cannot handle frag_list entries and is only
+operating on skb_shinfo(skb)->frags. If it is then still trying to split
+such an skb and xmit'ing it on an interface without support for
+NETIF_F_FRAGLIST then validate_xmit_skb() will try to linearize it. But
+this fails due to inconsistent information and __pskb_pull_tail will
+trigger a BUG_ON after skb_copy_bits() returns an error.
 
-So it doesn't crash in batman-adv but the skbuff code complains about it when 
-it went through the bridge. The code which crashes is:
+In case of entries in frag_list, just linearize the skb before operating =
+on
+it with skb_split().
 
-    void *__pskb_pull_tail(struct sk_buff *skb, int delta)
-    {
-    	/* If skb has not enough free space at tail, get new one
-    	 * plus 128 bytes for future expansions. If we have enough
-    	 * room at tail, reallocate without expansion only if skb is cloned.
-    	 */
-    	int i, k, eat = (skb->tail + delta) - skb->end;
-    
-    	if (eat > 0 || skb_cloned(skb)) {
-    		if (pskb_expand_head(skb, 0, eat > 0 ? eat + 128 : 0,
-    				     GFP_ATOMIC))
-    			return NULL;
-    	}
-    
-    	BUG_ON(skb_copy_bits(skb, skb_headlen(skb),
-    			     skb_tail_pointer(skb), delta));
+Reported-by: Felix Kaechele <felix@kaechele.ca>
+Fixes: 9de347143505 ("batman-adv: layer2 unicast packet fragmentation")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ net/batman-adv/fragmentation.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-
-So it seems like skb_copy_bits fails because it is unable to copy (delta) 
-bytes from the skb at the start of the header to tail. Afaik, this can only 
-happen when skb_headlen(skb) + delta is larger than the complete length of the 
-skb. Or when the same thing is true for any of its fragments.
-
-Question is now: what is calling the function with which parameter. So the 
-first step was to try to decode the stacktrace (more or less well) via the
-./scripts/decode_stacktrace.sh and the vmlinux from
-https://kojipkgs.fedoraproject.org//packages/kernel/5.17.2/300.fc36/x86_64/kernel-debug-debuginfo-5.17.2-300.fc36.x86_64.rpm
-
-    $ ~/linux-5.17.2/scripts/decode_stacktrace.sh  vmlinux < ~/decoded 
-    [  240.816265] ------------[ cut here ]------------
-    [  240.819307] kernel BUG at net/core/skbuff.c:2247!
-    [  240.822038] invalid opcode: 0000 [#1] PREEMPT SMP PTI
-    [  240.824163] CPU: 0 PID: 13 Comm: ksoftirqd/0 Kdump: loaded Not tainted 5.17.2-300.fc36.x86_64 #1
-    [  240.827627] Hardware name: Hetzner vServer, BIOS 20171111 11/11/2017
-    [  240.829406] RIP: 0010:__pskb_pull_tail (./include/linux/mm.h:717 ./include/linux/mm.h:723 ./include/linux/mm.h:1198 ./include/linux/mm.h:1237 ./include/linux/skbuff.h:3188 ./include/linux/skbuff.h:3200 net/core/skbuff.c:2327) 
-    [ 240.830860] Code: 8b b4 24 bc 00 00 00 4d 8b 84 24 c0 00 00 00 49 8d 14 30 48 8b 7a 08 e9 2d fe ff ff 48 c7 c6 e8 bc 5e 8b e8 e2 30 83 ff 0f 0b <0f> 0b 29 c2 48 89 7c 24 08 42 8d 34 3a e8 3e fc ff ff 48 8b 7c 24
-    All code
-    ========
-       0:   8b b4 24 bc 00 00 00    mov    0xbc(%rsp),%esi
-       7:   4d 8b 84 24 c0 00 00    mov    0xc0(%r12),%r8
-       e:   00 
-       f:   49 8d 14 30             lea    (%r8,%rsi,1),%rdx
-      13:   48 8b 7a 08             mov    0x8(%rdx),%rdi
-      17:   e9 2d fe ff ff          jmpq   0xfffffffffffffe49
-      1c:   48 c7 c6 e8 bc 5e 8b    mov    $0xffffffff8b5ebce8,%rsi
-      23:   e8 e2 30 83 ff          callq  0xffffffffff83310a
-      28:   0f 0b                   ud2    
-      2a:*  0f 0b                   ud2             <-- trapping instruction
-      2c:   29 c2                   sub    %eax,%edx
-      2e:   48 89 7c 24 08          mov    %rdi,0x8(%rsp)
-      33:   42 8d 34 3a             lea    (%rdx,%r15,1),%esi
-      37:   e8 3e fc ff ff          callq  0xfffffffffffffc7a
-      3c:   48                      rex.W
-      3d:   8b                      .byte 0x8b
-      3e:   7c 24                   jl     0x64
-    
-    Code starting with the faulting instruction
-    ===========================================
-       0:   0f 0b                   ud2    
-       2:   29 c2                   sub    %eax,%edx
-       4:   48 89 7c 24 08          mov    %rdi,0x8(%rsp)
-       9:   42 8d 34 3a             lea    (%rdx,%r15,1),%esi
-       d:   e8 3e fc ff ff          callq  0xfffffffffffffc50
-      12:   48                      rex.W
-      13:   8b                      .byte 0x8b
-      14:   7c 24                   jl     0x3a
-    [  240.837601] RSP: 0018:fffface380073830 EFLAGS: 00010282
-    [  240.839764] RAX: 00000000fffffff2 RBX: ffff921d9f863b00 RCX: 0000000000000001
-    [  240.842436] RDX: 0000000000000001 RSI: ffff921d8f145640 RDI: 0000000000000380
-    [  240.844451] RBP: fffface380073868 R08: ffff921d84dd9cac R09: 0000000000000022
-    [  240.846478] R10: 0000000000000001 R11: 00000000000002bf R12: ffff921d9f863b00
-    [  240.848510] R13: 00000000000002eb R14: 0000000000000000 R15: 0000000000000001
-    [  240.850622] FS:  0000000000000000(0000) GS:ffff921dfcc00000(0000) knlGS:0000000000000000
-    [  240.852960] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-    [  240.854570] CR2: 000056045b049188 CR3: 0000000004dd6004 CR4: 00000000007706f0
-    [  240.856238] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-    [  240.857883] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-    [  240.859503] PKRU: 55555554
-    [  240.861767] Call Trace:
-    [  240.863187]  <TASK>
-    [  240.864458] validate_xmit_skb (./include/linux/skbuff.h:3465 net/core/dev.c:3563) 
-    [  240.866141] validate_xmit_skb_list (net/core/dev.c:3605) 
-    [  240.868019] sch_direct_xmit (net/sched/sch_generic.c:330) 
-    [  240.869946] __dev_queue_xmit (./include/net/pkt_sched.h:131 net/core/dev.c:3709 net/core/dev.c:4081) 
-    [  240.871507] ? packet_rcv (net/packet/af_packet.c:2127) 
-    [  240.872908] ? __br_forward (./include/linux/rcupdate.h:273 ./include/linux/rcupdate.h:727 ./include/linux/netfilter.h:264 ./include/linux/netfilter.h:305 net/bridge/br_forward.c:115) bridge
-    [  240.874740] br_dev_queue_push_xmit (net/bridge/br_forward.c:53) bridge
-    [  240.876785] br_dev_xmit (net/bridge/br_device.c:108) bridge
-    [  240.878537] ? dev_queue_xmit_nit (./include/linux/skbuff.h:1471 ./include/linux/skbuff.h:1510 ./include/linux/skbuff.h:2895 net/core/dev.c:2242) 
-    [  240.880264] dev_hard_start_xmit (./include/linux/netdevice.h:4684 ./include/linux/netdevice.h:4699 net/core/dev.c:3473 net/core/dev.c:3489) 
-    [  240.881885] __dev_queue_xmit (net/core/dev.c:3700 net/core/dev.c:4081) 
-    [  240.883393] ? nf_ct_deliver_cached_events (net/netfilter/nf_conntrack_ecache.c:234) nf_conntrack
-    [  240.885479] ? __build_skb (net/core/skbuff.c:239) 
-    [  240.886950] ? kmem_cache_alloc (mm/slub.c:3214 mm/slub.c:3238 mm/slub.c:3243) 
-    [  240.888709] batadv_send_skb_packet (net/batman-adv/send.c:109) batman_adv
-    [  240.890611] batadv_send_unicast_skb (net/batman-adv/send.c:150) batman_adv
-    [  240.892551] batadv_frag_send_packet (net/batman-adv/fragmentation.c:424 net/batman-adv/fragmentation.c:508) batman_adv
-    [  240.894473] batadv_send_skb_to_orig (net/batman-adv/send.c:197) batman_adv
-    [  240.896484] batadv_route_unicast_packet (net/batman-adv/routing.c:706) batman_adv
-    [  240.898417] batadv_recv_unicast_packet (net/batman-adv/routing.c:1020) batman_adv
-    [  240.900277] batadv_batman_skb_recv (net/batman-adv/hard-interface.h:92 net/batman-adv/main.c:486) batman_adv
-    [  240.902309] __netif_receive_skb_list_core (net/core/dev.c:5397 net/core/dev.c:5383 net/core/dev.c:5442) 
-    [  240.904458] netif_receive_skb_list_internal (./include/linux/sched/mm.h:330 net/core/dev.c:5489 net/core/dev.c:5585) 
-    [  240.906350] napi_complete_done (./include/linux/list.h:37 ./include/net/gro.h:426 ./include/net/gro.h:421 net/core/dev.c:5932) 
-    [  240.908177] gro_cell_poll (net/core/gro_cells.c:54) 
-    [  240.909499] __napi_poll+0x2b/0x160 
-    [  240.910763] net_rx_action (net/core/dev.c:6538) 
-    [  240.912082] __do_softirq (kernel/softirq.c:560) 
-    [  240.913511] ? smpboot_register_percpu_thread (kernel/smpboot.c:107) 
-    [  240.915107] run_ksoftirqd (kernel/softirq.c:916) 
-    [  240.916346] smpboot_thread_fn (kernel/smpboot.c:144 (discriminator 3)) 
-    [  240.917643] kthread (kernel/kthread.c:376) 
-    [  240.919179] ? kthread_complete_and_exit (kernel/kthread.c:332) 
-    [  240.921504] ret_from_fork (arch/x86/entry/entry_64.S:301) 
-    [  240.923424]  </TASK>
-    [  240.924914] Modules linked in: tun vxlan ip_gre ip_tunnel gre intel_rapl_msr intel_rapl_common isst_if_common nfit libnvdimm snd_pcm nft_nat snd_timer nft_masq snd virtio_net nft_meta_bridge nft_ct nft_chain_nat nf_nat bochs nf_conntrack soundcore joydev nf_defrag_ipv6 nf_defrag_ipv4 drm_vram_helper net_failover pcspkr drm_ttm_helper virtio_balloon ttm nf_tables failover i2c_piix4 nfnetlink l2tp_eth l2tp_netlink l2tp_core ip6_udp_tunnel udp_tunnel tcp_westwood batman_adv cfg80211 vfat fat bridge stp llc rfkill fuse crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel serio_raw virtio_console virtio_scsi ata_generic qemu_fw_cfg pata_acpi
-
-
-As we can see, the __pskb_pull_tail comes from __skb_linearize. And its done 
-using skb->data_len. According to our previous investigation for the non-
-frag_list check, this would mean that
-skb_headlen(skb) + skb->data_len > skb->len. And the definition of skb_headlen 
-is skb->len - skb->data_len. So it can be transformed to:
-
-     skb->len - skb->data_len + skb->data_len > skb->len
-
-or
-
-     skb->len > skb->len
-
-Of course, this contradicts itself. So we have to assume that it either failed 
-on the fragments or data_len changed - which I don't think that it does this 
-in pskb_expand_head. But maybe someone can correct me.
-
-But we can say that skb_needs_linearize in  net/core/dev.c:3562 returns true 
-for some reason. batman-adv should not create any skb_fragments but will 
-happily forward it to skb_split to create two skbs (and thus one batman-adv 
-fragment packet might actually contain the skb fragments which were coming 
-from the outside). So linearization by the dev_xmit code would be required 
-when:
-
-* skb is non linear (skb->data_len != 0)
-* AND either:
-  - skb has a skb fraglist (not batman-adv fraglist) && underlying interface 
-    doesn't support NETIF_F_FRAGLIST
-    (afaik, this can happen with skb_gro_receive but isn't handled by 
-     skb_split)
-  - skb has frags but underlying interface doesn't support support NETIF_F_SG
-
-I am not sure what was used to receive the packet and what was then used to 
-outgoing interface. But it seems like the receiving interface created either 
-an skb with fraglist + the outgoing interface doesn't support it. Or the 
-receiving interface created skb frags but the outgoing interface doesn't 
-support scatter gather.
-
-Still doesn't explain 100% why the skb_copy_bits fails. If you want then you 
-can try to add a skb_linearize(skb) to the start of batadv_batman_skb_recv 
-(directly after the variable declarations):
-
-	/* keep skb linear */
-	if (skb_linearize(skb) < 0)
-		goto err_out;
-
-to check if batman-adv is (indirectly) forwarding the problem with the skb or 
-really introducing it (by incorrectly creating skb fragments somewhere). If 
-this solves it, please remove the change and test if it also helps to just get 
-rid of the fraglist:
-
-	if (skb_has_frag_list(skb) && __skb_linearize(skb))
-		goto err_out;
-
-And if this really helps, please move this code code to 
-batadv_frag_send_packet. This should look like this
-
-    diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentation.c
-    index 0899a729..5fc07263 100644
-    --- a/net/batman-adv/fragmentation.c
-    +++ b/net/batman-adv/fragmentation.c
-    @@ -475,6 +475,15 @@ int batadv_frag_send_packet(struct sk_buff *skb,
-     		goto free_skb;
-     	}
-     
-    +	/* GRO might have added fragments to the fragment list instead of
-    +	 * frags[]. But this is not handled by skb_split and must be
-    +	 * linearized before it is given to it
-    +	 */
-    +	if (skb_has_frag_list(skb) && __skb_linearize(skb)) {
-    +		ret = -ENOMEM;
-    +		goto free_skb;
-    +	}
-    +
-     	/* Create one header to be copied to all fragments */
-     	frag_header.packet_type = BATADV_UNICAST_FRAG;
-     	frag_header.version = BATADV_COMPAT_VERSION;
-
-
-Thanks for the report and good luck with the testing - and I hope you find 
-better easter eggs this year than this bug ;)
-
-Kind regards,
-	Sven
---nextPart2030628.CM80vvO7ju
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmJalbYACgkQXYcKB8Em
-e0YVuxAAhymhMpf0wMz4aPzO1XKHzW31LkN98d5FwiUgyihxK2xQ5Ct0IdNdpdy2
-9M0zl12wlV5p+ALEEd4ZF9PhY5swD9kIHYSBHutWe6bCUHlzJjXHowRqkNbkCnPW
-/iIhlwNJAInkjcCHDSYcA7Pdtrmqn+IABqpoicZs75ig8fQTBglx1IyxuU5UPj9/
-1sqRg6PLU3Lg72uhY6ZkxIb+o/qD91s4T0vVsRusQvehxVaS8FLiIKTyY3I1qATk
-jKFWqxpK2mqokV1Xen6fyaJZhf2d0p+t+uBpR1bt99m99xqRlYaYsdIYKbACXr2s
-hLSCOASIpZfS1aGTSkKS41w5FbhR0zTkMx2V+Owqzwuy0lNDKeYiJ7qhHdKCQpXs
-7v6Iq48i8sf9CXMsmxYB/2h7QpjoDs9W4fDNBQpSYZvmJeyTCm2nQLQ0BOaW66tK
-49z5LYwi5GIUty/ukOPQ42xPNQKNyla86NaaZkUS+y6Ol5Oa3rKXp+segIKESyrC
-a6felM1vljuvWcLxfASvSvmtkMfqewD8wwM7xMSD+s2imTdnLPclmhly9iVCP8MB
-qsW6sNrlRoJdpb7xjkGZWBvxfFCKt4it7m2QstGeE/5OoRwTscmybi8un9ZYa8ww
-TK0L6MKhs/g6szEgJ0zM4BScq4SndldoKc7CeA4EPAHt4AE2OS8=
-=kXnU
------END PGP SIGNATURE-----
-
---nextPart2030628.CM80vvO7ju--
-
-
+diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentatio=
+n.c
+index 0899a729..c120c7c6 100644
+--- a/net/batman-adv/fragmentation.c
++++ b/net/batman-adv/fragmentation.c
+@@ -475,6 +475,17 @@ int batadv_frag_send_packet(struct sk_buff *skb,
+ 		goto free_skb;
+ 	}
+=20
++	/* GRO might have added fragments to the fragment list instead of
++	 * frags[]. But this is not handled by skb_split and must be
++	 * linearized to avoid incorrect length information after all
++	 * batman-adv fragments were created and submitted to the
++	 * hard-interface
++	 */
++	if (skb_has_frag_list(skb) && __skb_linearize(skb)) {
++		ret =3D -ENOMEM;
++		goto free_skb;
++	}
++
+ 	/* Create one header to be copied to all fragments */
+ 	frag_header.packet_type =3D BATADV_UNICAST_FRAG;
+ 	frag_header.version =3D BATADV_COMPAT_VERSION;
+--=20
+2.30.2
