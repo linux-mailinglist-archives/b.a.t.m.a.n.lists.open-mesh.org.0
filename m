@@ -2,84 +2,84 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4422950B1EE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Apr 2022 09:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F278350B1EF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Apr 2022 09:44:53 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9588582E4A;
-	Fri, 22 Apr 2022 09:44:42 +0200 (CEST)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8CE0280724
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Apr 2022 04:41:41 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D319382EB5;
+	Fri, 22 Apr 2022 09:44:43 +0200 (CEST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5F6B380724
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Apr 2022 04:51:42 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650595301; x=1682131301;
+  t=1650595902; x=1682131902;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=ziHABANE59wRolQJClZuDMbt1HuNA/mx2V8HeNMrpkM=;
-  b=l8S3/4jCQLu7dOUiVVDwHoT0Ihis2M7+yfvQAh0yX4wqs6dBZc4ZKUee
-   /6W1ZPecXBZpWJHiPiDBTAfkryu+1A/i7Iw2iuz9bcd83mzs4lcFTc+M2
-   dFrRNWPLcDlQc9crAu9xxbIAKnahKqzhrNys46DqEV/45pYwoyl1Gmmx1
-   l5sH8VJzXcY0NXd20srSmSSeMlScFXoNerx35mQOmMYO6JLSE4WLwyJ5M
-   xG8TdJXWCe8TQB2l2wrcrw+q1QuY+h9CNFYRtXEiysBytpmSh9oiBz/2O
-   MDo0eNdasH3mPN0PGJ8L9RqHfinCa6FOh/mE+C/44on8HOXY4+zIEIXVS
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="327460586"
+  bh=/EP0iWdKOEiGzPNvILshoCXIoQqdE97BuNJKc07nAWo=;
+  b=II/EWJE7v8Q6VqjuMxXSZwIC0UCFIHgLNBvGNqAySqSE8AYAy/WbGS9f
+   qTcdXHQ7/rOJy1Ng5aiDAP9tyjzlFHzaa3f47F5H3OuAVIEsQnIQWg57B
+   YpBKR4C5Ri34isWNyTK+MSn6I/PG1wRgJ1cxNHhFT64rgVpx59pPi6lJJ
+   vcyf2BualWVwsBJVWj3Y70A433NK5C8oVDszrruIYFh0PYY4Y1SHg9VRY
+   P2BB2CHEJf046gZE7bFBwFaZWRqk9xjhsWSiO9F5B2Y1ihXa6YlTxgUVD
+   3e6rLXDvdnIk17jwCuN+0VzBXyaIX4nau8K48aqCBNtX/zPYaKtY9aUtj
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="244476588"
 X-IronPort-AV: E=Sophos;i="5.90,280,1643702400";
-   d="scan'208";a="327460586"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 19:41:39 -0700
+   d="scan'208";a="244476588"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 19:51:40 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.90,280,1643702400";
-   d="scan'208";a="511375279"
+   d="scan'208";a="562856314"
 Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 21 Apr 2022 19:41:35 -0700
+  by fmsmga007.fm.intel.com with ESMTP; 21 Apr 2022 19:51:36 -0700
 Received: from kbuild by 3abc53900bec with local (Exim 4.95)
 	(envelope-from <lkp@intel.com>)
-	id 1nhjEl-00097y-7D;
-	Fri, 22 Apr 2022 02:41:35 +0000
-Date: Fri, 22 Apr 2022 10:41:00 +0800
+	id 1nhjOR-00098z-QD;
+	Fri, 22 Apr 2022 02:51:35 +0000
+Date: Fri, 22 Apr 2022 10:51:17 +0800
 From: kernel test robot <lkp@intel.com>
 To: Yu Zhe <yuzhe@nfschina.com>, mareklindner@neomailbox.ch,
 	sw@simonwunderlich.de, a@unstable.cc, sven@narfation.org,
 	davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com
 Subject: Re: [PATCH] batman-adv: remove unnecessary type castings
-Message-ID: <202204221051.PRtLc0f7-lkp@intel.com>
+Message-ID: <202204221034.hfPA4RPW-lkp@intel.com>
 References: <20220421154829.9775-1-yuzhe@nfschina.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <20220421154829.9775-1-yuzhe@nfschina.com>
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1650595302; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1650595903; a=rsa-sha256;
 	cv=none;
-	b=oqFsEeP3jk+dtZzSjA1qwhwtJYfUFvfLKFr1iEMQdDllbI+E0NFAtMsZ+KrHsMhhIc5QO8
-	Q2L0p+pjSFJ9yUuBbhA8gaTj99/UvzEjd8zdo8i42tRT/6TyT6YltTmIwcVJznPXJV9Yly
-	U89zHU6fe15CZGv3Mx5Ijtd3IAm0MNk=
+	b=a8j64esZTp0z6krnYwsOGwh7IMvJCGxXydhfH87HsPZunCBQYWcqxxbvR6duKzlSnTHeoK
+	VWD8c/IbokUUGga+myOQuFUokU6efMh6O6sNsCxFOfjkGRadMuXwrO2BPg3QDwRZRL658r
+	bwNOhZ7vb7+PCU2MP5Eq8FgGkhSKuRo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none ("invalid DKIM record") header.d=intel.com header.s=Intel header.b="l8S3/4jC";
-	spf=pass (diktynna.open-mesh.org: domain of lkp@intel.com designates 134.134.136.100 as permitted sender) smtp.mailfrom=lkp@intel.com;
+	dkim=none ("invalid DKIM record") header.d=intel.com header.s=Intel header.b="II/EWJE7";
+	spf=pass (diktynna.open-mesh.org: domain of lkp@intel.com designates 192.55.52.136 as permitted sender) smtp.mailfrom=lkp@intel.com;
 	dmarc=pass (policy=none) header.from=intel.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1650595302;
+	s=20121; t=1650595903;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=NU+Fe0Q1Gnm/F+2251Mznqx7SYZUn17Qp8qY4OFD7K0=;
-	b=MEm+hbuPubDo8zgSOoyP/UxA8hfoNM4hiqIlFafEBMfsqC3it7jk0+T+r3ozqa5Nd6/4J8
-	HPtz0xfDTlSuF4R4qET8ocU2UgaLyqUb8S2GSls2+ov7hPkm8a3i5dXIgHIIRQKp/1yDmj
-	ObebhowxmMmPOP7LcCoXEpd4+uY1RKk=
+	bh=yPFzfTMxVHI1xNiZeCRU0vOKVNXjVQZS0v0Ix1aKYTE=;
+	b=pV6tXfYHhKkb9EVUsZMFFVj+0iiouKatgvTjFiE+UPsCEYCg56/SgFvdoDlATS8xbJhBvJ
+	kIK8mPR5TAdXDrnKQTBNuzZU/Tv9QTGcj3WHFxUOZOaFmb8Vc0W9tbw5A6r9vX8jvnQozE
+	M+sOBv5E0oLxgl5dS+V3MXNF4tlW1Dc=
 X-MailFrom: lkp@intel.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: XNXFIDRY6XLOKKAEOZ6BRF7ITYLR5IMH
-X-Message-ID-Hash: XNXFIDRY6XLOKKAEOZ6BRF7ITYLR5IMH
+Message-ID-Hash: 6KGB3DLUTXE2Y5LOGU6OTS5K5ANSCQVF
+X-Message-ID-Hash: 6KGB3DLUTXE2Y5LOGU6OTS5K5ANSCQVF
 X-Mailman-Approved-At: Fri, 22 Apr 2022 07:44:38 +0200
-CC: kbuild-all@lists.01.org, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, liqiong@nfschina.com, kernel-janitors@vger.kernel.org, Yu Zhe <yuzhe@nfschina.com>
+CC: llvm@lists.linux.dev, kbuild-all@lists.01.org, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, liqiong@nfschina.com, kernel-janitors@vger.kernel.org, Yu Zhe <yuzhe@nfschina.com>
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XNXFIDRY6XLOKKAEOZ6BRF7ITYLR5IMH/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6KGB3DLUTXE2Y5LOGU6OTS5K5ANSCQVF/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
@@ -88,44 +88,46 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 Hi Yu,
 
-Thank you for the patch! Perhaps something to improve:
+Thank you for the patch! Yet something to improve:
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on v5.18-rc3 next-20220421]
+[auto build test ERROR on linus/master]
+[also build test ERROR on v5.18-rc3 next-20220421]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Yu-Zhe/batman-adv-remove-unnecessary-type-castings/20220421-235254
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git b253435746d9a4a701b5f09211b9c14d3370d0da
-config: x86_64-randconfig-a013 (https://download.01.org/0day-ci/archive/20220422/202204221051.PRtLc0f7-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.2.0-20) 11.2.0
+config: i386-randconfig-a013 (https://download.01.org/0day-ci/archive/20220422/202204221034.hfPA4RPW-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5bd87350a5ae429baf8f373cb226a57b62f87280)
 reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
         # https://github.com/intel-lab-lkp/linux/commit/2474b41c585e849d3546e0aba8f3c862735a04ff
         git remote add linux-review https://github.com/intel-lab-lkp/linux
         git fetch --no-tags linux-review Yu-Zhe/batman-adv-remove-unnecessary-type-castings/20220421-235254
         git checkout 2474b41c585e849d3546e0aba8f3c862735a04ff
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash net/batman-adv/
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash net/batman-adv/
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
-All warnings (new ones prefixed by >>):
+All errors (new ones prefixed by >>):
 
-   net/batman-adv/bridge_loop_avoidance.c: In function 'batadv_choose_claim':
->> net/batman-adv/bridge_loop_avoidance.c:68:42: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      68 |         struct batadv_bla_claim *claim = data;
-         |                                          ^~~~
+>> net/batman-adv/bridge_loop_avoidance.c:68:27: error: initializing 'struct batadv_bla_claim *' with an expression of type 'const void *' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+           struct batadv_bla_claim *claim = data;
+                                    ^       ~~~~
+   1 error generated.
 --
-   net/batman-adv/translation-table.c: In function 'batadv_choose_tt':
->> net/batman-adv/translation-table.c:109:12: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     109 |         tt = data;
-         |            ^
+>> net/batman-adv/translation-table.c:109:5: error: assigning to 'struct batadv_tt_common_entry *' from 'const void *' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+           tt = data;
+              ^ ~~~~
+   1 error generated.
 
 
-vim +/const +68 net/batman-adv/bridge_loop_avoidance.c
+vim +68 net/batman-adv/bridge_loop_avoidance.c
 
     53	
     54	static void batadv_bla_periodic_work(struct work_struct *work);
