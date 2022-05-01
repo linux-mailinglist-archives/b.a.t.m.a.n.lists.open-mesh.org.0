@@ -2,116 +2,263 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0BD51635E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  1 May 2022 11:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A648516460
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun,  1 May 2022 14:28:42 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id BF9CE82E2F;
-	Sun,  1 May 2022 11:12:20 +0200 (CEST)
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B37F18276B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  1 May 2022 11:12:18 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7D98280C33;
+	Sun,  1 May 2022 14:28:41 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3F80C805DA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun,  1 May 2022 14:28:38 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1651396338;
+	s=20121; t=1651408117;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=a1xe/S3qOGDF9cplA73cyZqKK1vj5w3u8dLn2LS/+J4=;
-	b=W6PXL1hPdR75t139dOgM+9OV2VGERpW8DOjwpleLf9K+F8mkWhXqnRJorAuE0oXEQ0VJQw
-	Oll48CCr+aQWvn+EPfwtpy8pinWna5PTuFIylz8zWwtn3IndYTz01wYjJ2pg7hGxpZuVBm
-	/FdNYPXDpetBnFgPJJDcTdjykewlmYo=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bpqAjRqrKpW5ddF414xuE3+KDp1XKPB+RVf9re7dI5Y=;
+	b=lTpynoZY/GbeTTbvi0ECl55O4kVLFrVp7J6BPmVb0Vd86r3Y7w8iIJTctVtFVEmCWh+g7p
+	3jiJDF4kVGGsUya8G8wPKme8QzHTrS33Hr6CZtxEqVq5uBFS60epdNCRlZEbnjO4UCzYyL
+	o5fctxC9JkUPNbkDhCQEeOyRON0giEU=
 From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
-Subject: Re: [PATCH] alfred: notify event listener via unix socket
-Date: Sun, 01 May 2022 11:12:12 +0200
-Message-ID: <2357978.S02m7aqKFs@sven-desktop>
-In-Reply-To: <1831000.Ehg04xY5OU@rousseau>
-References: <20220430105647.340588-1-mareklindner@neomailbox.ch> <3246469.CvshgyVVUE@sven-l14> <1831000.Ehg04xY5OU@rousseau>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH 1/2] alfred: Stabilize synchronization period using timerfd
+Date: Sun,  1 May 2022 14:28:29 +0200
+Message-Id: <20220501122830.22344-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6694723.kCZG3UKmh0"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1651396338; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1651408118; a=rsa-sha256;
 	cv=none;
-	b=coL6qA52ZFE501g/2wQXL1g+1KPcb9Ufl/8LgBlIMcsopGZML2OM76p2B6pvzMhK16W/H/
-	tJkSbpW1IBweKGvD/CAY2ep9tg4yShe5lU+/1E/Fbq05GuXZ3prAe6r+gGcWY9543U/X1e
-	ZsBf0B2Pkj09AKmC0jPGBzTogMHan8M=
+	b=BpiNuxsGyS/SeL0W5ur8/pgmSP6WYmA7HbTVA8/2dkZzWWyuAt9jQEejJbAfUFoNlllZYw
+	vddjV4lEPKdkzm6mIqvYdUEC351htTcp+BNlPbzI+dpUuNhL6SxVVMactkPGRhnhKj/u/i
+	Z8vZehRHziyKOpHZ6m9IBMEByVVLqvQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=W6PXL1hP;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=lTpynoZY;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1651396338;
+	s=20121; t=1651408118;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=a1xe/S3qOGDF9cplA73cyZqKK1vj5w3u8dLn2LS/+J4=;
-	b=rneEk5Mlq7HnGKU988VYZFS/q+xfppx08F2Eg02JdM3li7eCf+8DnhjlW74SrPYZU0j5Ey
-	PJfidNvbVC9okTCOnjvSnOUylVCI+KH6g4ozTlJp4dr/6BfMapnjMQvufTYa+qdKMFj4Zz
-	YCccjUoieyn3khqfqEtsZQ9ZIta9GYA=
-Message-ID-Hash: Q3J4LIB222KVFMAWSIIGGAKXWIMP3NMS
-X-Message-ID-Hash: Q3J4LIB222KVFMAWSIIGGAKXWIMP3NMS
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=bpqAjRqrKpW5ddF414xuE3+KDp1XKPB+RVf9re7dI5Y=;
+	b=EInxwq7wQdjYpWhhGhDooABxWS53qvNkuUmdPdDD6XueJWmh8KUAVeILA5J1hBv4oGWtmN
+	RSFfmHJBgE1zW1es5jvPUc0Hluwik8qpQXtdCs0hha8/ka3anU0Ue/3xgQKhlNsnN5siV7
+	Zd6aUGVUvBaw5frw+z5eLNBTLqG1rOM=
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: XUGU3JTPTEREC6GBAORQHJ7RIE7MC4ZT
+X-Message-ID-Hash: XUGU3JTPTEREC6GBAORQHJ7RIE7MC4ZT
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Q3J4LIB222KVFMAWSIIGGAKXWIMP3NMS/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XUGU3JTPTEREC6GBAORQHJ7RIE7MC4ZT/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart6694723.kCZG3UKmh0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org, Marek Lindner <mareklindner@neomailbox.ch>
-Subject: Re: [PATCH] alfred: notify event listener via unix socket
-Date: Sun, 01 May 2022 11:12:12 +0200
-Message-ID: <2357978.S02m7aqKFs@sven-desktop>
-In-Reply-To: <1831000.Ehg04xY5OU@rousseau>
-References: <20220430105647.340588-1-mareklindner@neomailbox.ch> <3246469.CvshgyVVUE@sven-l14> <1831000.Ehg04xY5OU@rousseau>
+The current way of scheduling the synchronization related events tends to
+cause drift from a perfect periodic timer. This happens because it doesn'=
+t
+calculate the next event based on a fixed start time + period * the numbe=
+r
+of past synchronization periods. Instead, the next event was scheduled
+based on the time before the last select() - ignoring that non-zero time
+was spend processing events.
 
-On Sunday, 1 May 2022 11:10:13 CEST Marek Lindner wrote:
-> > > +static void unix_sock_event_listener_free(struct event_listener
-> > > *listener)
-> > > +{
-> > > +	list_del_init(&listener->list);
-> > > +	close(listener->fd);
-> > > +	free(listener);
-> > 
-> > list_del_init has no benefit (only downsides) when you free the memory
-> > anyway at the end of the function
-> 
-> What are those downsides you are referring to ?
+For a 10 second period, this usually looks somthing like:
 
-Additional writes for something which is dropped anyway.
+  [24.043904208] announce primary ...
+  [34.044216187] announce primary ...
+  [44.053485658] announce primary ...
+  [54.063562062] announce primary ...
+  [64.073517069] announce primary ...
 
-Kind regards,
-	Sven
---nextPart6694723.kCZG3UKmh0
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+To avoid this drift, just use timerfd as rather stable periodic timer eve=
+nt
+sources. It also has the benefit of making it easier to use multiple
+periodic timers with different periods.
 
------BEGIN PGP SIGNATURE-----
+Only some small jitter can be seen with this external timer implementatio=
+n:
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmJuTuwACgkQXYcKB8Em
-e0ac7xAAixNv1iu2z2g2RZSiQMlttPeE7AGetRNJmBZXhhWAEZV9//Enphge5x6J
-G02xJkqgtJdKP8B77CTd5lWhqflqs22PdECjss6nXyGmzuYFjD/gP3uC0bA45ARC
-bIF/Kp745mAj6iBQS/fBI/dwkT+NMVoVfr9tI/SBvT4SP0inh28zl2oP156jf/LR
-lbtAsiYvb279/Dwo71pCooI3H6PyRausvQ/XmTxESIqM9CKp1d0o3okvPbC5Mkm7
-BThMZTLkXWAmlGr7k6vXzZxFXPxO9MC23SDhfzjJGquZeBWf20VXDfvLYQHw5eU/
-uAn/uB/prZ/KRUz+djtFrboy7+xv2k0cDJBeU2vlwHTNECfCR7zauD3WjujF8Ov+
-s22GS7rG9aGFq914tVgHqmFm0zKkdng9uEqTe2SHZmMzoqRX2KvHcHe4XpHHXtAA
-YpvXlXBNmHXnbVz7Wz8r66R3TjM9nej/Ccalt8mFIJcNnPPd8DqbS2FDydgy2I45
-zDR9QhdjgitLQk9usgF2kPvcsSy9vZ9a0wkKLbetXl0ty3tuBMAyIXyw7oWOzSE7
-Pg+rLtWyk0kxAfTzlSTGyr/EUEib9NjtgA92610g/K8YlvutwOfMU0BljCkv0hwc
-xqbcJ5Xx3ENMstJdtqAdXPcSHbAI6RTTZdnH61MFjjkirF/AMa0=
-=03aU
------END PGP SIGNATURE-----
+  [12.673756426] announce primary ...
+  [22.673779811] announce primary ...
+  [32.673778362] announce primary ...
+  [42.673775216] announce primary ...
 
---nextPart6694723.kCZG3UKmh0--
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ alfred.h |  2 ++
+ server.c | 89 +++++++++++++++++++++++++++++++++++---------------------
+ 2 files changed, 58 insertions(+), 33 deletions(-)
 
-
+diff --git a/alfred.h b/alfred.h
+index 2d98a30..2679515 100644
+--- a/alfred.h
++++ b/alfred.h
+@@ -124,6 +124,8 @@ struct globals {
+ 	uint8_t ipv4mode:1;
+ 	uint8_t force:1;
+=20
++	int check_timerfd;
++
+ 	int unix_sock;
+ 	const char *unix_path;
+=20
+diff --git a/server.c b/server.c
+index bfc37bc..b5ec7b2 100644
+--- a/server.c
++++ b/server.c
+@@ -20,6 +20,7 @@
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
+ #include <sys/time.h>
++#include <sys/timerfd.h>
+ #include <sys/types.h>
+ #include <unistd.h>
+ #include <time.h>
+@@ -366,17 +367,44 @@ static void execute_update_command(struct globals *=
+globals)
+ 	free(command);
+ }
+=20
++static int create_sync_period_timer(struct globals *globals)
++{
++	struct itimerspec sync_timer;
++	int ret;
++
++	globals->check_timerfd =3D timerfd_create(CLOCK_MONOTONIC, TFD_CLOEXEC)=
+;
++	if (globals->check_timerfd < 0) {
++		perror("Failed to create periodic timer");
++		return -1;
++	}
++
++	sync_timer.it_value =3D globals->sync_period;
++	sync_timer.it_interval =3D globals->sync_period;
++
++	ret =3D timerfd_settime(globals->check_timerfd, 0, &sync_timer, NULL);
++	if (ret < 0) {
++		perror("Failed to arm synchronization timer");
++		return -1;
++	}
++
++	return 0;
++}
++
+ int alfred_server(struct globals *globals)
+ {
+ 	int maxsock, ret, recvs;
+-	struct timespec last_check, now, tv;
++	struct timespec now;
+ 	fd_set fds, errfds;
+ 	size_t num_interfaces;
++	uint64_t timer_exp;
+ 	int num_socks;
+=20
+ 	if (create_hashes(globals))
+ 		return -1;
+=20
++	if (create_sync_period_timer(globals))
++		return -1;
++
+ 	if (unix_sock_open_daemon(globals))
+ 		return -1;
+=20
+@@ -414,25 +442,10 @@ int alfred_server(struct globals *globals)
+ 		return -1;
+ 	}
+=20
+-	clock_gettime(CLOCK_MONOTONIC, &last_check);
+-	globals->if_check =3D last_check;
++	clock_gettime(CLOCK_MONOTONIC, &now);
++	globals->if_check =3D now;
+=20
+ 	while (1) {
+-		clock_gettime(CLOCK_MONOTONIC, &now);
+-
+-		/* subtract the synchronization period from the current time
+-		 * NOTE: this is an atypical usage of time_diff as it ignores the retu=
+rn
+-		 * value and store the result back into now, essentially performing th=
+e
+-		 * operation:
+-		 * now -=3D globals->sync_period;
+-		 */
+-		time_diff(&now, &globals->sync_period, &now);
+-
+-		if (!time_diff(&last_check, &now, &tv)) {
+-			tv.tv_sec =3D 0;
+-			tv.tv_nsec =3D 0;
+-		}
+-
+ 		netsock_reopen(globals);
+=20
+ 		FD_ZERO(&fds);
+@@ -440,10 +453,14 @@ int alfred_server(struct globals *globals)
+ 		FD_SET(globals->unix_sock, &fds);
+ 		maxsock =3D globals->unix_sock;
+=20
++		FD_SET(globals->check_timerfd, &fds);
++		if (maxsock < globals->check_timerfd)
++			maxsock =3D globals->check_timerfd;
++
+ 		maxsock =3D netsock_prepare_select(globals, &fds, maxsock);
+ 		maxsock =3D netsock_prepare_select(globals, &errfds, maxsock);
+=20
+-		ret =3D pselect(maxsock + 1, &fds, NULL, &errfds, &tv, NULL);
++		ret =3D pselect(maxsock + 1, &fds, NULL, &errfds, NULL, NULL);
+=20
+ 		if (ret =3D=3D -1) {
+ 			perror("main loop select failed ...");
+@@ -459,21 +476,27 @@ int alfred_server(struct globals *globals)
+ 					continue;
+ 			}
+ 		}
+-		clock_gettime(CLOCK_MONOTONIC, &last_check);
+-
+-		if (globals->opmode =3D=3D OPMODE_PRIMARY) {
+-			/* we are a primary */
+-			printf("[%ld.%09ld] announce primary ...\n", last_check.tv_sec, last_=
+check.tv_nsec);
+-			announce_primary(globals);
+-			sync_data(globals);
+-		} else {
+-			/* send local data to server */
+-			update_server_info(globals);
+-			push_local_data(globals);
++
++		if (FD_ISSET(globals->check_timerfd, &fds)) {
++			read(globals->check_timerfd, &timer_exp,
++			     sizeof(timer_exp));
++			clock_gettime(CLOCK_MONOTONIC, &now);
++
++			if (globals->opmode =3D=3D OPMODE_PRIMARY) {
++				/* we are a primary */
++				printf("[%ld.%09ld] announce primary ...\n",
++				       now.tv_sec, now.tv_nsec);
++				announce_primary(globals);
++				sync_data(globals);
++			} else {
++				/* send local data to server */
++				update_server_info(globals);
++				push_local_data(globals);
++			}
++			purge_data(globals);
++			check_if_sockets(globals);
++			execute_update_command(globals);
+ 		}
+-		purge_data(globals);
+-		check_if_sockets(globals);
+-		execute_update_command(globals);
+ 	}
+=20
+ 	netsock_close_all(globals);
+--=20
+2.30.2
