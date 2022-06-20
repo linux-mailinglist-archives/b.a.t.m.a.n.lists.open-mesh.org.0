@@ -1,121 +1,142 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDBF54F891
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jun 2022 15:53:11 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30834551957
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 20 Jun 2022 14:51:04 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id BD28C82367;
-	Fri, 17 Jun 2022 15:53:10 +0200 (CEST)
-Received: from simonwunderlich.de (simonwunderlich.de [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1B22A80574
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jun 2022 15:53:08 +0200 (CEST)
-Received: from prime.localnet (p200300FA27087d0047Da43EAC765fEbc.dip0.t-ipconnect.de [IPv6:2003:fa:2708:7d00:47da:43ea:c765:febc])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by simonwunderlich.de (Postfix) with ESMTPSA id C7C98FA22B;
-	Fri, 17 Jun 2022 15:53:07 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: cchien@creonexsystems.com, b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: Question about batman for ARM
-Date: Fri, 17 Jun 2022 15:53:07 +0200
-Message-ID: <2037952.ni6AN7iZ1R@prime>
-In-Reply-To: <3826484.QQW5a1qdB9@ripper>
-References: <CAKau_3_sEaG2w7M+rQ-nuVG3_5GWHEV3UxmdG1bM-WPY7S8WxA@mail.gmail.com> <049201d88226$14ca9ae0$3e5fd0a0$@creonexsystems.com> <3826484.QQW5a1qdB9@ripper>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5140804.hIKb1v7LjU"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1655473988; a=rsa-sha256;
-	cv=none;
-	b=2KuNpiU5NKbqMHiEaxnBWbji9YySy+tujVXTF6GeAoa3ow7iMj01rsyaBmbK7Q1ggSl9Nq
-	CPPzeiwougRwUlRphR6DaIf2vxJZPxXOfLVMdyD8oAhZb1XzyiAnVMedA0T00yO6wnGuNV
-	hhZfErt3WRmAgx9QESqXIOBI8FraEtQ=
-ARC-Authentication-Results: i=1;
-	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates 2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
-	dmarc=none
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1655473988;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E05678079F;
+	Mon, 20 Jun 2022 14:51:02 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8395B80158
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 20 Jun 2022 14:50:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1655729459;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=AYoNTGpAq0wP+jhWTJm6CHBDzYq9fkTCXN+CFBnMDrk=;
-	b=0/mOSkcVsQ06MWeOMNp5bW6/m1j7QpAdjroIKth7pvDlwZhUDF4IA9FIH7Ybbh2xXEaFZO
-	u2hnxdLABEDOIxyoRq0YRQ+8BsaqwkLaaxgbA+Tcio6o2OiK2AVIWrpI0t2WJ0rbPhkciq
-	07PrTVLF/oAWYvamGmQQFZmPohkNb/Y=
-Message-ID-Hash: Q6OTBYTIIIZVASRS5IRV5QHZDFO57AIN
-X-Message-ID-Hash: Q6OTBYTIIIZVASRS5IRV5QHZDFO57AIN
-X-MailFrom: sw@simonwunderlich.de
+	bh=HbRcbV5aUAaIFds1WflK3bdor2Le/m5hTApqlq9Lig0=;
+	b=fdRH4e22J5Oj+R+YMCV/lhiuwr+HjCqSrtw9cnHHERUUblsqLjQa/hk8/x3JXnZ23Mfp0K
+	Picve93iA2VgkePKA8feaAjDnYxli0MaR+zee3DUau2S2LEfwmH5QsmKKYXTgD83nxYqsQ
+	F8lFARupbrwzYRcQE3ALYEEIniOkPfo=
+From: Sven Eckelmann <sven@narfation.org>
+To: cchien@creonexsystems.com
+Subject: Re: Question about batman for ARM
+Date: Mon, 20 Jun 2022 14:50:54 +0200
+Message-ID: <20961862.b4RiU9qLUR@ripper>
+In-Reply-To: <014301d8848f$5874d0b0$095e7210$@creonexsystems.com>
+References: <CAKau_3_sEaG2w7M+rQ-nuVG3_5GWHEV3UxmdG1bM-WPY7S8WxA@mail.gmail.com> <3826484.QQW5a1qdB9@ripper> <014301d8848f$5874d0b0$095e7210$@creonexsystems.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart20699880.uRv7U2kVex"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1655729459; a=rsa-sha256;
+	cv=none;
+	b=4KZ/Z9kpeyfSFb2okNUCpTsdFTnLq1vx5cmZfO2dbf9W4dDLgq2s0+i8NZSOClFusIqCrg
+	xcyimYXn/uEvoZHRbP56ziG4KfxeM1Aj0Uz7WnVtUsdwaZpRme+6lyPfqTJSXa2V8QyOTz
+	fNtyewwavFJGNNf4nZd5emmFLIkvjTw=
+ARC-Authentication-Results: i=1;
+	diktynna.open-mesh.org;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=fdRH4e22;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dmarc=pass (policy=none) header.from=narfation.org
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1655729459;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=HbRcbV5aUAaIFds1WflK3bdor2Le/m5hTApqlq9Lig0=;
+	b=ljmreHCpnk1BZpDf+flmG+wNFfSZMOWLrUbH400W6Ri9r8mcOF+AMJLfP5Odn5nRIBbtdV
+	6syH5jKM2p0uNbc5JLKH+xPiqGNegly0FrpOI2qYjZmBCCE1nJgBESpYzAQdoB+y+uAeqP
+	C0N/LSY+hp5kC1jieTx78P5c1Fqz31c=
+Message-ID-Hash: F7A6CT3FSZVOJCWKASY4YMS5XOGXXZ4F
+X-Message-ID-Hash: F7A6CT3FSZVOJCWKASY4YMS5XOGXXZ4F
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Q6OTBYTIIIZVASRS5IRV5QHZDFO57AIN/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/F7A6CT3FSZVOJCWKASY4YMS5XOGXXZ4F/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart5140804.hIKb1v7LjU
+--nextPart20699880.uRv7U2kVex
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: cchien@creonexsystems.com, b.a.t.m.a.n@lists.open-mesh.org
-Cc: b.a.t.m.a.n@lists.open-mesh.org, Sven Eckelmann <sven@narfation.org>
+From: Sven Eckelmann <sven@narfation.org>
+To: cchien@creonexsystems.com
+Cc: b.a.t.m.a.n@lists.open-mesh.org
 Subject: Re: Question about batman for ARM
-Date: Fri, 17 Jun 2022 15:53:07 +0200
-Message-ID: <2037952.ni6AN7iZ1R@prime>
-In-Reply-To: <3826484.QQW5a1qdB9@ripper>
-References: <CAKau_3_sEaG2w7M+rQ-nuVG3_5GWHEV3UxmdG1bM-WPY7S8WxA@mail.gmail.com> <049201d88226$14ca9ae0$3e5fd0a0$@creonexsystems.com> <3826484.QQW5a1qdB9@ripper>
+Date: Mon, 20 Jun 2022 14:50:54 +0200
+Message-ID: <20961862.b4RiU9qLUR@ripper>
+In-Reply-To: <014301d8848f$5874d0b0$095e7210$@creonexsystems.com>
+References: <CAKau_3_sEaG2w7M+rQ-nuVG3_5GWHEV3UxmdG1bM-WPY7S8WxA@mail.gmail.com> <3826484.QQW5a1qdB9@ripper> <014301d8848f$5874d0b0$095e7210$@creonexsystems.com>
 
-On Friday, June 17, 2022 10:45:48 AM CEST Sven Eckelmann wrote:
-> On Friday, 17 June 2022 10:41:46 CEST cchien@creonexsystems.com wrote:
-> [...]
-> 
-> > We would like to use batman with a custom radio and are trying to figure
-> > out what part of the source code we may need to modify to allow batman to
-> > work with a custom radio. Custom radio means that the radio is not a
-> > commercial radio, such as wi-fi or Bluetooth.
-> batman-adv (especially with the B.A.T.M.A.N. IV algo) only requires that the
-> device itself can transport ethernet frames (with proper unicast and
-> broadcast behavior). If you need something else then you either need a
-> virtual interface which does the translation from $whatever to ethernet
-> (and back) - or you need to reimplement the B.A.T.M.A.N. IV/V algorithms
-> yourself.
+On Monday, 20 June 2022 12:20:19 CEST cchien@creonexsystems.com wrote:
+> Does BATMAN ADV interfaces with the radio via the network driver or does
+> BATMAN include the network driver?
 
-In other words, if your radio comes up as a regular Ethernet interface in 
-Linux (like WiFi, for example), then you can easily run batman-adv on top of 
-it. If that's not the case, then you can write a driver to present a (virtual) 
-interface to the system like Sven suggested.
+As said before, it is interfacing with the generic ethernet netdev layer of 
+the kernel. For example in:
 
-Cheers,
-       Simon
---nextPart5140804.hIKb1v7LjU
+* https://git.open-mesh.org/batman-adv.git/blob/caa1eb0cf7bf8ebfe43bba06b890252a865efa91:/net/batman-adv/hard-interface.c#l727
+* https://git.open-mesh.org/batman-adv.git/blob/caa1eb0cf7bf8ebfe43bba06b890252a865efa91:/net/batman-adv/send.c#l108
+* https://git.open-mesh.org/batman-adv.git/blob/caa1eb0cf7bf8ebfe43bba06b890252a865efa91:/net/batman-adv/hard-interface.c#l185
+
+There are a lot of other places when it uses the abstraction interfaces of the 
+kernels for ethernet related communication.
+
+For B.A.T.M.A.N. V, it is also trying to get throughput information via 
+various generic kernel functionality:
+
+* https://git.open-mesh.org/batman-adv.git/blob/caa1eb0cf7bf8ebfe43bba06b890252a865efa91:/net/batman-adv/bat_v_elp.c#l67
+
+There is also one detection for wifi interfaces to decide whether broadcast 
+messages should be repeated or not:
+
+* https://git.open-mesh.org/batman-adv.git/blob/caa1eb0cf7bf8ebfe43bba06b890252a865efa91:/net/batman-adv/hard-interface.c#l877
+
+
+> Can you provide some guidance on where the network driver or interface to
+> network driver is located within BATMAN?
+
+It is not talking directly to the driver. It is always using abstraction 
+layers. Either the normal network core, ethernet or cfg80211 abstraction 
+interfaces. But these don't abstract the requirement for ethernet 
+compatibility away - the underlying device must provide this either directly 
+or via a wrapper. Just perform a `git grep -e ETH_ -e eth_ -e ethhdr` to
+see that it is build around the concept of ethernet packets.
+
+Also things like originators and the complete translation table only works 
+with ethernet addresses.
+
+Kind regards,
+	Sven
+--nextPart20699880.uRv7U2kVex
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE1ilQI7G+y+fdhnrfoSvjmEKSnqEFAmKsh0MACgkQoSvjmEKS
-nqGDXA/+MRM2h8LJxvMWqJe1hWsXSHI/njOZnTQGxV+49lODzZ3QhyrmfuJLP87P
-bVmdOTwzCleenBalVvtUm2WwJli2PEVKp1xeYUf6PF4b+e69sot1w1xEty/gCYYu
-bge+DlaBJwEMHu/AQYlOAp2rl50gqTRNZN286w2b+WdmCVaVLTkbpHsAvuaeC76h
-R7PlSzg9kVV+hc8+CiR+sdb+8xTAUCI3ATygDkFzGa+AXIjbaoc2FBpv/T/Aq0lE
-2XBxauqvAlyPr3gFpEKkmuZtTDhWjkWtBtNjWC7UR+4NURurp6dU79T9b0JVD+h+
-UGotBDdMmswsKoy8pus64CAebYOD9X/cqVmpQhcBwbh3NuAZtbSPXpbO9T2BPAvW
-7o6FI5k5zXbao+10ZbxXv2EjrHPGoctlEUyaMxAbIxAYnr82OHNIday9+xNjUbc0
-49ieUF1JiUzyvLDtKk9yBCQEExgEpaN6XnHjpMm/b4905PSEu5wlOOFp7Zd9fuM8
-h9ud8JnXVg8mfV2Y9KQ4IBr9T/463+tVrMsfQvxRrJ3y2UBqjkfR2//x0NRUoksM
-qV9H/q4ggV6WydkmTtdOr1Zm9DxTHLx0sj5rPH1/MSADoWTUkc3Oya3wajY2Mw64
-haDpu971M3PYPVaaLqDQsMYJbXSDFOxHwEtNa7LO4yL2jtsY6B8=
-=7eZX
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmKwbS4ACgkQXYcKB8Em
+e0Zeig/8D6/qjebcv1juFxgH6K+OAFC74CXh3i2NBtfRt+P2Qdow87Hg6SXCfwxo
+zqvU7KkK88RNPXb+uMBoSjLrdJs1WugUZ99aBcSa0FuifjTcJjRf5qMAmnsOZyW3
+zwwxgaI8fjU8StfqSFGGCrIXz7hdQhbJTA4YCYM6EMxYB3pOXwrQWy4xxotbpKPs
+9FyLpe+Gp8EflWK8vrq7qjaV7oqhaJ2AGA27iBOFKhkWVkMrHy1lC0afIgXKvajh
+QTsikRPbt6Ig7GiS6AqUU3BeEAel15ytIoyAv1/5sH3vTzEXtP7yUuozGfeNZ4p+
+nEJ5X/eNu7chZLUiyp+lxkG2+E+DKLED59N3r2uWkEcN/PDQXoeluuKZWmMRAUSu
+7C0EW5NzfXeNXh7trXGAV4Xqyytaxyt0oh1A1TUU0e+4YOs78Uqwp8Ed/M9xSGOz
+eYZk+sQ4o8czruuW4eiIQPtu3PcEOp+Z7LLY6KVKCJYTgYmIyTiHL8+5r7lc8vmb
+aLG3N62+4+d9jP1Q1eFjfRuPa+Cp935WswDX2FvVtFt2eu2fAmxphNJYaitphIsI
+VFLC94lCOAOkQE3Pia4M2jOR5d1j/qNbmNvqfJ/vqo4EN/rbn3DDf+TcECFQALPn
+biiPHbxykaK/e0NDNAHUx+dgC7ek2HZZz3HQs3fQi2uVulnaUAo=
+=4gz0
 -----END PGP SIGNATURE-----
 
---nextPart5140804.hIKb1v7LjU--
+--nextPart20699880.uRv7U2kVex--
 
 
