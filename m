@@ -1,63 +1,63 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B24593A8F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 15 Aug 2022 22:07:29 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CFA593E92
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 15 Aug 2022 22:49:16 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 38783807CC;
-	Mon, 15 Aug 2022 22:07:27 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 912D382850;
+	Mon, 15 Aug 2022 22:49:15 +0200 (CEST)
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3877C8072C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 15 Aug 2022 22:07:22 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 21226802C6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 15 Aug 2022 22:49:12 +0200 (CEST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 36083B81145;
-	Mon, 15 Aug 2022 20:07:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ECA9C433D6;
-	Mon, 15 Aug 2022 20:07:19 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 9DB08B811A0;
+	Mon, 15 Aug 2022 20:49:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0BF5C433D6;
+	Mon, 15 Aug 2022 20:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1660594039;
+	s=korg; t=1660596550;
 	bh=ZVE2RNHPOttuDHZ2xX2gbbcEhpFNhv9Nt5X6GeRZKSY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VkWP08ORQ9PtPN7Mzdle9M/hAVKlXcelGbkgd0qOqBUhS/EKcrgG5f3IWAfpXKAGY
-	 pih3xQvWhJm3AYZWXY/s5d3qU2h8eROXz505NQ878M4N4Hq04+8PbSuCpalfnC1Z0T
-	 mJkappOehipy8pTdlE63bt+8qC3lCLRgTij/AmDY=
+	b=cUkQtYIDzoOpYCzOKmbhgMMr5vl7QPNPhlItf34lzDhv3ryYDyHMbmMReGhlQxrlt
+	 km1KxFYXliLYUSXFtaeoQdZBkvfhgLipR378qM8LbRtoF+QmmIoayMDuE0h3p97vPz
+	 SDJtrzo9rjBMTHQcUKQn+1aJCbKC8ENgEPUVl0z8=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 5.18 1046/1095] batman-adv: tracing: Use the new __vstring() helper
-Date: Mon, 15 Aug 2022 20:07:25 +0200
-Message-Id: <20220815180512.360819821@linuxfoundation.org>
+Subject: [PATCH 5.19 1114/1157] batman-adv: tracing: Use the new __vstring() helper
+Date: Mon, 15 Aug 2022 20:07:50 +0200
+Message-Id: <20220815180524.874593378@linuxfoundation.org>
 X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220815180429.240518113@linuxfoundation.org>
-References: <20220815180429.240518113@linuxfoundation.org>
+In-Reply-To: <20220815180439.416659447@linuxfoundation.org>
+References: <20220815180439.416659447@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1660594042; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1660596552; a=rsa-sha256;
 	cv=none;
-	b=oRkIcjqDwRY7ymW0Dz3keEMt/WP1kTyI74+93siaXcW3O1s+8SD6RkCqwPuI1yzh3ci/Yx
-	r0NUAx6cd/JXNn81RKRZ1Qxnw6epDPUJISEf+WEoU53BBMiw2T7IfLAvm1HPiq6G5vO+Js
-	4Xuxh1LSan0jB/T1sSEwlIBRKHfkdpc=
+	b=4CtHdRbB/6yhe8XEtQWiZvxuNbNaHLIu//4oevRq05TiYNI8iyyp6kWC3dJa4zaAP+54/v
+	0owG5e7xHIPOKcXJmcf3tsnmArPZ4M6MBhyEsdchEWREs5o4jBvJMU+sPeOSM4BnMfbkYI
+	bf4SiS3lSjC143bbEsx4FLnvwiR+W8A=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=VkWP08OR;
+	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=cUkQtYID;
 	spf=pass (diktynna.open-mesh.org: domain of gregkh@linuxfoundation.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
 	dmarc=pass (policy=none) header.from=linuxfoundation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1660594042;
+	s=20121; t=1660596552;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
 	bh=oUpEtPLjd5lzB6PrtVjBb61iZmZBxSpE4KoB9sGMLSE=;
-	b=ejSfJMODd/sGAFeKS7sb1Lzsx08CMPwH3iAvb+fTPW52GVqkj/Eiv4za1rtTWAMNcWTUaN
-	mTK7ndp59hrOy2TJ2m8WzLO1Hh4pLQ4WBnNs9yN2TbLSVbzeXQ2MUIzRFY7/8LR99TOgst
-	KEfFAGj/a8HFV6pDevOpCxz8IRhcUnc=
+	b=kYRxT+BnHryodgb/XDOKeffCF7tBM8BFUwEcoCy+gfr2XDkdUfH7QEUYPbvR2toiSPML1Y
+	CrHstgpFZb80kcYO2QAzrJM7ayEo2KUgqGdw3gv5PIfZ5vF8pHU9OjCHPx5Wxu8TE3vO8O
+	0HaLAkJM7yIefYHoqBr4KYyvZW57dyo=
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: X4EIF4ZMNY2CYCU2RZKGRB6IBL6ENW2K
-X-Message-ID-Hash: X4EIF4ZMNY2CYCU2RZKGRB6IBL6ENW2K
+Message-ID-Hash: P23XMSM6FK5AKP7WCOYCRZ6RRQGCTORW
+X-Message-ID-Hash: P23XMSM6FK5AKP7WCOYCRZ6RRQGCTORW
 X-MailFrom: gregkh@linuxfoundation.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
@@ -66,7 +66,7 @@ X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/X4EIF4ZMNY2CYCU2RZKGRB6IBL6ENW2K/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/P23XMSM6FK5AKP7WCOYCRZ6RRQGCTORW/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
