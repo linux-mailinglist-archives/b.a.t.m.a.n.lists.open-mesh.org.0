@@ -1,126 +1,165 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D9825B0CD7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  7 Sep 2022 21:05:35 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21FCF5B71A5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 13 Sep 2022 16:50:24 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C11FB821C0;
-	Wed,  7 Sep 2022 21:05:31 +0200 (CEST)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C3145807CC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  7 Sep 2022 18:26:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1662567962;
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 840CE8008B;
+	Tue, 13 Sep 2022 16:50:22 +0200 (CEST)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B53B78032E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 13 Sep 2022 16:50:18 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 988883EEF9;
+	Tue, 13 Sep 2022 16:50:16 +0200 (CEST)
+Date: Tue, 13 Sep 2022 16:50:14 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: Stig Venaas <stig@venaas.com>
+Subject: Re: [pim] draft-ietf-6lo-multicast-registration-08 replacing MLD
+Message-ID: <YyCYpuaBWSRnXvS/@sellars>
+References: <CAHANBtLwT5gjApRSh79RwVFMsiEmD_R78RSeSxeR1pznpfTdKQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAHANBtLwT5gjApRSh79RwVFMsiEmD_R78RSeSxeR1pznpfTdKQ@mail.gmail.com>
+X-Last-TLS-Session-Version: TLSv1.3
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1663080619;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=IpRcSEjb5EFxGfzHz+GWr2U/0UjWu0SzaZNMoqBv2RY=;
-	b=PB17JnJFiIeLYQrOg0HzqpxfTEU2DtuTRtH7lTOSZCe4QYkdC689aqkvdP1hx5mc7nYt6a
-	CIQhKsJp9Unrzp8qmpnEwsI6JApwpctDAnuERCZ8yRSswNsodxHg8oa7BlDtMdQLe3lSN7
-	uPpnfUlNxU3GkAstZ3NMEW/A/B9aup0=
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com
- [209.85.210.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-376-nZ1pJHmDM_qiI03gUhg5tA-1; Wed, 07 Sep 2022 12:26:01 -0400
-X-MC-Unique: nZ1pJHmDM_qiI03gUhg5tA-1
-Received: by mail-pf1-f199.google.com with SMTP id dc10-20020a056a0035ca00b0053870674be9so7799515pfb.12
-        for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 07 Sep 2022 09:26:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:from
-         :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
-         :date;
-        bh=IpRcSEjb5EFxGfzHz+GWr2U/0UjWu0SzaZNMoqBv2RY=;
-        b=GvAo8vfYXP/ofykD+ienqEbYoF6e1XMmkQrn9I5J+YwjUiCBgFlhJ1pnUnAO/GyzV8
-         DVT6iPKdYK80xLoeY8GfxfkN/Go8+f/xKNBp8obbsq2XoGMEuPriGMRkeD6saMGsZ9b5
-         jgONsOx4p73kgLUr47AlhypN/aOJCLuOVw6YnOFXRUoUjT4QyWCBcbCVVztliDeDuPhR
-         wwVVldw4pptTTQiTFzAvjjhHgUVE4TfZaZfaPIV1TKcluem5q2jfd70oYsIGJCh3WHpH
-         mg17tkp4jopSEiOnJGt5kgQbcOgVD3xpMmiSIXrFfU9HwJBZZZzUkRM9vLepFAFhEFZN
-         6ahg==
-X-Gm-Message-State: ACgBeo0NwaKZEHwt1BW37C/LTEoclQ+436D8++zRuxso/C8diYBcRKi/
-	fPTQEvHQcz93q9er3hhtZiYxd+F9U/p60dNi+OskMXxkAlQXfO2+K6+6D8W+DVY6/HPxoJfvLUM
-	dIPDjzHVbgrBMaJaWRHhhlySEthaj
-X-Received: by 2002:a63:191d:0:b0:434:4bb3:e016 with SMTP id z29-20020a63191d000000b004344bb3e016mr4186531pgl.133.1662567960406;
-        Wed, 07 Sep 2022 09:26:00 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR6eEwwovNfgE+y8ahTg/s4MoHLKu77bE6/7AuVXsn/mNT13uNFKTeavslC0p5M82+XxmK5z8A==
-X-Received: by 2002:a63:191d:0:b0:434:4bb3:e016 with SMTP id z29-20020a63191d000000b004344bb3e016mr4186514pgl.133.1662567960128;
-        Wed, 07 Sep 2022 09:26:00 -0700 (PDT)
-Received: from localhost ([240d:1a:c0d:9f00:4f2f:926a:23dd:8588])
-        by smtp.gmail.com with ESMTPSA id f4-20020a17090a654400b001faafa42a9esm9245843pjs.26.2022.09.07.09.25.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 09:25:59 -0700 (PDT)
-Date: Thu, 08 Sep 2022 01:25:56 +0900 (JST)
-Message-Id: <20220908.012556.1223002692465040215.syoshida@redhat.com>
-To: sven@narfation.org
-Subject: Re: [PATCH] batman-adv: Fix hang up with small MTU
- hard-interface,Re: [PATCH] batman-adv: Fix hang up with small MTU
- hard-interface
-From: Shigeru Yoshida <syoshida@redhat.com>
-In-Reply-To: <42632958.r4OcKK3suL@ripper>
-References: <20220820032516.200446-1-syoshida@redhat.com>
-	<20220908.010037.1643964170435041362.syoshida@redhat.com>
-	<42632958.r4OcKK3suL@ripper>
-X-Mailer: Mew version 6.8 on Emacs 28.1
-Mime-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+	bh=Gi5oJuROyxAQOEJDCnl9An93unmqmVFJOo3Wbxwlrts=;
+	b=Cru4nFVsMinwKBtfgBIUMjjsv8OmbuenIxS8vE9+GZgDN2OlEt73Z0/akSRCbhEbBVEVBr
+	NjG36E93lAg3Mhco8kEXDRYHzEjRacE0TmQhB0GBLk6KqjYS0NDwVXoDakXVJs10KGwNCw
+	qk4UN6HXCZAExIsI4ZKAE0geZFK9Lv0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=PB17JnJF;
-	dmarc=pass (policy=none) header.from=redhat.com;
-	spf=pass (diktynna.open-mesh.org: domain of syoshida@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=syoshida@redhat.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1662567964; a=rsa-sha256;
+	dkim=none;
+	dmarc=none;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:c2c:665b::1) smtp.mailfrom=linus.luessing@c0d3.blue
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1663080619; a=rsa-sha256;
 	cv=none;
-	b=gJIEHcaPWRDVgajkU57K4dr11DRmnvAEI4izgVa2PDNMyC0idEWH1UPF7xkDtqaCsNKpnR
-	lMpQ0gz9y3ituneoqsorcWAcxgvvHDlU7/vyt72ugDNu62d1NJ9zWDkQouGkmdihAL3+WC
-	vYP8y5tfPMvCoz7eMlHBsVRn4jjdLRE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1662567964;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=IpRcSEjb5EFxGfzHz+GWr2U/0UjWu0SzaZNMoqBv2RY=;
-	b=rwfQCrYw5jzDXRNZAVTrTgCxYWDDHvXTIvqtnVLAp2oTab5EOtoRTKWlVWGupmSNUbuy9Q
-	wWxe5l3U30ByyScttpypjXQcW3API9a+LUMddyWBjc1Cq6pbLfJXRhHXDgZW0YWWHgIslG
-	B+K28pTX+r3aRJ3g8bXIt3Xisq26xwo=
-X-MailFrom: syoshida@redhat.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: OPWAQKSZ7KC66R3WW6JVTV5ZET4CKL5V
-X-Message-ID-Hash: OPWAQKSZ7KC66R3WW6JVTV5ZET4CKL5V
-X-Mailman-Approved-At: Wed, 07 Sep 2022 19:05:27 +0200
-CC: mareklindner@neomailbox.ch, a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org
+	b=sUu7lHC9hLDnV2P8Y6Pf7yB2ebvlWzO3LNNfZggH5dmUZOwbqHvt5EPTHeuZnyu9Qaal53
+	WgOeZcjYNljRL3kw8ME8QVr0TwB4zN7272/PiJdLKY/NbiXMrZmhr+TIC8JSa7QB1bYEyN
+	rCk/KPvqx2/gr89WN/6aZyWi7omkvpc=
+Message-ID-Hash: ORIB2QOIE3KTRDVHF23WQ6MO2QEB3A5D
+X-Message-ID-Hash: ORIB2QOIE3KTRDVHF23WQ6MO2QEB3A5D
+X-MailFrom: linus.luessing@c0d3.blue
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
+CC: 6lo@ietf.org, draft-ietf-6lo-multicast-registration@ietf.org, pim@ietf.org, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OPWAQKSZ7KC66R3WW6JVTV5ZET4CKL5V/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ORIB2QOIE3KTRDVHF23WQ6MO2QEB3A5D/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi Sven,
-
-On Wed, 07 Sep 2022 18:04:09 +0200,Wed, 07 Sep 2022 18:04:09 +0200, Sven Eckelmann wrote:
-> On Wednesday, 7 September 2022 18:00:37 CEST Shigeru Yoshida wrote:
->> ping?
+On Mon, Aug 08, 2022 at 10:21:05AM -0700, Stig Venaas wrote:
+> Hi 6lo and draft authors
 > 
-> This was applied a while ago:
+> I have some concerns about this draft replacing MLD for group registration.
 > 
-> https://git.open-mesh.org/linux-merge.git/commit/b1cb8a71f1eaec4eb77051590f7f561f25b15e32
-
-Sorry, I didn't notice that.  Thank you so much!!
-
-Thanks,
-Shigeru
-
+> Having 2 different protocols for the same thing can be problematic.
+> Hosts or routers may need to support both protocols. Is it clear which
+> one should be used in different environments? Is there a chance that
+> both may be used at the same time in a network? In particular, is
+> there a chance that a router may need to simultaneously support both
+> protocols on an L3 interface? In that case it must be considered how
+> the two protocols interoperate.
 > 
-> Kind regards,
-> 	Sven
+> Also, we have been pushing the use of SSM in the IETF for a very long
+> time, but this draft only supports ASM since only a group address is
+> provided.
+> 
+> It would be good to have some more info on the need to replace MLD. I
+> understand there are concerns about packet loss, limited resources
+> etc.
+> 
+> Regards,
+> Stig
+
+Hi,
+
+Is there some good overview and/or presentation of this alternative
+concept available somewhere? The introduction of
+draft-ietf-6lo-multicast-registration-08 as is is a bit difficult
+to start with as its introduction references a lot of other, fairly
+new RFCs (which generally is fine for me, avoids duplication;
+just not that easy to start with as a first read :D ).
+
+I'm very interested in this topic as we too are experiencing
+several drawbacks with the current MLD approach in our layer 2
+mesh networks based on B.A.T.M.A.N. Advanced [0]. Typically people
+use 802.11 based WiFi routers with fixed line power with batman-adv.
+At least for larger installations. While if I understand correctly this
+new RFC is focusing on off-grid LoRaWAN based mesh nodes, right? Might
+be interesting to check if for these two different radio technologies
+we face similar issues, but also if we might have differing requirements.
+To avoid that we would need a third protocol later...
+
+---
+
+batman-adv currently makes use of MLD snooping [1]. The four main
+issues we are/were facing:
+
+1) MLD overhead is high with default intervals for the
+   mesh network sizes we are working with (> 1000 mesh nodes and
+   > 2000 client devices)
+2) MLD is too slow and unreliable with default intervals for
+   a lossy, dynamic mesh network.
+   -> we can't fix both 1) + 2) by tuning MLD querier parameters
+3) MLD querier selection is not robust enough in a dynamic
+   mesh network, lowest MAC addrdess for the querier is a
+   bad criteria, we don't want a barely connected node with
+   high packet loss at the edge of the wifi mesh network to take
+   over such an essential roll; actually we don't want any
+   mesh node to take over a central role, batman-adv was designed
+   to work as a fully decentral mesh of equal nodes without any reliabilities
+4) IGMPv2/MLDv1 Report suppression [2]; RFC4541 ("Considerations
+   for Internet Group Management Protocol (IGMP)
+   and Multicast Listener Discovery (MLD) Snooping Switches"
+   is not feasible solution/workaround for us always forwarding all
+   multicast traffic to the querier would lead to congestion
+
+On the other hand power consumption of MLD as noted in the draft is
+not a big issue for us right now, though it might be related to 1).
+
+The workaround for our four issues we came up with is to split the layer 2
+broadcast domain per mesh node with layer 2 filtering of MLD [3].
+So regarding MLD it is now behaving more like a layer 3 mesh network,
+where each WiFi router / mesh node is its own querier for its local
+Wifi clients. And between the mesh nodes we exchange listener state
+through the batman-adv protocol, sort of like a one-way proxy,
+as its more efficient for us right now. The downside is that it is
+one-way right now, so each batman-adv node will have the listener
+state which is enough for us right now to ensure that within the layer 2
+broadcast domain multicast works fine. However a remote batman-adv
+node won't translate it back to MLD, so layer 3 multicast routers
+won't be informed. Also its ASM only at the moment.
+
+But I would celebrate it if we could just get rid of these workarounds
+by simply having a more robust, more decentral but also less costly
+MLDv3 (and especially no more MLDv1).
+
+---
+
+I'll also be at the Wireless Battlemesh [4] in Rome, Italy, with several
+other batman-adv developers next week and we will be talking about mesh
+networks the whole week. Feel free to stop by if you can, it's
+an awesome event :-). Or would anybody be interested to exchange our
+experiences with MLD in mesh networks remotely during that week? I
+could put an official slot on the Battlemesh schedule, if people would
+be interested.
+
+Regards, Linus
+
+
+[0]: https://www.open-mesh.org/projects/batman-adv/wiki
+[1]: https://www.open-mesh.org/projects/batman-adv/wiki/Multicast-optimizations
+[2]: https://www.open-mesh.org/projects/batman-adv/wiki/Multicast-optimizations-report-suppresion
+[3]: https://gluon.readthedocs.io/en/latest/package/gluon-mesh-batman-adv.html#multicast-architecture
+[4]: https://www.battlemesh.org/
