@@ -2,537 +2,440 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A819656404
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 26 Dec 2022 17:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B923656405
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 26 Dec 2022 17:16:13 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DB85884632;
-	Mon, 26 Dec 2022 17:16:05 +0100 (CET)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B6185818EC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 26 Dec 2022 17:16:03 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 28EF684636;
+	Mon, 26 Dec 2022 17:16:07 +0100 (CET)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 241B1845C6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 26 Dec 2022 17:16:05 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1672071363;
+	s=20121; t=1672071365;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=5Yy/bmxSzd50SSJdVcbJ4gk3sRVa+cTZNfxrg37lXkM=;
-	b=avHuIZZpx4kYZWU7c4kIYkMm+FXxXmdnFxUOW04sre1O3nOemB5FUqJEwNlLj+yTeu7ZUQ
-	exMfEdaGLrUZ7eALn4k4ivrOs5RojtJ7LrD+DQlGAiBQaPJi63mC/9mcAJE3Ct1slx1tTG
-	Pqrcb4p3i+N6k92SR+y8GcsK9OxG9nw=
+	bh=tTgpt5QiLbEUTBX1JVGAI75tpf3xIRJAXHbLcxn1l44=;
+	b=YIew1zmdNbFo/dcQIKzaf5SyivTYb39eBZ0s/zBcKuWOJVxXRdyjPWPlEe2nAzKCY3KmUm
+	PzbGWXeYNd0xXds37HyFGDHS9x4fHoy27lWgXcExU8YmVRGdmOrLUNdJzMULKXR13re2WL
+	8trGNsLbtyUcM4WLlFOy1S4H7MH6RFc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	dmarc=none;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672071363; a=rsa-sha256;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 2a01:4f8:c2c:665b::1) smtp.mailfrom=linus.luessing@c0d3.blue
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672071365; a=rsa-sha256;
 	cv=none;
-	b=Gi3PB6IaIGt+6unGExzG9tZ+uuyrLEJUoYZ+5CKHPHZq50CWL/AeLcAxsfyDWk9LrpAyx1
-	HhiwWLOgJaZu+M9AkXNj73rELNDY6KTEOy99n6mhTEdYhKqVj1ObTFICIwXmT6ZgdSAV3+
-	CxOuBeuXZZG9LjhQlU99YGtP8fiXARg=
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C783941C91;
-	Mon, 26 Dec 2022 17:16:02 +0100 (CET)
+	b=rbkhvznunJKF+HFKscIvwqi+sgwzjZComxcK9UTCAo8LWz2yhXBWyPXv9Wr2KuCgnSCPbK
+	WKYDqhVlWDbmO39eluageGicyb46asq2egIMOX7nv56RdT9xDyEves/n9Hru6Gte4eFUuq
+	Nx2dZqgdYutobPvF4EIt/1CvrHxz6EQ=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98F3B41C91;
+	Mon, 26 Dec 2022 17:16:04 +0100 (CET)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH v2 1/5] batman-adv: mcast: remove now redundant single ucast forwarding
-Date: Mon, 26 Dec 2022 17:15:50 +0100
-Message-Id: <20221226161554.9657-2-linus.luessing@c0d3.blue>
+Subject: [PATCH v2 2/5] batman-adv: tvlv: prepare for tvlv enabled multicast packet type
+Date: Mon, 26 Dec 2022 17:15:51 +0100
+Message-Id: <20221226161554.9657-3-linus.luessing@c0d3.blue>
 In-Reply-To: <20221226161554.9657-1-linus.luessing@c0d3.blue>
 References: <20221226161554.9657-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 X-Last-TLS-Session-Version: TLSv1.3
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: WVIWBGG66SLM63PMDBSBWR7OT77KPJXF
-X-Message-ID-Hash: WVIWBGG66SLM63PMDBSBWR7OT77KPJXF
+Message-ID-Hash: 65LPGNTNES3PXALI4BF5JB42ARZJ4JJJ
+X-Message-ID-Hash: 65LPGNTNES3PXALI4BF5JB42ARZJ4JJJ
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WVIWBGG66SLM63PMDBSBWR7OT77KPJXF/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/65LPGNTNES3PXALI4BF5JB42ARZJ4JJJ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-The multicast code to send a multicast packet via multiple batman-adv
-unicast packets is not only capable of sending to multiple but also to a
-single node. Therefore we can safely remove the old, specialized, now
-redundant multicast-to-single-unicast code.
+Prepare TVLV infrastructure for more packet types, in particular the
+upcoming batman-adv multicast packet type.
 
-The only functional change of this simplification is that the edge case
-of allowing a multicast packet with an unsnoopable destination address
-(224.0.0.0/24 or ff02::1) where only a single node has signaled interest
-in it via the batman-adv want-all-unsnoopables multicast flag is now
-transmitted via a batman-adv broadcast instead of a batman-adv unicast
-packet. Maintaining this edge case feature does not seem worth the extra
-lines of code and people should just not expect to be able to snoop and
-optimize such unsnoopable multicast addresses when bridges are involved.
-
-While at it also renaming a few items in the batadv_forw_mode enum to
-prepare for the new batman-adv multicast packet type.
+For that swap the OGM vs. unicast-tvlv packet boolean indicator to an
+explicit unsigned integer packet type variable. And provide the skb
+to a call to batadv_tvlv_containers_process(), as later the multicast
+packet's TVLV handler will need to have access not only to the TVLV but
+the full skb for forwarding. Forwarding will be invoked from the
+multicast packet's TVLVs' contents later.
 
 Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 ---
- net/batman-adv/multicast.c      | 248 ++------------------------------
- net/batman-adv/multicast.h      |  38 +----
- net/batman-adv/soft-interface.c |  25 ++--
- 3 files changed, 33 insertions(+), 278 deletions(-)
+ include/uapi/linux/batadv_packet.h     |  2 +
+ net/batman-adv/bat_v_ogm.c             |  4 +-
+ net/batman-adv/distributed-arp-table.c |  2 +-
+ net/batman-adv/gateway_common.c        |  2 +-
+ net/batman-adv/multicast.c             |  2 +-
+ net/batman-adv/routing.c               |  7 ++-
+ net/batman-adv/translation-table.c     |  4 +-
+ net/batman-adv/tvlv.c                  | 71 ++++++++++++++++++--------
+ net/batman-adv/tvlv.h                  |  8 +--
+ net/batman-adv/types.h                 |  6 +++
+ 10 files changed, 73 insertions(+), 35 deletions(-)
 
+diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/bata=
+dv_packet.h
+index ea4692c339ce..9204e4494b25 100644
+--- a/include/uapi/linux/batadv_packet.h
++++ b/include/uapi/linux/batadv_packet.h
+@@ -26,6 +26,7 @@
+  * @BATADV_CODED: network coded packets
+  * @BATADV_ELP: echo location packets for B.A.T.M.A.N. V
+  * @BATADV_OGM2: originator messages for B.A.T.M.A.N. V
++ * @BATADV_MCAST: multicast packet with multiple destination addresses
+  *
+  * @BATADV_UNICAST: unicast packets carrying unicast payload traffic
+  * @BATADV_UNICAST_FRAG: unicast packets carrying a fragment of the orig=
+inal
+@@ -42,6 +43,7 @@ enum batadv_packettype {
+ 	BATADV_CODED            =3D 0x02,
+ 	BATADV_ELP		=3D 0x03,
+ 	BATADV_OGM2		=3D 0x04,
++	BATADV_MCAST            =3D 0x05,
+ 	/* 0x40 - 0x7f: unicast */
+ #define BATADV_UNICAST_MIN     0x40
+ 	BATADV_UNICAST          =3D 0x40,
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index 033639df96d8..296fcff487bc 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -800,8 +800,8 @@ batadv_v_ogm_process_per_outif(struct batadv_priv *ba=
+t_priv,
+=20
+ 	/* only unknown & newer OGMs contain TVLVs we are interested in */
+ 	if (seqno_age > 0 && if_outgoing =3D=3D BATADV_IF_DEFAULT)
+-		batadv_tvlv_containers_process(bat_priv, true, orig_node,
+-					       NULL, NULL,
++		batadv_tvlv_containers_process(bat_priv, BATADV_OGM2, orig_node,
++					       NULL,
+ 					       (unsigned char *)(ogm2 + 1),
+ 					       ntohs(ogm2->tvlv_len));
+=20
+diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/dist=
+ributed-arp-table.c
+index fefb51a5f606..6968e55eb971 100644
+--- a/net/batman-adv/distributed-arp-table.c
++++ b/net/batman-adv/distributed-arp-table.c
+@@ -822,7 +822,7 @@ int batadv_dat_init(struct batadv_priv *bat_priv)
+ 	batadv_dat_start_timer(bat_priv);
+=20
+ 	batadv_tvlv_handler_register(bat_priv, batadv_dat_tvlv_ogm_handler_v1,
+-				     NULL, BATADV_TVLV_DAT, 1,
++				     NULL, NULL, BATADV_TVLV_DAT, 1,
+ 				     BATADV_TVLV_HANDLER_OGM_CIFNOTFND);
+ 	batadv_dat_tvlv_container_update(bat_priv);
+ 	return 0;
+diff --git a/net/batman-adv/gateway_common.c b/net/batman-adv/gateway_com=
+mon.c
+index 9349c76f30c5..6a964a773f57 100644
+--- a/net/batman-adv/gateway_common.c
++++ b/net/batman-adv/gateway_common.c
+@@ -259,7 +259,7 @@ void batadv_gw_init(struct batadv_priv *bat_priv)
+ 		atomic_set(&bat_priv->gw.sel_class, 1);
+=20
+ 	batadv_tvlv_handler_register(bat_priv, batadv_gw_tvlv_ogm_handler_v1,
+-				     NULL, BATADV_TVLV_GW, 1,
++				     NULL, NULL, BATADV_TVLV_GW, 1,
+ 				     BATADV_TVLV_HANDLER_OGM_CIFNOTFND);
+ }
+=20
 diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index 34897a15ad9d..dbe7fcfad512 100644
+index dbe7fcfad512..548ab08d96fa 100644
 --- a/net/batman-adv/multicast.c
 +++ b/net/batman-adv/multicast.c
-@@ -1144,223 +1144,20 @@ static int batadv_mcast_forw_rtr_count(struct ba=
+@@ -1827,7 +1827,7 @@ static void batadv_mcast_tvlv_ogm_handler(struct ba=
 tadv_priv *bat_priv,
- 	}
- }
+ void batadv_mcast_init(struct batadv_priv *bat_priv)
+ {
+ 	batadv_tvlv_handler_register(bat_priv, batadv_mcast_tvlv_ogm_handler,
+-				     NULL, BATADV_TVLV_MCAST, 2,
++				     NULL, NULL, BATADV_TVLV_MCAST, 2,
+ 				     BATADV_TVLV_HANDLER_OGM_CIFNOTFND);
 =20
--/**
-- * batadv_mcast_forw_tt_node_get() - get a multicast tt node
-- * @bat_priv: the bat priv with all the soft interface information
-- * @ethhdr: the ether header containing the multicast destination
-- *
-- * Return: an orig_node matching the multicast address provided by ethhd=
-r
-- * via a translation table lookup. This increases the returned nodes ref=
-count.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_tt_node_get(struct batadv_priv *bat_priv,
--			      struct ethhdr *ethhdr)
--{
--	return batadv_transtable_search(bat_priv, NULL, ethhdr->h_dest,
--					BATADV_NO_FLAGS);
--}
--
--/**
-- * batadv_mcast_forw_ipv4_node_get() - get a node with an ipv4 flag
-- * @bat_priv: the bat priv with all the soft interface information
-- *
-- * Return: an orig_node which has the BATADV_MCAST_WANT_ALL_IPV4 flag se=
-t and
-- * increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_ipv4_node_get(struct batadv_priv *bat_priv)
--{
--	struct batadv_orig_node *tmp_orig_node, *orig_node =3D NULL;
--
--	rcu_read_lock();
--	hlist_for_each_entry_rcu(tmp_orig_node,
--				 &bat_priv->mcast.want_all_ipv4_list,
--				 mcast_want_all_ipv4_node) {
--		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
--			continue;
--
--		orig_node =3D tmp_orig_node;
--		break;
--	}
--	rcu_read_unlock();
--
--	return orig_node;
--}
--
--/**
-- * batadv_mcast_forw_ipv6_node_get() - get a node with an ipv6 flag
-- * @bat_priv: the bat priv with all the soft interface information
-- *
-- * Return: an orig_node which has the BATADV_MCAST_WANT_ALL_IPV6 flag se=
-t
-- * and increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_ipv6_node_get(struct batadv_priv *bat_priv)
--{
--	struct batadv_orig_node *tmp_orig_node, *orig_node =3D NULL;
--
--	rcu_read_lock();
--	hlist_for_each_entry_rcu(tmp_orig_node,
--				 &bat_priv->mcast.want_all_ipv6_list,
--				 mcast_want_all_ipv6_node) {
--		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
--			continue;
--
--		orig_node =3D tmp_orig_node;
--		break;
--	}
--	rcu_read_unlock();
--
--	return orig_node;
--}
--
--/**
-- * batadv_mcast_forw_ip_node_get() - get a node with an ipv4/ipv6 flag
-- * @bat_priv: the bat priv with all the soft interface information
-- * @ethhdr: an ethernet header to determine the protocol family from
-- *
-- * Return: an orig_node which has the BATADV_MCAST_WANT_ALL_IPV4 or
-- * BATADV_MCAST_WANT_ALL_IPV6 flag, depending on the provided ethhdr, se=
-ts and
-- * increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_ip_node_get(struct batadv_priv *bat_priv,
--			      struct ethhdr *ethhdr)
--{
--	switch (ntohs(ethhdr->h_proto)) {
--	case ETH_P_IP:
--		return batadv_mcast_forw_ipv4_node_get(bat_priv);
--	case ETH_P_IPV6:
--		return batadv_mcast_forw_ipv6_node_get(bat_priv);
--	default:
--		/* we shouldn't be here... */
--		return NULL;
--	}
--}
--
--/**
-- * batadv_mcast_forw_unsnoop_node_get() - get a node with an unsnoopable=
- flag
-- * @bat_priv: the bat priv with all the soft interface information
-- *
-- * Return: an orig_node which has the BATADV_MCAST_WANT_ALL_UNSNOOPABLES=
- flag
-- * set and increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_unsnoop_node_get(struct batadv_priv *bat_priv)
--{
--	struct batadv_orig_node *tmp_orig_node, *orig_node =3D NULL;
--
--	rcu_read_lock();
--	hlist_for_each_entry_rcu(tmp_orig_node,
--				 &bat_priv->mcast.want_all_unsnoopables_list,
--				 mcast_want_all_unsnoopables_node) {
--		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
--			continue;
--
--		orig_node =3D tmp_orig_node;
--		break;
--	}
--	rcu_read_unlock();
--
--	return orig_node;
--}
--
--/**
-- * batadv_mcast_forw_rtr4_node_get() - get a node with an ipv4 mcast rou=
-ter flag
-- * @bat_priv: the bat priv with all the soft interface information
-- *
-- * Return: an orig_node which has the BATADV_MCAST_WANT_NO_RTR4 flag uns=
-et and
-- * increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_rtr4_node_get(struct batadv_priv *bat_priv)
--{
--	struct batadv_orig_node *tmp_orig_node, *orig_node =3D NULL;
--
--	rcu_read_lock();
--	hlist_for_each_entry_rcu(tmp_orig_node,
--				 &bat_priv->mcast.want_all_rtr4_list,
--				 mcast_want_all_rtr4_node) {
--		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
--			continue;
--
--		orig_node =3D tmp_orig_node;
--		break;
--	}
--	rcu_read_unlock();
--
--	return orig_node;
--}
--
--/**
-- * batadv_mcast_forw_rtr6_node_get() - get a node with an ipv6 mcast rou=
-ter flag
-- * @bat_priv: the bat priv with all the soft interface information
-- *
-- * Return: an orig_node which has the BATADV_MCAST_WANT_NO_RTR6 flag uns=
-et
-- * and increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_rtr6_node_get(struct batadv_priv *bat_priv)
--{
--	struct batadv_orig_node *tmp_orig_node, *orig_node =3D NULL;
--
--	rcu_read_lock();
--	hlist_for_each_entry_rcu(tmp_orig_node,
--				 &bat_priv->mcast.want_all_rtr6_list,
--				 mcast_want_all_rtr6_node) {
--		if (!kref_get_unless_zero(&tmp_orig_node->refcount))
--			continue;
--
--		orig_node =3D tmp_orig_node;
--		break;
--	}
--	rcu_read_unlock();
--
--	return orig_node;
--}
--
--/**
-- * batadv_mcast_forw_rtr_node_get() - get a node with an ipv4/ipv6 route=
-r flag
-- * @bat_priv: the bat priv with all the soft interface information
-- * @ethhdr: an ethernet header to determine the protocol family from
-- *
-- * Return: an orig_node which has no BATADV_MCAST_WANT_NO_RTR4 or
-- * BATADV_MCAST_WANT_NO_RTR6 flag, depending on the provided ethhdr, set=
- and
-- * increases its refcount.
-- */
--static struct batadv_orig_node *
--batadv_mcast_forw_rtr_node_get(struct batadv_priv *bat_priv,
--			       struct ethhdr *ethhdr)
--{
--	switch (ntohs(ethhdr->h_proto)) {
--	case ETH_P_IP:
--		return batadv_mcast_forw_rtr4_node_get(bat_priv);
--	case ETH_P_IPV6:
--		return batadv_mcast_forw_rtr6_node_get(bat_priv);
--	default:
--		/* we shouldn't be here... */
--		return NULL;
--	}
--}
--
- /**
-  * batadv_mcast_forw_mode() - check on how to forward a multicast packet
+ 	INIT_DELAYED_WORK(&bat_priv->mcast.work, batadv_mcast_mla_update);
+diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
+index 83f31494ea4d..163cd43c4821 100644
+--- a/net/batman-adv/routing.c
++++ b/net/batman-adv/routing.c
+@@ -1073,10 +1073,9 @@ int batadv_recv_unicast_tvlv(struct sk_buff *skb,
+ 	if (tvlv_buff_len > skb->len - hdr_size)
+ 		goto free_skb;
+=20
+-	ret =3D batadv_tvlv_containers_process(bat_priv, false, NULL,
+-					     unicast_tvlv_packet->src,
+-					     unicast_tvlv_packet->dst,
+-					     tvlv_buff, tvlv_buff_len);
++	ret =3D batadv_tvlv_containers_process(bat_priv, BATADV_UNICAST_TVLV,
++					     NULL, skb, tvlv_buff,
++					     tvlv_buff_len);
+=20
+ 	if (ret !=3D NET_RX_SUCCESS) {
+ 		ret =3D batadv_route_unicast_packet(skb, recv_if);
+diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translat=
+ion-table.c
+index 01d30c1e412c..36ca31252a73 100644
+--- a/net/batman-adv/translation-table.c
++++ b/net/batman-adv/translation-table.c
+@@ -4168,11 +4168,11 @@ int batadv_tt_init(struct batadv_priv *bat_priv)
+ 	}
+=20
+ 	batadv_tvlv_handler_register(bat_priv, batadv_tt_tvlv_ogm_handler_v1,
+-				     batadv_tt_tvlv_unicast_handler_v1,
++				     batadv_tt_tvlv_unicast_handler_v1, NULL,
+ 				     BATADV_TVLV_TT, 1, BATADV_NO_FLAGS);
+=20
+ 	batadv_tvlv_handler_register(bat_priv, NULL,
+-				     batadv_roam_tvlv_unicast_handler_v1,
++				     batadv_roam_tvlv_unicast_handler_v1, NULL,
+ 				     BATADV_TVLV_ROAM, 1, BATADV_NO_FLAGS);
+=20
+ 	INIT_DELAYED_WORK(&bat_priv->tt.work, batadv_tt_purge);
+diff --git a/net/batman-adv/tvlv.c b/net/batman-adv/tvlv.c
+index 7ec2e2343884..258a23e6e5a8 100644
+--- a/net/batman-adv/tvlv.c
++++ b/net/batman-adv/tvlv.c
+@@ -352,10 +352,9 @@ u16 batadv_tvlv_container_ogm_append(struct batadv_p=
+riv *bat_priv,
+  *  appropriate handlers
   * @bat_priv: the bat priv with all the soft interface information
-- * @skb: The multicast packet to check
-- * @orig: an originator to be set to forward the skb to
-+ * @skb: the multicast packet to check
-  * @is_routable: stores whether the destination is routable
+  * @tvlv_handler: tvlv callback function handling the tvlv content
+- * @ogm_source: flag indicating whether the tvlv is an ogm or a unicast =
+packet
++ * @packet_type: indicates for which packet type the TVLV handler is cal=
+led
+  * @orig_node: orig node emitting the ogm packet
+- * @src: source mac address of the unicast packet
+- * @dst: destination mac address of the unicast packet
++ * @skb: the skb the TVLV handler is called for
+  * @tvlv_value: tvlv content
+  * @tvlv_value_len: tvlv content length
   *
-- * Return: the forwarding mode as enum batadv_forw_mode and in case of
-- * BATADV_FORW_SINGLE set the orig to the single originator the skb
-- * should be forwarded to.
-+ * Return: The forwarding mode as enum batadv_forw_mode.
+@@ -364,15 +363,17 @@ u16 batadv_tvlv_container_ogm_append(struct batadv_=
+priv *bat_priv,
   */
- enum batadv_forw_mode
- batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
-,
--		       struct batadv_orig_node **orig, int *is_routable)
-+		       int *is_routable)
+ static int batadv_tvlv_call_handler(struct batadv_priv *bat_priv,
+ 				    struct batadv_tvlv_handler *tvlv_handler,
+-				    bool ogm_source,
++				    u8 packet_type,
+ 				    struct batadv_orig_node *orig_node,
+-				    u8 *src, u8 *dst,
+-				    void *tvlv_value, u16 tvlv_value_len)
++				    struct sk_buff *skb, void *tvlv_value,
++				    u16 tvlv_value_len)
  {
- 	int ret, tt_count, ip_count, unsnoop_count, total_count;
- 	bool is_unsnoopable =3D false;
--	unsigned int mcast_fanout;
- 	struct ethhdr *ethhdr;
- 	int rtr_count =3D 0;
+ 	if (!tvlv_handler)
+ 		return NET_RX_SUCCESS;
 =20
-@@ -1369,7 +1166,7 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_priv=
-, struct sk_buff *skb,
- 	if (ret =3D=3D -ENOMEM)
- 		return BATADV_FORW_NONE;
- 	else if (ret < 0)
--		return BATADV_FORW_ALL;
-+		return BATADV_FORW_BCAST;
+-	if (ogm_source) {
++	switch (packet_type) {
++	case BATADV_IV_OGM:
++	case BATADV_OGM2:
+ 		if (!tvlv_handler->ogm_handler)
+ 			return NET_RX_SUCCESS;
 =20
- 	ethhdr =3D eth_hdr(skb);
+@@ -383,19 +384,37 @@ static int batadv_tvlv_call_handler(struct batadv_p=
+riv *bat_priv,
+ 					  BATADV_NO_FLAGS,
+ 					  tvlv_value, tvlv_value_len);
+ 		tvlv_handler->flags |=3D BATADV_TVLV_HANDLER_OGM_CALLED;
+-	} else {
+-		if (!src)
+-			return NET_RX_SUCCESS;
++		break;
++	case BATADV_UNICAST_TVLV:
++		u8 *src;
++		u8 *dst;
 =20
-@@ -1382,32 +1179,15 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_pr=
-iv, struct sk_buff *skb,
+-		if (!dst)
++		if (!skb)
+ 			return NET_RX_SUCCESS;
 =20
- 	total_count =3D tt_count + ip_count + unsnoop_count + rtr_count;
+ 		if (!tvlv_handler->unicast_handler)
+ 			return NET_RX_SUCCESS;
 =20
--	switch (total_count) {
--	case 1:
--		if (tt_count)
--			*orig =3D batadv_mcast_forw_tt_node_get(bat_priv, ethhdr);
--		else if (ip_count)
--			*orig =3D batadv_mcast_forw_ip_node_get(bat_priv, ethhdr);
--		else if (unsnoop_count)
--			*orig =3D batadv_mcast_forw_unsnoop_node_get(bat_priv);
--		else if (rtr_count)
--			*orig =3D batadv_mcast_forw_rtr_node_get(bat_priv,
--							       ethhdr);
--
--		if (*orig)
--			return BATADV_FORW_SINGLE;
--
--		fallthrough;
--	case 0:
-+	if (!total_count)
- 		return BATADV_FORW_NONE;
--	default:
--		mcast_fanout =3D atomic_read(&bat_priv->multicast_fanout);
-+	else if (unsnoop_count)
-+		return BATADV_FORW_BCAST;
-=20
--		if (!unsnoop_count && total_count <=3D mcast_fanout)
--			return BATADV_FORW_SOME;
--	}
-+	if (total_count <=3D atomic_read(&bat_priv->multicast_fanout))
-+		return BATADV_FORW_UCASTS;
-=20
--	return BATADV_FORW_ALL;
-+	return BATADV_FORW_BCAST;
- }
-=20
- /**
-@@ -1419,10 +1199,10 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_pr=
-iv, struct sk_buff *skb,
-  *
-  * Return: NET_XMIT_DROP in case of error or NET_XMIT_SUCCESS otherwise.
-  */
--int batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
--				struct sk_buff *skb,
--				unsigned short vid,
--				struct batadv_orig_node *orig_node)
-+static int batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
-+				       struct sk_buff *skb,
-+				       unsigned short vid,
-+				       struct batadv_orig_node *orig_node)
- {
- 	/* Avoid sending multicast-in-unicast packets to other BLA
- 	 * gateways - they already got the frame from the LAN side
-diff --git a/net/batman-adv/multicast.h b/net/batman-adv/multicast.h
-index 8aec818d0bf6..a9770d8d6d36 100644
---- a/net/batman-adv/multicast.h
-+++ b/net/batman-adv/multicast.h
-@@ -17,23 +17,16 @@
-  */
- enum batadv_forw_mode {
- 	/**
--	 * @BATADV_FORW_ALL: forward the packet to all nodes (currently via
--	 *  classic flooding)
-+	 * @BATADV_FORW_BCAST: forward the packet to all nodes via a batman-adv
-+	 *  broadcast packet
- 	 */
--	BATADV_FORW_ALL,
-+	BATADV_FORW_BCAST,
-=20
- 	/**
--	 * @BATADV_FORW_SOME: forward the packet to some nodes (currently via
--	 *  a multicast-to-unicast conversion and the BATMAN unicast routing
--	 *  protocol)
-+	 * @BATADV_FORW_UCASTS: forward the packet to some nodes via one
-+	 *  or more batman-adv unicast packets
- 	 */
--	BATADV_FORW_SOME,
--
--	/**
--	 * @BATADV_FORW_SINGLE: forward the packet to a single node (currently
--	 *  via the BATMAN unicast routing protocol)
--	 */
--	BATADV_FORW_SINGLE,
-+	BATADV_FORW_UCASTS,
-=20
- 	/** @BATADV_FORW_NONE: don't forward, drop it */
- 	BATADV_FORW_NONE,
-@@ -43,14 +36,8 @@ enum batadv_forw_mode {
-=20
- enum batadv_forw_mode
- batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
-,
--		       struct batadv_orig_node **mcast_single_orig,
- 		       int *is_routable);
-=20
--int batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
--				struct sk_buff *skb,
--				unsigned short vid,
--				struct batadv_orig_node *orig_node);
--
- int batadv_mcast_forw_send(struct batadv_priv *bat_priv, struct sk_buff =
-*skb,
- 			   unsigned short vid, int is_routable);
-=20
-@@ -69,20 +56,9 @@ void batadv_mcast_purge_orig(struct batadv_orig_node *=
-orig_node);
-=20
- static inline enum batadv_forw_mode
- batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
-,
--		       struct batadv_orig_node **mcast_single_orig,
- 		       int *is_routable)
- {
--	return BATADV_FORW_ALL;
--}
--
--static inline int
--batadv_mcast_forw_send_orig(struct batadv_priv *bat_priv,
--			    struct sk_buff *skb,
--			    unsigned short vid,
--			    struct batadv_orig_node *orig_node)
--{
--	kfree_skb(skb);
--	return NET_XMIT_DROP;
-+	return BATADV_FORW_BCAST;
- }
-=20
- static inline int
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
-ace.c
-index 0f5c0679b55a..b70d0167d2fa 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -196,8 +196,7 @@ static netdev_tx_t batadv_interface_tx(struct sk_buff=
- *skb,
- 	unsigned short vid;
- 	u32 seqno;
- 	int gw_mode;
--	enum batadv_forw_mode forw_mode =3D BATADV_FORW_SINGLE;
--	struct batadv_orig_node *mcast_single_orig =3D NULL;
-+	enum batadv_forw_mode forw_mode =3D BATADV_FORW_BCAST;
- 	int mcast_is_routable =3D 0;
- 	int network_offset =3D ETH_HLEN;
- 	__be16 proto;
-@@ -301,14 +300,18 @@ static netdev_tx_t batadv_interface_tx(struct sk_bu=
-ff *skb,
- send:
- 		if (do_bcast && !is_broadcast_ether_addr(ethhdr->h_dest)) {
- 			forw_mode =3D batadv_mcast_forw_mode(bat_priv, skb,
--							   &mcast_single_orig,
- 							   &mcast_is_routable);
--			if (forw_mode =3D=3D BATADV_FORW_NONE)
--				goto dropped;
--
--			if (forw_mode =3D=3D BATADV_FORW_SINGLE ||
--			    forw_mode =3D=3D BATADV_FORW_SOME)
-+			switch (forw_mode) {
-+			case BATADV_FORW_BCAST:
-+				break;
-+			case BATADV_FORW_UCASTS:
- 				do_bcast =3D false;
-+				break;
-+			case BATADV_FORW_NONE:
-+				fallthrough;
-+			default:
-+				goto dropped;
-+			}
- 		}
++		src =3D ((struct batadv_unicast_tvlv_packet *)skb->data)->src;
++		dst =3D ((struct batadv_unicast_tvlv_packet *)skb->data)->dst;
++
+ 		return tvlv_handler->unicast_handler(bat_priv, src,
+ 						     dst, tvlv_value,
+ 						     tvlv_value_len);
++	case BATADV_MCAST:
++		unsigned int tvlv_offset;
++
++		if (!skb)
++			return NET_RX_SUCCESS;
++
++		if (!tvlv_handler->mcast_handler)
++			return NET_RX_SUCCESS;
++
++		tvlv_offset =3D (unsigned char *)tvlv_value - skb->data;
++		skb_set_network_header(skb, tvlv_offset);
++		skb_set_transport_header(skb, tvlv_offset + tvlv_value_len);
++
++		return tvlv_handler->mcast_handler(bat_priv, skb);
  	}
 =20
-@@ -357,10 +360,7 @@ static netdev_tx_t batadv_interface_tx(struct sk_buf=
-f *skb,
- 			if (ret)
- 				goto dropped;
- 			ret =3D batadv_send_skb_via_gw(bat_priv, skb, vid);
--		} else if (mcast_single_orig) {
--			ret =3D batadv_mcast_forw_send_orig(bat_priv, skb, vid,
--							  mcast_single_orig);
--		} else if (forw_mode =3D=3D BATADV_FORW_SOME) {
-+		} else if (forw_mode =3D=3D BATADV_FORW_UCASTS) {
- 			ret =3D batadv_mcast_forw_send(bat_priv, skb, vid,
- 						     mcast_is_routable);
- 		} else {
-@@ -386,7 +386,6 @@ static netdev_tx_t batadv_interface_tx(struct sk_buff=
- *skb,
- dropped_freed:
- 	batadv_inc_counter(bat_priv, BATADV_CNT_TX_DROPPED);
- end:
--	batadv_orig_node_put(mcast_single_orig);
- 	batadv_hardif_put(primary_if);
- 	return NETDEV_TX_OK;
+ 	return NET_RX_SUCCESS;
+@@ -405,10 +424,9 @@ static int batadv_tvlv_call_handler(struct batadv_pr=
+iv *bat_priv,
+  * batadv_tvlv_containers_process() - parse the given tvlv buffer to cal=
+l the
+  *  appropriate handlers
+  * @bat_priv: the bat priv with all the soft interface information
+- * @ogm_source: flag indicating whether the tvlv is an ogm or a unicast =
+packet
++ * @packet_type: indicates for which packet type the TVLV handler is cal=
+led
+  * @orig_node: orig node emitting the ogm packet
+- * @src: source mac address of the unicast packet
+- * @dst: destination mac address of the unicast packet
++ * @skb: the skb the TVLV handler is called for
+  * @tvlv_value: tvlv content
+  * @tvlv_value_len: tvlv content length
+  *
+@@ -416,10 +434,10 @@ static int batadv_tvlv_call_handler(struct batadv_p=
+riv *bat_priv,
+  * handler callbacks.
+  */
+ int batadv_tvlv_containers_process(struct batadv_priv *bat_priv,
+-				   bool ogm_source,
++				   u8 packet_type,
+ 				   struct batadv_orig_node *orig_node,
+-				   u8 *src, u8 *dst,
+-				   void *tvlv_value, u16 tvlv_value_len)
++				   struct sk_buff *skb, void *tvlv_value,
++				   u16 tvlv_value_len)
+ {
+ 	struct batadv_tvlv_handler *tvlv_handler;
+ 	struct batadv_tvlv_hdr *tvlv_hdr;
+@@ -441,20 +459,24 @@ int batadv_tvlv_containers_process(struct batadv_pr=
+iv *bat_priv,
+ 						       tvlv_hdr->version);
+=20
+ 		ret |=3D batadv_tvlv_call_handler(bat_priv, tvlv_handler,
+-						ogm_source, orig_node,
+-						src, dst, tvlv_value,
++						packet_type, orig_node, skb,
++						tvlv_value,
+ 						tvlv_value_cont_len);
+ 		batadv_tvlv_handler_put(tvlv_handler);
+ 		tvlv_value =3D (u8 *)tvlv_value + tvlv_value_cont_len;
+ 		tvlv_value_len -=3D tvlv_value_cont_len;
+ 	}
+=20
+-	if (!ogm_source)
++	if (packet_type !=3D BATADV_IV_OGM &&
++	    packet_type !=3D BATADV_OGM2)
+ 		return ret;
+=20
+ 	rcu_read_lock();
+ 	hlist_for_each_entry_rcu(tvlv_handler,
+ 				 &bat_priv->tvlv.handler_list, list) {
++		if (!tvlv_handler->ogm_handler)
++			continue;
++
+ 		if ((tvlv_handler->flags & BATADV_TVLV_HANDLER_OGM_CIFNOTFND) &&
+ 		    !(tvlv_handler->flags & BATADV_TVLV_HANDLER_OGM_CALLED))
+ 			tvlv_handler->ogm_handler(bat_priv, orig_node,
+@@ -490,7 +512,7 @@ void batadv_tvlv_ogm_receive(struct batadv_priv *bat_=
+priv,
+=20
+ 	tvlv_value =3D batadv_ogm_packet + 1;
+=20
+-	batadv_tvlv_containers_process(bat_priv, true, orig_node, NULL, NULL,
++	batadv_tvlv_containers_process(bat_priv, BATADV_IV_OGM, orig_node, NULL=
+,
+ 				       tvlv_value, tvlv_value_len);
  }
+=20
+@@ -504,6 +526,10 @@ void batadv_tvlv_ogm_receive(struct batadv_priv *bat=
+_priv,
+  * @uptr: unicast tvlv handler callback function. This function receives=
+ the
+  *  source & destination of the unicast packet as well as the tvlv conte=
+nt
+  *  to process.
++ * @mptr: multicast packet tvlv handler callback function. This function
++ *  receives the full skb to process, with the skb network header pointi=
+ng
++ *  to the current tvlv and the skb transport header pointing to the fir=
+st
++ *  byte after the current tvlv.
+  * @type: tvlv handler type to be registered
+  * @version: tvlv handler version to be registered
+  * @flags: flags to enable or disable TVLV API behavior
+@@ -518,6 +544,8 @@ void batadv_tvlv_handler_register(struct batadv_priv =
+*bat_priv,
+ 					      u8 *src, u8 *dst,
+ 					      void *tvlv_value,
+ 					      u16 tvlv_value_len),
++				  int (*mptr)(struct batadv_priv *bat_priv,
++					      struct sk_buff *skb),
+ 				  u8 type, u8 version, u8 flags)
+ {
+ 	struct batadv_tvlv_handler *tvlv_handler;
+@@ -539,6 +567,7 @@ void batadv_tvlv_handler_register(struct batadv_priv =
+*bat_priv,
+=20
+ 	tvlv_handler->ogm_handler =3D optr;
+ 	tvlv_handler->unicast_handler =3D uptr;
++	tvlv_handler->mcast_handler =3D mptr;
+ 	tvlv_handler->type =3D type;
+ 	tvlv_handler->version =3D version;
+ 	tvlv_handler->flags =3D flags;
+diff --git a/net/batman-adv/tvlv.h b/net/batman-adv/tvlv.h
+index 4cf8af00fc11..ebf8b4037adb 100644
+--- a/net/batman-adv/tvlv.h
++++ b/net/batman-adv/tvlv.h
+@@ -34,14 +34,16 @@ void batadv_tvlv_handler_register(struct batadv_priv =
+*bat_priv,
+ 					      u8 *src, u8 *dst,
+ 					      void *tvlv_value,
+ 					      u16 tvlv_value_len),
++				  int (*mptr)(struct batadv_priv *bat_priv,
++					      struct sk_buff *skb),
+ 				  u8 type, u8 version, u8 flags);
+ void batadv_tvlv_handler_unregister(struct batadv_priv *bat_priv,
+ 				    u8 type, u8 version);
+ int batadv_tvlv_containers_process(struct batadv_priv *bat_priv,
+-				   bool ogm_source,
++				   u8 packet_type,
+ 				   struct batadv_orig_node *orig_node,
+-				   u8 *src, u8 *dst,
+-				   void *tvlv_buff, u16 tvlv_buff_len);
++				   struct sk_buff *skb, void *tvlv_buff,
++				   u16 tvlv_buff_len);
+ void batadv_tvlv_unicast_send(struct batadv_priv *bat_priv, const u8 *sr=
+c,
+ 			      const u8 *dst, u8 type, u8 version,
+ 			      void *tvlv_value, u16 tvlv_value_len);
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index 758cd797a063..ca9449ec9836 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -2335,6 +2335,12 @@ struct batadv_tvlv_handler {
+ 			       u8 *src, u8 *dst,
+ 			       void *tvlv_value, u16 tvlv_value_len);
+=20
++	/**
++	 * @mcast_handler: handler callback which is given the tvlv payload to
++	 *  process on incoming mcast packet
++	 */
++	int (*mcast_handler)(struct batadv_priv *bat_priv, struct sk_buff *skb)=
+;
++
+ 	/** @type: tvlv type this handler feels responsible for */
+ 	u8 type;
+=20
 --=20
 2.39.0
