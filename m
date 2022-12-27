@@ -1,115 +1,91 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51C016568EB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 27 Dec 2022 10:34:30 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4545F65698C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 27 Dec 2022 11:46:41 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3453484772;
-	Tue, 27 Dec 2022 10:34:29 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 32E94805D0;
+	Tue, 27 Dec 2022 11:46:40 +0100 (CET)
 Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2E27980381
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 27 Dec 2022 10:34:26 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3FB6A805D0
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 27 Dec 2022 11:46:37 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1672133666;
+	s=20121; t=1672137997;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=pYWaHxyEN/PchEFiT2RWcYA0hLlzJAJBqKCq4tBpAmE=;
-	b=fr2f6qK8xXx/XHIf7KGZbJDn0kmwGPJv0WHjv9rjWr0X4Rl7fDlU7golwfI1pHIOXvV7Lu
-	lYVeKxXg192+bc10OmRkNcuERxdXKF8ZBvUYgVmMI/cNH1z8ML+vMcYcq4gmsuD0/IgGhr
-	GHx9en58Xc5S0Zi3VP3YqgNp+HUjyHM=
+	bh=YKldcYCPUNt4XyV0glk3J5BI3TZrQuD7KRD/4K6B3qc=;
+	b=VS+wr2V0/mESKsfNvVj1T2qQghZZvhmfF4Op/pRNUtZ+IVAHHcdeLXpVzqH+FHpqaRUu2v
+	LXuNLUT3mEhhRaQ1J3EOGa0c2Ifv3Ai63HexQYk/38QRFlZvtTEeYWaaGwXekqiILZbVDm
+	LreMCgEOHXspSuEx3ASjBuyN/U+Tqiw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=PqIcBI63;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=o7Jm14ar;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672133666; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672137997; a=rsa-sha256;
 	cv=none;
-	b=AQuqenANTJksIPUiCqsoGgZ1LxAl3xcijMwMYe3fQoUP5Gg7X0uP2KOC+PJVm+fikaRx4E
-	RO6uURO1OzVtlSGCxJoot5zrMFpdR8xUoAKrMzbXQ8qccFDUinGAtuXDTprf+aYOYPHfLU
-	5pJAPqAxHoUtlf/fUj4Urreo1wNi0+U=
+	b=HDxCpRxDrg1wMbmoP3ZF2U1K7yzVxAjbNxq+NUOxJn7LB5Ab//NIecKhTwl2uSKC98gQ1g
+	YFIsCUf7/p1TzhRiCG3arT7Igp/YOt4r3FE+CXy3/YKqRYCZuv6aNiEOB7LoOQ/JGp9wut
+	/xneU05MKH1CMlSbQTXqm/mNlg0NDfM=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1672133665;
+	s=20121; t=1672137996;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=pYWaHxyEN/PchEFiT2RWcYA0hLlzJAJBqKCq4tBpAmE=;
-	b=PqIcBI631rEAlMzEu38VSSni3bHBj6zZMtgOfls9hzNOPpy1lNYlUDpEGJwWQ5KRdpJ0e/
-	WhydNHIaE/ql5u3nEaWQwmI/1l7PGj0zS+j2wEFeJPjDYZwlS0xV3Jzbfc/y2Upo23QuHe
-	MhNhXyBwe2Dye5fOFH05DDLOOd+3GcA=
+	bh=YKldcYCPUNt4XyV0glk3J5BI3TZrQuD7KRD/4K6B3qc=;
+	b=o7Jm14arRWn1P6ROPs41r4lDbDxR5fAaWNBkpo/NH9BwJWv31PlJSA652FmZYKnrbmH1pe
+	LTCAOma/WW6LY3e6WQY1kLaSVs09xWdisbMMOgjF4A2LajVhDGaRGQLrgd2MYWX8VnqAC7
+	zvDSdD0sX3V/O6MN1ErrbBmJDvCJCgo=
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Subject: Re: [PATCH v3 4/5] batman-adv: mcast: implement multicast packet generation
-Date: Tue, 27 Dec 2022 10:34:22 +0100
-Message-ID: <2042273.CQOukoFCf9@sven-l14>
-In-Reply-To: <20221226204237.10403-5-linus.luessing@c0d3.blue>
-References: <20221226204237.10403-1-linus.luessing@c0d3.blue> <20221226204237.10403-5-linus.luessing@c0d3.blue>
+Subject: Re: [PATCH v3 5/5] batman-adv: mcast: shrink tracker packet after scrubbing
+Date: Tue, 27 Dec 2022 11:46:30 +0100
+Message-ID: <3853699.MHq7AAxBmi@sven-l14>
+In-Reply-To: <20221226204237.10403-6-linus.luessing@c0d3.blue>
+References: <20221226204237.10403-1-linus.luessing@c0d3.blue> <20221226204237.10403-6-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart23108683.6Emhk5qWAg"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: IU6SZBJQWOXF24N3H5TDPAMCSM2MJWSV
-X-Message-ID-Hash: IU6SZBJQWOXF24N3H5TDPAMCSM2MJWSV
+Content-Type: multipart/signed; boundary="nextPart2083663.taCxCBeP46"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: YADQWKGIN7DLYIKHZTDCIJCKI4LEQLNR
+X-Message-ID-Hash: YADQWKGIN7DLYIKHZTDCIJCKI4LEQLNR
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IU6SZBJQWOXF24N3H5TDPAMCSM2MJWSV/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YADQWKGIN7DLYIKHZTDCIJCKI4LEQLNR/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart23108683.6Emhk5qWAg
+--nextPart2083663.taCxCBeP46
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
 From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Date: Tue, 27 Dec 2022 10:34:22 +0100
-Message-ID: <2042273.CQOukoFCf9@sven-l14>
-In-Reply-To: <20221226204237.10403-5-linus.luessing@c0d3.blue>
+Date: Tue, 27 Dec 2022 11:46:30 +0100
+Message-ID: <3853699.MHq7AAxBmi@sven-l14>
+In-Reply-To: <20221226204237.10403-6-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 
-On Monday, 26 December 2022 21:42:36 CET Linus L=FCssing wrote:
-> Implement the preparation of a batman-adv multicast packet and use this
-> under certain conditions.
->=20
-> For one thing this implements the capability to push a complete
-> batman-adv multicast packet header, including a tracker TVLV with all
-> originator destinations that have signaled interest in it, onto a given
-> ethernet frame with an IP multicast packet inside.
->=20
-> For another checks are implemented to determine if encapsulating a
-> multicast packet in this new batman-adv multicast packet type and using
-> it is feasible. Those checks are:
->=20
-> 1) Have all nodes signaled that they are capable of handling the new
->    batman-adv multicast packet type?
-> 2) Do all active hard interfaces of all nodes, including us, have an MTU
->    of at least 1280 bytes?
-> 3) Does a complete multicast packet header with all its destination
->    addresses fit onto the given multicast packet / ethernet frame and
->    does not exceed 1280 bytes?
->=20
-> If all checks passed then the new batman-adv multicast packet type will
-> be used for transmission and distribution. Otherwise we fall back to one =
-or
-> more batman-adv unicast packet transmissions, if possible. Or if not
-> possible we will fall back to classic flooding through a batman-adv
-> broadcast packet.
+On Monday, 26 December 2022 21:42:37 CET Linus L=FCssing wrote:
+> Remove all zero MAC address entries (00:00:00:00:00:00) from a multicast
+> packet's tracker TVLV before transmitting it and update all headers
+> accordingly. This way, instead of keeping the multicast packet at a
+> constant size throughout its journey through the mesh, it will become
+> more lightweight, smaller with every interested receiver on the way and
+> on each splitting intersection. Which can save some valuable bandwidth.
 >=20
 > Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
 > ---
->  net/batman-adv/multicast.c      |  79 ++++-
->  net/batman-adv/multicast.h      |  24 +-
->  net/batman-adv/multicast_forw.c | 511 ++++++++++++++++++++++++++++++++
->  net/batman-adv/soft-interface.c |   6 +-
->  net/batman-adv/types.h          |   6 +
->  5 files changed, 618 insertions(+), 8 deletions(-)
+>  net/batman-adv/multicast_forw.c | 212 ++++++++++++++++++++++++++++++++
+>  1 file changed, 212 insertions(+)
 
 ecsv/pu: checkpatch ./net/batman-adv/multicast_forw.c
 =2D----------------------------------------------------
@@ -119,7 +95,12 @@ ecsv/pu: checkpatch ./net/batman-adv/multicast_forw.c
     +#define batadv_mcast_forw_tracker_for_each_dest(dest, num_dests) \
     +   for (; num_dests; num_dests--, (dest) +=3D ETH_ALEN)
    =20
-    total: 0 errors, 0 warnings, 1 checks, 785 lines checked
+    CHECK: Macro argument reuse 'num_dests' - possible side-effects?
+    #38: FILE: ./net/batman-adv/multicast_forw.c:38:
+    +#define batadv_mcast_forw_tracker_for_each_dest_rev(dest, num_dests) \
+    +   for (; num_dests; num_dests--, (dest) -=3D ETH_ALEN)
+   =20
+    total: 0 errors, 0 warnings, 2 checks, 997 lines checked
 
 ecsv/pu: headers
 =2D---------------
@@ -140,33 +121,58 @@ ecsv/pu: headers
 ecsv/pu: kerneldoc ./net/batman-adv/multicast_forw.c
 =2D---------------------------------------------------
 
-    ./net/batman-adv/multicast_forw.c:83: warning: Function parameter or me=
+    ./net/batman-adv/multicast_forw.c:86: warning: Function parameter or me=
 mber 'bat_priv' not described in 'batadv_mcast_forw_push_dest'
-    ./net/batman-adv/multicast_forw.c:398: warning: Function parameter or m=
+    ./net/batman-adv/multicast_forw.c:401: warning: Function parameter or m=
 ember 'bat_priv' not described in 'batadv_mcast_forw_push_tvlvs'
+    ./net/batman-adv/multicast_forw.c:553: warning: Function parameter or m=
+ember 'num_dests_remove' not described in 'batadv_mcast_forw_shrink_align_o=
+ffset'
+    ./net/batman-adv/multicast_forw.c:553: warning: Excess function paramet=
+er 'num_dests_reduce' description in 'batadv_mcast_forw_shrink_align_offset'
+    ./net/batman-adv/multicast_forw.c:657: warning: Function parameter or m=
+ember 'num_dests_reduce' not described in 'batadv_mcast_forw_shrink_update_=
+headers'
+    ./net/batman-adv/multicast_forw.c:657: warning: Excess function paramet=
+er 'num_dest_reduce' description in 'batadv_mcast_forw_shrink_update_header=
+s'
 
---nextPart23108683.6Emhk5qWAg
+
+> +static int batadv_mcast_forw_shrink_align_offset(unsigned int num_dests_=
+old,
+> +						 unsigned int num_dests_remove)
+> +{
+> +	int ret =3D sizeof(((struct batadv_tvlv_mcast_tracker *)0)->align);
+
+
+sizeof_field from linux/stddef.h. Available there since v4.16. So you need =
+to have a compat code commit which introduces it for older kernels.
+
+Kind regards,
+	Sven
+
+--nextPart2083663.taCxCBeP46
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmOqvB8ACgkQXYcKB8Em
-e0bsOg//bi0YrgxRcbWyIFZEghNkyaRg/jgHTQzxhd6mg230ZNJ2Ne2x80Y7qURM
-Rw5THa5CF4j1coKFMITXS8V8Zy3QYGffPHqVeGthIaII8/aMZgryjdawnYgetnh6
-WEqjFH/qmo7bkeidHvUakia2NzyqJQ6dNfm/So0PponZVQikO50DGr7ERmEHElYN
-gN9iLN78ebAU5Bpfs2Nu3e7hLz/aYg4wchdeppTG1HMjPbTGYj7BjNl/qSLIGuHi
-Q0KYU7SJ+ZpfJ4IljLntwpL3xbVf2rh5SjTZiXRlZdnI6Vopk1DLzQgiYAZkElxI
-SDSr81988PK6pK3XCfDDFQnAzkhg4oqOetB4YzQShhFKNEpzTIM9ZLd4eSt3iUMS
-6KSOdgjjQvMclheez7nQLN7Exma5rWK+xGn7iN55NYBV/RC7aPr1iSFyqwqVDvXN
-conjR0Hwm7fXtNIm+tbjmPr8a3Zg4gJ7xYqLuW/IhvmSxBeOH/mWx0Aw/ntCJwCB
-97h3PRyfbGBE25q2W8y0LTARx0K+Pfkqb4Z0bEmWFOSvQkZvLhX0aSnrBCmXZgI0
-tboMs9Kp0D1WIhMcRbir6QegOYieie9uhF+q9079AdGI8eJM/jMsla5Q7B8OCJd8
-ti4QtcJQja+/EmotpINr6TWczwHNayoT9mf2kP/xB2MyokIghXU=
-=u7KQ
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmOqzQYACgkQXYcKB8Em
+e0ZULBAAm9cTHt6WAke2wW2fK60ZsXpQBsTZLXvEuszFjkEWihxLwVXqYu5nXLYX
+MdbXAyO9DXepbCrmZI7aJufKLZ7vx4buQJvcFS2y0cDJlJq+aM9mX7xzGl+ele4j
+YcGccqpRwqlRLDbzcgifOQWghtPbU8AoSVYcyyz3qhnC4b/n01s7delLzhcK+00v
+NbefpdWobPeY8fDrTmLHHpLV1uNjNVC/Ku72wlRlr2o4GwMNupcQP4dnE6spC9FJ
+wsKiziTXise5S4643hnjGTo9ubxBaQZsFLe8m1shcxh1kLk8sa00RnVAyX1RzsXL
+qo+ODJg2yylaIu4b7DS/5bHpjXORIuWD2VZq4kyUMZSwM4ZHfOyErTVEwwrtvPPJ
+fsdgJIL1T9ay7165UT2fPYMEyF9l0H0NLHSaaADXzkH0UnEVTMhCkfcOmdc4tT4S
+o6k7VpczDfB9j43S1TGmlp5iZfkKBzvDAhYAu20NEDoe4uG8Of5J4mdKuwMvhBq9
+M0aDNnXIBEJ1dcpj0j46qZ9EM0AMdEO+u0IxMnG9lPP3pZcutfHyJHIDdLf63IaI
+F3byAOwXeouS/wd9Q1KRdxqNPRv0GZYJxF62umSx6vkS59Bg6XxQU396NovkeCDp
+M5wiXbMFa3l6ls5eDIpBUxyzLgu335o6UR8kwjoA1Duv4D4I380=
+=JK59
 -----END PGP SIGNATURE-----
 
---nextPart23108683.6Emhk5qWAg--
+--nextPart2083663.taCxCBeP46--
 
 
