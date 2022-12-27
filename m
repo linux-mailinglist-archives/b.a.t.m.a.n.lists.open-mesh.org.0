@@ -2,341 +2,163 @@ Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 566DC656503
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 26 Dec 2022 21:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0101165681A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 27 Dec 2022 09:03:09 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C292184795;
-	Mon, 26 Dec 2022 21:42:57 +0100 (CET)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 688A184766
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 26 Dec 2022 21:42:52 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 95F91846CD;
+	Tue, 27 Dec 2022 09:03:07 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3689784093
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 27 Dec 2022 09:03:05 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1672087372;
+	s=20121; t=1672128185;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ef/SFvVK0YirxKHWDhKIO0DE+QSbaWP1aecp5zEgbDc=;
-	b=hSt21FSAUJO38tn+N9e5OTTHUnc/T5dM8K6hVwsfsMB7PCpsb48qEE5R+f1Gzo/Z7XMcZc
-	h/pFv8KZt4OjBPCSRKXA0s4I6AFUUDpnN/EYLNdQfMq04mxm3DTQSxl8L9XyL3NO1zoUqv
-	9rISjDhRmUCXmC739yvN3KnOb5vcIj4=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=BMT2JbbPoAqKheAaWApJvNJRtZjHJ0Ajfd6w9mlPgfU=;
+	b=UfNRtfKNhp6WukU7CE+qo5lFj7d3ZPJkD/CinywV+OJa0u7hM25vDNfIrvxRYkS9jkSaWR
+	Ra8s1LN+LaSQI1xYcYU6XeWOY8bKj/A4j2P0vQnloeyB0QHyCmnIEkPuEZe35Tg9zydsiY
+	Fzj4fP0wJjeRWwvT3ProV8pZMe4w+14=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	dmarc=none;
-	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672087372; a=rsa-sha256;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=QVsDXUG4;
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672128185; a=rsa-sha256;
 	cv=none;
-	b=wamQS0EmqLkkULnP0lEIvpAwtG1Eo7j5CLSFBsEGccJN3fY+Hdnzp3DvYzeMc9U9+0+p+b
-	hbQFPY6jkPpD6b09SGSR/nnamj82UXvbgqGsGBCe2lJwCOwAHxqQFX929lEcKUAVOFENdp
-	FI8/Kmmf8mjsGrTUI8bDDpbDAkcMkXU=
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C915A40A19;
-	Mon, 26 Dec 2022 21:42:51 +0100 (CET)
-From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+	b=xKN8MrXQjhQBi0JJpS4Wjkstc9r+Ng2fvRwkikQxHNZfy+0snVtq0Jh3WEIuVmF/XJ5+f7
+	oD06kuRCg0Cy6yih4raSDw10jJND2XyQOamkovvKh5pL8Hy3fLg3QOV6LLyEvk0UY9rzTK
+	LCtg2EcVvjoxjpHHR8GTZBoQUGQW53A=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1672128184;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=BMT2JbbPoAqKheAaWApJvNJRtZjHJ0Ajfd6w9mlPgfU=;
+	b=QVsDXUG4/dR87vXi/OtMmc6dTgsa/QeQzVUIvo7vCJBX4Ze78EgA5sHPCK7fpklkKrEl8d
+	MBKcZy8T4zhxLTxqjgYyd6aYbO8rZa9UEfQJxu7i6m2LaAThodcCBAb9DXUuC9+xDCG87v
+	2W3IohDNPNF8fwm5iOdVCacDbY0cYk4=
+From: Sven Eckelmann <sven@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH v3 5/5] batman-adv: mcast: shrink tracker packet after scrubbing
-Date: Mon, 26 Dec 2022 21:42:37 +0100
-Message-Id: <20221226204237.10403-6-linus.luessing@c0d3.blue>
-In-Reply-To: <20221226204237.10403-1-linus.luessing@c0d3.blue>
-References: <20221226204237.10403-1-linus.luessing@c0d3.blue>
+Cc: Sven Eckelmann <sven@narfation.org>
+Subject: batman-adv: Drop prandom.h includes
+Date: Tue, 27 Dec 2022 09:03:00 +0100
+Message-Id: <20221227080301.516810-1-sven@narfation.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Last-TLS-Session-Version: TLSv1.3
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 24MTGXQT5J33I7X6OFZRDKQTNVWVJ6Q5
-X-Message-ID-Hash: 24MTGXQT5J33I7X6OFZRDKQTNVWVJ6Q5
-X-MailFrom: linus.luessing@c0d3.blue
+Message-ID-Hash: Y33IHXIEAINWHG73CLW5RIMMBXBM3IIU
+X-Message-ID-Hash: Y33IHXIEAINWHG73CLW5RIMMBXBM3IIU
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/24MTGXQT5J33I7X6OFZRDKQTNVWVJ6Q5/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Y33IHXIEAINWHG73CLW5RIMMBXBM3IIU/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Remove all zero MAC address entries (00:00:00:00:00:00) from a multicast
-packet's tracker TVLV before transmitting it and update all headers
-accordingly. This way, instead of keeping the multicast packet at a
-constant size throughout its journey through the mesh, it will become
-more lightweight, smaller with every interested receiver on the way and
-on each splitting intersection. Which can save some valuable bandwidth.
+The commit a15d3f3c1c2a ("batman-adv: use get_random_u32_below() instead =
+of
+deprecated function") replaced the prandom.h function prandom_u32_max wit=
+h
+the random.h function get_random_u32_below. There is no need to still
+include prandom.h.
 
-Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
----
- net/batman-adv/multicast_forw.c | 212 ++++++++++++++++++++++++++++++++
- 1 file changed, 212 insertions(+)
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
 
-diff --git a/net/batman-adv/multicast_forw.c b/net/batman-adv/multicast_f=
-orw.c
-index 9637c8fa4577..af4a7fd61352 100644
---- a/net/batman-adv/multicast_forw.c
-+++ b/net/batman-adv/multicast_forw.c
-@@ -35,6 +35,9 @@
- #define batadv_mcast_forw_tracker_for_each_dest(dest, num_dests) \
- 	for (; num_dests; num_dests--, (dest) +=3D ETH_ALEN)
-=20
-+#define batadv_mcast_forw_tracker_for_each_dest_rev(dest, num_dests) \
-+	for (; num_dests; num_dests--, (dest) -=3D ETH_ALEN)
-+
- /**
-  * batadv_mcast_forw_orig_entry() - get orig_node from an hlist node
-  * @node: the hlist node to get the orig_node from
-@@ -529,6 +532,214 @@ batadv_mcast_forw_scrub_dests(struct batadv_priv *b=
-at_priv,
- 	}
- }
-=20
-+/**
-+ * batadv_mcast_forw_shrink_align_offset() - calculate alignment offset
-+ * @num_dests_old: the number of destinations the tracker TVLV had origi=
-nally
-+ * @num_dests_reduce: the number of destinations that are going to be re=
-moved
-+ *
-+ * The multicast tracker TVLV has 2 alignment bytes if the number of des=
-tination
-+ * entries are even, to make this TVLV 4 byte aligned to make the encaps=
-ulated
-+ * IP packet 4 byte aligned. And no alignment bytes in the tracker TVLV =
-if the
-+ * number of destinations is odd.
-+ *
-+ * This calculates if the 2 alignment bytes in the multicast tracker TVL=
-V need
-+ * to be added, removed or left unchanged.
-+ *
-+ * Return: The number of extra offset in skb tail direction to compensat=
-e for
-+ * alignment. Will be -2, 0 or +2.
-+ */
-+static int batadv_mcast_forw_shrink_align_offset(unsigned int num_dests_=
-old,
-+						 unsigned int num_dests_remove)
-+{
-+	int ret =3D sizeof(((struct batadv_tvlv_mcast_tracker *)0)->align);
-+
-+	/* no change in padding */
-+	if (!(num_dests_remove % 2))
-+		return 0;
-+
-+	/* even had padding, remove it, increase the offset */
-+	if (!(num_dests_old % 2))
-+		return ret;
-+	/* odd had no padding, add it, decrease the offset */
-+	else
-+		return -ret;
-+}
-+
-+/**
-+ * batadv_mcast_forw_shrink_pack_dests() - pack destinations of a tracke=
-r TVLV
-+ * @skb: the batman-adv multicast packet to compact destinations in
-+ *
-+ * Compacts the originator destination MAC addresses in the multicast tr=
-acker
-+ * TVLV of the given multicast packet. This is done by moving all non-ze=
-ro
-+ * MAC addresses in direction of the skb tail and all zero MAC addresses=
- in skb
-+ * head direction, within the multicast tracker TVLV.
-+ *
-+ * Return: The number of consecutive zero MAC address destinations which=
- are
-+ * now at the front within the multicast tracker TVLV.
-+ */
-+static int batadv_mcast_forw_shrink_pack_dests(struct sk_buff *skb)
-+{
-+	struct batadv_tvlv_mcast_tracker *mcast_tracker;
-+	u16 num_dests_slot, num_dests_filler;
-+	unsigned int tracker_hdrlen;
-+	unsigned char *skb_net_hdr;
-+	u8 *slot, *filler;
-+
-+	skb_net_hdr =3D skb_network_header(skb);
-+	mcast_tracker =3D (struct batadv_tvlv_mcast_tracker *)skb_net_hdr;
-+	num_dests_slot =3D ntohs(mcast_tracker->num_dests);
-+
-+	tracker_hdrlen =3D batadv_mcast_forw_tracker_hdrlen(num_dests_slot);
-+	slot =3D (u8 *)mcast_tracker + tracker_hdrlen;
-+	slot +=3D ETH_ALEN * (num_dests_slot - 1);
-+
-+	if (!num_dests_slot)
-+		return 0;
-+
-+	num_dests_filler =3D num_dests_slot - 1;
-+	filler =3D slot - ETH_ALEN;
-+
-+	batadv_mcast_forw_tracker_for_each_dest_rev(slot, num_dests_slot) {
-+		/* find an empty slot */
-+		if (!is_zero_ether_addr(slot))
-+			continue;
-+
-+		/* keep filler ahead of slot */
-+		if (filler >=3D slot) {
-+			num_dests_filler =3D num_dests_slot - 1;
-+			filler =3D slot - ETH_ALEN;
-+		}
-+
-+		/* find a candidate to fill the empty slot */
-+		batadv_mcast_forw_tracker_for_each_dest_rev(filler,
-+							    num_dests_filler) {
-+			if (is_zero_ether_addr(filler))
-+				continue;
-+
-+			ether_addr_copy(slot, filler);
-+			eth_zero_addr(filler);
-+			goto cont_next_slot;
-+		}
-+
-+		/* could not find a filler, we can stop
-+		 * - and must not advance the slot pointer!
-+		 */
-+		if (!num_dests_filler)
-+			break;
-+
-+cont_next_slot:
-+		continue;
-+	}
-+
-+	 /* num_dests_slot is the amount of reduced destinations */
-+	return num_dests_slot;
-+}
-+
-+/**
-+ * batadv_mcast_forw_shrink_update_headers() - update shrunk mc packet h=
-eaders
-+ * @skb: the batman-adv multicast packet to update headers of
-+ * @num_dest_reduce: the number of destinations that were removed
-+ *
-+ * This updates any fields of a batman-adv multicast packet that are aff=
-ected
-+ * by the reduced number of destinations in the multicast tracket TVLV. =
-In
-+ * particular this updates:
-+ *
-+ * The num_dest field of the multicast tracker TVLV.
-+ * The TVLV length field of the according generic TVLV header.
-+ * The batman-adv multicast packet's total TVLV length field.
-+ *
-+ * Return: The offset in skb's tail direction at which the new batman-ad=
-v
-+ * multicast packet header needs to start.
-+ */
-+static unsigned int
-+batadv_mcast_forw_shrink_update_headers(struct sk_buff *skb,
-+					unsigned int num_dests_reduce)
-+{
-+	struct batadv_tvlv_mcast_tracker *mcast_tracker;
-+	struct batadv_mcast_packet *mcast_packet;
-+	struct batadv_tvlv_hdr *tvlv_hdr;
-+	unsigned char *skb_net_hdr;
-+	unsigned int offset;
-+	int align_offset;
-+	u16 num_dests;
-+
-+	skb_net_hdr =3D skb_network_header(skb);
-+	mcast_tracker =3D (struct batadv_tvlv_mcast_tracker *)skb_net_hdr;
-+	num_dests =3D ntohs(mcast_tracker->num_dests);
-+
-+	align_offset =3D batadv_mcast_forw_shrink_align_offset(num_dests,
-+							     num_dests_reduce);
-+	num_dests -=3D num_dests_reduce;
-+	offset =3D ETH_ALEN * num_dests_reduce + align_offset;
-+
-+	/* update tracker header */
-+	mcast_tracker->num_dests =3D htons(num_dests);
-+	/* align field is already zero'd due to previous eth_zero_addr() call *=
-/
-+
-+	/* update tracker's tvlv header's length field */
-+	tvlv_hdr =3D (struct batadv_tvlv_hdr *)(skb_network_header(skb) -
-+					      sizeof(*tvlv_hdr));
-+	tvlv_hdr->len =3D htons(ntohs(tvlv_hdr->len) - offset);
-+
-+	/* update multicast packet header's tvlv length field */
-+	mcast_packet =3D (struct batadv_mcast_packet *)skb->data;
-+	mcast_packet->tvlv_len =3D htons(ntohs(mcast_packet->tvlv_len) - offset=
-);
-+
-+	return offset;
-+}
-+
-+/**
-+ * batadv_mcast_forw_shrink_move_headers() - move multicast headers by o=
-ffset
-+ * @skb: the batman-adv multicast packet to move headers for
-+ * @offset: a non-negative offset to move headers by, towards the skb ta=
-il
-+ *
-+ * Moves the batman-adv multicast packet header, its multicast tracker T=
-VLV and
-+ * any TVLVs in between by the given offset in direction towards the tai=
-l.
-+ *
-+ * It also invalidates the skb checksum.
-+ */
-+static void
-+batadv_mcast_forw_shrink_move_headers(struct sk_buff *skb, unsigned int =
-offset)
-+{
-+	struct batadv_tvlv_mcast_tracker *mcast_tracker;
-+	unsigned int tracker_hdrlen, len;
-+	unsigned char *skb_net_hdr;
-+	u16 num_dests;
-+
-+	skb_net_hdr =3D skb_network_header(skb);
-+	mcast_tracker =3D (struct batadv_tvlv_mcast_tracker *)skb_net_hdr;
-+	num_dests =3D ntohs(mcast_tracker->num_dests);
-+	tracker_hdrlen =3D batadv_mcast_forw_tracker_hdrlen(num_dests);
-+	len =3D skb_network_offset(skb) + tracker_hdrlen;
-+
-+	memmove(skb->data + offset, skb->data, len);
-+	skb_pull(skb, offset);
-+
-+	/* invalidate checksum: */
-+	skb->ip_summed =3D CHECKSUM_NONE;
-+}
-+
-+/**
-+ * batadv_mcast_forw_shrink_tracker() - remove zero addresses in a track=
-er tvlv
-+ * @skb: the batman-adv multicast packet to (potentially) shrink
-+ *
-+ * Removes all destinations with a zero MAC addresses (00:00:00:00:00:00=
-) from
-+ * the given batman-adv multicast packet's tracker TVLV and updates head=
-ers
-+ * accordingly to maintain a valid batman-adv multicast packet.
-+ */
-+static void batadv_mcast_forw_shrink_tracker(struct sk_buff *skb)
-+{
-+	u16 dests_reduced;
-+	unsigned int offset;
-+
-+	dests_reduced =3D batadv_mcast_forw_shrink_pack_dests(skb);
-+	if (!dests_reduced)
-+		return;
-+
-+	offset =3D batadv_mcast_forw_shrink_update_headers(skb, dests_reduced);
-+	batadv_mcast_forw_shrink_move_headers(skb, offset);
-+}
-+
- /**
-  * batadv_mcast_forw_packet() - forward a batman-adv multicast packet
-  * @bat_priv: the bat priv with all the soft interface information
-@@ -613,6 +824,7 @@ static int batadv_mcast_forw_packet(struct batadv_pri=
-v *bat_priv,
-=20
- 		batadv_mcast_forw_scrub_dests(bat_priv, neigh_node, dest,
- 					      next_dest, num_dests);
-+		batadv_mcast_forw_shrink_tracker(nexthop_skb);
-=20
- 		batadv_inc_counter(bat_priv, BATADV_CNT_MCAST_TX);
- 		batadv_add_counter(bat_priv, BATADV_CNT_MCAST_TX_BYTES,
---=20
-2.39.0
+diff --git a/compat-include/linux/prandom.h b/compat-include/linux/prando=
+m.h
+deleted file mode 100644
+index dc227e61f95167a86432e862796db7905f7034c2..0000000000000000000000000=
+000000000000000
+--- a/compat-include/linux/prandom.h
++++ /dev/null
+@@ -1,25 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-/* Copyright (C) B.A.T.M.A.N. contributors:
+- *
+- * Marek Lindner, Simon Wunderlich
+- *
+- * This file contains macros for maintaining compatibility with older ve=
+rsions
+- * of the Linux kernel.
+- */
+-
+-#ifndef _NET_BATMAN_ADV_COMPAT_LINUX_PRANDOM_H_
+-#define _NET_BATMAN_ADV_COMPAT_LINUX_PRANDOM_H_
+-
+-#include <linux/version.h>
+-#if LINUX_VERSION_IS_GEQ(5, 8, 1) || \
+-    (LINUX_VERSION_IS_GEQ(4, 9, 233) && LINUX_VERSION_IS_LESS(4, 10, 0))=
+ || \
+-    (LINUX_VERSION_IS_GEQ(4, 14, 193) && LINUX_VERSION_IS_LESS(4, 15, 0)=
+) || \
+-    (LINUX_VERSION_IS_GEQ(4, 19, 138) && LINUX_VERSION_IS_LESS(4, 20, 0)=
+) || \
+-    (LINUX_VERSION_IS_GEQ(5, 4, 57) && LINUX_VERSION_IS_LESS(5, 5, 0)) |=
+| \
+-    (LINUX_VERSION_IS_GEQ(5, 7, 14) && LINUX_VERSION_IS_LESS(5, 8, 0))
+-#include_next <linux/prandom.h>
+-#else
+-#include <linux/random.h>
+-#endif
+-
+-#endif /* _NET_BATMAN_ADV_COMPAT_LINUX_PRANDOM_H_ */
+diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
+index 114ee5da261f4410d207a76a357163aad6d1783f..828fb393ee94a31e8715b0b15=
+7b4c39b6337b19d 100644
+--- a/net/batman-adv/bat_iv_ogm.c
++++ b/net/batman-adv/bat_iv_ogm.c
+@@ -27,7 +27,6 @@
+ #include <linux/netdevice.h>
+ #include <linux/netlink.h>
+ #include <linux/pkt_sched.h>
+-#include <linux/prandom.h>
+ #include <linux/printk.h>
+ #include <linux/random.h>
+ #include <linux/rculist.h>
+diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
+index f9a58fb5442efc051e6f1bad6814f269752b7de7..acff565849ae91f4c0cf54d72=
+99ed76ecb2c6ced 100644
+--- a/net/batman-adv/bat_v_elp.c
++++ b/net/batman-adv/bat_v_elp.c
+@@ -21,7 +21,6 @@
+ #include <linux/minmax.h>
+ #include <linux/netdevice.h>
+ #include <linux/nl80211.h>
+-#include <linux/prandom.h>
+ #include <linux/random.h>
+ #include <linux/rculist.h>
+ #include <linux/rcupdate.h>
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index addfd8c4fe959e269b16e2f35b1299354ff4aea2..96e027364dddd30472fed8fe7=
+e0a3aaa5cc8cda1 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -21,7 +21,6 @@
+ #include <linux/minmax.h>
+ #include <linux/mutex.h>
+ #include <linux/netdevice.h>
+-#include <linux/prandom.h>
+ #include <linux/random.h>
+ #include <linux/rculist.h>
+ #include <linux/rcupdate.h>
+diff --git a/net/batman-adv/network-coding.c b/net/batman-adv/network-cod=
+ing.c
+index bf29fba4dde5940ad03b6ed925257cdd825f57e4..5e1f422b3a94b119746a6b3b5=
+cf64182951e8eb3 100644
+--- a/net/batman-adv/network-coding.c
++++ b/net/batman-adv/network-coding.c
+@@ -25,7 +25,6 @@
+ #include <linux/lockdep.h>
+ #include <linux/net.h>
+ #include <linux/netdevice.h>
+-#include <linux/prandom.h>
+ #include <linux/printk.h>
+ #include <linux/rculist.h>
+ #include <linux/rcupdate.h>
