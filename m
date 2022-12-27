@@ -1,858 +1,975 @@
 Return-Path: <b.a.t.m.a.n-bounces@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6891656E5F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 27 Dec 2022 20:34:36 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C71656E60
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 27 Dec 2022 20:34:44 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 37FF7847DE;
-	Tue, 27 Dec 2022 20:34:24 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7FF16847EA;
+	Tue, 27 Dec 2022 20:34:26 +0100 (CET)
 Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id EAD9C847C4
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 27 Dec 2022 20:34:19 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 66ECE847D6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 27 Dec 2022 20:34:21 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1672169660;
+	s=20121; t=1672169661;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=P1ej9wkqLvJRC/2bCJ8nWI3g1SqL5q2U2rBmunepPFY=;
-	b=2QaIHMcDK77mgs8a7TmFFZCIc/fPftYLTjwlgeMeFxmF84XBwG76hyrVY+1qUYnSnCYkki
-	etnMZaT/doqxAgwTi/wychk7VZXbcB0aFcyBolg/KPVfdxzIdq4xDkYTcwIS87RjOH/t9P
-	HO8FglWm8wtGTSd8Xmr/v14gPzR3oz8=
+	bh=EDBT2MsGh/1tUnOpcqFFBkEdzpAqrOM9hrIYLLacAhk=;
+	b=2NHsbkC4SUuBB+S+cAx5e+ZFr01lnxW6seddn1h164X/EwsXzv0Db6F06fmzfQCLSIq9/Q
+	gonqeMuwf3P9VDrHUl0tCPbIW9Ey9diSxMRZUJAetcWYE+7NBWFqOBn/aTx0TuL33JJWW8
+	4CaAY1dA8m78QVSf8xxvWDg1ZQGL5Eo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	dmarc=none;
 	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no SPF policy when checking 116.203.183.178) smtp.mailfrom=linus.luessing@c0d3.blue
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672169660; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1672169661; a=rsa-sha256;
 	cv=none;
-	b=Oz7I9XWOTE62yFuaYa5wlPeexE7PVTpkOmpsh+cLsYSrkMokl3SwK6TSbNvRJ6pAzc+Y6y
-	TEg848csXlFLCqGzOeXTLqP3ONnHaMCbIXiYg9KAlBk+OsUju+thFM31JtmMDbzP2Czxt2
-	57a0+02Cjm9QygpBXu8sa3DCjWj9Hbs=
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5C9D13EC76;
-	Tue, 27 Dec 2022 20:34:19 +0100 (CET)
+	b=sMSoGcBcwZTgDOZbf5LSTUY1j9jM0gCVjibTxYLQuBJgmDA08BvvGDlp3ZYRqiOEp0cmOZ
+	CX0Gm56TdtbwDO1G8xqmTia4JOxR4hKYzDmTSkSkV0dmt961QB2MpLYQ9FQJcslvQg0+Px
+	gr3uc40XmLi1WFBJRk9rBctmozlkMrM=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CF9EC3EC76;
+	Tue, 27 Dec 2022 20:34:20 +0100 (CET)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH v4 3/5] batman-adv: mcast: implement multicast packet reception and forwarding
-Date: Tue, 27 Dec 2022 20:34:07 +0100
-Message-Id: <20221227193409.13461-4-linus.luessing@c0d3.blue>
+Subject: [PATCH v4 4/5] batman-adv: mcast: implement multicast packet generation
+Date: Tue, 27 Dec 2022 20:34:08 +0100
+Message-Id: <20221227193409.13461-5-linus.luessing@c0d3.blue>
 In-Reply-To: <20221227193409.13461-1-linus.luessing@c0d3.blue>
 References: <20221227193409.13461-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 X-Last-TLS-Session-Version: TLSv1.3
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: YJRQYIUZYAS4F73X2P6F6G67BYLRSZS4
-X-Message-ID-Hash: YJRQYIUZYAS4F73X2P6F6G67BYLRSZS4
+Message-ID-Hash: AXRIQV4ARRSDMBPEXTD7HCMPDIG3I2XJ
+X-Message-ID-Hash: AXRIQV4ARRSDMBPEXTD7HCMPDIG3I2XJ
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header
 X-Mailman-Version: 3.2.1
 Precedence: list
 Reply-To: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n@lists.open-mesh.org>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YJRQYIUZYAS4F73X2P6F6G67BYLRSZS4/>
+Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AXRIQV4ARRSDMBPEXTD7HCMPDIG3I2XJ/>
 List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Implement functionality to receive and forward a new TVLV capable
-multicast packet type.
+Implement the preparation of a batman-adv multicast packet and use this
+under certain conditions.
 
-The new batman-adv multicast packet type allows to contain several
-originator destination addresses within a TVLV. Routers on the way will
-potentially split the batman-adv multicast packet and adjust its tracker
-TVLV contents.
+For one thing this implements the capability to push a complete
+batman-adv multicast packet header, including a tracker TVLV with all
+originator destinations that have signaled interest in it, onto a given
+ethernet frame with an IP multicast packet inside.
 
-Routing decisions are still based on the selected BATMAN IV or BATMAN V
-routing algorithm. So this new batman-adv multicast packet type retains
-the same loop-free properties.
+For another checks are implemented to determine if encapsulating a
+multicast packet in this new batman-adv multicast packet type and using
+it is feasible. Those checks are:
 
-Also a new OGM multicast TVLV flag is introduced to signal to other
-nodes that we are capable of handling a batman-adv multicast packet and
-multicast tracker TVLV. And that all of our hard interfaces have an MTU
-of at least 1280 bytes (IPv6 minimum MTU), as a simple solution for now
-to avoid MTU issues while forwarding.
+1) Have all nodes signaled that they are capable of handling the new
+   batman-adv multicast packet type?
+2) Do all active hard interfaces of all nodes, including us, have an MTU
+   of at least 1280 bytes?
+3) Does a complete multicast packet header with all its destination
+   addresses fit onto the given multicast packet / ethernet frame and
+   does not exceed 1280 bytes?
+
+If all checks passed then the new batman-adv multicast packet type will
+be used for transmission and distribution. Otherwise we fall back to one =
+or
+more batman-adv unicast packet transmissions, if possible. Or if not
+possible we will fall back to classic flooding through a batman-adv
+broadcast packet.
 
 Signed-off-by: Linus L=C3=BCssing <linus.luessing@c0d3.blue>
 ---
- include/uapi/linux/batadv_packet.h |  48 ++++-
- net/batman-adv/Makefile            |   1 +
- net/batman-adv/main.c              |   2 +
- net/batman-adv/multicast.c         |  48 ++++-
- net/batman-adv/multicast.h         |   5 +
- net/batman-adv/multicast_forw.c    | 274 +++++++++++++++++++++++++++++
- net/batman-adv/originator.c        |   1 +
- net/batman-adv/routing.c           |  68 +++++++
- net/batman-adv/routing.h           |  11 ++
- net/batman-adv/soft-interface.c    |  12 ++
- net/batman-adv/types.h             |  64 +++++++
- 11 files changed, 523 insertions(+), 11 deletions(-)
- create mode 100644 net/batman-adv/multicast_forw.c
+ net/batman-adv/multicast.c      |  79 ++++-
+ net/batman-adv/multicast.h      |  25 +-
+ net/batman-adv/multicast_forw.c | 513 ++++++++++++++++++++++++++++++++
+ net/batman-adv/soft-interface.c |   6 +-
+ net/batman-adv/types.h          |   6 +
+ 5 files changed, 621 insertions(+), 8 deletions(-)
 
-diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/bata=
-dv_packet.h
-index 9204e4494b25..77021519cd26 100644
---- a/include/uapi/linux/batadv_packet.h
-+++ b/include/uapi/linux/batadv_packet.h
-@@ -116,6 +116,9 @@ enum batadv_icmp_packettype {
-  * only need routable IPv4 multicast packets we signed up for explicitly
-  * @BATADV_MCAST_WANT_NO_RTR6: we have no IPv6 multicast router and ther=
-efore
-  * only need routable IPv6 multicast packets we signed up for explicitly
-+ * @BATADV_MCAST_HAVE_MC_PTYPE_CAPA: we can parse, receive and forward
-+ * batman-adv multicast packets with a multicast tracker TVLV. And all o=
-ur
-+ * hard interfaces have an MTU of at least 1280 bytes.
-  */
- enum batadv_mcast_flags {
- 	BATADV_MCAST_WANT_ALL_UNSNOOPABLES	=3D 1UL << 0,
-@@ -123,6 +126,7 @@ enum batadv_mcast_flags {
- 	BATADV_MCAST_WANT_ALL_IPV6		=3D 1UL << 2,
- 	BATADV_MCAST_WANT_NO_RTR4		=3D 1UL << 3,
- 	BATADV_MCAST_WANT_NO_RTR6		=3D 1UL << 4,
-+	BATADV_MCAST_HAVE_MC_PTYPE_CAPA		=3D 1UL << 5,
- };
-=20
- /* tt data subtypes */
-@@ -174,14 +178,16 @@ enum batadv_bla_claimframe {
-  * @BATADV_TVLV_TT: translation table tvlv
-  * @BATADV_TVLV_ROAM: roaming advertisement tvlv
-  * @BATADV_TVLV_MCAST: multicast capability tvlv
-+ * @BATADV_TVLV_MCAST_TRACKER: multicast tracker tvlv
-  */
- enum batadv_tvlv_type {
--	BATADV_TVLV_GW		=3D 0x01,
--	BATADV_TVLV_DAT		=3D 0x02,
--	BATADV_TVLV_NC		=3D 0x03,
--	BATADV_TVLV_TT		=3D 0x04,
--	BATADV_TVLV_ROAM	=3D 0x05,
--	BATADV_TVLV_MCAST	=3D 0x06,
-+	BATADV_TVLV_GW			=3D 0x01,
-+	BATADV_TVLV_DAT			=3D 0x02,
-+	BATADV_TVLV_NC			=3D 0x03,
-+	BATADV_TVLV_TT			=3D 0x04,
-+	BATADV_TVLV_ROAM		=3D 0x05,
-+	BATADV_TVLV_MCAST		=3D 0x06,
-+	BATADV_TVLV_MCAST_TRACKER	=3D 0x07,
- };
-=20
- #pragma pack(2)
-@@ -487,6 +493,25 @@ struct batadv_bcast_packet {
- 	 */
- };
-=20
-+/**
-+ * struct batadv_mcast_packet - multicast packet for network payload
-+ * @packet_type: batman-adv packet type, part of the general header
-+ * @version: batman-adv protocol version, part of the general header
-+ * @ttl: time to live for this packet, part of the general header
-+ * @reserved: reserved byte for alignment
-+ * @tvlv_len: length of the appended tvlv buffer (in bytes)
-+ */
-+struct batadv_mcast_packet {
-+	__u8 packet_type;
-+	__u8 version;
-+	__u8 ttl;
-+	__u8 reserved;
-+	__be16 tvlv_len;
-+	/* "4 bytes boundary + 2 bytes" long to make the payload after the
-+	 * following ethernet header again 4 bytes boundary aligned
-+	 */
-+};
-+
- /**
-  * struct batadv_coded_packet - network coded packet
-  * @packet_type: batman-adv packet type, part of the general header
-@@ -628,6 +653,17 @@ struct batadv_tvlv_mcast_data {
- 	__u8 reserved[3];
- };
-=20
-+/**
-+ * struct batadv_tvlv_mcast_tracker - payload of a multicast tracker tvl=
-v
-+ * @num_dests: number of subsequent destination originator MAC addresses
-+ * @align: (optional) alignment bytes to make the tracker TVLV 4 bytes a=
-ligned,
-+ * present if num_dests are even, not present if odd
-+ */
-+struct batadv_tvlv_mcast_tracker {
-+	__be16	num_dests;
-+	__u8	align[2];
-+};
-+
- #pragma pack()
-=20
- #endif /* _UAPI_LINUX_BATADV_PACKET_H_ */
-diff --git a/net/batman-adv/Makefile b/net/batman-adv/Makefile
-index 3bd0760c76a2..b51d8b071b56 100644
---- a/net/batman-adv/Makefile
-+++ b/net/batman-adv/Makefile
-@@ -20,6 +20,7 @@ batman-adv-y +=3D hash.o
- batman-adv-$(CONFIG_BATMAN_ADV_DEBUG) +=3D log.o
- batman-adv-y +=3D main.o
- batman-adv-$(CONFIG_BATMAN_ADV_MCAST) +=3D multicast.o
-+batman-adv-$(CONFIG_BATMAN_ADV_MCAST) +=3D multicast_forw.o
- batman-adv-y +=3D netlink.o
- batman-adv-$(CONFIG_BATMAN_ADV_NC) +=3D network-coding.o
- batman-adv-y +=3D originator.o
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index e8a449915566..50b2bf2b748c 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -532,6 +532,8 @@ static void batadv_recv_handler_init(void)
-=20
- 	/* broadcast packet */
- 	batadv_rx_handler[BATADV_BCAST] =3D batadv_recv_bcast_packet;
-+	/* multicast packet */
-+	batadv_rx_handler[BATADV_MCAST] =3D batadv_recv_mcast_packet;
-=20
- 	/* unicast packets ... */
- 	/* unicast with 4 addresses packet */
 diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index 27511a063311..f2b1e523fd85 100644
+index f2b1e523fd85..d74cb96896e9 100644
 --- a/net/batman-adv/multicast.c
 +++ b/net/batman-adv/multicast.c
-@@ -243,6 +243,37 @@ static u8 batadv_mcast_mla_rtr_flags_get(struct bata=
-dv_priv *bat_priv,
- 	return flags;
+@@ -1177,17 +1177,62 @@ static int batadv_mcast_forw_rtr_count(struct bat=
+adv_priv *bat_priv,
+ 	}
  }
 =20
 +/**
-+ * batadv_mcast_mla_forw_flags_get() - get multicast forwarding flags
++ * batadv_mcast_forw_mode_by_count() - get forwarding mode by count
 + * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the multicast packet to check
++ * @vid: the vlan identifier
++ * @is_routable: stores whether the destination is routable
++ * @count: the number of originators the multicast packet need to be sen=
+t to
 + *
-+ * Checks if all active hard interfaces have an MTU larger or equal to 1=
-280
-+ * bytes (IPv6 minimum MTU).
++ * For a multicast packet with multiple destination originators, checks =
+which
++ * mode to use. For BATADV_FORW_MCAST it also encapsulates the packet wi=
+th a
++ * complete batman-adv multicast header.
 + *
-+ * Return: BATADV_MCAST_HAVE_MC_PTYPE_CAPA if yes, BATADV_NO_FLAGS other=
-wise.
++ * Return:
++ *	BATADV_FORW_MCAST: If all nodes have multicast packet routing
++ *	capabilities and an MTU >=3D 1280 on all hard interfaces (including u=
+s)
++ *	and the encapsulated multicast packet with all destination addresses
++ *	would still fit into an 1280 bytes batman-adv multicast packet
++ *	(excluding the outter ethernet frame) and we could successfully push
++ *	the full batman-adv multicast packet header.
++ *	BATADV_FORW_UCASTS: If the packet cannot be sent in a batman-adv
++ *	multicast packet and the amount of batman-adv unicast packets needed
++ *	is smaller or equal to the configured multicast fanout.
++ *	BATADV_FORW_BCAST: Otherwise.
 + */
-+static u8 batadv_mcast_mla_forw_flags_get(struct batadv_priv *bat_priv)
++static enum batadv_forw_mode
++batadv_mcast_forw_mode_by_count(struct batadv_priv *bat_priv,
++				struct sk_buff *skb, unsigned short vid,
++				int is_routable, int count)
 +{
-+	const struct batadv_hard_iface *hard_iface;
++	unsigned int mcast_hdrlen =3D batadv_mcast_forw_packet_hdrlen(count);
++	u8 own_tvlv_flags =3D bat_priv->mcast.mla_flags.tvlv_flags;
 +
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(hard_iface, &batadv_hardif_list, list) {
-+		if (hard_iface->if_status !=3D BATADV_IF_ACTIVE)
-+			continue;
++	if (!atomic_read(&bat_priv->mcast.num_no_mc_ptype_capa) &&
++	    own_tvlv_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA &&
++	    skb->len + mcast_hdrlen <=3D IPV6_MIN_MTU &&
++	    batadv_mcast_forw_push(bat_priv, skb, vid, is_routable))
++		return BATADV_FORW_MCAST;
 +
-+		if (hard_iface->soft_iface !=3D bat_priv->soft_iface)
-+			continue;
++	if (count <=3D atomic_read(&bat_priv->multicast_fanout))
++		return BATADV_FORW_UCASTS;
 +
-+		if (hard_iface->net_dev->mtu < IPV6_MIN_MTU) {
-+			rcu_read_unlock();
-+			return BATADV_NO_FLAGS;
-+		}
-+	}
-+	rcu_read_unlock();
-+
-+	return BATADV_MCAST_HAVE_MC_PTYPE_CAPA;
++	return BATADV_FORW_BCAST;
 +}
 +
  /**
-  * batadv_mcast_mla_flags_get() - get the new multicast flags
+  * batadv_mcast_forw_mode() - check on how to forward a multicast packet
   * @bat_priv: the bat priv with all the soft interface information
-@@ -264,6 +295,7 @@ batadv_mcast_mla_flags_get(struct batadv_priv *bat_pr=
-iv)
- 	mla_flags.enabled =3D 1;
- 	mla_flags.tvlv_flags |=3D batadv_mcast_mla_rtr_flags_get(bat_priv,
- 							       bridge);
-+	mla_flags.tvlv_flags |=3D batadv_mcast_mla_forw_flags_get(bat_priv);
-=20
- 	if (!bridge)
- 		return mla_flags;
-@@ -814,23 +846,25 @@ static void batadv_mcast_flags_log(struct batadv_pr=
-iv *bat_priv, u8 flags)
+  * @skb: the multicast packet to check
++ * @vid: the vlan identifier
+  * @is_routable: stores whether the destination is routable
+  *
+  * Return: The forwarding mode as enum batadv_forw_mode.
+  */
+ enum batadv_forw_mode
+ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
+,
+-		       int *is_routable)
++		       unsigned short vid, int *is_routable)
  {
- 	bool old_enabled =3D bat_priv->mcast.mla_flags.enabled;
- 	u8 old_flags =3D bat_priv->mcast.mla_flags.tvlv_flags;
--	char str_old_flags[] =3D "[.... . ]";
-+	char str_old_flags[] =3D "[.... . .]";
+ 	int ret, tt_count, ip_count, unsnoop_count, total_count;
+ 	bool is_unsnoopable =3D false;
+@@ -1217,10 +1262,8 @@ batadv_mcast_forw_mode(struct batadv_priv *bat_pri=
+v, struct sk_buff *skb,
+ 	else if (unsnoop_count)
+ 		return BATADV_FORW_BCAST;
 =20
--	sprintf(str_old_flags, "[%c%c%c%s%s]",
-+	sprintf(str_old_flags, "[%c%c%c%s%s%c]",
- 		(old_flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES) ? 'U' : '.',
- 		(old_flags & BATADV_MCAST_WANT_ALL_IPV4) ? '4' : '.',
- 		(old_flags & BATADV_MCAST_WANT_ALL_IPV6) ? '6' : '.',
- 		!(old_flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
--		!(old_flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ");
-+		!(old_flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ",
-+		!(old_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA) ? 'P' : '.');
-=20
- 	batadv_dbg(BATADV_DBG_MCAST, bat_priv,
--		   "Changing multicast flags from '%s' to '[%c%c%c%s%s]'\n",
-+		   "Changing multicast flags from '%s' to '[%c%c%c%s%s%c]'\n",
- 		   old_enabled ? str_old_flags : "<undefined>",
- 		   (flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES) ? 'U' : '.',
- 		   (flags & BATADV_MCAST_WANT_ALL_IPV4) ? '4' : '.',
- 		   (flags & BATADV_MCAST_WANT_ALL_IPV6) ? '6' : '.',
- 		   !(flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
--		   !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ");
-+		   !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ",
-+		   !(flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA) ? 'P' : '.');
+-	if (total_count <=3D atomic_read(&bat_priv->multicast_fanout))
+-		return BATADV_FORW_UCASTS;
+-
+-	return BATADV_FORW_BCAST;
++	return batadv_mcast_forw_mode_by_count(bat_priv, skb, vid, *is_routable=
+,
++					       total_count);
  }
 =20
  /**
-@@ -1828,6 +1862,10 @@ void batadv_mcast_init(struct batadv_priv *bat_pri=
-v)
- 	batadv_tvlv_handler_register(bat_priv, batadv_mcast_tvlv_ogm_handler,
- 				     NULL, NULL, BATADV_TVLV_MCAST, 2,
- 				     BATADV_TVLV_HANDLER_OGM_CIFNOTFND);
-+	batadv_tvlv_handler_register(bat_priv, NULL, NULL,
-+				     batadv_mcast_forw_tracker_tvlv_handler,
-+				     BATADV_TVLV_MCAST_TRACKER, 1,
-+				     BATADV_TVLV_HANDLER_OGM_CIFNOTFND);
+@@ -1780,6 +1823,31 @@ static void batadv_mcast_want_rtr6_update(struct b=
+atadv_priv *bat_priv,
+ 	}
+ }
 =20
- 	INIT_DELAYED_WORK(&bat_priv->mcast.work, batadv_mcast_mla_update);
- 	batadv_mcast_start_timer(bat_priv);
++/**
++ * batadv_mcast_have_mc_ptype_update() - update multicast packet type co=
+unter
++ * @bat_priv: the bat priv with all the soft interface information
++ * @orig: the orig_node which multicast state might have changed of
++ * @mcast_flags: flags indicating the new multicast state
++ *
++ * If the BATADV_MCAST_HAVE_MC_PTYPE_CAPA flag of this originator, orig,=
+ has
++ * toggled then this method updates the counter accordingly.
++ */
++static void batadv_mcast_have_mc_ptype_update(struct batadv_priv *bat_pr=
+iv,
++					      struct batadv_orig_node *orig,
++					      u8 mcast_flags)
++{
++	lockdep_assert_held(&orig->mcast_handler_lock);
++
++	/* switched from flag set to unset */
++	if (!(mcast_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA) &&
++	    orig->mcast_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA)
++		atomic_inc(&bat_priv->mcast.num_no_mc_ptype_capa);
++	/* switched from flag unset to set */
++	else if (mcast_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA &&
++		 !(orig->mcast_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA))
++		atomic_dec(&bat_priv->mcast.num_no_mc_ptype_capa);
++}
++
+ /**
+  * batadv_mcast_tvlv_flags_get() - get multicast flags from an OGM TVLV
+  * @enabled: whether the originator has multicast TVLV support enabled
+@@ -1848,6 +1916,7 @@ static void batadv_mcast_tvlv_ogm_handler(struct ba=
+tadv_priv *bat_priv,
+ 	batadv_mcast_want_ipv6_update(bat_priv, orig, mcast_flags);
+ 	batadv_mcast_want_rtr4_update(bat_priv, orig, mcast_flags);
+ 	batadv_mcast_want_rtr6_update(bat_priv, orig, mcast_flags);
++	batadv_mcast_have_mc_ptype_update(bat_priv, orig, mcast_flags);
+=20
+ 	orig->mcast_flags =3D mcast_flags;
+ 	spin_unlock_bh(&orig->mcast_handler_lock);
 diff --git a/net/batman-adv/multicast.h b/net/batman-adv/multicast.h
-index a9770d8d6d36..a5c0f384bb9a 100644
+index a5c0f384bb9a..3bf5943cd20e 100644
 --- a/net/batman-adv/multicast.h
 +++ b/net/batman-adv/multicast.h
-@@ -52,6 +52,11 @@ void batadv_mcast_free(struct batadv_priv *bat_priv);
+@@ -11,6 +11,7 @@
 =20
- void batadv_mcast_purge_orig(struct batadv_orig_node *orig_node);
+ #include <linux/netlink.h>
+ #include <linux/skbuff.h>
++#include <linux/types.h>
 =20
-+/* multicast_forw.c */
+ /**
+  * enum batadv_forw_mode - the way a packet should be forwarded as
+@@ -28,6 +29,12 @@ enum batadv_forw_mode {
+ 	 */
+ 	BATADV_FORW_UCASTS,
+=20
++	/**
++	 * @BATADV_FORW_MCAST: forward the packet to some nodes via a
++	 *  batman-adv multicast packet
++	 */
++	BATADV_FORW_MCAST,
 +
-+int batadv_mcast_forw_tracker_tvlv_handler(struct batadv_priv *bat_priv,
-+					   struct sk_buff *skb);
+ 	/** @BATADV_FORW_NONE: don't forward, drop it */
+ 	BATADV_FORW_NONE,
+ };
+@@ -36,7 +43,7 @@ enum batadv_forw_mode {
+=20
+ enum batadv_forw_mode
+ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
+,
+-		       int *is_routable);
++		       unsigned short vid, int *is_routable);
+=20
+ int batadv_mcast_forw_send(struct batadv_priv *bat_priv, struct sk_buff =
+*skb,
+ 			   unsigned short vid, int is_routable);
+@@ -57,11 +64,18 @@ void batadv_mcast_purge_orig(struct batadv_orig_node =
+*orig_node);
+ int batadv_mcast_forw_tracker_tvlv_handler(struct batadv_priv *bat_priv,
+ 					   struct sk_buff *skb);
+=20
++unsigned int batadv_mcast_forw_packet_hdrlen(unsigned int num_dests);
++
++bool batadv_mcast_forw_push(struct batadv_priv *bat_priv, struct sk_buff=
+ *skb,
++			    unsigned short vid, int is_routable);
++
++int batadv_mcast_forw_mcsend(struct batadv_priv *bat_priv, struct sk_buf=
+f *skb);
 +
  #else
 =20
  static inline enum batadv_forw_mode
-diff --git a/net/batman-adv/multicast_forw.c b/net/batman-adv/multicast_f=
-orw.c
-new file mode 100644
-index 000000000000..4a6e0def0987
---- /dev/null
-+++ b/net/batman-adv/multicast_forw.c
-@@ -0,0 +1,274 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (C) B.A.T.M.A.N. contributors:
-+ *
-+ * Linus L=C3=BCssing
-+ */
-+
-+#include "multicast.h"
-+#include "main.h"
-+
-+#include <linux/byteorder/generic.h>
-+#include <linux/errno.h>
-+#include <linux/etherdevice.h>
-+#include <linux/gfp.h>
-+#include <linux/if_ether.h>
-+#include <linux/netdevice.h>
-+#include <linux/skbuff.h>
-+#include <linux/stddef.h>
-+#include <linux/types.h>
-+#include <uapi/linux/batadv_packet.h>
-+
-+#include "originator.h"
-+#include "routing.h"
-+#include "send.h"
-+
-+#define batadv_mcast_forw_tracker_for_each_dest(dest, num_dests) \
-+	for (; num_dests; num_dests--, (dest) +=3D ETH_ALEN)
-+
-+/**
-+ * batadv_mcast_forw_tracker_hdrlen() - calculate tracker TVLV header le=
-ngth
-+ * @num_dests: the number of destination addresses to taken into account
-+ *
-+ * Return: The size of the multicast tracker TVLV structure if the numbe=
-r of
-+ * destinations is even or that size minus the 2 alignment bytes otherwi=
-se.
-+ */
-+static int batadv_mcast_forw_tracker_hdrlen(unsigned int num_dests)
-+{
-+	struct batadv_tvlv_mcast_tracker *mcast_tracker;
-+	unsigned int len =3D sizeof(*mcast_tracker);
-+
-+	/* new #dests even: with 2 byte padding to TVLV */
-+	if (!(num_dests % 2))
-+		return len;
-+	/* new #dests odd: without 2 byte padding to TVLV */
-+	else
-+		return len - sizeof(mcast_tracker->align);
-+}
-+
-+/**
-+ * batadv_mcast_forw_orig_to_neigh() - get next hop neighbor to an orig =
-address
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @orig_addr: the originator MAC address to search the best next hop ro=
-uter for
-+ *
-+ * Return: A neighbor node which is the best router towards the given or=
-iginator
-+ * address.
-+ */
-+static struct batadv_neigh_node *
-+batadv_mcast_forw_orig_to_neigh(struct batadv_priv *bat_priv, u8 *orig_a=
-ddr)
-+{
-+	struct batadv_neigh_node *neigh_node;
-+	struct batadv_orig_node *orig_node;
-+
-+	orig_node =3D batadv_orig_hash_find(bat_priv, orig_addr);
-+	if (!orig_node)
-+		return NULL;
-+
-+	neigh_node =3D batadv_find_router(bat_priv, orig_node, NULL);
-+	batadv_orig_node_put(orig_node);
-+
-+	return neigh_node;
-+}
-+
-+/**
-+ * batadv_mcast_forw_scrub_dests() - scrub destinations in a tracker TVL=
-V
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @comp_neigh: next hop neighbor to scrub+collect destinations for
-+ * @dest: start MAC entry in original skb's tracker TVLV
-+ * @next_dest: start MAC entry in to be sent skb's tracker TVLV
-+ * @num_dests: number of remaining destination MAC entries to iterate ov=
-er
-+ *
-+ * This sorts destination entries into either the original batman-adv
-+ * multicast packet or the skb (copy) that is going to be sent to comp_n=
-eigh
-+ * next.
-+ *
-+ * In preparation for the next, to be (unicast) transmitted batman-adv m=
-ulticast
-+ * packet skb to be sent to the given neighbor node, tries to collect al=
-l
-+ * originator MAC addresses that have the given neighbor node as their n=
-ext hop
-+ * in the to be transmitted skb (copy), which next_dest points into. Tha=
-t is we
-+ * zero all destination entries in next_dest which do not have comp_neig=
-h as
-+ * their next hop. And zero all destination entries in the original skb =
-that
-+ * would have comp_neigh as their next hop (to avoid redundant transmiss=
-ions and
-+ * duplicated payload later).
-+ */
-+static void
-+batadv_mcast_forw_scrub_dests(struct batadv_priv *bat_priv,
-+			      struct batadv_neigh_node *comp_neigh, u8 *dest,
-+			      u8 *next_dest, u16 num_dests)
-+{
-+	struct batadv_neigh_node *next_neigh;
-+
-+	/* skip first entry, this is what we are comparing with */
-+	eth_zero_addr(dest);
-+	dest +=3D ETH_ALEN;
-+	next_dest +=3D ETH_ALEN;
-+	num_dests--;
-+
-+	batadv_mcast_forw_tracker_for_each_dest(next_dest, num_dests) {
-+		if (is_zero_ether_addr(next_dest))
-+			goto scrub_next;
-+
-+		if (is_multicast_ether_addr(next_dest)) {
-+			eth_zero_addr(dest);
-+			eth_zero_addr(next_dest);
-+			goto scrub_next;
-+		}
-+
-+		next_neigh =3D batadv_mcast_forw_orig_to_neigh(bat_priv,
-+							     next_dest);
-+		if (!next_neigh) {
-+			eth_zero_addr(next_dest);
-+			goto scrub_next;
-+		}
-+
-+		/* Is this for our next packet to transmit? */
-+		if (batadv_compare_eth(next_neigh->addr, comp_neigh->addr))
-+			eth_zero_addr(dest);
-+		else
-+			eth_zero_addr(next_dest);
-+
-+		batadv_neigh_node_put(next_neigh);
-+scrub_next:
-+		dest +=3D ETH_ALEN;
-+	}
-+}
-+
-+/**
-+ * batadv_mcast_forw_packet() - forward a batman-adv multicast packet
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: the received or locally generated batman-adv multicast packet
-+ * @local_xmit: indicates that the packet was locally generated and not =
-received
-+ *
-+ * Parses the tracker TVLV of a batman-adv multicast packet and forwards=
- the
-+ * packet as indicated in this TVLV.
-+ *
-+ * Caller needs to set the skb network header to the start of the multic=
-ast
-+ * tracker TVLV (excluding the generic TVLV header) and the skb transpor=
-t header
-+ * to the next byte after this multicast tracker TVLV.
-+ *
-+ * Caller needs to free the skb.
-+ *
-+ * Return: NET_RX_SUCCESS or NET_RX_DROP on success or a negative error
-+ * code on failure. NET_RX_SUCCESS if the received packet is supposed to=
- be
-+ * decapsulated and forwarded to the own soft interface, NET_RX_DROP oth=
-erwise.
-+ */
-+static int batadv_mcast_forw_packet(struct batadv_priv *bat_priv,
-+				    struct sk_buff *skb, bool local_xmit)
-+{
-+	struct batadv_tvlv_mcast_tracker *mcast_tracker;
-+	unsigned int tvlv_len, tracker_hdrlen;
-+	struct batadv_neigh_node *neigh_node;
-+	unsigned long offset, num_dests_off;
-+	struct sk_buff *nexthop_skb;
-+	unsigned char *skb_net_hdr;
-+	bool local_recv =3D false;
-+	bool xmitted =3D false;
-+	u8 *dest, *next_dest;
-+	u16 num_dests;
-+	int ret;
-+
-+	/* check if num_dests is within skb length */
-+	num_dests_off =3D offsetof(struct batadv_tvlv_mcast_tracker, num_dests)=
-;
-+	if (num_dests_off > skb_network_header_len(skb))
-+		return -EINVAL;
-+
-+	skb_net_hdr =3D skb_network_header(skb);
-+	mcast_tracker =3D (struct batadv_tvlv_mcast_tracker *)skb_net_hdr;
-+	num_dests =3D ntohs(mcast_tracker->num_dests);
-+
-+	tracker_hdrlen =3D batadv_mcast_forw_tracker_hdrlen(num_dests);
-+	dest =3D (u8 *)mcast_tracker + tracker_hdrlen;
-+
-+	/* check if full tracker tvlv is within skb length */
-+	tvlv_len =3D tracker_hdrlen + ETH_ALEN * num_dests;
-+	if (tvlv_len > skb_network_header_len(skb))
-+		return -EINVAL;
-+
-+	batadv_mcast_forw_tracker_for_each_dest(dest, num_dests) {
-+		if (is_zero_ether_addr(dest))
-+			continue;
-+
-+		/* only unicast originator addresses supported */
-+		if (is_multicast_ether_addr(dest)) {
-+			eth_zero_addr(dest);
-+			continue;
-+		}
-+
-+		if (batadv_is_my_mac(bat_priv, dest)) {
-+			eth_zero_addr(dest);
-+			local_recv =3D true;
-+			continue;
-+		}
-+
-+		neigh_node =3D batadv_mcast_forw_orig_to_neigh(bat_priv, dest);
-+		if (!neigh_node) {
-+			eth_zero_addr(dest);
-+			continue;
-+		}
-+
-+		nexthop_skb =3D skb_copy(skb, GFP_ATOMIC);
-+		if (!nexthop_skb) {
-+			batadv_neigh_node_put(neigh_node);
-+			return -ENOMEM;
-+		}
-+
-+		offset =3D dest - skb->data;
-+		next_dest =3D nexthop_skb->data + offset;
-+
-+		batadv_mcast_forw_scrub_dests(bat_priv, neigh_node, dest,
-+					      next_dest, num_dests);
-+
-+		batadv_inc_counter(bat_priv, BATADV_CNT_MCAST_TX);
-+		batadv_add_counter(bat_priv, BATADV_CNT_MCAST_TX_BYTES,
-+				   nexthop_skb->len + ETH_HLEN);
-+		xmitted =3D true;
-+		ret =3D batadv_send_unicast_skb(nexthop_skb, neigh_node);
-+
-+		batadv_neigh_node_put(neigh_node);
-+
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	if (xmitted) {
-+		if (local_xmit) {
-+			batadv_inc_counter(bat_priv, BATADV_CNT_MCAST_TX_LOCAL);
-+			batadv_add_counter(bat_priv,
-+					   BATADV_CNT_MCAST_TX_LOCAL_BYTES,
-+					   skb->len -
-+					   skb_transport_offset(skb));
-+		} else {
-+			batadv_inc_counter(bat_priv, BATADV_CNT_MCAST_FWD);
-+			batadv_add_counter(bat_priv, BATADV_CNT_MCAST_FWD_BYTES,
-+					   skb->len + ETH_HLEN);
-+		}
-+	}
-+
-+	if (local_recv)
-+		return NET_RX_SUCCESS;
-+	else
-+		return NET_RX_DROP;
-+}
-+
-+/**
-+ * batadv_mcast_forw_tracker_tvlv_handler() - handle an mcast tracker tv=
-lv
-+ * @bat_priv: the bat priv with all the soft interface information
-+ * @skb: the received batman-adv multicast packet
-+ *
-+ * Parses the tracker TVLV of an incoming batman-adv multicast packet an=
-d
-+ * forwards the packet as indicated in this TVLV.
-+ *
-+ * Caller needs to set the skb network header to the start of the multic=
-ast
-+ * tracker TVLV (excluding the generic TVLV header) and the skb transpor=
-t header
-+ * to the next byte after this multicast tracker TVLV.
-+ *
-+ * Caller needs to free the skb.
-+ *
-+ * Return: NET_RX_SUCCESS or NET_RX_DROP on success or a negative error
-+ * code on failure. NET_RX_SUCCESS if the received packet is supposed to=
- be
-+ * decapsulated and forwarded to the own soft interface, NET_RX_DROP oth=
-erwise.
-+ */
-+int batadv_mcast_forw_tracker_tvlv_handler(struct batadv_priv *bat_priv,
+ batadv_mcast_forw_mode(struct batadv_priv *bat_priv, struct sk_buff *skb=
+,
+-		       int *is_routable)
++		       unsigned short vid, int *is_routable)
+ {
+ 	return BATADV_FORW_BCAST;
+ }
+@@ -99,6 +113,13 @@ static inline void batadv_mcast_purge_orig(struct bat=
+adv_orig_node *orig_node)
+ {
+ }
+=20
++static inline int batadv_mcast_forw_mcsend(struct batadv_priv *bat_priv,
 +					   struct sk_buff *skb)
 +{
-+	return batadv_mcast_forw_packet(bat_priv, skb, false);
-+}
-diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
-index 34903df4fe93..e46ce83c516a 100644
---- a/net/batman-adv/originator.c
-+++ b/net/batman-adv/originator.c
-@@ -942,6 +942,7 @@ struct batadv_orig_node *batadv_orig_node_new(struct =
-batadv_priv *bat_priv,
- #ifdef CONFIG_BATMAN_ADV_MCAST
- 	orig_node->mcast_flags =3D BATADV_MCAST_WANT_NO_RTR4;
- 	orig_node->mcast_flags |=3D BATADV_MCAST_WANT_NO_RTR6;
-+	orig_node->mcast_flags |=3D BATADV_MCAST_HAVE_MC_PTYPE_CAPA;
- 	INIT_HLIST_NODE(&orig_node->mcast_want_all_unsnoopables_node);
- 	INIT_HLIST_NODE(&orig_node->mcast_want_all_ipv4_node);
- 	INIT_HLIST_NODE(&orig_node->mcast_want_all_ipv6_node);
-diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 163cd43c4821..432184548849 100644
---- a/net/batman-adv/routing.c
-+++ b/net/batman-adv/routing.c
-@@ -1270,3 +1270,71 @@ int batadv_recv_bcast_packet(struct sk_buff *skb,
- 	batadv_orig_node_put(orig_node);
- 	return ret;
- }
-+
-+#ifdef CONFIG_BATMAN_ADV_MCAST
-+/**
-+ * batadv_recv_mcast_packet() - process received batman-adv multicast pa=
-cket
-+ * @skb: the received batman-adv multicast packet
-+ * @recv_if: interface that the skb is received on
-+ *
-+ * Parses the given, received batman-adv multicast packet. Depending on =
-the
-+ * contents of its TVLV forwards it and/or decapsulates it to hand it to=
- the
-+ * soft interface.
-+ *
-+ * Return: NET_RX_DROP if the skb is not consumed, NET_RX_SUCCESS otherw=
-ise.
-+ */
-+int batadv_recv_mcast_packet(struct sk_buff *skb,
-+			     struct batadv_hard_iface *recv_if)
-+{
-+	struct batadv_priv *bat_priv =3D netdev_priv(recv_if->soft_iface);
-+	struct batadv_mcast_packet *mcast_packet;
-+	int hdr_size =3D sizeof(*mcast_packet);
-+	unsigned char *tvlv_buff;
-+	int ret =3D NET_RX_DROP;
-+	u16 tvlv_buff_len;
-+
-+	if (batadv_check_unicast_packet(bat_priv, skb, hdr_size) < 0)
-+		goto free_skb;
-+
-+	/* create a copy of the skb, if needed, to modify it. */
-+	if (skb_cow(skb, ETH_HLEN) < 0)
-+		goto free_skb;
-+
-+	/* packet needs to be linearized to access the tvlv content */
-+	if (skb_linearize(skb) < 0)
-+		goto free_skb;
-+
-+	mcast_packet =3D (struct batadv_mcast_packet *)skb->data;
-+
-+	tvlv_buff =3D (unsigned char *)(skb->data + hdr_size);
-+	tvlv_buff_len =3D ntohs(mcast_packet->tvlv_len);
-+
-+	if (tvlv_buff_len > skb->len - hdr_size)
-+		goto free_skb;
-+
-+	ret =3D batadv_tvlv_containers_process(bat_priv, BATADV_MCAST, NULL, sk=
-b,
-+					     tvlv_buff, tvlv_buff_len);
-+	if (ret >=3D 0) {
-+		batadv_inc_counter(bat_priv, BATADV_CNT_MCAST_RX);
-+		batadv_add_counter(bat_priv, BATADV_CNT_MCAST_RX_BYTES,
-+				   skb->len + ETH_HLEN);
-+	}
-+
-+	hdr_size +=3D tvlv_buff_len;
-+
-+	if (ret =3D=3D NET_RX_SUCCESS && (skb->len - hdr_size >=3D ETH_HLEN)) {
-+		batadv_inc_counter(bat_priv, BATADV_CNT_MCAST_RX_LOCAL);
-+		batadv_add_counter(bat_priv, BATADV_CNT_MCAST_RX_LOCAL_BYTES,
-+				   skb->len - hdr_size);
-+
-+		batadv_interface_rx(bat_priv->soft_iface, skb, hdr_size, NULL);
-+		/* skb was consumed */
-+		skb =3D NULL;
-+	}
-+
-+free_skb:
 +	kfree_skb(skb);
++	return NET_XMIT_DROP;
++}
 +
+ #endif /* CONFIG_BATMAN_ADV_MCAST */
+=20
+ #endif /* _NET_BATMAN_ADV_MULTICAST_H_ */
+diff --git a/net/batman-adv/multicast_forw.c b/net/batman-adv/multicast_f=
+orw.c
+index 4a6e0def0987..8414bd13f6e9 100644
+--- a/net/batman-adv/multicast_forw.c
++++ b/net/batman-adv/multicast_forw.c
+@@ -7,24 +7,308 @@
+ #include "multicast.h"
+ #include "main.h"
+=20
++#include <linux/bug.h>
++#include <linux/build_bug.h>
+ #include <linux/byteorder/generic.h>
+ #include <linux/errno.h>
+ #include <linux/etherdevice.h>
+ #include <linux/gfp.h>
+ #include <linux/if_ether.h>
++#include <linux/if_vlan.h>
++#include <linux/ipv6.h>
++#include <linux/limits.h>
+ #include <linux/netdevice.h>
++#include <linux/rculist.h>
++#include <linux/rcupdate.h>
+ #include <linux/skbuff.h>
+ #include <linux/stddef.h>
++#include <linux/string.h>
+ #include <linux/types.h>
+ #include <uapi/linux/batadv_packet.h>
+=20
++#include "bridge_loop_avoidance.h"
+ #include "originator.h"
+ #include "routing.h"
+ #include "send.h"
++#include "translation-table.h"
+=20
+ #define batadv_mcast_forw_tracker_for_each_dest(dest, num_dests) \
+ 	for (; num_dests; num_dests--, (dest) +=3D ETH_ALEN)
+=20
++/**
++ * batadv_mcast_forw_orig_entry() - get orig_node from an hlist node
++ * @node: the hlist node to get the orig_node from
++ * @entry_offset: the offset of the hlist node within the orig_node stru=
+ct
++ *
++ * Return: The orig_node containing the hlist node on success, NULL on e=
+rror.
++ */
++static struct batadv_orig_node *
++batadv_mcast_forw_orig_entry(struct hlist_node *node,
++			     size_t entry_offset)
++{
++	/* sanity check */
++	switch (entry_offset) {
++	case offsetof(struct batadv_orig_node, mcast_want_all_ipv4_node):
++	case offsetof(struct batadv_orig_node, mcast_want_all_ipv6_node):
++	case offsetof(struct batadv_orig_node, mcast_want_all_rtr4_node):
++	case offsetof(struct batadv_orig_node, mcast_want_all_rtr6_node):
++		break;
++	default:
++		WARN_ON(1);
++		return NULL;
++	}
++
++	return (struct batadv_orig_node *)((void *)node - entry_offset);
++}
++
++/**
++ * batadv_mcast_forw_push_dest() - push an originator MAC address onto a=
+n skb
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the destination address onto
++ * @vid: the vlan identifier
++ * @orig_node: the originator node to get the MAC address from
++ * @num_dests: a pointer to store the number of pushed addresses in
++ *
++ * If the orig_node is a BLA backbone gateway, if there is not enough sk=
+b
++ * headroom available or if num_dests is already at its maximum (65535) =
+then
++ * neither the skb nor num_dests is changed. Otherwise the originator's =
+MAC
++ * address is pushed onto the given skb and num_dests incremented by one=
+.
++ *
++ * Return: true if the orig_node is a backbone gateway or if an orig add=
+ress
++ *  was pushed successfully.
++ */
++static bool batadv_mcast_forw_push_dest(struct batadv_priv *bat_priv,
++					struct sk_buff *skb, unsigned short vid,
++					struct batadv_orig_node *orig_node,
++					unsigned short *num_dests)
++{
++	BUILD_BUG_ON(sizeof_field(struct batadv_tvlv_mcast_tracker, num_dests)
++		     !=3D sizeof(__be16));
++
++	/* Avoid sending to other BLA gateways - they already got the frame fro=
+m
++	 * the LAN side we share with them.
++	 * TODO: Refactor to take BLA into account earlier in mode check.
++	 */
++	if (batadv_bla_is_backbone_gw_orig(bat_priv, orig_node->orig, vid))
++		return true;
++
++	if (skb_headroom(skb) < ETH_ALEN || *num_dests =3D=3D U16_MAX)
++		return false;
++
++	skb_push(skb, ETH_ALEN);
++	ether_addr_copy(skb->data, orig_node->orig);
++	(*num_dests)++;
++
++	return true;
++}
++
++/**
++ * batadv_mcast_forw_push_dests_list() - push originators from list onto=
+ an skb
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the destination addresses onto
++ * @vid: the vlan identifier
++ * @head: the list to gather originators from
++ * @entry_offset: offset of an hlist node in an orig_node structure
++ * @num_dests: a pointer to store the number of pushed addresses in
++ *
++ * Push the MAC addresses of all originators in the given list onto the =
+given
++ * skb.
++ *
++ * Return: true on success, false otherwise.
++ */
++static int batadv_mcast_forw_push_dests_list(struct batadv_priv *bat_pri=
+v,
++					     struct sk_buff *skb,
++					     unsigned short vid,
++					     struct hlist_head *head,
++					     size_t entry_offset,
++					     unsigned short *num_dests)
++{
++	struct hlist_node *node;
++	struct batadv_orig_node *orig_node;
++
++	rcu_read_lock();
++	__hlist_for_each_rcu(node, head) {
++		orig_node =3D batadv_mcast_forw_orig_entry(node, entry_offset);
++		if (!orig_node ||
++		    !batadv_mcast_forw_push_dest(bat_priv, skb, vid, orig_node,
++						 num_dests)) {
++			rcu_read_unlock();
++			return false;
++		}
++	}
++	rcu_read_unlock();
++
++	return true;
++}
++
++/**
++ * batadv_mcast_forw_push_tt() - push originators with interest through =
+TT
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the destination addresses onto
++ * @vid: the vlan identifier
++ * @num_dests: a pointer to store the number of pushed addresses in
++ *
++ * Push the MAC addresses of all originators which have indicated intere=
+st in
++ * this multicast packet through the translation table onto the given sk=
+b.
++ *
++ * Return: true on success, false otherwise.
++ */
++static bool
++batadv_mcast_forw_push_tt(struct batadv_priv *bat_priv, struct sk_buff *=
+skb,
++			  unsigned short vid, unsigned short *num_dests)
++{
++	struct batadv_tt_orig_list_entry *orig_entry;
++
++	struct batadv_tt_global_entry *tt_global;
++	const u8 *addr =3D eth_hdr(skb)->h_dest;
++
++	/* ok */
++	int ret =3D true;
++
++	tt_global =3D batadv_tt_global_hash_find(bat_priv, addr, vid);
++	if (!tt_global)
++		goto out;
++
++	rcu_read_lock();
++	hlist_for_each_entry_rcu(orig_entry, &tt_global->orig_list, list) {
++		if (!batadv_mcast_forw_push_dest(bat_priv, skb, vid,
++						 orig_entry->orig_node,
++						 num_dests)) {
++			ret =3D false;
++			break;
++		}
++	}
++	rcu_read_unlock();
++
++	batadv_tt_global_entry_put(tt_global);
++
++out:
 +	return ret;
 +}
-+#endif /* CONFIG_BATMAN_ADV_MCAST */
-diff --git a/net/batman-adv/routing.h b/net/batman-adv/routing.h
-index 5f387786e9a7..d8293a83fb82 100644
---- a/net/batman-adv/routing.h
-+++ b/net/batman-adv/routing.h
-@@ -27,6 +27,17 @@ int batadv_recv_frag_packet(struct sk_buff *skb,
- 			    struct batadv_hard_iface *iface);
- int batadv_recv_bcast_packet(struct sk_buff *skb,
- 			     struct batadv_hard_iface *recv_if);
-+#ifdef CONFIG_BATMAN_ADV_MCAST
-+int batadv_recv_mcast_packet(struct sk_buff *skb,
-+			     struct batadv_hard_iface *recv_if);
-+#else
-+static inline int batadv_recv_mcast_packet(struct sk_buff *skb,
-+					   struct batadv_hard_iface *recv_if)
++
++/**
++ * batadv_mcast_forw_push_want_all() - push originators with want-all fl=
+ag
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the destination addresses onto
++ * @vid: the vlan identifier
++ * @num_dests: a pointer to store the number of pushed addresses in
++ *
++ * Push the MAC addresses of all originators which have indicated intere=
+st in
++ * this multicast packet through the want-all flag onto the given skb.
++ *
++ * Return: true on success, false otherwise.
++ */
++static bool batadv_mcast_forw_push_want_all(struct batadv_priv *bat_priv=
+,
++					    struct sk_buff *skb,
++					    unsigned short vid,
++					    unsigned short *num_dests)
 +{
-+	kfree_skb(skb);
-+	return NET_RX_DROP;
++	struct hlist_head *head =3D NULL;
++	size_t offset;
++	int ret;
++
++	switch (eth_hdr(skb)->h_proto) {
++	case htons(ETH_P_IP):
++		head =3D &bat_priv->mcast.want_all_ipv4_list;
++		offset =3D offsetof(struct batadv_orig_node,
++				  mcast_want_all_ipv4_node);
++		break;
++	case htons(ETH_P_IPV6):
++		head =3D &bat_priv->mcast.want_all_ipv6_list;
++		offset =3D offsetof(struct batadv_orig_node,
++				  mcast_want_all_ipv6_node);
++		break;
++	default:
++		return false;
++	}
++
++	ret =3D batadv_mcast_forw_push_dests_list(bat_priv, skb, vid, head,
++						offset, num_dests);
++	if (!ret)
++		return false;
++
++	return true;
 +}
-+#endif
- int batadv_recv_tt_query(struct sk_buff *skb,
- 			 struct batadv_hard_iface *recv_if);
- int batadv_recv_roam_adv(struct sk_buff *skb,
++
++/**
++ * batadv_mcast_forw_push_want_rtr() - push originators with want-router=
+ flag
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the destination addresses onto
++ * @vid: the vlan identifier
++ * @num_dests: a pointer to store the number of pushed addresses in
++ *
++ * Push the MAC addresses of all originators which have indicated intere=
+st in
++ * this multicast packet through the want-all-rtr flag onto the given sk=
+b.
++ *
++ * Return: true on success, false otherwise.
++ */
++static bool batadv_mcast_forw_push_want_rtr(struct batadv_priv *bat_priv=
+,
++					    struct sk_buff *skb,
++					    unsigned short vid,
++					    unsigned short *num_dests)
++{
++	struct hlist_head *head =3D NULL;
++	size_t offset;
++	int ret;
++
++	switch (eth_hdr(skb)->h_proto) {
++	case htons(ETH_P_IP):
++		head =3D &bat_priv->mcast.want_all_rtr4_list;
++		offset =3D offsetof(struct batadv_orig_node,
++				  mcast_want_all_rtr4_node);
++		break;
++	case htons(ETH_P_IPV6):
++		head =3D &bat_priv->mcast.want_all_rtr6_list;
++		offset =3D offsetof(struct batadv_orig_node,
++				  mcast_want_all_rtr6_node);
++		break;
++	default:
++		return false;
++	}
++
++	ret =3D batadv_mcast_forw_push_dests_list(bat_priv, skb, vid, head,
++						offset, num_dests);
++	if (!ret)
++		return false;
++
++	return true;
++}
++
++/**
++ * batadv_mcast_forw_push_dests() - push originator addresses onto an sk=
+b
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the destination addresses onto
++ * @vid: the vlan identifier
++ * @is_routable: indicates whether the destination is routable
++ *
++ * Push the MAC addresses of all originators which have indicated intere=
+st in
++ * this multicast packet onto the given skb.
++ *
++ * Return: The number of destination originator MAC addresses that were =
+pushed
++ * onto the given skb.
++ */
++static int
++batadv_mcast_forw_push_dests(struct batadv_priv *bat_priv, struct sk_buf=
+f *skb,
++			     unsigned short vid, int is_routable)
++{
++	unsigned short num_dests =3D 0;
++
++	if (!batadv_mcast_forw_push_tt(bat_priv, skb, vid, &num_dests))
++		goto err;
++
++	if (!batadv_mcast_forw_push_want_all(bat_priv, skb, vid, &num_dests))
++		goto err;
++
++	if (is_routable &&
++	    !batadv_mcast_forw_push_want_rtr(bat_priv, skb, vid, &num_dests))
++		goto err;
++
++	return num_dests;
++err:
++	skb_pull(skb, num_dests * ETH_ALEN);
++	return -ENOMEM;
++}
++
+ /**
+  * batadv_mcast_forw_tracker_hdrlen() - calculate tracker TVLV header le=
+ngth
+  * @num_dests: the number of destination addresses to taken into account
+@@ -45,6 +329,121 @@ static int batadv_mcast_forw_tracker_hdrlen(unsigned=
+ int num_dests)
+ 		return len - sizeof(mcast_tracker->align);
+ }
+=20
++/**
++ * batadv_mcast_forw_push_tracker() - push a multicast tracker TVLV head=
+er
++ * @skb: the skb to push the tracker TVLV onto
++ * @num_dests: the number of destination addresses to set in the header
++ *
++ * Pushes a multicast tracker TVLV header onto the given skb, including =
+the
++ * generic TVLV header but excluding the destination MAC addresses.
++ *
++ * The provided num_dests value is taken into consideration to set the
++ * num_dests field in the tracker header and to set the appropriate TVLV=
+ length
++ * value fields. But also to decide whether to add or omit the 2 alignme=
+nt bytes
++ * in the multicast tracker TVLV header, to make the tracker TVLV 4 byte=
+ aligned
++ * to make the encapsulated IP packet 4 byte aligned.
++ *
++ * Return: -ENOMEM if there is not enough skb headroom available. Otherw=
+ise, on
++ * success the number of bytes that were pushed, the total TVLV length v=
+alue.
++ */
++static int batadv_mcast_forw_push_tracker(struct sk_buff *skb, int num_d=
+ests)
++{
++	struct batadv_tvlv_mcast_tracker *mcast_tracker;
++	unsigned int tvlv_value_len, tracker_hdrlen;
++	struct batadv_tvlv_hdr *tvlv_hdr;
++
++	/* odd #dests: no 2 byte padding to TVLV */
++	tracker_hdrlen =3D batadv_mcast_forw_tracker_hdrlen(num_dests);
++
++	if (skb_headroom(skb) < tracker_hdrlen + sizeof(*tvlv_hdr))
++		return -ENOMEM;
++
++	tvlv_value_len =3D tracker_hdrlen + ETH_ALEN * num_dests;
++	if (tvlv_value_len + sizeof(*tvlv_hdr) > U16_MAX)
++		return -ENOMEM;
++
++	skb_push(skb, tracker_hdrlen);
++	mcast_tracker =3D (struct batadv_tvlv_mcast_tracker *)skb->data;
++	mcast_tracker->num_dests =3D htons(num_dests);
++
++	/* even #dests: with 2 byte padding to TVLV */
++	if (!(num_dests % 2))
++		memset(mcast_tracker->align, 0, sizeof(mcast_tracker->align));
++
++	skb_reset_network_header(skb);
++
++	skb_push(skb, sizeof(*tvlv_hdr));
++	tvlv_hdr =3D (struct batadv_tvlv_hdr *)skb->data;
++	tvlv_hdr->type =3D BATADV_TVLV_MCAST_TRACKER;
++	tvlv_hdr->version =3D 1;
++	tvlv_hdr->len =3D htons(tvlv_value_len);
++
++	return tvlv_value_len + sizeof(*tvlv_hdr);
++}
++
++/**
++ * batadv_mcast_forw_push_tvlvs() - push a multicast tracker TVLV onto a=
+n skb
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the skb to push the tracker TVLV onto
++ * @vid: the vlan identifier
++ * @is_routable: indicates whether the destination is routable
++ *
++ * Pushes a multicast tracker TVLV onto the given skb, including the col=
+lected
++ * destination MAC addresses and the generic TVLV header.
++ *
++ * Return: -ENOMEM if there is not enough skb headroom available. Otherw=
+ise, on
++ * success the number of bytes that were pushed, the total TVLV length v=
+alue.
++ */
++static int
++batadv_mcast_forw_push_tvlvs(struct batadv_priv *bat_priv, struct sk_buf=
+f *skb,
++			     unsigned short vid, int is_routable)
++{
++	int num_dests, tvlv_len;
++
++	num_dests =3D batadv_mcast_forw_push_dests(bat_priv, skb, vid,
++						 is_routable);
++	if (num_dests <	0)
++		return num_dests;
++
++	tvlv_len =3D batadv_mcast_forw_push_tracker(skb, num_dests);
++	if (tvlv_len < 0)
++		skb_pull(skb, num_dests * ETH_ALEN);
++
++	return tvlv_len;
++}
++
++/**
++ * batadv_mcast_forw_push_hdr() - push a multicast packet header onto an=
+ skb
++ * @skb: the skb to push the header onto
++ * @tvlv_len: the total TVLV length value to set in the header
++ *
++ * Pushes a batman-adv multicast packet header onto the given skb and se=
+ts
++ * the provided total TVLV length value in it.
++ *
++ * Caller needs to ensure enough skb headroom is available.
++ *
++ * Return: -ENOMEM if there is not enough skb headroom available. Otherw=
+ise, on
++ * success 0.
++ */
++static int batadv_mcast_forw_push_hdr(struct sk_buff *skb, int tvlv_len)
++{
++	struct batadv_mcast_packet *mcast_packet;
++
++	if (skb_headroom(skb) < sizeof(*mcast_packet))
++		return -ENOMEM;
++
++	skb_push(skb, sizeof(*mcast_packet));
++
++	mcast_packet =3D (struct batadv_mcast_packet *)skb->data;
++	mcast_packet->version =3D BATADV_COMPAT_VERSION;
++	mcast_packet->ttl =3D BATADV_TTL;
++	mcast_packet->packet_type =3D BATADV_MCAST;
++	mcast_packet->reserved =3D 0;
++	mcast_packet->tvlv_len =3D htons(tvlv_len);
++
++	return 0;
++}
++
+ /**
+  * batadv_mcast_forw_orig_to_neigh() - get next hop neighbor to an orig =
+address
+  * @bat_priv: the bat priv with all the soft interface information
+@@ -272,3 +671,117 @@ int batadv_mcast_forw_tracker_tvlv_handler(struct b=
+atadv_priv *bat_priv,
+ {
+ 	return batadv_mcast_forw_packet(bat_priv, skb, false);
+ }
++
++/**
++ * batadv_mcast_forw_packet_hdrlen() - multicast packet header length
++ * @num_dests: number of destination nodes
++ *
++ * Calculates the total batman-adv multicast packet header length for a =
+given
++ * number of destination nodes (excluding the outter ethernet frame).
++ *
++ * Return: The calculated total batman-adv multicast packet header lengt=
+h.
++ */
++unsigned int batadv_mcast_forw_packet_hdrlen(unsigned int num_dests)
++{
++	return num_dests * ETH_ALEN +
++	       batadv_mcast_forw_tracker_hdrlen(num_dests) +
++	       sizeof(struct batadv_tvlv_hdr) +
++	       sizeof(struct batadv_mcast_packet);
++}
++
++/**
++ * batadv_mcast_forw_expand_head() - expand headroom for an mcast packet
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the multicast packet to send
++ *
++ * Tries to expand an skb's headroom so that its head to tail is 1298
++ * bytes (minimum IPv6 MTU + vlan ethernet header size) large.
++ *
++ * Return: -EINVAL if the given skb's length is too large or -ENOMEM on =
+memory
++ * allocation failure. Otherwise, on success, zero is returned.
++ */
++static int batadv_mcast_forw_expand_head(struct batadv_priv *bat_priv,
++					 struct sk_buff *skb)
++{
++	int hdr_size =3D VLAN_ETH_HLEN + IPV6_MIN_MTU - skb->len;
++
++	 /* TODO: Could be tightened to actual number of destination nodes?
++	  * But it's tricky, number of destinations might have increased since
++	  * we last checked.
++	  */
++	if (hdr_size < 0) {
++		/* batadv_mcast_forw_mode_check_count() should ensure we do not
++		 * end up here
++		 */
++		WARN_ON(1);
++		return -EINVAL;
++	}
++
++	if (skb_headroom(skb) < hdr_size &&
++	    pskb_expand_head(skb, hdr_size, 0, GFP_ATOMIC) < 0)
++		return -ENOMEM;
++
++	return 0;
++}
++
++/**
++ * batadv_mcast_forw_push() - encapsulate skb in a batman-adv multicast =
+packet
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the multicast packet to encapsulate and send
++ * @vid: the vlan identifier
++ * @is_routable: indicates whether the destination is routable
++ *
++ * Encapsulates the given multicast packet in a batman-adv multicast pac=
+ket.
++ * A multicast tracker TVLV with destination originator addresses for an=
+y node
++ * that signaled interest in it, that is either via the translation tabl=
+e or the
++ * according want-all flags, is attached accordingly.
++ *
++ * Return: true on success, false otherwise.
++ */
++bool batadv_mcast_forw_push(struct batadv_priv *bat_priv, struct sk_buff=
+ *skb,
++			    unsigned short vid, int is_routable)
++{
++	int tvlv_len;
++
++	if (batadv_mcast_forw_expand_head(bat_priv, skb) < 0)
++		return false;
++
++	skb_reset_transport_header(skb);
++
++	tvlv_len =3D batadv_mcast_forw_push_tvlvs(bat_priv, skb, vid,
++						is_routable);
++	if (tvlv_len < 0)
++		return false;
++
++	if (batadv_mcast_forw_push_hdr(skb, tvlv_len) < 0) {
++		skb_pull(skb, tvlv_len);
++		return false;
++	}
++
++	return true;
++}
++
++/**
++ * batadv_mcast_forw_mcsend() - send a self prepared batman-adv multicas=
+t packet
++ * @bat_priv: the bat priv with all the soft interface information
++ * @skb: the multicast packet to encapsulate and send
++ *
++ * Transmits a batman-adv multicast packet that was locally prepared and
++ * consumes/frees it.
++ *
++ * Return: NET_XMIT_DROP on memory allocation failure. NET_XMIT_SUCCESS
++ * otherwise.
++ */
++int batadv_mcast_forw_mcsend(struct batadv_priv *bat_priv,
++			     struct sk_buff *skb)
++{
++	int ret =3D batadv_mcast_forw_packet(bat_priv, skb, true);
++
++	if (ret < 0) {
++		kfree_skb(skb);
++		return NET_XMIT_DROP;
++	}
++
++	consume_skb(skb);
++	return NET_XMIT_SUCCESS;
++}
 diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interf=
 ace.c
-index 125f4628687c..97f4d7abe54e 100644
+index 97f4d7abe54e..d2b402e9c71f 100644
 --- a/net/batman-adv/soft-interface.c
 +++ b/net/batman-adv/soft-interface.c
-@@ -922,6 +922,18 @@ static const struct {
- 	{ "tt_response_rx" },
- 	{ "tt_roam_adv_tx" },
- 	{ "tt_roam_adv_rx" },
-+#ifdef CONFIG_BATMAN_ADV_MCAST
-+	{ "mcast_tx" },
-+	{ "mcast_tx_bytes" },
-+	{ "mcast_tx_local" },
-+	{ "mcast_tx_local_bytes" },
-+	{ "mcast_rx" },
-+	{ "mcast_rx_bytes" },
-+	{ "mcast_rx_local" },
-+	{ "mcast_rx_local_bytes" },
-+	{ "mcast_fwd" },
-+	{ "mcast_fwd_bytes" },
-+#endif
- #ifdef CONFIG_BATMAN_ADV_DAT
- 	{ "dat_get_tx" },
- 	{ "dat_get_rx" },
+@@ -298,12 +298,13 @@ static netdev_tx_t batadv_interface_tx(struct sk_bu=
+ff *skb,
+=20
+ send:
+ 		if (do_bcast && !is_broadcast_ether_addr(ethhdr->h_dest)) {
+-			forw_mode =3D batadv_mcast_forw_mode(bat_priv, skb,
++			forw_mode =3D batadv_mcast_forw_mode(bat_priv, skb, vid,
+ 							   &mcast_is_routable);
+ 			switch (forw_mode) {
+ 			case BATADV_FORW_BCAST:
+ 				break;
+ 			case BATADV_FORW_UCASTS:
++			case BATADV_FORW_MCAST:
+ 				do_bcast =3D false;
+ 				break;
+ 			case BATADV_FORW_NONE:
+@@ -362,6 +363,8 @@ static netdev_tx_t batadv_interface_tx(struct sk_buff=
+ *skb,
+ 		} else if (forw_mode =3D=3D BATADV_FORW_UCASTS) {
+ 			ret =3D batadv_mcast_forw_send(bat_priv, skb, vid,
+ 						     mcast_is_routable);
++		} else if (forw_mode =3D=3D BATADV_FORW_MCAST) {
++			ret =3D batadv_mcast_forw_mcsend(bat_priv, skb);
+ 		} else {
+ 			if (batadv_dat_snoop_outgoing_arp_request(bat_priv,
+ 								  skb))
+@@ -759,6 +762,7 @@ static int batadv_softif_init_late(struct net_device =
+*dev)
+ 	atomic_set(&bat_priv->mcast.num_want_all_unsnoopables, 0);
+ 	atomic_set(&bat_priv->mcast.num_want_all_ipv4, 0);
+ 	atomic_set(&bat_priv->mcast.num_want_all_ipv6, 0);
++	atomic_set(&bat_priv->mcast.num_no_mc_ptype_capa, 0);
+ #endif
+ 	atomic_set(&bat_priv->gw.mode, BATADV_GW_MODE_OFF);
+ 	atomic_set(&bat_priv->gw.bandwidth_down, 100);
 diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index ca9449ec9836..a2fee3325b29 100644
+index a2fee3325b29..4008ae1d6c15 100644
 --- a/net/batman-adv/types.h
 +++ b/net/batman-adv/types.h
-@@ -862,6 +862,70 @@ enum batadv_counters {
- 	 */
- 	BATADV_CNT_TT_ROAM_ADV_RX,
+@@ -1342,6 +1342,12 @@ struct batadv_priv_mcast {
+ 	/** @num_want_all_rtr6: counter for items in want_all_rtr6_list */
+ 	atomic_t num_want_all_rtr6;
 =20
-+#ifdef CONFIG_BATMAN_ADV_MCAST
 +	/**
-+	 * @BATADV_CNT_MCAST_TX: transmitted batman-adv multicast packets
-+	 *  counter
++	 * @num_no_mc_ptype_capa: counter for number of nodes without the
++	 *  BATADV_MCAST_HAVE_MC_PTYPE_CAPA flag
 +	 */
-+	BATADV_CNT_MCAST_TX,
++	atomic_t num_no_mc_ptype_capa;
 +
-+	/**
-+	 * @BATADV_CNT_MCAST_TX_BYTES: transmitted batman-adv multicast packets
-+	 *  bytes counter
-+	 */
-+	BATADV_CNT_MCAST_TX_BYTES,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_TX_LOCAL: counter for multicast packets which
-+	 *  were locally encapsulated and transmitted as batman-adv multicast
-+	 *  packets
-+	 */
-+	BATADV_CNT_MCAST_TX_LOCAL,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_TX_LOCAL_BYTES: bytes counter for multicast packet=
-s
-+	 *  which were locally encapsulated and transmitted as batman-adv
-+	 *  multicast packets
-+	 */
-+	BATADV_CNT_MCAST_TX_LOCAL_BYTES,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_RX: received batman-adv multicast packet counter
-+	 */
-+	BATADV_CNT_MCAST_RX,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_RX_BYTES: received batman-adv multicast packet
-+	 *  bytes counter
-+	 */
-+	BATADV_CNT_MCAST_RX_BYTES,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_RX_LOCAL: counter for received batman-adv multicas=
-t
-+	 *  packets which were forwarded to the local soft interface
-+	 */
-+	BATADV_CNT_MCAST_RX_LOCAL,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_RX_LOCAL_BYTES: bytes counter for received
-+	 *  batman-adv multicast packets which were forwarded to the local soft
-+	 *  interface
-+	 */
-+	BATADV_CNT_MCAST_RX_LOCAL_BYTES,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_FWD: counter for received batman-adv multicast
-+	 *  packets which were forwarded to other, neighboring nodes
-+	 */
-+	BATADV_CNT_MCAST_FWD,
-+
-+	/**
-+	 * @BATADV_CNT_MCAST_FWD_BYTES: bytes counter for received batman-adv
-+	 *  multicast packets which were forwarded to other, neighboring nodes
-+	 */
-+	BATADV_CNT_MCAST_FWD_BYTES,
-+#endif
-+
- #ifdef CONFIG_BATMAN_ADV_DAT
  	/**
- 	 * @BATADV_CNT_DAT_GET_TX: transmitted dht GET traffic packet counter
+ 	 * @want_lists_lock: lock for protecting modifications to mcasts
+ 	 *  want_all_{unsnoopables,ipv4,ipv6}_list (traversals are rcu-locked)
 --=20
 2.39.0
