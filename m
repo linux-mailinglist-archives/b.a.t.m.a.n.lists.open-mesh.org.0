@@ -2,153 +2,146 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740FC712E24
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 26 May 2023 22:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F220E7250BC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  7 Jun 2023 01:22:17 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 487CA81FC5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 26 May 2023 22:30:47 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C226D815F9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  7 Jun 2023 01:22:17 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1685133026;
- b=UX3hTVihPQLsGpn21lkbOIlIkU/G7+UJM0mplkqTV7b+jGod/xDi4eiqIVwKHl09e/Po8
- lc5e4Kw98Sih/kcjqcCDCw7esWgTuwRxJyO5nfJVfTw+1YJ8zCvc5FmR6Go4TkaRsRUOcCO
- AF6PkCUFzsj+drbxvOO8nCLzvhfSr4Y=
+ t=1686093737;
+ b=eL+Rr1qFoBOgryjIEKafcBe583e1cmIUlMlYbDziccJGcrIvN17KltbI38h7Yms4nlBul
+ UduLlCyfePXimgvkpDLq/aeaU5tNk1uqwB65GlfYFCXx/2DlquIzGe3bQ19Qux97XhpTe38
+ Dp+mhV6ScA2y9+lIwnNwAkQhH6H2RIo=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1685133026; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1686093737; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=nrJocbC9yujvo/q/Zvs4to1pf3VWKChUTxeNN8aTAa0=;
- b=oeCJny0gx5ucVCPFy2q/Zxg2I+7v1RoEdhi1P7l22T/7IjmBig7nYvgabT7MKxRb31dHM
- 0+6LMv1vQrM8QRRdSc7ZIy+wid8u56y1MZ9j8k3XCC8dUsFtpivnJvJRYstAHiCfKXUyNGA
- qG37FHnTborL1jdYXnu0UN6V/jmaCuc=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=narfation.org;
+ list-archive; bh=9wFCm+pZ3qAWgCZU4qe0akJLr8SDMfAA/D88EKwdCbo=;
+ b=n4JhKbtZpdXDVdA14xo/3/8+snqTSt9TSdJHHqMKdQGNka5Z5j5kvdZp735WfUzhsBZW4
+ 0mrYzVr/Skjrwqvf29sE3mMaVNa971T+MDwFPFo4riQ5fZQtZ+mndeOQNJvpBWfemBMW2df
+ jEmq2Dxqh+x7MQ6p6QnNIKB76dMZwGo=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org; arc=pass; dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 31A3280FC3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 26 May 2023 22:30:23 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1685133024;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=nrJocbC9yujvo/q/Zvs4to1pf3VWKChUTxeNN8aTAa0=;
-	b=bwEABRsUSOqJA6IFimxNz3pP+LfoP/K/5pev/vKFiC40/eqWxbNC9UgMZPRE37M0bpt9q5
-	9Pim6ngbc1E05B1Oa9l39ANMIzt0ZZ5MaJRllhcbKPvVYThBvaXVa1d7vEbrMZqWEPqgAD
-	HnAdM4OAjW6hZyfTZMeLGXerKsttKN8=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1685133024; a=rsa-sha256;
+  dmarc=fail (Used Org Domain Record) header.from=syzkaller.appspotmail.com
+ policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
+ dmarc=fail (Used Org Domain Record) header.from=syzkaller.appspotmail.com
+ policy.dmarc=none
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
+ [209.85.166.197])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0FB538045C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  7 Jun 2023 01:21:55 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1686093716; a=rsa-sha256;
 	cv=none;
-	b=KPF88wdWCEkr5YnQUHihjCGatCcUsxkiOdLE0BR3RqPwvlpS5MQDFjzVo2rN7N7JY2KrIu
-	m6YumivOwpRxJGwdRmZcR4WzK8cG3g+mbDy/mUKpDzrmFA3svRs6nNu8NRHO6um+6SrO1V
-	7groE3Uue4VF46Z72eo3kL1OOneLDlU=
+	b=1+ENq5oh+33kiCiXy4iKzDgT847yK7FpK+t3sU+wttHRUpj7aVIDk4N3Zxt74yOKpxujqA
+	zU9MlscPxPoVK5HpMaxSLmaeIxFDp8lC4oMRieqlOgaJ9gjkP3aeg9Tb9YlA5qJ5x5Vlz7
+	ZT8oHyiu7SqohjUCsG7OmW2vEVk8PxY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b="I/LSxf9e";
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1685133022;
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed),
+ No valid DKIM" header.from=appspotmail.com (policy=none);
+	spf=pass (diktynna.open-mesh.org: domain of
+ 3kr9_ZAkbADspvwhXiiboXmmfa.dlldibrpboZlkqbkq.Zlj@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.166.197 as permitted sender)
+ smtp.mailfrom=3kr9_ZAkbADspvwhXiiboXmmfa.dlldibrpboZlkqbkq.Zlj@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1686093716;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nrJocbC9yujvo/q/Zvs4to1pf3VWKChUTxeNN8aTAa0=;
-	b=I/LSxf9eXH1Ikzq1flOLF5C80S7pH/0I/Jm0EFS5cz2h5bm7XpXIbRPK2L0iu7XbaFTqTq
-	eNci93A+CRVdDUe6klTXO/tCMUkmTXTEk34RO8c3ohoKfnzOqMwP+DzxhjOBweZcZAYypG
-	B8AS5+F3I3PkNhHN5zgPby7OKPsQst0=
-From: Sven Eckelmann <sven@narfation.org>
-To: Marek Lindner <mareklindner@neomailbox.ch>,
- Vladislav Efanov <VEfanov@ispras.ru>
-Subject: Re: [PATCH] batman-adv: Broken sync while rescheduling delayed work
-Date: Fri, 26 May 2023 22:30:16 +0200
-Message-ID: <7526514.EvYhyI6sBW@sven-l14>
-In-Reply-To: <20230526161632.1460753-1-VEfanov@ispras.ru>
-References: <20230526161632.1460753-1-VEfanov@ispras.ru>
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=9wFCm+pZ3qAWgCZU4qe0akJLr8SDMfAA/D88EKwdCbo=;
+	b=N4SO0ziFteOJcTtzhCtzVAFdFE1MsajdpdZ1UShzvh0xdrSXD86mh+pKpG3syFjaKuoq3F
+	pxUN0OcTZvZ1vxhQstSYgxsopxZFg7EHqI3VsSplXrBI+wbVtqsayNVbGi8dnE3d2GpYl8
+	VGldtdzqroRyKiiUbD8Zn1xPcDlSOUw=
+Received: by mail-il1-f197.google.com with SMTP id
+ e9e14a558f8ab-33b2e96ea07so2325825ab.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Tue, 06 Jun 2023 16:21:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686093714; x=1688685714;
+        h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9wFCm+pZ3qAWgCZU4qe0akJLr8SDMfAA/D88EKwdCbo=;
+        b=CTZg040E1s6TF6PydhOZBtB48+u+QdmajWbDkjgQcHrrkKcDBRGHKuQQ0W3YezKEgV
+         MxLbiZGCuMcrD1Nnq+PtXi54mytfRQlCuINElw9EMpXYKVwvOngZhkMOgHu+fwlmBN7H
+         TUuGEBbpEIRZBdN+gzlzJqscB1vVM/XGEYkectvIUnJTsrWyo9xu12dwNycbGtmPqVZu
+         FduiD1c6OA8l7lWdrkN5mCsdLbkTSHYRgp6p7nd07FEGE1BOqDUXIukMuPmi9Mz9bN1S
+         OR3iml+0HT34gqzwQilnSnq/xHQh6V4krpuzdydRGMHFQiEfUN8FwZNOuTDI7hjLg89s
+         enbw==
+X-Gm-Message-State: AC+VfDxwbHclr7Rj0VYQeZWRy3Sg7aD5Gi1to3Bqe7mwwlwIKzx4KYEG
+	a1uWUZotif2FrJxaYmxXZdYjkG6vfKZUiVtHme2sgK6OmBT4
+X-Google-Smtp-Source: 
+ ACHHUZ71/HCLFMZB2QklrupN5H/+IcgTlCUUJBOQlQ9HpHL7I2uh6mqDVZw2zubtCBLLznj4lx4mLJk9V/niZtnWGVnahOsOT3V5
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3740035.kQq0lBPeGt";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: PDBDOQ7SJLGY5MQSJMQQ2OPNBQ56UXRM
-X-Message-ID-Hash: PDBDOQ7SJLGY5MQSJMQQ2OPNBQ56UXRM
-X-MailFrom: sven@narfation.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-b.a.t.m.a.n.lists.open-mesh.org-0; header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Antonio Quartulli <a@unstable.cc>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
-X-Mailman-Version: 3.3.3
+X-Received: by 2002:a92:c801:0:b0:335:fef6:6b84 with SMTP id
+ v1-20020a92c801000000b00335fef66b84mr1814317iln.1.1686093714629; Tue, 06 Jun
+ 2023 16:21:54 -0700 (PDT)
+Date: Tue, 06 Jun 2023 16:21:54 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000eb2c5705fd7e48e0@google.com>
+Subject: [syzbot] Monthly batman report (Jun 2023)
+From: syzbot <syzbot+listd313779a4df89fffaf29@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org,
+	linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, sven@narfation.org, sw@simonwunderlich.de,
+	syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+Message-ID-Hash: 2HVRIM4S67EO5G6FFCKTK2H4KBDQZWDP
+X-Message-ID-Hash: 2HVRIM4S67EO5G6FFCKTK2H4KBDQZWDP
+X-MailFrom: 
+ 3kr9_ZAkbADspvwhXiiboXmmfa.dlldibrpboZlkqbkq.Zlj@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address; member-moderation;
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
+ administrivia; implicit-dest; max-recipients; max-size; news-moderation;
+ no-subject; digests; suspicious-header
+X-Mailman-Version: 3.3.8
 Precedence: list
-List-Id: The list for a Better Approach To Mobile Ad-hoc Networking <b.a.t.m.a.n.lists.open-mesh.org>
-Archived-At: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PDBDOQ7SJLGY5MQSJMQQ2OPNBQ56UXRM/>
-List-Archive: <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
+List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
+ <b.a.t.m.a.n.lists.open-mesh.org>
+Archived-At: 
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2HVRIM4S67EO5G6FFCKTK2H4KBDQZWDP/>
+List-Archive: 
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
 List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart3740035.kQq0lBPeGt
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 26 May 2023 22:30:16 +0200
-Message-ID: <7526514.EvYhyI6sBW@sven-l14>
-In-Reply-To: <20230526161632.1460753-1-VEfanov@ispras.ru>
-References: <20230526161632.1460753-1-VEfanov@ispras.ru>
-MIME-Version: 1.0
+Hello batman maintainers/developers,
 
-On Friday, 26 May 2023 18:16:32 CEST Vladislav Efanov wrote:
-> Syzkaller got a lot of crashes like:
-> KASAN: use-after-free Write in *_timers*
-> 
-> All of these crashes point to the same memory area:
-> 
-> The buggy address belongs to the object at ffff88801f870000
->  which belongs to the cache kmalloc-8k of size 8192
-> The buggy address is located 5320 bytes inside of
->  8192-byte region [ffff88801f870000, ffff88801f872000)
-> 
-> This area belongs to :
->         batadv_priv->batadv_priv_dat->delayed_work->timer_list
-> 
-> The reason for these issues is the lack of synchronization. Delayed
-> work (batadv_dat_purge) schedules new timer/work while the device
-> is being deleted. As the result new timer/delayed work is set after
-> cancel_delayed_work_sync() was called. So after the device is freed
-> the timer list contains pointer to already freed memory.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with syzkaller.
-> 
-> Fixes: 2f1dfbe18507 ("batman-adv: Distributed ARP Table - implement local storage")
-> Signed-off-by: Vladislav Efanov <VEfanov@ispras.ru>
-> ---
+This is a 31-day syzbot report for the batman subsystem.
+All related reports/information can be found at:
+https://syzkaller.appspot.com/upstream/s/batman
 
+During the period, 0 new issues were detected and 0 were fixed.
+In total, 9 issues are still open and 20 have been fixed so far.
 
-Acked-by: Sven Eckelmann <sven@narfation.org>
+Some of the still happening issues:
 
-Thanks,
-	Sven
---nextPart3740035.kQq0lBPeGt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Ref Crashes Repro Title
+<1> 5426    Yes   WARNING: ODEBUG bug in netdev_run_todo
+                  https://syzkaller.appspot.com/bug?extid=f9484b345f41843fc9a9
+<2> 1375    Yes   WARNING: ODEBUG bug in netdev_freemem (2)
+                  https://syzkaller.appspot.com/bug?extid=c4521ac872a4ccc3afec
+<3> 128     Yes   INFO: rcu detected stall in batadv_nc_worker (3)
+                  https://syzkaller.appspot.com/bug?extid=69904c3b4a09e8fa2e1b
 
------BEGIN PGP SIGNATURE-----
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmRxFtgACgkQXYcKB8Em
-e0ZD0RAAp8e/HTANDtMQF/tKm+CEosGlP+Hp8Aqdd8nNfTXXC2DJAouO/TO2ycmq
-G0N393ff6vuTkebzzuM8QqOQxFVMGCH/VDGZEkOAr+Qyq8V6Vq50uCJUyi1TkCEk
-lhM/wvBXJbadpikiJdkYdfJFBMUcNqRnMsmvDU3ASPw8g4/ZlTfRDKPn56UUUjb1
-juIiGBWFTQ0tzcEh5p9YgrArb/jI7YkZR4BNfheFEoPZqZRkP5CaonXE436uQIjz
-raVe+QnxlGHVFUGpIyebNEB5/ZtWN1gsOXetqLcjFgjkwh9Qvow8tjNv13VqbTd5
-rUHp8HoTwrq3UGNW3xUzRWuxJtQBOwKrNmebw2CN179C4qEZjipY14XnfGngZLyE
-27QcB6s4wWz1UMjIiZ8OnN7gAzDmHKde1LqdQQp9WaAfLwFKCEeNMECg1QhQExaD
-vsfUr5aNuaLNk9KV/l+sus4hOCzeGCgmlUsrw9rWR3yk5PEjpUeg0IkJmZr7nFkx
-ykj5yPFHvgFi6q0VV7ppV4iXEoPTP7s4uZqCeHn8MQ1jVNZio/l7YhwZBYN3pfbK
-5nv2jKXsK079UHV9qzmhQH31jZEh//jwcupyMF+k63RpQM8sfENKb25EkUJN5ebQ
-gNnzdr1ElKsPD8TUQ1B9SVI0QKNpTGMXWsiNjX/BMVblnUvcxKE=
-=sHaT
------END PGP SIGNATURE-----
+To disable reminders for individual bugs, reply with the following command:
+#syz set <Ref> no-reminders
 
---nextPart3740035.kQq0lBPeGt--
+To change bug's subsystems, reply with:
+#syz set <Ref> subsystems: new-subsystem
 
-
-
+You may send multiple commands in a single email message.
