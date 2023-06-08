@@ -2,105 +2,142 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B6CB727B86
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Jun 2023 11:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6937E727B8C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Jun 2023 11:35:44 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 10A38817C0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Jun 2023 11:35:04 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4220B81982
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  8 Jun 2023 11:35:44 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1686216904;
- b=yO2aDQETTkMb5z/2ZZKWYkTQ6QxmIgLr6JbgfXjYuKL1bA1XtvI2H1xhgSiVdOPOhDlah
- 1+qXYdfNkrhYs4Wu1lU8dAk5uIdBypNiqYX9+sF0eLVegTrWE19TPZeUTiTnR+hICQ7pgnT
- IaiqepmmVftiqon4OyMuv7esIxVoQEE=
+ t=1686216944;
+ b=ZPM+T4zxK6o9ZapfL1gHtTGysBpjErHifq7eSbK3EGhTFk2hetDYy6zDgjv9krNQIdscq
+ bu07e/pVIS3GEucpncx5Yr0928UEZ5/tE5dBIX0qqhLLf6ru4tKHVggWMluqCKYdmjIb2vp
+ u45dxzQFAHfqWT8AEFm4zRiQ68SITLA=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1686216904; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1686216944; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=5cIS8YowCvMN9trqKxcNeiP3Gd9Xo1k7HbnwOEbs+Mo=;
- b=U/iMSfs5gwRzqzAsymVxU5E2qIRJRJs+KazUhF9N4tR67GOBgsqIzk9q5X65IlcSBfhwx
- 0N6Q2b3LsAG87THzSNd8X6sbmASsbKjA6IKdcBdiKk3MFSu1Yj/VF2TkB8sqPfn5FpDz8HU
- k+EYDagL8Gl6L1Z/8EDPs/PhXcFTvL4=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=ispras.ru;
+ list-archive; bh=TkZdXAW7CSjCPUke2Sq5/5CWJURTImAgkFUg7fQ3MxM=;
+ b=qvQ8KfK7ynoRt5RbPSaR0TL6xiKIVvswj6i07NfD1ZuoRyZY3ZL0sazNznpjGNbdtMDE9
+ zXZrli9b1EPV+MOM1vKLFwrSbhCislQXPjombjmzayLJE4u4Y5qjOyfYFuIONJGTwjWE4qC
+ Fs4vZttbX3uoCBTCqQyqGHMZGsQFpOw=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=redhat.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=ispras.ru policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=ispras.ru; arc=pass;
- dmarc=pass (Used From Domain Record) header.from=ispras.ru policy.dmarc=none
-Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 59E208045C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Jun 2023 11:01:19 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1686214879; a=rsa-sha256;
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=pass header.d=redhat.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=redhat.com policy.dmarc=none
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id CEEAF80494
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  8 Jun 2023 11:27:38 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1686216459; a=rsa-sha256;
 	cv=none;
-	b=cCMeAbZifGAjoFtXpKV4BMG1v0B7JrfWO2qmKprQyINtldk6NGfDSvYhfuZ/4yf4Tx8Uc7
-	quo8UXcyEX/+WWic2LUE9VeEQSmqhz6spyYr9WtDaS0EOup4UnN5g+wZnDF41QWI4e9FNZ
-	4XqeAUwMleSWxuRsrAN1rIQBSawRRPk=
+	b=Oq2Ztq43uGd4t2OJnDdOXm7BiizP+T7vuoiGCmvLDb2Pgp8kE4Vmpef0ynUVmABiwu0zSP
+	rIne9ob40vJWCGm490YfqI+NBKVl5a8nAG0+xmWFAVxd8kbo3DA6u0Yi34N9wV59A9hv+9
+	1fl0uO+qiNH/PpM1pWcs7t6hcWN94I0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=ispras.ru header.s=default header.b=fLemU8Mz;
-	spf=pass (diktynna.open-mesh.org: domain of vefanov@ispras.ru designates
- 83.149.199.84 as permitted sender) smtp.mailfrom=vefanov@ispras.ru;
-	dmarc=pass (policy=none) header.from=ispras.ru
+	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=DdjX4vAb;
+	spf=pass (diktynna.open-mesh.org: domain of pabeni@redhat.com designates
+ 170.10.133.124 as permitted sender) smtp.mailfrom=pabeni@redhat.com;
+	dmarc=pass (policy=none) header.from=redhat.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1686214879;
+	s=20121; t=1686216459;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=5cIS8YowCvMN9trqKxcNeiP3Gd9Xo1k7HbnwOEbs+Mo=;
-	b=wIHrkojHh1Cd6VIN3dnOZoK1wPPkw3NGQ2MwPUeYEkLypq1JVNlBDskNhKrKpdGqhj7qsv
-	25lOPAWB5eZETom6QUTEA9q6ZTZKShmcLg/GonbDSvZ3NzLq7hCDKHMw62esEwKISdRvwF
-	lyfsTWnyjUfdV/gn2b+R6m9LjIbMjGs=
-Received: from [10.10.2.69] (unknown [10.10.2.69])
-	by mail.ispras.ru (Postfix) with ESMTPSA id AD0BF40737A7;
-	Thu,  8 Jun 2023 09:01:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru AD0BF40737A7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
-	s=default; t=1686214875;
-	bh=5cIS8YowCvMN9trqKxcNeiP3Gd9Xo1k7HbnwOEbs+Mo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fLemU8MzFc7SoqGR5AQ0KegwT/PgiD0r/hpw3lUzEYDDtOZN6kVjK5ca22La9k+2R
-	 /XAl8xrjGx21GjiImmvXkGZuzQ5K8/7rQemYHTrv+oyf0uo+CJvFg1fjGSj8VP7Jyd
-	 fOs0cXjPCmeku81S86W2Q+xhlS8mzKjw55x4yXmU=
-Message-ID: <ff68da6a-8594-b218-c62b-4ae8e1ffae0a@ispras.ru>
-Date: Thu, 8 Jun 2023 12:01:15 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
+	bh=TkZdXAW7CSjCPUke2Sq5/5CWJURTImAgkFUg7fQ3MxM=;
+	b=UJ9Ghq4P29MPgHLMd+b+5MWSR90o+VNoHtMY/LPzmBlwlgbv76WbLqRZCwVikITTOo3vii
+	KwhA3yEBFdmU8zGgyAbk8HqU5EJlToWH/owM+j8NcLN7QoHW/WymFXJeGnppEYG9n2Yll9
+	ra1xcZPQ2PzkFmc4vWSGNqN7Pab+dN4=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1686216457;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TkZdXAW7CSjCPUke2Sq5/5CWJURTImAgkFUg7fQ3MxM=;
+	b=DdjX4vAbFNYMQkshlyPV6eZNMl2KaZTPGVblvMxOJmnWcPhe4rHqxjtMjoXHTpjGZV1Z6M
+	Y6bw1vOlietxyLYTWhJMO1DFq+2/qd3DwoNKWV0ZyXz65ZfC6QPcwyAjbxqDK2gJb5DtJl
+	lwb0f0dTkH076WsoFpUXeUJhNa6tjCA=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-88-9rr5MKmLNhKldgafzI29xw-1; Thu, 08 Jun 2023 05:27:35 -0400
+X-MC-Unique: 9rr5MKmLNhKldgafzI29xw-1
+Received: by mail-qk1-f198.google.com with SMTP id
+ af79cd13be357-75b337f2504so10579285a.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Thu, 08 Jun 2023 02:27:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686216455; x=1688808455;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TkZdXAW7CSjCPUke2Sq5/5CWJURTImAgkFUg7fQ3MxM=;
+        b=AguhpVQfYuAEhImnPl92Dvk1a9odKlqQLjKQRYwvTwOGsOteo8fROhV2b+Vby+lCIB
+         fto+1//DBUQJ0MMSwY/kCEtA4rKVAzfJdL8uRwZwGTDHdESInZd4QzcYp81ARaMgxGYt
+         kHmU4chkv68tQTlhd+BYyxpVR+xwHj6wjFMN87UbjXPIQ6G4hGltvfi950EE7oHu7O8z
+         fFEnY4boo+Qw0SXsgpdfsXP/UZ1ggpcjWHqstW6kRnIpY5uHFEZY0KT6PgJN3dk76PtV
+         pgCVFEOE54SKDWYcWqneYBqPgeJPBrbcAAniW7FJkZki8srnlBMGVqUySiIDuAzwwMYD
+         /P1Q==
+X-Gm-Message-State: AC+VfDwYc/eWJ04AtXVU3f4D6olWi4iXql9GLaMz0MhK54HjuSrUPJRH
+	7bUNPlIerB1l6en8y98vhEUeNyeK7c83ZKlRrPXWm2EQw5iZK7OP9bmsqr5UAZNpruHHvQbFmUA
+	QPJvrAboOU1G7ntBxD3oRZfo/bDnm
+X-Received: by 2002:a37:788:0:b0:75b:23a1:69e7 with SMTP id
+ 130-20020a370788000000b0075b23a169e7mr4438065qkh.7.1686216455502;
+        Thu, 08 Jun 2023 02:27:35 -0700 (PDT)
+X-Google-Smtp-Source: 
+ ACHHUZ6HZNF7dR1NukuezxGy3h0BzC3f9Uf1uhzscu16+FNiP7Er4IAcCI1rAEntrmRr8IKv9oYotg==
+X-Received: by 2002:a37:788:0:b0:75b:23a1:69e7 with SMTP id
+ 130-20020a370788000000b0075b23a169e7mr4438053qkh.7.1686216455161;
+        Thu, 08 Jun 2023 02:27:35 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-247-199.dyn.eolo.it.
+ [146.241.247.199])
+        by smtp.gmail.com with ESMTPSA id
+ e17-20020a05620a12d100b0075cc95eb30asm216629qkl.8.2023.06.08.02.27.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jun 2023 02:27:34 -0700 (PDT)
+Message-ID: <6a36f208b961181df9a0c611a6f5ffc4c76911f6.camel@redhat.com>
 Subject: Re: [PATCH 1/1] batman-adv: Broken sync while rescheduling delayed
  work
-Content-Language: ru
-To: "Keller, Jacob E" <jacob.e.keller@intel.com>,
- Jakub Kicinski <kuba@kernel.org>, Simon Wunderlich <sw@simonwunderlich.de>
+From: Paolo Abeni <pabeni@redhat.com>
+To: Jakub Kicinski <kuba@kernel.org>, Simon Wunderlich
+ <sw@simonwunderlich.de>
+Date: Thu, 08 Jun 2023 11:27:31 +0200
+In-Reply-To: <20230607220126.26c6ee40@kernel.org>
 References: <20230607155515.548120-1-sw@simonwunderlich.de>
- <20230607155515.548120-2-sw@simonwunderlich.de>
- <20230607220126.26c6ee40@kernel.org>
- <CO1PR11MB5089F99A62265CE85CCB413CD650A@CO1PR11MB5089.namprd11.prod.outlook.com>
-From: Vlad Efanov <vefanov@ispras.ru>
-In-Reply-To: 
- <CO1PR11MB5089F99A62265CE85CCB413CD650A@CO1PR11MB5089.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MailFrom: vefanov@ispras.ru
+	 <20230607155515.548120-2-sw@simonwunderlich.de>
+	 <20230607220126.26c6ee40@kernel.org>
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37)
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: pabeni@redhat.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: QC6N327BJG7DOVSRBI2OO5TSLGNQQHML
-X-Message-ID-Hash: QC6N327BJG7DOVSRBI2OO5TSLGNQQHML
+Message-ID-Hash: T7XPQRAY6V3BKI7AKRSBGAWHY6EQZK5L
+X-Message-ID-Hash: T7XPQRAY6V3BKI7AKRSBGAWHY6EQZK5L
 X-Mailman-Approved-At: Thu, 08 Jun 2023 11:34:39 +0200
-CC: "davem@davemloft.net" <davem@davemloft.net>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>,
- "stable@kernel.org" <stable@kernel.org>
+CC: davem@davemloft.net, netdev@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org, Vladislav Efanov <VEfanov@ispras.ru>,
+ stable@kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QC6N327BJG7DOVSRBI2OO5TSLGNQQHML/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/T7XPQRAY6V3BKI7AKRSBGAWHY6EQZK5L/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -109,47 +146,24 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-As far as I found the synchronization is provided by delayed work 
-subsystem. It is based on the WORK_STRUCT_PENDING_BIT in work->data field.
+On Wed, 2023-06-07 at 22:01 -0700, Jakub Kicinski wrote:
+> On Wed,  7 Jun 2023 17:55:15 +0200 Simon Wunderlich wrote:
+> > The reason for these issues is the lack of synchronization. Delayed
+> > work (batadv_dat_purge) schedules new timer/work while the device
+> > is being deleted. As the result new timer/delayed work is set after
+> > cancel_delayed_work_sync() was called. So after the device is freed
+> > the timer list contains pointer to already freed memory.
+>=20
+> I guess this is better than status quo but is the fix really complete?
+> We're still not preventing the timer / work from getting scheduled
+> and staying alive after the netdev has been freed, right?
 
-The cancel_delayed_work_sync() atomically sets this bit and 
-queue_delayed_work() checks it before scheduling new delayed work.
+I *think* this specific use case does not expose such problem, as the
+delayed work is (AFAICS) scheduled only at device creation time and by
+the work itself, it should never be re-scheduled after
+cancel_delayed_work_sync()
 
+Cheers,
 
-The problem is caused by the INIT_DELAYED_WORK() call inside 
-batadv_dat_start_timer(). This call happens before the 
-queue_delayed_work() call and clears this bit.
+Paolo
 
-
-Best regards,
-
-Vlad
-
-
-On 08.06.2023 08:24, Keller, Jacob E wrote:
->
->> -----Original Message-----
->> From: Jakub Kicinski <kuba@kernel.org>
->> Sent: Wednesday, June 7, 2023 10:01 PM
->> To: Simon Wunderlich <sw@simonwunderlich.de>
->> Cc: davem@davemloft.net; netdev@vger.kernel.org; b.a.t.m.a.n@lists.open-
->> mesh.org; Vladislav Efanov <VEfanov@ispras.ru>; stable@kernel.org; Sven
->> Eckelmann <sven@narfation.org>
->> Subject: Re: [PATCH 1/1] batman-adv: Broken sync while rescheduling delayed
->> work
->>
->> On Wed,  7 Jun 2023 17:55:15 +0200 Simon Wunderlich wrote:
->>> The reason for these issues is the lack of synchronization. Delayed
->>> work (batadv_dat_purge) schedules new timer/work while the device
->>> is being deleted. As the result new timer/delayed work is set after
->>> cancel_delayed_work_sync() was called. So after the device is freed
->>> the timer list contains pointer to already freed memory.
->> I guess this is better than status quo but is the fix really complete?
->> We're still not preventing the timer / work from getting scheduled
->> and staying alive after the netdev has been freed, right?
-> Yea, I would expect some synchronization mechanism to ensure that after cancel_delayed_work_sync() you can't queue the work again.
->
-> I know for timers there is recently timer_shutdown_sync() which can be used to guarantee a timer can't re-arm at all, and its intended for some situations where there is a cyclic dependency...
->
-> Thanks,
-> Jake
