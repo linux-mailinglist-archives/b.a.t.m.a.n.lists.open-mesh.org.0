@@ -2,93 +2,62 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0197874EFFD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 Jul 2023 15:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB58C74FE30
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jul 2023 06:30:13 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CF21681BD0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 11 Jul 2023 15:17:35 +0200 (CEST)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1689081455;
- b=gsJkh7XPBCDZwiKotwWBeMt/R3a5c8c/s368AoJR4AM2pJeh7auemIdahz6YkjWFHB7ZE
- APXzxXbApRboR0Qv5HfUwH0xtSm0LrmlWaxFqvi9bIwPRG93MjxZcbM6Gc8SMG3Qoe1x1IE
- lh1dMWIbC7OkaNCGCG53iZ2zYrGQIcE=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1689081455; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7B6D782196
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jul 2023 06:30:13 +0200 (CEST)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1689136213;
+ b=q9Rz206q0GHwva0S+yq/ECa2Fj7p6JfGA9LV+rpm3Xq0zGMmIbJcVHfUFLkuAQNk6O5v1
+ LuzhC8zR43CJkw5kLxhSQn1ZhLNCBHHAHhXZlUorbICOPzAj4UW7yFmeuZ5lFzCCAiToLtX
+ K3ngvwNUHZ98m+2sLfLm5Gu7Iv/XN/E=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1689136213; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=ZaOAkO39vYUggDcACAcvheQDbeLMHMjwX1CvXbBh7Xc=;
- b=UfdPhJ3/FAOkAdHaww4NTZmumZfmlMfTQSdjJRT/jp+v1tXxyfOc5etaO1LLSW4P5jpJ1
- Ab74VqcXFY1C0Ve/VmrMLXLvvkJMNF/gyrckWCh44R+AQ4tB2DWZPWNiPhwDI+RhD2icAhr
- MwxLnTf3x8RE0DRj+ArZhcyDmjZ3Nbg=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=narfation.org
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id D7B3780BA6
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 11 Jul 2023 15:16:56 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1689081416;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=ZaOAkO39vYUggDcACAcvheQDbeLMHMjwX1CvXbBh7Xc=;
-	b=u4jamsjz7xjcmPeHVxP02GVPpVa3s8FGipdkEmOlli4aqUbUfICQNZwvcbbshGqgfYiSHj
-	K9C2q8TTEn3FyuxKotsCY6AGbeYkdAUjrt3uG9F9scyosKzPoGJQ15yr+4drIA0i12IRGu
-	tQn3xmNeYwzehEc4yL8gIdVfj4v5PEk=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1689081416; a=rsa-sha256;
-	cv=none;
-	b=u+TfHYUEcRN8ikzGWkupmQdHflbfmi2pcaAXECn6Ss89brTIwc97jbh67xqi1RMCvBjMeT
-	CX03KTmFtEagA9sY6/D4GCdMcNpUhT2agi7shUecR8cR8OMQLlBhhf9UYLpMZc2G6c6QSb
-	sXWX03a47tU8ZhsWn7cZTnGdh3ILfB8=
-ARC-Authentication-Results: i=1;
-	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Rd7e1ivJ;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1689081412;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZaOAkO39vYUggDcACAcvheQDbeLMHMjwX1CvXbBh7Xc=;
-	b=Rd7e1ivJGED7XfnasKL4ciIfSzDpLsIYvrAejWFxV8MASsb8TT7Yj6+4dFPSyt1gkmn38K
-	TlViVjjdnbpeYQbtVF4muAhj1Js6FPn64EYuasEjffN62HgAPzri/ig78bSw1X9MoOZQbQ
-	ox9n2DVLa2xDLpdu2WQZkE1GpseHx7A=
-From: Sven Eckelmann <sven@narfation.org>
-To: anders.berndtsson@idptech.se
-Subject: Re: Yocto meta-batman
-Date: Tue, 11 Jul 2023 15:16:49 +0200
-Message-ID: <5859564.DvuYhMxLoT@sven-l14>
-In-Reply-To: <004301d9b3f8$148ce6a0$3da6b3e0$@idptech.se>
-References: <004301d9b3f8$148ce6a0$3da6b3e0$@idptech.se>
+ list-archive; bh=hrmIUsLSmJ3EGrPmMJsqsgdOrO7k9/BnNICuFSwsKKI=;
+ b=MdP+aTv3kYb+m7FAF6xzY2bmPrIyqbEDFDDMWE1TXfFlCbU63dIz3Y4BfqGexsTQtruqA
+ SIuyYMH4WycPA8cumzidWAAVjAiazYfkpioJHHWo04CJDlIeezSRi0A5zj/2k98ldRJjWT+
+ oeH55gF1Oz1BzUgCUYpAhC81wbzuHJc=
+ARC-Authentication-Results: i=1; open-mesh.org; dkim=fail;
+  arc=none (Message is not ARC signed);
+  dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=fail;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3EC0980BF6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jul 2023 06:29:50 +0200 (CEST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6119891.lOV4Wx5bFT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: 6S7LYXKUPASNOE3FFZKSMYILZQSC52LT
-X-Message-ID-Hash: 6S7LYXKUPASNOE3FFZKSMYILZQSC52LT
-X-MailFrom: sven@narfation.org
+Content-Transfer-Encoding: 7bit
+Subject: Using BATMAN over ppp interfaces.
+From: petermilani80@gmail.com
+To: b.a.t.m.a.n@lists.open-mesh.org
+Date: Wed, 12 Jul 2023 04:29:50 -0000
+Message-ID: <168913619024.1040.2149557919065248797@diktynna.open-mesh.org>
+User-Agent: HyperKitty on https://lists.open-mesh.org/
+Message-ID-Hash: CE3B5YPFBCYLMFBCRVRRZR5ES6PEB3LX
+X-Message-ID-Hash: CE3B5YPFBCYLMFBCRVRRZR5ES6PEB3LX
+X-MailFrom: petermilani80@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
-CC: Jonathan Haws <jhaws@sdl.usu.edu>, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6S7LYXKUPASNOE3FFZKSMYILZQSC52LT/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CE3B5YPFBCYLMFBCRVRRZR5ES6PEB3LX/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -97,57 +66,26 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart6119891.lOV4Wx5bFT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: anders.berndtsson@idptech.se
-Cc: Jonathan Haws <jhaws@sdl.usu.edu>, b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: Yocto meta-batman
-Date: Tue, 11 Jul 2023 15:16:49 +0200
-Message-ID: <5859564.DvuYhMxLoT@sven-l14>
-In-Reply-To: <004301d9b3f8$148ce6a0$3da6b3e0$@idptech.se>
-References: <004301d9b3f8$148ce6a0$3da6b3e0$@idptech.se>
-MIME-Version: 1.0
+Hi All,
 
-On Tuesday, 11 July 2023 15:03:25 CEST anders.berndtsson@idptech.se wrote:
-> Is there anyone supporting Yocto layer meta-batman ? 
-> 
-> https://github.com/jhaws1982/meta-batman 
+I've just started using batman and was trying to see if I could get it to work over a serial radio link such as the simple serial devices commonly used in cheap drone telemetry. The goal here is to enable low bandwidth but adhoc ip networking. 
 
-Why aren't you asking the maintainer [1]? But he already wrote [2] on the 
-mailinglist [3] that he will only accept PRs but not maintain it actively.
+I had set up a pair of radios to connect using pppd and I was wondering if I could utilise batman to try and create a mesh. An example of setting up the serial ports as ppp interfaces:
 
-Kind regards,
-	Sven
+$ sudo pppd /dev/ttyUSB0 57600 noauth nodetach 10.42.5.5:
 
-[1] https://github.com/jhaws1982/meta-batman#patches
-[2] https://lore.kernel.org/batman/DFCF0D4B-8A76-4CB8-9577-620452E7F116@sdl.usu.edu/
-[3] https://www.open-mesh.org/projects/open-mesh/wiki/MailingList
+That works fine but applying batman to that interface was unsuccessful. I think that was due to limitations in the ppp and interfaces created by pppd:
+e.g.
 
---nextPart6119891.lOV4Wx5bFT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+$ sudo batctl if add ppp0
+Error - failed to add interface ppp0: Invalid argument
 
------BEGIN PGP SIGNATURE-----
+The interface ppp0 was specified as POINTTOPOINT e.g.
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmStVkEACgkQXYcKB8Em
-e0aOLw/9E4LYh8DhsIc4mom2qypOhB2n5P/NxgKACOdlOVWD0Zvl4ZT3BdZuz0O0
-OP9e5xw4lcYC0Nu2wm75jE+bpoZ+hcML+2rdmOzrziI+MLGw8Wx8LQBhwCmk0R+l
-57jENBA/7V72wtldhei6sl5uXOAtN0kxdftQiom4r0oP7RvC43FXoa/DGl/MZQSJ
-CUxhxKRIdCdd1LpNxpe4fbkP9A2mZnAfULl6jDiEGWSH4fdaz55CsVKTlzbMQ1Oo
-Dsh3ikYsE4kI6oPNz5XW8FjQlgBJ0q7fYUpavdCxCUwzXKbkkM+lgf99OvHlgf0O
-V+JMKn1256V0WvLbr+/AJkoGaGyjePYUhgupCzhbSWD8rOLo0fXO0GrBfYFh0ZLQ
-x8P6arFD1mSMF3OeGjYLClsEWvT3vIj5iPL35sM2zYjkKqudeFMxO1lHTnwdrx3R
-9dBnD4k2Vm6a+WkIVDzNrjwiGj95A/9SbZpxdlgdocOABCxhe3t5T+2CZ7D2uawP
-qZsm2WfNkAuSVzsqrn3ISrNEFdwr1p3V+Pj5V/K7Aj/outpnfkU6Dwjy64kU5OeC
-iRF/S2bE62J7ojnNQ71hJyC8EaLkbuQqFlDzuAaBp/Ouc6M+SKcvP7JucPonKPZb
-Di5+vTpdkkgoGWC2GA7nu3Se7DP5JZHnphydN4MTsORNMHbiFEY=
-=Y8Zn
------END PGP SIGNATURE-----
+$ ip link
+$  ppp0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN mode DEFAULT group default qlen 3
 
---nextPart6119891.lOV4Wx5bFT--
+I'm not an expert in this so don't have full visibility of all the tools available.  I was wondering if there were better ways to set this up, possibly not using pppd? Any guidance would be appreciated.
 
-
-
+cheers
+Peter
