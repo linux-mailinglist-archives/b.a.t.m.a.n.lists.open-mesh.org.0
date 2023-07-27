@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A54764B72
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Jul 2023 10:15:15 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4FB9764B99
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Jul 2023 10:15:55 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A5FD582E32
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Jul 2023 10:15:15 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A4D33821AD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 27 Jul 2023 10:15:55 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1690445715;
- b=IfLSmKgvWE6rHG2JbK0/mIc0+RqirZayahnwLefrzZplXfQZ6ex1PayJe7Sa6avKuzsp0
- ZrQLxbJY5I9neIcJ3ZdWQ8+v9F+Eap1tuI0IQ61kkdAr3ZCECkodNZvFfY5GIiQMo7wByr+
- VAhphDeVf3eENj5vt2dDltoLN7YTcDw=
+ t=1690445755;
+ b=cV7Ikq/91Va0CtnOgCQQewy4kKVRQ5kUuJVOWrQQMhpaDdcDrGobBxxnhFJ8U58tGZVTm
+ U7RzzaS9n39Sgtt9b3ciDIV+Zs5M/CxaQASTYJie0nLf9GZ46L+GmDbeVcwvR0viRCCe489
+ n+YDnKlrIbK+N9EwsSh8Wo5N0V6oh0g=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1690445715; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1690445755; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=lgai9498h4WySyCn72bWMdikfIdbrl7UWP7CNrLqSoQ=;
- b=0e6ptdJh3A7ckcUaUdKudtbEZoOgMVszaxwJcEPoT9ez62kjKR22T74+sz0+LgKe/5V6x
- jT2ha6J7hDezOlUWzc2Q1Xk2E55rFuSSLE3/22zqgl8sEzXOVD9CzfOXQppSGFGWLLBeFF4
- EDnR8moPtvHipEnc+7LOuVvDvpHTZCw=
+ list-archive; bh=GrzKoxQ36tBxvWUSvUQSn4sunBOCaUcdksxW5Gl0tbc=;
+ b=Hg21DEu+jKk3/+Ow5fOmXIAv9xFpOPbdJ0KM+ZySKN7PasmDTb0vB8IdHhbbUlvu/2CYZ
+ 25+/LFAW4MRr2Y/Clh7t1Cv80suVh0lhlLNg4YYE1WdxyGrzEk30YbZ6S+J5GbdfyRYjvDa
+ Z5JlwdxuEhHZDl7IIuIVXGNFzTgFH4M=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
   arc=pass;
@@ -33,68 +33,68 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C01D981924
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Jul 2023 10:14:14 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 83B0A81A3C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 27 Jul 2023 10:14:20 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1690445654;
+	s=20121; t=1690445661;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=lgai9498h4WySyCn72bWMdikfIdbrl7UWP7CNrLqSoQ=;
-	b=oIXVozZ36n5ru9OuLlRnG0k58DFLzqgDZ7mgd+xZPQPgEj1Agi3Jsc/PQmY4AE1/PenhSG
-	4Lbsdz5njrskHvqtKeeNO7+CMdPgdMQHtsQMYPb3OeOD+4GtMpNOzr7ya2vOIVbkKkP86x
-	Fc77RAUolbcD7xtL3m8Q14lPNa7kKl8=
+	bh=GrzKoxQ36tBxvWUSvUQSn4sunBOCaUcdksxW5Gl0tbc=;
+	b=R5Ffp/V5hVFsqWYI+CSTMfz3IjUTW6+n6vbamC9jxJAww+wxh2Cw2Bbdctl6IKHMCWvWgE
+	4OsNF/Q4SO8Y7otfZ9vizRRY/VI4kjlzY0T1r0rzDeiN85SpRDyIvSsWqmjTi+/iq2w4Tm
+	Uy+rMRE06/00IKW3jtImbfEbTYuiZhQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=MKTiMHC2;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=GmjIngtd;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1690445654; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1690445661; a=rsa-sha256;
 	cv=none;
-	b=JVbI4fkxLxa0SPlti+Sn3bxMWRsihXxbWwWp844mKyRd/9Xifj9plh0jbgdPp1ytdjSgV1
-	PJqWPoDbS23wbuSClWGWJMiQx9nWyk/L0o0eMCuUCVeA05pBS/ps1bvfPZApEkGGinSh7m
-	c7KCF8B9zLBZwW3d3NOcMuIEQC0MkU8=
+	b=GWG1DmmlfRNv9XFQvE5/YgJUKUdV5CUuY+JT1S6ENbPuEwocJ31GRLP3TQ4Ukj9HrGoo0E
+	cYTAhJ7A+Psw+7dpQN+9QcDDajZGLdL8BrUbjesY6qXima/s6rbSrM34ovXcv+NM5cpZqz
+	Y8nN/rv01W07zjObZGSzlNe4I+f/S8Q=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1690445654;
+	s=20121; t=1690445660;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=lgai9498h4WySyCn72bWMdikfIdbrl7UWP7CNrLqSoQ=;
-	b=MKTiMHC2tiLRt9yyJfGXp3LxCxtvTTMjj/eRiLHqCp1OJmOgQiJW/4+NzeqV2SnDRaLzrJ
-	Cvg8YBnbQAqFij3YWlKm3x63fDIgOjP6kl1uJsiIgVhgHVa7vRac75f3af6T/lSb1+HLme
-	UBaCX+gKEAYfkf4u7WdSOcUpUxX44Fo=
+	bh=GrzKoxQ36tBxvWUSvUQSn4sunBOCaUcdksxW5Gl0tbc=;
+	b=GmjIngtdPi0g/KYQhkV7cXhTRDis7QrP4Iy7lwCZlelQr/hMIq1IrmuDMEgqjihZfbmDG6
+	7sXqrobl8jyxc2XtX7id0siXMJQeQFFjz9CzDsbjHWA13cUnS61Ahbxgw9zy6Pa2QQTdhZ
+	a8/KqOTXTXk54EtaxCIWB3AOAjSGvb4=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Thu, 27 Jul 2023 10:13:42 +0200
-Subject: [PATCH RFC 1/3] batman-adv: Avoid magic value for minimum MTU
+Date: Thu, 27 Jul 2023 10:13:43 +0200
+Subject: [PATCH RFC 2/3] batman-adv: Check hardif MTU against runtime MTU
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230727-jumbo-mtu-v1-1-036ce1a6e33c@narfation.org>
+Message-Id: <20230727-jumbo-mtu-v1-2-036ce1a6e33c@narfation.org>
 References: <20230727-jumbo-mtu-v1-0-036ce1a6e33c@narfation.org>
 In-Reply-To: <20230727-jumbo-mtu-v1-0-036ce1a6e33c@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=875; i=sven@narfation.org;
- h=from:subject:message-id; bh=Z4L+JSYnxRehrPI0RFqwwv7dDyMe5bo1qPebP8+uwos=;
- b=owEBbQKS/ZANAwAKAV2HCgfBJntGAcsmYgBkwidHBCJ5/W9i1m3hVhm65GyNhIpFAm7EF5Abx
- LzK/Xmzqs2JAjMEAAEKAB0WIQQXXSuHYSVz3OMy4AJdhwoHwSZ7RgUCZMInRwAKCRBdhwoHwSZ7
- Rnt7EACmBVGtfHmUgdOIuhCvlO5qN30SnSWLzmiuOUnc5M0CXWqUHWdSbTmM2SkMoLa7UxvOa5Y
- J0MasK/HDM0lUqhtqbEukTcyjIxKRk5swUq/EMDzKbF20PdL0Cvn8hZ4vcSt3DA7YVyFJhk2W8W
- nujcvmCe3BqQSzxXj13q5sFXAIY35tyYfnzvpqJP0Jh63/TDgMjgDjm2VYPCul+syRF56hi+e9h
- 3RInrl+GUME0sFTbdt5iJ1KQtJ8OtHXopwkoLUsJ+Y7+7pSqQkbvvTKGN94iWTjyiWDw7O8Y+Se
- d4QPuaE//xapgARFj5XHlrcXcdGy/tJijZZEGR/ChqWPOtIkIzb+PRxu/6l5naVKMi5xtMKx6w6
- okOFofTAiA1u3UVqCABHmjhgxnOfVW9Jax/JXk8tz8zGtk7i5VZ+dBj+/GkD9daFTor1BvMYYFT
- B6q2Wi+MUp2eUmXyXI6VRzX2K8I/R8bdwkNKHKswcxJLT/rdBy76inrrpqNb7tyBRrOFhsNeLJS
- P3Pk4Q4dvYSW+WMCI413c4AC3JpoblUilCD4I6MIS0oQgZNSop3wWGH+zHAKk3e2PUqrFv8MIO6
- Ag0/zhPFG/tl4zSQEPXOEvzSrVfI4M7JjgOWlKvSqmfQS7vy25iTMQZe9HB7zfjR9w7vAnjhJgM
- aAmeO6av7z9YQ2w==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2775; i=sven@narfation.org;
+ h=from:subject:message-id; bh=ieJrSIN/6T9uLaha42I0Ifvxuf/346ht09P7/vwCdlQ=;
+ b=owEBbQKS/ZANAwAKAV2HCgfBJntGAcsmYgBkwidHc4BWSe4cvsuIyjaq1Vox0+diczue7wNM+
+ imLM/4nY1+JAjMEAAEKAB0WIQQXXSuHYSVz3OMy4AJdhwoHwSZ7RgUCZMInRwAKCRBdhwoHwSZ7
+ RrhsEADMJk+BaJQebGQ5UGWF5j/azVG8APELqVoPuenw9GorJ56BCxdJSs6ytWeaeb+YRKH9BDb
+ EPfJFiN/7lQOVgdBVI5DzHXARLPXWWP5jTuniLLAA8tDhtljCu/YdtMUQBPTmGKQOs0X8ePwghL
+ A9XtZXyRoqMVwlO3z7lG1fPKMuG7m6Lq1+uYUcKlkNDDV+IYzUGcVJKoJCTt8vhAA/FV0+j9ucl
+ JRax8ryESLb7t/KuPZMiQjV1QiJRcX0D34YydHlU+NPcXp8f0GMQSHar0rvjr+xZ6K1ditCo7XG
+ AGN1PA/WcIUjpeLkrI3X8gbr+0KKBZXLSWjBO3a05X8+Nbk1ViNpeMlvHKVDY4vhSzhTQV0aHOl
+ 6/tBkGnsrBUs3AUXt0KocLvKpGJyBI3TcVifYX1LxGvidebxIxTiYxehtcXNAE+Lys/v0qQmBgh
+ Xa3wsI/4mJTkTB0jKvDpsc42nwF433GU5hwFAVlA5w7rNnXPTu0Dce/q/AQjE8a4JInKTMEghwc
+ ENDi8ag7gBQ2mmyZHt0F6FIW0gM9fa8h8IChNTrGdAmG0hiygBHEz7xYzAucf0IM2K7ltnRQpdS
+ wm1fTcapl9+oP28eZEYnPwlIGxrJzdGD9hC3ZBfcDIgKkLAHETI3kZNrtD+HdHRmjXamCKZDjJX
+ 9YiabhcYTY/+QOg==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: EJF43MQAY5I7C7RU5PWH7H3GKCVGVECQ
-X-Message-ID-Hash: EJF43MQAY5I7C7RU5PWH7H3GKCVGVECQ
+Message-ID-Hash: POVPU3YCNJFOFENHBYX6BEXNNE3WKGKA
+X-Message-ID-Hash: POVPU3YCNJFOFENHBYX6BEXNNE3WKGKA
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -107,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EJF43MQAY5I7C7RU5PWH7H3GKCVGVECQ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/POVPU3YCNJFOFENHBYX6BEXNNE3WKGKA/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -116,27 +116,68 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-The header linux/if_ether.h already defines a constant for the minimum MTU.
-So simply use it instead of having a magic constant in the code.
+If the MTU of the soft/mesh interface was already reduced (enough), it is
+not necessary to print a warning about a hard interface not having a MTU to
+transport ethernet payloads of 1500 bytes.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/soft-interface.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ net/batman-adv/hard-interface.c | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interface.c
-index d3fdf822..f7947fad 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -154,7 +154,7 @@ static int batadv_interface_set_mac_addr(struct net_device *dev, void *p)
- static int batadv_interface_change_mtu(struct net_device *dev, int new_mtu)
- {
- 	/* check ranges */
--	if (new_mtu < 68 || new_mtu > batadv_hardif_min_mtu(dev))
-+	if (new_mtu < ETH_MIN_MTU || new_mtu > batadv_hardif_min_mtu(dev))
+diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
+index 41c1ad33..5a4ff9a8 100644
+--- a/net/batman-adv/hard-interface.c
++++ b/net/batman-adv/hard-interface.c
+@@ -9,6 +9,7 @@
+ 
+ #include <linux/atomic.h>
+ #include <linux/byteorder/generic.h>
++#include <linux/compiler.h>
+ #include <linux/container_of.h>
+ #include <linux/errno.h>
+ #include <linux/gfp.h>
+@@ -699,9 +700,14 @@ int batadv_hardif_enable_interface(struct batadv_hard_iface *hard_iface,
+ 	struct batadv_priv *bat_priv;
+ 	__be16 ethertype = htons(ETH_P_BATMAN);
+ 	int max_header_len = batadv_max_header_len();
++	unsigned int required_mtu;
++	unsigned int hardif_mtu;
+ 	int ret;
+ 
+-	if (hard_iface->net_dev->mtu < ETH_MIN_MTU + max_header_len)
++	hardif_mtu = READ_ONCE(hard_iface->net_dev->mtu);
++	required_mtu = READ_ONCE(soft_iface->mtu) + max_header_len;
++
++	if (hardif_mtu < ETH_MIN_MTU + max_header_len)
  		return -EINVAL;
  
- 	dev->mtu = new_mtu;
+ 	if (hard_iface->if_status != BATADV_IF_NOT_IN_USE)
+@@ -734,18 +740,18 @@ int batadv_hardif_enable_interface(struct batadv_hard_iface *hard_iface,
+ 		    hard_iface->net_dev->name);
+ 
+ 	if (atomic_read(&bat_priv->fragmentation) &&
+-	    hard_iface->net_dev->mtu < ETH_DATA_LEN + max_header_len)
++	    hardif_mtu < required_mtu)
+ 		batadv_info(hard_iface->soft_iface,
+ 			    "The MTU of interface %s is too small (%i) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to %i would solve the problem.\n",
+-			    hard_iface->net_dev->name, hard_iface->net_dev->mtu,
+-			    ETH_DATA_LEN + max_header_len);
++			    hard_iface->net_dev->name, hardif_mtu,
++			    required_mtu);
+ 
+ 	if (!atomic_read(&bat_priv->fragmentation) &&
+-	    hard_iface->net_dev->mtu < ETH_DATA_LEN + max_header_len)
++	    hardif_mtu < required_mtu)
+ 		batadv_info(hard_iface->soft_iface,
+ 			    "The MTU of interface %s is too small (%i) to handle the transport of batman-adv packets. If you experience problems getting traffic through try increasing the MTU to %i.\n",
+-			    hard_iface->net_dev->name, hard_iface->net_dev->mtu,
+-			    ETH_DATA_LEN + max_header_len);
++			    hard_iface->net_dev->name, hardif_mtu,
++			    required_mtu);
+ 
+ 	if (batadv_hardif_is_iface_up(hard_iface))
+ 		batadv_hardif_activate_interface(hard_iface);
 
 -- 
 2.39.2
