@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A301766EC4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jul 2023 15:50:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 375BD7673E9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jul 2023 19:52:41 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6289E8284A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jul 2023 15:50:15 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 14DFA825A5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 28 Jul 2023 19:52:41 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1690552215;
- b=adLy9wy/kny6ll3+yv0BF7EkfLde7feXpT/gP00obGsNrj4oZ2bdagQmNXTVkTqOg9/qr
- yNgzjv+UylGB6QAZAYpWeF3EbOr7GgVYJhAkCxvpYYa73E/KRHuu3J9z1U6MOdGyPDcLd7C
- dhPMKp0i4sB1vixw95eEvffSrocP4dE=
+ t=1690566761;
+ b=Jw5Up2O/i2FMsi2r03RllZw+dDBB2JGBglLAPTfUxh6cPclA78ow/BZAm0xBWEkHRA2sA
+ IcoI9hp7ytvxwWkDt6lxdWqVct5YS5f6FafS9AKwF+AvmU35JvPSUPfKW43L5vyzTKH4wm3
+ cNe6kRpEDtheiK1WY111zIlZ4+KPsAc=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1690552215; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1690566761; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=beUQirsMvfL7pIAGw8UPH+X8qz8ibMFPM/0HewqlhHM=;
- b=iGvavDVfMwnoz/d74/4h8fYuQO3i1FQjb8bnKxVSdMKP85NFSQKymVDD2gvwCGWIPiEBq
- ZBfyDBWxA5fXtIo8Gsk3ZUup/3/FnypkcYelkkhRjBZvS2Y4+3OM05aS6A4bQ6mUmKZ3qbO
- O3na4BSh/dD2kpTGGjj5mjqUcf1TC1Q=
+ list-archive; bh=iY5diABUcV9YscHPRfYkwrRSUAb7aCtFJcN3n1+T9Zw=;
+ b=Bc6u0PmP+Y53Y8cev1nthwaVxOFE63/LKBguArzZ1TOVdr7PWv9RW6loPiBoXX/Q3UQqA
+ eY54rTU0OwuQ+GkiDHYpAYiHES8VyCdDPjY07EXHoFtLL+Hwjd/CNrfZy/eFzObCGsAbNSJ
+ LbFXpk3/oO4hC57iUjt8n0xsceAS9Kk=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
   arc=pass;
@@ -31,55 +31,54 @@ ARC-Authentication-Results: i=2; open-mesh.org;
 Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id A337B800F3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Jul 2023 15:49:50 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B14098022E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 28 Jul 2023 19:52:11 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1690552190;
+	s=20121; t=1690566731;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=beUQirsMvfL7pIAGw8UPH+X8qz8ibMFPM/0HewqlhHM=;
-	b=IWsJN0RteWmS1cjKjOkSS+fzVV4z+gjE5M0DUrCajeh69do9Ik/opAVvhWTLozXyjBGpmu
-	r4M0+4DvP+iwegZZGCmdv+k/m26owzv9NL0EM8QzSnGineZKXDTYvmWK4XRRtwhROBQIcx
-	P/U3XdErk2rTrLjIeFZs3FsmIw/pAJs=
+	bh=iY5diABUcV9YscHPRfYkwrRSUAb7aCtFJcN3n1+T9Zw=;
+	b=2SXbeZG2WcAuReZ/4+Tv/kE/tfRGzmgNuVo+33zNEiEwZH52r1k8tr7iVe0n/zU8qL3fYw
+	40HwebxhKNcuY4gcxeLa6whacYg2gwH02NUF6jTouioHnfdsKS06gFxyIFCI7qrA3pumgy
+	3Pn/sEvGA80rJ58G0U/6p3eIPg4kJmU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b="QpAGFR/o";
+	dkim=pass header.d=narfation.org header.s=20121 header.b="sEbG/DT3";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1690552190; a=rsa-sha256;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1690566731; a=rsa-sha256;
 	cv=none;
-	b=iscPtYJQgGTdu+fH/FR4w/e0dXrVs7c07h8amgZcjwpngY4vkGqod4tpIeawWguiGKTJPU
-	ZDyrKvnPctdZ5yv+3ZXtMayxWvMdHE/W5FgecLwfpf3Ryr4SRJnEp57pma+36WZeFTVLuT
-	nFfGPsSSOjTLWJPa9B7DaX0DwMDHdkI=
+	b=MnV7/B5L7mLcSVrkOqBqb9dW3hOADxubxTz4YBe9wg1mnF0WokChFb0nf+cCgCvQn8a+Ca
+	rf0BphNMyvMailKDYuUrL/IlQ6Kp1BL9pzBsSHGoYTLynbF3SBwXygHUEG/1TmoOdgFFNE
+	D+oVw4pVJbzKO8E56b0KkjVPWruXctU=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1690552190;
+	s=20121; t=1690566731;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=beUQirsMvfL7pIAGw8UPH+X8qz8ibMFPM/0HewqlhHM=;
-	b=QpAGFR/o+41x3t9rha6iw1qPxQh+42P177EVztTm3SxBjqpEka2CYRuNxbBGG5z6Q6tOyP
-	Nh8gQDIFZRkEHa/E/3AQpmr7DF/RENtO3twpdKzGvSvH6w/ZIszfwfWOHzvs9Hk2rFOeod
-	NXdjLqijb/3NaUZGju19tap9yVk2eQk=
+	bh=iY5diABUcV9YscHPRfYkwrRSUAb7aCtFJcN3n1+T9Zw=;
+	b=sEbG/DT3Rn1vspazxUVzyDpnyL2LLOPGcgWkQhmgCBZrePAzVvucdL0wG1Mj2N7mRIOLXc
+	N+0C6bgSuRDAo5SG5SrdsqXwxdUVvwD9WWmBi7vSc4XN4fBmlDD5wClOaodkfgXhc6Jiog
+	W3p05TqiJxqs4v82YDtAWpnXnzbY6wg=
 From: Sven Eckelmann <sven@narfation.org>
-To: Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>,
- Remi Pommarel <repk@triplefau.lt>
+To: b.a.t.m.a.n@lists.open-mesh.org
 Subject: 
- Re: [PATCH net] batman-adv: Do not get eth header before
- batadv_check_management_packet
-Date: Fri, 28 Jul 2023 15:49:46 +0200
-Message-ID: <10396914.nUPlyArG6x@sven-l14>
-In-Reply-To: <20230728133850.5974-1-repk@triplefau.lt>
-References: <20230728133850.5974-1-repk@triplefau.lt>
+ Re: [PATCH v6 1/3] batman-adv: mcast: implement multicast packet reception
+ and forwarding
+Date: Fri, 28 Jul 2023 19:52:03 +0200
+Message-ID: <5938380.MhkbZ0Pkbq@sven-l14>
+In-Reply-To: <20230720043556.12163-2-linus.luessing@c0d3.blue>
+References: 
+ <20230720043556.12163-1-linus.luessing@c0d3.blue>
+ <20230720043556.12163-2-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2318948.iZASKD2KPV";
+Content-Type: multipart/signed; boundary="nextPart1851512.VLH7GnMWUR";
  micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: 2VMMEBSBTLF5FWTKFL7YQUVKGVKX4MXP
-X-Message-ID-Hash: 2VMMEBSBTLF5FWTKFL7YQUVKGVKX4MXP
+Message-ID-Hash: KD7YKXGZMO4JIMC3IFG4FF7A7EEUHDW6
+X-Message-ID-Hash: KD7YKXGZMO4JIMC3IFG4FF7A7EEUHDW6
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -87,16 +86,12 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
-CC: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, b.a.t.m.a.n@lists.open-mesh.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Remi Pommarel <repk@triplefau.lt>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2VMMEBSBTLF5FWTKFL7YQUVKGVKX4MXP/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KD7YKXGZMO4JIMC3IFG4FF7A7EEUHDW6/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -105,57 +100,76 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2318948.iZASKD2KPV
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+--nextPart1851512.VLH7GnMWUR
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
 From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 28 Jul 2023 15:49:46 +0200
-Message-ID: <10396914.nUPlyArG6x@sven-l14>
-In-Reply-To: <20230728133850.5974-1-repk@triplefau.lt>
-References: <20230728133850.5974-1-repk@triplefau.lt>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
+Date: Fri, 28 Jul 2023 19:52:03 +0200
+Message-ID: <5938380.MhkbZ0Pkbq@sven-l14>
+In-Reply-To: <20230720043556.12163-2-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 
-On Fri, 28 Jul 2023 15:38:50 +0200, Remi Pommarel wrote:
-> If received skb in batadv_v_elp_packet_recv or batadv_v_ogm_packet_recv
-> is either cloned or non linearized then its data buffer will be
-> reallocated by batadv_check_management_packet when skb_cow or
-> skb_linearize get called. Thus geting ethernet header address inside
-> skb data buffer before batadv_check_management_packet had any chance to
-> reallocate it could lead to the following kernel panic:
-> 
-> [...]
+On Thursday, 20 July 2023 06:35:53 CEST Linus L=FCssing wrote:
+> Implement functionality to receive and forward a new TVLV capable
+> multicast packet type.
+>=20
+> The new batman-adv multicast packet type allows to contain several
+> originator destination addresses within a TVLV. Routers on the way will
+> potentially split the batman-adv multicast packet and adjust its tracker
+> TVLV contents.
+>=20
+> Routing decisions are still based on the selected BATMAN IV or BATMAN V
+> routing algorithm. So this new batman-adv multicast packet type retains
+> the same loop-free properties.
+>=20
+> Also a new OGM multicast TVLV flag is introduced to signal to other
+> nodes that we are capable of handling a batman-adv multicast packet and
+> multicast tracker TVLV. And that all of our hard interfaces have an MTU
+> of at least 1280 bytes (IPv6 minimum MTU), as a simple solution for now
+> to avoid MTU issues while forwarding.
+>=20
+> Signed-off-by: Linus L=FCssing <linus.luessing@c0d3.blue>
+> ---
+>  include/uapi/linux/batadv_packet.h |  45 ++++-
+>  net/batman-adv/Makefile            |   1 +
+>  net/batman-adv/main.c              |   2 +
+>  net/batman-adv/multicast.c         |  48 +++++-
+>  net/batman-adv/multicast.h         |   5 +
+>  net/batman-adv/multicast_forw.c    | 256 +++++++++++++++++++++++++++++
+>  net/batman-adv/originator.c        |   1 +
+>  net/batman-adv/routing.c           |  70 ++++++++
+>  net/batman-adv/routing.h           |  11 ++
+>  net/batman-adv/soft-interface.c    |  12 ++
+>  net/batman-adv/types.h             |  64 ++++++++
+>  11 files changed, 504 insertions(+), 11 deletions(-)
+>  create mode 100644 net/batman-adv/multicast_forw.c
 
-Applied, thanks!
-
-[1/1] batman-adv: Do not get eth header before batadv_check_management_packet
-      commit: eac27a41ab641de074655d2932fc7f8cdb446881
-
-Kind regards,
-	Sven
-
---nextPart2318948.iZASKD2KPV
+Acked-by: Sven Eckelmann <sven@narfation.org>
+--nextPart1851512.VLH7GnMWUR
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmTDx3sACgkQXYcKB8Em
-e0Y7nA//f+y3W/Key/lGHTIdz7e2o1AK1cskjKQSEK0MRZTG83aYw6UET5x70CSB
-enh7GVx8/oVW5PJTRzgSevACLiY5TBmdVUsnvB15Jd/GjpgGR6+5d2qzlg3ljo7Y
-qX9JkYEqCmbyaca0MrBooQJD0osnfI4Yp+06kaIlYPfhtM0D/Z+9vq2N6vt/6P78
-iMR/aaRkMef9wsvCBF+Hqoo2fazSxb/4OBFsVS5HWvHHo0E30difswthoh794uO+
-mnisBoitYzQAQ+EGbHM7rOGiymUl6KelZjOe7HCSlrhC0C6C6P5LWYUcegmW1B7w
-Dnrni2OXXn2EurdjVVPLQWs9xOvUYbmf125e8aOwW/RAY7ZiTP4F+i1bYMe65TTW
-UFCMUl86894QOo0aL7uZ+/aBV03M7kGUNQnLNWlpA9zlK5zr3dNtgpbJiOF1Z+NP
-O/8+o5Ld7FjqaxAqK76xA8D5yY2BQMCW21n7M2CecoF4EeqngZ1gPOkq2KpIPFTC
-AkEnhkUPa1nsvKUZRoBegYyHEzXqJQITmv5FtdihJLuFqHGS6WI7xEZ+zWJSJbIK
-HEHyA6lfzzqK/hEPo5UcU8rKhdazz0rD8YqteDlVhB3g6jvAtFdLadOMU0qxL8qC
-FoHL3B9xo8LU7SHEPufi8pLqfZLYeg49ix9Zx9ObzPfGl9v4Taw=
-=Xu6Q
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmTEAEMACgkQXYcKB8Em
+e0bbyA//UBBkURhB6jtMPhpy7Rv/OpuSnqNZO4Zt3jDlTcy4uG5qo7DRuPZgITki
+SXwk/Rn7PANsRQdP4tlfqVAxSBxtD0qkChsl9WJ0yxTTdxlOzsms3zxkmn+lALTj
+463z3RVbMuHOWjl+6JzUd3plM9lHDTOBBRtveUiTdjbaoYPpvhQ4r5zJnJFvsN0A
+3BcCycZ9kNcZeO6gqOKiUBI4LbkJoIJjU5883xj1aPp+29XAca1lOWDRIpWhNSXv
+q0pMdDM32pCpkAQ9nX1PZmktxWX4aO83rkuFKYiaJmQPp8/0rfJ8FcnVCY1BfFXj
+tyVUcwZG7c1CiGVYW4UIH+AfUD52mHhgIhrF8CjJsahs6oYliTupCoCsHxSCanhn
+v4f0R7YzJKRuY5TiwRog9b7gmlLDW8SixPB+buDr3EbHoIpK2pUjT8rDx3snRyd+
+bM12I7kErHUb2GudCa+149GXXFh3txOfiASN8XhEP/MJgyUlyJqkF88Id2uuCpto
+W0qNm5pXpyV+sHINin6z0f3O0ZXz/j2g5dJ3wgKwe9GGbUk1rR6jzewCZLXgpHUI
+DUKgk3dhtwcHh5ccmqN/R4I4FM1zfqaofHH+QISkxqDUSwnKW8rgEymmOW1fzVPh
+Etj43r+5aifk6T4lPmYcrnEQWr3NZy4VY9xcs3NU/GHqR2aHK10=
+=TWnm
 -----END PGP SIGNATURE-----
 
---nextPart2318948.iZASKD2KPV--
+--nextPart1851512.VLH7GnMWUR--
 
 
 
