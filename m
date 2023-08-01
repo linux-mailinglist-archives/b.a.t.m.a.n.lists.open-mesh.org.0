@@ -2,82 +2,71 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B3A767E7C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 29 Jul 2023 13:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3617076A6DD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Aug 2023 04:16:53 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A61908307E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 29 Jul 2023 13:12:35 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 06F7D81C19
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Aug 2023 04:16:53 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1690629155;
- b=RFi2714A/uQV0OC8ou3U4441GmIuQ5iBDgMrUaJXrHuC2Zvqp65gl4ernN+I5qqcKhIpa
- brnacB04LQSwCu1AxhUbPjFgmQkciEPQ5htAlAoq4q08qv7H0o3YkbvNFH+GgHhtnBFXjm4
- gM6kr0NTQIJLpYN7qkxfZLWX2Bv4SYk=
+ t=1690856213;
+ b=P6AmYCzF30W7kHlRKaizCqBzoHypqIS5iYv/jETv8Ujm9vZUH2uD7pEmizTZYfDwCZATr
+ vWBzU/l/hy54g7c802ukxlJScUNuX9UxErnj+vOj+/ZlZL/2y54Art5s4kBfX1I1EzmrGYF
+ ML2f/j+frAzyVydMMAwEV1iF8jQIne4=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1690629155; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1690856213; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=V5XVMXA2yLqVH26IrUPDpTN7hR2ALeQ+J3ivNj7nxxU=;
- b=tcaplJEGk6UHwwbTEoCsOE1PSjJdlK8CVMrKFCoToC2zWhxjuatxy2JNd7FAEr9N0d8wL
- 3jGoUBVXiXeGRonLdSDUB/UyZWrRflBr+7SSkxFnUYia0a0a+hfOtfn48b+i6aUD77fw1EE
- aXQSychLeKI6xqYqeSOhTrh+KPekdSo=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ list-archive; bh=IvhuJtFl9DAwONGO1Z8s83vJdRTQFLStXQVfm0R1zKc=;
+ b=LdwjF9ARddBRUQGmb0lgtduj5piKDdCDBoXNFmL2qv+vknrmNZqUhzfHcnuQBcBOHahq0
+ gRC0Omn9tqJnNfMsSUjrzXMtdIVFBS6hZsAR2Aad5reFcQYPVF9ZnFCoCejQbUroao60+1Q
+ VhJn33zjXPxgEyFLtlLWxx1f2YPnOjA=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=narfation.org
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 492C480964
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 29 Jul 2023 13:11:31 +0200 (CEST)
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 34F618097B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Aug 2023 04:15:47 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1690629092;
+	s=20121; t=1690856149;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=V5XVMXA2yLqVH26IrUPDpTN7hR2ALeQ+J3ivNj7nxxU=;
-	b=BrV9PtI6ZQqtXBGZQhZMtYXCRQ9/Jfh2SELqn29a9BYkMFyWvXguMHcvqNdj6g2xkdO5Wz
-	gYZ2ThjAzUloEop8cvP2UDR971awOm4kr/Zn/QvUoS3oDtZoNcH9kOxBw1ue2sSQW7InYZ
-	GDf6kF1Fh3oR20rjmGbk7yxjDhfUF+g=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=IvhuJtFl9DAwONGO1Z8s83vJdRTQFLStXQVfm0R1zKc=;
+	b=bu1R0DnYsetZWvJYV8xFTYX9q8quQZhaWFXIjyLP8F5TT8EH4QGQZPYs5HzSNpH1Z4va/d
+	P475KbWxDcOyuR1m12xyCK8Vg6YO2CJ2pSNYqbzOdw8sRfhHxOg/Rf0BcTCvYDnuwG9pOV
+	kZ8VrQiOhKICd5RwQSX1dq516WI5w7w=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=oQAsFAQa;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1690629092; a=rsa-sha256;
+	dkim=none;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no
+ SPF policy when checking 2a01:4f8:c2c:665b::1)
+ smtp.mailfrom=linus.luessing@c0d3.blue;
+	dmarc=none
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1690856149; a=rsa-sha256;
 	cv=none;
-	b=ttKIvoi7jrO/pSnwifSwxz+DqflTrDnYRmU0qyfHMVnTMQqu85pmFggg4Hs2f/Z2AWIuVk
-	SvfjqqP2Xv13NhLBZCUvGC9bTW6WdMTu1eT4RnMQO67HJY3k8jW7SOO6I3/jwqpAtv+6i4
-	vWWT136QXGn5U3hxW4EZx9daxoPp7j8=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1690629090;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=V5XVMXA2yLqVH26IrUPDpTN7hR2ALeQ+J3ivNj7nxxU=;
-	b=oQAsFAQa/3Hxuxv29kVmA37FycLJqTd7d7zQJqLkyNUyUo0KccL+LlifW5FCLyDxl2mCef
-	0QT0lX2JgXluXcl2sSuM5jcPwQc27ED6v+ovaIcWG8SOMifCf610HC+ytjzl/UqQODwjwk
-	Hjj0xcu1407ZpgKFKN4ScyvaTSuZZJU=
-From: Sven Eckelmann <sven@narfation.org>
+	b=mNmmcH+bCNhtydP/ZPMgoddBWOW2XL08l1LCpeSWV0SP3Qiw2CqAp2mcyFljR53JGlLKCq
+	BFmpJvxNsgjo6G0BcHho2JBLfpuUXc89Krj0/sSoLHX//tUGcA13H9Z3hG1lEttVVeqKOa
+	jHo4xnxdm2nIKrYNcXq/qlhs5i3G6rQ=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 31B1B49B04;
+	Tue,  1 Aug 2023 04:15:46 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: 
- Re: [PATCH v6 0/3] Implementation of a Stateless Multicast Packet Type
-Date: Sat, 29 Jul 2023 13:11:28 +0200
-Message-ID: <1918354.atdPhlSkOF@sven-l14>
-In-Reply-To: <20230720043556.12163-1-linus.luessing@c0d3.blue>
-References: <20230720043556.12163-1-linus.luessing@c0d3.blue>
+Subject: [PATCH 1/2] batctl: mcast_flags: update to current state
+Date: Tue,  1 Aug 2023 04:15:36 +0200
+Message-Id: <20230801021537.22036-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart45781347.fMDQidcC6G";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: TNCBVPNGZGSCAW3TQLKSL3KPJGBANLLE
-X-Message-ID-Hash: TNCBVPNGZGSCAW3TQLKSL3KPJGBANLLE
-X-MailFrom: sven@narfation.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+Message-ID-Hash: 4E74EH3YNKWXP4N7SNHAJ547EVZLEMUQ
+X-Message-ID-Hash: 4E74EH3YNKWXP4N7SNHAJ547EVZLEMUQ
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -89,7 +78,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TNCBVPNGZGSCAW3TQLKSL3KPJGBANLLE/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4E74EH3YNKWXP4N7SNHAJ547EVZLEMUQ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -98,63 +87,296 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart45781347.fMDQidcC6G
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Date: Sat, 29 Jul 2023 13:11:28 +0200
-Message-ID: <1918354.atdPhlSkOF@sven-l14>
-In-Reply-To: <20230720043556.12163-1-linus.luessing@c0d3.blue>
-References: <20230720043556.12163-1-linus.luessing@c0d3.blue>
-MIME-Version: 1.0
+Add the new "P" flag, which signals support for the new batman-adv
+multicast packet type, to the "batctl mcast_flags" and "batctl tcpdump"
+outputs.
 
-On Thursday, 20 July 2023 06:35:52 CEST Linus L=FCssing wrote:
-[...]
-> The purpose of this new packet type is to allow to forward an IP
-> multicast packet with less transmissions / overhead than the=20
-> multicast-via-multiple-unicasts approach. Or to reach a lot more
-> destinations (currently up to 196, depending on the payload size, see=20
-> Wiki documentation for details) than with the default multicast fanout
-> for the via-unicasts approach.
+The examples in the README.rst are updated, too, including a description
+for the R4 and R6 flags.
 
-Please don't forget that batctl's tcpdump+wireshark also requires support=20
-for parsing it. Most likely, this was not added yet to not confuse third=20
-parties in case the packet format changes.
+Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
+---
+ README.rst      | 88 ++++++++++++++++++++++++++++---------------------
+ batadv_packet.h | 45 +++++++++++++++++++++----
+ genl_json.c     |  2 ++
+ mcast_flags.c   |  8 +++--
+ tcpdump.c       |  5 +--
+ 5 files changed, 100 insertions(+), 48 deletions(-)
 
-
-I have now acked the various patches and have queued them up for submission=
- to=20
-net-next. But it would be good when Simon also checks them.
-
-And we must also first release 2023.2 (including submission for net +
-net-next) before these patches can be added to the batman-adv repository.
-
-Kind regards,
-	Sven
---nextPart45781347.fMDQidcC6G
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmTE8+AACgkQXYcKB8Em
-e0bIQRAAl2WclJsYEpYFphKfOdkT9NInRRmTncbXVALyIDgny4vzOTzgIiepthuh
-54/9WP90gvDvht4k4W3a7LpEWtjpK7xF3jw355qLdsocEaJw78z28QhlSogGzPM7
-xwebRPDtvWObEHQNLS75x0nq1X9+tzqt1RQe0SQ9YrGaNmXBWBmtriL+IMxnKlAp
-I2jrVkmCx7l1wfjaZnuWdzlAtKSOiwNGaboZ0CBEN1EKdKl985dZtOJYFzYuo0eb
-yK/9ecEnSeuZGNdc6+x6F9hGXIrtdq2p0qL+UCX542LWyGgDfOOTwP3opaSTqIBD
-5S4FVcmz/WMIv/lx9FSSK1tf0C2yR4L9gg24kSMVjpIsOVWHwLYxcOZL7NVo0Gxe
-oBTIcql5lSNuIUErbN30nMb3VipYBESzuWo92ro0eg+YTQgrcArVWyQMCd0Wbd5I
-22/HXtwD0+W6NTbMlLW1h3FWj7jeDrinITMWCvF8MSIGixAdIBF8yqoLzEdUMWfd
-tgeCbeZAS/XHg9DH7+ApalQkzqajDRbthZaPn8BI/VuKXa2nyIHvEinEBsSFJ7e8
-W95prAmtikSH/aicyxQ76tpPIHZMvvK2J8JDeJFh/mLLCE8CaT+Re+mKm/FdkT8l
-9rHZq6hekI17d/m1LwK6xvjMQr+Dts02NZezgyRrLTtfFUlRYw4=
-=vXSf
------END PGP SIGNATURE-----
-
---nextPart45781347.fMDQidcC6G--
-
-
+diff --git a/README.rst b/README.rst
+index 606d55721204..3495fba02e0e 100644
+--- a/README.rst
++++ b/README.rst
+@@ -323,15 +323,15 @@ Usage::
+ 
+ Example::
+ 
+-  Multicast flags (own flags: [U46])
++  Multicast flags (own flags: [U46R4R6.])
+   * Bridged [U]                           U
+   * No IGMP/MLD Querier [4/6]:            ./.
+   * Shadowing IGMP/MLD Querier [4/6]:     4/6
+   -------------------------------------------
+          Originator Flags
+-  02:04:64:a4:39:c1 [U..]
+-  02:04:64:a4:39:c2 [U..]
+-  02:04:64:a4:39:c3 [...]
++  02:04:64:a4:39:c1 [U... . .]
++  02:04:64:a4:39:c2 [...R4R6.]
++  02:04:64:a4:39:c3 [.... . P]
+ 
+ where
+ 
+@@ -348,6 +348,17 @@ U:
+ 6:
+   wants all IPv6 multicast traffic, meaning other nodes need to always forward
+   any IPv6 multicast traffic to it
++R4:
++  wants all routable IPv4 multicast traffic, meaning other nodes need to always
++  forward multicast traffic destined to 224.0.0.0/4 excluding 224.0.0.0/24 to
++  it
++R6:
++  wants all routable IPv6 multicast traffic, meaning other nodes need to always
++  forward multicast traffic destined to ffXY::/16 with Y > 2 (scope greater
++  than link-local) to it
++P:
++  the node either cannot handle batman-adv multicast packets with a multicast
++  tracker TVLV or one of its hard interfaces has an MTU smaller than 1280 bytes
+ 
+ If a node does not have multicast optimizations available (e.g. old batman-adv
+ version or optimizations not compiled in), therefore not announcing any
+@@ -930,39 +941,42 @@ Example::
+ 
+   $ batctl meshif bat0 mcast_flags_json | json_pp
+   [
+-      {
+-          "mcast_flags": {
+-              "all_unsnoopables": true,
+-              "raw": 1,
+-              "want_all_ipv4": false,
+-              "want_all_ipv6": false,
+-              "want_no_rtr_ipv4": false,
+-              "want_no_rtr_ipv6": false
+-          },
+-          "orig_address": "9e:58:32:59:54:c3"
+-      },
+-      {
+-          "mcast_flags": {
+-              "all_unsnoopables": true,
+-              "raw": 1,
+-              "want_all_ipv4": false,
+-              "want_all_ipv6": false,
+-              "want_no_rtr_ipv4": false,
+-              "want_no_rtr_ipv6": false
+-          },
+-          "orig_address": "32:12:17:0a:21:63"
+-      },
+-      {
+-          "mcast_flags": {
+-              "all_unsnoopables": true,
+-              "raw": 1,
+-              "want_all_ipv4": false,
+-              "want_all_ipv6": false,
+-              "want_no_rtr_ipv4": false,
+-              "want_no_rtr_ipv6": false
+-          },
+-          "orig_address": "1a:34:8c:c4:fe:13"
+-      },
++     {
++        "mcast_flags" : {
++           "all_unsnoopables" : true,
++           "have_mc_ptype_capa" : true,
++           "raw" : 57,
++           "want_all_ipv4" : false,
++           "want_all_ipv6" : false,
++           "want_no_rtr_ipv4" : true,
++           "want_no_rtr_ipv6" : true
++        },
++        "orig_address" : "02:04:64:a4:39:c1"
++     },
++     {
++        "mcast_flags" : {
++           "all_unsnoopables" : false,
++           "have_mc_ptype_capa" : true,
++           "raw" : 40,
++           "want_all_ipv4" : false,
++           "want_all_ipv6" : false,
++           "want_no_rtr_ipv4" : true,
++           "want_no_rtr_ipv6" : false
++        },
++        "orig_address" : "02:04:64:a4:39:c2"
++     },
++     {
++        "mcast_flags" : {
++           "all_unsnoopables" : false,
++           "have_mc_ptype_capa" : false,
++           "raw" : 24,
++           "want_all_ipv4" : false,
++           "want_all_ipv6" : false,
++           "want_no_rtr_ipv4" : true,
++           "want_no_rtr_ipv6" : true
++        },
++        "orig_address" : "02:04:64:a4:39:c3"
++     },
+   [...]
+   ]
+ 
+diff --git a/batadv_packet.h b/batadv_packet.h
+index 9204e4494b25..6e25753015df 100644
+--- a/batadv_packet.h
++++ b/batadv_packet.h
+@@ -116,6 +116,9 @@ enum batadv_icmp_packettype {
+  * only need routable IPv4 multicast packets we signed up for explicitly
+  * @BATADV_MCAST_WANT_NO_RTR6: we have no IPv6 multicast router and therefore
+  * only need routable IPv6 multicast packets we signed up for explicitly
++ * @BATADV_MCAST_HAVE_MC_PTYPE_CAPA: we can parse, receive and forward
++ * batman-adv multicast packets with a multicast tracker TVLV. And all our
++ * hard interfaces have an MTU of at least 1280 bytes.
+  */
+ enum batadv_mcast_flags {
+ 	BATADV_MCAST_WANT_ALL_UNSNOOPABLES	= 1UL << 0,
+@@ -123,6 +126,7 @@ enum batadv_mcast_flags {
+ 	BATADV_MCAST_WANT_ALL_IPV6		= 1UL << 2,
+ 	BATADV_MCAST_WANT_NO_RTR4		= 1UL << 3,
+ 	BATADV_MCAST_WANT_NO_RTR6		= 1UL << 4,
++	BATADV_MCAST_HAVE_MC_PTYPE_CAPA		= 1UL << 5,
+ };
+ 
+ /* tt data subtypes */
+@@ -174,14 +178,16 @@ enum batadv_bla_claimframe {
+  * @BATADV_TVLV_TT: translation table tvlv
+  * @BATADV_TVLV_ROAM: roaming advertisement tvlv
+  * @BATADV_TVLV_MCAST: multicast capability tvlv
++ * @BATADV_TVLV_MCAST_TRACKER: multicast tracker tvlv
+  */
+ enum batadv_tvlv_type {
+-	BATADV_TVLV_GW		= 0x01,
+-	BATADV_TVLV_DAT		= 0x02,
+-	BATADV_TVLV_NC		= 0x03,
+-	BATADV_TVLV_TT		= 0x04,
+-	BATADV_TVLV_ROAM	= 0x05,
+-	BATADV_TVLV_MCAST	= 0x06,
++	BATADV_TVLV_GW			= 0x01,
++	BATADV_TVLV_DAT			= 0x02,
++	BATADV_TVLV_NC			= 0x03,
++	BATADV_TVLV_TT			= 0x04,
++	BATADV_TVLV_ROAM		= 0x05,
++	BATADV_TVLV_MCAST		= 0x06,
++	BATADV_TVLV_MCAST_TRACKER	= 0x07,
+ };
+ 
+ #pragma pack(2)
+@@ -487,6 +493,25 @@ struct batadv_bcast_packet {
+ 	 */
+ };
+ 
++/**
++ * struct batadv_mcast_packet - multicast packet for network payload
++ * @packet_type: batman-adv packet type, part of the general header
++ * @version: batman-adv protocol version, part of the general header
++ * @ttl: time to live for this packet, part of the general header
++ * @reserved: reserved byte for alignment
++ * @tvlv_len: length of the appended tvlv buffer (in bytes)
++ */
++struct batadv_mcast_packet {
++	__u8 packet_type;
++	__u8 version;
++	__u8 ttl;
++	__u8 reserved;
++	__be16 tvlv_len;
++	/* "4 bytes boundary + 2 bytes" long to make the payload after the
++	 * following ethernet header again 4 bytes boundary aligned
++	 */
++};
++
+ /**
+  * struct batadv_coded_packet - network coded packet
+  * @packet_type: batman-adv packet type, part of the general header
+@@ -628,6 +653,14 @@ struct batadv_tvlv_mcast_data {
+ 	__u8 reserved[3];
+ };
+ 
++/**
++ * struct batadv_tvlv_mcast_tracker - payload of a multicast tracker tvlv
++ * @num_dests: number of subsequent destination originator MAC addresses
++ */
++struct batadv_tvlv_mcast_tracker {
++	__be16	num_dests;
++};
++
+ #pragma pack()
+ 
+ #endif /* _UAPI_LINUX_BATADV_PACKET_H_ */
+diff --git a/genl_json.c b/genl_json.c
+index 2be533d064e0..4cb1bafca8ef 100644
+--- a/genl_json.c
++++ b/genl_json.c
+@@ -157,6 +157,8 @@ static void nljson_print_mcastflags(struct nlattr *attrs[], int idx)
+ 	       val & BATADV_MCAST_WANT_NO_RTR4 ? "true" : "false");
+ 	printf("\"want_no_rtr_ipv6\": %s,",
+ 	       val & BATADV_MCAST_WANT_NO_RTR6 ? "true" : "false");
++	printf("\"have_mc_ptype_capa\": %s,",
++	       val & BATADV_MCAST_HAVE_MC_PTYPE_CAPA ? "true" : "false");
+ 	printf("\"raw\": %"PRIu32, val);
+ 	putchar('}');
+ }
+diff --git a/mcast_flags.c b/mcast_flags.c
+index 44344e0c1f61..7d4c1d69adfb 100644
+--- a/mcast_flags.c
++++ b/mcast_flags.c
+@@ -80,12 +80,13 @@ static int mcast_flags_callback(struct nl_msg *msg, void *arg)
+ 	if (attrs[BATADV_ATTR_MCAST_FLAGS]) {
+ 		flags = nla_get_u32(attrs[BATADV_ATTR_MCAST_FLAGS]);
+ 
+-		printf("[%c%c%c%s%s]\n",
++		printf("[%c%c%c%s%s%c]\n",
+ 		       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
+ 		       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
+ 		       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.',
+ 		       !(flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
+-		       !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ");
++		       !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ",
++		       !(flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA) ? 'P' : '.');
+ 	} else {
+ 		printf("-\n");
+ 	}
+@@ -125,7 +126,7 @@ static int netlink_print_mcast_flags(struct state *state, char *orig_iface,
+         }
+ 
+ 	ret = asprintf(&header,
+-		"Multicast flags (own flags: [%c%c%c%s%s])\n"
++		"Multicast flags (own flags: [%c%c%c%s%s%c])\n"
+ 		 "* Bridged [U]\t\t\t\t%c\n"
+ 		 "* No IGMP/MLD Querier [4/6]:\t\t%c/%c\n"
+ 		 "* Shadowing IGMP/MLD Querier [4/6]:\t%c/%c\n"
+@@ -136,6 +137,7 @@ static int netlink_print_mcast_flags(struct state *state, char *orig_iface,
+ 		 (mcast_flags & BATADV_MCAST_WANT_ALL_IPV6) ? '6' : '.',
+ 	         !(mcast_flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
+ 	         !(mcast_flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ",
++	         !(mcast_flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA) ? 'P' : '.',
+ 		 bridged ? 'U' : '.',
+ 		 querier4, querier6, shadowing4, shadowing6,
+ 		 "Originator", "Flags");
+diff --git a/tcpdump.c b/tcpdump.c
+index 9a830b2ba8b2..debcb0ae517a 100644
+--- a/tcpdump.c
++++ b/tcpdump.c
+@@ -231,12 +231,13 @@ static void batctl_tvlv_parse_mcast_v2(void *buff, ssize_t buff_len)
+ 
+ 	flags = tvlv->flags;
+ 
+-	printf("\tTVLV MCASTv2: [%c%c%c%s%s]\n",
++	printf("\tTVLV MCASTv2: [%c%c%c%s%s%c]\n",
+ 	       flags & BATADV_MCAST_WANT_ALL_UNSNOOPABLES ? 'U' : '.',
+ 	       flags & BATADV_MCAST_WANT_ALL_IPV4 ? '4' : '.',
+ 	       flags & BATADV_MCAST_WANT_ALL_IPV6 ? '6' : '.',
+ 	       !(flags & BATADV_MCAST_WANT_NO_RTR4) ? "R4" : ". ",
+-	       !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ");
++	       !(flags & BATADV_MCAST_WANT_NO_RTR6) ? "R6" : ". ",
++	       !(flags & BATADV_MCAST_HAVE_MC_PTYPE_CAPA) ? 'P' : '.');
+ }
+ 
+ typedef void (*batctl_tvlv_parser_t)(void *buff, ssize_t buff_len);
+-- 
+2.40.1
 
