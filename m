@@ -1,90 +1,79 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04095770E02
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  5 Aug 2023 08:05:38 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BD27763E5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  9 Aug 2023 17:34:58 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id D09A182F04
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  5 Aug 2023 08:05:37 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8D32E82F29
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  9 Aug 2023 17:34:58 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1691215537;
- b=yLBeyNwVMR0/zznGnyPC/GCTEXSl0VL4s+vNWBO2tfj6Sx9Wg5SSVcKplamNM8nb7PbHL
- 6AB3Gv9AHehjv7iAe09fNobACPmreud9Ojv5e1amaLycaaB/S4O6NhIKdijcRjeBjXQ1XPm
- oH7M2EAGOV7PXoDNyEvmqwXOn+F2FkU=
+ t=1691595298;
+ b=Fvr/s1v6H81b5KibwDIHMnBixxI+17bes94PtpoZ5qcA2J9UG47N9+FxYfG0RoATe9AD9
+ 9b4fVcHUb72Tc+UgKARtpp0LeNv7XvyS/EaOn6efht/ZauRzmZLXjCoUdzSzch2SaND1tYq
+ PxoXlbS+74IVCsSnidykjie9QzOpyTI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1691215537; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1691595298; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=yFtMnGLfEgodoGei2h8UZe336PyKSdPdvngnYXixpuk=;
- b=fUqxsE4PJa5IiiDNV56o4QTby7G8v+3x/roKop9SYll0HodMxT3o8Q7Esb/Kvr2iSfDm3
- goOOQ4Bc+7BAZd10k+1QUCMvlkM0lytCZyPmAhDr68sEDrU+VmgTRt67KjJY7zini7ETR3H
- Ihe3KnzAxSzuz+vTMNcf4beuBf2m/B4=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ list-archive; bh=JjbqZMZcF7SvDfZFLqUbMSSV7FMRWiQrPnMyUknpIKo=;
+ b=Y6NcJwWFk13WOxXb5SY7g3vuJLwV4N9PzRj2LWSstrVJzHIfWTTLpxWVH1RI0IeFBWI+t
+ AocOuxTjLanueYy1yvK2GCayhXs6mjsT0msulFZM4suEO5KkY2/Zr4+2d51XYTP9aTrZCwr
+ B75NB4cfAb+htOhuXWxGG9THLqSfXyg=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=narfation.org
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id D3D6B80887
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  5 Aug 2023 08:05:16 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1691215516;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=yFtMnGLfEgodoGei2h8UZe336PyKSdPdvngnYXixpuk=;
-	b=UmVTVUwkbVg+42zCMitzmhYOH95yFwMoqcmJR0I5N2inaBnRQX37cjX9B1Qob0uzSnCWko
-	umFfAM54agTct7aL4lW4dHcI4FdztuTTLt2K0N7iMDFVYIYQNk2g/Zf9Qo61E0u6tBKRc5
-	VS+KAzw1Bo6m2/LzlgL5MRs5Lw+hW/k=
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
+ [IPv6:2001:4b98:dc4:8::224])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 848FC80457
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  9 Aug 2023 17:28:12 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1691594892; a=rsa-sha256;
+	cv=none;
+	b=TXCDQN13WRPhzImahZu3+N3hkyf9u8A3rKusVZOa5eMzGSq1y5QOwwlzdi2AUr15BlIq8Y
+	2KgT06BpCKH9w6M56WuXStWlUdZIMIIUW5KAx+JXLefywYia60+6dY0vD3LXUTXXNMB6aw
+	rW6kjfDWwZV8dcN84LBfxlxcQVa1irw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=mnIpEaYq;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1691215516; a=rsa-sha256;
-	cv=none;
-	b=4EsizAUE6I6kbahNX9l5vZgpObP8Jz6N28CO+KAwfAogHkat0LbE+ZvPkjjUic4MSWBJdI
-	xeut+zMaEhY19Dunx1wxIFIJab58eRgq2h8jYcdoXVrWJF1oyuMmyf/4b5buQolh0y+8fy
-	l0tXNRnmxvRiSt+qrw02LIeH44Sn/PM=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1691215516;
+	dkim=none;
+	dmarc=none;
+	spf=pass (diktynna.open-mesh.org: domain of repk@triplefau.lt designates
+ 2001:4b98:dc4:8::224 as permitted sender) smtp.mailfrom=repk@triplefau.lt
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1691594892;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yFtMnGLfEgodoGei2h8UZe336PyKSdPdvngnYXixpuk=;
-	b=mnIpEaYqalGvm/XZ2MCRMjBcckZXRSyH5eNPNCEyomrA1LMmwPHuE64jRdARiRpPRCrHoB
-	viphSUE6F/W7jKtbWFdqFJcUVEx5YiTj3O/Lh1xzOxncrA0o1KqEJEjsfaHhEK/4fHO8eZ
-	XQbmBdxQaDkwHOEkin7OctVmp3XOwhk=
-From: Sven Eckelmann <sven@narfation.org>
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=JjbqZMZcF7SvDfZFLqUbMSSV7FMRWiQrPnMyUknpIKo=;
+	b=qc9fn8zucfA2aTimvtbRDQWY5OZaiT2kPADj4RLOj2Upk/81xUKoc+dwJRkU1w2ASTTUjA
+	CiBB5V2jZC1aJZvj0YN/Y/IXcXJYgjeG4WZT0wbk+UPdRTYi1XFWe6BQy8R0C0oGitMfPu
+	uchbfKdfdLvIIhusaQuD0XypTphqfB8=
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7382CE000B;
+	Wed,  9 Aug 2023 15:28:10 +0000 (UTC)
+From: Remi Pommarel <repk@triplefau.lt>
 To: Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>, Antonio Quartulli <a@unstable.cc>,
- Remi Pommarel <repk@triplefau.lt>
-Subject: 
- Re: [PATCH net] batman-adv: Fix TT global entry leak when client roamed back
-Date: Sat, 05 Aug 2023 08:05:13 +0200
-Message-ID: <2693362.mvXUDI8C0e@sven-l14>
-In-Reply-To: <20230804093936.22257-1-repk@triplefau.lt>
-References: <20230804093936.22257-1-repk@triplefau.lt>
+	Simon Wunderlich <sw@simonwunderlich.de>,
+	Antonio Quartulli <a@unstable.cc>,
+	Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH net] batman-adv: Fix batadv_v_ogm_aggr_send memory leak
+Date: Wed,  9 Aug 2023 17:29:13 +0200
+Message-Id: <20230809152913.27218-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart12259810.O9o76ZdvQC";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: 4ZWYWJ6WXCYUGKXUDL4MWRK4TT3ABSNP
-X-Message-ID-Hash: 4ZWYWJ6WXCYUGKXUDL4MWRK4TT3ABSNP
-X-MailFrom: sven@narfation.org
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: repk@triplefau.lt
+X-MailFrom: repk@triplefau.lt
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-1
+Message-ID-Hash: 7PMIL2NY4DTR5IMLFBAFOSPSZXAIQ6Y4
+X-Message-ID-Hash: 7PMIL2NY4DTR5IMLFBAFOSPSZXAIQ6Y4
+X-Mailman-Approved-At: Wed, 09 Aug 2023 17:34:08 +0200
 CC: "David S. Miller" <davem@davemloft.net>,
  Eric Dumazet <edumazet@google.com>, b.a.t.m.a.n@lists.open-mesh.org,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -94,7 +83,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4ZWYWJ6WXCYUGKXUDL4MWRK4TT3ABSNP/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7PMIL2NY4DTR5IMLFBAFOSPSZXAIQ6Y4/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -103,57 +92,52 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart12259810.O9o76ZdvQC
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 05 Aug 2023 08:05:13 +0200
-Message-ID: <2693362.mvXUDI8C0e@sven-l14>
-In-Reply-To: <20230804093936.22257-1-repk@triplefau.lt>
-References: <20230804093936.22257-1-repk@triplefau.lt>
-MIME-Version: 1.0
+When batadv_v_ogm_aggr_send is called for an inactive interface, the skb
+is silently dropped by batadv_v_ogm_send_to_if() but never freed causing
+the following memory leak:
 
-On Fri, 04 Aug 2023 11:39:36 +0200, Remi Pommarel wrote:
-> When a client roamed back to a node before it got time to destroy the
-> pending local entry (i.e. within the same originator interval) the old
-> global one is directly removed from hash table and left as such.
-> 
-> But because this entry had an extra reference taken at lookup (i.e using
-> batadv_tt_global_hash_find) there is no way its memory will be reclaimed
-> at any time causing the following memory leak:
-> 
-> [...]
+  unreferenced object 0xffff00000c164800 (size 512):
+    comm "kworker/u8:1", pid 2648, jiffies 4295122303 (age 97.656s)
+    hex dump (first 32 bytes):
+      00 80 af 09 00 00 ff ff e1 09 00 00 75 01 60 83  ............u.`.
+      1f 00 00 00 b8 00 00 00 15 00 05 00 da e3 d3 64  ...............d
+    backtrace:
+      [<0000000007ad20f6>] __kmalloc_track_caller+0x1a8/0x310
+      [<00000000d1029e55>] kmalloc_reserve.constprop.0+0x70/0x13c
+      [<000000008b9d4183>] __alloc_skb+0xec/0x1fc
+      [<00000000c7af5051>] __netdev_alloc_skb+0x48/0x23c
+      [<00000000642ee5f5>] batadv_v_ogm_aggr_send+0x50/0x36c
+      [<0000000088660bd7>] batadv_v_ogm_aggr_work+0x24/0x40
+      [<0000000042fc2606>] process_one_work+0x3b0/0x610
+      [<000000002f2a0b1c>] worker_thread+0xa0/0x690
+      [<0000000059fae5d4>] kthread+0x1fc/0x210
+      [<000000000c587d3a>] ret_from_fork+0x10/0x20
 
-Applied, thanks!
+Free the skb in that case to fix this leak.
 
-[1/1] batman-adv: Fix TT global entry leak when client roamed back
-      commit: d25ddb7e788d34cf27ff1738d11a87cb4b67d446
+Cc: stable@vger.kernel.org
+Fixes: 0da0035942d4 ("batman-adv: OGMv2 - add basic infrastructure")
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+---
+ net/batman-adv/bat_v_ogm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Kind regards,
-	Sven
---nextPart12259810.O9o76ZdvQC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmTN5pkACgkQXYcKB8Em
-e0ap+A//aSI43I++QPAWQlTYcHVDZcDtCcVIk9qdSEvQtO62jJZYnBYyLZdvkcvY
-/cQTjjSZY08wCzU3c9TEHPPnrZruRD+pDNn3m64izZhQ2BmAuHwIztociQytinan
-I3oDTBL7wZYZu+66t/5NtRyD4vVE0Vr+1s0U1TR2DYkGALKsD9VGJOGKGLAJSF2i
-PgDVjjDgqkEtdjvTnpC3a4phFumVfJLgNJBuuQ7FYEb+VQf37Wect8du4dMy+GNw
-ifpZ+bqXWFKt0WP5M8r8T4M+NIpm3cS6a0ij3q4IVNI6xWzpmWjIiP2UG6lzpHna
-BXOfPm2F7ArycTyyijg30hnTv3oV43Xpyy/vqMA7jRQRmnpeh9l96Rsew/MOouPQ
-KUco8AazBnqOmX5fqpu1+uZFC+7h/ADVaUF6sbgfSQtyxPp0ggBAIAAAaHFfvGP+
-1qLhIHCGPjdQVqRNpSHR85x5V5NYdlKwa91f/LE2oKz4Yt207/LNTeUfmYxeykz5
-FsBwZPf77gdBCn0V533zqgreZ6aldqXp6+SWcbrKPChoV0h9AhfCsRQZGs+q4L6Q
-Iwrh/iP+RQzWWLS/l6Xj9P6GSks3326kcWFPQwssdtXTZXPWAAhQ+m8lzIXbcaJ1
-UGHrl6QLoNNr4/pnqCuTQmECHnSlMj//uB+KE1HaLp3JQZtV6z0=
-=dwZT
------END PGP SIGNATURE-----
-
---nextPart12259810.O9o76ZdvQC--
-
-
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index e710e9afe78f..445b06fc0d90 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -123,8 +123,10 @@ static void batadv_v_ogm_send_to_if(struct sk_buff *skb,
+ {
+ 	struct batadv_priv *bat_priv = netdev_priv(hard_iface->soft_iface);
+ 
+-	if (hard_iface->if_status != BATADV_IF_ACTIVE)
++	if (hard_iface->if_status != BATADV_IF_ACTIVE) {
++		kfree_skb(skb);
+ 		return;
++	}
+ 
+ 	batadv_inc_counter(bat_priv, BATADV_CNT_MGMT_TX);
+ 	batadv_add_counter(bat_priv, BATADV_CNT_MGMT_TX_BYTES,
+-- 
+2.40.0
 
