@@ -1,120 +1,89 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D9637A2127
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 Sep 2023 16:36:42 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD777A226D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 Sep 2023 17:32:25 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C4A3D81C1E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 Sep 2023 16:36:41 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 96C358348E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 Sep 2023 17:32:25 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1694788601;
- b=j5S3hfleQ1ERti7SgHy0A8BVa3lDd/09cNUOzKEw8rbsJn/tTsp4mGGW95aeP0TYPrutM
- bwXPfK1ADVCWeHT4Tc4mFDloxiMJ/MaqdIfR3WK0sgP11ZhOMgyuNDc6JCb9o53cFyw5mcx
- JPW6nMQXyhsG7+0+SQLj7kiqSqI6kgA=
+ t=1694791945;
+ b=x57g6QCh+0mmSofpd14/YkDdfuoDz03Bd9pe9bJQM2MJX1lZcsluhD5Q1FYFlT97xu/Zs
+ 1IXnsewQfocWStvDemp88KRz3YFIdmR/0OzLDBjYjiEsa0XdwgYOUCChBOydjwJXjAxEnVR
+ P3DTAK7YECeOYm164hecHE+Vq14aPrM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1694788601; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1694791945; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=7mRDv9DZrZWBaMwkiJu68PEfJIpeuMcXO9I8vSqvp9g=;
- b=DEDpw+aBEWTUgW1JyiBIKGclLv1563gOOy2K4uk5t1RKFiVK4UUPSTl1MmLSqWJhdrWdQ
- JXXCAwr/xBabRNvs/Xrx57gjOpYq5+DSwAcewwlUtcgnoYQJvwNN+YLNvG3ELAm0wTbGvLv
- uzNvF3iqd2wFgWZvAj/bli62bv6LP0U=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=gmail.com;
+ list-archive; bh=1MF4uqhxZ+MzZCQDGMs2SweCM0suo7UDEFr5zZM0hZc=;
+ b=P1u6Aegr7TKNnbrmwqRLEjCXOUZTc/MINJGrMfeve4r9xWxAEdMtPTEmGwP9pmZvmRUNa
+ T82IvPi4x5yv/hHxqq1dagGDHPdImCSAL6L0JfPArqkJ2htBHfFHzaPY7L+v01Z6FEnnBn5
+ 5bnXFFT0kMPKZn/tJBt0JMTn3Bj9asg=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=pass header.d=gmail.com; arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F310F80BD3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 Sep 2023 16:11:56 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1694787117; a=rsa-sha256;
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 26C2A8015A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 Sep 2023 17:31:37 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1694791898; a=rsa-sha256;
 	cv=none;
-	b=JXP9SvLyT4eSEleq510iMnYRq/VJbvfsCSrK7hy/WAy3W9rz3TnJHtwZK+t8e+Qg465YEp
-	/CUTM22V9Ni2/QYcdcxCwk3Fk+tdG1InSCxzPTdtcbcw4X9MPSNFANOMgNId5byWQNHhO1
-	6kRg5VAyQ+fUAChfbK9lGXb9IratQl4=
+	b=Bd0Zk42N3gcPx2M8qo9DQZ4Kd1AyeLNm8MnJiXEH04pdeQyDii0Me17y9peQT85g9lj+E0
+	a8XOBi5bkfLmYirrj6nOk50J7tdAdZiJWRJrr3BqBhvluL+6MXeakWuKzmgidPhhGCEEoH
+	w0DnXAo5RiiZ0D9Nbg9qOS4kiVLmBEg=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20230601 header.b=Sb56EzmZ;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (diktynna.open-mesh.org: domain of obiwac@gmail.com designates
- 2a00:1450:4864:20::62a as permitted sender) smtp.mailfrom=obiwac@gmail.com
+	dkim=none;
+	dmarc=none;
+	spf=none (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue has no
+ SPF policy when checking 116.203.183.178)
+ smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1694787117;
+	s=20121; t=1694791898;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=7mRDv9DZrZWBaMwkiJu68PEfJIpeuMcXO9I8vSqvp9g=;
-	b=3irMLBS8v6FtHavenbGkYFWbV8b3ya8lnIgfgHuClBC0sZ7Q+NXIZkDhPjUZvk9t17Khvh
-	G2GQDYnWVsoNdw3FslmF7TPUtcMT3MshUFJd166lbZun2OSKwgVmyM8VbRu01h9IFcJUgn
-	tMhve16CvGG5jg/JUdm8vMFdbzBLjoE=
-Received: by mail-ej1-x62a.google.com with SMTP id
- a640c23a62f3a-98377c5d53eso275364166b.0
-        for <b.a.t.m.a.n@lists.open-mesh.org>;
- Fri, 15 Sep 2023 07:11:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694787116; x=1695391916;
- darn=lists.open-mesh.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7mRDv9DZrZWBaMwkiJu68PEfJIpeuMcXO9I8vSqvp9g=;
-        b=Sb56EzmZfEmEhqKN5F1zcfXsXAL776sIwZK7+4d8WF/HldBLKyscAdv9sQNP5lVfYb
-         6lMXAm+/wq3BVSo2AK30qDoX6AjJUpaM/98qzpK99e1OJiH9rosCFvOLWkiJv9wghECp
-         xUFnt/ilwqPV8TeRoqNqwPIYXlou+iEKeu1BbAqoq6xhmK9A+cBWE6uYk2AZfjxu1bJd
-         bp/gj8FlrqLSsNNyKh2ALXpHcVotEPfnGxU+Xq45T/3R0tN5QCCndZXKQR0dmzCLEfoC
-         zlu96ud7JPqLt5iBW189srFryXAk3Bcck4qeJmtG9bMZ4A906Alnh/IKxoVhnHPcy2DX
-         zK+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694787116; x=1695391916;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7mRDv9DZrZWBaMwkiJu68PEfJIpeuMcXO9I8vSqvp9g=;
-        b=YvfkhfLGcqu515lEGw3WipM4ZopffelyyPav340q3MwvPJT7Yt/rHES25PARFvnuIB
-         IxoCDDc03+cQj78VgzsmeDzosJgxZ9Eh3MM9tKBUBwsIvDBwglKHdU36CAuccPXvZr3D
-         iRktASEp0L456oG+hFkB+zQj71I8rt+bmg1q/c0+1DP0oU/8ia48TzMG9aF6zCoSOXDS
-         97p+m9WwqD4K8tonPf+z7ArrP5NKopyhxAojMoWX7Pt8zhY3brgKIx6gRIsboAihicYh
-         VPkifuc4BzQ/ALspvbLWzLdgQzpEzCbs31oqEBaxru9ENi0Q1l6UCADZ3rNUJ+GqGJru
-         wXvA==
-X-Gm-Message-State: AOJu0YwSEnzwoDb7hSUTqE/I6ibC1Qa4CKYjTvVxWWDE9g/JWHSipFhS
-	m8XhvoZwjDh+C++oFSo9/btPh/cQYFoevUeWYjXSdWMecqpY95c5
-X-Google-Smtp-Source: 
- AGHT+IEu2ksqR2S7ls1t/CaO4Luj+Wlz0Bk08KN4IevJHSdt6RFntzYj6I9IOBq0Ir+Who08dXzgtT6TnNV/0qAqrZk=
-X-Received: by 2002:a17:907:1ddd:b0:9a5:d095:a8e4 with SMTP id
- og29-20020a1709071ddd00b009a5d095a8e4mr1393917ejc.1.1694787115952; Fri, 15
- Sep 2023 07:11:55 -0700 (PDT)
-MIME-Version: 1.0
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1MF4uqhxZ+MzZCQDGMs2SweCM0suo7UDEFr5zZM0hZc=;
+	b=ag8cQPrG49+snXNkjM2Z8DNC8JrficN6izpz6eQ/aRDd4sESWm0XjmK+6zdtJsRsNlQ/0O
+	Z7iSlL9M12cCJRCGF+xdNJqh5kkRyjOiEoeiS62E7O+pqUYPQUbRLH+XlmgqVkHUVwv6nO
+	kA2CXk46rFnlyFyzCNze5dCmas41lY0=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id D039441ADE;
+	Fri, 15 Sep 2023 17:31:36 +0200 (CEST)
+Date: Fri, 15 Sep 2023 17:31:34 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: obiwac <obiwac@gmail.com>
+Subject: Re: Fwd: Possibility of dual-licensing to ease bringing into FreeBSD
+Message-ID: <ZQR41r1rkVCkg2Mo@sellars>
 References: 
  <CAN8-kNUktsXSTnG2jA51h3piRxf8-a-JJBGtPF8uJdEWXspm1w@mail.gmail.com>
-In-Reply-To: 
- <CAN8-kNUktsXSTnG2jA51h3piRxf8-a-JJBGtPF8uJdEWXspm1w@mail.gmail.com>
-From: obiwac <obiwac@gmail.com>
-Date: Fri, 15 Sep 2023 16:11:44 +0200
-Message-ID: 
  <CAN8-kNWFXhFzeu0fcKg115VHHj_qLoL-GEroBRqSroHY65EMSw@mail.gmail.com>
-Subject: Fwd: Possibility of dual-licensing to ease bringing into FreeBSD
-To: b.a.t.m.a.n@lists.open-mesh.org
-Content-Type: text/plain; charset="UTF-8"
-X-MailFrom: obiwac@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: 
+ <CAN8-kNWFXhFzeu0fcKg115VHHj_qLoL-GEroBRqSroHY65EMSw@mail.gmail.com>
+X-Last-TLS-Session-Version: TLSv1.3
+Message-ID-Hash: GA5FEAW245QMDWH5NIRWGGFWQCX7IYEQ
+X-Message-ID-Hash: GA5FEAW245QMDWH5NIRWGGFWQCX7IYEQ
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: B4PJEY5AFAIUNWDLSXLJ6DBA6FFJ3M2W
-X-Message-ID-Hash: B4PJEY5AFAIUNWDLSXLJ6DBA6FFJ3M2W
-X-Mailman-Approved-At: Fri, 15 Sep 2023 16:36:34 +0200
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
+ administrivia; implicit-dest; max-recipients; max-size; news-moderation;
+ no-subject; digests; suspicious-header
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/B4PJEY5AFAIUNWDLSXLJ6DBA6FFJ3M2W/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GA5FEAW245QMDWH5NIRWGGFWQCX7IYEQ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -123,25 +92,46 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
----------- Forwarded message ---------
-From: obiwac <obiwac@gmail.com>
-Date: Fri, 15 Sept 2023 at 16:10
-Subject: Possibility of dual-licensing to ease bringing into FreeBSD
-To: mmokhi@FreeBSD.org <mmokhi@freebsd.org>, <imp@freebsd.org>,
-<jhb@freebsd.org>
+Hi Aymetric,
+
+Nice work!
+
+For my part, I'd be a bit reluctant. We've had requests for batman-adv from big
+companies in the past for an extra license, which we turned down.
+So there might unfortunately be vultures out there who'd like
+to build on top of batman-adv without giving back. And I'd feel a
+bit uncomfortable to have spent so much free time on this project
+to just "donate" it to such big companies. Who'd enhance it and
+use that superior, closed source version in products which are in direct
+competition to wireles community networks like Freifunk.
+
+If there were some ways that non-commercial wireless community
+projects like Freifunk were benefitting from a dual license then I
+might be up for it. But right now I don't see how they would?
+
+Regards, Linus
 
 
-Hia,
-
-I recently ported batman-adv to FreeBSD as my GSoC project:
-
-https://wiki.freebsd.org/SummerOfCode2023Projects/CallingTheBatmanFreeNetworksOnFreeBSD
-
-I'd like to bring this work into the FreeBSD source tree, but they are
-reluctant to bring in any new GPL code. Would it be possible to
-dual-license batman-adv to GPL/BSD, or would you rather not (in which
-case I'll ask FreeBSD's core@ if an exception could be made for
-batman-adv)?
-
-Thanks!
-Aymeric
+On Fri, Sep 15, 2023 at 04:11:44PM +0200, obiwac wrote:
+> ---------- Forwarded message ---------
+> From: obiwac <obiwac@gmail.com>
+> Date: Fri, 15 Sept 2023 at 16:10
+> Subject: Possibility of dual-licensing to ease bringing into FreeBSD
+> To: mmokhi@FreeBSD.org <mmokhi@freebsd.org>, <imp@freebsd.org>,
+> <jhb@freebsd.org>
+> 
+> 
+> Hia,
+> 
+> I recently ported batman-adv to FreeBSD as my GSoC project:
+> 
+> https://wiki.freebsd.org/SummerOfCode2023Projects/CallingTheBatmanFreeNetworksOnFreeBSD
+> 
+> I'd like to bring this work into the FreeBSD source tree, but they are
+> reluctant to bring in any new GPL code. Would it be possible to
+> dual-license batman-adv to GPL/BSD, or would you rather not (in which
+> case I'll ask FreeBSD's core@ if an exception could be made for
+> batman-adv)?
+> 
+> Thanks!
+> Aymeric
