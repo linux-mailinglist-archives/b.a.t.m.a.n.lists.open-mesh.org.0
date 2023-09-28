@@ -1,90 +1,83 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820287B1EFE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Sep 2023 15:52:52 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F4E7B216B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Sep 2023 17:33:54 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5505983740
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Sep 2023 15:52:52 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 9A1028336C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 Sep 2023 17:33:54 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1695909172;
- b=AUosU9fPi99F2ceBQbv2QBLJ0fU9RTO2VoeyT8t3H+pXkcycB7ZLImx1k50JTq5gHiWB5
- mXDlnil8ekOxWj23EAjT8srzS1ESYMnCUPZ84C+E2C2gq5QcsfIk5a/aO56nxBKc9/4EiXU
- k1KfOs9NOnDH0/R8ATEVy9nXhWxMg+Y=
+ t=1695915234;
+ b=2ICVwhJMjFvEn1JK/QgPtCh+EqrdA5QdgnK6bI/cbnhKgwmph6b8AF06QDlkP5Ad8ANNt
+ MOHHqX9x60pDnE7dwIzh1fFgOxkVBic2kLbFXQrHTAUS0eBMbVHy11E2ziVR3Wv0ndCBvEy
+ PfUkXrM+GlVhvpQCY39qGCkSCCwQEHY=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1695909172; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1695915234; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=ZhX1o4UmndOpZvway/9WTvP/GJW+Irk2ZupNKK2HL0Y=;
- b=FNvRmJeBzN75yTuJbcPfYsg0RKcI+9XRlCVwqqgNbhCixWca2FBE5sA9BEGri+a7wBRWk
- W47io2p2THOhWdUg7T0CvHMarYsa3rrO5pLSvCPOUW6dgP8HuHQQXqb5806Gzi/9unz7Q23
- wACiXd8BiHMC9b87vboflfGTynPJHYo=
+ list-archive; bh=R+j1kYEdGS4E+lkoi7J4pFHIJq//7ONGWzTVPrn/hXQ=;
+ b=O3CALy5ZBF2lX5dPzW21roo19kvlK8akl2JBAeqFKq8P1rdo1GM1YYkxepxnneB+B1KtB
+ IapGiBJQi+evcvJpewELodbVnTvHupoNbFeRy27fZQ1gCN6id2fqOkUQZH353aunKUA9C/R
+ Jog4Ul3ntnOKEp3hFGww6/RXmnxl6i8=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=fail (Used From Domain Record) header.from=triplefau.lt
- policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
- dmarc=fail (Used From Domain Record) header.from=triplefau.lt
- policy.dmarc=quarantine
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
- [IPv6:2001:4b98:dc4:8::221])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id E6A068324D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Sep 2023 14:40:41 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1695904842; a=rsa-sha256;
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id D6BD380467
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 Sep 2023 17:33:50 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1695915231; a=rsa-sha256;
 	cv=none;
-	b=C+IwYvI7w0ciQSanJizfslhTTOhZ7OLab046a/+DR0q+ELYgWkI6g3KdM2uo8b0q7Fdwmz
-	oanP3PrO85W43uXmnxV1uv3Kjkvwh541gXsVxdYovxmTAkr8PdBIWzXSou2kAwWBwscjNo
-	ZtYia0PZJ1+mKTQ0Q1+Nvp6shN8bZSE=
+	b=nO5JF6/AuuVQGw9lHniRiNTrTDoMSitLAtxGJ3Kjt/3EHWiKS0dvPRQO68jWV4BgzFni3F
+	HObkqp2BepHZCRByLe75ob4g8XOvvQCtTUTAiRWE40B5n7wFrcZQwdl9n7kF0dG+vckXiS
+	f4Keul7T3dWtxim8ChpCbS7vBZpMPls=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	dmarc=none;
-	spf=pass (diktynna.open-mesh.org: domain of repk@triplefau.lt designates
- 2001:4b98:dc4:8::221 as permitted sender) smtp.mailfrom=repk@triplefau.lt
+	spf=pass (diktynna.open-mesh.org: domain of mareklindner@neomailbox.ch
+ designates 5.148.176.60 as permitted sender)
+ smtp.mailfrom=mareklindner@neomailbox.ch
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1695904842;
+	s=20121; t=1695915231;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ZhX1o4UmndOpZvway/9WTvP/GJW+Irk2ZupNKK2HL0Y=;
-	b=2CnXfz0fpfalr6zxTAC+TtEH3sjnshz+c02NwP0UCnZb1mdaNkGm+1uYyWjbBZuScysWYl
-	qwgDt2G+H4FgXxBufk975E3w/o0VxjGq1Ga8qy1twMusMauwvUu1xM4LY8SHzP2V8EUROc
-	nYt2VRZnr3//5ZtxbMTMi61cdB5uYqc=
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5361F24000B;
-	Thu, 28 Sep 2023 12:40:41 +0000 (UTC)
-From: Remi Pommarel <repk@triplefau.lt>
+	bh=R+j1kYEdGS4E+lkoi7J4pFHIJq//7ONGWzTVPrn/hXQ=;
+	b=ff9/kqTmHREvTk6ooQxO6/wxiOSe9G9Jcyv6oTguijSELZoKbFcItUyz0HeWeJRexe3T7M
+	kHlI9cQdpl3MF1CW0BRYrwH8ch9rYeBWwnXEo8tIlcaW34uj0QqUpmKrw9CuGFD4kVxLYv
+	yuT27q3kd+QFztZL48eXD80y+Uqu0ds=
+From: Marek Lindner <mareklindner@neomailbox.ch>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: [PATCH RFC 2/2] batman-adv: Better half duplex penalty estimation
-Date: Thu, 28 Sep 2023 14:39:36 +0200
-Message-Id: 
- <09c086e5e68055e52d1f92ba17d0e921084107e7.1695904299.git.repk@triplefau.lt>
-X-Mailer: git-send-email 2.40.0
+Subject: Re: [PATCH RFC 0/2] Better throughput estimation on half duplex
+ interfaces
+Date: Thu, 28 Sep 2023 17:33:46 +0200
+Message-ID: <4312005.ElGaqSPkdT@rousseau>
 In-Reply-To: <cover.1695904299.git.repk@triplefau.lt>
 References: <cover.1695904299.git.repk@triplefau.lt>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: repk@triplefau.lt
-X-MailFrom: repk@triplefau.lt
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Message-ID-Hash: M6N24QHMWI42ONAU5OSOJ7QIQFADZKIG
+X-Message-ID-Hash: M6N24QHMWI42ONAU5OSOJ7QIQFADZKIG
+X-MailFrom: mareklindner@neomailbox.ch
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-1
-Message-ID-Hash: NFD5JGXOTVUD2YQCK6TC24XGTTSFHRAB
-X-Message-ID-Hash: NFD5JGXOTVUD2YQCK6TC24XGTTSFHRAB
-X-Mailman-Approved-At: Thu, 28 Sep 2023 15:50:50 +0200
-CC: Remi Pommarel <repk@triplefau.lt>
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
+ administrivia; implicit-dest; max-recipients; max-size; news-moderation;
+ no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NFD5JGXOTVUD2YQCK6TC24XGTTSFHRAB/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/M6N24QHMWI42ONAU5OSOJ7QIQFADZKIG/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -93,60 +86,35 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Let's consider the below topology
+On Thursday, 28 September 2023 14:39:34 CEST Remi Pommarel wrote:
+> Then Orig1 first adapts the Orig0 OGM throughput to T01/2 then forwards it
+> on same interface it received it. Orig2 receives it and first thing Orig2
+> does is checking if T12 is lower than the received OGM throughput (i.e.
+> T01/2), and if that is the case T12 is considered to be the new end-to-end
+> path throughput.
+> 
+> The first issue I see here is that Orig2 does not know the path to reach
+> Orig0 has to get half duplex penalty because it is forwarded on same WiFi
+> interface on Orig1, only Orig1 knows that. Thus if T12 is lower that T01/2,
+> T12 will be chosen as the Orig2 to Orig0 path throughput (i.e PT02) and the
+> half duplex penalty is lost.
 
-+-------+               +-------+          +-------+
-| OrigA | <--- ... ---- | OrigB | <------- | OrigC |
-+-------+      PT_ab    +-------+   LT_bc  +-------+
+I am not quite following where you see the problem. 
 
-Where OrigA's OGM is received on same WiFi (non full duplex) interface
-as the one used to forward it to OrigC. And where LT_bc is the estimated
-throughput for the direct link between OrigB and OrigC. And where PT_ab
-is the end-to-end B.A.T.M.A.N-Adv path throughput estimation of OrigB to
-reach OrigA.
+The half duplex / store & forward penalty is for situations in which batman-
+adv has to forward packets from an interface to another. In your scenario that 
+only is Orig1.
 
-Let's note PT_ac the B.A.T.M.A.N-Adv path throughput estimation of OrigC
-to reach OrigA in this topology.
+Why should Orig2 need to care whether Orig1 does store & forward or not?
 
-PT_ac was estimated by dividing by two the minimal value between PT_ab and
-LT_bc because of store & forward characteristic of OrigB wifi interface.
+If the direct path from Orig0 to Orig2 is better than the path over Orig1 the 
+metric should reflect that.
 
-However the following formula seems to be a more realistic approximation
-of PT_ac:
+Maybe you can add throughput metric values to your example and then expand on 
+what you find problematic?
 
-PT_ac =  PT_ab * LT_bc / (PT_ab * LT_bc)
+Cheers,
+Marek
 
-This patch change the half duplex penalty to match the formula above.
 
-NB: OrigB still sets PT_ab/2 throughput in OrigA's OGM before forwarding
-it to OrigC for retrocompatibility sake, and is discarded when OrigC
-computes the new estimated end-to-end path throughput.
-
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
----
- net/batman-adv/bat_v_ogm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 27597f4cdf3e..9b7d4de182d0 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
-@@ -866,10 +866,12 @@ static u32 batadv_v_get_throughput(struct batadv_ogm2_packet *ogm,
- 	oth = ntohl(ogm->throughput);
- 	lth = ewma_throughput_read(&neigh->bat_v.throughput);
- 
--	if ((ogm->flags & BATADV_V_HALF_DUPLEX) && lth > 10)
--		lth /= 2;
-+	if (!(ogm->flags & BATADV_V_HALF_DUPLEX))
-+		return min_t(u32, lth, oth);
- 
--	return min_t(u32, lth, oth);
-+	/* OGM throughput was divided by two for retrocompatibility sake */
-+	oth *= 2;
-+	return oth * lth / (oth + lth);
- }
- 
- /**
--- 
-2.40.0
 
