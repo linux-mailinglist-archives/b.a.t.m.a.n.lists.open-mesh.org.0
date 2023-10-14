@@ -1,89 +1,115 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F077C92F1
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Oct 2023 08:24:52 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9D57C94AF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Oct 2023 15:07:59 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A264983252
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Oct 2023 08:24:52 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 11CE98310D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Oct 2023 15:07:59 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1697264692;
- b=FmqBrpZCOYVIpehEZWxLop3CK6JKdtvmN95Gx3es6POaXVW7gJq3B1YMH2F3pZVsU3yJn
- Mse+xti+k8V4Hj5ZPKhjSudwGyhQd+VhwQIMj7sLpla8VEbLgmZkY91pFaieEL5OuGfQ5Cx
- ZEozpFXNzIMJTN3rbw5tLGm74qC7w60=
+ t=1697288879;
+ b=CFB5EEiJS1wmUWyBAJjd7XF/4yjRiwnqK0gIejjB5v7z4Igu9esedey7NiXMuWbzDzIX0
+ 8Z5a/qqO5+mplLfav4/gWQuxuvBrb695/O7ynxJHBbx0NoCYOQVp1FaHMqXQIGv2/ABI/2a
+ gy3mT3qKl4ChbMF/bJiEvWorny6oOpI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1697264692; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1697288879; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=yziCWoJwZn+YDGsbPUPyrvevqR0/AuKLmq7uHow7R4E=;
- b=WuhDvQ4AkRGrJ4cnBokn+j1bu4wFFxtqpR9FzJw3mROKQpIknYAxn3pqwOhI7DBvMsXYc
- MvxGR+2HyzdnEHWJzF+FRRT+FlePyQJt3xaBA1D06Z2K+blzfTmvlR5XYP9Off8ELJkvlgo
- qug4qUqszXL98aES1ae/wE7w6W+nBFk=
+ list-archive; bh=1/6ceZHQviZHWBwoxE7adPRErfGv6u0OyUKTGWcI8bI=;
+ b=yXryKDsP6IsotTYLHvYH5aph19YDpgNcqBolZS7bb/tlD8q+GQ6PPBDVKFv32rL29CwVI
+ x51duo1OyHvN8f3sUJHySchy05xZyimwGE4mD2FKbmEpdrdwJEMDvshfU2l4s5umm1yIJlZ
+ qgUf7KQmfGgBHQeMV6llR0dV+fZJg88=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=none
-Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:c2c:665b::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1EB7D81056
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 14 Oct 2023 08:24:26 +0200 (CEST)
+  dmarc=fail (Used Org Domain Record) header.from=syzkaller.appspotmail.com
+ policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
+ dmarc=fail (Used Org Domain Record) header.from=syzkaller.appspotmail.com
+ policy.dmarc=none
+Received: from mail-oa1-f69.google.com (mail-oa1-f69.google.com
+ [209.85.160.69])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 662F88007B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 14 Oct 2023 15:07:30 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1697264667;
+	s=20121; t=1697288850;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yziCWoJwZn+YDGsbPUPyrvevqR0/AuKLmq7uHow7R4E=;
-	b=ksPVptG15lQULKysERAbQ40cxBOiqPI/+T/Xa6FRlypqX6W6BxBH/D8DYDKW9H5pfiavsf
-	HHfQFhrusmOG28WPjpiDOn0unDSMRvOnhyqIgzrX3qAxQxFzThVAhPDNJNLT2shRBJW+Hn
-	EXzJYLQisVs+NTuDumXBqoYXgRwQx0A=
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to; bh=1/6ceZHQviZHWBwoxE7adPRErfGv6u0OyUKTGWcI8bI=;
+	b=ESbhWshTWXw8ErLkQaUfei0m4JA341dvH9Z6Rk14/nrb2GwdyQnfwmOT+Ckldg2kz5ZEgS
+	VCVE5VAfspvWXf0jbmV477GDofOswTZgohAEfhLafb6JPJF+YclzzW43nYEjuFR8X7LZxD
+	IWkDqUrxgh3GBCaJFEpdpVFn75vXVuo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
- designates 2a01:4f8:c2c:665b::1 as permitted sender)
- smtp.mailfrom=linus.luessing@c0d3.blue;
-	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1697264667; a=rsa-sha256;
+	spf=pass (diktynna.open-mesh.org: domain of
+ 3kJIqZQkbAI8BHI3t44xAt881w.z77z4xDBxAv76Cx6C.v75@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.160.69 as permitted sender)
+ smtp.mailfrom=3kJIqZQkbAI8BHI3t44xAt881w.z77z4xDBxAv76Cx6C.v75@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
+	dmarc=fail reason="SPF not aligned (relaxed),
+ No valid DKIM" header.from=appspotmail.com (policy=none)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1697288850; a=rsa-sha256;
 	cv=none;
-	b=gqF37d1AN64shdNf4jVUlBnp6NQlHEg0rLacuAjQzlSq4vOYNFgB1+4xk+rFqZYVHGWA2z
-	xHZPKchkKSCuP2XcEe8EN9zdweNSdwbRk7yuIWvz6YE6gyGT9NnNoUMLdO/gIJsJqhzRY+
-	kSNiixYwcpQ6gXMeG9chX8C6FVJarz4=
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 473DE3F037;
-	Sat, 14 Oct 2023 08:24:25 +0200 (CEST)
-Date: Sat, 14 Oct 2023 08:24:22 +0200
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Remi Pommarel <repk@triplefau.lt>
-Subject: Re: [PATCH RFC 2/2] batman-adv: Better half duplex penalty estimation
-Message-ID: <ZSo0FgLjKTOmB_Gx@sellars>
-References: <cover.1695904299.git.repk@triplefau.lt>
- <09c086e5e68055e52d1f92ba17d0e921084107e7.1695904299.git.repk@triplefau.lt>
+	b=0OJDBv9GeRt9UffAOR9bVb3i6Lt4Qu/9FKfx87Qn7NRHuyCtFGGRa/jOVsBeQTRnFxfAk/
+	xli8VZOnLzqq91/Xn3s447oMeyaGf9c8SJwsTPZ0+HR863Ibe8nQ0+L7EpitdhXAGSwAHK
+	7i/pPh99XaXq4xBH96RqFMH6D8ywIo0=
+Received: by mail-oa1-f69.google.com with SMTP id
+ 586e51a60fabf-1bf00f8cf77so4118575fac.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Sat, 14 Oct 2023 06:07:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697288849; x=1697893649;
+        h=to:from:subject:message-id:in-reply-to:date:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1/6ceZHQviZHWBwoxE7adPRErfGv6u0OyUKTGWcI8bI=;
+        b=GTclP4UemXAI7pAw07qPdACQPljmjkUXmYo/YPH5TfVf30eAtWY0xx4sfPQ+f14Zhq
+         lHQ89yQuysLYnkSn2yqxf/EUgcOKSLehBcY5dajbEgBjazlZjIXBeyd+M16lzAgA7oL+
+         q2qWrEJK5wrCE4u4y7vBmcYmTQ6LjxDnJ8B7vn+uXau9PSTBekjjRE+dSuICw4yH/2V/
+         hx0JyV3NrdwVlRhNU15TFPpyPhpF9dqZPDMFqCjUhGzMFunCt9dE5WFwsfb27F5F0xzR
+         ADaSMT9Vof2b+maCqlBB5hc0OWQs8xsfmSJgpQuaMN99H1ZgInvqyg7ge/O1jV0ATGEW
+         bzNA==
+X-Gm-Message-State: AOJu0YzImf+5hzRUmte+5eQAw+Bl3AkCgXwo8E+YHtBf5VTQjGeyRq/m
+	NmL+uFVuUcmUAlRaLBA2V/9ZqaVvlFZjfPo+fLXx7jaLHVGm
+X-Google-Smtp-Source: 
+ AGHT+IEVCXmtDm4/SgXnVdwVBjmB+6iLQnnDacoQ6B2a0YxsIaEpL48b/OQOJ6nt9o5XmKqieSHSUI18COA2sWNw0RWueMJ/nlKJ
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: 
- <09c086e5e68055e52d1f92ba17d0e921084107e7.1695904299.git.repk@triplefau.lt>
-X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: VU34A2RZTVWEQIDWCRCAWP5YLSEMDO2I
-X-Message-ID-Hash: VU34A2RZTVWEQIDWCRCAWP5YLSEMDO2I
-X-MailFrom: linus.luessing@c0d3.blue
+X-Received: by 2002:a05:6870:d782:b0:1e9:6b2f:5ad7 with SMTP id
+ bd2-20020a056870d78200b001e96b2f5ad7mr4590286oab.1.1697288848970; Sat, 14 Oct
+ 2023 06:07:28 -0700 (PDT)
+Date: Sat, 14 Oct 2023 06:07:28 -0700
+In-Reply-To: <000000000000ea44c905ffd26705@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000ec9cb90607acdac9@google.com>
+Subject: Re: [syzbot] [batman?] INFO: rcu detected stall in rtnl_newlink (3)
+From: syzbot <syzbot+afb3084a933aa2bdacc6@syzkaller.appspotmail.com>
+To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, bpf@vger.kernel.org,
+	davem@davemloft.net, dsahern@kernel.org, edumazet@google.com,
+ kuba@kernel.org,
+	kuniyu@amazon.com, linux-kernel@vger.kernel.org, mareklindner@neomailbox.ch,
+	netdev@vger.kernel.org, pabeni@redhat.com, sven@narfation.org,
+	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com,
+	vinicius.gomes@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Message-ID-Hash: T7KBZYVOU4I4LKMZDBJH6MX4YSTKNK3E
+X-Message-ID-Hash: T7KBZYVOU4I4LKMZDBJH6MX4YSTKNK3E
+X-MailFrom: 
+ 3kJIqZQkbAI8BHI3t44xAt881w.z77z4xDBxAv76Cx6C.v75@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
-CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VU34A2RZTVWEQIDWCRCAWP5YLSEMDO2I/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/T7KBZYVOU4I4LKMZDBJH6MX4YSTKNK3E/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -92,21 +118,24 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Thu, Sep 28, 2023 at 02:39:36PM +0200, Remi Pommarel wrote:
-> diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-> index 27597f4cdf3e..9b7d4de182d0 100644
-> --- a/net/batman-adv/bat_v_ogm.c
-> +++ b/net/batman-adv/bat_v_ogm.c
-> @@ -866,10 +866,12 @@ static u32 batadv_v_get_throughput(struct batadv_ogm2_packet *ogm,
-[...]
->  
-> -	return min_t(u32, lth, oth);
-> +	/* OGM throughput was divided by two for retrocompatibility sake */
-> +	oth *= 2;
-> +	return oth * lth / (oth + lth);
+syzbot suspects this issue was fixed by commit:
 
-Also looks like we'd have potential integer overflow issues
-here as oth, lth and the return value are all u32.
+commit e739718444f7bf2fa3d70d101761ad83056ca628
+Author: Kuniyuki Iwashima <kuniyu@amazon.com>
+Date:   Sat Jul 29 00:07:05 2023 +0000
 
-In the worst case (oth + lth) could wrap around to 0 and we'd
-divide by zero?
+    net/sched: taprio: Limit TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME to INT_MAX.
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=15b26a4d680000
+start commit:   d528014517f2 Revert ".gitignore: ignore *.cover and *.mbx"
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=d576750da57ebbb5
+dashboard link: https://syzkaller.appspot.com/bug?extid=afb3084a933aa2bdacc6
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=15849d08a80000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=13184990a80000
+
+If the result looks correct, please mark the issue as fixed by replying with:
+
+#syz fix: net/sched: taprio: Limit TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME to INT_MAX.
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
