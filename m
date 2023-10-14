@@ -1,100 +1,89 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C538E7C4DBE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 11 Oct 2023 10:56:37 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A277C92D4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Oct 2023 07:15:43 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 925C081EFD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 11 Oct 2023 10:56:37 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D29ED82798
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 14 Oct 2023 07:15:42 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1697014597;
- b=q4FY6BNVxZfeRRtueehtZ2mpAL5w/D+zlM+JKZM1JPpdlmH7noBNtmDeYRMkcrzL62t6m
- YJA2PwvJbSS8bEWsc71J1te7BapQdNluIdO91SNcRUcIWRhS6pI+dDbv/5Y406iVsbGteQT
- 1fYW775zSSVyJBONXldGXFNtSQNvMPo=
+ t=1697260542;
+ b=NfShiNot3GRKBOegMwk1fKc3q1stRiriwrSoi2VVRqXiBO4hqfFQD4DrHYT0rqNuG5M+O
+ wTkH1fiva7Nms+sou+EcIt9CZj83mRRtmpD1Fh9kUZD8R/lgc6Ij4o/ImX4M22AfPM38AdV
+ z0e/NSO9qdGXfT/4ImR1qFIaVHVigkw=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1697014597; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1697260542; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=4T419dDAYsBoFiWw9lswzmqxw9mweclZmqjwFwcKm0s=;
- b=CX7Wxy/kzrhnAcpmx8p2f/aqL8drIDIQCmPhGDyoueZ4RvjNXVNvO2LVquoE0VfFpW6Dv
- XVzT70L4dCFJyVFYFWOV47FgH026aa1dGUL/6sJvIvStFvFYr+rkilbruFJMD3zWcZVUWyE
- Bue6GMhSZ4Ual7dP6d+HXjQhOKoCPJM=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=fail header.d=triplefau.lt;
+ list-archive; bh=1uT3Iw69G4q9mNAKDxUiVMUPxSlN6kAUY17uEDd7J5A=;
+ b=i665BHrosWbePLlGxGMWHgjAnO5Zx74cEkrqm3iVeldEF5eb6XyQrn9udt8vrOUXc2nFK
+ o8u2IC2QTzSTXZ4RiQWGGyBKV24twHyh+DBxRGvvuLdKWCxXz4dPI5ObMyVYm4ary6Ft0BD
+ mBK4g0Kg/hKx1/2JCoOWM9kCpoLavNA=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=fail (Used From Domain Record) header.from=triplefau.lt
- policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=fail header.d=triplefau.lt;
- arc=pass;
- dmarc=fail (Used From Domain Record) header.from=triplefau.lt policy.dmarc=quarantine
-Received: from mailo.com (msg-2.mailo.com [213.182.54.12])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 82DD58018C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 11 Oct 2023 10:56:16 +0200 (CEST)
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 221AD8007A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 14 Oct 2023 07:15:18 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1697014576;
+	s=20121; t=1697260518;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=4T419dDAYsBoFiWw9lswzmqxw9mweclZmqjwFwcKm0s=;
-	b=o5F0ehaGvhbuGK/BzICuMM/N3qQLnaSlXTamus9pHWDc3D8BLK2ZT75GOZOlJ5SvxPwY3L
-	XqLZS7jaswkO52bkHGok5mbVyAISoKF0CF1+TMs0X35i5Ea2Zc2Ef6p5V0EcVs+eE9pUiF
-	VG/pTbu0z9RB5fs+YhGDdV4dU2H6sF4=
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1uT3Iw69G4q9mNAKDxUiVMUPxSlN6kAUY17uEDd7J5A=;
+	b=zVQUJ9HHcjnynrw4VSkKJ+FEDJ16PegpLg+KAfutzAN/jYNDIsUeFfYbUBzMmhCuT3hG+e
+	mRu3uh2dn6fkRZEFQtNih9p2kgPZVHAv8VUgGb/v0O02RAwSYfHrx8lsUgigf8RaZBb9oe
+	0SyMxukDVWSDP+q4er8rfQRzgn5DEOw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=triplefau.lt header.s=mailo header.b=SJthTSZW;
-	spf=pass (diktynna.open-mesh.org: domain of repk@triplefau.lt designates
- 213.182.54.12 as permitted sender) smtp.mailfrom=repk@triplefau.lt;
-	dmarc=pass (policy=quarantine) header.from=triplefau.lt
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1697014576; a=rsa-sha256;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
+ designates 2a01:4f8:c2c:665b::1 as permitted sender)
+ smtp.mailfrom=linus.luessing@c0d3.blue;
+	dmarc=none
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1697260518; a=rsa-sha256;
 	cv=none;
-	b=k1i7VIjNXHX495IGIXwSfECuHxIZyqViArjfuQRgaiA2eDSsXaXZXsPjd9nw/GwYl10Zbu
-	1WXfba7P9cMhlphaim46W+JVGgP94PefcQ1fzWFpm1eA4gcBsB97LDpiEvths/g5OxZAQZ
-	2pkhDMQBMeCJEHFRaZCmh0sOIrz0rnQ=
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=triplefau.lt; s=mailo;
-	t=1697014576; bh=BXMEJ7F3Fh6/VYKdQv/b+sZEtieSEsy3o3o49XwJ/wM=;
-	h=X-EA-Auth:Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:In-Reply-To;
-	b=SJthTSZWIzfNZ7dOqXSZmfk3FsA6dJ6vJqgZPu7m6FZlSVCmqUq/mnnIomA0Ktfqw
-	 i8zL074ebYjqjTv1uwmNj8WJmE2wVBjLSLQFetA5Y6HWVocQhf/xleXiXcGPiKmnSC
-	 6jw8HRQiwgnxUr1dcvQzromvsm2HjuGTqQQ2MpO0=
-Received: by b221-2.in.mailobj.net [192.168.90.22] with ESMTP
-	via ip-20.mailobj.net [213.182.54.20]
-	Wed, 11 Oct 2023 10:56:15 +0200 (CEST)
-X-EA-Auth: 
- wAiPk/IZtQcE2e/U1Pepbhl7tLW0MeYlrzYTWqdPSxWUR2vc9cmMH69rDtwHUIggF4SF5f6m6oMVjo9yFhgAWiCuTC6nuJVQ
-Date: Wed, 11 Oct 2023 10:55:01 +0200
-From: Remi Pommarel <repk@triplefau.lt>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH RFC 0/2] Better throughput estimation on half duplex
- interfaces
-Message-ID: <ZSZi5VvgWHLqXJbL@pilgrim>
+	b=vHvktCbAYapLxbm+I9+G60wLy4Y5uZj5VL+V2PxML0egVuepnGzfovcGgei18t7eGLrf97
+	Huda62+EiH4aivmVQEhROSxf1i85wcbjG0x/cdH4957hvsMzmSyrvqGhCIbkkEtzu905xj
+	HWXsi916EyfLGejC7ZTbaqttesF+jnU=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id B8B0F3F039;
+	Sat, 14 Oct 2023 07:15:14 +0200 (CEST)
+Date: Sat, 14 Oct 2023 07:10:28 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: Remi Pommarel <repk@triplefau.lt>
+Subject: Re: [PATCH RFC 2/2] batman-adv: Better half duplex penalty estimation
+Message-ID: <ZSoixFsJi5vYCRxh@sellars>
 References: <cover.1695904299.git.repk@triplefau.lt>
- <15370864.uLZWGnKmhe@rousseau>
- <ZRXRFFATYjEvIeVb@pilgrim>
- <3744588.QkHrqEjB74@rousseau>
+ <09c086e5e68055e52d1f92ba17d0e921084107e7.1695904299.git.repk@triplefau.lt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3744588.QkHrqEjB74@rousseau>
-Message-ID-Hash: CU4YAIYMHMCHXHHG7XSGMXOES37HOM7N
-X-Message-ID-Hash: CU4YAIYMHMCHXHHG7XSGMXOES37HOM7N
-X-MailFrom: repk@triplefau.lt
+In-Reply-To: 
+ <09c086e5e68055e52d1f92ba17d0e921084107e7.1695904299.git.repk@triplefau.lt>
+X-Last-TLS-Session-Version: TLSv1.3
+Message-ID-Hash: 3SSHU5Z2MO4NOEYQB6CKLPPRVORXOTHL
+X-Message-ID-Hash: 3SSHU5Z2MO4NOEYQB6CKLPPRVORXOTHL
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
+CC: b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CU4YAIYMHMCHXHHG7XSGMXOES37HOM7N/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3SSHU5Z2MO4NOEYQB6CKLPPRVORXOTHL/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -103,119 +92,67 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Tue, Oct 03, 2023 at 11:06:45PM +0200, Marek Lindner wrote:
-> On Thursday, 28 September 2023 21:16:36 CEST Remi Pommarel wrote:
-> > > > $ batctl o
-> > > > Originator     last-seen ( throughput)  Nexthop         [outgoingIF]
-> > > > * Orig0-Main-Mac   0.220s  (        110)  Orig1-mesh0-Mac [  mesh0 ]
-> > > > Orig0-Main-Mac   0.220s  (        100)  Orig1-mesh0-Mac [  mesh0 ]
-> > > > 
-> > > > So best path for Orig2 to Orig0 would go through Orig1 with an expected
-> > > > throughput of 110Mbps. But such a throughput cannot be reached because
-> > > > Orig1 has to forward packet from and to the same WiFi interface.
-> > > 
-> > > Correct. Looking at your example where is the problem with the store &
-> > > forward penalty?
-> > 
-> > The problem is that the wrong path is selected.
-> > 
-> > The best one should be the direct one. Because going through Orig1, 110Mbps
-> > would never be bereached due to the store & forward penalty on Orig1 and
-> > the real throughput will be below the direct path (around 80Mbps).
+Hi,
+
+Thanks for taking your time to look into this and the detailed
+explanations!
+
+Generally, the issues both patches try to address make sense to me.
+
+
+On Thu, Sep 28, 2023 at 02:39:36PM +0200, Remi Pommarel wrote:
+> Let's consider the below topology
+[...]
+> However the following formula seems to be a more realistic approximation
+> of PT_ac:
 > 
-> To summarize the problem you see: A path traversing a half duplex node might 
-> not be penalized enough when the weaker throughput link lies before a stronger 
-> throughput link because the half duplex penalty is not be applied before the 
-> packet is forwarded.
+> PT_ac =  PT_ab * LT_bc / (PT_ab * LT_bc)
 
-Yes, in fact currently it is even not penalized at all. This is what the
-first patch proposes to fix.
+Typo, I guess, as this would always be 1? What is actually
+implemented makes more sense to me.
 
-This issue could also be looked at from a different angle, which is
-maybe more convincing.
+[...]
+> -	return min_t(u32, lth, oth);
+> +	/* OGM throughput was divided by two for retrocompatibility sake */
+> +	oth *= 2;
+> +	return oth * lth / (oth + lth);
 
-Let's say there is the following setup:
-
-sta1 <-------> AP <---------> sta2
-      275Mbps       720Mbps
-
-Then the BATMAN_V current routing algorithm is going to compute the
-following:
-
- - a 275Mbps path towards sta2 on sta1
- - a 137.5Mbps path towards sta1 on sta2
-
-IMO, there is no real reason to have such an asymetry.
-
-While the first patch fixes this asymetry by estimating both paths to
-be 137.5Mbps, the second patch is a proposition for a better throughput
-estimation.
-
-> 
-> The underlying assumption is that this indeed is an issue in terms of 
-> (measurable) throughput. Are there any numbers / papers / experiments you are 
-> basing this on? Is the store & forward throughput limit determined by the 
-> throughput of the weakest link?
-> 
-
-I haven't found any paper on that matter, if you have one that shows
-that dividing by two is a sound estimation I would be genuinely
-interessted though.
-
-However to support the theory of the second patch I did run some iperf3
-tests on the setup above.
-
-Results from iperf3 measurements:
-
-    - sta1 --> AP   : 275Mbps
-    - AP --> sta1   : 221Mbps
-
-    - AP --> sta2   : 720Mbps
-    - sta2 --> AP   : 704Mbps
-
-    - sta1 --> sta2 : 193Mbps
-    - sta2 --> sta1 : 152Mbps
-
-The sta* --> AP and AP --> sta* asymetry comes from the different WiFi
-hardwares characteristics (i.e. AP WiFi card is better at TX than RX).
-
-Now let say that B.A.T.M.A.N-Adv has perfect throughput estimation for
-direct neighbour links (e.g. sta1 <--> AP and sta2 <--> AP).
-
-Here are the path throughput estimations with different methods for
-sta1 <--> sta2.
-
-Estimation from current B.A.T.M.A.N-adv BATMAN_V:
-    - sta1 --> sta2 : 137.5Mbps
-    - sta2 --> sta1 : 221Mbps
-
-Estimation with Patch 1:
-    - sta1 --> sta2 : 137.5 Mbps
-    - sta2 --> sta1 : 110.5 Mbps
-
-Estimation with both patches:
-    - sta1 --> sta2 : 199Mbps
-    - sta2 --> sta1 : 168Mbps
-
-I have created a NS3 simulation test [0] that also seems to show the
-proposed throughput estimation is a closer estimation most of the time.
-
-Here is an example output of this simulation:
-
- $ ns3-dev-wifi-duplex-penalty-default --pos=10
-  NS3 simulated throughput sta2 ---> AP:                  156.321 Mbit/s
-  NS3 simulated throughput AP ---> sta1:                  323.139 Mbit/s
-  NS3 simulated throughput sta2 --> sta1:                 102.888 Mbit/s
-  Current BATMAN_V estimated throughput sta2 --> sta1:    156.321 Mbit/s
-  Patch 1 estimated throughput sta2 --> sta1:             78.1603 Mbit/s
-  Both patches estimated throughput sta2 --> sta1:        105.355 Mbit/s
+Could we end up here with a (forged?) OGM that has both the new
+half duplex flag set and a throughput value of 0? While also
+having an lth of 0, therefore dividing by zero here?
 
 
-[0]: http://ix.io/4IG4
+In the following scenario:
 
-Anyway thanks a lot for your time.
++-------+  ch.1  +-------+   ch.2  +-------+   ch.2  +-------+ 
+| Orig0 | <----- | Orig1 | <------ | Orig2 | <------ | Orig3 | 
++-------+   300  +-------+  30000  +-------+    110  +-------+ 
+                     ^                                   |   
+                     |                ch.3               | 
+                     +-----------------------------------+ 
+                                      100
 
--- 
-Remi
+Would the results on Orig2 to Orig1 be these?
+- via Orig2: 300*110 / (300+110) = 80.5
+- via Orig1: 100  <- selected
+
+While it should have been this?
+- via Orig2: 30000*110 / (30000+110) = 109.6 <- selected
+- via Orig1: 100
+
+But we can't calculate the latter on Orig3, because we don't
+know the two hop neighbor link throughput? Or am I missing
+something?
 
 
+Also, this seems to assume that time slices are divided equally.
+That's probably only be true for WiFi drivers that have airtime
+fairness changes integrated? So only recent versions of mt76,
+ath9k and ath10k? Has anyone verified that this works fine not
+only in AP but also in 11s mode?
+
+And a third concern, but we'd probably have this issue with both
+our current and your suggestion: Would we be off again 802.11be
+and its "Multi-Link Operation" in the future?
+
+Regards, Linus
