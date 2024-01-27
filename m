@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22CE83ED16
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 27 Jan 2024 13:52:09 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37DCB83ED17
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 27 Jan 2024 13:52:51 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CC99783FEB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 27 Jan 2024 13:52:09 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1181183F36
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 27 Jan 2024 13:52:51 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1706359929;
- b=Us3id/ucanzAylVkUVwFjbAXP659cdU4mz5iVSdpBpN3S47qKBluymH6Rx4W6mriYKLSA
- BVzvKPmbdXggZMvj7JpFiwINyqNT/69KAT8Ln9/NbrXBKCDTJdAManEbw2GFZqNYgZEQoZe
- mCy5fxyCxd1Q8c6FHC+a525Ha/y6BXo=
+ t=1706359971;
+ b=wiiPuDYOW8xWQk6TOq0k8uQXtiNEEc/zSo6KrEVxy2OV0Wbf6wA29AQJSIjTg4Lmuc5n+
+ EAyI7XwXc11pr8ruq/MJaUmnfp8tcHKJbf9OurJqP7dBwC5Chh9IS0l7r6CTSE/zQesNwMz
+ oi/Ob+Kr0L+LxFmluGq3ED0xoJTmDyE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1706359929; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1706359971; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=lKbzh0HYhx673USzsx2jXNg08b/xV+LZN0cXoP4TYhU=;
- b=0YJwD8CksyDpgi5b/+iiMqoAVDzLo6X5HCd0iDHqjIt02N0+COzZU50RbZtlmrDepCAwh
- BUQXAt9fS4pI2uLxeKbjof2e5cywGcu5ISGaQlFzkSa7GIX3qN3uT/wuq73Q6kLnWH+uHKY
- 6MiWO7Zk+d2ySi8bdCCDkizGpQyuYg4=
+ list-archive; bh=MlZqupngQ4hOf43zDc8rcYPDe1chXjmjhx93knF68kg=;
+ b=Ary15xR+pQsLd1UpJAa8o8vpPorD63iAbw2ZWgepBlBvL/+lMbZ+NfjYF+4cMUIBduLes
+ KYjotgBX93IDglBZj6az9gblLoV+C7zFoFipffWNzgHeLuZ2s5szRTCEsmHI+C4MPCHe7sf
+ gauWjMwZ7H4bZXK6fAJVoIOIk57Nnqs=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
   arc=pass;
@@ -33,69 +33,71 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 04E4583E50
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 27 Jan 2024 13:49:40 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id A208983E5A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 27 Jan 2024 13:49:41 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	s=20121; t=1706359781;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=lKbzh0HYhx673USzsx2jXNg08b/xV+LZN0cXoP4TYhU=;
-	b=Q3yG7mI/zcDxaNDPEG7RPnfF3S9d9zQerFJPwks9udxHj8EgUfc4VMWBLx18yUesOOxWC3
-	VkGzLcYR4gcDQ7HczlPjfpOErHiZFylljGY3dD9YnPR5tYhj17cOWIbVyIUbsiiI+4o4l/
-	b23WIkyDs9yTmqkMMoTKxsCOVRQMhCQ=
+	bh=MlZqupngQ4hOf43zDc8rcYPDe1chXjmjhx93knF68kg=;
+	b=pcHlext+b2/Yn0aw5k4lhax+Tc5E9z4NlOTglA97HRQSBEyIFqgJvlBAxA5nobKRigTHLh
+	Y4jgxRHJ2QyWfwFJWbSgfYZqSGg08wgj0GhH+8TO+TnipjRh6F2wnJu6XaIrKU9vuFjEMe
+	NNZSbfe4uQCxKAxIfTzsen+WOR8/Pok=
 ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1706359781; a=rsa-sha256;
 	cv=none;
-	b=W8QzE6atGcdxzmD1nLUdgksmtE3+o5YxxYLAQ/oFZNhuKJXtpAKreJwLH5UoICG7VTjZS3
-	RAo5CjOm+zdccTRgLVPvEBl08UC/LI86pcJiEok1OnR8ycWA4+QBmBo3kWbMVUVx8Y/llu
-	ltSDVo2wiT5k1AoQm3SV2jCJ/aiUwkk=
+	b=UoixlkKzIrQuima3+FQYzCAcd6xYJBzh2bHuaBFwgjx+7iiN7zGLnmVDGDpfjJpDCUGjam
+	9OCvsBYt6kV9+ZKLOftHTUsGRytRvn8GEJK8p+1f7t/zDEFmy1I6TC7whQRGPPSmaEz6pG
+	sj4lFvGBNQ9s+lGqMP4o5FfG4JqyyXs=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b="cf/yYAyn";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=VrgzfNZj;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1706359780;
+	s=20121; t=1706359781;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=lKbzh0HYhx673USzsx2jXNg08b/xV+LZN0cXoP4TYhU=;
-	b=cf/yYAyndzX6B/zAGFG00Od/mR/oPCsXb7D9UzZQt3ZqyDv01zrskmOGskLyNrvLxcJMX5
-	hixJnjRLhhb2pzxAZehGa8NQYObG7xeYL+crK8OBMhnqRkAeJziz/bomVVeOzDc3TzItmF
-	yfUWZ07Vg1d1m2fwnEd5IcJ6WEcAX6M=
+	bh=MlZqupngQ4hOf43zDc8rcYPDe1chXjmjhx93knF68kg=;
+	b=VrgzfNZjYjvLpsNgZYZUL1DJlYfcep8sDSjukSvJxv0CehrzipzgN0D0QGFmr4N9eFt0il
+	q5zPh4CrzgmLQhCnjj8hI5CzEqrI5E8RBTlfZRxLTQEwQ0tu7xjpGKDZjIZ3IxvBIupry/
+	f5ZRgmUm/3kOJbaWG7Q5Lb0KQXZO0LU=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 27 Jan 2024 13:49:01 +0100
-Subject: [PATCH 3/6] batctl: tcpdump: Fix IPv4 header length check
+Date: Sat, 27 Jan 2024 13:49:02 +0100
+Subject: [PATCH 4/6] batctl: tcpdump: Add missing ICMPv6 Neighbor Advert
+ length check
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240127-tcpdump_fuzzing-v1-3-fbc1e1d3fec1@narfation.org>
+Message-Id: <20240127-tcpdump_fuzzing-v1-4-fbc1e1d3fec1@narfation.org>
 References: <20240127-tcpdump_fuzzing-v1-0-fbc1e1d3fec1@narfation.org>
 In-Reply-To: <20240127-tcpdump_fuzzing-v1-0-fbc1e1d3fec1@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
+Cc: Sven Eckelmann <sven@narfation.org>,
+ Marco Dalla Torre <marco.dallato@gmail.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1140; i=sven@narfation.org;
- h=from:subject:message-id; bh=B98DKAqnawGRxlS+ETWC9dWxg0rcjAfykx17Tn9ZJn4=;
- b=owEBbQKS/ZANAwAKAV2HCgfBJntGAcsmYgBltPvh/mqx+FT8svm2arQpsYw2UlLf+fZX6VL/J
- 50ht/W3ze6JAjMEAAEKAB0WIQQXXSuHYSVz3OMy4AJdhwoHwSZ7RgUCZbT74QAKCRBdhwoHwSZ7
- RrroD/93bmkWz3BUWHoxgPY6r0nDK2ld20OsSyJne7tqSwJU5yzhx2gh+QRzDfFy4Wmlxf/j9kT
- 8aTzKjupYn9e1mDrI90TeEiaj1Y77e5iH/vmhBjF2LlQkHWvLU2gGCk2PfAMA0mgxi5VCmA/5aE
- ghqhG0taHZA01Evtmy50uYei/UGF+vt8UG28PAXgb0w+TkH1xrmiiAVsIquF+yNzeJZt7dUceO3
- 0kUHT0sELGfz0MK3fKmnN73kci/opxTL+747IxKyUP4+Rn4sm00WS7yPj+j5ap62cf6J0B2miRO
- PgB4ZhPRjYYNwehcnuR3QX9UhHmxev4VS9q2+y0/csjcZ43RjtFTagLq3wTaEnY1nmF0dlnTe4f
- NGrcUirIhMA4YEeyMcIeew1YiOqueVZUX78i60QYiqaydA8ZqkuhX8L2SykpeHs+8uwd7WggnLF
- 9gxgSumIVEHYG+ha8cRyZL+lmFd1VPlAUMtFfpx7vB0fSJpMrWg9Q6nmV+nyGII8AGAAgO1hT5z
- Ml77/f+xnCWC55/o/WT0+30ED4PpuAF0nCqEbUlCRxbzBqflrmkTwLIdPgwUkd9EMyWH0R2Ci51
- D5zkG6rs+hUHyF7HliDTd5xjOQVHPoasI1OTbs4vc9nK/SDTyTRDili2M0I+t1rl5CarnfLONoO
- bE9GX/zQE2TsyNw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1048; i=sven@narfation.org;
+ h=from:subject:message-id; bh=0ZS/GXQW9dlNRdAikwA5/iE+EDw6xDBEk5pQNVzuES8=;
+ b=owEBbQKS/ZANAwAKAV2HCgfBJntGAcsmYgBltPvhSIGU+W1IxzNH7aoF4hWdZLSxpLEfeJBBE
+ 0ZYFfRNr2+JAjMEAAEKAB0WIQQXXSuHYSVz3OMy4AJdhwoHwSZ7RgUCZbT74QAKCRBdhwoHwSZ7
+ RtfpD/4u4aD+z3E0A1e5eP0aRK30o7+vJLkr65lLB5VyrbGEUNBqpLdjdfDTeRJQC8PdgPljrKT
+ m1cx0m/4wKmEJHEK3miOq6RcKN0ChLS5jjbj0UQWd0SacdSIRqzY+1JdgZu2Xj/vAJVCe1F3Mi4
+ JNp/JVIkhLfquJDQ/9wXP3uNj1gA17h1726XSjc3N+7GME8aoB5jo3wGpPbkdiTI+nhIiuezh93
+ m11+8sucooKR2IovsxPXpFa/02NHuxDQmXXnbu6kdGtGn6fDT4yLaarM0jkLc8wknWL6qYq3FAG
+ /MxO60Wafp2INirzGX0vkJwHsE5rOpOuu4ZDM8mknnmgSW/CgK3ilyA7wTaxd8h7fNOuwhZ20k/
+ QGP+Lp6MoOiuwjDpTMrr2HWyYzhAoW1WHT7jMApU9Q5lJSGB+lyHOcRVlP19MzUZrZ+VTHB4ar0
+ dy9RXc1RA+bC+40kV3vTD/PgkMA3eiwwno7BwDcr3KVTYrLTt2myVWYrrGv6Sga6wa8h6Y01RRI
+ OeiD9RjrcV96zliRKHwBQsg/u/aI8gcyh4Rjp7mgyZhCkKgi3GWpxXStTLCB1RV6Anex5pBo4kJ
+ r7moqijq8M7FfRUtgXbnJuDyI9oaW/ZJkm5x0mq2TaKc136Uutj4pNN4N/iih3rNd8Guhe85fp9
+ 8W4ovDnE6LAhgdw==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: HRSOXCCT7SUNRFYGQQ32DGM3TDBVRORM
-X-Message-ID-Hash: HRSOXCCT7SUNRFYGQQ32DGM3TDBVRORM
+Message-ID-Hash: HZ2HNZZUZWZQ4MOBJ3CMCWACQJNYXGQA
+X-Message-ID-Hash: HZ2HNZZUZWZQ4MOBJ3CMCWACQJNYXGQA
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -109,7 +111,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HRSOXCCT7SUNRFYGQQ32DGM3TDBVRORM/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HZ2HNZZUZWZQ4MOBJ3CMCWACQJNYXGQA/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -118,33 +120,31 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-dump_ip() is directly accessing the header in the header length check and
-assumes that ihl can be trusted. But when when ihl is set to something less
-than 5 then it would not even be possible to store the basic IPv4 header in
-it. But dump_ip would have still accepted it because it didn't check if
-there are at least enough bytes available to read the basic IPv4 header. So
-it is possible that it tries to read outside of the received data.
+dump_ipv6() is doing a length check for the original ICMPv6 header length.
+But the neighbor advertisement (which is also handled by this function) is
+accessed without doing an additional length check. So it is possible that
+it tries to read outside of the received data.
 
-Fixes: 75d68356f3fa ("[batctl] tcpdump - add basic IPv4 support")
+Fixes: 35b37756f4a3 ("add IPv6 support to tcpdump parser")
+Cc: Marco Dalla Torre <marco.dallato@gmail.com>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
  tcpdump.c | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/tcpdump.c b/tcpdump.c
-index 9bb4b9e..3fdd7c3 100644
+index 3fdd7c3..2ae3909 100644
 --- a/tcpdump.c
 +++ b/tcpdump.c
-@@ -694,7 +694,9 @@ static void dump_ip(unsigned char *packet_buff, ssize_t buff_len,
- 	struct icmphdr *icmphdr;
- 
- 	iphdr = (struct iphdr *)packet_buff;
-+	LEN_CHECK((size_t)buff_len, sizeof(*iphdr), ip_string);
- 	LEN_CHECK((size_t)buff_len, (size_t)(iphdr->ihl * 4), ip_string);
-+	LEN_CHECK((size_t)(iphdr->ihl * 4), sizeof(*iphdr), ip_string);
- 
- 	if (!time_printed)
- 		print_time();
+@@ -659,6 +659,8 @@ static void dump_ipv6(unsigned char *packet_buff, ssize_t buff_len,
+ 			       nd_nas_target, buff_len);
+ 			break;
+ 		case ND_NEIGHBOR_ADVERT:
++			LEN_CHECK((size_t)buff_len - (size_t)(sizeof(struct ip6_hdr)),
++				  sizeof(*nd_advert), "ICMPv6 Neighbor Advertisement");
+ 			nd_advert = (struct nd_neighbor_advert *)icmphdr;
+ 			inet_ntop(AF_INET6, &(nd_advert->nd_na_target),
+ 				  nd_nas_target, 40);
 
 -- 
 2.39.2
