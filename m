@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id A22BF8918FD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 Mar 2024 13:33:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E19BB891907
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 Mar 2024 13:34:12 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7C0E08022A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 Mar 2024 13:33:32 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B7CFA8197C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 Mar 2024 13:34:12 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1711715612;
- b=iM3wIvpRZlvu1nUJOWY/BymRlKx2xj7rq6OK18/LXJW8zG9uvlzvJ6kk0zuUSgTWObx8G
- Me+MhlJtiWex/5hw5BRaWTCv8fY3VVyT5ISyugT9AJhyY6jAIrqksVYf/hFaAIc98ixY/Nw
- 089JPeroxPMyEOOI56RMNfK/uuMC3uQ=
+ t=1711715652;
+ b=ANQnnrOvaDLMCqkmYY6tQ+bbiIW/hOLZRdcX5ZswhBt4LrvevYs3MfQlTI1/9syHxiQFF
+ T6/bVLelniJjJDmXwFBxZ7i5E/HCcQRq4f38kZjlYgGaqWqoWUexkTw5GxHCVsJxedMBa0F
+ F7Dbs5IipEGYKmIhGfytnXbA7orw5jA=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1711715612; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1711715652; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=yDzh2VsZNayAFsdVImoll1H1wFZAkzrKoNsx2LMKx7Q=;
- b=2FdPecMDCbGox1/l9rh/SBMD/YHOa6HH8AK3W4bLvR3Mdsnmp0YsJr4qrulAUubSG00jf
- Swyb2qRrW0mlYc1f0oz5d1IvGaRjXNzV2qBc5d6ZEP+eBvnyY5RErfvm5MuNx3c61vZhIev
- gkjfYpjBx/wW8kgro/Ci3Fln6EtblEI=
+ list-archive; bh=gtj5TodMaj8J6TUems7MF3t3Hoy3LIj7vbvApKQCVHw=;
+ b=CFFjS12nN3QWrurqHYrH3iJnYHkAidWVPsZb9cJNm5h41KOF+tDT+BVOizQs5KRq4wR3+
+ d2F6vgGEAWr274fml4gNk/N+kAnoL0aaOgxHN3lVhIvcTvfG1XZaSmcGWmd6AwiTR0Soukb
+ xt1S7y3btVGzStYI/ZmTs7ru+JqP5AQ=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=kernel.org;
   arc=pass;
   dmarc=pass (Used From Domain Record) header.from=kernel.org
@@ -30,46 +30,45 @@ ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=kernel.org;
 Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=none
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C3B5F8160D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 29 Mar 2024 13:32:15 +0100 (CET)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id AB9E081D04
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 29 Mar 2024 13:33:20 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1711715536;
+	s=20121; t=1711715600;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=yDzh2VsZNayAFsdVImoll1H1wFZAkzrKoNsx2LMKx7Q=;
-	b=oUYYtI/UmKbXVTqOczAs60514ZxDLEi8F+UYfTGFyzyrPnKO5phfnEQUN13P45tUgGldcm
-	M412tvZizOHI95oOtdv+d6AFqgTvSDRzqcuAAehRPqh+zpX3nhLgJFPC7si9J/EwrJ8tEy
-	lxyMoDzqMZoW2vTkygUkHz4n+HCbdFU=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1711715536; a=rsa-sha256;
+	bh=gtj5TodMaj8J6TUems7MF3t3Hoy3LIj7vbvApKQCVHw=;
+	b=n6UudC1Rr5x+4P20SUU+3UFyyIveuqQJfmsAemnnFmmVtBqyvZZ6i3i61CACs/mmLWB2YG
+	fgrgPpI8ejZRG5REGGq4RzqvfJCSu4ml7SeomIMyhuWJx4jH+hU3VrQwZOft+RGK+kS00d
+	0ToOm9AK72WCe1gmVCSKvv8HNPrr76o=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1711715600; a=rsa-sha256;
 	cv=none;
-	b=JdXxgzCk07jDkAeKp6NMgZLgl8zJ23JQwtxL4i+dw/5Zy9+YlGt3CLAzHqrMYyTGzq0DA+
-	l6nzmL0cXYDDkxAtzQqev98PQobBOKcT7Df7++arQVAF03vrTwqTv4alXP1ksC/DELiBnK
-	Tz7Ovsn/KoO2VjrJBjmr7cpj8X0arJo=
+	b=3mKp3fN2kyUC42qZpES4oHa/EzQxyx17GJr29zv3v/oTBkO8SwkElCeINNjc7DkZI8aQRR
+	wZ0m0yTa2CQGXKn0ybDEO+r4hC9mq0kdPAWB+bCPoHPekzRxG8pPm5voOFsiyNgRMHzX8c
+	QFtHkKojcephajevQPkNZQKF4VZzpfw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=KO+xz6iG;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=N5EWxjKZ;
 	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates
- 2604:1380:40e1:4800::1 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+ 139.178.84.217 as permitted sender) smtp.mailfrom=sashal@kernel.org;
 	dmarc=pass (policy=none) header.from=kernel.org
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 1A2E2CE2F76;
-	Fri, 29 Mar 2024 12:32:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD6C2C43390;
-	Fri, 29 Mar 2024 12:32:11 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 7D7E46191D;
+	Fri, 29 Mar 2024 12:33:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB702C43390;
+	Fri, 29 Mar 2024 12:33:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711715533;
-	bh=S82mcnLoAgLHLLUc/tmsd7zTZGwm1HRCO6vTX9LS/lk=;
+	s=k20201202; t=1711715599;
+	bh=5Xp9deLXuySM3FPbHSvWVecwYQM4gNJbCeO4/lmlir8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KO+xz6iGzGYExW+tc6fK9ZjqI2Til+gK25fmCjCK4mIVUX0N+Y9Oi6HJPOpCMRUgm
-	 Q+RQ2eOhzLyGeaOhd5aa7HpPh+DHpLOPp9TsmrZ9PP6cJsc3tbOJLRwwy+RCixZapm
-	 06226FlibBUvBXMf/0yHaZ0z7Jv0KfBW+ipVRJ9+1VdcjjpT8iY30FCgrKctx5E0aj
-	 u2rouCRFNly7ypEWAE2zv2jqJkJORozsir9L5y6Q3eG0OpTkytvMUi4djBr0fXQaBO
-	 8Q6NQPfnWHve8N2Kc84i3+JzjOkxcqY3Etz2Aa2+bafhcHgvejs0EtzgORc2A+omyr
-	 4HCUr9KRNwj1g==
+	b=N5EWxjKZbhO3j9ydGM0JVE3X7hNvZfL5hhyL3W3ftUvIw+x6GuY67Drlp+6ZeEug+
+	 pNZamQPWYFfdO6Xh1tAv4kA2gEhJukQJmiu7Q5vN8Sqd/RoHbf/izdz2ntbl/23kEh
+	 6sjye3+qpBm5S2AvR14eBuFgcYCNNvECN09BQXaS2mv6Oq5YqylkynyP26p2f/5i1B
+	 xh7nMnFC8oS2AiWbC1VdFCieWAdXZnKGTUsEr329QBVEByhogvtPWziRm4mXywGTxY
+	 HQkY/tVeCDwcFmAAxke63tkjwEp4JFyNsUnPsU5ugvKvJCCeIUtfTYldpW/Yduw8i4
+	 UgRQ5+ile8nJg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -85,20 +84,21 @@ Cc: Markus Elfring <elfring@users.sourceforge.net>,
 	pabeni@redhat.com,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 04/31] batman-adv: Improve exception handling in
- batadv_throw_uevent()
-Date: Fri, 29 Mar 2024 08:31:23 -0400
-Message-ID: <20240329123207.3085013-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 02/20] batman-adv: Return directly after a failed
+ batadv_dat_select_candidates() in batadv_dat_forward_data()
+Date: Fri, 29 Mar 2024 08:32:50 -0400
+Message-ID: <20240329123316.3085691-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240329123207.3085013-1-sashal@kernel.org>
-References: <20240329123207.3085013-1-sashal@kernel.org>
+In-Reply-To: <20240329123316.3085691-1-sashal@kernel.org>
+References: <20240329123316.3085691-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.1.83
+X-stable-base: Linux 5.15.153
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: IZWIX5UFAIVOXQLZG7BEYSQVUPHLTWSC
-X-Message-ID-Hash: IZWIX5UFAIVOXQLZG7BEYSQVUPHLTWSC
+Message-ID-Hash: SCZEWY7P5HCNYGQKZWL75RDU5KJMVK46
+X-Message-ID-Hash: SCZEWY7P5HCNYGQKZWL75RDU5KJMVK46
 X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -112,7 +112,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IZWIX5UFAIVOXQLZG7BEYSQVUPHLTWSC/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SCZEWY7P5HCNYGQKZWL75RDU5KJMVK46/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -123,67 +123,47 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 From: Markus Elfring <elfring@users.sourceforge.net>
 
-[ Upstream commit 5593e9abf1cf2bf096366d8c7fd933bc69d561ce ]
+[ Upstream commit ffc15626c861f811f9778914be004fcf43810a91 ]
 
-The kfree() function was called in up to three cases by
-the batadv_throw_uevent() function during error handling
+The kfree() function was called in one case by
+the batadv_dat_forward_data() function during error handling
 even if the passed variable contained a null pointer.
 This issue was detected by using the Coccinelle software.
 
-* Thus adjust jump targets.
+* Thus return directly after a batadv_dat_select_candidates() call failed
+  at the beginning.
 
-* Reorder kfree() calls at the end.
+* Delete the label “out” which became unnecessary with this refactoring.
 
 Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
 Acked-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- net/batman-adv/main.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ net/batman-adv/distributed-arp-table.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index e8a4499155667..100e43f5e85aa 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -688,29 +688,31 @@ int batadv_throw_uevent(struct batadv_priv *bat_priv, enum batadv_uev_type type,
- 				  "%s%s", BATADV_UEV_TYPE_VAR,
- 				  batadv_uev_type_str[type]);
- 	if (!uevent_env[0])
--		goto out;
-+		goto report_error;
+diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
+index 42dcdf5fd76a1..c091b2a70d22d 100644
+--- a/net/batman-adv/distributed-arp-table.c
++++ b/net/batman-adv/distributed-arp-table.c
+@@ -684,7 +684,7 @@ static bool batadv_dat_forward_data(struct batadv_priv *bat_priv,
  
- 	uevent_env[1] = kasprintf(GFP_ATOMIC,
- 				  "%s%s", BATADV_UEV_ACTION_VAR,
- 				  batadv_uev_action_str[action]);
- 	if (!uevent_env[1])
+ 	cand = batadv_dat_select_candidates(bat_priv, ip, vid);
+ 	if (!cand)
 -		goto out;
-+		goto free_first_env;
++		return ret;
  
- 	/* If the event is DEL, ignore the data field */
- 	if (action != BATADV_UEV_DEL) {
- 		uevent_env[2] = kasprintf(GFP_ATOMIC,
- 					  "%s%s", BATADV_UEV_DATA_VAR, data);
- 		if (!uevent_env[2])
--			goto out;
-+			goto free_second_env;
+ 	batadv_dbg(BATADV_DBG_DAT, bat_priv, "DHT_SEND for %pI4\n", &ip);
+ 
+@@ -728,7 +728,6 @@ static bool batadv_dat_forward_data(struct batadv_priv *bat_priv,
+ 		batadv_orig_node_put(cand[i].orig_node);
  	}
  
- 	ret = kobject_uevent_env(bat_kobj, KOBJ_CHANGE, uevent_env);
 -out:
--	kfree(uevent_env[0]);
--	kfree(uevent_env[1]);
- 	kfree(uevent_env[2]);
-+free_second_env:
-+	kfree(uevent_env[1]);
-+free_first_env:
-+	kfree(uevent_env[0]);
- 
- 	if (ret)
-+report_error:
- 		batadv_dbg(BATADV_DBG_BATMAN, bat_priv,
- 			   "Impossible to send uevent for (%s,%s,%s) event (err: %d)\n",
- 			   batadv_uev_type_str[type],
+ 	kfree(cand);
+ 	return ret;
+ }
 -- 
 2.43.0
 
