@@ -1,53 +1,72 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD008981CE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  4 Apr 2024 09:00:34 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E1789848A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  4 Apr 2024 12:00:54 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 848B681F1F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  4 Apr 2024 09:00:34 +0200 (CEST)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1712214034;
- b=c56qlDzqyTOclt6urWr0Grf3Oxj8HoarbLWHpz7j64m67hKtpH3E1+ne10EuOgDKoZP75
- 7zzNgHMGHUI/FB1SMl0ntaSCOvvmcIV4Wj6JCaYIftIxBv8uTFh8B6QiU821nuw9Av8Ixr8
- /DvKAPLK5BLS1nrKHweyBiUZRxT13Hc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1712214034; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 073FC81D6F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu,  4 Apr 2024 12:00:54 +0200 (CEST)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1712224854;
+ b=Dww8KORBm6bM1O1p4OxQ0pyc49XtfaJLPrbipgbvTwS6yFuCIwxbu+qqHD+eRFinO6JAF
+ zdQHrGTJmWS4o9UFCiQWZpF3e4kXV99ztQrAAQUlzdKhCjLXf2inRn9Sd0sKZ73AcrWlxut
+ Ky7PGWlkZ28v7lqbxRO2iStQsiwoMeQ=
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1712224854; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=icbA98KMxAnaMcxNB6J/AD2eJofdkgxLQ+IvYhcSFts=;
- b=bksbyLDT/uiCDJdY2OE2cWSuUV2cg5ex+1pk2LBKuGvn7X3nDaCkwNFdD/rL9S54ugToN
- P3Ya1M9Lb60tosM21sZbbRxH287rvKfYG3w54+k+kNualM6C+n7i0NZ+c4eKYQg4XR85id1
- whNaGL940BHdrE5JkKLzeE+3NhjXzUc=
-ARC-Authentication-Results: i=1; open-mesh.org; dkim=fail;
-  arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=protonmail.com
- policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=protonmail.com
- policy.dmarc=quarantine
-Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C1056800F1
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  4 Apr 2024 09:00:08 +0200 (CEST)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: About Throughput in BATMAN_V
-From: berkay.demirci@protonmail.com
+ list-archive; bh=p6vtYKckl/IIW1RC3InXjd3GHCm7k3RFvV0e/TOAowI=;
+ b=22Hum7U+BfMUEgmY7vYLpHb4Av7X5h8AgB+AAZYaB+0HNsFg6KecNn4xaIweI/BAsA+3W
+ V7WhT6Uu6uG2VVKWJwJUPquy8f6iv2EvlLDBeFVEagGDBeERce//4F2OREJ68YDCapVESsE
+ Rybx1aRMSlJxjlDA3pNy6cgPPc+31t4=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
+  arc=pass;
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from s2.neomailbox.net (s2.neomailbox.net [5.148.176.60])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id E0597819F3
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu,  4 Apr 2024 12:00:26 +0200 (CEST)
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1712224827;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=p6vtYKckl/IIW1RC3InXjd3GHCm7k3RFvV0e/TOAowI=;
+	b=zuN+g/IEHaaIGr7P87AvM28SO9i5r83tUtfSCy11PXf2pzOKGf2RV0Z6q3mZEpYglwyhc5
+	isgOGli64aX6kP1Z8cIJzZnenNyHmtVwlTB5HIohT7RvVFgJPA8TvPMbaBFTu6l21f19ZD
+	TZKSAigzEYTw2tZgIiY6+3k0NvgSvIE=
+ARC-Authentication-Results: i=1;
+	diktynna.open-mesh.org;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of mareklindner@neomailbox.ch
+ designates 5.148.176.60 as permitted sender)
+ smtp.mailfrom=mareklindner@neomailbox.ch;
+	dmarc=none
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1712224827; a=rsa-sha256;
+	cv=none;
+	b=ktgUM8eqAeHA7wCt5vGhV6H/In7Lm3TiEmGMd2Si2gMOX63k6AMi0p5gzzrWO11jq5LL4Q
+	1qOJC8UHgFTW7tbVRzmnP2QaoZi+/uE0cotawz23GPrsTFP9AE4y3A4/RL7HwluxwtA0a0
+	L0RhkmMz6xBp3S9SophDegH7UoaZmTs=
+From: Marek Lindner <mareklindner@neomailbox.ch>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Date: Thu, 04 Apr 2024 07:00:08 -0000
-Message-ID: <171221400877.1066.8144265750602425260@diktynna.open-mesh.org>
-In-Reply-To: <30040596.43St1lv6Oq@rousseau>
-References: <30040596.43St1lv6Oq@rousseau>
-User-Agent: HyperKitty on https://lists.open-mesh.org/
-Message-ID-Hash: REMGFQEVMQM5GTAS4MGNBPDL3ZNX2W44
-X-Message-ID-Hash: REMGFQEVMQM5GTAS4MGNBPDL3ZNX2W44
-X-MailFrom: berkay.demirci@protonmail.com
+Subject: Re: About Throughput in BATMAN_V
+Date: Thu, 04 Apr 2024 12:00:22 +0200
+Message-ID: <3327582.AxlXzFCzgd@rousseau>
+In-Reply-To: <171221400877.1066.8144265750602425260@diktynna.open-mesh.org>
+References: 
+ <30040596.43St1lv6Oq@rousseau>
+ <171221400877.1066.8144265750602425260@diktynna.open-mesh.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Message-ID-Hash: L6JDR6WGFIU6YE5GAZEY3YKP466MHZVA
+X-Message-ID-Hash: L6JDR6WGFIU6YE5GAZEY3YKP466MHZVA
+X-MailFrom: mareklindner@neomailbox.ch
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -60,7 +79,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/REMGFQEVMQM5GTAS4MGNBPDL3ZNX2W44/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/L6JDR6WGFIU6YE5GAZEY3YKP466MHZVA/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -69,8 +88,48 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-We have two modems for each node and in one of them, expected throughput should be about 6 Mb/s for example, and in the other one it should be about 30 Mb/s. By using iperf and also throughput meter I can see that it's the case. But when they are added to batman with batctl if add, after typing batctl o, I see that the throughput values in both interfaces are 10000 instead. 
+Hi,
 
-I looked at the interfaces with ethtool and the speed is 10000 Mb/s there for both too which is how batman must be measuring the throughput but this isn't good because it doesn't reflect the actual speed. If we use throughput override, it's fine at first but one of the modems has a shorter range so in our test where two nodes move away from each other, actual throughput gets decreased due to losses but batman still chooses the same interface due to the overriden value.
+> We have two modems for each node and in one of them, expected throughput
+> should be about 6 Mb/s for example, and in the other one it should be about
+> 30 Mb/s. By using iperf and also throughput meter I can see that it's the
+> case. But when they are added to batman with batctl if add, after typing
+> batctl o, I see that the throughput values in both interfaces are 10000
+> instead.
+> 
+> I looked at the interfaces with ethtool and the speed is 10000 Mb/s there
+> for both too which is how batman must be measuring the throughput
 
-Basically I would prefer batman being able to change measured throughput dynamically.
+correct. If the underlying interface provides a link speed via ethtool, batman 
+uses the ethtool API to get the throughput value.
+
+
+> If we use throughput override, it's fine at first but one of the modems has a
+> shorter range so in our test where two nodes move away from each other,
+> actual throughput gets decreased due to losses but batman still chooses the
+> same interface due to the overriden value.
+
+That is what the manual override is meant to do. A manual value that will 
+override all dynamically determined values.
+
+Can you explain what type if "modem" you are talking about? It is not clear 
+why a modem depends on range. Or are you talking about a batman mesh 
+connecting various modems? Please share the topology of your setup.
+
+Is this somehow related to your earlier statement: "[..] but then even when 
+actual throughput of the active interface decreases, it doesn't switch to the 
+other interface because it only considers the overriden value." ?
+
+
+> Basically I would prefer batman being able to change measured throughput
+> dynamically.
+
+if I understand correctly you are changing from "Batman doesn't seem to 
+calculate throughput properly" to "measured throughput is preferable" ? There 
+is no calculation issue with batman v?
+
+Cheers,
+Marek
+
+
+
