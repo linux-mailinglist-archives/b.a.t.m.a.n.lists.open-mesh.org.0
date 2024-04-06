@@ -1,102 +1,176 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8673899860
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  5 Apr 2024 10:47:29 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4891489AC63
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  6 Apr 2024 19:11:22 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A36EF825F9
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  5 Apr 2024 10:47:29 +0200 (CEST)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1712306849;
- b=HdJR8rhnHfiCXw//aaM00mjPsv6i9VGpUGHZuOjslOy5sFeOF0TkvLscW0ZcqIb0xKFRG
- 1n3XRHYIr7tBxnUW7v4w4a2p7sfUbQ8ymGkwRO5KLTOEmDOeNVEe5XgLrnLornEWi984Z4e
- kqZRONrMyUn6j4ll7GnlPPzpGk2YAx8=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1712306849; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 22B7B81A04
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat,  6 Apr 2024 19:11:22 +0200 (CEST)
+ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1712423482;
+ b=Oc7R0eEeAvFg3Df9LwzNSOTat7Ct8TVXBnj2JEXbNgnA8lptfkPGTbVOfgV8vM/uQmJwM
+ 8YCru5prLBIlc+0flusi5VX01cOJvDg4ptBt5BeDzgCHs8sDfdyHnNF8KS/KAn68Ebmq6dl
+ 6VKRkPJfwqkE6kxL57xRTBQIsDQOcSY=
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1712423482; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=aUFt8RIRkueUy9HwMDFQiPZJtUCI5MaYLAMqys68v7c=;
- b=iADOmB+JMgdNLzmM0Yi2178Grv7VpP/XG5XOi+BrVaXVpPuoIEZYn4xeMTyjUsV/IVpNu
- nNxF47lWJJyELuVsGaE9ZAgzD1iIuGDGo0DQC6PmAI1WBSIL2fdBFJnxAWCtl/IbWLDljsc
- lAzOb0jviVtlzJHcUnPF4faRsS9l4oM=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
+ list-archive; bh=UF2zGeEp20pZ+g+ruR/Y/fUPN2XB39IWhALwuoEmqXc=;
+ b=EoCKDMjhgu+fJHAWay5vBYMfE0FDMIvI2pe6lC7VcMy1qR9qtigfkzNAtqfyvX6j1km3b
+ NIv01gAasocqdIwwPwHZruPN1wM66Pj3RmkAM8X21UGeJM0ihnjnyTkwRNw1yMNfcqvoYCx
+ iSrdR0/l70gy3sK1KfSfnYpMd/h4TWY=
+ARC-Authentication-Results: i=3; open-mesh.org;
+ dkim=pass header.d=outlook.com;
   arc=pass;
-  dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
- dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
- policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id AFCFE819B8
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  5 Apr 2024 10:45:56 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1712306756;
+  dmarc=pass (Used From Domain Record) header.from=outlook.com
+ policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=pass header.d=outlook.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=outlook.com policy.dmarc=quarantine
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com
+ (mail-am7eur03olkn20801.outbound.protection.outlook.com
+ [IPv6:2a01:111:f403:2e0e::801])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9DFC580C84
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat,  6 Apr 2024 18:46:26 +0200 (CEST)
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1712421986;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aUFt8RIRkueUy9HwMDFQiPZJtUCI5MaYLAMqys68v7c=;
-	b=hnOo68FxT/w71Qot5o0rTtfl2HbIJUg2WCzD9uMALJMjfznccrvHgnxfTI0n+mCFop+Ubg
-	NXd/e7W+5gWNAyUlBQT127hhbnMBQzRXhLifPvJ3p22+04XhFPry8FKEoV0Pg6cnbvQrWF
-	rfDyy0GYSiCj2nh/8ugFhgFgD28UFuE=
-ARC-Authentication-Results: i=1;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=UF2zGeEp20pZ+g+ruR/Y/fUPN2XB39IWhALwuoEmqXc=;
+	b=v7h6rGnpPTKJOKvQwP3juxk0saRQgtD2vj7dvxgB2KVxv5bT3s2l7Yrqjc3rL6NHdh0b62
+	eJeCOnJ3jJaaudYDkHhC8Pp0Pp9kw89QeRpuz33PBGJcYFHH7djx/pM/U7utH1h7IUdxs1
+	w4xEvD6O6iXx65DdgSXqvedDUofnxOs=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de;
-	dmarc=pass (policy=none) header.from=simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1712306756; a=rsa-sha256;
-	cv=none;
-	b=LiCFKUpxDiGxPO+Yl3z2SJ8WxSTM0+bTk0luD7pcD/Sykjn78pKQ9p4IReedwtS4LBglAb
-	J98XWH5QNC4KXFd6o7pI4vsWVskobTBvee7xui9nO3cRjuDmPWes7+HKVsiq1fH2LZU632
-	pQn5AhZuwqKEvtVab19Uiei+atn/RTI=
-Received: from kero.packetmixer.de (p5de1fdf8.dip0.t-ipconnect.de
- [93.225.253.248])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits)
- server-digest SHA256)
-	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 6F0B4FA103;
-	Fri,  5 Apr 2024 10:45:56 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Cc: netdev@vger.kernel.org,
-	b.a.t.m.a.n@lists.open-mesh.org,
+	dkim=pass header.d=outlook.com header.s=selector1 header.b=gizgIDXY;
+	spf=pass (diktynna.open-mesh.org: domain of erick.archer@outlook.com
+ designates 2a01:111:f403:2e0e::801 as permitted sender)
+ smtp.mailfrom=erick.archer@outlook.com;
+	dmarc=pass (policy=none) header.from=outlook.com;
+	arc=pass ("microsoft.com:s=arcselector9901:i=1")
+ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1712421986; a=rsa-sha256;
+	cv=pass;
+	b=M7qVLlxRw2TpY8foE8smb4uawag/KEE/xmdM7SXFTCFVEoG26M6c0bISmiwqWbz6HmRiYG
+	cR5+0o3GOtCCizoSdZ3vb2HfAOUCNV+mKA5FMN92kMkWqu+VfgHaj0B5iSEn9M34omlZnX
+	xLdBkwIh+rO3x1XvjXO38RO9MKv5ngs=
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VeF766Ckn84p3HE0IKvtwOALsdN+f0za6CDhPFbruUQe0AM6SJcT2yvrbte4o2CjocjIY+ca4XdnlppiyX87/htQ8ua3NK41kMOK5eyhvpaiA86Mv26s54vxhxfqT1Gj2zxBesWi645sqdrs5uaw4GJ+vhgwQ7mxEvV4L0oZjSCrRyWWsONpRoBcwgMbiz7hPRfwqeaoSMskZfyRlqhiO1EaH4UQSkBfmGPaSg8rbcFgggp71LJvUhLSk/bWkcZYO7Te45BzIEL1+Td5qRNDjUKzchIRauMjx05YIvGaG/EQ9wDCKw3v3G/mDMNe2mrKRv90Z8Lsh5PhbkKPXWWCQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UF2zGeEp20pZ+g+ruR/Y/fUPN2XB39IWhALwuoEmqXc=;
+ b=MCP38VGA7Ftk5fOF2Tkt0/GMxJdVqXwCuSHx5hTcF1yoLNn3td1OZ8cgEyGEOQ48F9uXvdEvYHKAqLu/+pW26mogGjhO962Wv4XnC6jp+J1eej/FOV4JxgtpgBBDt1KItWqFGVWn2KIW0pOtzwWnGqerrWh7XfQ91y/UCf2gU9+rMNngRUJbfOBDyMdMAqZx4JnlAbsD+0NbPBjTK2y8FN9P8CaXCUisldz/a2o0/GTZaZnP6ggO613QMhAd23drY/nx1BodBrOL39D4fTGhaMIcEEy5xX/OW5utma+GnwhTSOJf7IEWZG2pWQLZbkfmBLMCRisD8R1bj6Speoi1TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UF2zGeEp20pZ+g+ruR/Y/fUPN2XB39IWhALwuoEmqXc=;
+ b=gizgIDXYuFzWm85H/poPtD9rY0lfwRwH9YC968EwYDNw3qeDluwaD/KUjl9a64iOOXXOedJMn9JQzDRh1CqBHfWo6vu4gnf6PJA24neoOaxBflkTxDyzwVwB9rNc7wcXVqdFb/h3IPX2U/R9em9WcvtLGb27zX5CV693OC6Nvk3HYT9eqWQulQpmW9DcMv21VGId0qhT73XtWXip9esmac4UJKhP52469WNLeLjpSatiyQlF80dg2B451FbtI4pKgilRfGvyKBYh7+5I759aZhBVutF0AtndV3VMqArW6lo1ZYcTyqe0EDAY86wTN8K5BQeNjTGcd+jsLzldPNrkgA==
+Received: from AS8PR02MB7237.eurprd02.prod.outlook.com (2603:10a6:20b:3f1::10)
+ by DB8PR02MB5771.eurprd02.prod.outlook.com (2603:10a6:10:f8::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.54; Sat, 6 Apr
+ 2024 16:46:23 +0000
+Received: from AS8PR02MB7237.eurprd02.prod.outlook.com
+ ([fe80::9817:eaf5:e2a7:e486]) by AS8PR02MB7237.eurprd02.prod.outlook.com
+ ([fe80::9817:eaf5:e2a7:e486%4]) with mapi id 15.20.7409.049; Sat, 6 Apr 2024
+ 16:46:23 +0000
+Date: Sat, 6 Apr 2024 18:46:11 +0200
+From: Erick Archer <erick.archer@outlook.com>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: Marek Lindner <mareklindner@neomailbox.ch>,
+	Simon Wunderlich <sw@simonwunderlich.de>,
+	Antonio Quartulli <a@unstable.cc>,
+	"David S.  Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
-	Sven Eckelmann <sven@narfation.org>,
-	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 3/3] batman-adv: bypass empty buckets in
- batadv_purge_orig_ref()
-Date: Fri,  5 Apr 2024 10:45:49 +0200
-Message-Id: <20240405084549.20003-4-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240405084549.20003-1-sw@simonwunderlich.de>
-References: <20240405084549.20003-1-sw@simonwunderlich.de>
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Kees Cook <keescook@chromium.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Erick Archer <erick.archer@outlook.com>,
+	b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH] batman-adv: Add flex array to struct batadv_tvlv_tt_data
+Message-ID: 
+ <AS8PR02MB7237161B8D17F83F0A31467F8B022@AS8PR02MB7237.eurprd02.prod.outlook.com>
+References: 
+ <AS8PR02MB7237987BF9DFCA030B330F658B3E2@AS8PR02MB7237.eurprd02.prod.outlook.com>
+ <5466543.Sb9uPGUboI@sven-l14>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5466543.Sb9uPGUboI@sven-l14>
+X-TMN: [B/2mQTnMSx/9dfbusV7bQx2ESxCQQOMB]
+X-ClientProxiedBy: MA4P292CA0014.ESPP292.PROD.OUTLOOK.COM
+ (2603:10a6:250:2d::7) To AS8PR02MB7237.eurprd02.prod.outlook.com
+ (2603:10a6:20b:3f1::10)
+X-Microsoft-Original-Message-ID: <20240406164611.GA21322@titan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: GKKIKZNMIXBJZCKEWNBSRTZNPJIOI2P5
-X-Message-ID-Hash: GKKIKZNMIXBJZCKEWNBSRTZNPJIOI2P5
-X-MailFrom: sw@simonwunderlich.de
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR02MB7237:EE_|DB8PR02MB5771:EE_
+X-MS-Office365-Filtering-Correlation-Id: db0b8e0a-a757-4698-89bf-08dc565917bb
+X-MS-Exchange-SLBlob-MailProps: 
+	vuaKsetfIZkROEo2gJaqbzokFpX8aXM6DNmNUR/0rxwggsJctEeOogq2OeF011FdJL+4eq562zTEHD78Hq1QKoXS46511zfbZfpB0GD/c2AivYT/fY54oa4JzWdSyq83cLKFgcKXjDGMYuYRe1cY3fuRbDIE1gZWJ3xDuyVbe53UwlLU5I33DCnPi+sqQomMLswhaqSa1Cwac39DcZbxmVzQAILkVmmRwasbZff45vGzxOKIgfB1ryyVRxIV6PBySe7TYckH1IZ7MpqSX2wIqJg/wKINUm6m/Wi48++imS0rKds/s9BuHID1V332u6nTR1V8q9fdGfS3RTH9b7xMUuv1M3+9ladkz2L+TOXPzpaZv8Cgomq7ND0gMISGyEYOuH8DKJCXupo7rPLUn1VveRlf16rKNpNLOe5/qaxbzgVIWn0Ywmq68axwj8MFnUcLrAOnwM2Qa4b9VDWHXV0zYtey5uLK4eZdVuIdxGp2/ahqVrzDlDyKiSyNqE6qCegYGHStLejVdPqaj61AkoglP7kaXCGrPzV+Jx1Bw0LMq1U329/TBeC7IOSH9mJQWINlcXyT7MEA8yqZMQf/2PJzH0MdJkAGg0W2gQ2zVqOOxF2rIIOAmzzt2rKpytxwy9PJw1ex5vcFMj6VCmVSJpqqXrM32Qjqa79QhhMUtjbnNULs+sCY5JG2VTVYvEQa2RYODBlM1qp3aZS1rUpBWuEqFuq2yANMMojWd9QRKss0JY8Cn7NjssA7txb48kuPKK2/AeVv2Cs4O0pL3/gPl/kS2OxBXY0dqg5OJJNj/oRH2ALfZcYzbg0c5uNcwYwvJIj0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	VebbSgdsyIe4DVKeU8GpE6fShD4MGDioLQxg8TdFO3astpbzQfPfFtc4wdVh2C2wOjwx9VsQlyvj+NQ2VqO2pge81CdsqoziDVTIpiKtgfHgfGHXN92meA6sNK3+AlXFEMH/v1f6aQtmSB4xEzDsXJVwbAuZZEN3o7WFFXuVuEcTA8Fq40YfXJmIaY14jD89/U/JgKEIjv7fXCIXF01EbDQUgFFUKmsMxAgdd0sCDpFWuQ3C7tkIORLitPiM9SCbkhEyf+sGJrBAYJDCzzy/mHgDos15grU4Jq2Ucr6vp4weJU9aOo6A2hf4qWYdrh7aUk4PQBnch2o9jJEqzndsD+p+bprGlfwPfEqphTh3NVw8nQpWvkEQKZfxpkER8bLnw/2gjfay/XO3pjFPcQN3lKY3VDsLL6QwO0njy9+cEjLe0SgURbl+7sH2GWJyw+I//PtGl8dGWM9Ea4pQudcJM3bZlXdP9qy9EHPfNvl1HjTaEkWGaOtqdLxlVF4IUZk1i7V/IoTxYU7N1DtkqhbN5jqIWJLBgWznHFyDYAMTaBtJ+Zif3t8Ne3N87yInhA4YDzxzuk1Eq1lE4b28S6dcSGXaYSEbFCed5QlQA1Dqns1jSQX7V4EtgbwwLEI9EcX/pnJPsAdGI9AwCvV02XLHlgC6VInxII4lUdoSIqRe486OksDfCXY3inpwifyS1UkgTKOdt4KZwkamA4y4Z9qWag==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?LUFvAlSbFT+eyc7bEa60mJIC0bu8ikvBIUkw0dfp42t9YQufdBHJWGYEsE76?=
+ =?us-ascii?Q?+01BPdzhpyLIzn4bQFi6w5WcwauIs35/B3+Kef3JJsbyIkBqfVGpSLwiQR4r?=
+ =?us-ascii?Q?VcqiYz61frg2DH2H7lxbOolIoYWqzV+Kl3VVh1oK2zNFUbNp4UeuAcfI8+HV?=
+ =?us-ascii?Q?VRNl99I0NThICtz+ptu+HYgGEQYDhLBGYmhbsugmvYhYyc4vykmMoM2fwd04?=
+ =?us-ascii?Q?iZfm1TViVHpMejOEMijw3BdqU59rasrrVDEC67XQjYiAHzLsExxCp2QsetB0?=
+ =?us-ascii?Q?qGvyd+nlMUQ44bATNEiiEZHBmzrGgxdQNrwrnjH50OxOt+iQK/mbjNjDJliZ?=
+ =?us-ascii?Q?SGFf5E5OZuKvhnFDzql0Onv/mYi1fjzvfQ3YDZgvirvdTQpluJZRcy+IHxtJ?=
+ =?us-ascii?Q?Uof7Dtyghjr3i+BIO21Kx1qiWKmdk0AVp9AOV46qnTgixp+BXO0RM6h3rsaV?=
+ =?us-ascii?Q?6rESR8W8tz8J+lIWCHqESc6/K5xfYMOuvqFT/mAY5QdgJBGbDq+O1vz39KwN?=
+ =?us-ascii?Q?DtRE9gKIhdAmxEQiuWYIeqaj+hcccYadAqJHSWvYIABUXszogSou3bokJ+H2?=
+ =?us-ascii?Q?zo5Tw779r/PkbuIYoocgkiX/0dHlgFIGc7V8ICyU/8VvBI9efPXdkia4rrvY?=
+ =?us-ascii?Q?cfigUwposXW2ZPKtTwr7P9FWh4SK2iqx4UN1Nf7YBaqNa53nbtaWrdFJVXRC?=
+ =?us-ascii?Q?uw3PeXJZtavq0D+0INYqFrqF2bs4kh+zwKWrOa+xL1ZqBWVmIFgfvhabj/tE?=
+ =?us-ascii?Q?Y9rsQYEaR/wW31oeQ1yaF8w6NvpOqfmyM3rJt743J1C5iUaEuwZB8WtbK7wj?=
+ =?us-ascii?Q?WEnVWiWa23NhFVbYt/qlURHkMoghvoqsXGJEH4rZBMheuVMwce2UszvFuFKn?=
+ =?us-ascii?Q?gA+YAmsvKkHmuTVpkzuI5ojNF4J5PqEFs7rWp3lx0+kE66yUFqazcRDWmFAC?=
+ =?us-ascii?Q?QlC+NZjbLWexLUd9hxXG+cwqMTFjBdL2a1zWUaCbVl85PDRqd52QnFcp1Ful?=
+ =?us-ascii?Q?kwiT2dDyRd0HlBYomCy+UwscC2Zm1b15u3Lu72J0q0lt85MLdvo6y/wL+OSN?=
+ =?us-ascii?Q?JK6muFnewpXeXkcAboVizLIFZ5feYWATHsJnrYhIxJBzOXb4V3ksjWjdlUlw?=
+ =?us-ascii?Q?xPCKxhCXG9VShldPnJAwBMATlvy8nWz3pFxud31BBCKLZPXkKhj3h98P8zgw?=
+ =?us-ascii?Q?svwY9rYJ1CjQdBV9H+2ASuLGR9Haidg0kWEjrENnwUFBK0QVX2Lb5ShrGQ3f?=
+ =?us-ascii?Q?LSYIumHio8BhUWpGzcF3?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ db0b8e0a-a757-4698-89bf-08dc565917bb
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR02MB7237.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2024 16:46:23.2362
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR02MB5771
+X-MailFrom: erick.archer@outlook.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-2; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-2
+Message-ID-Hash: QCHDHNFQCWYEG5JIX3LF6PY6XHCJHVR2
+X-Message-ID-Hash: QCHDHNFQCWYEG5JIX3LF6PY6XHCJHVR2
+X-Mailman-Approved-At: Sat, 06 Apr 2024 19:11:12 +0200
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GKKIKZNMIXBJZCKEWNBSRTZNPJIOI2P5/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UFI6EAMSJOFFB35OFY6XWOFXG3MXO3RW/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -105,105 +179,108 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Eric Dumazet <edumazet@google.com>
+Hi Sven,
 
-Many syzbot reports are pointing to soft lockups in
-batadv_purge_orig_ref() [1]
+On Tue, Apr 02, 2024 at 09:06:35PM +0200, Sven Eckelmann wrote:
+> On Tuesday, 2 April 2024 19:23:01 CEST Erick Archer wrote:
+> > The "struct batadv_tvlv_tt_data" uses a dynamically sized set of
+> > trailing elements. Specifically, it uses an array of structures of type
+> > "batadv_tvlv_tt_vlan_data". So, use the preferred way in the kernel
+> > declaring a flexible array [1].
+> > 
+> > The order in which the structure batadv_tvlv_tt_data and the structure
+> > batadv_tvlv_tt_vlan_data are defined must be swap to avoid an incomplete
+> > type error.
+> > 
+> > Also, avoid the open-coded arithmetic in memory allocator functions [2]
+> > using the "struct_size" macro and use the "flex_array_size" helper to
+> > clarify some calculations, when possible.
+> > 
+> > Moreover, the new structure member also allow us to avoid the open-coded
+> > arithmetic on pointers in some situations. Take advantage of this.
+> > 
+> > This code was detected with the help of Coccinelle, and audited and
+> > modified manually.
+> > 
+> > Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-length-and-one-element-arrays [1]
+> > Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [2]
+> > Signed-off-by: Erick Archer <erick.archer@outlook.com>
+> 
+> > ---
+> > Hi,
+> > 
+> > I would like to add the "__counted_by(num_vlan)" tag to the new flex member
+> > but I don't know if this line can affect it.
+> > 
+> > ntohs(tt_data->num_vlan)
+> 
+> 
+> Yes, num_vlan is a __be16. I could only identify the kernel-doc related 
+> scripts as consumer. But maybe they are more - so I would defer this question 
+> to kernel-hardening.
 
-Root cause is unknown, but we can avoid spending too much
-time there and perhaps get more interesting reports.
+Thanks for the info.
+> 
+> And with this change, I get a lot of additional warnings (-Wsparse-all)
+> 
+> 
+> cfg: BLA=n DAT=y DEBUG=y TRACING=n NC=y MCAST=n BATMAN_V=n
+>     net/batman-adv/translation-table.c:574:21: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:859:25: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:859:25: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:938:25: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:938:25: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:2932:16: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:2932:16: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:3378:21: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:3378:21: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:3982:30: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:3986:27: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:4026:30: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:4030:27: warning: using sizeof on a flexible structure
+>     net/batman-adv/translation-table.c:4032:23: warning: cast from restricted __be16
+>     net/batman-adv/translation-table.c:4032:23: warning: restricted __be16 degrades to integer
+>     net/batman-adv/translation-table.c:4032:23: warning: incorrect type in argument 1 (different base types)
+>     net/batman-adv/translation-table.c:4032:23:    expected unsigned long [usertype] factor1
+>     net/batman-adv/translation-table.c:4032:23:    got restricted __be16 [usertype] num_vlan
+> 
+> [...]
 
-[1]
+I will work on this for the next version. Thanks for share these warnings.
 
-watchdog: BUG: soft lockup - CPU#0 stuck for 27s! [kworker/u4:6:621]
-Modules linked in:
-irq event stamp: 6182794
- hardirqs last  enabled at (6182793): [<ffff8000801dae10>] __local_bh_enable_ip+0x224/0x44c kernel/softirq.c:386
- hardirqs last disabled at (6182794): [<ffff80008ad66a78>] __el1_irq arch/arm64/kernel/entry-common.c:533 [inline]
- hardirqs last disabled at (6182794): [<ffff80008ad66a78>] el1_interrupt+0x24/0x68 arch/arm64/kernel/entry-common.c:551
- softirqs last  enabled at (6182792): [<ffff80008aab71c4>] spin_unlock_bh include/linux/spinlock.h:396 [inline]
- softirqs last  enabled at (6182792): [<ffff80008aab71c4>] batadv_purge_orig_ref+0x114c/0x1228 net/batman-adv/originator.c:1287
- softirqs last disabled at (6182790): [<ffff80008aab61dc>] spin_lock_bh include/linux/spinlock.h:356 [inline]
- softirqs last disabled at (6182790): [<ffff80008aab61dc>] batadv_purge_orig_ref+0x164/0x1228 net/batman-adv/originator.c:1271
-CPU: 0 PID: 621 Comm: kworker/u4:6 Not tainted 6.8.0-rc7-syzkaller-g707081b61156 #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 02/29/2024
-Workqueue: bat_events batadv_purge_orig
-pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
- pc : should_resched arch/arm64/include/asm/preempt.h:79 [inline]
- pc : __local_bh_enable_ip+0x228/0x44c kernel/softirq.c:388
- lr : __local_bh_enable_ip+0x224/0x44c kernel/softirq.c:386
-sp : ffff800099007970
-x29: ffff800099007980 x28: 1fffe00018fce1bd x27: dfff800000000000
-x26: ffff0000d2620008 x25: ffff0000c7e70de8 x24: 0000000000000001
-x23: 1fffe00018e57781 x22: dfff800000000000 x21: ffff80008aab71c4
-x20: ffff0001b40136c0 x19: ffff0000c72bbc08 x18: 1fffe0001a817bb0
-x17: ffff800125414000 x16: ffff80008032116c x15: 0000000000000001
-x14: 1fffe0001ee9d610 x13: 0000000000000000 x12: 0000000000000003
-x11: 0000000000000000 x10: 0000000000ff0100 x9 : 0000000000000000
-x8 : 00000000005e5789 x7 : ffff80008aab61dc x6 : 0000000000000000
-x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000000000
-x2 : 0000000000000006 x1 : 0000000000000080 x0 : ffff800125414000
-Call trace:
-  __daif_local_irq_enable arch/arm64/include/asm/irqflags.h:27 [inline]
-  arch_local_irq_enable arch/arm64/include/asm/irqflags.h:49 [inline]
-  __local_bh_enable_ip+0x228/0x44c kernel/softirq.c:386
-  __raw_spin_unlock_bh include/linux/spinlock_api_smp.h:167 [inline]
-  _raw_spin_unlock_bh+0x3c/0x4c kernel/locking/spinlock.c:210
-  spin_unlock_bh include/linux/spinlock.h:396 [inline]
-  batadv_purge_orig_ref+0x114c/0x1228 net/batman-adv/originator.c:1287
-  batadv_purge_orig+0x20/0x70 net/batman-adv/originator.c:1300
-  process_one_work+0x694/0x1204 kernel/workqueue.c:2633
-  process_scheduled_works kernel/workqueue.c:2706 [inline]
-  worker_thread+0x938/0xef4 kernel/workqueue.c:2787
-  kthread+0x288/0x310 kernel/kthread.c:388
-  ret_from_fork+0x10/0x20 arch/arm64/kernel/entry.S:860
-Sending NMI from CPU 0 to CPUs 1:
-NMI backtrace for cpu 1
-CPU: 1 PID: 0 Comm: swapper/1 Not tainted 6.8.0-rc7-syzkaller-g707081b61156 #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 02/29/2024
-pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
- pc : arch_local_irq_enable+0x8/0xc arch/arm64/include/asm/irqflags.h:51
- lr : default_idle_call+0xf8/0x128 kernel/sched/idle.c:103
-sp : ffff800093a17d30
-x29: ffff800093a17d30 x28: dfff800000000000 x27: 1ffff00012742fb4
-x26: ffff80008ec9d000 x25: 0000000000000000 x24: 0000000000000002
-x23: 1ffff00011d93a74 x22: ffff80008ec9d3a0 x21: 0000000000000000
-x20: ffff0000c19dbc00 x19: ffff8000802d0fd8 x18: 1fffe00036804396
-x17: ffff80008ec9d000 x16: ffff8000802d089c x15: 0000000000000001
-x14: 1fffe00036805f10 x13: 0000000000000000 x12: 0000000000000003
-x11: 0000000000000001 x10: 0000000000000003 x9 : 0000000000000000
-x8 : 00000000000ce8d1 x7 : ffff8000804609e4 x6 : 0000000000000000
-x5 : 0000000000000001 x4 : 0000000000000001 x3 : ffff80008ad6aac0
-x2 : 0000000000000000 x1 : ffff80008aedea60 x0 : ffff800125436000
-Call trace:
-  __daif_local_irq_enable arch/arm64/include/asm/irqflags.h:27 [inline]
-  arch_local_irq_enable+0x8/0xc arch/arm64/include/asm/irqflags.h:49
-  cpuidle_idle_call kernel/sched/idle.c:170 [inline]
-  do_idle+0x1f0/0x4e8 kernel/sched/idle.c:312
-  cpu_startup_entry+0x5c/0x74 kernel/sched/idle.c:410
-  secondary_start_kernel+0x198/0x1c0 arch/arm64/kernel/smp.c:272
-  __secondary_switched+0xb8/0xbc arch/arm64/kernel/head.S:404
+> >  	num_vlan = ntohs(tt_data->num_vlan);
+> >  
+> > -	if (tvlv_value_len < sizeof(*tt_vlan) * num_vlan)
+> > +	flex_size = flex_array_size(tt_data, vlan_data, num_vlan);
+> > +	if (tvlv_value_len < flex_size)
+> >  		return;
+> 
+> This helper would need an #include of <linux/overflow.h> in 
+> net/batman-adv/translation-table.c
 
-Signed-off-by: Eric Dumazet <edumazet@google.com>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/originator.c | 2 ++
- 1 file changed, 2 insertions(+)
+Understood.
 
-diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
-index 71c143d4b6d0..ac74f6ead62d 100644
---- a/net/batman-adv/originator.c
-+++ b/net/batman-adv/originator.c
-@@ -1266,6 +1266,8 @@ void batadv_purge_orig_ref(struct batadv_priv *bat_priv)
- 	/* for all origins... */
- 	for (i = 0; i < hash->size; i++) {
- 		head = &hash->table[i];
-+		if (hlist_empty(head))
-+			continue;
- 		list_lock = &hash->list_locks[i];
- 
- 		spin_lock_bh(list_lock);
--- 
-2.39.2
+> 
+> [....]
+> >  /**
+> > @@ -4039,8 +4029,7 @@ static int batadv_tt_tvlv_unicast_handler_v1(struct batadv_priv *bat_priv,
+> >  	tt_data = tvlv_value;
+> >  	tvlv_value_len -= sizeof(*tt_data);
+> >  
+> > -	tt_vlan_len = sizeof(struct batadv_tvlv_tt_vlan_data);
+> > -	tt_vlan_len *= ntohs(tt_data->num_vlan);
+> > +	tt_vlan_len = flex_array_size(tt_data, vlan_data, tt_data->num_vlan);
+> 
+> This is definitely wrong on little endian systems. You first need to convert 
+> num_vlan from network (big endian) to host order.
+
+I'm sorry. My bad. I forgot to add the "ntohs".
+I will fix it for the next version.
+
+> 
+> Kind regards,
+> 	Sven
+
+Regards,
+Erick
 
