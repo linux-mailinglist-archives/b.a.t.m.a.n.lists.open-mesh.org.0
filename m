@@ -1,83 +1,131 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E67F58B5B3A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 29 Apr 2024 16:28:58 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30FDD8B6039
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 29 Apr 2024 19:36:55 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id BD8428259A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 29 Apr 2024 16:28:58 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id EB74D825A7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 29 Apr 2024 19:36:54 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1714400938;
- b=ID35DKN4sA9MjBzd9v0rNm547rLs/1ef3PJlsLpDLZbEiz++Vc+OqYmgpIQZTewsEl3Ez
- 0uaYUF9/CMUMdDZcOeU+4Hd8piYlx9MGcmginqmRbXWZed4zugaRe19A+n+ieA+asCr2kwv
- /XNmrNOsSCNBcDtrKebIQYGPlUzaoxU=
+ t=1714412214;
+ b=s2k/rwe1bnQlu9PSwXXyq6cu06KNvAvgq6jcaf6Ftvqhnpbi6V3ru1mbLbW2OCmx0fcjU
+ jyd94s8xfisrZWZ9mAJZ2sTc/T4F1e5qWWfFHPRw0g7J69OxcRquzPBwteuY3Fq3lLkoZiC
+ 7armhMdKb3x1/kyojXK30olPz5eU25A=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1714400938; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1714412214; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=VvRNaCG6eVTctMkMfbd6I0wPvnZig+m0Je/wvxp58oo=;
- b=brqlgeNh2c6hLbex//jnncy3c5vn+jPQp5QGy8KavmFc70cnJtIYpFDLbwMmy9iZeOVtH
- RbGaLYPVhjvG0JwPWT51guEAblB3y4PfdYDzXe3PRSm6oJPStZs1Jh7YlQDrUpIC8WRcbPK
- v0duOxdhClrmZlBQPLQLO71DGg2VD60=
+ list-archive; bh=+a9g8XAN2Fg2Xk7kKiOoerz6VrBxpW3xT1NbWHfL1ig=;
+ b=kVu9qDeBnpILtefGaFsULp1gzJEv8eVbHl/fS2XBL627QoR55eEmTija3Dsp1LcjfSOQo
+ baAZFElDqSF1x4Xlje2d2ddq5v69foyjfRXWLNm8Bq0kSeoZ2aL5V4iT+rYnKi9654DQh1L
+ qXKwLZQOTxRwTnr1bIBISLHnXpEMf48=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ dkim=pass header.d=chromium.org;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=narfation.org
+  dmarc=pass (Used From Domain Record) header.from=chromium.org
  policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
+Authentication-Results: open-mesh.org; dkim=pass header.d=chromium.org;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id B3677803CB
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 29 Apr 2024 16:28:28 +0200 (CEST)
+ dmarc=pass (Used From Domain Record) header.from=chromium.org policy.dmarc=none
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
+ [IPv6:2001:4860:4864:20::30])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4A66281E85
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 29 Apr 2024 19:36:26 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1714400909;
+	s=20121; t=1714412186;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=VvRNaCG6eVTctMkMfbd6I0wPvnZig+m0Je/wvxp58oo=;
-	b=BU3WcWQi/QPeDJqUzG8W21KuR0/JSTI0Ilu5WHi7qGHJLCWVMCL5Ga0dCGmk1vNXBTgnew
-	7zxmj/d0SaCvoj+hj2gRjBcXg5Sapi33wntaHVEJtg/GR5dW5tKKbec2J29G0lTmxCneFD
-	mHzDtnK/B3FyB1rL7XpsMjh97ehTZJQ=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1714400909; a=rsa-sha256;
+	bh=+a9g8XAN2Fg2Xk7kKiOoerz6VrBxpW3xT1NbWHfL1ig=;
+	b=oaxkSqcAo31UIhsqA65NpGiZCW9tzLr70HIJBJWqilr5+DbBNOYlcGFQ1nzWP6WyjmWz5P
+	fdQh3Nq7aykfYMUItPHiRkOtXSckk7SlnsHfuoKcr+Ua/rsqFQFhMaIui+u+o++ZcXvX0e
+	2WqCixUvFjLTZA6IeQGmnzeKf0lO+lY=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1714412186; a=rsa-sha256;
 	cv=none;
-	b=xoUu8SPXegoks6+SNq31mLIO+vNidvsIKMVhTc4d/Q5AUmOryDbtfyU8NUJnyLNMgCFrmf
-	YdIgVXfbCqMY09dS8svcsiyI/73XDtrNgYUfGm19eqLNqmAxHFvFB6yvLrJ0dxVuk8QQfg
-	Bi6fvfnyT23mpeaTAxBilbWEWTeBtlA=
+	b=NUiC+M8xVDbV402oJnUoRHytccMISn7f9pN/bNfPqs4LTH8y86OM0uChuK1EcloPvVKUKI
+	1Vg8w2IqLu+s96Vg2JXgcTmS3xGikufEVAurs7pwpNp4Ca+m3Ab9cA/xA1HYwwaQGrbcQn
+	vZqGhB3qEILifUwb33sxb7VJA24p5KM=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=nKdcItIF;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1714400908;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VvRNaCG6eVTctMkMfbd6I0wPvnZig+m0Je/wvxp58oo=;
-	b=nKdcItIFzs9l70ryRPvHQHfJXgx+ydUJDZu4jdTh2QZDyhfl8ytOp3t7Mah4x5hqUIRMq5
-	eQlibGv+msaO1+tYO/EGw2j8njFsYHfvPQqU3z2n+BPJBY3IfNos8nFcPTHUS2X+54cnRS
-	n9dIEM43uz7GpaMN5cRZwYxVzp26r0M=
-From: Sven Eckelmann <sven@narfation.org>
-To: "b.a.t.m.a.n@lists.open-mesh.org" <b.a.t.m.a.n@lists.open-mesh.org>,
- Furmans Hannes <hfurmans@student.ethz.ch>
-Subject: Re: Using B.A.T.M.A.N.-Adv and scanning for neighbours
-Date: Mon, 29 Apr 2024 16:28:26 +0200
-Message-ID: <2934192.e9J7NaK4W3@ripper>
-In-Reply-To: <DAE0E173-234B-44C0-8D2B-C16551497CE0@ethz.ch>
-References: <DAE0E173-234B-44C0-8D2B-C16551497CE0@ethz.ch>
+	dkim=pass header.d=chromium.org header.s=google header.b=ma2LALkU;
+	spf=pass (diktynna.open-mesh.org: domain of keescook@chromium.org designates
+ 2001:4860:4864:20::30 as permitted sender)
+ smtp.mailfrom=keescook@chromium.org;
+	dmarc=pass (policy=none) header.from=chromium.org
+Received: by mail-oa1-x30.google.com with SMTP id
+ 586e51a60fabf-23333dddd8aso2199384fac.1
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Mon, 29 Apr 2024 10:36:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1714412185; x=1715016985;
+ darn=lists.open-mesh.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+a9g8XAN2Fg2Xk7kKiOoerz6VrBxpW3xT1NbWHfL1ig=;
+        b=ma2LALkU2ZOSXR+jRRT357HH3VhnVCXgAq2S1sHfCKd/UtSgBOdvwjwu+6w3T9omNv
+         S2PaQx72oFNNomO665ovDHBRerDfX3wL4xi1BZSytn5B/sIuyCmiuexGuKP/ceK5W52f
+         ztmUOWAiBHPHAkX2LH6NFz5J9v8DxtLF58ntc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714412185; x=1715016985;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+a9g8XAN2Fg2Xk7kKiOoerz6VrBxpW3xT1NbWHfL1ig=;
+        b=MzcUp6lxzHyaHhKkmMBNm8oPGTAmCwN1dNbO6sZnry+MC2uZOU9RKGADumQJgVQKUL
+         LETnsT3gN4HiLACjGPEjf1eeC0FnYtx1AUuVg68gakUC2QD9ywzImrAhgWBjvFMsmsRO
+         RmKuvXFzrZsGG/G3ZgHJEP/uprL8+e5Ihat8nSgU6dH8YuyCPAnnCo0cwcts8mvWWgLC
+         wAfJAFHDUZfMB6F3T7Ee8c7RT4lwWqNrmHlGfOFsCG6ZHgIk3NAf8xKB20qnMYKtIVD7
+         kOAT6pZD6qNdPigBgnOohigMpImYZrT3GE7W5HOrnsnKXHmcCAndh5zE3xZSOT+ZOnWt
+         IPoA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUTNhwww78wyP2ecb7aQ0nYJGCvNZ2GdxiMUQQBe/6FrRTZATEsFbBoAABg+F/1LrsL454ITCkXn1m9duEUuCUL3GOGONe8SiclBhiNl1nN
+X-Gm-Message-State: AOJu0Ywq4biQWsfVu5qOSrcTOe2NNSwB1/AzT8BUUAJOcDHKvkFJC3LK
+	3rXWfCIsACbUKkQK9dBoJoZ6t9A/WjKIfIgkQ4W42U2ZHwXo2rdJsVZ8jk2jyQ==
+X-Google-Smtp-Source: 
+ AGHT+IFkeheTXy7RqOcikC0mcBdqOX+uMYNFLcJxynabJyF4Wfd8rC11HWehnWpDbNdIEuOmUrxZAg==
+X-Received: by 2002:a05:6870:e3d2:b0:21e:b8f7:9a1b with SMTP id
+ y18-20020a056870e3d200b0021eb8f79a1bmr12046278oad.25.1714412185006;
+        Mon, 29 Apr 2024 10:36:25 -0700 (PDT)
+Received: from www.outflux.net ([198.0.35.241])
+        by smtp.gmail.com with ESMTPSA id
+ e131-20020a636989000000b005e43cce33f8sm19368253pgc.88.2024.04.29.10.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 10:36:24 -0700 (PDT)
+Date: Mon, 29 Apr 2024 10:36:23 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Erick Archer <erick.archer@outlook.com>
+Cc: Marek Lindner <mareklindner@neomailbox.ch>,
+	Simon Wunderlich <sw@simonwunderlich.de>,
+	Antonio Quartulli <a@unstable.cc>,
+	Sven Eckelmann <sven@narfation.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-hardening@vger.kernel.org,
+	llvm@lists.linux.dev
+Subject: Re: [PATCH v2] batman-adv: Add flex array to struct
+ batadv_tvlv_tt_data
+Message-ID: <202404291030.F760C26@keescook>
+References: 
+ <AS8PR02MB723756E3D1366C4E8FCD14BF8B162@AS8PR02MB7237.eurprd02.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3287885.aeNJFYEL58";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: DBH5RJ5Z7VLV4A3S4DHPGHBUIFTOLRG3
-X-Message-ID-Hash: DBH5RJ5Z7VLV4A3S4DHPGHBUIFTOLRG3
-X-MailFrom: sven@narfation.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: 
+ <AS8PR02MB723756E3D1366C4E8FCD14BF8B162@AS8PR02MB7237.eurprd02.prod.outlook.com>
+Message-ID-Hash: CEPYHR4TSL4RE63CU33OZT547NZHZC2K
+X-Message-ID-Hash: CEPYHR4TSL4RE63CU33OZT547NZHZC2K
+X-MailFrom: keescook@chromium.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -90,7 +138,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DBH5RJ5Z7VLV4A3S4DHPGHBUIFTOLRG3/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CEPYHR4TSL4RE63CU33OZT547NZHZC2K/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -99,61 +147,74 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart3287885.aeNJFYEL58
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: Using B.A.T.M.A.N.-Adv and scanning for neighbours
-Date: Mon, 29 Apr 2024 16:28:26 +0200
-Message-ID: <2934192.e9J7NaK4W3@ripper>
-In-Reply-To: <DAE0E173-234B-44C0-8D2B-C16551497CE0@ethz.ch>
-References: <DAE0E173-234B-44C0-8D2B-C16551497CE0@ethz.ch>
-MIME-Version: 1.0
-
-On Monday, 29 April 2024 16:16:21 CEST Furmans  Hannes wrote:
-> Hello everyone!
+On Fri, Apr 26, 2024 at 07:22:47PM +0200, Erick Archer wrote:
+> The "struct batadv_tvlv_tt_data" uses a dynamically sized set of
+> trailing elements. Specifically, it uses an array of structures of type
+> "batadv_tvlv_tt_vlan_data". So, use the preferred way in the kernel
+> declaring a flexible array [1].
 > 
-> We have a setup with four Raspberry Pi, all in IBSS mode and connected via B.A.T.M.A.N.. That all works fine. However we now have troubles scanning on the Pis for the neighbours. 
-[...]
-> Which is not what we expected. We hope to see the RSSI of our neighbours and that should be possible, at least as I understand it.
+> At the same time, prepare for the coming implementation by GCC and Clang
+> of the __counted_by attribute. Flexible array members annotated with
+> __counted_by can have their accesses bounds-checked at run-time via
+> CONFIG_UBSAN_BOUNDS (for array indexing) and CONFIG_FORTIFY_SOURCE (for
+> strcpy/memcpy-family functions). In this case, it is important to note
+> that the attribute used is specifically __counted_by_be since variable
+> "num_vlan" is of type __be16.
+> 
+> The order in which the structure batadv_tvlv_tt_data and the structure
+> batadv_tvlv_tt_vlan_data are defined must be swap to avoid an incomplete
+> type error.
+> 
+> Also, avoid the open-coded arithmetic in memory allocator functions [2]
+> using the "struct_size" macro and use the "flex_array_size" helper to
+> clarify some calculations, when possible.
+> 
+> Moreover, the new structure member also allow us to avoid the open-coded
+> arithmetic on pointers in some situations. Take advantage of this.
+> 
+> This code was detected with the help of Coccinelle, and audited and
+> modified manually.
+> 
+> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-length-and-one-element-arrays [1]
+> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [2]
+> Signed-off-by: Erick Archer <erick.archer@outlook.com>
 
-Why do you want to scan here? If you want to have the RSSI of your "connected" 
-neighbors then just run:
+Thanks for this! I think the readability is significantly improved.
 
-    iw dev wlan0 station dump
+> [...]
+> @@ -3957,17 +3947,18 @@ static void batadv_tt_tvlv_ogm_handler_v1(struct batadv_priv *bat_priv,
+>  
+>  	num_vlan = ntohs(tt_data->num_vlan);
+>  
+> -	if (tvlv_value_len < sizeof(*tt_vlan) * num_vlan)
+> +	flex_size = flex_array_size(tt_data, vlan_data, num_vlan);
+> +	if (tvlv_value_len < flex_size)
+>  		return;
+>  
+> -	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(tt_data + 1);
+> -	tt_change = (struct batadv_tvlv_tt_change *)(tt_vlan + num_vlan);
+> -	tvlv_value_len -= sizeof(*tt_vlan) * num_vlan;
+> +	tt_change = (struct batadv_tvlv_tt_change *)(tt_data->vlan_data +
+> +						     num_vlan);
 
-Btw. this is not really a batman-adv topic. If you want more information about 
-the linux wireless stack then you should try the linux-wireless mailing 
-list [1] or IRC channel [2]
+This is the only part I'm a little worried about. The math all checks
+out, but the compiler may get bothered about performing a pointer
+calculation using the vlan_data flexible array memory. As in, this may
+be calculated as an array offset, since it is the same as:
 
-Kind regards,
-	Sven
+	&tt_data->vlan_data[num_vlan]
 
-[1] https://wireless.wiki.kernel.org/en/developers/mailinglists
-[2] https://wireless.wiki.kernel.org/en/users/support
---nextPart3287885.aeNJFYEL58
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Which, for big endian where __counted_by is in effect, the bounds
+checker may throw a fit since we're going past the end of the array. In
+other "multiple trailing flexible array" situations, we've done the
+addressing from the base pointer, since the compiler either knows the
+full allocation size or it knows nothing about it (this case, since it
+came from a "void *" function argument). I would suggest:
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmYvrooACgkQXYcKB8Em
-e0ZzbBAAjzMBxTP4MyyxDrtx+zZcSEAplg1skeuIdPDrDEpOy+MqdmT8RHf4qYFY
-KFFb4UI+K0LUJlPiM4hnyFLQmro0zp41NQCmKEw0ibY20lLrTseQPu9mMICPs6/w
-1NE/QhmgSNOPW8gXsK0eXguV7TlVDnDMBMPc5aWeuWSP/b6whZgrA5IJYDDvUdJP
-ossg1BQnE34+yHnXwqHgwFl0KEkRD4CtLMsu57TrH31knzim2H6++lC2+1SkcA50
-NVeWWzFuJ0PiUGX18XZvwL8UXX6DwwSw3iqK756lA2SH/gmN+XDaeEwbN8XgWkWX
-avUgf+7cCYY4vjV9OPVa4RIWuUhYM993nTnp1qtgpQinWIlqApynCR3o79xWkuuJ
-Dw7HSvzJ337NbSu8M66k2ZzsRMJbv269kaVU0oK+8Ew7Lr6lhFWuYZIV+/Ug0A2T
-0tFmyONG7RbNumGoiiV9UI29067hwGlpB2VHLLCQVrThGqXeh0+zJMFboGDnUKPy
-cUcjkuODo6yDb/I4PK+WpzEEzqX268WunBI4dDbBaW9P7hSM3Z38SZFk/wc5YvPU
-mrDaoadiBJ1ncU0G18tWVlxh+GksXTpJV9S32hoTZAZbJ3ckv7Z6XbVzC30hxefd
-qFwKKaz0Lphbn+3ilfkRj1rEBSX0IP51eQrYVfAtB6PUw9pVjWM=
-=eB4n
------END PGP SIGNATURE-----
-
---nextPart3287885.aeNJFYEL58--
+tt_change = (struct batadv_tvlv_tt_change *)((void *)tt_data + flex_size);
 
 
+-Kees
 
+-- 
+Kees Cook
