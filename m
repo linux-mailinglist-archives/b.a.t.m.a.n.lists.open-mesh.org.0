@@ -2,112 +2,180 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22AFD8D0337
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 27 May 2024 16:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D0A900BFF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 Jun 2024 20:45:35 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E583D825AC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 27 May 2024 16:20:58 +0200 (CEST)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1716819658;
- b=C34wuG9sR9S/nlIj/FWvJSIg38l2xBfXpZvtFuWunwleKHavr4cMhyEalBMusiAB95fy9
- jhNbms+rO4Z3c19BdvDD4e/fFmeHf2567M7pv6TafPvIuMZ+3lxmR6tshPkfXGB9e7AVo2I
- w0VtyTPGA5QNCjwQ2rSG+eysDMNHBRg=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1716819658; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7156482845
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri,  7 Jun 2024 20:45:35 +0200 (CEST)
+ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1717785935;
+ b=BtknS+XHholC1d2LVWmSezkMl2xFs4YkDtCQN1kVkK8hqRHE51G4nndHwh983oqxRnbSW
+ 2njnmlX7YN10lu8q2LbJLVOmXKYpT+RBCw6vGULNwGDf8J8HBMDlwZ/QgJfdol3kmLWY1Ll
+ hObsw/rY56oNsl/iMQw8Au0G5Ayx1dw=
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1717785935; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=OpZhGblI+mJeVdeF1DkkjaD1zwNNDnnvOsXr0S3jQSI=;
- b=2N+AtaE2bPe+0nb3M5rgTsvXsQBuMbwkDv8Y9wLxn3zaNo5dDsLO//ereT+JOTcjKtI/v
- BSz6yuQpdYQtWFo1owMvTp/Ex7y9fKriRHAHAwYw05wxJP/+BGLy627+1MrRpGjKqOEtnuj
- Rce/mgpgDabKjseGrrTdNmGiVXi8VQI=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=kernel.org;
+ list-archive; bh=OphJjwEnj0MJlUYtKz6Stb4+YWYsVDyxrR9KBxN3QGQ=;
+ b=iXuFiPy/Alo1A631ZpVP3ZNIyP5UmS4wStqsHEULuvGvXJx0r+FiEpEjJPSVlKaP1oD1D
+ SKZLemVS5XWtnD6d/DqCuwBVr48I9+N4rzI4rGW777JUiunlw9SQnyxuBe+6bFic+WRgVSI
+ TUVq8VXeciUXqRgDx2cVPGk+oIrfUbI=
+ARC-Authentication-Results: i=3; open-mesh.org;
+ dkim=pass header.d=outlook.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=outlook.com
+ policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=pass header.d=outlook.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=none
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0AB2B830F0
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 27 May 2024 16:20:21 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1716819622;
+ dmarc=pass (Used From Domain Record) header.from=outlook.com policy.dmarc=quarantine
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com
+ (mail-ve1eur01olkn20801.outbound.protection.outlook.com
+ [IPv6:2a01:111:f403:2e02::801])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id A53E881B60
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri,  7 Jun 2024 18:19:33 +0200 (CEST)
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1717777173;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=OpZhGblI+mJeVdeF1DkkjaD1zwNNDnnvOsXr0S3jQSI=;
-	b=hc8GrtVgqcmv/bR7B/WERzKHVZdDJJ6WIXdbMSoCh/YtFo297kCYSpvhD50BwAFKHm252z
-	7/B09aMZ/mrStkyikgUoCVYCPoub66+rsu8vJdsqdYzFs2paMqMi1xRTeYOi6hOxrrSeSB
-	SXYLg3PrZuyFWSSu/G4Hjn86I5R8MBM=
-ARC-Authentication-Results: i=1;
+	bh=OphJjwEnj0MJlUYtKz6Stb4+YWYsVDyxrR9KBxN3QGQ=;
+	b=coRaIAm53hi7JWuPXqbY6SqM7QNJdnWdgvQzQRIB490CpDN9iXrKM5oM9llqKQ0QzdOYhT
+	783NVPD4MJEFaZSKqSJDtELdQW0sRG2wK3/Qh24raMkFu4hbmnXgqdLGeHc9GSdMj9mnkk
+	4mmL+VEvOzaLoboLoJiMqTPPIy3CDJ4=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=seZWJ1b+;
-	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates
- 145.40.73.55 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-	dmarc=pass (policy=none) header.from=kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1716819622; a=rsa-sha256;
-	cv=none;
-	b=yhWQqI6wNa+QbmfRddmCaWLAllPtVatHS2vt72rUu8iAzODlNwEgFfM2Yml3vTf1GxOwoJ
-	xs3kmQ/Iuwj2n1UOOsQvC5w8fADyrBeGrXK8OlUuhUiU4zlAYkTzfIGDlQL9Wp+b0IAVWS
-	AdZA6CDoGqMnLJoNZDaXNtrnIfhzIes=
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 4DDF0CE0F14;
-	Mon, 27 May 2024 14:20:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21CDAC2BBFC;
-	Mon, 27 May 2024 14:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716819618;
-	bh=PV5TuuQvc3cXpdaCidY0utiUUMAU2oMMxPsH00Rjf5c=;
-	h=From:To:Cc:Subject:Date:From;
-	b=seZWJ1b+vun7G+aslcufJFvxAipuBVTqfWv6axWvVyR5AJEBHNzs1DW4/J+s/qqvp
-	 qSRmQ3IcN7gVtLX2OF/4fETiofKxii3/4CgDTDtCdu2mFy+L/btCSjW02bixoGeW5n
-	 9YMPthcP7xjjk60FibxulPhkW1Lnk+hb0UnvenNJQwM47cpMjT2F82IgOJL6LVu+Uj
-	 ewJj1umjUyZBEud7GgfUYNfeW7i8dc0kjisAx6oar3bU3hzIHQUokpAkUJ6rJaXNLC
-	 wb4WG3jHqb29aJAPIR392xYUx0NQslVVgdiefkNiKsCiHnvhQwdThFcpOO/HLu5t4T
-	 qAmXmQwcj3gWg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Eric Dumazet <edumazet@google.com>,
-	Sven Eckelmann <sven@narfation.org>,
+	dkim=pass header.d=outlook.com header.s=selector1 header.b=oZohv1mV;
+	spf=pass (diktynna.open-mesh.org: domain of erick.archer@outlook.com
+ designates 2a01:111:f403:2e02::801 as permitted sender)
+ smtp.mailfrom=erick.archer@outlook.com;
+	dmarc=pass (policy=none) header.from=outlook.com;
+	arc=pass ("microsoft.com:s=arcselector9901:i=1")
+ARC-Seal: i=2; s=20121; d=open-mesh.org; t=1717777173; a=rsa-sha256;
+	cv=pass;
+	b=gLy+gWpgGO9bLw7n+itMEfFbZ5B3Tbc0zgW/FX9vqIYM2IZalMpSNtjFJLV5iRuGZDtPav
+	kEE+MSimLwLy+HzxHvQr7nyaSX6U2wowenGZnpMeAwLw1pf51OnnpQBwiCR4RQr5bvfSUs
+	Yhq5sGoWjKich2N5ZJgLLkEQTY656KI=
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TPqa7/9eIcFt2S4djzgLAMFZUSc6UYihEwQdTWvJsqYAY0yyxbTrklPGqCOm9E8iDUbfKaUPkPhd8itRsTbUTwR6UYRunJCOTUZyXJDPrvbuYMh8imnzIc4kKhxJ806xhx+RZImyWdn29LaXYeGijYEmDGhRyJAgUoMtZGe/eXOKGyp40K0scWSH+g/5H/fywSRhBybsSf3HszvntVjKN1Vxkodaqxt7DzM536jD9J7UyG8DnKjFUUHzxepHx27MJQ+JdDFS7XolAYpoNnYQ+1Aj8mbPwKw2aMhT0PhvD+c0ZLgloV9cz7EWGXQTXW7PjcMal41cVBfdGVU4twFQtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OphJjwEnj0MJlUYtKz6Stb4+YWYsVDyxrR9KBxN3QGQ=;
+ b=ak9TQQRWEVzRLVP+86YS+GzQELHNjWfeY1j4hnYky7qrRLUgMBhFMjNY+QD2iKbtGeRSBJt7GDkIH3hR1SL1CsZXSiG8yhIMIP0yed5mAg/jUTdF0pysoFQyB49FddgM2suX1T5ngn+FcHBddu7X/ljvR8aiEFeuZa1jJi1dSM+DMZafgGJSaurMrpzUJ5azTaTldZgatCRlQPal5g8GHQ1k/pfbzuku1k0vcfOMz2Q3Nyf2BYFLOfh3hTNolY4s1chVnj05v9Ycq/QbwLAUnmOpJXs6ikf6mnzc9nYrzZIhQHmfUGlyJd6kqyDuT7HZhcRo29cOJGgEl5MMwv9SjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OphJjwEnj0MJlUYtKz6Stb4+YWYsVDyxrR9KBxN3QGQ=;
+ b=oZohv1mVDQb+j0s4GbdYo8TPWR03SAV3JS4nyYih9o/gSx2WV2r9d4BrWiFX84vXvDC7wZpw17wEzxog7bM6FPl2Z/bJ09rz9OHEhC1rtK4LEvuvdoOTf9JeEYTtVO4u4nX2UvHoB50SuEjv5Y3RbFTDekhkKHg04NvpQDc8HQqfhfAzgq31tnK2E48Tr6Bu9F+WWmtBuh76H3a/+icA1QRpaH9D55nNlwxDZmi+zkjkk/Id+4T0u+WUZJHphBfuqY6IXLndWJiRl0UC6/slOJJMxRswFGqSjVWUNzkpzuI2Goow25nCNV1zYrtVovi/M3cAN9okat5mUsf5n/ABRw==
+Received: from AS8PR02MB7237.eurprd02.prod.outlook.com (2603:10a6:20b:3f1::10)
+ by PAVPR02MB9522.eurprd02.prod.outlook.com (2603:10a6:102:304::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Fri, 7 Jun
+ 2024 16:19:31 +0000
+Received: from AS8PR02MB7237.eurprd02.prod.outlook.com
+ ([fe80::409b:1407:979b:f658]) by AS8PR02MB7237.eurprd02.prod.outlook.com
+ ([fe80::409b:1407:979b:f658%5]) with mapi id 15.20.7633.033; Fri, 7 Jun 2024
+ 16:19:31 +0000
+From: Erick Archer <erick.archer@outlook.com>
+To: Marek Lindner <mareklindner@neomailbox.ch>,
 	Simon Wunderlich <sw@simonwunderlich.de>,
-	Sasha Levin <sashal@kernel.org>,
-	mareklindner@neomailbox.ch,
-	a@unstable.cc,
-	davem@davemloft.net,
-	kuba@kernel.org,
-	pabeni@redhat.com,
+	Antonio Quartulli <a@unstable.cc>,
+	Sven Eckelmann <sven@narfation.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Kees Cook <keescook@chromium.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: Erick Archer <erick.archer@outlook.com>,
 	b.a.t.m.a.n@lists.open-mesh.org,
-	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 1/3] batman-adv: bypass empty buckets in
- batadv_purge_orig_ref()
-Date: Mon, 27 May 2024 10:20:03 -0400
-Message-ID: <20240527142010.3855135-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 4.19.315
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	llvm@lists.linux.dev
+Subject: [PATCH v4] batman-adv: Add flex array to struct batadv_tvlv_tt_data
+Date: Fri,  7 Jun 2024 18:19:12 +0200
+Message-ID: 
+ <AS8PR02MB7237205E3231CD335CB988648BFB2@AS8PR02MB7237.eurprd02.prod.outlook.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 3GOI6KOFOXFAJDGKYKPPP7RLYDYCEZMU
-X-Message-ID-Hash: 3GOI6KOFOXFAJDGKYKPPP7RLYDYCEZMU
-X-MailFrom: sashal@kernel.org
+Content-Type: text/plain
+X-TMN: [QUK5acyw/AHh6uscIa1jzWAIdGupbCKx]
+X-ClientProxiedBy: AM0PR08CA0020.eurprd08.prod.outlook.com
+ (2603:10a6:208:d2::33) To AS8PR02MB7237.eurprd02.prod.outlook.com
+ (2603:10a6:20b:3f1::10)
+X-Microsoft-Original-Message-ID: 
+ <20240607161912.4318-1-erick.archer@outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR02MB7237:EE_|PAVPR02MB9522:EE_
+X-MS-Office365-Filtering-Correlation-Id: d4f6bce6-0133-4cac-9bc1-08dc870d9c9a
+X-Microsoft-Antispam: 
+	BCL:0;ARA:14566002|461199019|1602099003|3412199016|440099019|1710799017;
+X-Microsoft-Antispam-Message-Info: 
+	ESqNIu8Tz52C5p4PwTaCyAIBEQ3gXjtQA9b1XKqzHrcf9aGRVjOnQnqg1pBHMXnA7S1RnRo6jov1lFxhi6S5HNLZK89SaNGUGiuX57GK12BRyYFi6mgfSbG0r7wtMfPkgPxOby3obRnXPAREoodFnjB7+DxkzbGAOewo53S6x7JNZ59BHiY5p7xG8mKTY4Nm/qUYmbYDF6NwulqsOnqyJXcXbkbNynDX0bxSk5grvEGNMeCi6wu/1COlnSwiLvmExKFJN/uYlUdbxqeLRQBVHN9cNGhRjSL7aTN8eP0BmmX7+o8ovCmodEU9f53hwQClpjtoidRVmgDtdVl9q+F8DBS6gmfh9PNoc4ipXqpTYrMYCud2zDZct87SsX5sWq6TreCi3lh/aB1TR/D8zv+T5KtL37OHznc4wMfcKg7mcolBISRrlYM0YHz8+jig0h+Nr+fFUuMMMW5BzPRc+JK1os9mZ9Hm0ur8TbhoaUI9ViiTiqN9bDq46dngdAuucmlI8yAgvQ+lnMOuATzTiLKb6niT7dJ0gUEpW5OqOG9B+eZjEP8RjStPgn/OeuCS9WIg7jPcou2Ex7F1ezTepTFruaW8lmaCIThpejK9j7Nheh9+j0LUOm7wow3A0ABB5s7OPTpYEVbnNCUz/Xy4JWK5NnwIYj8CBuHu5xoGv3i4jqBjCAKWozStYt/ML7LBHJ290h1bsQJWJ5PnCg/Xn12Wdg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?VIH8xXKzKpYBGuW8B1UiBWFeaQqZB4yM9DmIJl1kBOSEGDCjB5QpyDqheCHN?=
+ =?us-ascii?Q?oobzOuf7KZYBKcZoYVjPATcV7uFk+eKjmbg+taWeySC4dFDTCenBA8gjt4a9?=
+ =?us-ascii?Q?45Jprv4CLx6HMpwk5RlZrANfYW0KOxH/urnFpsxapCOijuBUJ1VpDM1qxRoC?=
+ =?us-ascii?Q?7bmW2+UILY87GuRrh3BrUu88/ZPyrmo0JQQkhGhHXddyG9mGN9Fzpdw/cxdL?=
+ =?us-ascii?Q?pu7BZVpNEJo1te1Bf6uGwsAge688xD4o6FG8OI2C9KKAxPlBevMGV78HhuRh?=
+ =?us-ascii?Q?A1fqRh+nBZiY7C3BvO7YAeD7JGGE0Yxbt9Pcr4+KOGoFcejG05IYGsp7xD8u?=
+ =?us-ascii?Q?r9xFbNAoXYKqntPqSQLxr55bs7vjj7vOMw6anfnz7AATbHoyotp/IJliKfq7?=
+ =?us-ascii?Q?tB5rXfOpcYesatVzC52DUp9xhuG+8r5koxtQxXFG2icVE6lbqMtRcoTLPwNO?=
+ =?us-ascii?Q?XER6JPod2cpagbGJEHz3p2TS1FwsVAQmiQXtyBflLtodOFwONRg6nsmZS6Qe?=
+ =?us-ascii?Q?gstjsWQZzGV1Ek8QblV9YJDUpBkPOvlMQA5tY1jGBSA8yi7DLkmuZZBP53lH?=
+ =?us-ascii?Q?tLAQgg/UYN44j2HMCxm/yqhDitfX6067WXnm0my2dAwfWX8CTC+xNss7/5Tk?=
+ =?us-ascii?Q?DUA42/Hzs7eAY6RPzgf7S7rq+L+MJpnYxgKKDL+cD1ws7yPFqHXSYLqOsiwZ?=
+ =?us-ascii?Q?8WJyMZDb+keSDAVZwmSlDgd75N+uGpDDNT7ddsizoWIKLc5HdPT313T/aTcn?=
+ =?us-ascii?Q?gbJkbE8IO4tlD7+ejORUTr7Y7YXy9K3RUmkqYAfQ8sKpWGFqCimpGiq4Szga?=
+ =?us-ascii?Q?TLGStaP6Gl7MdY9zJDHWZJtnkYd8w3Gx91+5jTgNhMISBsZ79VqqQIYxiS5Q?=
+ =?us-ascii?Q?eLsT8sDV38/dUpiz93fG80Ab8Z5QEf3x6XV+rJO1pVo0I6G6ubACu25vWysv?=
+ =?us-ascii?Q?exnPwS/Zu391KcDCB48kG+AfxssN0tsnAmTVgbDfgA9q9HCPzaR5XzYXcz2W?=
+ =?us-ascii?Q?Tr9rHsg5fSY5gZRQvZDw18c4gY72FWv4RdI6riUVm4cI4dPrDHYln5PN1YSX?=
+ =?us-ascii?Q?L3qO9JViKd+ohfjTUDbM8fL498N3fdYwL3NsLqs/3nNR3UtROyx5OaAOmz1+?=
+ =?us-ascii?Q?71FZV2hW6gaWWusV3UnDFU76z7g57diQpvS9VhYSxIqspnCgCW6AEDwnot13?=
+ =?us-ascii?Q?NheJdXvVBu4YltlEhXyMOlmiG76tAXWNffztb/ZjRdsCEDRCeh1zeefF/4Kq?=
+ =?us-ascii?Q?eGsFDBGFrfB3n/gQRbg8?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ d4f6bce6-0133-4cac-9bc1-08dc870d9c9a
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR02MB7237.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2024 16:19:31.4437
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR02MB9522
+X-MailFrom: erick.archer@outlook.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-2; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-2
+Message-ID-Hash: IXVP4UWQZM3KVPD57XFUOXABEGCCKERL
+X-Message-ID-Hash: IXVP4UWQZM3KVPD57XFUOXABEGCCKERL
+X-Mailman-Approved-At: Fri, 07 Jun 2024 20:45:17 +0200
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3GOI6KOFOXFAJDGKYKPPP7RLYDYCEZMU/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OW3BSIMPU5MHZJMGQTV5OPLJLUAOPQXD/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -116,108 +184,318 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Eric Dumazet <edumazet@google.com>
+The "struct batadv_tvlv_tt_data" uses a dynamically sized set of
+trailing elements. Specifically, it uses an array of structures of type
+"batadv_tvlv_tt_vlan_data". So, use the preferred way in the kernel
+declaring a flexible array [1].
 
-[ Upstream commit 40dc8ab605894acae1473e434944924a22cfaaa0 ]
+At the same time, prepare for the coming implementation by GCC and Clang
+of the __counted_by attribute. Flexible array members annotated with
+__counted_by can have their accesses bounds-checked at run-time via
+CONFIG_UBSAN_BOUNDS (for array indexing) and CONFIG_FORTIFY_SOURCE (for
+strcpy/memcpy-family functions). In this case, it is important to note
+that the attribute used is specifically __counted_by_be since variable
+"num_vlan" is of type __be16.
 
-Many syzbot reports are pointing to soft lockups in
-batadv_purge_orig_ref() [1]
+The following change to the "batadv_tt_tvlv_ogm_handler_v1" function:
 
-Root cause is unknown, but we can avoid spending too much
-time there and perhaps get more interesting reports.
+-	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(tt_data + 1);
+-	tt_change = (struct batadv_tvlv_tt_change *)(tt_vlan + num_vlan);
 
-[1]
++	tt_change = (struct batadv_tvlv_tt_change *)((void *)tt_data
++						     + flex_size);
 
-watchdog: BUG: soft lockup - CPU#0 stuck for 27s! [kworker/u4:6:621]
-Modules linked in:
-irq event stamp: 6182794
- hardirqs last  enabled at (6182793): [<ffff8000801dae10>] __local_bh_enable_ip+0x224/0x44c kernel/softirq.c:386
- hardirqs last disabled at (6182794): [<ffff80008ad66a78>] __el1_irq arch/arm64/kernel/entry-common.c:533 [inline]
- hardirqs last disabled at (6182794): [<ffff80008ad66a78>] el1_interrupt+0x24/0x68 arch/arm64/kernel/entry-common.c:551
- softirqs last  enabled at (6182792): [<ffff80008aab71c4>] spin_unlock_bh include/linux/spinlock.h:396 [inline]
- softirqs last  enabled at (6182792): [<ffff80008aab71c4>] batadv_purge_orig_ref+0x114c/0x1228 net/batman-adv/originator.c:1287
- softirqs last disabled at (6182790): [<ffff80008aab61dc>] spin_lock_bh include/linux/spinlock.h:356 [inline]
- softirqs last disabled at (6182790): [<ffff80008aab61dc>] batadv_purge_orig_ref+0x164/0x1228 net/batman-adv/originator.c:1271
-CPU: 0 PID: 621 Comm: kworker/u4:6 Not tainted 6.8.0-rc7-syzkaller-g707081b61156 #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 02/29/2024
-Workqueue: bat_events batadv_purge_orig
-pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
- pc : should_resched arch/arm64/include/asm/preempt.h:79 [inline]
- pc : __local_bh_enable_ip+0x228/0x44c kernel/softirq.c:388
- lr : __local_bh_enable_ip+0x224/0x44c kernel/softirq.c:386
-sp : ffff800099007970
-x29: ffff800099007980 x28: 1fffe00018fce1bd x27: dfff800000000000
-x26: ffff0000d2620008 x25: ffff0000c7e70de8 x24: 0000000000000001
-x23: 1fffe00018e57781 x22: dfff800000000000 x21: ffff80008aab71c4
-x20: ffff0001b40136c0 x19: ffff0000c72bbc08 x18: 1fffe0001a817bb0
-x17: ffff800125414000 x16: ffff80008032116c x15: 0000000000000001
-x14: 1fffe0001ee9d610 x13: 0000000000000000 x12: 0000000000000003
-x11: 0000000000000000 x10: 0000000000ff0100 x9 : 0000000000000000
-x8 : 00000000005e5789 x7 : ffff80008aab61dc x6 : 0000000000000000
-x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000000000
-x2 : 0000000000000006 x1 : 0000000000000080 x0 : ffff800125414000
-Call trace:
-  __daif_local_irq_enable arch/arm64/include/asm/irqflags.h:27 [inline]
-  arch_local_irq_enable arch/arm64/include/asm/irqflags.h:49 [inline]
-  __local_bh_enable_ip+0x228/0x44c kernel/softirq.c:386
-  __raw_spin_unlock_bh include/linux/spinlock_api_smp.h:167 [inline]
-  _raw_spin_unlock_bh+0x3c/0x4c kernel/locking/spinlock.c:210
-  spin_unlock_bh include/linux/spinlock.h:396 [inline]
-  batadv_purge_orig_ref+0x114c/0x1228 net/batman-adv/originator.c:1287
-  batadv_purge_orig+0x20/0x70 net/batman-adv/originator.c:1300
-  process_one_work+0x694/0x1204 kernel/workqueue.c:2633
-  process_scheduled_works kernel/workqueue.c:2706 [inline]
-  worker_thread+0x938/0xef4 kernel/workqueue.c:2787
-  kthread+0x288/0x310 kernel/kthread.c:388
-  ret_from_fork+0x10/0x20 arch/arm64/kernel/entry.S:860
-Sending NMI from CPU 0 to CPUs 1:
-NMI backtrace for cpu 1
-CPU: 1 PID: 0 Comm: swapper/1 Not tainted 6.8.0-rc7-syzkaller-g707081b61156 #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 02/29/2024
-pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
- pc : arch_local_irq_enable+0x8/0xc arch/arm64/include/asm/irqflags.h:51
- lr : default_idle_call+0xf8/0x128 kernel/sched/idle.c:103
-sp : ffff800093a17d30
-x29: ffff800093a17d30 x28: dfff800000000000 x27: 1ffff00012742fb4
-x26: ffff80008ec9d000 x25: 0000000000000000 x24: 0000000000000002
-x23: 1ffff00011d93a74 x22: ffff80008ec9d3a0 x21: 0000000000000000
-x20: ffff0000c19dbc00 x19: ffff8000802d0fd8 x18: 1fffe00036804396
-x17: ffff80008ec9d000 x16: ffff8000802d089c x15: 0000000000000001
-x14: 1fffe00036805f10 x13: 0000000000000000 x12: 0000000000000003
-x11: 0000000000000001 x10: 0000000000000003 x9 : 0000000000000000
-x8 : 00000000000ce8d1 x7 : ffff8000804609e4 x6 : 0000000000000000
-x5 : 0000000000000001 x4 : 0000000000000001 x3 : ffff80008ad6aac0
-x2 : 0000000000000000 x1 : ffff80008aedea60 x0 : ffff800125436000
-Call trace:
-  __daif_local_irq_enable arch/arm64/include/asm/irqflags.h:27 [inline]
-  arch_local_irq_enable+0x8/0xc arch/arm64/include/asm/irqflags.h:49
-  cpuidle_idle_call kernel/sched/idle.c:170 [inline]
-  do_idle+0x1f0/0x4e8 kernel/sched/idle.c:312
-  cpu_startup_entry+0x5c/0x74 kernel/sched/idle.c:410
-  secondary_start_kernel+0x198/0x1c0 arch/arm64/kernel/smp.c:272
-  __secondary_switched+0xb8/0xbc arch/arm64/kernel/head.S:404
+is intended to prevent the compiler from generating an "out-of-bounds"
+notification due to the __counted_by attribute. The compiler can do a
+pointer calculation using the vlan_data flexible array memory, or in
+other words, this may be calculated as an array offset, since it is the
+same as:
 
-Signed-off-by: Eric Dumazet <edumazet@google.com>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+        &tt_data->vlan_data[num_vlan]
+
+Therefore, we go past the end of the array. In other "multiple trailing
+flexible array" situations, this has been solved by addressing from the
+base pointer, since the compiler either knows the full allocation size
+or it knows nothing about it (this case, since it came from a "void *"
+function argument).
+
+The order in which the structure batadv_tvlv_tt_data and the structure
+batadv_tvlv_tt_vlan_data are defined must be swap to avoid an incomplete
+type error.
+
+Also, avoid the open-coded arithmetic in memory allocator functions [2]
+using the "struct_size" macro and use the "flex_array_size" helper to
+clarify some calculations, when possible.
+
+Moreover, the new structure member also allow us to avoid the open-coded
+arithmetic on pointers in some situations. Take advantage of this.
+
+This code was detected with the help of Coccinelle, and audited and
+modified manually.
+
+Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-length-and-one-element-arrays [1]
+Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [2]
+Reviewed-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Erick Archer <erick.archer@outlook.com>
 ---
- net/batman-adv/originator.c | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v4:
+- Add the #include of <linux/stddef.h> for the "__counted_by_be"
+  helper (Sven Eckelmann).
+- Add the "Reviewed-by:" tag.
 
-diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
-index 1d295da3e342b..c1ad1ae21eeac 100644
---- a/net/batman-adv/originator.c
-+++ b/net/batman-adv/originator.c
-@@ -1358,6 +1358,8 @@ void batadv_purge_orig_ref(struct batadv_priv *bat_priv)
- 	/* for all origins... */
- 	for (i = 0; i < hash->size; i++) {
- 		head = &hash->table[i];
-+		if (hlist_empty(head))
-+			continue;
- 		list_lock = &hash->list_locks[i];
+Changes in v3:
+- Address from the base pointer tt_data to avoid an "out-of-bounds"
+  notification (Kees Cook).
+- Update the commit message to explain the new change.
+
+Changes in v2:
+- Add the #include of <linux/overflow.h> for the "flex_array_size"
+  helper (Sven Eckelmann).
+- Add the "ntohs" function to the "flex_array_size" helper removed
+  by mistake during the conversion (Sven Eckelmann).
+- Add the "__counted_by_be" attribute.
+
+Previous versions:
+v3 -> https://lore.kernel.org/linux-hardening/AS8PR02MB72371F89D188B047410B755E8B192@AS8PR02MB7237.eurprd02.prod.outlook.com/
+v2 -> https://lore.kernel.org/linux-hardening/AS8PR02MB723756E3D1366C4E8FCD14BF8B162@AS8PR02MB7237.eurprd02.prod.outlook.com/
+v1 -> https://lore.kernel.org/linux-hardening/AS8PR02MB7237987BF9DFCA030B330F658B3E2@AS8PR02MB7237.eurprd02.prod.outlook.com/
+
+Hi,
+
+As it was decided in version 3, I resend this path since -r2 has been
+released. I hope that this time the patch can be applied ;)
+
+Regards,
+Erick
+---
+ include/uapi/linux/batadv_packet.h | 29 ++++++++++--------
+ net/batman-adv/translation-table.c | 49 ++++++++++++------------------
+ 2 files changed, 36 insertions(+), 42 deletions(-)
+
+diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/batadv_packet.h
+index 6e25753015df..439132a819ea 100644
+--- a/include/uapi/linux/batadv_packet.h
++++ b/include/uapi/linux/batadv_packet.h
+@@ -9,6 +9,7 @@
  
- 		spin_lock_bh(list_lock);
+ #include <asm/byteorder.h>
+ #include <linux/if_ether.h>
++#include <linux/stddef.h>
+ #include <linux/types.h>
+ 
+ /**
+@@ -592,19 +593,6 @@ struct batadv_tvlv_gateway_data {
+ 	__be32 bandwidth_up;
+ };
+ 
+-/**
+- * struct batadv_tvlv_tt_data - tt data propagated through the tt tvlv container
+- * @flags: translation table flags (see batadv_tt_data_flags)
+- * @ttvn: translation table version number
+- * @num_vlan: number of announced VLANs. In the TVLV this struct is followed by
+- *  one batadv_tvlv_tt_vlan_data object per announced vlan
+- */
+-struct batadv_tvlv_tt_data {
+-	__u8   flags;
+-	__u8   ttvn;
+-	__be16 num_vlan;
+-};
+-
+ /**
+  * struct batadv_tvlv_tt_vlan_data - vlan specific tt data propagated through
+  *  the tt tvlv container
+@@ -618,6 +606,21 @@ struct batadv_tvlv_tt_vlan_data {
+ 	__u16  reserved;
+ };
+ 
++/**
++ * struct batadv_tvlv_tt_data - tt data propagated through the tt tvlv container
++ * @flags: translation table flags (see batadv_tt_data_flags)
++ * @ttvn: translation table version number
++ * @num_vlan: number of announced VLANs. In the TVLV this struct is followed by
++ *  one batadv_tvlv_tt_vlan_data object per announced vlan
++ * @vlan_data: array of batadv_tvlv_tt_vlan_data objects
++ */
++struct batadv_tvlv_tt_data {
++	__u8   flags;
++	__u8   ttvn;
++	__be16 num_vlan;
++	struct batadv_tvlv_tt_vlan_data vlan_data[] __counted_by_be(num_vlan);
++};
++
+ /**
+  * struct batadv_tvlv_tt_change - translation table diff data
+  * @flags: status indicators concerning the non-mesh client (see
+diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
+index b21ff3c36b07..b44c382226a1 100644
+--- a/net/batman-adv/translation-table.c
++++ b/net/batman-adv/translation-table.c
+@@ -28,6 +28,7 @@
+ #include <linux/net.h>
+ #include <linux/netdevice.h>
+ #include <linux/netlink.h>
++#include <linux/overflow.h>
+ #include <linux/rculist.h>
+ #include <linux/rcupdate.h>
+ #include <linux/skbuff.h>
+@@ -815,8 +816,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
+ 		num_entries += atomic_read(&vlan->tt.num_entries);
+ 	}
+ 
+-	change_offset = sizeof(**tt_data);
+-	change_offset += num_vlan * sizeof(*tt_vlan);
++	change_offset = struct_size(*tt_data, vlan_data, num_vlan);
+ 
+ 	/* if tt_len is negative, allocate the space needed by the full table */
+ 	if (*tt_len < 0)
+@@ -835,7 +835,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
+ 	(*tt_data)->ttvn = atomic_read(&orig_node->last_ttvn);
+ 	(*tt_data)->num_vlan = htons(num_vlan);
+ 
+-	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(*tt_data + 1);
++	tt_vlan = (*tt_data)->vlan_data;
+ 	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
+ 		tt_vlan->vid = htons(vlan->vid);
+ 		tt_vlan->crc = htonl(vlan->tt.crc);
+@@ -895,8 +895,7 @@ batadv_tt_prepare_tvlv_local_data(struct batadv_priv *bat_priv,
+ 		total_entries += vlan_entries;
+ 	}
+ 
+-	change_offset = sizeof(**tt_data);
+-	change_offset += num_vlan * sizeof(*tt_vlan);
++	change_offset = struct_size(*tt_data, vlan_data, num_vlan);
+ 
+ 	/* if tt_len is negative, allocate the space needed by the full table */
+ 	if (*tt_len < 0)
+@@ -915,7 +914,7 @@ batadv_tt_prepare_tvlv_local_data(struct batadv_priv *bat_priv,
+ 	(*tt_data)->ttvn = atomic_read(&bat_priv->tt.vn);
+ 	(*tt_data)->num_vlan = htons(num_vlan);
+ 
+-	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(*tt_data + 1);
++	tt_vlan = (*tt_data)->vlan_data;
+ 	hlist_for_each_entry(vlan, &bat_priv->softif_vlan_list, list) {
+ 		vlan_entries = atomic_read(&vlan->tt.num_entries);
+ 		if (vlan_entries < 1)
+@@ -2875,7 +2874,6 @@ static bool batadv_send_tt_request(struct batadv_priv *bat_priv,
+ {
+ 	struct batadv_tvlv_tt_data *tvlv_tt_data = NULL;
+ 	struct batadv_tt_req_node *tt_req_node = NULL;
+-	struct batadv_tvlv_tt_vlan_data *tt_vlan_req;
+ 	struct batadv_hard_iface *primary_if;
+ 	bool ret = false;
+ 	int i, size;
+@@ -2891,7 +2889,7 @@ static bool batadv_send_tt_request(struct batadv_priv *bat_priv,
+ 	if (!tt_req_node)
+ 		goto out;
+ 
+-	size = sizeof(*tvlv_tt_data) + sizeof(*tt_vlan_req) * num_vlan;
++	size = struct_size(tvlv_tt_data, vlan_data, num_vlan);
+ 	tvlv_tt_data = kzalloc(size, GFP_ATOMIC);
+ 	if (!tvlv_tt_data)
+ 		goto out;
+@@ -2903,12 +2901,10 @@ static bool batadv_send_tt_request(struct batadv_priv *bat_priv,
+ 	/* send all the CRCs within the request. This is needed by intermediate
+ 	 * nodes to ensure they have the correct table before replying
+ 	 */
+-	tt_vlan_req = (struct batadv_tvlv_tt_vlan_data *)(tvlv_tt_data + 1);
+ 	for (i = 0; i < num_vlan; i++) {
+-		tt_vlan_req->vid = tt_vlan->vid;
+-		tt_vlan_req->crc = tt_vlan->crc;
++		tvlv_tt_data->vlan_data[i].vid = tt_vlan->vid;
++		tvlv_tt_data->vlan_data[i].crc = tt_vlan->crc;
+ 
+-		tt_vlan_req++;
+ 		tt_vlan++;
+ 	}
+ 
+@@ -2960,7 +2956,6 @@ static bool batadv_send_other_tt_response(struct batadv_priv *bat_priv,
+ 	struct batadv_orig_node *res_dst_orig_node = NULL;
+ 	struct batadv_tvlv_tt_change *tt_change;
+ 	struct batadv_tvlv_tt_data *tvlv_tt_data = NULL;
+-	struct batadv_tvlv_tt_vlan_data *tt_vlan;
+ 	bool ret = false, full_table;
+ 	u8 orig_ttvn, req_ttvn;
+ 	u16 tvlv_len;
+@@ -2983,10 +2978,9 @@ static bool batadv_send_other_tt_response(struct batadv_priv *bat_priv,
+ 	orig_ttvn = (u8)atomic_read(&req_dst_orig_node->last_ttvn);
+ 	req_ttvn = tt_data->ttvn;
+ 
+-	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(tt_data + 1);
+ 	/* this node doesn't have the requested data */
+ 	if (orig_ttvn != req_ttvn ||
+-	    !batadv_tt_global_check_crc(req_dst_orig_node, tt_vlan,
++	    !batadv_tt_global_check_crc(req_dst_orig_node, tt_data->vlan_data,
+ 					ntohs(tt_data->num_vlan)))
+ 		goto out;
+ 
+@@ -3329,7 +3323,6 @@ static void batadv_handle_tt_response(struct batadv_priv *bat_priv,
+ 	struct batadv_orig_node *orig_node = NULL;
+ 	struct batadv_tvlv_tt_change *tt_change;
+ 	u8 *tvlv_ptr = (u8 *)tt_data;
+-	u16 change_offset;
+ 
+ 	batadv_dbg(BATADV_DBG_TT, bat_priv,
+ 		   "Received TT_RESPONSE from %pM for ttvn %d t_size: %d [%c]\n",
+@@ -3342,10 +3335,7 @@ static void batadv_handle_tt_response(struct batadv_priv *bat_priv,
+ 
+ 	spin_lock_bh(&orig_node->tt_lock);
+ 
+-	change_offset = sizeof(struct batadv_tvlv_tt_vlan_data);
+-	change_offset *= ntohs(tt_data->num_vlan);
+-	change_offset += sizeof(*tt_data);
+-	tvlv_ptr += change_offset;
++	tvlv_ptr += struct_size(tt_data, vlan_data, ntohs(tt_data->num_vlan));
+ 
+ 	tt_change = (struct batadv_tvlv_tt_change *)tvlv_ptr;
+ 	if (tt_data->flags & BATADV_TT_FULL_TABLE) {
+@@ -3944,10 +3934,10 @@ static void batadv_tt_tvlv_ogm_handler_v1(struct batadv_priv *bat_priv,
+ 					  u8 flags, void *tvlv_value,
+ 					  u16 tvlv_value_len)
+ {
+-	struct batadv_tvlv_tt_vlan_data *tt_vlan;
+ 	struct batadv_tvlv_tt_change *tt_change;
+ 	struct batadv_tvlv_tt_data *tt_data;
+ 	u16 num_entries, num_vlan;
++	size_t flex_size;
+ 
+ 	if (tvlv_value_len < sizeof(*tt_data))
+ 		return;
+@@ -3957,17 +3947,18 @@ static void batadv_tt_tvlv_ogm_handler_v1(struct batadv_priv *bat_priv,
+ 
+ 	num_vlan = ntohs(tt_data->num_vlan);
+ 
+-	if (tvlv_value_len < sizeof(*tt_vlan) * num_vlan)
++	flex_size = flex_array_size(tt_data, vlan_data, num_vlan);
++	if (tvlv_value_len < flex_size)
+ 		return;
+ 
+-	tt_vlan = (struct batadv_tvlv_tt_vlan_data *)(tt_data + 1);
+-	tt_change = (struct batadv_tvlv_tt_change *)(tt_vlan + num_vlan);
+-	tvlv_value_len -= sizeof(*tt_vlan) * num_vlan;
++	tt_change = (struct batadv_tvlv_tt_change *)((void *)tt_data
++						     + flex_size);
++	tvlv_value_len -= flex_size;
+ 
+ 	num_entries = batadv_tt_entries(tvlv_value_len);
+ 
+-	batadv_tt_update_orig(bat_priv, orig, tt_vlan, num_vlan, tt_change,
+-			      num_entries, tt_data->ttvn);
++	batadv_tt_update_orig(bat_priv, orig, tt_data->vlan_data, num_vlan,
++			      tt_change, num_entries, tt_data->ttvn);
+ }
+ 
+ /**
+@@ -3998,8 +3989,8 @@ static int batadv_tt_tvlv_unicast_handler_v1(struct batadv_priv *bat_priv,
+ 	tt_data = tvlv_value;
+ 	tvlv_value_len -= sizeof(*tt_data);
+ 
+-	tt_vlan_len = sizeof(struct batadv_tvlv_tt_vlan_data);
+-	tt_vlan_len *= ntohs(tt_data->num_vlan);
++	tt_vlan_len = flex_array_size(tt_data, vlan_data,
++				      ntohs(tt_data->num_vlan));
+ 
+ 	if (tvlv_value_len < tt_vlan_len)
+ 		return NET_RX_SUCCESS;
 -- 
-2.43.0
+2.25.1
 
