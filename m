@@ -2,71 +2,73 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FC5905DCD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 23:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79898905DD0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 23:39:55 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E881682ED6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 23:36:30 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3D24582F6D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 23:39:55 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1718228190;
- b=ObPqY4y2ZHNeravSRivVtfS+eSX4+DHNqB4gkP7Wh3G/YWJpHYVTIF+92JW+7EM493/Ii
- iuExcjyeHTeKD/GcR7ub+p116lZcafnlwEKvz2OYOSq/4McQeWi9X7DyfzvkNiEfoMNefBA
- C3CFzdrfqrpigubJtxkwHFmpkoyRzJM=
+ t=1718228395;
+ b=ivDEwFHeeZwBulOGnC+SE3IQ6XAgDvbO6X8cN7zW4q/lBXuFl3K5mNQ920VIUZneQ7NNK
+ rQet8l2JiTj8EL8H5kAigL201yxuRyaTnLCjVselpxmki2SyDptkI41zYad+cfdSW9/hKTF
+ n4Io++lFG+XLaOFVmjyaZcsq7o6mGnM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1718228190; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1718228395; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=HfPH0RKfXJQz1KEdv+17hpXr39Ln4EosVflULP2zg6Y=;
- b=NUQgBfVq2FDoXbs+2BiLOsB2IqL4XH9N9YcxcjiejBR74NuHOPMkb+svYBm3mdQSUafso
- 18NaS82O++JR5YhItc5F9V/dE7EfA0/OYEqwvOzJFXXqEd5lkoId5N6uF1CtdWo+ONZ6dMQ
- SRYNmlB7MshXqcvXoyGD4RSoT9Qq35w=
+ list-archive; bh=ESbUwd9vcht867q92f70v99T3c/S7oRHjIrZ2zfKvQ8=;
+ b=aitsQGMnBHljzEbfaTEitHfcx7JqjODPoF/tKIv3wV7yrlfNforwRUtVstKU52w7DDkhM
+ n8gw0beaREGKxdW3WIB60bFFcYV7ycncHmLwT4XbTJY+V9AS5yd0QwSSrN/54NBEDe11i1K
+ duUwbAjxPrX7SXUvQYEZTgedorgYlwM=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=none
 Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F0D53827EA
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jun 2024 23:36:25 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1718228186; a=rsa-sha256;
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7858C8263E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jun 2024 23:39:50 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1718228390; a=rsa-sha256;
 	cv=none;
-	b=r36XBt/nbHNnxj8nULolRZKlu/RcLCcqPTxpA00l+nQqi6wXaZOJHVNDZp1uUufgaXTnUG
-	RxJpSCmlrXhR004zJB06oVs5JNCiJ7OJkwDsfxGzeVlDKqSbPR60sLIqnX/jbht+RxQ+RK
-	ZnJcesgIrsBoIh8MqFynsGG9b8eTizs=
+	b=NFF4BNlU2oIz6x2TBbj7PsGtbDt0ZtuZXRuP5FBCrHeN3O5BsZ76Hdr5kxX51Ba4R3ZZ3Q
+	5SCKVNEV7tRnGq4cASrUjpkkcV47K7bZ6oU9SC5dR3VOMOxrHvkDeCRQoM1jKK05ObCyaY
+	xjL/jy7IdecIjQKJE9Yi2WyXBOuyFfw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	dmarc=none;
 	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
- designates 116.203.183.178 as permitted sender)
+ designates 2a01:4f8:c2c:665b::1 as permitted sender)
  smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1718228186;
+	s=20121; t=1718228390;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=HfPH0RKfXJQz1KEdv+17hpXr39Ln4EosVflULP2zg6Y=;
-	b=hGzpRgWTznjciPISwLsja5PUFLyX62DqZcvz4NeD8snDHSrZnHzw4oNWizAvHIScUaNpU7
-	xJVG7EWK/S+R2JEPlgKDIOg8qtoxumHJ+rdHzGFMb6jkfD6Elxtdn+KuVtPu0Cb2vuz/ay
-	AUi7FMEJqseYN2OtzZrBJ79q9sUFouM=
+	bh=ESbUwd9vcht867q92f70v99T3c/S7oRHjIrZ2zfKvQ8=;
+	b=HrQMeeESezKaV3xq7FpUgeQ2Ekzm+/sSKRVANJ8azBowZRkpIPFdxPTbHR/W5KsCM3SwMc
+	UxMYgrIfK1xGhgdzIL3dR4LGzD+owwWIG2jg8Ry01P1TnrThd/6CMzSnuk2YDRmvT1NNRG
+	rPdbbSMhoF+Q9JWAi0EIKIH4lqA6K8k=
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 5C5DC3EF21;
-	Wed, 12 Jun 2024 23:36:18 +0200 (CEST)
+ with ESMTPSA id C041A3EFEA;
+	Wed, 12 Jun 2024 23:39:42 +0200 (CEST)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH] batman-adv: add dynamic, bridged-in TT VID detection support
-Date: Wed, 12 Jun 2024 23:36:19 +0200
-Message-ID: <20240612213620.4135-1-linus.luessing@c0d3.blue>
+Subject: [PATCH v2] batman-adv: add dynamic,
+ bridged-in TT VID detection support
+Date: Wed, 12 Jun 2024 23:39:44 +0200
+Message-ID: <20240612213944.4169-1-linus.luessing@c0d3.blue>
 X-Mailer: git-send-email 2.45.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: 7ERZKDMASORC2GREE5ULAOIJJYL7NT27
-X-Message-ID-Hash: 7ERZKDMASORC2GREE5ULAOIJJYL7NT27
+Message-ID-Hash: QDZO4LQZCPWMCHXBGM5Y3N4M7MVVUKNY
+X-Message-ID-Hash: QDZO4LQZCPWMCHXBGM5Y3N4M7MVVUKNY
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -80,7 +82,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7ERZKDMASORC2GREE5ULAOIJJYL7NT27/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QDZO4LQZCPWMCHXBGM5Y3N4M7MVVUKNY/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -89,7 +91,7 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-So far, if we wanted bridge VLAN tagged frames into the mesh one would
+So far, if we wanted to bridge VLAN tagged frames into the mesh one would
 need to manually create an according VLAN interface on top of bat0
 first, to trigger batman-adv to create the according structures
 for a VID.
@@ -99,6 +101,8 @@ detected and added to the translation table on the fly.
 
 Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
 ---
+v2: fix a typo, a missing "to" in the commit message 
+
  net/batman-adv/hard-interface.c    |   2 +-
  net/batman-adv/multicast.c         |   8 +-
  net/batman-adv/soft-interface.c    | 121 ++++++++++++++++-------------
