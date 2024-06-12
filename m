@@ -1,100 +1,81 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F47E90581A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 18:06:33 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id E97E99058D4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 18:32:03 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 48AB4828BD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 18:06:33 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C8B9182E8B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 12 Jun 2024 18:32:03 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1718208393;
- b=xCFVUx37ziTnqhtYKFUrKsLBrmq4LA6oZlwmwi+LMzZwqtXtOojMNASSiCX4pl5QdmQ0z
- 6ya4tgxCIr5B5AQiusNy5lDykyhOCln7QtSDPz/7Ety+VcYvHeX9mNBPowod+NsDvlBdVcp
- wecMwCP7+7gQQMbES6vO7C0HTbaCwto=
+ t=1718209923;
+ b=qZgFbkYWVZgvr/eVFtM1FfaLO/8MAyVwIMDBlSlLIR9sx5OYs9gTX+viiqOXHFlTVqMQz
+ aksewCoEe8GgKyaY33v9Qr22LE6JcNG5mMtDEduus3TaOTkEfexOIwQrs9BVnWV27xXotEH
+ MwLXwUvEucJOmxQ2Q5A6l3PxQfrvHWo=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1718208393; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1718209923; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=OPiftIHhyHe2391+OBLGJ24ma9TXk6jDk6Rj0yYovhM=;
- b=AgeOxOyDfvHKA4CgTayaOy7IMDDEq+cLyUyW0xiyTiNuEjaSoeYdh/yyOoEphWjzYwQOR
- FPqglUJ/p36Lu/cL0Uebiofy80NLR5BF2b5wcoUGbp28H22vunkheRaF0uoJDUosAAfqyfc
- ELUo7a1msV4hvIQc71aRykopZ9CyA/k=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=kernel.org;
+ list-archive; bh=Gl/uW5z81EQ9LLKAEN0DIg2T9m786t3BMQR5oiMWySs=;
+ b=1NBXAYemp3V2EUv4rLYnvVWIcRJQr1h/Fee0A8xn9hCVMqyZ3MXvWGDqNv/Dl2gUPYl96
+ KFGlHvNHi25chp5BHA/nRzgzugj51085ILBMfIjdN/m+IGfsYhJMV512C2+/pJRBgzDFVtI
+ nkmWQzirSq0dOpJ5VR3ZcIp9muOD+OE=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=none
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id E55B881F32
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jun 2024 18:06:27 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1718208388; a=rsa-sha256;
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 75F96821AD
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 12 Jun 2024 18:31:59 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1718209919; a=rsa-sha256;
 	cv=none;
-	b=XX7Rpn9qHBFjMIHtVft5qHokkyqUaPirkZI+ROCI0iUAJstUNugaMP1TLo255+gGo+2PHk
-	txZq0ijfyzwD9XKJhgW47UX8zDMUbLCFbLRc8Lu9H9hFaEm7xWggxDG9iKm8yH6Jh1Noyi
-	kb1GxkfubzPsfW4W2glN3tvmybZk0Iw=
+	b=eHtbjmqW0eezmqT/Bvm9NKnFHad2/Z88HFLp1EJISN8o3BlzFabdS1nRnrFpk3nssizF+7
+	ivjzGucDZb3SzJuU5DL7WCqIKIXZ6KLASFs4cfnl+q3pNoh53jfoq4ZbSnNISgUgnzEzwS
+	dMsMj1UoMJQq6d7IUHMPvTyVV3x74OU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=ji18+OB0;
-	dmarc=pass (policy=none) header.from=kernel.org;
-	spf=pass (diktynna.open-mesh.org: domain of
- "SRS0=Q+OH=NO=paulmck-ThinkPad-P17-Gen-1.home=paulmck@kernel.org" designates
- 2604:1380:4641:c500::1 as permitted sender)
- smtp.mailfrom="SRS0=Q+OH=NO=paulmck-ThinkPad-P17-Gen-1.home=paulmck@kernel.org"
+	dkim=none;
+	dmarc=none;
+	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
+ designates 2a01:4f8:c2c:665b::1 as permitted sender)
+ smtp.mailfrom=linus.luessing@c0d3.blue
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1718208388;
-	h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=OPiftIHhyHe2391+OBLGJ24ma9TXk6jDk6Rj0yYovhM=;
-	b=ORb7EKNAdOYKkrA4HWyYrH98XJ0goqmHwft9NPW9mUFeuD7iK0AfxX7ViEh7rsOcRSBYPe
-	S8dil3xPOqY+c8X4h7j47At0Ty29C/obKeL3wbhDygpH2YFNmhVyZDW37H7WHwY6RjtasQ
-	iX9xHpCeYyBYczBp20TRLk0RW0cJJpg=
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id AF210614D8;
-	Wed, 12 Jun 2024 16:06:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658AAC32786;
-	Wed, 12 Jun 2024 16:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718208386;
-	bh=KfoVhQGh1ffGN+Vv/trt9qEbjqFsRTAgAAT6pA2n4y8=;
-	h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
-	b=ji18+OB0ffeaYYoh2I/BYqePx0vozflXX5LIjRAzhqTtR0WDQyoQBTeQPkQSbIIsi
-	 IWrMtYhs8EMKIJHLxyb4pB8O4MOYJukaZZtLizdNvzEFaM4M47VMSiV4eZaGRFNPkL
-	 fFZuYzvxgF5Ah0OeZyTMue88PLY1QUyiZM3aNn60YjOp9YllKbTMBjmjlaaGLXJ87N
-	 SA/P15Dz1Ofy9c494GHGSXsSoqHe+8nMu8sl5DZve0wDKNngbjO3ZjhgE1PyM/WJUc
-	 gTa6k30o/w+z4CI59g9ixPbvXR/0miPVhP7TsfqAho4NfDJyC7ULNptufK8GruQqXz
-	 xJt+qsOLEELAw==
-Received: by paulmck-ThinkPad-P17-Gen-1.home (Postfix, from userid 1000)
-	id 027C1CE0DEA; Wed, 12 Jun 2024 09:06:25 -0700 (PDT)
-Date: Wed, 12 Jun 2024 09:06:25 -0700
-From: "Paul E. McKenney" <paulmck@kernel.org>
-To: Linus =?iso-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
+	s=20121; t=1718209919;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Gl/uW5z81EQ9LLKAEN0DIg2T9m786t3BMQR5oiMWySs=;
+	b=r905FlihbvdrbpKN9LDzYO30ZOTzckHCFIDJYSw9MzJGpGMXG2MrON4HVrS7bISl4wPV6n
+	oyFAfFKmF4kIPI8Pde+vFT8XtQ4eH0FR9RGJg+ZAJsRl+U3KxNrhtz2q3FW4jYnmnnQSwM
+	OqpVMoiDAe6xJ2GDGoJue8Xgxb2ybuc=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id B1C193EF21;
+	Wed, 12 Jun 2024 18:31:52 +0200 (CEST)
+Date: Wed, 12 Jun 2024 18:31:57 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: "Paul E. McKenney" <paulmck@kernel.org>
 Cc: b.a.t.m.a.n@lists.open-mesh.org, Dmitry Antipov <dmantipov@yandex.ru>,
 	netdev@vger.kernel.org, rcu@vger.kernel.org
 Subject: Re: [PATCH] Revert "batman-adv: prefer kfree_rcu() over call_rcu()
  with free-only callbacks"
-Message-ID: <020489fa-26a3-422c-8924-7dc71f23422c@paulmck-laptop>
+Message-ID: <ZmnNfU44NekafjA_@sellars>
 References: <20240612133357.2596-1-linus.luessing@c0d3.blue>
  <e36490a1-32af-4090-83a7-47563bce88bc@paulmck-laptop>
  <ZmmzE6Przj0pCHek@sellars>
  <Zmm2uTHTge-i3eCM@sellars>
+ <020489fa-26a3-422c-8924-7dc71f23422c@paulmck-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zmm2uTHTge-i3eCM@sellars>
-Message-ID-Hash: PJTUQIBFQM2NGYLL3A6DLWOFLQB4JF4M
-X-Message-ID-Hash: PJTUQIBFQM2NGYLL3A6DLWOFLQB4JF4M
-X-MailFrom: SRS0=Q+OH=NO=paulmck-ThinkPad-P17-Gen-1.home=paulmck@kernel.org
+In-Reply-To: <020489fa-26a3-422c-8924-7dc71f23422c@paulmck-laptop>
+X-Last-TLS-Session-Version: TLSv1.3
+Message-ID-Hash: M4NV7PYDWHYJMY3QRLML7FEJOFNTS2LR
+X-Message-ID-Hash: M4NV7PYDWHYJMY3QRLML7FEJOFNTS2LR
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -104,11 +85,10 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.8
 Precedence: list
-Reply-To: paulmck@kernel.org
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PJTUQIBFQM2NGYLL3A6DLWOFLQB4JF4M/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/M4NV7PYDWHYJMY3QRLML7FEJOFNTS2LR/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -117,40 +97,20 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Wed, Jun 12, 2024 at 04:54:49PM +0200, Linus Lüssing wrote:
-> On Wed, Jun 12, 2024 at 04:39:15PM +0200, Linus Lüssing wrote:
-> > On Wed, Jun 12, 2024 at 07:06:04AM -0700, Paul E. McKenney wrote:
-> > > Let me make sure that I understand...
-> > > 
-> > > You need rcu_barrier() to wait for any memory passed to kfree_rcu()
-> > > to actually be freed?  If so, please explain why you need this, as
-> > > in what bad thing happens if the actual kfree() happens later.
-> > > 
-> > > (I could imagine something involving OOM avoidance, but I need to
-> > > hear your code's needs rather than my imaginations.)
-> > > 
-> > > 							Thanx, Paul
-> > [...]
-> > As far as I understand before calling kmem_cache_destroy()
-> > we need to ensure that all previously allocated objects on this
-> > kmem-cache were free'd. At least we get this kernel splat
-> > (from Slub?) otherwise. I'm not quite sure if any other bad things
-> > other than this noise in dmesg would occur though. Other than a
-> > [...]
+On Wed, Jun 12, 2024 at 09:06:25AM -0700, Paul E. McKenney wrote:
+> We are looking into nice ways of solving this, but in the meantime,
+> yes, if you are RCU-freeing slab objects into a slab that is destroyed
+> at module-unload time, you currently need to stick with call_rcu()
+> and rcu_barrier().
 > 
-> I guess, without knowing the details of RCU and Slub, that at
-> least nothing super serious, like a segfault, can happen when
-> the remaining execution is just a kfree(), which won't need
-> access to batman-adv internal functions anymore.
+> We do have some potential solutions to allow use of kfree_rcu() with
+> this sort of slab, but they are still strictly potential.
+> 
+> Apologies for my having failed to foresee this particular trap!
+> 
+> 							Thanx, Paul
 
-We are looking into nice ways of solving this, but in the meantime,
-yes, if you are RCU-freeing slab objects into a slab that is destroyed
-at module-unload time, you currently need to stick with call_rcu()
-and rcu_barrier().
-
-We do have some potential solutions to allow use of kfree_rcu() with
-this sort of slab, but they are still strictly potential.
-
-Apologies for my having failed to foresee this particular trap!
-
-							Thanx, Paul
+No worries, thanks for the help and clarification! This at least
+restored my sanity, was starting to doubt my understanding of RCU
+and the batman-adv code the longer I tried to find the issue in
+batman-adv :D.
