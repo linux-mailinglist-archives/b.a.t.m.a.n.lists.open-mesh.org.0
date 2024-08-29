@@ -2,153 +2,101 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40044963B18
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 29 Aug 2024 08:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2EA7963B7B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 29 Aug 2024 08:27:38 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DC51883C7D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 29 Aug 2024 08:14:47 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8C58583C65
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 29 Aug 2024 08:27:38 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1724912087;
- b=C3hfGUITZN0zQkkaWv19Ja2Ch7EzeErRaSIR+L3GJpq5USuEsacVplt6zD1UGxBsWiCIT
- iM+fJs6YGsglCNyjxCgAXYLx85xd5zHS5zSFv2ll7P9R5hCbIIeZ6H11Vzjq/+rQwaXEd7M
- B7jJNKEoIoLVihw4Gqan828EZc6Goxs=
+ t=1724912858;
+ b=JHdG+M0CKkwct57NID/3ORgPuUibKyeIdzedFwvTTy4sEm9PWQP1zMZfHfHyKt2SsRjyj
+ /HXVekYuGqT5Yj2l/RzC7tG5+DV17H0ncX7OvcXx8NXeOaqEndmWogqKpaH7YlGz3iueJg2
+ 21/XL637fGGJPDYVwYbIMfNPQ5VHNmc=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1724912087; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1724912858; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=dihk3etWk++rvq6e35hR7jF9/0aw2VkPe9Rvva2gqnA=;
- b=qoxNA5GTORGlST8ZqxiPnLM54g1+sdbvl9Wx2J3lRYXSSuQX7+K6kzGy26ie3eCQny308
- n0QqfOaJZtYsbdtjOQTELie691O0vSrwMllD6m3/IBfLKMzaVWIJM3DVKm1fJZA97MwGuI9
- GYyTRgb+JD7z0r7wtOxaTQKqcitfUaQ=
+ list-archive; bh=D77BSHaUFViLdDM7kfQVR6bNScj//7o43h1CahEFyCk=;
+ b=fmqT7Cb3TNpPNh6SCo12OwL4gBpMDvd8Kp9l24C+s10ppmM/8E6henoTcNGbeXm1Ryzbl
+ Xc6BM/dwuH03j936gdyOxM5g2pyOLtsJMKneoI9x642HWD5llLJrSkNZVTY69zMF4EwrDKS
+ p+yPbdXgP2tGsEJqfjRvSlISGd8Ugx4=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=fail header.d=ucr.edu header.i=@ucr.edu;
+ dkim=pass header.d=narfation.org;
   arc=pass;
-  dmarc=none
-Authentication-Results: open-mesh.org;
- dkim=fail header.d=ucr.edu header.i=@ucr.edu; arc=pass; dmarc=none
-Received: from mx-lax3-1.ucr.edu (mx-lax3-1.ucr.edu [169.235.156.35])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1FF2C8276C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 29 Aug 2024 06:30:36 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1724905839; a=rsa-sha256;
+  dmarc=pass (Used From Domain Record) header.from=narfation.org
+ policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B09C183B25
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 29 Aug 2024 08:27:30 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1724912852; a=rsa-sha256;
 	cv=none;
-	b=rcGfQ5F1msXeyb089xDCLTiMKrLDxF4592sdkrJKVRsg7L89WHWWvikLbQOrfc1P82hg/4
-	y6i1k9HIBXdC618d3xmQVxrg9B0ToCGpIg7Rawe9QnsfFJaqNKoZk+UutG4Rc1SISrMdE6
-	5HN9HnJfuTZ7aAeDDgAY9HJnbQmpSa8=
+	b=G1mRlt8dG77AaXFSt5FkhPaxkP/38st7wleZVVV2LfShPtMAI4PjRobucoSRRfJU+9wCzs
+	+Q0w6fgqAjbmqxAMaSmUdmCSkNcb2L0WGUFFE68rqOwbPX18dYiuYqFARP6I2WztrJoeMw
+	hYdlO26cclb582L6fyJd1/mOjFEPaE4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=ucr.edu header.s=selector3 header.b=jEl25g7N;
-	dkim=pass header.d=ucr.edu header.s=rmail header.b=JXou+Ddw;
-	dmarc=pass (policy=quarantine) header.from=ucr.edu;
-	spf=pass (diktynna.open-mesh.org: domain of xli399@ucr.edu designates
- 169.235.156.35 as permitted sender) smtp.mailfrom=xli399@ucr.edu
+	dkim=pass header.d=narfation.org header.s=20121 header.b=yKEVa7u+;
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1724905839;
+	s=20121; t=1724912852;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=dihk3etWk++rvq6e35hR7jF9/0aw2VkPe9Rvva2gqnA=;
-	b=lUwmIBtE3z+fiwta8bB64b+2+GmD6tLyCR7LT2ESnkaQlynAtT90XWsXmdwH+rLhCT85Oh
-	eS/y0zRmgdTILgfWEBKyqmAM9xc5lPEz/mmSP1GTqvgkvKg9ybR9cjehRpK9tL1H6YBpD+
-	225ZlBnPxq5KcMeNC66uEQ82bNbRZyE=
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
-  t=1724905838; x=1756441838;
-  h=dkim-signature:x-google-dkim-signature:
-   x-forwarded-encrypted:x-gm-message-state:
-   x-google-smtp-source:mime-version:references:in-reply-to:
-   from:date:message-id:subject:to:cc:content-type:
-   content-transfer-encoding:x-cse-connectionguid:
-   x-cse-msgguid;
-  bh=Hm8X6G7US76DjH1BlXkmp5j9VJxJk6hQZ6v/aVdZfiA=;
-  b=jEl25g7NL1N5bE1UWecJPC9ZKLROI8w7nCr63xd8v0nVzERswM+NgWeY
-   TeTGOKdhui89A3ItzK6Xo8Tt8Fh7GoVsa2P5yxlfEv9F4PJd9Z38rKAFK
-   I1Zc7ttv00E8r4gdS3SZRf0vO6ecWFLJc9yYL54i4V7b2tmSeDoNc7qcX
-   +vSrrqcbqRa7kWTPj0GrIpE4T10s9A/me3a6XIKcrd/fB1CQ9aQsQo7ra
-   3arGkSfb1PPqlYL3sgQacjiV2jXO7yE3jhJbD92e0W5eokuxE0apFIjx5
-   2h1DTEbzaBv7ze3mqrEkHIeSQBSctfP7rfTxlxGLJ7TbjzaqV9DdCLh+N
-   Q==;
-X-CSE-ConnectionGUID: cAtByA6yQGunoNDeu+VGEg==
-X-CSE-MsgGUID: p8LIOGYITP2zZIqrDp7LeA==
-Received: from mail-il1-f200.google.com ([209.85.166.200])
-  by smtp-lax3-1.ucr.edu with ESMTP/TLS/TLS_AES_256_GCM_SHA384;
- 28 Aug 2024 21:30:35 -0700
-Received: by mail-il1-f200.google.com with SMTP id
- e9e14a558f8ab-39d5101012eso2079155ab.0
-        for <b.a.t.m.a.n@lists.open-mesh.org>;
- Wed, 28 Aug 2024 21:30:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ucr.edu; s=rmail; t=1724905834; x=1725510634;
- darn=lists.open-mesh.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dihk3etWk++rvq6e35hR7jF9/0aw2VkPe9Rvva2gqnA=;
-        b=JXou+DdwZurxPRKSDG8O/qvIot2jNthBFhjftHbtwkFMYNucTKTy0BtSeDrS6AWT9I
-         8Qx4CeYBgzIu8zevw2+dAjm5Pek/rJxbxfKpVIyYsSrevIdtMvF0A6qy84JLs+wtcyY/
-         DX5dvlxzEqweqEzpzySuOkkQdxzvUKmGig84A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724905834; x=1725510634;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dihk3etWk++rvq6e35hR7jF9/0aw2VkPe9Rvva2gqnA=;
-        b=HXVJMDEx73wemS4Z3NCjxf9+WYcpWHqMJ2eVCtiNPanzC0fy/l74SRnQWNyBM2csFS
-         7O5xlJiAQLgkRBAqEFKF1ymz63vqHniXq20WoHeVQZpAR6aobTeHfNpfOTIrOcF61ocD
-         wxv1AVPaoSVJGh6nz1RG9yDmCaYLJEFnNIK8cKE8m8yC5FVRIPR21YHlp1IP+99XDhNH
-         abk0x+zpl0Xyvbn2N2m8irGIal8TflW8YIkS+MvOZuZvZ7Z8z6exoJ7htkARC7vzT7iy
-         z4aAZuJyJUyI/pie4GUk+NHs+6b8MC5PFXMVVIS27p4yLSuhSq1Moet+S3T+t4T7Vt8n
-         bKmA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWdsp2LF366odHaT+E+XgDyt/iWc+viwx/8nT2yrh2r3rPHVNH6OQpWNx4uJQ5uCOMM404VPGFVNGkoaQ==@lists.open-mesh.org
-X-Gm-Message-State: AOJu0YziDFWg+kZh1fNIRLJulkK5CZK78s8RsEk9EeKJY4MHwc4POY0P
-	UhfLMw1VoMFRQJBP+uSrCqrQVvIsI4kFXWjGWIECDrn7PbZRyOzPOQKd7FIF3njE+jZ6B9WmkuF
-	wedX3xOLlLFdxzn2qJ4JaU3hez1y5T7gk9zovX/wjyxcbvjdgHQQMkPGjRgeOuDiFD/vY0EhULQ
-	EJFUyDgeAPMKoQkcjYJMlj+d2LfMCr7iPsRaoPnnTWYQ==
-X-Received: by 2002:a05:6e02:1607:b0:374:a781:64b9 with SMTP id
- e9e14a558f8ab-39f3780c6f7mr24796695ab.13.1724905834305;
-        Wed, 28 Aug 2024 21:30:34 -0700 (PDT)
-X-Google-Smtp-Source: 
- AGHT+IGQ8G4yBQZl8uMVmbjN2GKvaVb134BrRd4Eeb8qtEDfsvzBlguVr1+MIJ/adcXERyfRH9HRB6shu5q79ziNrk0=
-X-Received: by 2002:a05:6e02:1607:b0:374:a781:64b9 with SMTP id
- e9e14a558f8ab-39f3780c6f7mr24796515ab.13.1724905833918; Wed, 28 Aug 2024
- 21:30:33 -0700 (PDT)
-MIME-Version: 1.0
+	bh=D77BSHaUFViLdDM7kfQVR6bNScj//7o43h1CahEFyCk=;
+	b=mHgrvNZFvLiukeuNaMJ8ZDaE/yD8JcnPiYe8Q+qtATr6SHb9avSDGk77iXFd3ZDFWSt4WC
+	8pjLgN1R4q6BXjgK1+mabj51ZF/Vsk9NeiyQD1Btlh6kPSa/1AGkdcYu90/rsX7xtKgFOp
+	GQQ/vN4qsqnQHXzYWeWTyePbxm2MWt4=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1724912850;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=D77BSHaUFViLdDM7kfQVR6bNScj//7o43h1CahEFyCk=;
+	b=yKEVa7u+YKRRiHQAM6lxvripiGVk3vjqz7lKBIVeKZNBe5iv6XAn73xLXiyE6+IMuf0S9F
+	xEF+e9RPJQ6BPqy8eucpuPqKP4GS4j+eFDFsB1kENlay/dsePZfFulgtkYuv+shEqW3u4S
+	rVZ1r/tbEATLDm41Ajlx3cKtoxak0Ao=
+From: Sven Eckelmann <sven@narfation.org>
+To: Xingyu Li <xli399@ucr.edu>
+Cc: mareklindner@neomailbox.ch, sw@simonwunderlich.de, a@unstable.cc,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org, Yu Hao <yhao016@ucr.edu>
+Subject: Re: BUG: general protection fault in batadv_bla_del_backbone_claims
+Date: Thu, 29 Aug 2024 08:27:20 +0200
+Message-ID: <2212852.CQOukoFCf9@sven-l14>
+In-Reply-To: 
+ <CALAgD-7AOA0At+y0BR2MZ0WXPFM03tQneRbeGZQqiKy6=1T0rw@mail.gmail.com>
 References: 
  <CALAgD-7C3t=vRTvpnVvsZ_1YhgiiynDaX_ud0O6pxSBn3suADQ@mail.gmail.com>
  <13617673.uLZWGnKmhe@bentobox>
-In-Reply-To: <13617673.uLZWGnKmhe@bentobox>
-From: Xingyu Li <xli399@ucr.edu>
-Date: Wed, 28 Aug 2024 21:30:23 -0700
-Message-ID: 
  <CALAgD-7AOA0At+y0BR2MZ0WXPFM03tQneRbeGZQqiKy6=1T0rw@mail.gmail.com>
-Subject: Re: BUG: general protection fault in batadv_bla_del_backbone_claims
-To: Sven Eckelmann <sven@narfation.org>
-Cc: mareklindner@neomailbox.ch, sw@simonwunderlich.de, a@unstable.cc,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	b.a.t.m.a.n@lists.open-mesh.org, Yu Hao <yhao016@ucr.edu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-MailFrom: xli399@ucr.edu
-X-Mailman-Rule-Hits: nonmember-moderation
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart23944202.6Emhk5qWAg";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: OYC4GQPX76QCV53ARH2DAMXHGAR24QTF
+X-Message-ID-Hash: OYC4GQPX76QCV53ARH2DAMXHGAR24QTF
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-2
-Message-ID-Hash: 34GHSK6OXOIY3RXJFHNNYYNQVH7MSMA6
-X-Message-ID-Hash: 34GHSK6OXOIY3RXJFHNNYYNQVH7MSMA6
-X-Mailman-Approved-At: Thu, 29 Aug 2024 08:14:41 +0200
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-2; nonmember-moderation;
+ administrivia; implicit-dest; max-recipients; max-size; news-moderation;
+ no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/34GHSK6OXOIY3RXJFHNNYYNQVH7MSMA6/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OYC4GQPX76QCV53ARH2DAMXHGAR24QTF/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -157,55 +105,60 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Which line would that be in your build?
+--nextPart23944202.6Emhk5qWAg
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Xingyu Li <xli399@ucr.edu>
+Date: Thu, 29 Aug 2024 08:27:20 +0200
+Message-ID: <2212852.CQOukoFCf9@sven-l14>
+MIME-Version: 1.0
 
-Somehow, the bug report does not include the line number in my end.
+On Thursday, 29 August 2024 06:30:23 CEST Xingyu Li wrote:
+> > Which line would that be in your build?
+> 
+> Somehow, the bug report does not include the line number in my end.
 
-At the moment, I am unable to reproduce this crash with the provided
-reproducer.
+You can try to use gdb or similar tools to figure out more about it [1]. Maybe 
+even adjust your kernel build to create better debuggable crashes
 
-Can you reproduce it with it?
-
-Sorry. The above syzkaller reproducer needs the additional support  to run =
-it.
-But here is a C reproducer:
-https://gist.github.com/freexxxyyy/0be5002c45d7f060cb599dd7595cab78
-
-On Sun, Aug 25, 2024 at 9:24=E2=80=AFAM Sven Eckelmann <sven@narfation.org>=
- wrote:
->
-> On Sunday, 25 August 2024 06:14:48 CEST Xingyu Li wrote:
-> > In line 307 of net/batman-adv/bridge_loop_avoidance, when executing
-> > "hash =3D backbone_gw->bat_priv->bla.claim_hash;", it does not check if
-> > "backbone_gw->bat_priv=3D=3DNULL".
->
-> Because it cannot be NULL unless something really, really, really bad
-> happened. bat_priv will only be set when the gateway gets created using
-> batadv_bla_get_backbone_gw(). It never gets unset during the lifetime on =
-the
-> backbone gateway.
->
-> Maybe Simon has more to say about that.
->
-> On Sunday, 25 August 2024 06:14:48 CEST Xingyu Li wrote:
-> > RIP: 0010:batadv_bla_del_backbone_claims+0x4e/0x360
->
-> Which line would that be in your build?
->
-> On Sunday, 25 August 2024 06:14:48 CEST Xingyu Li wrote:
-> > Syzkaller reproducer:
->
+> 
 > At the moment, I am unable to reproduce this crash with the provided
 > reproducer.
->
-> Can you reproduce it with it? If you can, did you try to perform a bisect
-> using the reproducer?
->
-> Kind regards,
->         Sven
+
+Since I am missing information and you don't have a working reproducer - how 
+should I then fix anything? Your comment from the first doesn't seem to apply 
+and it is unclear how you came to the conclusion in the first place.
+
+> > Can you reproduce it with it?
+> 
+> Sorry. The above syzkaller reproducer needs the additional support  to run it.
+> But here is a C reproducer:
+> https://gist.github.com/freexxxyyy/0be5002c45d7f060cb599dd7595cab78
+
+I've tried to run it with the normal syz-execprog - but you seem to say now 
+that this reproducer is not working the upstream one? In this case, please try 
+to get it working with upstream. See also the mail from Kees Cook [2].
+
+Kind regards,
+	Sven
+
+[1] https://www.open-mesh.org/projects/devtools/wiki/Crashlog_with_pstore#Decoding-the-stack-trace
+[2] https://lore.kernel.org/r/202408281812.3F765DF@keescook
+--nextPart23944202.6Emhk5qWAg
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCZtAUyQAKCRBND3cr0xT1
+yxDRAP0Xgpu7aT8LpohRYfvgXf8o+GrJZqVeEyS+5DchULBSkAD/UrteyweAjX2D
+BFSV2WqmyRJuWVxsbsxYCo2hixPZhgM=
+=D8Cf
+-----END PGP SIGNATURE-----
+
+--nextPart23944202.6Emhk5qWAg--
 
 
 
---=20
-Yours sincerely,
-Xingyu
