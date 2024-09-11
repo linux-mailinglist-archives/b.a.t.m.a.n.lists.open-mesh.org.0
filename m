@@ -2,115 +2,72 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98849974367
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 10 Sep 2024 21:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D66D8974981
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 11 Sep 2024 07:13:27 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6F27E83D16
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 10 Sep 2024 21:22:53 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 853FC83E79
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 11 Sep 2024 07:13:27 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1725996173;
- b=YEMfz7E1WJNEo8XNbTcUM47P514jdy9iaPzCwwfPPBSDo9zYYoqu3r/wsSyKT1wG+xxQH
- CN1JYe5Cw0tm4ZvtKrtYi6wukbD2TT3jHT0A1BDf7otTvz5a6SNOg/8Q0gjwJX2ToatAqZ+
- fYOWfcJsqMH+aw9H8FO0lz0U9gGvrlQ=
+ t=1726031607;
+ b=2g3VI46D2NHFTcpe/OjTaVhokzYM0L9i9RPxCh7WfF1/Z1kkd0nL2Et7E/oU4/8tnatzt
+ oSaQ5nCbKsKHD4ExluRN5H59Bo2jh3C6H15y1wY3oce6drDxwpIJYniJzGn9sqvLi6jK87b
+ Niu6DsRmGKujQ4LjonF5NOsvnXvsnCI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1725996173; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1726031607; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=L8rIewIgOga3cKLrhKh/y9Jw45YJxfbi5b3zRRBtmlA=;
- b=vD+2N5lojHDjPDYz+LxYOP4XHp30kQJM0yzezWG33iTzyRMmWOSowf6Pzo3uiiP4GkKhL
- 4cHxZUK9rCTwbtkmrIgj77fiCJZ9YOU+sfazg5simmAJiSQo0D4puF+6YflR4BvPtxisF5v
- sPKPY63lPTU9d6ZeW4IZHeWk8rsvitM=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=gmail.com;
+ list-archive; bh=fimipZI0jefS9bNbqfJhcHYuAAHfcU+r+U5l31Y13zY=;
+ b=M21zaIXxG/MJrVYkT5GX3yjNxXFmN9H9z0ylU6/MyHW9lqg6nGjMNzg2zrBi5cUFZtHwQ
+ stgNmt9RdMuvsFAMYzfS6ZOqLiOd6xCmBzVkPE7seQ46n7EtHArHlJ2AmXtYJ2PRHJqsqRW
+ shdQs5pY9ELnG+qbliUz9IpgKyY6gbA=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=pass header.d=gmail.com; arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com
- [IPv6:2607:f8b0:4864:20::1134])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0081A824B1
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 10 Sep 2024 21:22:30 +0200 (CEST)
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5ED0F82744
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 11 Sep 2024 07:13:10 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1725996151;
+	s=20121; t=1726031590;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=L8rIewIgOga3cKLrhKh/y9Jw45YJxfbi5b3zRRBtmlA=;
-	b=JGaxDsAQxcp8TXRbD6BAf9OFnT1jaP9z26QDbq/6vIR08uAC0rKbRE5aWneXp87icVm3ii
-	iG0HQSJjoHBEJXdYjI7Phs442Dh8/XHkzipsKdlnPk6fhB8wxmeMIfCQp/ptin1KO4gDuw
-	jEuxzvX8hBO4XtvWv/cpHhQKAHw7m5U=
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fimipZI0jefS9bNbqfJhcHYuAAHfcU+r+U5l31Y13zY=;
+	b=npe8aaNb6NHBs2/pozoc3SnlpGe8m1PpkaITm2kdRjuUIk/0Xv9Nllf2OA3R3C2pCtOu4e
+	Z5HluwF8Llo4HMdGXQSwywipmLaxOEP5neunTb1C5213UJw1O60nZH9zK0PU1/YXyhdA39
+	jwff6GS/30VcOhnbnt4z0Mell3NLhcA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20230601 header.b=bqu0hm49;
-	spf=pass (diktynna.open-mesh.org: domain of noahbpeterson1997@gmail.com
- designates 2607:f8b0:4864:20::1134 as permitted sender)
- smtp.mailfrom=noahbpeterson1997@gmail.com;
-	dmarc=pass (policy=none) header.from=gmail.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1725996151; a=rsa-sha256;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
+ designates 2a01:4f8:c2c:665b::1 as permitted sender)
+ smtp.mailfrom=linus.luessing@c0d3.blue;
+	dmarc=none
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1726031590; a=rsa-sha256;
 	cv=none;
-	b=279BRveKmd29rr6Ro5BqIi4jqOxMXR+x4QkjKy8VwiM7odA0QmvEFxl2ep2xAWt9xvqcu6
-	7wmRqEnFB8zT9j9BWE0mjm5NkkmrWTIKpw0xtDKRHOHEOn4P4laWqGnuAD3rxS4qlEQkej
-	cybhT1Aq/t1gDxxKTr3BTop3qJ50EXc=
-Received: by mail-yw1-x1134.google.com with SMTP id
- 00721157ae682-6d9f65f9e3eso56500707b3.3
-        for <b.a.t.m.a.n@lists.open-mesh.org>;
- Tue, 10 Sep 2024 12:22:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725996149; x=1726600949;
- darn=lists.open-mesh.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L8rIewIgOga3cKLrhKh/y9Jw45YJxfbi5b3zRRBtmlA=;
-        b=bqu0hm49c43rDOW3fYfFD4w1TWBQ7BFdqQAnvuKEJZ87/Cr3OtZbOL18EVWyd+cK62
-         nEUWIDwbpuMMeM0xu7IKPR9kCSWdEfBqu6vUDnuH6MybFRRGBg6AGBKo8GNSwJqtao/Y
-         jaCKTJtx5uc0E0cCBRbwrT9LUuI4HOJeurYjULCe19pqPJr5+04aFg7EXRJ+mrOJAI53
-         guqtKtaaB9PmXqme5La/dK0YplGlAXvFjGDVH4JPuDLQOv6v6vOwqr0jvjZNTgSRwD+n
-         /UcWJeyyXjDXgJc91s329RqgvurbqhFTi8HrPNck/+TOY6s2fWUKz5UfTkwPJdL4thxf
-         cR0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725996149; x=1726600949;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L8rIewIgOga3cKLrhKh/y9Jw45YJxfbi5b3zRRBtmlA=;
-        b=WAn2ynsv9o57c8ZrxUJuyblFzqwnoSAd1US6Hf2j8ezPl2MxgZEyhrcZYWhRx2k0Pm
-         Kq4LrtOGihuEFj5p21pHkHudn2ZtYDg6WZ6mGIkuy0ri2ja1t8zdSfd6ZaJTHHCXnqk3
-         UD3yCJuiIHfSW0KXaAaBEfa9SpQSarRcnByaDLReMshG4nUE7K8wlPzknRYFDOkNEPMN
-         wnSLDk0SIyuD0zcQmrZT7XgSo1h+YBJlRXWjuWC+ywpNeIAUwRLZUYDhn8+1DM7Y4doh
-         CBvG1eY4zZ/xBkRO46DzexpPxoQKgu0FuR1OJaDze0kSZxoIT/DnyPGkTdKHPWzcg7bx
-         kCeQ==
-X-Gm-Message-State: AOJu0YxiG9zlidutguuAl9YCnK0ZKNttQRvl/uqEpv4JM0DUu6bDbVO/
-	04rKJL6/vXpeOCETBR8jgmLKjL5mYjmeYpfEgJrOuNt3WqUngZc/50WTfUXR0e/W1g==
-X-Google-Smtp-Source: 
- AGHT+IHcqMS0IMYXXJ2gKykrFLD+UEU/geNL6ge023iBzEToIOE0JufwXDXv4Z6T83ZArMlHdWau3g==
-X-Received: by 2002:a05:690c:dcb:b0:643:92a8:ba00 with SMTP id
- 00721157ae682-6db44a61301mr185978827b3.0.1725996149407;
-        Tue, 10 Sep 2024 12:22:29 -0700 (PDT)
-Received: from localhost.localdomain
- ([2800:860:71ac:81ad:39dd:aadf:88a2:f660])
-        by smtp.gmail.com with ESMTPSA id
- 00721157ae682-6db965232f2sm4076837b3.132.2024.09.10.12.22.28
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Tue, 10 Sep 2024 12:22:29 -0700 (PDT)
-From: Noah Peterson <noahbpeterson1997@gmail.com>
-X-Google-Original-From: Noah Peterson
+	b=Dw/NomW/MZ8ESZfpfkLSRIYDUNbaTVMIJE8YHXv9XyjBP1Lfpf6AAy0gmZk6UR2L9ji9NI
+	GzHjCgA12DpND9Fh/BsF0e/JvRHMqFt+H/TJ0sm2Bi1M1J6YhvXyS+v4T2nJJPoA2b1s2K
+	QiI4zVxoKOxmqCjCgUSkdnJWm3DWpWs=
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id CBDF03EEC9
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 11 Sep 2024 07:13:08 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Noah Peterson <NoahBPeterson1997@gmail.com>,
-	Noah Peterson <noahbpeterson1997@gmail.com>
-Subject: [PATCH v3] batctl: Dynamically select header format in
- netlink_print_neighbors
-Date: Tue, 10 Sep 2024 13:22:02 -0600
-Message-Id: <20240910192201.14442-1-NoahBPeterson1997@gmail.com>
-X-Mailer: git-send-email 2.39.3 (Apple Git-146)
+Subject: [PATCH v5 0/2] batman-adv: increase DAT DHT timeout
+Date: Wed, 11 Sep 2024 06:57:21 +0200
+Message-ID: <20240911051259.23384-1-linus.luessing@c0d3.blue>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 24GCNRGBNJV4T6RLPDVS3NOHFRCXKJYM
-X-Message-ID-Hash: 24GCNRGBNJV4T6RLPDVS3NOHFRCXKJYM
-X-MailFrom: noahbpeterson1997@gmail.com
+X-Last-TLS-Session-Version: TLSv1.3
+Message-ID-Hash: TYJ4DNESEAZ63QKFXXTE6Q7T4EFVDKBL
+X-Message-ID-Hash: TYJ4DNESEAZ63QKFXXTE6Q7T4EFVDKBL
+X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -123,7 +80,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/24GCNRGBNJV4T6RLPDVS3NOHFRCXKJYM/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TYJ4DNESEAZ63QKFXXTE6Q7T4EFVDKBL/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -132,73 +89,69 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Noah Peterson <NoahBPeterson1997@gmail.com>
+Hi,
 
-The netlink_print_neighbors() function previously used a static header
-format, which did not account for variations between the neighbor list
-output from different BATMAN routing algorithms (BATMAN_IV vs. BATMAN_V).
+This is the fifth itereation to increase the DAT DHT timeout to reduce the
+amount of broadcasted ARP Replies.
 
-This change ensures that the table header output in `batctl n` is accurate
-for both BATMAN routing algorithms.
+To increase the timeout only for DAT DHT entries added via DHT-PUT but
+not for any other entry in the DAT cache the DAT cache and DAT DHT
+concepts are first split into two separate hash tables (PATCH 1/2).
 
-Signed-off-by: Noah Peterson <noahbpeterson1997@gmail.com>
+PATCH 2/2 then increases the timeout for DAT DHT entries from 5 to
+30 minutes.
+
+
+The motivation for this patchset is based on the observations made here:
+https://www.open-mesh.org/projects/batman-adv/wiki/DAT_DHCP_Snooping
+
+
+In tests this year at Freifunk Lübeck with ~180 mesh nodes and Gluon
+this reduced the ARP broadcast overhead, measured over 7 days, as follows:
+
+- Total:           6677.66 bits/s -> 677.26 bits/s => -89.86%
+                   11.92 pkts/s   -> 1.21 pkts/s   => -89.85%
+
+  - from gateways: 5618.02 bits/s -> 212.28        => -96.22%
+                   10.03 pkts/s   -> 0.38 pkts/s   => -96.21%
+
+Also see graphics and a few more test details here:
+- https://www.open-mesh.org/projects/batman-adv/wiki/DAT_DHCP_Snooping#Result-2
+
+These patches have been applied in this mesh network without issues
+for 3 months now.
+
+Regards,
+Linus
+
 ---
 
-v3: Correcting commit message and newlines, noted by Sven
-<sven@narfation.org>
-v2: Changing output based on BATMAN routing algorithm, noted by Sven
-<sven@narfation.org>
+Changelog v5:
+- rebased to current main branch
+  -> removed now obsolete debugfs code
 
-This patch introduces a dynamic header selection mechanism that adjusts
-the output format based on the active routing algorithm:
-- For BATMAN_IV, the header is set to "IF             Neighbor              last-seen".
-- For BATMAN_V, it changes to "         Neighbor   last-seen      speed           IF".
----
- neighbors.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+Changelog v4:
+- rebased to: acfc9a214d01695
+  ("batman-adv: genetlink: make policy common to family")
 
-diff --git a/neighbors.c b/neighbors.c
-index 3102b0e..f34952b 100644
---- a/neighbors.c
-+++ b/neighbors.c
-@@ -6,6 +6,7 @@
-  * License-Filename: LICENSES/preferred/GPL-2.0
-  */
+Changelog v3:
 
-+#include <errno.h>
- #include <net/if.h>
- #include <netinet/if_ether.h>
- #include <netlink/netlink.h>
-@@ -119,9 +120,28 @@ static int netlink_print_neighbors(struct state *state, char *orig_iface,
- 				   int read_opts, float orig_timeout,
- 				   float watch_interval)
- {
-+	char *header = NULL;
-+	char *info_header;
-+
-+	/* only parse routing algorithm name */
-+	last_err = -EINVAL;
-+	info_header = netlink_get_info(state, BATADV_CMD_GET_ORIGINATORS, NULL);
-+	free(info_header);
-+
-+	if (strlen(algo_name_buf) == 0)
-+		return last_err;
-+
-+	if (!strcmp("BATMAN_IV", algo_name_buf))
-+		header = "IF             Neighbor              last-seen\n";
-+	if (!strcmp("BATMAN_V", algo_name_buf))
-+		header = "         Neighbor   last-seen      speed           IF\n";
-+
-+	if (!header)
-+		return -EINVAL;
-+
- 	return netlink_print_common(state, orig_iface, read_opts,
- 				    orig_timeout, watch_interval,
--				    "IF             Neighbor              last-seen\n",
-+				    header,
- 				    BATADV_CMD_GET_NEIGHBORS,
- 				    neighbors_callback);
- }
---
-2.39.3 (Apple Git-146)
+formerly:
+ "batman-adv: Increase purge timeout on DAT DHT candidates"
+ https://patchwork.open-mesh.org/patch/17728/
+- fixed the potential jiffies overflow and jiffies initialization
+  issues by replacing the last_dht_update timeout variable with
+  a split of DAT cache and DAT DHT into two separate hash tables
+  -> instead of maintaining two timeouts in one DAT entry two DAT
+     entries are created and maintained in their respective DAT
+     cache and DAT DHT hash tables
+
+Changelog v2:
+
+formerly:
+ "batman-adv: Increase DHCP snooped DAT entry purge timeout in DHT"
+ (https://patchwork.open-mesh.org/patch/17364/)
+- removed the extended timeouts flag in the DHT-PUT messages introduced
+  in v1 again
+- removed DHCP dependency
 
