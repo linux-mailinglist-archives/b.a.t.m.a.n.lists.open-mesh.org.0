@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C7199EE39
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 15 Oct 2024 15:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5131F9A013E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 16 Oct 2024 08:18:52 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 1F8BF83B38
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 15 Oct 2024 15:54:50 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1B8E38184E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 16 Oct 2024 08:18:52 +0200 (CEST)
 ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1729000490;
- b=gn4PueZOvhx6lWOR/SLzsnUyNA3G26uODqxJS9bQqlmsdbxr30nkRTm+uzfLyylyj4pQ7
- DNCqA9TfW7tYLGDnlJSE1FH1aVMQkY5WooSsSo4rJBmqbVN5/wmVJlLpKdQgBhjferRU69s
- 6Hi3/XAZKcmwbICZzKcKy7r/AjqDcIM=
+ t=1729059532;
+ b=IPUd8AMebqH+aUFbQ5+VvEpHRTyyswNanlcwW5GMaTC+BwqoBTksVlw20Pod+ZYBYyZQI
+ 1jvveSM+eblzd5N7dGqmKhqedd6vk7FMZbvVjXGX7z9IEPZRXhcKHRppM3eKzVhDX4FN6YN
+ SeO9sAueMZy1ay2Tw3lLI5qJu1b53eM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1729000490; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1729059532; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=y+sDwZCNM90KYt/soAlpYgBe1DdAWGrVEXxeOWfj4Jg=;
- b=u4tpGvbciS0ocTd5OV7s/AJ+p5AyyCi4h+T5tpASd4HPS7Ff3j0DsALqbxsUpTTp7tvti
- njyLlar1Dvtmvf+LpKb2RqDTIIPdagpJZlH4atNfgf9YKZg4Fogspf374LbfUH+pPTSczbu
- v82kEbHSB9s5gkAFqirj+mRnyNI9eeQ=
+ list-archive; bh=lzLnLhOjiR2+pVyiXhCYA+BsRyQe1BqT/kIohvcxU10=;
+ b=gmgbbnoS8VZeDEfDsofCk9WYALSAJjci3quraP11m1c/Ws1uF37KKbsJvqlPcYu05v3dV
+ xuKcqWZy972NkJVzUmuZ6lgomMBfD6us88fyCCKGjcI7OIU1PLb5J5LWzDH3qmOF7CSR8B3
+ XYXg1r55/w+F+tIeu7y2wNOSB403FnU=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=kernel.org;
   arc=fail (ARC-Seal[1] did not validate);
   dmarc=pass (Used From Domain Record) header.from=kernel.org
@@ -31,51 +31,51 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
  arc=fail (ARC-Seal[1] did not validate);
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id A41BD81D80
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 15 Oct 2024 15:40:28 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1728999629; a=rsa-sha256;
+Received: from nyc.source.kernel.org (nyc.source.kernel.org
+ [IPv6:2604:1380:45d1:ec00::3])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 766E28150F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 15 Oct 2024 20:00:37 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1729015237; a=rsa-sha256;
 	cv=none;
-	b=10mJlwrs8IgTGdhLHBWW5CJZfrydNpk0fCyYhj9FmmG90ZzSuRNlFRs7ezSs/9axGBSX+/
-	lx10onIZ8LtWzhG/JQ0y6kWS/9yEk6fp7nkghfEn0OJzV71UrrSHi/GvoteYwq6bDz6cQK
-	YjrV5n6z6/jh1D/9MhfOTsd98cwKiHk=
+	b=N31sWxmbUUJveowJ0zb4zzyes33dzcWERc3d6bI7sTHv3z80pB2MIFVyATAeNlRBIVsYFe
+	5j2qfvVsF8rCKmOe+WvwWD6LqmgOExxWK8oMCDOOd1ocyvLCfDOJs/Y1/xqF/gtKUCzmv4
+	uqW/NB765LnBGSRFr09KY/qm1OIMyCA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=uX00nqRb;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=KuGT0VK8;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	spf=pass (diktynna.open-mesh.org: domain of
- patchwork-bot+netdevbpf@kernel.org designates 2604:1380:4641:c500::1 as
+ patchwork-bot+netdevbpf@kernel.org designates 2604:1380:45d1:ec00::3 as
  permitted sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1728999629;
+	s=20121; t=1729015237;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=y+sDwZCNM90KYt/soAlpYgBe1DdAWGrVEXxeOWfj4Jg=;
-	b=yMe57jpnIDN688A5aB6L6IicUh3jFy6AV//n5SKzRfeHKEDHWQMhcq/jm0ZfoGvVmQ+cgL
-	beScBn9OdEoS2lrAwzC5legpkeOBQwVX9P3KSjf+YuwCCQUmXLfUO6Vz/j7VePjcfa6hE1
-	/LQeSREvzVf9QErD86Q/6CGBWJbA30w=
+	bh=lzLnLhOjiR2+pVyiXhCYA+BsRyQe1BqT/kIohvcxU10=;
+	b=A9/ZsBxwKxUp+V9gjpOBV20zy5wnKAkP4ESycqyrWlIDgoKYoysvhpsVy0+lLrLOZcCq/Y
+	mLVIDqB6p81zVoxzFOvF14geDM26uZoGsQVGYqdP7O5lkS+rGoMo54jZ44mZooeEcf2N2v
+	cAckfmf+lr/Q8OxDJp1ZfFxQmnQcqpM=
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id E51EB5C58C6;
-	Tue, 15 Oct 2024 13:40:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1D07C4CEC6;
-	Tue, 15 Oct 2024 13:40:26 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 374E6A4215E;
+	Tue, 15 Oct 2024 18:00:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE2EC4CEC7;
+	Tue, 15 Oct 2024 18:00:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728999626;
-	bh=+eg5Ogets9SiLlYwP2uE1cyuHarfu0eMJpCc1LNOyZk=;
+	s=k20201202; t=1729015235;
+	bh=Sa6sgGhK0f0PdlrPB+pJBNsb8BQKXN13Ox+Haom2HEI=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=uX00nqRbj0TEG1Tz8shbGOT2WxuN/MzsJ0/O8D6fMk7nTY7nynwkrPoV5Izq1912G
-	 MCNxilzGTiCcfUAS5pjSXwW6q3cRG/BW6D6YbtnmlO0q+fhZtWAV8iW5Tl912r9gZP
-	 jE929Z//XzSjfIYVBdbbV+yN6bRsMcoaXu9P5SmP/HpGUsX8oWRvpS3y/CHIagsxmZ
-	 wSs02+S5+DmmcEkoZwbxu00ArbFRTvF91bDqH9pPk66sN6FjSlgd1oE0CGyqAvnLq/
-	 xoAmzPiMCVa7yA7fqt68pGzpMEomnxnAVW+/H1RaLmsld8vRk3GlFiM5j84R4We9bm
-	 NTYamxloL6Fqw==
+	b=KuGT0VK8S5iZkpWwdj4icg6/wNAAUrBPevfh4SZqoijO/LK0M//4+TxvzWdvkTnPh
+	 ej10iYjREMrmMJ2Gu5Npr2RUIAnkdhPsv3wpjIS9oD4lasA8tAu3GCw1fTFYauLrpu
+	 3RuHOcS958KJIGxUYsp0ERB1QMGW0dSsPNdQ80PsrTJLr49xkilO6b+UUnJ05d1/wn
+	 JClelGibXCeLsadFDN2D9J1PR77WpKnQ3JH6qPkguuPszYj5ShJSHAIV1To4/BfUf4
+	 6EO69W5HKU6Kiqfv8lDFOsDsbIiS0OIBybyVPrn0xkepuW1lWPDAUwAp49hj4XETun
+	 TYtKkZ3F14U8g==
 Received: from [10.30.226.235] (localhost [IPv6:::1])
 	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id
- 33B943809A8A;
-	Tue, 15 Oct 2024 13:40:33 +0000 (UTC)
+ 33D453809A8A;
+	Tue, 15 Oct 2024 18:00:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -83,8 +83,8 @@ Subject: Re: [PATCH 00/17] replace call_rcu by kfree_rcu for simple
  kmem_cache_free callback
 From: patchwork-bot+netdevbpf@kernel.org
 Message-Id: 
- <172899963173.1165800.13282848624565322990.git-patchwork-notify@kernel.org>
-Date: Tue, 15 Oct 2024 13:40:31 +0000
+ <172901524099.1243233.14809044192149107515.git-patchwork-notify@kernel.org>
+Date: Tue, 15 Oct 2024 18:00:40 +0000
 References: <20241013201704.49576-1-Julia.Lawall@inria.fr>
 In-Reply-To: <20241013201704.49576-1-Julia.Lawall@inria.fr>
 To: Julia Lawall <julia.lawall@inria.fr>
@@ -104,15 +104,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2
-Message-ID-Hash: ZNO75KNFQVWX7LVYMIX4JOYWDTLRG5GT
-X-Message-ID-Hash: ZNO75KNFQVWX7LVYMIX4JOYWDTLRG5GT
-X-Mailman-Approved-At: Tue, 15 Oct 2024 15:53:57 +0200
+Message-ID-Hash: P2NJHPYNJDXEPXZ5VCRSXWDZAFHM3NPP
+X-Message-ID-Hash: P2NJHPYNJDXEPXZ5VCRSXWDZAFHM3NPP
+X-Mailman-Approved-At: Wed, 16 Oct 2024 08:18:45 +0200
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/22LLNIUUVI2MLR3RMVXMTM74ENWKOHPS/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/X22DIWUZNKGFU45TDGCHFEX2PVDSBRD6/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -124,7 +124,7 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 Hello:
 
 This series was applied to netdev/net-next.git (main)
-by Simon Wunderlich <sw@simonwunderlich.de>:
+by Jakub Kicinski <kuba@kernel.org>:
 
 On Sun, 13 Oct 2024 22:16:47 +0200 you wrote:
 > Since SLOB was removed and since
@@ -142,21 +142,21 @@ Here is the summary with links:
   - [01/17] wireguard: allowedips: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
     (no matching commit)
   - [02/17] ipv4: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
-    (no matching commit)
+    https://git.kernel.org/netdev/net-next/c/497e17d80759
   - [03/17] inetpeer: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
-    (no matching commit)
+    https://git.kernel.org/netdev/net-next/c/bb5810d4236b
   - [04/17] ipv6: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
-    (no matching commit)
+    https://git.kernel.org/netdev/net-next/c/85e48bcf294c
   - [05/17] xfrm6_tunnel: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
     (no matching commit)
   - [06/17] batman-adv: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
-    https://git.kernel.org/netdev/net-next/c/356c81b6c494
-  - [08/17] net: bridge: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
     (no matching commit)
+  - [08/17] net: bridge: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
+    https://git.kernel.org/netdev/net-next/c/4ac64e570c33
   - [10/17] can: gw: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
     (no matching commit)
   - [14/17] kcm: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
-    (no matching commit)
+    https://git.kernel.org/netdev/net-next/c/7bb3ecbc2b6b
   - [15/17] netfilter: nf_conncount: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
     (no matching commit)
   - [16/17] netfilter: expect: replace call_rcu by kfree_rcu for simple kmem_cache_free callback
