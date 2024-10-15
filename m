@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1892999DF6E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 15 Oct 2024 09:42:03 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D300B99DF6F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 15 Oct 2024 09:43:02 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E42CD841C2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 15 Oct 2024 09:42:02 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A3D8783AE7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 15 Oct 2024 09:43:02 +0200 (CEST)
 ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1728978122;
- b=Cg/DQIr6wRCAQ3Qt3T+C7xT0wTDOdfk1HyYy4E9+ieCqIs1fgDDCN/7dhiI4o8T181G9t
- 5jtvad1C9Or9S98v1QcXDDuT52OjxrayD88UMLA4StGEYIozi/+l6JXL6dnYUY3GaHK1ro1
- lHBiedutnPtxQC1qYKS/DBQlcVyonBk=
+ t=1728978182;
+ b=SkUkzU2u8v9DvFDt8AiIGkHo59StrdKtS0pNyOCGaf2Cajyr5f7U3i6IZe8uh0pzgmak/
+ Z/Du1gx4o6WWTpnBev20v2dH7L9gpugEGikkiRGzlzy60NxwDlP7nlj8H19AkJ2RmWHt0z7
+ I6oLCH/dCu5x8BunCy38IzFF8nrxtuM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1728978122; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1728978182; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=cOsPCl6XRS0JcnH2JfXCcShvWpdzVH1AtkG5g8awVGc=;
- b=mj1mGpiAtn/x1jS05fvSVJVuZ4eWAAmLahbC9akzdt+jU5YdLaJ1K42MzO9/PcA5HvcmW
- rI6WUUDY8+EqAxjgmqjzoBKrun6C26gdD4PX2IKsTqRQ0A1vAzRICu64lDnd5fc8xadG5cU
- sousmwO71j5pnxQj5uKvzFsVkdt6T1s=
+ list-archive; bh=8i0zeFvOhWQBIg9YF1oVE+KxFX2fepdvEeBZtHuYgaY=;
+ b=OFdxUAC7ELXc3hgYRINV7B+HqE4CqPcIrIz+6Mk2NRwnsYYjH0S2ZFiPMPE3ORedTDzp+
+ tF+DquzKuiZkTaTJyZM22mfk43Q7VP3lHAAKOQrBHDkXpMyHVZA30b2b75xrQsoNOnARlZ8
+ oazKfiPFvh/1iQu3uzatlaftxDv5hLA=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=fail (ARC-Seal[1] did not validate);
   dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
@@ -32,13 +32,13 @@ Authentication-Results: open-mesh.org; dkim=fail;
  dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
  policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id AAF7583B8D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 15 Oct 2024 09:39:50 +0200 (CEST)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1728977990; a=rsa-sha256;
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 16B9B83B8D
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 15 Oct 2024 09:39:52 +0200 (CEST)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1728977992; a=rsa-sha256;
 	cv=none;
-	b=j3i4kA/gqnitS6UHLD7ff2yN7krbos3HZsMNLcfVqHR/1owmCauYXdDIgjYjsRfF2JWNQf
-	pfCExN9DcureBQThOJChLgwt8euX5wmJz7CY1hyMwOMhblxhRLjl2tfycbqLXhCFXipmRx
-	8BhYI4scLyewniIQeccso0kHSjvKbJ8=
+	b=cTms/ZF48y+LzQV0alUV0SGVmiNA/BHsYn7fjBLzTpN20B25lgAJOTtRkDcDMF9ke9QNMS
+	51lafBoRJnV/PPTAqYpDRCNaBxzUlq+25tVzCElLcsNQE2Z4a/xypdGtiicu7Zch4pzZRT
+	zSCw7NmX0v+POYReviu4YC/ZFgLQ6hw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
@@ -46,40 +46,42 @@ ARC-Authentication-Results: i=1;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1728977990;
+	s=20121; t=1728977992;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=cOsPCl6XRS0JcnH2JfXCcShvWpdzVH1AtkG5g8awVGc=;
-	b=RYAE0019fUIu47GdGGzRGccSZcKWHvyT+V88RSIrjj5+siP8iPG/9H7J2kzsJijmoQcsF3
-	kSo8BvkPVLjt/YUiVYOkFKl2VUnD6UvFjaca+OuugICeAMZXaGonqUk90sHM5YI2H8HNIz
-	+wGzbM11GfXBQmHv2zhrKc+V9TiV55A=
+	bh=8i0zeFvOhWQBIg9YF1oVE+KxFX2fepdvEeBZtHuYgaY=;
+	b=jsMix2TskX10WWcGhYNfAhzdMwO9DJr9Co/kGeiGMgzLkkI/6u1t1vRCUoiPSvdqqDAYWr
+	RGnqI7tT1TjNximMBS2D6iZTdIFmXvH3xdRtwMJDnX2S4fYcw8iImFjm9pk/p2vFoxJ1xs
+	L57gH5LxNpv9zdEJzoTSgmom2kADLzo=
 Received: from kero.packetmixer.de (p5480b09e.dip0.t-ipconnect.de
  [84.128.176.158])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 1223CFAA31;
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id E13F7FAA33;
 	Tue, 15 Oct 2024 09:39:50 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: kuba@kernel.org,
 	davem@davemloft.net
 Cc: netdev@vger.kernel.org,
 	b.a.t.m.a.n@lists.open-mesh.org,
+	Julia Lawall <Julia.Lawall@inria.fr>,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 3/4] batman-adv: Use string choice helper to print booleans
-Date: Tue, 15 Oct 2024 09:39:45 +0200
-Message-Id: <20241015073946.46613-4-sw@simonwunderlich.de>
+Subject: [PATCH 4/4] batman-adv: replace call_rcu by kfree_rcu for simple
+ kmem_cache_free callback
+Date: Tue, 15 Oct 2024 09:39:46 +0200
+Message-Id: <20241015073946.46613-5-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20241015073946.46613-1-sw@simonwunderlich.de>
 References: <20241015073946.46613-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: VTRKJ4MZU52DGDFORW3WSHAC6Q4P64PD
-X-Message-ID-Hash: VTRKJ4MZU52DGDFORW3WSHAC6Q4P64PD
+Message-ID-Hash: CSTEUV5M7SQCQ6I26EGZTLEA6PQRMXRL
+X-Message-ID-Hash: CSTEUV5M7SQCQ6I26EGZTLEA6PQRMXRL
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -93,7 +95,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VTRKJ4MZU52DGDFORW3WSHAC6Q4P64PD/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CSTEUV5M7SQCQ6I26EGZTLEA6PQRMXRL/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -102,74 +104,115 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+From: Julia Lawall <Julia.Lawall@inria.fr>
 
-The commit ea4692c75e1c ("lib/string_helpers: Consolidate string helpers
-implementation") introduced common helpers to print string representations
-of boolean helpers. These are supposed to be used instead of open coded
-versions.
+Since SLOB was removed and since
+commit 6c6c47b063b5 ("mm, slab: call kvfree_rcu_barrier() from kmem_cache_destroy()"),
+it is not necessary to use call_rcu when the callback only performs
+kmem_cache_free. Use kfree_rcu() directly.
 
+The changes were made using Coccinelle.
+
+Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/bat_iv_ogm.c            | 4 ++--
- net/batman-adv/bridge_loop_avoidance.c | 8 ++++----
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ net/batman-adv/translation-table.c | 47 ++----------------------------
+ 1 file changed, 3 insertions(+), 44 deletions(-)
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 74b49c35ddc1..07ae5dd1f150 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -36,6 +36,7 @@
- #include <linux/spinlock.h>
- #include <linux/stddef.h>
- #include <linux/string.h>
-+#include <linux/string_choices.h>
- #include <linux/types.h>
- #include <linux/workqueue.h>
- #include <net/genetlink.h>
-@@ -371,8 +372,7 @@ static void batadv_iv_ogm_send_to_if(struct batadv_forw_packet *forw_packet,
- 			   batadv_ogm_packet->orig,
- 			   ntohl(batadv_ogm_packet->seqno),
- 			   batadv_ogm_packet->tq, batadv_ogm_packet->ttl,
--			   ((batadv_ogm_packet->flags & BATADV_DIRECTLINK) ?
--			    "on" : "off"),
-+			   str_on_off(batadv_ogm_packet->flags & BATADV_DIRECTLINK),
- 			   hard_iface->net_dev->name,
- 			   hard_iface->net_dev->dev_addr);
+diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
+index 6815d1262feb..b44c382226a1 100644
+--- a/net/batman-adv/translation-table.c
++++ b/net/batman-adv/translation-table.c
+@@ -209,20 +209,6 @@ batadv_tt_global_hash_find(struct batadv_priv *bat_priv, const u8 *addr,
+ 	return tt_global_entry;
+ }
  
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index 5f46ca3d4bb8..449faf5a5487 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -33,6 +33,7 @@
- #include <linux/sprintf.h>
- #include <linux/stddef.h>
- #include <linux/string.h>
-+#include <linux/string_choices.h>
- #include <linux/workqueue.h>
- #include <net/arp.h>
- #include <net/genetlink.h>
-@@ -1946,16 +1947,15 @@ bool batadv_bla_rx(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 	claim = batadv_claim_hash_find(bat_priv, &search_claim);
+-/**
+- * batadv_tt_local_entry_free_rcu() - free the tt_local_entry
+- * @rcu: rcu pointer of the tt_local_entry
+- */
+-static void batadv_tt_local_entry_free_rcu(struct rcu_head *rcu)
+-{
+-	struct batadv_tt_local_entry *tt_local_entry;
+-
+-	tt_local_entry = container_of(rcu, struct batadv_tt_local_entry,
+-				      common.rcu);
+-
+-	kmem_cache_free(batadv_tl_cache, tt_local_entry);
+-}
+-
+ /**
+  * batadv_tt_local_entry_release() - release tt_local_entry from lists and queue
+  *  for free after rcu grace period
+@@ -237,7 +223,7 @@ static void batadv_tt_local_entry_release(struct kref *ref)
  
- 	if (!claim) {
-+		bool local = batadv_is_my_client(bat_priv, ethhdr->h_source, vid);
-+
- 		/* possible optimization: race for a claim */
- 		/* No claim exists yet, claim it for us!
- 		 */
+ 	batadv_softif_vlan_put(tt_local_entry->vlan);
  
- 		batadv_dbg(BATADV_DBG_BLA, bat_priv,
- 			   "%s(): Unclaimed MAC %pM found. Claim it. Local: %s\n",
--			   __func__, ethhdr->h_source,
--			   batadv_is_my_client(bat_priv,
--					       ethhdr->h_source, vid) ?
--			   "yes" : "no");
-+			   __func__, ethhdr->h_source, str_yes_no(local));
- 		batadv_handle_claim(bat_priv, primary_if,
- 				    primary_if->net_dev->dev_addr,
- 				    ethhdr->h_source, vid);
+-	call_rcu(&tt_local_entry->common.rcu, batadv_tt_local_entry_free_rcu);
++	kfree_rcu(tt_local_entry, common.rcu);
+ }
+ 
+ /**
+@@ -255,20 +241,6 @@ batadv_tt_local_entry_put(struct batadv_tt_local_entry *tt_local_entry)
+ 		 batadv_tt_local_entry_release);
+ }
+ 
+-/**
+- * batadv_tt_global_entry_free_rcu() - free the tt_global_entry
+- * @rcu: rcu pointer of the tt_global_entry
+- */
+-static void batadv_tt_global_entry_free_rcu(struct rcu_head *rcu)
+-{
+-	struct batadv_tt_global_entry *tt_global_entry;
+-
+-	tt_global_entry = container_of(rcu, struct batadv_tt_global_entry,
+-				       common.rcu);
+-
+-	kmem_cache_free(batadv_tg_cache, tt_global_entry);
+-}
+-
+ /**
+  * batadv_tt_global_entry_release() - release tt_global_entry from lists and
+  *  queue for free after rcu grace period
+@@ -283,7 +255,7 @@ void batadv_tt_global_entry_release(struct kref *ref)
+ 
+ 	batadv_tt_global_del_orig_list(tt_global_entry);
+ 
+-	call_rcu(&tt_global_entry->common.rcu, batadv_tt_global_entry_free_rcu);
++	kfree_rcu(tt_global_entry, common.rcu);
+ }
+ 
+ /**
+@@ -408,19 +380,6 @@ static void batadv_tt_global_size_dec(struct batadv_orig_node *orig_node,
+ 	batadv_tt_global_size_mod(orig_node, vid, -1);
+ }
+ 
+-/**
+- * batadv_tt_orig_list_entry_free_rcu() - free the orig_entry
+- * @rcu: rcu pointer of the orig_entry
+- */
+-static void batadv_tt_orig_list_entry_free_rcu(struct rcu_head *rcu)
+-{
+-	struct batadv_tt_orig_list_entry *orig_entry;
+-
+-	orig_entry = container_of(rcu, struct batadv_tt_orig_list_entry, rcu);
+-
+-	kmem_cache_free(batadv_tt_orig_cache, orig_entry);
+-}
+-
+ /**
+  * batadv_tt_orig_list_entry_release() - release tt orig entry from lists and
+  *  queue for free after rcu grace period
+@@ -434,7 +393,7 @@ static void batadv_tt_orig_list_entry_release(struct kref *ref)
+ 				  refcount);
+ 
+ 	batadv_orig_node_put(orig_entry->orig_node);
+-	call_rcu(&orig_entry->rcu, batadv_tt_orig_list_entry_free_rcu);
++	kfree_rcu(orig_entry, rcu);
+ }
+ 
+ /**
 -- 
 2.39.5
 
