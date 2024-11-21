@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810569D4E2F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 21 Nov 2024 14:57:34 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0BB29D4E8E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 21 Nov 2024 15:19:45 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0B2B283AD4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 21 Nov 2024 14:57:34 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A7CFB83F85
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 21 Nov 2024 15:19:45 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1732197454;
- b=djxIQgmA+wAq/R9l0q0YJbqqYHqmqiYUVuDXOlUqkTEQ6PLSFEV2s6CO7M2LkfAcYfEkW
- JZ48dhtolH+JqKpWddsxHFKqhj8mgcnqV2X8S0IYkR1CXBcHfwGTLElXuc4WEooKuIAQtvb
- +faQ5AyQgiLR5bt0QrwDub7eqMY5ZRY=
+ t=1732198785;
+ b=Z1HfSs8CD8IpinW560Ry/myr7dkM6ZGBDi4YGqRk+2el60Zt4KryUrpCgbk7zWUnXNNV8
+ SUAiW3V0QnSjMc2CC1mg0RVDBuvMMamFJawoZCpHPMA9cHBhkoe7xaHWqtoFwlWcRJOdGO8
+ j2X2Ek5UUlD0YK4PEQaUSL4JaBfaIo0=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1732197454; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1732198785; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=6j4sHc19rFxoZbUA+lzZBsP3YTp2DPtQCWagZc2xsdk=;
- b=bNfrnDCnL4O/irTANzsYzYEdN3/7cLvg8eJEXYDwQnbaQFBFe4kR6FuFUvskEOQtsGav3
- /Sp0bjXsvGGGc98OXBoZlHGNNKokRaaN+lMUyNqUdIYVNAKzg97lLyt3wUeEbTyoecbDlOx
- gQ6pis0vWsJA8BmN3xBzA2cm5L9ezv0=
+ list-archive; bh=rS2Fwurc0wTemC6GXqi0BmkDK3Q4/f9N8c7qb66QlDA=;
+ b=t8WU6LLpEhPM00Fsmj4kxfa2rV53d3ez4X98mRpucqtUPrpvLEenZoBDkkMGi8ovyX/NR
+ UleAIwCcEMg0eYJtiSdyrm/HzhCJdh59ZQDQYlGSakx/8ipldh8DAWkPlGIBLO8bB28LC3S
+ J9+4yiLCMPxKZ7U14kBqdHEg88jctsw=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=fail header.d=smtpservice.net;
   arc=pass;
@@ -32,83 +32,84 @@ Authentication-Results: open-mesh.org; dkim=fail header.d=smtpservice.net;
  arc=pass;
  dmarc=fail (Used From Domain Record) header.from=triplefau.lt policy.dmarc=quarantine
 Received: from e2i340.smtp2go.com (e2i340.smtp2go.com [103.2.141.84])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4DD8682600
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 21 Nov 2024 14:57:29 +0100 (CET)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732197449; a=rsa-sha256;
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B30BB826CC
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 21 Nov 2024 15:19:40 +0100 (CET)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732198781; a=rsa-sha256;
 	cv=none;
-	b=ARpLT+jrIG4YZ/nuoc1l9JdoQfmMyr/iCBNamhWVWs6KZiXG/pcaABP+lzCDC1vMgRQ2TG
-	Q/g6pm2hoXi5O4CST8waNUD7jleCkTyj5kInLw4vKXwre4qLHy57645W1oHq+Mhl29oHln
-	Q07e9vtbl3tIGo5zhVqM37a3M2wpZD8=
+	b=hQoraR/Ole3eSO8eLbo2Uccf3TIF0JRDXrij0iDYpZv6L1eFNdycbEDMK2t47t/RyeohmU
+	5m8ji8oDngj+Wny4rie7vTpg+RceBQScenq/Q6aCXd6wgBapGD9/Uju5SxQ6YXE7+v/0E5
+	8XmjioxbQVLtVTgdaSTB6ieqr/oKWo4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none ("invalid DKIM record") header.d=smtpservice.net
- header.s=maxzs0.a1-4.dyn header.b=2XN5z13f;
-	dkim=pass header.d=triplefau.lt header.s=s510616 header.b=Ycy1GKuE;
+ header.s=maxzs0.a1-4.dyn header.b=F6Qa4Z3O;
+	dkim=pass header.d=triplefau.lt header.s=s510616 header.b="k0aPF/T9";
 	dmarc=pass (policy=quarantine) header.from=triplefau.lt;
 	spf=pass (diktynna.open-mesh.org: domain of
- "bT.x81x4ssdcy1pbj6=5vpavxx8wtad=23fdhq4n0txlbr@em510616.triplefau.lt"
+ "bT.84ob4donkrfypv8=ls8mu8wsocit=ksi39jx4n0e2o6@em510616.triplefau.lt"
  designates 103.2.141.84 as permitted sender)
- smtp.mailfrom="bT.x81x4ssdcy1pbj6=5vpavxx8wtad=23fdhq4n0txlbr@em510616.triplefau.lt"
+ smtp.mailfrom="bT.84ob4donkrfypv8=ls8mu8wsocit=ksi39jx4n0e2o6@em510616.triplefau.lt"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1732197449;
+	s=20121; t=1732198781;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=6j4sHc19rFxoZbUA+lzZBsP3YTp2DPtQCWagZc2xsdk=;
-	b=2Qm69QfSnn8IxQT+BY2N13S1s2wYPAKaDetz+gKRmG6cdCfttM26Xon92Y8l0q2VvJcHPv
-	PNm+F0gmM+qz1VkR95my3qAFZkI5NyaQXhcay2Ii2viU4a8vWLL1BTxbsz1sEsmKSjbKOB
-	4U6MOHXG6O0lnC7edz/0MEiah0gWX4I=
+	bh=rS2Fwurc0wTemC6GXqi0BmkDK3Q4/f9N8c7qb66QlDA=;
+	b=A51EIysyGhKUUmgpXF57lKj0R9wasE86LyFPKgYT/SM5GPaAcB7gOhp0mqeHCGfAoAQ22c
+	5xbs+X/hCiib2sWd5IrVJRxgJbezloWfwahn1OSe9dk57n7PDmqhj9mfnY4diVftCNo16G
+	IfC/wDskL6pwGaekH2b9Uwh+OIJWtJU=
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=smtpservice.net; s=maxzs0.a1-4.dyn; x=1732198349; h=Feedback-ID:
+	d=smtpservice.net; s=maxzs0.a1-4.dyn; x=1732199680; h=Feedback-ID:
 	X-Smtpcorp-Track:Message-ID:Subject:To:From:Date:Reply-To:Sender:
 	List-Unsubscribe:List-Unsubscribe-Post;
-	bh=6j4sHc19rFxoZbUA+lzZBsP3YTp2DPtQCWagZc2xsdk=; b=2XN5z13fByJP636W+kvYEPnp3/
-	ChbhFChDHya2QaFUfVYLA/vcRTXjXN8diJFiXMqg3uIPiL71t3AFRxSlZuVPz7QhZlbwOXZdpLRQD
-	V8YazcC4QwvEPHwkR+BVGShxRfzyV/OdhEOBv8S/1lafBw10OeGjy1OVmobFnOQyLhbXLJwGRIr/L
-	npESubZdtwFG8eOvpdsCA03JoJzTqMaT2ip6PIxUklJHWbwuK4Tfs3+DKZLVkLEE/Yi0dTeiIOZZS
-	nsBQakuclJ4UMe3ijEE7CgLDzeiJj+YzNsjm5XEf0F2v52v2E9op5my1g1o+2HJnkDuGS3KGT/ezt
-	+TiCimHQ==;
+	bh=rS2Fwurc0wTemC6GXqi0BmkDK3Q4/f9N8c7qb66QlDA=; b=F6Qa4Z3O3vR0G2PV55TIsxwG1q
+	0lUH4pvfdz/UWzigFFywYga2tguH7cP3KJrhePlVdRMnB08ffXFP0mqRZnYJrv0IB27qafOJ1o3TG
+	prkh81lCCfa5bVz/BPDaSi6oL9+vduvMCmQ3CXNGrL2oJfHsA3Zy1Hp/Z9F0KKTBq4zg8zhiASYvN
+	LVEwAJWQhtImeRvd3IQEiZQCleZ47rYXEJRsW5uEsJ8iLjjA3GLCGqo9nloPGenWTBk6Bjo7KeWev
+	NjxzfGTTrQzCsStnrqMIrcj9yfG5/ysQXJA/JjHVNsFN4ZTOXqReGjs01HWug9SB0RmW1IgzAGZaf
+	LqiMLf2Q==;
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triplefau.lt;
- i=@triplefau.lt; q=dns/txt; s=s510616; t=1732197449; h=from : subject
+ i=@triplefau.lt; q=dns/txt; s=s510616; t=1732198780; h=from : subject
  : to : message-id : date;
- bh=6j4sHc19rFxoZbUA+lzZBsP3YTp2DPtQCWagZc2xsdk=;
- b=Ycy1GKuE+Ti82TUj4ehGa+vCXX+3+is+AkaSC+kuuAA6/ItK8LPFr4iUbej5un/ZxhUzv
- ZBE+ZnG4mcsl9RjziGdKjrS+QhqaGc8hQWocXKP2+xr6UfBQD5FQqENP4TZrWJ2cV+KpGsl
- UnxIGElY6iCvTcCkX57zU71S5pRk5M1ChVyT7IAb5TMPWxYx0VpBsuaiQNdM+DNPVMg+MOB
- a8EGCFSpDiBFD19o5UnjLBJAVZ8lWfgDB1KKwDV3YF++gxHjh+HiDs2RTxzP4vbHDFRMaMT
- tBXubR575PmFdJZluNr0MeFUCdyYE2ugi3/WhuKxIXug2ln+0fcOPu6ZPmSw==
-Received: from [10.139.162.187] (helo=SmtpCorp) by smtpcorp.com with esmtpsa
+ bh=rS2Fwurc0wTemC6GXqi0BmkDK3Q4/f9N8c7qb66QlDA=;
+ b=k0aPF/T9VDEHK4gYES7w663dBhKxQSNBKA4FRCt8Ib7SdX/PLF66p/kHCGeGrSMEL7z+P
+ kaScKxVME3yp+VxwMzeWwp4X0wK/iFUl5mtVg8L7Ae/2r1U0/HctSfyxZ8bm/Yrq+1ig6tY
+ dlUEsRc3i/htXiAHg9pnX1MaedHKtVxoSNnQqS6BiTC91JySVvYWpBHCKHsz/oh3HUrgDUJ
+ mPQKUUaIDTfA0+bQkyMTxypckrSt1zCPgjOhCeWPyT9X55JyQXspxfF9C5cly9aGjNu1m4P
+ 1O6lOOpVWdIHFtFRSq6Sl/7qX1P5DbQTGl/kPClXNAyER0q+YmpWBMNVlsLA==
+Received: from [10.176.58.103] (helo=SmtpCorp) by smtpcorp.com with esmtpsa
  (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
  (Exim 4.94.2-S2G) (envelope-from <repk@triplefau.lt>)
- id 1tE7gS-TRk1qF-O3; Thu, 21 Nov 2024 13:57:24 +0000
+ id 1tE81v-TRk60w-0l; Thu, 21 Nov 2024 14:19:35 +0000
 Received: from [10.12.239.196] (helo=localhost) by smtpcorp.com with esmtpsa
  (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
  (Exim 4.97.1-S2G) (envelope-from <repk@triplefau.lt>)
- id 1tE7gS-4o5NDgrkvFO-lPg9; Thu, 21 Nov 2024 13:57:24 +0000
-Date: Thu, 21 Nov 2024 14:56:17 +0100
+ id 1tE81u-4o5NDgrnshU-r0ff; Thu, 21 Nov 2024 14:19:34 +0000
+Date: Thu, 21 Nov 2024 15:18:26 +0100
 From: Remi Pommarel <repk@triplefau.lt>
 To: Antonio Quartulli <a@unstable.cc>
 Cc: b.a.t.m.a.n@lists.open-mesh.org,
  Marek Lindner <mareklindner@neomailbox.ch>,
  Simon Wunderlich <sw@simonwunderlich.de>,
  Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH v3 1/5] batman-adv: Do not send uninitialized TT changes
-Message-ID: <Zz88AYyDTv5W9gQk@pilgrim>
+Subject: Re: [PATCH v3 3/5] batman-adv: Do not let TT changes list grows
+ indefinitely
+Message-ID: <Zz9BMvv9sFcM3xt9@pilgrim>
 References: <cover.1732124716.git.repk@triplefau.lt>
- <fbc17f32703930e711353d82146a916106acd2f1.1732124716.git.repk@triplefau.lt>
- <bf055638-afff-40af-85d7-dfdbf0afa842@unstable.cc>
+ <c8ebe15252c31d9cc0dd025830ddd793345948ac.1732124716.git.repk@triplefau.lt>
+ <ddd55e72-7113-44f8-8150-c2cf74486449@unstable.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bf055638-afff-40af-85d7-dfdbf0afa842@unstable.cc>
-X-Smtpcorp-Track: jRYoxF-Uf-dJ.XQ4FW9LxFzyC.vEvtngprq5n
-Feedback-ID: 510616m:510616apGKSTK:510616shuy2ZSTuu
+In-Reply-To: <ddd55e72-7113-44f8-8150-c2cf74486449@unstable.cc>
+X-Smtpcorp-Track: zkIv_uNCEmGY.NNXKtCs0ceqW.GM1KGggOCih
+Feedback-ID: 510616m:510616apGKSTK:510616ss6_05YidV
 X-Report-Abuse: Please forward a copy of this message, including all headers,
  to <abuse-report@smtp2go.com>
-Message-ID-Hash: DIRYQXFBDDOFEIAXHXFAGOGWWGS5SQTM
-X-Message-ID-Hash: DIRYQXFBDDOFEIAXHXFAGOGWWGS5SQTM
+Message-ID-Hash: 7EO34VGTZNDJFZSAPXBHTJYHSROO273T
+X-Message-ID-Hash: 7EO34VGTZNDJFZSAPXBHTJYHSROO273T
 X-MailFrom: 
- bT.x81x4ssdcy1pbj6=5vpavxx8wtad=23fdhq4n0txlbr@em510616.triplefau.lt
+ bT.84ob4donkrfypv8=ls8mu8wsocit=ksi39jx4n0e2o6@em510616.triplefau.lt
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -121,7 +122,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DIRYQXFBDDOFEIAXHXFAGOGWWGS5SQTM/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7EO34VGTZNDJFZSAPXBHTJYHSROO273T/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -130,65 +131,90 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On Thu, Nov 21, 2024 at 02:05:58PM +0100, Antonio Quartulli wrote:
+On Thu, Nov 21, 2024 at 02:50:18PM +0100, Antonio Quartulli wrote:
 > On 20/11/2024 18:47, Remi Pommarel wrote:
-> > The number of TT changes can be less than initially expected in
-> > batadv_tt_tvlv_container_update() (changes can be removed by
-> > batadv_tt_local_event() in ADD+DEL sequence between reading
-> > tt_diff_entries_num and actually iterating the change list under lock).
+> > When TT changes list is too big to fit in packet due to MTU size, an
+> > empty OGM is sent expected other node to send TT request to get the
+> > changes. The issue is that tt.last_changeset was not built thus the
+> > originator was responding with previous changes to those TT requests
+> > (see batadv_send_my_tt_response). Also the changes list was never
+> > cleaned up effectively never ending growing from this point onwards,
+> > repeatedly sending the same TT response changes over and over, and a
+> > creating a new empty OGM every OGM interval expecting for the local
+> > changes to be purged.
 > > 
-> > Thus tt_diff_len could be bigger than the actual changes size that need
-> > to be sent. Because batadv_send_my_tt_response sends the whole
-> > packet, uninitialized data can be interpreted as TT changes on other
-> > nodes leading to weird TT global entries on those nodes such as:
-> > 
-> >   * 00:00:00:00:00:00   -1 [....] (  0) 88:12:4e:ad:7e:ba (179) (0x45845380)
-> >   * 00:00:00:00:78:79 4092 [.W..] (  0) 88:12:4e:ad:7e:3c (145) (0x8ebadb8b)
-> > 
-> > All of the above also applies to OGM tvlv container buffer's tvlv_len.
-> > 
-> > Remove the extra allocated space to avoid sending uninitialized TT
-> > changes in batadv_send_my_tt_response() and batadv_v_ogm_send_softif().
+> 
+> nice catch!
+> 
+> > When there is more TT changes that can fit in packet, drop all changes,
+> > send empty OGM and wait for TT request so we can respond with a full
+> > table instead.
 > > 
 > > Fixes: e1bf0c14096f ("batman-adv: tvlv - convert tt data sent within OGMs")
 > > Signed-off-by: Remi Pommarel <repk@triplefau.lt>
 > > ---
-> >   net/batman-adv/translation-table.c | 7 +++++++
-> >   1 file changed, 7 insertions(+)
+> >   net/batman-adv/translation-table.c | 19 ++++++++++++++-----
+> >   1 file changed, 14 insertions(+), 5 deletions(-)
 > > 
 > > diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-> > index 2243cec18ecc..f0590f9bc2b1 100644
+> > index bbab7491c83f..d7b43868b624 100644
 > > --- a/net/batman-adv/translation-table.c
 > > +++ b/net/batman-adv/translation-table.c
 > > @@ -990,6 +990,7 @@ static void batadv_tt_tvlv_container_update(struct batadv_priv *bat_priv)
 > >   	int tt_diff_len, tt_change_len = 0;
 > >   	int tt_diff_entries_num = 0;
 > >   	int tt_diff_entries_count = 0;
-> > +	size_t tt_extra_len = 0;
+> > +	bool drop_changes = false;
+> >   	size_t tt_extra_len = 0;
 > >   	u16 tvlv_len;
-> >   	tt_diff_entries_num = atomic_read(&bat_priv->tt.local_changes);
-> > @@ -1027,6 +1028,9 @@ static void batadv_tt_tvlv_container_update(struct batadv_priv *bat_priv)
-> >   	}
-> >   	spin_unlock_bh(&bat_priv->tt.changes_list_lock);
+> > @@ -997,21 +998,29 @@ static void batadv_tt_tvlv_container_update(struct batadv_priv *bat_priv)
+> >   	tt_diff_len = batadv_tt_len(tt_diff_entries_num);
+> >   	/* if we have too many changes for one packet don't send any
+> > -	 * and wait for the tt table request which will be fragmented
+> > +	 * and wait for the tt table request so we can reply with the full
+> > +	 * table.
 > 
-> what speaks against acquiring tt.changes_list_lock before reading
-> tt.local_changes? (and making sure the writer does the update under lock
-> too) Any reason for not pursuing that path?
+> I'd still say "(fragmented) table", in order to give the reader a clue about
+> how we're going to handle this.
+> 
+> > +	 *
+> > +	 * The local change history should still be cleaned up or it will only
+> > +	 * grow from this point onwards. Also tt.last_changeset should be set
+> > +	 * to NULL so tt response could send the full table instead of diff.
+> 
+> Personally I'd not add these details.
+> I'd just say that the history "should still be cleaned up as we get ready
+> for the next TT round". Or something along those lines.
+> The rest is just a consequence of the "preparation".
+> 
+> >   	 */
+> > -	if (tt_diff_len > bat_priv->soft_iface->mtu)
+> > +	if (tt_diff_len > bat_priv->soft_iface->mtu) {
+> >   		tt_diff_len = 0;
+> > +		tt_diff_entries_num = 0;
+> > +		drop_changes = true;
+> > +	}
+> >   	tvlv_len = batadv_tt_prepare_tvlv_local_data(bat_priv, &tt_data,
+> >   						     &tt_change, &tt_diff_len);
+> >   	if (!tvlv_len)
+> >   		return;
+> > -	tt_data->flags = BATADV_TT_OGM_DIFF;
+> > -
+> > -	if (tt_diff_len == 0)
+> > +	if (!drop_changes && tt_diff_len == 0)
+> >   		goto container_register;
+> > +	tt_data->flags = BATADV_TT_OGM_DIFF;
+> 
+> hmm there is no mention in the commit message as to why we're moving this
+> assignment. Why is that?
 
-Nothing against, just tried to follow old behavior in case this was
-that way for performance reasons. That would mean
-batadv_tt_local_commit_changes_nolock() to take the lock; because it
-is only called once per OGM interval I think that would be ok.
+No reason, the if is supposed to be after this flag, thanks.
 
-And now that I've looked into batadv_tt_tvlv_container_update() a bit
-deeper I realize that it calls batadv_tt_prepare_tvlv_local_data() every
-time, traversing the softif_vlan_list and building the tvlv container
-over and over even if no changes occured (I mean even after the two OGM
-that repeat last changes in case the first one has been lost).
+> 
+> [And I just saw that this flag is never used.......]
+> 
 
-Using lock for consistency maybe I can try to avoid that also ?
-
-Thanks,
+Thanks for the review.
 
 -- 
 Remi
