@@ -1,108 +1,134 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6779D5482
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 21 Nov 2024 22:07:02 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C2459D5AF9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Nov 2024 09:20:28 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E147D83FBB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 21 Nov 2024 22:07:01 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 34F1381A4F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Nov 2024 09:20:28 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1732223221;
- b=wXEbZRw2ajsG29b5ow24RKUuOnn6uKXufvRIop2Kjcrl4++qM8lmfi3vqcmkkDzpZf+Nj
- 2WK2cAEkn0q9OucQfM49inYjeN8stHZZyiqWLSLeVNBCeUIjIH1MleJZozwVdtj4MDVntQR
- /xBFLLffsNDbAJgUk8V2xDrDHBsZ0BA=
+ t=1732263628;
+ b=m5H9ql21ZoQx3VoKiqJkQZ9+4tsbuJW4AkOSZdNaYwvLNNkKRKAHI1O6w9Vq4iGo8h6R9
+ y6ArOuA3xPsLxJ08dSKEqvRJ847U4vGuHijMb6SrWhsOVpfe2Vu6wCv9cvEO3Br2d97/LIZ
+ I/XSDDoR75bb/0s0oi00902C4B4ti5c=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1732223221; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1732263628; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=U1v07GrLkhsabkQ3+zQyvUaJzBcGT0OFEmq8PGTnIJQ=;
- b=QHsM9TyoRVAGClqWB7J/SP0EwscSNguGt2zokyoCDewo9NOzTBiWtOjP9NQEK+szTNhQx
- r8WX5KvKC49TGgSwLReHGfJV1GpM+ZAi9wQ1U7D15EpUCoSVMPIo4/T+pSpNdCIswBQ9z4F
- GLfmfh1dHpi7C0ATj+Z3JGFLYHevjP8=
+ list-archive; bh=e2Kv31MT5oF8RVQ9JWvUnsSwFo4hfOW3szAFVLCkGZM=;
+ b=2/w0UnW18h136BR97azEQUFsJrWJjrDM90I1OVs+/DaAVXC0Casuj+DP+1i1SfcRoNwz2
+ zvlKnIOyNo607oRMmjxbbOqP/04D9KMZzGTCbKUu+8+L39O+NAmVN05IeovuU6hLvG4k4Yf
+ LJolbAQQ5zR41JZXjSSz2xhm9UPvs18=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=unstable.cc header.i=a@unstable.cc;
+ dkim=pass header.d=intel.com header.i=@intel.com;
   arc=pass;
-  dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
 Authentication-Results: open-mesh.org;
- dkim=pass header.d=unstable.cc header.i=a@unstable.cc; arc=pass; dmarc=none
-Received: from wilbur.contactoffice.com (wilbur.contactoffice.com
- [212.3.242.68])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id DCD25832B8
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 21 Nov 2024 22:06:58 +0100 (CET)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732223219; a=rsa-sha256;
+ dkim=pass header.d=intel.com header.i=@intel.com; arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 95138801DA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 21 Nov 2024 22:45:03 +0100 (CET)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732225505; a=rsa-sha256;
 	cv=none;
-	b=0oPSwXOpsR6zx0Fzmf/PlXDnb9uoysEKqTET5vNOlKMOZ1rTKBboznjv6yNCn/Aj87qxnT
-	zEeWMMWtSBb/qEmUe0Q9GKIAOJF++OGBleQgdST452EKLQX43fvVCA/tOPq2QurrqplbVJ
-	WlE+/QSXiLLpN6c4QSL/iqWsm4TdUv8=
+	b=Pi24QxpthM4/pYACfPqbiaPSIPu6c4HY3LwlGdft7cm6/UVN7rNZcdlRQ3Otmgyp0gx6oa
+	OxmVKUAkbqaovprokB7SAu+r0tzprASCrdn8Cw/lNtuo6pD2EhraavjzXiivjK8YAtKSyR
+	6hYIn6tuBAW1Zp1KRwznMQ7JhvWSKWk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=unstable.cc header.s=20220809-q8oc header.b=g+jPvJG4;
-	dmarc=none;
-	spf=pass (diktynna.open-mesh.org: domain of a@unstable.cc designates
- 212.3.242.68 as permitted sender) smtp.mailfrom=a@unstable.cc
+	dkim=pass header.d=intel.com header.s=Intel header.b=BNFcApkC;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (diktynna.open-mesh.org: domain of lkp@intel.com designates
+ 198.175.65.18 as permitted sender) smtp.mailfrom=lkp@intel.com
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1732223219;
+	s=20121; t=1732225505;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=U1v07GrLkhsabkQ3+zQyvUaJzBcGT0OFEmq8PGTnIJQ=;
-	b=kWJa6aPe4pXW22ZEj8PblesEfPIUqfi9ZWmbjEx53BuoYIGpxKWuR2ouQegpuXnWR8aJAg
-	0SBTe6LJ1WOAiC3NvtNRLpqr+sN3N0Q3pewSzDftnZiZhN9LO7GHWq9oAafAh3/S4T8mPq
-	OSyCJir8adrmUzIhNqqY9AUA2FDFPiQ=
-Received: from smtpauth2.co-bxl (smtpauth2.co-bxl [10.2.0.24])
-	by wilbur.contactoffice.com (Postfix) with ESMTP id 961EC3B67;
-	Thu, 21 Nov 2024 22:06:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1732223218;
-	s=20220809-q8oc; d=unstable.cc; i=a@unstable.cc;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=U1v07GrLkhsabkQ3+zQyvUaJzBcGT0OFEmq8PGTnIJQ=;
-	b=g+jPvJG41MDNLgY9A/3sy+IdgqXpM2LQME4fD28uW1MBJoyF1JVs9PYqt9EL+/4f
-	jS52khb5pfoBrXGDfkAjjhA7+WeTkw6WKlMhJgfPS2BVbZ0UvTrECKjqlX2xO8WdAOw
-	CIp4BoAwqG+odSEtJAW5Bt74vQcvnSVddfQZu1ujSYRPJVUzdf4dxbxMqljKBuuVZJ8
-	19lTGhhwdPmNv97+k4kGaThYBKK+ll8m0CDRbfYoTc1MfMNeTYf3sNloQZDFDJwhBMX
-	pNUMtYEmTPFhXZ1DQeOwh4gTSJLbAqSfCWhQgao4qgVGo2ma0E8CTlG3jR75iz+HkEc
-	vXZYus6odg==
-Received: by smtp.mailfence.com with ESMTPSA ;
- Thu, 21 Nov 2024 22:06:55 +0100 (CET)
-Message-ID: <d392719d-2d2d-4d1c-8867-4207dfae0d1c@unstable.cc>
-Date: Thu, 21 Nov 2024 22:07:24 +0100
+	bh=e2Kv31MT5oF8RVQ9JWvUnsSwFo4hfOW3szAFVLCkGZM=;
+	b=d7lY9x5kO6mbJI+/fMQvewdHOxrNNwL4F1PTuD2b08aPyf61VuZShc3RTbCuMYRJMuXw5i
+	wq/S381Vicqh1TEMC6l1sTcFYq3+8zNyF8GNj4KpENLEtPm/RMPuv/Y7Ka4QBhBlF89dXk
+	dSecV9Dk/a6Ndmsvy81uh325zkCrTuQ=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732225504; x=1763761504;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NIUcN6+T+wki60rCRnwepyQ8KRF0PBbMkb47VLXLqKM=;
+  b=BNFcApkCceVM9sS7dM7XHFFI8lIuy0mmm3XqLpRVhM+3qy5qt7P8kU4T
+   f/8rIOxMJXlnwqnAi+F/DijxT8xYFwtyGKOLXSj+8Tb23nEbIwvBWQewe
+   cFUuZd92N6PDupXXYMyNHL+GuBAQExGC+OITiX7sY8pwYweFr45jgh2p1
+   6ArBuuiGy1vRY6YcTCdIeuNsjVizmxfhe0ZtF/V4MN5DveTlaWvScF5Rt
+   7m/pbMhsNuxyC8wQ256oABy1O6lp+x9sVy6QFMHLOSQ6sVLGvcLzF0T5B
+   nDnRm8CHu7/JpKQSCWQzAva8/7hLpyH4mPx+Efl2AhMNXL47O4aZBD7+8
+   w==;
+X-CSE-ConnectionGUID: GVU4WLuVRn2QIR7DT7XXpg==
+X-CSE-MsgGUID: vLs2Oy9mRtOAD9UbESIE/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32514207"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600";
+   d="scan'208";a="32514207"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 13:45:01 -0800
+X-CSE-ConnectionGUID: xdpPO1RmQrC72kpFCsgzmg==
+X-CSE-MsgGUID: zhZedUIBSeupQFYJAgkZ8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600";
+   d="scan'208";a="90753178"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 21 Nov 2024 13:44:56 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tEEyr-0003O1-1A;
+	Thu, 21 Nov 2024 21:44:53 +0000
+Date: Fri, 22 Nov 2024 05:43:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Xiao Liang <shaw.leon@gmail.com>, netdev@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	Kuniyuki Iwashima <kuniyu@amazon.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Donald Hunter <donald.hunter@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, David Ahern <dsahern@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Ido Schimmel <idosch@nvidia.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Jiri Pirko <jiri@resnulli.us>, Hangbin Liu <liuhangbin@gmail.com>,
+	linux-rdma@vger.kernel.org, linux-can@vger.kernel.org,
+	osmocom-net-gprs@lists.osmocom.org, bpf@vger.kernel.org,
+	linux-ppp@vger.kernel.org, wireguard@lists.zx2c4.com,
+	linux-wireless@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org,
+	bridge@lists.linux.dev, linux-wpan@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 3/5] rtnetlink: Decouple net namespaces in
+ rtnl_newlink_create()
+Message-ID: <202411220516.rokej98E-lkp@intel.com>
+References: <20241118143244.1773-4-shaw.leon@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] batman-adv: Do not send uninitialized TT changes
-To: Remi Pommarel <repk@triplefau.lt>, Sven Eckelmann <sven@narfation.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org,
- Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>
-References: <cover.1732124716.git.repk@triplefau.lt>
- <Zz88AYyDTv5W9gQk@pilgrim> <Zz9MrP6LBw0eY_Uv@pilgrim>
- <4345009.mogB4TqSGs@ripper> <Zz-W_3A9diBFXz79@pilgrim>
-Content-Language: en-US
-From: Antonio Quartulli <a@unstable.cc>
-In-Reply-To: <Zz-W_3A9diBFXz79@pilgrim>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ContactOffice-Account: com:375058688
-Message-ID-Hash: HVQ2HLZU7SVLBDTTBZVGCYW3FWASMFTP
-X-Message-ID-Hash: HVQ2HLZU7SVLBDTTBZVGCYW3FWASMFTP
-X-MailFrom: a@unstable.cc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241118143244.1773-4-shaw.leon@gmail.com>
+X-MailFrom: lkp@intel.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-2; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-2
+Message-ID-Hash: RFI7GNQRNTFL6NUMUJMOFVS5A4KJH2O6
+X-Message-ID-Hash: RFI7GNQRNTFL6NUMUJMOFVS5A4KJH2O6
+X-Mailman-Approved-At: Fri, 22 Nov 2024 09:20:26 +0100
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/HVQ2HLZU7SVLBDTTBZVGCYW3FWASMFTP/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RFI7GNQRNTFL6NUMUJMOFVS5A4KJH2O6/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -111,103 +137,67 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-On 21/11/2024 21:24, Remi Pommarel wrote:
-> On Thu, Nov 21, 2024 at 07:02:43PM +0100, Sven Eckelmann wrote:
->> On Thursday, 21 November 2024 16:07:24 CET Remi Pommarel wrote:
->>> So the patch would be quite similar, only tt->tt.changes_list_lock will
->>> be taken sooner in batadv_tt_tvlv_container_update().
->>>
->>> That will fix the ADD between two read situation as you described
->>> though.
->>>
->>> Do you still prefer this option ?
->>
->> I can't speak for Antonio but I think I would prefer for the fix the current
->> version. The locking one would end up again with nested spinlocks and maybe
->> more refactoring. And it might be nicer for the stable backports to have less
->> noise in the patch.
-> 
-> I tend to second that, because if I understand correctly, even if
-> tt.changes_list_lock is held sooner in batadv_tt_tvlv_container_update()
-> the scenario Antonio described could still happen. Indeed if the ADD (or
-> even DEL for that matter) happens between VLAN table CRC computation
-> (batadv_tt_local_update_crc()) and the lock, neighbor will have CRC
-> mismatch and send TT_REQUEST anyway. The race window would be smaller
-> but still here.
-> 
-> So if I am not mistaken, the only solution to eliminate the race
-> completely would be to compute CRC while holding the lock, and this I
-> don't really like.
+Hi Xiao,
 
-I agree with Sven, and I'd not jump into more refactoring.
-Better to keep the bugfix as is.
+kernel test robot noticed the following build warnings:
 
-Cheers,
+[auto build test WARNING on net-next/main]
 
-> 
->>
->> Btw. just noticed that the code (not in your change - but overall) for the
->> filling of diff entries could have been something like:
->>
->> --- a/net/batman-adv/translation-table.c
->> +++ b/net/batman-adv/translation-table.c
->> @@ -980,6 +980,7 @@ static void batadv_tt_tvlv_container_update(struct
->> batadv_priv *bat_priv)
->>   	int tt_diff_entries_count = 0;
->>   	bool drop_changes = false;
->>   	size_t tt_extra_len = 0;
->> +	LIST_HEAD(tt_diffs);
->>   	u16 tvlv_len;
->>   
->>   	tt_diff_entries_num = READ_ONCE(bat_priv->tt.local_changes);
->> @@ -1011,9 +1012,10 @@ static void batadv_tt_tvlv_container_update(struct
->> batadv_priv *bat_priv)
->>   
->>   	spin_lock_bh(&bat_priv->tt.changes_list_lock);
->>   	bat_priv->tt.local_changes = 0;
->> +	list_splice_init(&bat_priv->tt.changes_list, &tt_diffs);
->> +	spin_unlock_bh(&bat_priv->tt.changes_list_lock);
->>   
->> -	list_for_each_entry_safe(entry, safe, &bat_priv->tt.changes_list,
->> -				 list) {
->> +	list_for_each_entry_safe(entry, safe, &tt_diffs, list) {
->>   		if (tt_diff_entries_count < tt_diff_entries_num) {
->>   			memcpy(tt_change + tt_diff_entries_count,
->>   			       &entry->change,
->> @@ -1023,7 +1025,6 @@ static void batadv_tt_tvlv_container_update(struct
->> batadv_priv *bat_priv)
->>   		list_del(&entry->list);
->>   		kmem_cache_free(batadv_tt_change_cache, entry);
->>   	}
->> -	spin_unlock_bh(&bat_priv->tt.changes_list_lock);
->>   
->>   	tt_extra_len = batadv_tt_len(tt_diff_entries_num -
->>   				     tt_diff_entries_count);
->>
->>
->> And then you can also move this before "tt_diff_entries_num = ..." and
->> save the corresponding bat_priv->tt.local_changes for the spliced list to the
->> inside the lock also in a local variable. And then operate on this variable
->> for the other decisions. Of course, you must still clean the local list in
->> case of an error. Which of course would slightly change the behavior in case
->> of an allocation error in batadv_tt_prepare_tvlv_local_data (which would
->> previously kept the list as it was).
->>
->> But if it would be done like this then we could also remove the READ_ONCE and
->> not introduce the WRITE_ONCE - just because local_changes is only touched
->> inside a locked area (see changes_list_lock).
->>
->> Please double check these statements - this was just a simple brain dump.
-> 
-> Yes that would be a much more elegant way to handle it. Unfortunately,
-> if I don't miss anything, the WRITE_ONCE/READ_ONCE would still be
-> needed because batadv_tt_local_commit_changes_nolock() has to load
-> tt.local_changes out of the lock to check if it needs to purge client
-> and recompute CRCs.
-> 
-> Thanks,
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Xiao-Liang/net-ip_tunnel-Build-flow-in-underlay-net-namespace/20241121-112705
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20241118143244.1773-4-shaw.leon%40gmail.com
+patch subject: [PATCH net-next v4 3/5] rtnetlink: Decouple net namespaces in rtnl_newlink_create()
+config: arc-randconfig-002-20241122 (https://download.01.org/0day-ci/archive/20241122/202411220516.rokej98E-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241122/202411220516.rokej98E-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411220516.rokej98E-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> net/batman-adv/soft-interface.c:1075: warning: Function parameter or struct member 'params' not described in 'batadv_softif_newlink'
+>> net/batman-adv/soft-interface.c:1075: warning: Excess function parameter 'nets' description in 'batadv_softif_newlink'
+>> net/batman-adv/soft-interface.c:1075: warning: Excess function parameter 'dev' description in 'batadv_softif_newlink'
+>> net/batman-adv/soft-interface.c:1075: warning: Excess function parameter 'tb' description in 'batadv_softif_newlink'
+>> net/batman-adv/soft-interface.c:1075: warning: Excess function parameter 'data' description in 'batadv_softif_newlink'
+>> net/batman-adv/soft-interface.c:1075: warning: Excess function parameter 'extack' description in 'batadv_softif_newlink'
+
+
+vim +1075 net/batman-adv/soft-interface.c
+
+128254ceea6ffe Sven Eckelmann 2020-10-11  1063  
+128254ceea6ffe Sven Eckelmann 2020-10-11  1064  /**
+128254ceea6ffe Sven Eckelmann 2020-10-11  1065   * batadv_softif_newlink() - pre-initialize and register new batadv link
+c19808cb1d05d1 Xiao Liang     2024-11-18  1066   * @nets: the applicable net namespaces
+128254ceea6ffe Sven Eckelmann 2020-10-11  1067   * @dev: network device to register
+128254ceea6ffe Sven Eckelmann 2020-10-11  1068   * @tb: IFLA_INFO_DATA netlink attributes
+128254ceea6ffe Sven Eckelmann 2020-10-11  1069   * @data: enum batadv_ifla_attrs attributes
+128254ceea6ffe Sven Eckelmann 2020-10-11  1070   * @extack: extended ACK report struct
+128254ceea6ffe Sven Eckelmann 2020-10-11  1071   *
+128254ceea6ffe Sven Eckelmann 2020-10-11  1072   * Return: 0 if successful or error otherwise.
+128254ceea6ffe Sven Eckelmann 2020-10-11  1073   */
+c19808cb1d05d1 Xiao Liang     2024-11-18  1074  static int batadv_softif_newlink(struct rtnl_newlink_params *params)
+128254ceea6ffe Sven Eckelmann 2020-10-11 @1075  {
+c19808cb1d05d1 Xiao Liang     2024-11-18  1076  	struct net_device *dev = params->dev;
+c19808cb1d05d1 Xiao Liang     2024-11-18  1077  	struct nlattr **data = params->data;
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1078  	struct batadv_priv *bat_priv = netdev_priv(dev);
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1079  	const char *algo_name;
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1080  	int err;
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1081  
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1082  	if (data && data[IFLA_BATADV_ALGO_NAME]) {
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1083  		algo_name = nla_data(data[IFLA_BATADV_ALGO_NAME]);
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1084  		err = batadv_algo_select(bat_priv, algo_name);
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1085  		if (err)
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1086  			return -EINVAL;
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1087  	}
+a5ad457eea41ef Sven Eckelmann 2020-10-11  1088  
+128254ceea6ffe Sven Eckelmann 2020-10-11  1089  	return register_netdevice(dev);
+128254ceea6ffe Sven Eckelmann 2020-10-11  1090  }
+128254ceea6ffe Sven Eckelmann 2020-10-11  1091  
 
 -- 
-Antonio Quartulli
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
