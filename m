@@ -1,87 +1,110 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188529D5AE0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Nov 2024 09:16:48 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B8F9D618F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Nov 2024 16:54:10 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B9E2B83F62
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Nov 2024 09:16:47 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 93FA383B22
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 22 Nov 2024 16:54:10 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1732263407;
- b=u5z7mPykDv4k0qU23vjUFn77FwytChTU2Kbmpvm3XYLGLjQh+QZDylslg8xo902Zzlkve
- Uy5szJSq/98ZXHtZhY1GJ+wnvl6XRpjIwhP7vjUzaTL43TTHdeit5cKwLI8ALDubwoyOv9C
- Cg/nOAavmWREcIBFIlJ/q2Y47a5Ee/U=
+ t=1732290850;
+ b=AQ2P4EaBcVuFvx09eX1WjeQJOWcuwPOHh0LInVpGy1lSuYiapgUdDNKuAvQCtLYkYUIRK
+ bOZhSJIIxD2fQcxbEDbk9M2SnBnUjLWOTxuYmEutD2aAJaITR1F/3B42zM4XQb1kxYkeRwt
+ UorJPHGZhwDcoKpzqsNI5UOgoEubwT0=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1732263407; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1732290850; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=oWLsf0r5uSftmMjzSxJoEwjpnTluGOhWeJzG1s4laaU=;
- b=e9RhLPqS0f6jIEurT9eB3KbRhmuzR9A4FsqYJa81aH+5lAUMIpqO/UofBbiQjVprndrHR
- n13wBUH5I3lRZiWOfqftzztXfTSPef5R6ZDYpSyiKnKvVTQPDwt71l8fLG5oNQYs7tRneCT
- EcyzdNOXWqFLnMjUWwCePN6Y/RWAEq8=
+ list-archive; bh=Gwlue0h/9fglDY+X8dpw4o3UjiPfUDsibARkJKq/74Y=;
+ b=DvlavYn8OxZrfJtAS2vLXeyj6gOMqk+sOw0HS3Yu337gv/7bpQJffgYQsMlJvPc4QIgX8
+ tKRaTzQmEJr7o72v3o02cvECTntyofGNAW/JPVK1EXdh678674WpcjJy7SsR07M/y+XiA3M
+ lVNMuRM/8CaELSgwjEZF2/LmSxHk13Y=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ dkim=fail header.d=smtpservice.net;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=narfation.org
- policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
+  dmarc=fail (Used From Domain Record) header.from=triplefau.lt
+ policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=fail header.d=smtpservice.net;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 241F581841
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Nov 2024 09:16:43 +0100 (CET)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732263403; a=rsa-sha256;
+ dmarc=fail (Used From Domain Record) header.from=triplefau.lt policy.dmarc=quarantine
+Received: from e2i340.smtp2go.com (e2i340.smtp2go.com [103.2.141.84])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id CFEDA80B7C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 22 Nov 2024 16:54:06 +0100 (CET)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732290847; a=rsa-sha256;
 	cv=none;
-	b=dlP3Lo8foW82bQ3j9cAoQThjK61FyYhzck59qRF1yjjSrjwioEr6E8n/er/UA36MTRksTI
-	ByhP4Td8pau3LTKKaZhTSQaCYaTbR8aS6zUhQHD6APFEeoTn3MLEtd2Axjo6qxeyKyofin
-	vL7QeuVfATERvxc+vh1eZqva6YVwUOQ=
+	b=a9zCA0OWx9Qays+sd8cMjz3QuNrtWG1wsD+I20/UnYtLd7ADhAVhuV9Vs/lP5wrMA/4/R8
+	gZk52+bx+4CUjhjwnaLBBwQ6mg8vynZsr06TfqA9HXUdpCOrNsPrWb8MH9PzJ+s02SsTs2
+	NdI+lZ4cUIO91jUgN1lBQu7hkWuekfU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=GuBqcMLN;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+	dkim=none ("invalid DKIM record") header.d=smtpservice.net
+ header.s=maxzs0.a1-4.dyn header.b=oZp72yvk;
+	dkim=pass header.d=triplefau.lt header.s=s510616 header.b=WWBh44Ea;
+	dmarc=pass (policy=quarantine) header.from=triplefau.lt;
+	spf=pass (diktynna.open-mesh.org: domain of
+ "bT.nzjovorkdpy6aj6=io1yfjoseteb=h3uh2vbyrzunmo@em510616.triplefau.lt"
+ designates 103.2.141.84 as permitted sender)
+ smtp.mailfrom="bT.nzjovorkdpy6aj6=io1yfjoseteb=h3uh2vbyrzunmo@em510616.triplefau.lt"
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1732263403;
+	s=20121; t=1732290847;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=oWLsf0r5uSftmMjzSxJoEwjpnTluGOhWeJzG1s4laaU=;
-	b=Py9IKmt3SoqBjIjq1bSgnXpNrgLVrAyI+I0GP5eVJ2sICjXEh+lZjaesfqbdQzRR2t8or/
-	O7psZkop2Fh75Ac97V7caIgggAayPRtenxCLo7DqFszAbFoBjbw9Amgb5Xwem4HaOHDpej
-	G+2qJuG/zhCJyMHcgx2WZ+KVOg3Zzr0=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1732263402;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oWLsf0r5uSftmMjzSxJoEwjpnTluGOhWeJzG1s4laaU=;
-	b=GuBqcMLNeS0wyaT39+y3BY3iANz4T/v3pUUyh+mLWoZ886MW63A2zBsnrwGQ7KlMpirjRy
-	aG+lqzfhf5tvsU8V6mHIWbeXGdt5biR+RwIFbA1lrQ3Ab73lEOYtRUJiefYepV5bSFeRZP
-	udqjdp1aepJQfsyQlyOQ+XaiG3PGzO8=
-From: Sven Eckelmann <sven@narfation.org>
-To: Remi Pommarel <repk@triplefau.lt>
-Cc: Antonio Quartulli <a@unstable.cc>, b.a.t.m.a.n@lists.open-mesh.org,
- Marek Lindner <mareklindner@neomailbox.ch>,
- Simon Wunderlich <sw@simonwunderlich.de>
-Subject: Re: [PATCH v3 1/5] batman-adv: Do not send uninitialized TT changes
-Date: Fri, 22 Nov 2024 09:16:37 +0100
-Message-ID: <2227327.C4sosBPzcN@ripper>
-In-Reply-To: <Zz-W_3A9diBFXz79@pilgrim>
-References: 
- <cover.1732124716.git.repk@triplefau.lt> <4345009.mogB4TqSGs@ripper>
- <Zz-W_3A9diBFXz79@pilgrim>
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=Gwlue0h/9fglDY+X8dpw4o3UjiPfUDsibARkJKq/74Y=;
+	b=15hNgeZuu8taxKLKVSz/n8MbTlfi75gzDQQRhOhMwWctBBiXDWTWlKuNHkFadyaO93Zsfy
+	7VY7NUIStuOis12H1iAujd6FLkyJBU5Mb2b0JEyjg8siC9Q99yFuBJmhe6ilmOsNadIcZJ
+	krfGQeOgjB2b9RmRxBKeBtM2wxtN8ic=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=smtpservice.net; s=maxzs0.a1-4.dyn; x=1732291746; h=Feedback-ID:
+	X-Smtpcorp-Track:Message-Id:Date:Subject:To:From:Reply-To:Sender:
+	List-Unsubscribe:List-Unsubscribe-Post;
+	bh=Gwlue0h/9fglDY+X8dpw4o3UjiPfUDsibARkJKq/74Y=; b=oZp72yvk9fxL/SDLV9+UcBv8Tt
+	1HzZiqskBsbAmIhFmtpsBhe98VcWAZOu8qB6TgkthKSJiuu3XzwhnUOUjchsSsWTzJ6K04Cs8WlsD
+	+bEc+m3ZOgVakCZ5SO9DO733t//8aYUR6MvUmpbDwW6mfzPfkCMPmc/QXXlxZqh4tkA3IHRRXjkTO
+	80Ws24kxHUKrGyh4QMMl/c3lwj44TGX8DAx9gStDs2awFN1NJn0qoIJF/Rr3D+ufhvrzs3LgHVtMI
+	UJH2ajDESxUtVZ1x21pNcy6ysIjA5+iuUVi669pIJlFDO0gzg5kqXEAjhvRznZF17GiGnezoH3S7E
+	VXbfF/qg==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=triplefau.lt;
+ i=@triplefau.lt; q=dns/txt; s=s510616; t=1732290846; h=from : subject
+ : to : message-id : date;
+ bh=Gwlue0h/9fglDY+X8dpw4o3UjiPfUDsibARkJKq/74Y=;
+ b=WWBh44EaLLiECieu2FlX56RYWGSAMSZ8u3r0OqUSbAWDHpAajqvJAuk06vwR9B5pOA5jd
+ 4WdQN80w/te0j9dXJoCs+ZhqvRf46UfA8u1ylM0czNLZc44znHa8HiE2i/oZe8Qm2oh17HF
+ TgPJzMwRItcx2nsUBxTYWyW6OugJzGaj+s9WYjTpH09sW4zlJsa2b4Fonox7rJI1+qSxrQ0
+ N23+TrkrCnmHOjPST/3PJ2w+Cj8xgsaApofhAQeBEaXGbaHdDKEKD7Q61bYEaJVZ9qExP7P
+ tq09ejfq443HhQaunNe2uz7817MkIXJbnNrY0jnA9jZkKlhGt6hG2vvd9rLg==
+Received: from [10.139.162.187] (helo=SmtpCorp) by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.94.2-S2G) (envelope-from <repk@triplefau.lt>)
+ id 1tEVyu-TRjyhr-TG; Fri, 22 Nov 2024 15:54:04 +0000
+Received: from [10.12.239.196] (helo=localhost) by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.97.1-S2G) (envelope-from <repk@triplefau.lt>)
+ id 1tEVyu-4o5NDgrfRk9-mfEW; Fri, 22 Nov 2024 15:54:04 +0000
+From: Remi Pommarel <repk@triplefau.lt>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Marek Lindner <mareklindner@neomailbox.ch>,
+ Simon Wunderlich <sw@simonwunderlich.de>,
+ Antonio Quartulli <a@unstable.cc>, Sven Eckelmann <sven@narfation.org>,
+ Remi Pommarel <repk@triplefau.lt>
+Subject: [PATCH v3 0/5] batman-adv: TT change events fixes and improvements
+Date: Fri, 22 Nov 2024 16:52:47 +0100
+Message-Id: <cover.1732290614.git.repk@triplefau.lt>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2577568.4XsnlVU6TS";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: V5YPHKEMTOBJ6OYFO2KIDRHYPMVS3QCX
-X-Message-ID-Hash: V5YPHKEMTOBJ6OYFO2KIDRHYPMVS3QCX
-X-MailFrom: sven@narfation.org
+Content-Transfer-Encoding: 8bit
+X-Smtpcorp-Track: jR1olIWH7Phw.9VZENVQUWyu6.jAA8jQpV3xq
+Feedback-ID: 510616m:510616apGKSTK:510616s19sbn7nzs
+X-Report-Abuse: Please forward a copy of this message, including all headers,
+ to <abuse-report@smtp2go.com>
+Message-ID-Hash: BQK5EBGIE6GJMJVS4WDNTYT4SPX4FZXA
+X-Message-ID-Hash: BQK5EBGIE6GJMJVS4WDNTYT4SPX4FZXA
+X-MailFrom: 
+ bT.nzjovorkdpy6aj6=io1yfjoseteb=h3uh2vbyrzunmo@em510616.triplefau.lt
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -94,7 +117,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/V5YPHKEMTOBJ6OYFO2KIDRHYPMVS3QCX/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BQK5EBGIE6GJMJVS4WDNTYT4SPX4FZXA/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -103,59 +126,57 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2577568.4XsnlVU6TS
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Remi Pommarel <repk@triplefau.lt>
-Date: Fri, 22 Nov 2024 09:16:37 +0100
-Message-ID: <2227327.C4sosBPzcN@ripper>
-In-Reply-To: <Zz-W_3A9diBFXz79@pilgrim>
-MIME-Version: 1.0
+The first three patches are actual fixes.
 
-On Thursday, 21 November 2024 21:24:31 CET Remi Pommarel wrote:
-> >
-> > And then you can also move this before "tt_diff_entries_num = ..." and 
-> > save the corresponding bat_priv->tt.local_changes for the spliced list to the 
-> > inside the lock also in a local variable. And then operate on this variable 
-> > for the other decisions. Of course, you must still clean the local list in 
-> > case of an error. Which of course would slightly change the behavior in case 
-> > of an allocation error in batadv_tt_prepare_tvlv_local_data (which would 
-> > previously kept the list as it was).
-> >
-> > But if it would be done like this then we could also remove the READ_ONCE and 
-> > not introduce the WRITE_ONCE - just because local_changes is only touched
-> > inside a locked area (see changes_list_lock).
-> >
-> > Please double check these statements - this was just a simple brain dump.
-> 
-> Yes that would be a much more elegant way to handle it. Unfortunately,
-> if I don't miss anything, the WRITE_ONCE/READ_ONCE would still be
-> needed because batadv_tt_local_commit_changes_nolock() has to load
-> tt.local_changes out of the lock to check if it needs to purge client
-> and recompute CRCs.
+The first two try to avoid sending uninitialized data that could be
+interpreted as invalid TT change events in both TT change response and
+OGM.  Following invalid entries could be seen when that happen with
+batctl o:
 
-Ah, you are right. I've missed this one.
+ * 00:00:00:00:00:00   -1 [....] (  0) 88:12:4e:ad:7e:ba (179) (0x45845380)
+ * 00:00:00:00:78:79 4092 [.W..] (  0) 88:12:4e:ad:7e:3c (145) (0x8ebadb8b)
 
-Btw. just to make it clear: These changes wouldn't be for this patch/fix 
-anyway. Just for a potential refactoring/cleanup patch for net-next.
+The third one fixes an issue that happened when a TT change event list
+is too big for the MTU, the list was never actually sent nor free and
+continued to grow indefinitely from this point. That also caused the
+OGM TTVN to increase at each OGM interval without any changes being ever
+visible to other nodes. This ever growing TT change event list could be
+observed by looking at /sys/kernel/slab/batadv_tt_change_cache/objects
+that sometimes showed unusal high value even after issuing a memcache
+shrink.
 
-Kind regards,
-	Sven
---nextPart2577568.4XsnlVU6TS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+The next two patches are more cleanup / potential slight improvements.
+While patch 4 is mainly cosmetic (having negative tt.local_changes
+values is not exactly an issue), patch 5 is here to keep the TT changes
+list as short as possible (reducing network overhead).
 
------BEGIN PGP SIGNATURE-----
+V4:
+  - Reword comment on patch 4
+  - Fix flag assignment position is patch 4
+  - Fix store stearing with WRITE_ONCE
+  - Change tt.local_change < 1 to tt.local_change == 0 in patch 4
+  - Rework/simplify TT event deduplication logic
 
-iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCZ0A95QAKCRBND3cr0xT1
-yxBxAQCWsSYaBfLkq6RxFzhdtISNR+istV/MNhfh4EW/HcJ59wEA9xUd8aQLdFlG
-vCzVFMqJj9+1VVOYRiAmCldg8OH9eA0=
-=6qvE
------END PGP SIGNATURE-----
+V3:
+  - Fix commit message wording
+  - Update outdated comments
 
---nextPart2577568.4XsnlVU6TS--
+V2:
+  - This has been tested enough to not be in RFC state anymore
+  - Add one more uninitialize TT change fix for full table TT responses
 
+Remi Pommarel (5):
+  batman-adv: Do not send uninitialized TT changes
+  batman-adv: Remove uninitialized data in full table TT response
+  batman-adv: Do not let TT changes list grows indefinitely
+  batman-adv: Remove atomic usage for tt.local_changes
+  batman-adv: Don't keep redundant TT change events
 
+ net/batman-adv/soft-interface.c    |   2 +-
+ net/batman-adv/translation-table.c | 123 ++++++++++++++++-------------
+ net/batman-adv/types.h             |   4 +-
+ 3 files changed, 72 insertions(+), 57 deletions(-)
+
+-- 
+2.40.0
 
