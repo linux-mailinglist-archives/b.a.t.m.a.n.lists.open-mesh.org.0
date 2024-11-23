@@ -2,75 +2,87 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAA29D681C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Nov 2024 08:54:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B13189D6AD7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Nov 2024 19:36:39 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id ECC668461B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Nov 2024 08:54:22 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8512B83E14
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 23 Nov 2024 19:36:39 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1732348462;
- b=TmUKViLWRVUk/wBuZCLtrNxICakp4oRZ4eaXYxixsyIQJifZC2+QpnJbO/CMurwh5g+5Y
- GLtMyoW2UfBIeAicbgjTbEji3BwyvE+xfuPTc/zk8fKUKzn+2CS1ziAnMvCNU/XvJjB3bQM
- pkWoIN1Hrif3yQuQJni+Ib/XB2B2BnI=
+ t=1732386999;
+ b=MYL2IwrLOVSYDSC8/KGN3s1CnvYlHsPfS97qeqYuZfabnB774I7QcJA308IuHuM6pVfo0
+ Nr4IWvjYm34ix7jpPx2oa8cYGoPoIPb9BQ2LpsrxgwT71q3udXv7OVy1XfsH6C/NRsK8Ksb
+ 3P9Lmz7Hj801AAnkssvCHtORtfyJTeA=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1732348462; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1732386999; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=sTgp2vFPzOP+NvZZTtvCHGfwAik5xydCuI0BaGfBB8c=;
- b=UsOXr1bMdjfS1coPedTluwLTsMmMC4TYPYT2rtamm1pzEL2HYgbTTtyHL6ejbWLG0etUS
- BCb2qAek9FiBxz/hrVMs0UulJquSdU0u/CfvAFCDaq9pg3crxQA5VDFWqXPPnFcut4B0Vu5
- 2nXRo7mAH+UgyZ797a4d4QsyiUz9zao=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
+ list-archive; bh=noteSHP2dFO5iA/47VR/fxo6APjL/tLYqvodr0CQfxw=;
+ b=KNsLLLfNRc+456Nhcfw8LJLytTG8Vo2AC1y3pHuG7fHrrUbyHj56db2hWZgBGskiK5C2x
+ nI4X5c5tbtfKlGN1DZu0ru6YNkGRq4BfdMnb0R3jAsm3ujFS73efVBmUXonejfHqpESviVA
+ ZZXqCiDV2B6OlUsg4PGeGPd+scM0EEA=
+ARC-Authentication-Results: i=2; open-mesh.org;
+ dkim=pass header.d=narfation.org;
   arc=pass;
-  dmarc=none
-Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 97C5B83C56
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 23 Nov 2024 08:53:15 +0100 (CET)
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732348395; a=rsa-sha256;
+  dmarc=pass (Used From Domain Record) header.from=narfation.org
+ policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1EA22817AC
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 23 Nov 2024 19:36:35 +0100 (CET)
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1732386996; a=rsa-sha256;
 	cv=none;
-	b=mK/9fDc/jRvFp/FufGQPF+BQwrN10H7lDsvIzCM1csjxeWSeMfjx/5VoFDDrlMkiuzqWW7
-	nDhUTcu9gUQPnkFAOyc6Q/2yOfLJ8S4Y+a/Agec9DvxDAPIgI/BilGC3H0D7aBWC3rDcFu
-	sRW/fpHBulgIwp6FH6p/S/bQ6kxwiD8=
+	b=DGr0cSCFhlNrnH+sFXqbi7uoewf6hOLtzdQI0or/4i6W6+Bzu8PaVVO+hRlafBoHDNNC7Z
+	oC+Ee1iz1AmKQt0iOXxjvYkj8fESzIIi7x9RjMiv58H8THy+V/wX2wd7p6GkVe820VSLtl
+	+eNJ3rR+3m3lZG0ILC/31YErDMBH8YU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	dmarc=none;
-	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
- designates 116.203.183.178 as permitted sender)
- smtp.mailfrom=linus.luessing@c0d3.blue
+	dkim=pass header.d=narfation.org header.s=20121 header.b=udjK6Xf9;
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1732348395;
+	s=20121; t=1732386996;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=noteSHP2dFO5iA/47VR/fxo6APjL/tLYqvodr0CQfxw=;
+	b=1DlsAXn1YWDsvUgZCBoxuEHP+lr0e54OCg8/zn9amYumPIeobZxKRWRjz1bOSjbbINrewU
+	ljkjADqyP7DWnyarPqGMi8l1CX3L628qOPGX9ipv6o+nwFN3N3DPIPkRB9j7D4ZD5lfsOn
+	LlgOFAiortwUaItcyzk2M3OIy+1FuKw=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1732386995;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=sTgp2vFPzOP+NvZZTtvCHGfwAik5xydCuI0BaGfBB8c=;
-	b=t+RPyzhS7+X0MjyRRzTvUTkpCUenq1tfxrojix61fYm3kmd7ghNkllc0wQMdZic9mzIf7j
-	ARdpP67aGzv+1dOCKs/Q19ktYya1DEHKonCB7590ZIfzMvVsaXRDFmAbIGSgpfLsjlc4E3
-	6vQSr9KSPWCpIGbq7RDtfKw5aQGf+Bk=
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 38A6954C3D5;
-	Sat, 23 Nov 2024 08:53:15 +0100 (CET)
-From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH v6 2/2] batman-adv: increase DAT DHT timeout
-Date: Sat, 23 Nov 2024 08:43:55 +0100
-Message-ID: <20241123075304.24568-3-linus.luessing@c0d3.blue>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241123075304.24568-1-linus.luessing@c0d3.blue>
-References: <20241123075304.24568-1-linus.luessing@c0d3.blue>
+	bh=noteSHP2dFO5iA/47VR/fxo6APjL/tLYqvodr0CQfxw=;
+	b=udjK6Xf9+ewLR4a7wEQD7Wq7EUGfAEF/4GPzi0RgLbHBl02iriqVOligyX9vvoJ4NHd9UX
+	uWKJKGjRZbJTkdQJIYO3CHlN6763o+bj1qf/guLa7rmNjSnhxrFoia/IGdvZ+wNkXuxK3u
+	gB02i/enZm0LaT9WVV1vhSpnz2x4Nm8=
+From: Sven Eckelmann <sven@narfation.org>
+To: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>,
+ Antonio Quartulli <a@unstable.cc>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
+Subject: 
+ Re: [PATCH v5 1/2] batman-adv: split DAT cache into DAT cache and DAT DHT
+Date: Sat, 23 Nov 2024 19:36:32 +0100
+Message-ID: <2320571.iZASKD2KPV@sven-l14>
+In-Reply-To: <878c7f2c-ea78-4f40-b20e-9698c77f887d@unstable.cc>
+References: 
+ <20240911051259.23384-1-linus.luessing@c0d3.blue>
+ <20240911051259.23384-2-linus.luessing@c0d3.blue>
+ <878c7f2c-ea78-4f40-b20e-9698c77f887d@unstable.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: KI34B2FOJD2EVH6N3BWPPXL5ADPNJ7II
-X-Message-ID-Hash: KI34B2FOJD2EVH6N3BWPPXL5ADPNJ7II
-X-MailFrom: linus.luessing@c0d3.blue
+Content-Type: multipart/signed; boundary="nextPart2017237.PYKUYFuaPT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: 3GH2BSXRAIAIXPPADA57V6IBT7BR5BVP
+X-Message-ID-Hash: 3GH2BSXRAIAIXPPADA57V6IBT7BR5BVP
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -83,7 +95,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KI34B2FOJD2EVH6N3BWPPXL5ADPNJ7II/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3GH2BSXRAIAIXPPADA57V6IBT7BR5BVP/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -92,95 +104,109 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Currently, the DHT_GET messages of the DAT will likely be left
-unanswered due to the following issues:
+--nextPart2017237.PYKUYFuaPT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
+Date: Sat, 23 Nov 2024 19:36:32 +0100
+Message-ID: <2320571.iZASKD2KPV@sven-l14>
+In-Reply-To: <878c7f2c-ea78-4f40-b20e-9698c77f887d@unstable.cc>
+MIME-Version: 1.0
 
-When a node has a matching DAT Cache entry for a local ARP Request then
-this node will answer it directly with the information provided by the
-cache. This however, will likely lead to missing ARP Replies from the
-original host. Which in turn leads to the DAT DHT not being updated.
+On Monday, 28 October 2024 14:25:36 CET Antonio Quartulli wrote:
+[...]
+> > +/**
+> > + * batadv_dat_get_softif() - get the soft interface from a netlink callback
+> > + * @cb: callback structure containing arguments
+> > + *
+> > + * Return: The soft interface on success or an error pointer otherwise.
+> > + */
+> > +static struct net_device *batadv_dat_get_softif(struct netlink_callback *cb)
+> > +{
+> > +	struct net *net = sock_net(cb->skb->sk);
+> > +	struct net_device *soft_iface;
+> > +	int ifindex;
+> > +
+> > +	ifindex = batadv_netlink_get_ifindex(cb->nlh,
+> > +					     BATADV_ATTR_MESH_IFINDEX);
+> > +	if (!ifindex)
+> > +		return ERR_PTR(-EINVAL);
+> > +
+> > +	soft_iface = dev_get_by_index(net, ifindex);
+> > +	if (!soft_iface)
+> > +		return ERR_PTR(-ENODEV);
+> > +
+> > +	if (!batadv_softif_is_valid(soft_iface)) {
+> > +		dev_put(soft_iface);
+> > +		return ERR_PTR(-ENODEV);
+> > +	}
+> > +
+> > +	return soft_iface;
+> > +}
+> 
+> I don't think this function is DAT specific at all.
+> Moreover, the very same code (which I think you are re-using here) 
+> appears in batadv_netlink_dump_hardif().
+> 
+> I think it'd make more sense to factor it out and create a helper out of 
+> it (place it in netlink.c?). This way we avoid code duplication.
+> 
+> [I might be wrong but 90% of the work already is in 
+> batadv_get_softif_from_info()]
 
-Then the local DAT cache entry will time out, triggering a unicasted
-DHT_GET. However, as the 5min. timeout has passed, the DAT DHT
-candidates will likely have purged their entry, too.
 
-So basically this results in an ARP Request broadcast fallback every
-five minutes.
+Looks like this was never answered and also not handled in the v6 version of the patch.
 
-A second issue is that it is quite common that a host which has long
-gone offline will be tried to be contacted by another one at some remote
-period larger than the current 5min. timeout. This too leads to flooded
-ARP Requests.
+[...]
+> > --- a/net/batman-adv/types.h
+> > +++ b/net/batman-adv/types.h
+> > @@ -1231,8 +1231,11 @@ struct batadv_priv_dat {
+> >   	/** @addr: node DAT address */
+> >   	batadv_dat_addr_t addr;
+> >   
+> > -	/** @hash: hashtable representing the local ARP cache */
+> > -	struct batadv_hashtable *hash;
+> > +	/** @cache_hash: hashtable representing the local ARP cache */
+> > +	struct batadv_hashtable *cache_hash;
+> > +
+> > +	/** @dht_hash: hashtable representing the local DAT DHT */
+> > +	struct batadv_hashtable *dht_hash;
+> >   
+> >   	/** @work: work queue callback item for cache purging */
+> >   	struct delayed_work work;
+> 
+> I can see that most of the code in this patch is about handling two 
+> tables (in a generic fashion) instead of one.
+> 
+> One functional change I am seeing is also that before this patch 
+> batman-adv would store/cache any ARP information coming from the mesh.
+> While now this happens only for the DHT PUT. Am I right?
+> 
+> If that's the case, it means we may issue more DHT_GETs (and possibly 
+> ARP requests) because we lost a chance to cache a bit more that what the 
+> DHT stores. Does it make sense?
 
-With this patch the purge timeout for DAT DHT entries is increased to
-30min to reduce the number of DAT ARP broadcast fallbacks.
 
-Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
----
- net/batman-adv/distributed-arp-table.c | 22 +++++++++++++++++-----
- net/batman-adv/main.h                  |  3 ++-
- 2 files changed, 19 insertions(+), 6 deletions(-)
+Looks like this was never answered.
 
-diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
-index 7f0cb0796f31..f1fa2432b90e 100644
---- a/net/batman-adv/distributed-arp-table.c
-+++ b/net/batman-adv/distributed-arp-table.c
-@@ -133,15 +133,27 @@ static void batadv_dat_entry_put(struct batadv_dat_entry *dat_entry)
- }
- 
- /**
-- * batadv_dat_to_purge() - check whether a dat_entry has to be purged or not
-+ * batadv_dat_cache_to_purge() - check if a cache entry has to be purged or not
-  * @dat_entry: the entry to check
-  *
-  * Return: true if the entry has to be purged now, false otherwise.
-  */
--static bool batadv_dat_to_purge(struct batadv_dat_entry *dat_entry)
-+static bool batadv_dat_cache_to_purge(struct batadv_dat_entry *dat_entry)
- {
- 	return batadv_has_timed_out(dat_entry->last_update,
--				    BATADV_DAT_ENTRY_TIMEOUT);
-+				    BATADV_DAT_CACHE_ENTRY_TIMEOUT);
-+}
-+
-+/**
-+ * batadv_dat_dht_to_purge() - check if a DHT entry has to be purged or not
-+ * @dat_entry: the entry to check
-+ *
-+ * Return: true if the entry has to be purged now, false otherwise.
-+ */
-+static bool batadv_dat_dht_to_purge(struct batadv_dat_entry *dat_entry)
-+{
-+	return batadv_has_timed_out(dat_entry->last_update,
-+				    BATADV_DAT_DHT_ENTRY_TIMEOUT);
- }
- 
- /**
-@@ -202,8 +214,8 @@ static void batadv_dat_purge(struct work_struct *work)
- 	priv_dat = container_of(delayed_work, struct batadv_priv_dat, work);
- 	bat_priv = container_of(priv_dat, struct batadv_priv, dat);
- 
--	__batadv_dat_purge(bat_priv->dat.cache_hash, batadv_dat_to_purge);
--	__batadv_dat_purge(bat_priv->dat.dht_hash, batadv_dat_to_purge);
-+	__batadv_dat_purge(bat_priv->dat.cache_hash, batadv_dat_cache_to_purge);
-+	__batadv_dat_purge(bat_priv->dat.dht_hash, batadv_dat_dht_to_purge);
- 	batadv_dat_start_timer(bat_priv);
- }
- 
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index 97ea71a052f8..f04bce4eaf8c 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
-@@ -38,7 +38,8 @@
- #define BATADV_TT_WORK_PERIOD 5000 /* 5 seconds */
- #define BATADV_ORIG_WORK_PERIOD 1000 /* 1 second */
- #define BATADV_MCAST_WORK_PERIOD 500 /* 0.5 seconds */
--#define BATADV_DAT_ENTRY_TIMEOUT (5 * 60000) /* 5 mins in milliseconds */
-+#define BATADV_DAT_CACHE_ENTRY_TIMEOUT (5 * 60000) /* 5 mins in milliseconds */
-+#define BATADV_DAT_DHT_ENTRY_TIMEOUT (30 * 60000) /* 30 mins in milliseconds */
- /* sliding packet range of received originator messages in sequence numbers
-  * (should be a multiple of our word size)
-  */
--- 
-2.45.2
+
+Kind regards,
+	Sven
+--nextPart2017237.PYKUYFuaPT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCZ0IgsAAKCRBND3cr0xT1
+y7kGAP4hWF2fuKO/ktwC0053Yr/Htjea45Az7AEws5u6ZGLbigD8DBoL25cv8JXv
+U8IZvRNLmAJAxOvFFenCpWKULIzbOAA=
+=BZsa
+-----END PGP SIGNATURE-----
+
+--nextPart2017237.PYKUYFuaPT--
+
+
 
