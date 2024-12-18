@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B739F9F66F3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Dec 2024 14:17:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 727C69F66FC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Dec 2024 14:18:21 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 90B6F84216
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Dec 2024 14:17:37 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4B40584028
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 18 Dec 2024 14:18:21 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1734527857;
- b=jOIhnWnZgLZnc81zFats7Xs37J1ZtAwiaxV5FnJHRR5sVXN8MOpFnSHlU+uIZUR9RRB6/
- 3oayfib73Kgr17b+Nh3RCjBt03v8AeSnedFlgbkC73WC6p/CcO7BCndFLZXLskOUt8S8Fa/
- FdiwNQ3AJakVrzWZPdR8wmONLpVeR8Q=
+ t=1734527901;
+ b=g6Im9RBX2gDytSjTcSzi/Dj2KUXffPvn8V0QY1uIMx9FjvDc5wpSIVmaVJXgVMOM+pDH+
+ VlFD34xXpWyXCJ3WL0baW5VCLtK8nDufAtydhramIpzLlmaPBjIIqRWRzeyIPofogq5KHzB
+ Klvt+ZKyBv/TDAh/6X3pwYRt0sVzknQ=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1734527857; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1734527901; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=bXH8tUP/h7NPxTwhkU8DrmHX10k3nPXxIbmClQOEn5A=;
- b=E9Z+7jP91F5KHsICt3cqABvKfRDn338ygqs0TUVs/EiTL9P/AugSwBkkD9nGxisdffn8A
- 8piqo7niG4/jPAe+tLGrK0M7ka3lFdGzBU0jjwU206RnMNKqGxr1N5ntqhHSDN1CCPIjVBd
- siFbZqW+Q1aXfG4P+kPC4wM/3Rk/eXA=
+ list-archive; bh=vKRdbuSYL7hnJpCbxB6/aqEJFoCo8iX729XZZAsUkqw=;
+ b=UCMbi4TxJ7R2bfNq3CrHnCFnhvAcV1liQ0S2NOMr4sIVNZCsCU/Wd01oc+iefG/9hXYYP
+ etoz2AVVutmkJ5AMxW21yN5mK9BwWwG2A1MEb4c+j7Z8LBACjsZhp41GaysB1esalnfyTql
+ xf31a9s/puPqXKwIGHsHUJSsUujXgZo=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=gmail.com;
   arc=pass;
   dmarc=pass (Used From Domain Record) header.from=gmail.com
@@ -30,79 +30,79 @@ ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=gmail.com;
 Authentication-Results: open-mesh.org; dkim=pass header.d=gmail.com; arc=pass;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com
- [IPv6:2607:f8b0:4864:20::42f])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id E14DE83F15
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Dec 2024 14:10:23 +0100 (CET)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20::631])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1103083F15
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 18 Dec 2024 14:10:32 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1734527423;
+	s=20121; t=1734527432;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=bXH8tUP/h7NPxTwhkU8DrmHX10k3nPXxIbmClQOEn5A=;
-	b=1XYFB26AquXuqDt2J8WZlWY22VlcWL+kk18iNe2X2Pd87q7dbvYuO3JQjoC/GrKjgB0dOx
-	zLy1pqdBOirX/eja3oFWf/qIA8SvfY73aUHuJb7vMcHU/r6irOD02Vlsf/EJ5+H6MSy72u
-	VqdhX+MsuqgL96w9XGk22IWFkLXBlAk=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1734527423; a=rsa-sha256;
+	bh=vKRdbuSYL7hnJpCbxB6/aqEJFoCo8iX729XZZAsUkqw=;
+	b=PsDVdn6kMRRkILZZzInFcvN4FZPAcqbETGklzUUYVhGt4Q4sRNq22VOhPTDS8HiU/L4PId
+	MFsTRW04M3cGuI/Nw4UFwWTC8vBT3R77+hYDt7vIZZqiqhjfHaTKkLlhB2YP8M+IAF2JPS
+	eFz8c2OPYl8RgB4A5s/gCatzNTfSqeQ=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1734527432; a=rsa-sha256;
 	cv=none;
-	b=Z8NojMDVoQhPm5SFjZ+c8ZlMHgWAxBT9etFskgaYsSDsGbF3allFWAktLBNdsMNGsnPmOw
-	RPXNS2ROHHbTYNSndTQyRTiFYj86o7cXOtB2jCZvkfRkoU4KPA4iYArOsSgBAikkpU2wpj
-	mAgosh2+s8QjAKLXtHGI5hfXWvprt+I=
+	b=WaKashwgQwCHcdSmbr6HcfPuPWzz8fJN3V0T8feHWSzJPP0HM+znk/LMfDDNr+vQZlQTrt
+	Zvap7n6jCF7LYdq9vVslpaoe+3Xtneu5MUygk4Ojx8qKyQ7RVLCdMgQto38141g7alVPCB
+	MNO687kr9BKKJUKkub4wTBMrGwcnQ6I=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=gmail.com header.s=20230601 header.b="HLq+j/J8";
+	dkim=pass header.d=gmail.com header.s=20230601 header.b="db6Qb4o/";
 	spf=pass (diktynna.open-mesh.org: domain of shaw.leon@gmail.com designates
- 2607:f8b0:4864:20::42f as permitted sender)
+ 2607:f8b0:4864:20::631 as permitted sender)
  smtp.mailfrom=shaw.leon@gmail.com;
 	dmarc=pass (policy=none) header.from=gmail.com
-Received: by mail-pf1-x42f.google.com with SMTP id
- d2e1a72fcca58-725ce7b82cbso7449324b3a.0
+Received: by mail-pl1-x631.google.com with SMTP id
+ d9443c01a7336-2164b1f05caso59837385ad.3
         for <b.a.t.m.a.n@lists.open-mesh.org>;
- Wed, 18 Dec 2024 05:10:23 -0800 (PST)
+ Wed, 18 Dec 2024 05:10:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734527422; x=1735132222;
+        d=gmail.com; s=20230601; t=1734527430; x=1735132230;
  darn=lists.open-mesh.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bXH8tUP/h7NPxTwhkU8DrmHX10k3nPXxIbmClQOEn5A=;
-        b=HLq+j/J85pHxDp2x8UhLuOjAeu1uiNJ8xku+4yUIDqOjVQptY5pZ7Odoi31ML4TBXq
-         2VMzUDFAqakhixeaW5SPZJhgsi8RvY2Rtj4/+3JTFjdg4a4eMruEAkDvZwf7xEn8h7HH
-         5+7YRpfNsvHot9kp5xhL5PWkIy4O1p1MxRA6aNcbiI8klOZAFhLfM3CW+E2kQ6hEaAsS
-         zCgNWxXIkO3KK4YHNRbneinYE45at+vsQkMw8M1EnvO6Ud9GkhWFBsWDTiiGbCN6Sgi5
-         mZLmHoBIPH7yXoXujnKTz97BTADy0s+KRulGdp+Yu9vtKuHa6PZDJZpY+7KHwiMKAoNb
-         K8mQ==
+        bh=vKRdbuSYL7hnJpCbxB6/aqEJFoCo8iX729XZZAsUkqw=;
+        b=db6Qb4o/zUYSjZQKfC/v0Tq8XejBAT/55DvA605+plxjX5gb6v07Qg4jlw5p6KjzeQ
+         MgDZFnstnhqH5kjCX28l9mrbzJSn5OXRFfSzQbaYd2fh0XN2iWkn/GF2WNBg6KMBssnC
+         JXXxOmzBtxtNOlSQ3jPEhXVzwRyZuynVuFm6RE+6NetkM65YzL6kkhfMqd+Heip/eefq
+         bIo7kNRX/SriLY+YU11+5sALRANPe+wmW06p0LihDHUmFAWH8SON7Z68tqLACf5nMvkd
+         o9i+fssg2700SOKUY/5iY0Iwu8EijvKaV0DGmm3F7tOi7ChDhazSxPGaI/f/3jtaX4kq
+         IXjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734527422; x=1735132222;
+        d=1e100.net; s=20230601; t=1734527430; x=1735132230;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=bXH8tUP/h7NPxTwhkU8DrmHX10k3nPXxIbmClQOEn5A=;
-        b=QZ1CVjWag2Vkrif396c+ymVN220jlDlnvl72U89JZKo3QtD1pXX8+hzg3k4SjTR0iF
-         dJGjtERCFtpLQmH7bclwYzWAD9o9HVKo04iT83SoBwZ0TjgDWUKgV06FOeQonRyetRii
-         i9YhaNTeJ7fDyJcFhpRdsSK594GBPk57G3GW33wXGrQn4/efjmxG4Bl2cP3gmivnuiIV
-         iQ3KAaLs9gL0drpZWx4G0B4kYq0u3yqrZYAYlUXMDExiQTFpPwKd3vsC+WxHf98Y03d9
-         yiBIv4DahDot2g/8kunHnG805iWiOPBI1prPSCGecY8m/9py4EkKoqlTeT7D/ykPGWiI
-         cpLA==
+        bh=vKRdbuSYL7hnJpCbxB6/aqEJFoCo8iX729XZZAsUkqw=;
+        b=fMcP87xbYzIotvyySANXzl2ean5elxiR+TbRqye3k29vXFZkJooShR5oQ1CassC3lg
+         BF8xDe4B6KR+Lzpzxp8GUHVpGFndw7FB5tCWwybkR1XFxhYqvDGfV7R81gPsv5ELv+ts
+         JzTO71U4bynTldq41NX/ktK0XFBNhemQ6sI0ykgxFToCe1GXJ7SwWGKkD2MlLtvCvMeV
+         F8Y63IO0PXax/rcy9HkWykALa2wdtqq8fbx97JLeWib44j//Y200/mGXIPrEVZJ1VQWb
+         1SaToHmP163eJSRYkqw/7v1qQoy+PD207uSeW2ft27012MaoBK+Rl4apg/0ZxIrhJ3WE
+         gP3w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWG3Yqq3iqFE5fIKKPAZ9ArGW4HGQ5grru59MO/c5gsA6B6E17SyD3R3KspVmKpAo/8rl+VaWGwg1PbuA==@lists.open-mesh.org
-X-Gm-Message-State: AOJu0Yyty3Kdf07H8faREn4i6os937q2ghJitdchRELrZtUPSWueao/d
-	ssDRkIoS4RrRARgMh3bViDAmVLzTeRsyzx9Xj4+SwT5CKOUR50HB
-X-Gm-Gg: ASbGncsD5ePCDXNn4rMKmRzhSd/TMxw4PvvxPrMhlQKK3XyrM7drtg5QvswUYhAp/i4
-	GeNns7H+7tB5xsa5K+vMTutbiFA8m7PqStbzj8spDXaVWQNoxQ2cYLkIy9EiPW/68Hj/K6E/WaM
-	eNsmJD44WiosxfFkwnVIERRcWvcWgMHrcp3xGHafYDtG8bAPTvdg4lYk5q2c4RxZj2i+ybFsKvB
-	wajCPuJ3yE1/rnLYT2CecmAhy+5AWy4i2LsfvzHZcqflUc=
+ AJvYcCUhk2G/ADvDNo/GepfZmQQhkPMPxZH+U+pvOAy0ieBD62q0jUMjt7QkWpFLKNkWRqqyiJWSAsQ9mSPC9w==@lists.open-mesh.org
+X-Gm-Message-State: AOJu0Ywr/lLVk/rAkwVusxhSu1oIsPr66S0OfFYycxT3VqxBeGXcqOI5
+	nWDpOYGHGLlnTjcV6CwcW7icTuvTfxqKAwVU9oveGddYx7g9PHGr
+X-Gm-Gg: ASbGnct1zlYDIfMELfq/YwiNDozI/KaQ9N9e+J9keAl7C7+8Rc3TJfdr9TEBU/q0H2/
+	cfyM2WQr3X88iRAisVWlid1Ns7UNqJ1n0wH0jgL5kF1/WjiPxoEwOrHtN1X8BPazxG5aG/OTdBu
+	G//LQBS0uZgi+m8POK1n+JDnWz/Zrs+PVF54oOcYXIHV9lfjEMQ6DBgnrfR3x9gogW5zSQUS4bK
+	K+fSUUWLrAGTg4AXIZcbu9jfcY5NY3CJ/OonO2b1OHHQdc=
 X-Google-Smtp-Source: 
- AGHT+IGLrMJpewCg9a6Mvczs3iBMMwjIWUW57/cgClFku2ou3JPxqZ6yK8d+Q9sS8i4XncDR+dfRig==
-X-Received: by 2002:a05:6a20:12c6:b0:1e1:bee3:50ea with SMTP id
- adf61e73a8af0-1e5b47f94bcmr5116348637.11.1734527422239;
-        Wed, 18 Dec 2024 05:10:22 -0800 (PST)
+ AGHT+IG5uNon7/+5tavnAU1+6ODsDyulZAAiwNo5sldF4FHk8kNssZ4/V0oQpI2qOsRTRp3qJQ4m2Q==
+X-Received: by 2002:a17:902:db01:b0:216:5867:976a with SMTP id
+ d9443c01a7336-218d725b7aamr38087595ad.45.1734527430302;
+        Wed, 18 Dec 2024 05:10:30 -0800 (PST)
 Received: from ws.. ([103.167.140.11])
         by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-801d5c0f59asm7434754a12.67.2024.12.18.05.10.14
+ 41be03b00d2f7-801d5c0f59asm7434754a12.67.2024.12.18.05.10.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 05:10:21 -0800 (PST)
+        Wed, 18 Dec 2024 05:10:29 -0800 (PST)
 From: Xiao Liang <shaw.leon@gmail.com>
 To: netdev@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
@@ -130,10 +130,9 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	bridge@lists.linux.dev,
 	linux-wpan@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v6 07/11] net: xfrm: Use link netns in newlink() of
- rtnl_link_ops
-Date: Wed, 18 Dec 2024 21:09:05 +0800
-Message-ID: <20241218130909.2173-8-shaw.leon@gmail.com>
+Subject: [PATCH net-next v6 08/11] rtnetlink: Remove "net" from newlink params
+Date: Wed, 18 Dec 2024 21:09:06 +0800
+Message-ID: <20241218130909.2173-9-shaw.leon@gmail.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241218130909.2173-1-shaw.leon@gmail.com>
 References: <20241218130909.2173-1-shaw.leon@gmail.com>
@@ -146,15 +145,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2
-Message-ID-Hash: ZGMMU7WB4PMS7WDAOL2OCOYULQKFL4TJ
-X-Message-ID-Hash: ZGMMU7WB4PMS7WDAOL2OCOYULQKFL4TJ
+Message-ID-Hash: 4LD4L2TWQ24BC4IWKH3YPM25Q4I7FY5T
+X-Message-ID-Hash: 4LD4L2TWQ24BC4IWKH3YPM25Q4I7FY5T
 X-Mailman-Approved-At: Wed, 18 Dec 2024 14:11:51 +0100
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZGMMU7WB4PMS7WDAOL2OCOYULQKFL4TJ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4LD4L2TWQ24BC4IWKH3YPM25Q4I7FY5T/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -163,54 +162,59 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-When link_net is set, use it as link netns instead of dev_net(). This
-prepares for rtnetlink core to create device in target netns directly,
-in which case the two namespaces may be different.
+Now that devices have been converted to use the specific netns instead
+of ambiguous "net", let's remove it from newlink parameters.
 
 Signed-off-by: Xiao Liang <shaw.leon@gmail.com>
 ---
- net/xfrm/xfrm_interface_core.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ include/net/rtnetlink.h | 2 --
+ net/core/rtnetlink.c    | 6 ------
+ 2 files changed, 8 deletions(-)
 
-diff --git a/net/xfrm/xfrm_interface_core.c b/net/xfrm/xfrm_interface_core.c
-index 77d50d4af4a1..d1198c63dd23 100644
---- a/net/xfrm/xfrm_interface_core.c
-+++ b/net/xfrm/xfrm_interface_core.c
-@@ -242,10 +242,9 @@ static void xfrmi_dev_free(struct net_device *dev)
- 	gro_cells_destroy(&xi->gro_cells);
- }
- 
--static int xfrmi_create(struct net_device *dev)
-+static int xfrmi_create(struct net *net, struct net_device *dev)
- {
- 	struct xfrm_if *xi = netdev_priv(dev);
--	struct net *net = dev_net(dev);
- 	struct xfrmi_net *xfrmn = net_generic(net, xfrmi_net_id);
+diff --git a/include/net/rtnetlink.h b/include/net/rtnetlink.h
+index ed970b4568d1..04fc0e91af42 100644
+--- a/include/net/rtnetlink.h
++++ b/include/net/rtnetlink.h
+@@ -72,7 +72,6 @@ static inline int rtnl_msg_family(const struct nlmsghdr *nlh)
+ /**
+  *	struct rtnl_newlink_params - parameters of rtnl_link_ops::newlink()
+  *
+- *	@net: Netns of interest
+  *	@src_net: Source netns of rtnetlink socket
+  *	@link_net: Link netns by IFLA_LINK_NETNSID, NULL if not specified
+  *	@peer_net: Peer netns
+@@ -82,7 +81,6 @@ static inline int rtnl_msg_family(const struct nlmsghdr *nlh)
+  *	@extack: Netlink extended ACK
+  */
+ struct rtnl_newlink_params {
+-	struct net *net;
+ 	struct net *src_net;
+ 	struct net *link_net;
+ 	struct net *peer_net;
+diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+index f7c176a2f1a0..e33ef8a0a6d6 100644
+--- a/net/core/rtnetlink.c
++++ b/net/core/rtnetlink.c
+@@ -3758,7 +3758,6 @@ static int rtnl_newlink_create(struct sk_buff *skb, struct ifinfomsg *ifm,
+ 	char ifname[IFNAMSIZ];
  	int err;
+ 	struct rtnl_newlink_params params = {
+-		.net = net,
+ 		.src_net = net,
+ 		.link_net = link_net,
+ 		.peer_net = peer_net,
+@@ -3787,11 +3786,6 @@ static int rtnl_newlink_create(struct sk_buff *skb, struct ifinfomsg *ifm,
+ 	dev->ifindex = ifm->ifi_index;
+ 	params.dev = dev;
  
-@@ -819,11 +818,12 @@ static int xfrmi_newlink(struct rtnl_newlink_params *params)
- 	struct netlink_ext_ack *extack = params->extack;
- 	struct net_device *dev = params->dev;
- 	struct nlattr **data = params->data;
--	struct net *net = dev_net(dev);
- 	struct xfrm_if_parms p = {};
- 	struct xfrm_if *xi;
-+	struct net *net;
- 	int err;
- 
-+	net = params->link_net ? : dev_net(dev);
- 	xfrmi_netlink_parms(data, &p);
- 	if (p.collect_md) {
- 		struct xfrmi_net *xfrmn = net_generic(net, xfrmi_net_id);
-@@ -852,7 +852,7 @@ static int xfrmi_newlink(struct rtnl_newlink_params *params)
- 	xi->net = net;
- 	xi->dev = dev;
- 
--	err = xfrmi_create(dev);
-+	err = xfrmi_create(net, dev);
- 	return err;
- }
- 
+-	if (link_net)
+-		params.net = link_net;
+-	if (peer_net)
+-		params.net = peer_net;
+-
+ 	if (ops->newlink)
+ 		err = ops->newlink(&params);
+ 	else
 -- 
 2.47.1
 
