@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A58A05DA9
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  8 Jan 2025 14:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B32EDA05DFE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  8 Jan 2025 15:05:43 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 2051A84287
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  8 Jan 2025 14:56:47 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8B8AC84327
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed,  8 Jan 2025 15:05:43 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1736344607;
- b=WBMfxwZJ4VjqqG4NV6rZ+jeD8PxXnmiLC4lyvVMK/4Ws+Y1sHfE9cQ1DfOzcIo/I+f0q6
- 3YD3A9kAlc85FRMIYdUkmuX7Fo/Et0sXOpnUqA5Ry/9RAJ/8aH41285T8jnPPShuerlVtIX
- 7nn35QUwmgUsNUuKepsImeIlV2XSPS8=
+ t=1736345143;
+ b=Vk+OaJkHzqZextB5DG4aHvDsiezMX8xg+m/V1ShFKPI5W+awin+ElK882u3gjPN5s8dli
+ fsDSYysWrgIf/pTW3NMzzZ386gBOpdbgni4MhlOktMa+hT80dq6SYPG+l7VvnfuerJ7K1Tj
+ /AbmbRV0JGlW96XZjvwPgLx5aOHbfEE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1736344607; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1736345143; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=JiJl914Lvg88cyIS5fhyS7aAG4Zh+o7PkfFyZT8bU2Q=;
- b=VelpuxO1itQN90EtQhwLuLdYYMf8Kw85wLeRxwR9pJTGV4q4IIJk/KPtd57zbI2JbRttM
- fozfiHOFMI/qGMaEtSRk3z17XH+BHytsirlf4uFyeih6gsGHL3FvE07Sbks9tu4ymOWtjvz
- uNLjJWYk9JKarf5BmHapCsSnLG7NRrw=
+ list-archive; bh=dmU8xnyTPrTdKQUcZHPIGWIYWt9cKCgJ87YSH5qmNHc=;
+ b=lUEhY09Yac4AkdMLaK2weAP3wddhzU3RhojI6LA/jEmtKTH1Om6ODpKo5bKDdSMG2iyVF
+ +buFnm2A2SbVfZLQ1q99plt+QWZmeEXZJDIupLMw5R/w0rwMvZ7T4Ku2XNcHRd6sh9Qn33S
+ NFGsdBELdrHNsQ9L3CC9QMloMT8gDvs=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
   arc=pass;
@@ -31,53 +31,63 @@ ARC-Authentication-Results: i=2; open-mesh.org;
 Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1479E83E0C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  8 Jan 2025 14:56:20 +0100 (CET)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0697D84107
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed,  8 Jan 2025 15:04:21 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1736344581;
+	s=20121; t=1736345062;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=JiJl914Lvg88cyIS5fhyS7aAG4Zh+o7PkfFyZT8bU2Q=;
-	b=r7b4+I01DGkukAFMCKwqIBL/9M90zhhJBvIPfBS9tRETXGb2F8WEJrKv1VnVye1oK/Xx52
-	Dm9T8NhihKbLffD68CDzmA0pCjgcP8zQx5zBefBOsj1bCCNapDmLIOKmG398YoA/X94GWn
-	YaI0SQZSX/EbhPhhB+WrioV/JfXKiDk=
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=dmU8xnyTPrTdKQUcZHPIGWIYWt9cKCgJ87YSH5qmNHc=;
+	b=tZnodXJZHF2Y2mLG0GVaZikOUed8Ui3BCZZb4KzuGvMpz+fmGo770Ycg19nUAteiguxIog
+	YaedbXj5dJCExMfKDOjpzQMb8Qrkw99b6hpyupoyNdvJd6M/tUbZt8XwiVflpnOyyBpxL/
+	id6+uPStgN9lsf6tNpCz0tUtA2BsUJE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Ik48nOQS;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=juKU6F2M;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1736344581; a=rsa-sha256;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1736345062; a=rsa-sha256;
 	cv=none;
-	b=GI9S9sI0YFaxsK5jB+gl7ZJc60r3tfyL+iLgCAuwUg2zQII50skdxaJO3cKSx5ssjqEH5G
-	k9EgvAp+aQmREjucZ8xKDX5hPNxsplYwhRzO8ez26yo+zZimgN1k9qWK/z9Lt+lOkzezjz
-	dS2ntLWvdsDHTRTeJgVK6wL319gp0X0=
+	b=gOg6xVsfRD9mHHyfS7WIPHnqukiZESRcPJ/IMwpXyfKgPYPAPXHPGI0/9LVvQBCrlmx2tA
+	lN18oWJQUWtJdGGGvoz0koa1H8U/FXTV3b0fV6oNl81xd1J9CFVwr8BeIxY32r2rSWBpVT
+	rq4IgLpdUt+HsOhyORXemL+Lotxw0mc=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1736344579;
+	s=20121; t=1736345061;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JiJl914Lvg88cyIS5fhyS7aAG4Zh+o7PkfFyZT8bU2Q=;
-	b=Ik48nOQS6XSPXL3K2EqxxiCGKtY3jvtxd/U//6xHYVYQ4uqSswy+j3++4WNzQww4AC/T5o
-	7OkmlF0Cj9p+UvG+JQtazXj9g7JpTHMrhyKA+r0F6XVbA0YWh7cV5dsCS4/K2ynnW15k0z
-	FkRPs6kOnq3UJPhdXOzslFtCpUppZ44=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=dmU8xnyTPrTdKQUcZHPIGWIYWt9cKCgJ87YSH5qmNHc=;
+	b=juKU6F2MVJc35y7CfwK2zpF2V0jPnNBfeKqVKmuzmro17NCIV9CNQcYHBgO5Kx+JPHu6XN
+	+A8UPdRWa/XLn/qowcYVYZt6vqsqJLKPqB92pwIuGb0NNEUAZdxMqG3UfoOPMWeyEeuYm1
+	MlHc0uW5YT+O3DJR0NPF1j2f3uwFw08=
 From: Sven Eckelmann <sven@narfation.org>
-To: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH v2] batman-adv: Use mailmap to fix old e-mail addresses
-Date: Wed, 08 Jan 2025 14:56:13 +0100
-Message-ID: <8515152.NyiUUSuA9g@ripper>
-In-Reply-To: <Z36CtUlH-_1GLts_@sellars>
-References: 
- <20250107-mailmap-v2-1-12d85da0b8e7@narfation.org> <Z36CtUlH-_1GLts_@sellars>
+Date: Wed, 08 Jan 2025 15:04:08 +0100
+Subject: [PATCH v3] batctl: Use mailmap to fix old e-mail addresses
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2010993.usQuhbGJ8B";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: DMPKWUNSTWNA3NGVUK5BG2YQKNXTQRBS
-X-Message-ID-Hash: DMPKWUNSTWNA3NGVUK5BG2YQKNXTQRBS
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250108-mailmap-v3-1-3fbfdf276e21@narfation.org>
+X-B4-Tracking: v=1; b=H4sIANeFfmcC/2WOQQqDMBBFryJZN2USjUZXvUdxMWrUQDUykdAi3
+ r1RaBcts3ow//2/MW/IGs+qZGNkgvXWzRHSS8LaEefBcNtFZhKkAgEFn9A+Jlw4tnkJWiBo0Cx
+ +L2R6+zxN9zpyT27i60gGP/lMyFR880HweAJlA6pQadPcZqQe19h/dTQcytH61dHr3BbkIf6fE
+ WTUlDIXWdvloBX+aOp9398IFl+A5QAAAA==
+X-Change-ID: 20250107-mailmap-ac69081a0808
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3218; i=sven@narfation.org;
+ h=from:subject:message-id; bh=mfLDKOyoKBOI6ojKy2sMvPKzoT1ZueeuW4j1WSxjfbw=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDOl1rY8CVTaYBireXCL4Jmz1WxaNMv1lra2Jd7mflu5ZL
+ PHXZJV6RykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAiCecZ/sffy9KpOjZTv2EH
+ 2/w7hw33BmZxqdc/2JOrY6jwfEML00FGho9R79fpyLeuvLHVUCLlJIMbv6232Wuz96tknxuJTVq
+ zghsA
+X-Developer-Key: i=sven@narfation.org; a=openpgp;
+ fpr=522D7163831C73A635D12FE5EC371482956781AF
+Message-ID-Hash: PHKFJWYKJSKTSEQW7ORMK4SOZMCH64LU
+X-Message-ID-Hash: PHKFJWYKJSKTSEQW7ORMK4SOZMCH64LU
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -91,7 +101,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DMPKWUNSTWNA3NGVUK5BG2YQKNXTQRBS/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PHKFJWYKJSKTSEQW7ORMK4SOZMCH64LU/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -100,47 +110,72 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
---nextPart2010993.usQuhbGJ8B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Linus =?ISO-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Cc: b.a.t.m.a.n@lists.open-mesh.org
-Date: Wed, 08 Jan 2025 14:56:13 +0100
-Message-ID: <8515152.NyiUUSuA9g@ripper>
-In-Reply-To: <Z36CtUlH-_1GLts_@sellars>
-MIME-Version: 1.0
+The .mailmap is used by git-(short)log to fix some botchered names and to
+map contributions from old e-mail addresses to new ones. It is also used by
+some tools to get the correct e-mail address for reviewers based on old
+contributions.
 
-On Wednesday, 8 January 2025 14:50:45 CET Linus L=FCssing wrote:
-> There seem to be duplicate entries for me in there, both for the
-> @ascom.ch and @web.de addresses?
+The list was generated using old e-mail address changes in the source code.
 
-You are right about the web.de address. The ascom is not a duplicate but yo=
-u=20
-(at some point) had a typo in the address - commit c4a94f32bbe8 ("batman-ad=
-v:=20
-Switch order of types.h and compat.h inclusion")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+Changes in v3:
+- Drop duplicated mail mapping for linus.luessing@web.de
+- Link to v2: https://lore.kernel.org/r/20250107-mailmap-v2-1-92614cd6085a@narfation.org
+Changes in v2:
+- Switched to Antonio's preferred e-mail address
+- Link to v1: https://lore.kernel.org/r/20241231-mailmap-v1-1-11a2b05753bb@narfation.org
+---
+ .mailmap | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-I think the web.de address had a different spelling of your name and I forg=
-ot=20
-to filter it out after removing the "old" name part.
+diff --git a/.mailmap b/.mailmap
+new file mode 100644
+index 0000000000000000000000000000000000000000..612218661f1ceb003d64a5bd55b2f272ab5c07b4
+--- /dev/null
++++ b/.mailmap
+@@ -0,0 +1,35 @@
++#
++# This list is used by git-shortlog to fix a few botched name translations
++# in the git archive, either because the author's full name was messed up
++# and/or not always written the same way, making contributions from the
++# same person appearing not to be so or badly displayed. Also allows for
++# old email addresses to map to new email addresses.
++#
++# For format details, see "man gitmailmap" or "MAPPING AUTHORS" in
++# "man git-shortlog" on older systems.
++#
++# Please keep this list dictionary sorted.
++#
++Andreas Langer <an.langer@gmx.de> <a.langer@q-dsl.de>
++Andreas Langer <an.langer@gmx.de> <an.langer at gmx.de>
++Andrew Lunn <andrew@lunn.ch> <andrew.lunn@ascom.ch>
++Antonio Quartulli <antonio@mandelbit.com> <antonio@meshcoding.com>
++Antonio Quartulli <antonio@mandelbit.com> <antonio@open-mesh.com>
++Antonio Quartulli <antonio@mandelbit.com> <antonio.quartulli@open-mesh.com>
++Antonio Quartulli <antonio@mandelbit.com> <ordex@autistici.org>
++Antonio Quartulli <antonio@mandelbit.com> <ordex@ritirata.org>
++Antonio Quartulli <antonio@mandelbit.com> <antonio@openvpn.net>
++Antonio Quartulli <antonio@mandelbit.com> <a@unstable.cc>
++Linus Lüssing <linus.luessing@c0d3.blue> <linus.luessing@ascom.ch>
++Linus Lüssing <linus.luessing@c0d3.blue> <linus.luessing@web.de>
++Linus Lüssing <linus.luessing@c0d3.blue> <ll@simonwunderlich.de>
++Marek Lindner <marek.lindner@mailbox.org> <lindner_marek@yahoo.de>
++Marek Lindner <marek.lindner@mailbox.org> <mareklindner@neomailbox.ch>
++Simon Wunderlich <sw@simonwunderlich.de> <simon@open-mesh.com>
++Simon Wunderlich <sw@simonwunderlich.de> <simon.wunderlich@open-mesh.com>
++Simon Wunderlich <sw@simonwunderlich.de> <simon.wunderlich@s2003.tu-chemnitz.de>
++Simon Wunderlich <sw@simonwunderlich.de> <siwu@hrz.tu-chemnitz.de>
++Sven Eckelmann <sven@narfation.org> <sven.eckelmann@gmx.de>
++Sven Eckelmann <sven@narfation.org> <sven.eckelmann@open-mesh.com>
++Sven Eckelmann <sven@narfation.org> <sven.eckelmann@openmesh.com>
++Sven Eckelmann <sven@narfation.org> <sven@open-mesh.com>
 
-Kind regards,
-	Sven
---nextPart2010993.usQuhbGJ8B
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+---
+base-commit: 4ebe4fb7b08d795f8f7544c04e1bfb928ece5000
+change-id: 20250107-mailmap-ac69081a0808
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCZ36D/gAKCRBND3cr0xT1
-yxVeAQCVEgV+QlA8UoHxPykwa1EJaeyt57OVhXWL56h5vAaHXAEA8Evcu0UeWcDM
-5XCmkl+RC17QQpQbgeOnIUEDIEKZvAQ=
-=vM6M
------END PGP SIGNATURE-----
-
---nextPart2010993.usQuhbGJ8B--
-
-
+Best regards,
+-- 
+Sven Eckelmann <sven@narfation.org>
 
