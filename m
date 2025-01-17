@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C8EA14F49
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80319A14F50
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:40:46 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 75506842C0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:40:06 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 596628426E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:40:46 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1737117606;
- b=1MbTdtRa5uN1gOvVUNe/IVwJk0O9/HO4aOZ4o71RBr5Ff6m47QIiELb3KbQj5M/L3j4GF
- KfMx+jGZjm5Msht8TrPYJDcNN9BrbA/gCWGie9lwKDAfvu//aVJhNfz7ghC0FsYQmQh5/Fh
- Mk03sN7Lraj4KaVeBZwZcD2XcOySzas=
+ t=1737117646;
+ b=lITa06e9bdGFC4EUD7VO6S55vmQuuR9kBcfQmc2D9AkwyW4I57JQZScDRlPhm1nI/5r/p
+ Lpn/OCrfsd/eEeRsRPPoe8iLFBHqD5oN6FGBntu8CcW8PQ3P9u0kYkluWEB5X+ro2+LmRGM
+ JSYJqc1wBzRj0AMRFePNt3zi8VJxRKk=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1737117606; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1737117646; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=XmpilTFuSNAg6FQWIEMKEo4fDrYph4EI5a/mVe82IF4=;
- b=H3yg0bA6Skn6BkkG7bQLfNH81k9TSFAgoStGblusKCUlTOhhgWwDaI7H5cK/CFBpJmQKm
- r4goX4JxAoJd5cqwr4vhdJPCvRDM/KvB3/p4yoiknTnfIGDH6DglVhcRdhuYAQ1tO++Qgb7
- VC/GRh8La3A2rdA4mGXYDAzqAEkjueo=
+ list-archive; bh=IDnupwa/qvc8cL5xwrE5K8Qed0gBNvkeiq9ywP7j39I=;
+ b=ejac9jKhuSt5uv2Xy8qAk3deGyuONjzUWV2oWXOTnkShUfkRfCrxfJ+ACUUTiY/l0UMeI
+ LWpPyfhwiuctOFnlN5YG7xur/DFjq9i51FFXWnRvoePwkTWQnlPrH6waYLLpL94XhTR+874
+ Q8TSj3fBp/GtHaDlkqNRCa8jwgX8Xik=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
@@ -32,17 +32,18 @@ Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8C8CE81B1A
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:24 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6C61483F41
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:30 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1737117564;
+	s=20121; t=1737117570;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=XmpilTFuSNAg6FQWIEMKEo4fDrYph4EI5a/mVe82IF4=;
-	b=s8ZMYa/V1Bo9XVaggWq2iyFMOrPLhbzfxo7lPrUb6IRmvZtq/sYQQNXEmTy0P0YkEIDdpx
-	dUk3ZWdyiV7XL0yMoCkbrHFLicn6jsaGlapVFJ6x0SoXq3TP9hWdIcvpPW39djwl+X63FD
-	UYdXkQYyR8/8gCVYpXZ5hRwix3c8A/E=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IDnupwa/qvc8cL5xwrE5K8Qed0gBNvkeiq9ywP7j39I=;
+	b=Htm5LaeiXsQN9rKZ2QWxcSebpBpwkCi8XTWXJ/rInualZ1+7vzFA1ikw/TrHFFIsoIhj0u
+	nGAbsa+J4gC7vA6nknNMcLb5K5foFgC5VnPGplhFA4y+eWhLaI86mWm/XCW5sfwLI4uCOU
+	iDEP5yi7dlCYhQ78jmO79Ddv+DV402g=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
@@ -50,35 +51,36 @@ ARC-Authentication-Results: i=1;
  2a01:4f8:c17:e8c0::1 as permitted sender)
  smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117564; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117570; a=rsa-sha256;
 	cv=none;
-	b=Qk3T3kBWZs1mO+ztxFD0G9yJr36rAsvvopj13iuhSvcZe0b55oyEPSy5bxdadzVjz1q2M5
-	GkHLV5bqtmzugs++eiOP8JD753kbNbUoqaxRV9ytz3Ci7BTai+zFSqp3RzCQ1nY6eqRPZr
-	Mhytiy8pMnvezEKfKbwnkjAcBt+Z1nQ=
+	b=GUPE/4z/vKbMx/TMOHbpgXI4HTqTyt8Ew4OxtH5+/n387iFgZOg7EhcWgiQj/DfQ4vKeFq
+	94WSHBdzVfUKx0S1WIVSmzfCnq+NYqIDHL94airlGWNoV0vcaAEXyQsm/O5z751bF3EesR
+	yNKa4JjQorbw878iwImKvoVMRU2soLs=
 Received: from kero.packetmixer.de
- (p200300c5973c90d8A96DD71A2E03F697.dip0.t-ipconnect.de
+ (p200300c5973c90d8a96dd71A2e03F697.dip0.t-ipconnect.de
  [IPv6:2003:c5:973c:90d8:a96d:d71a:2e03:f697])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 8733DFA132;
-	Fri, 17 Jan 2025 13:39:23 +0100 (CET)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 032ACFA14B;
+	Fri, 17 Jan 2025 13:39:29 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: kuba@kernel.org,
 	davem@davemloft.net
 Cc: netdev@vger.kernel.org,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 00/10] pull request for net-next: batman-adv 2025-01-17
-Date: Fri, 17 Jan 2025 13:39:00 +0100
-Message-Id: <20250117123910.219278-1-sw@simonwunderlich.de>
+Subject: [PATCH 01/10] batman-adv: Start new development cycle
+Date: Fri, 17 Jan 2025 13:39:01 +0100
+Message-Id: <20250117123910.219278-2-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250117123910.219278-1-sw@simonwunderlich.de>
+References: <20250117123910.219278-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: Q6KRW4Y6AXYJSBGWNQQKMNGEUAQR3RHT
-X-Message-ID-Hash: Q6KRW4Y6AXYJSBGWNQQKMNGEUAQR3RHT
+Message-ID-Hash: DGP4IK5JCI2HT3FSF4XCLOAZTSOP645V
+X-Message-ID-Hash: DGP4IK5JCI2HT3FSF4XCLOAZTSOP645V
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -92,7 +94,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Q6KRW4Y6AXYJSBGWNQQKMNGEUAQR3RHT/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DGP4IK5JCI2HT3FSF4XCLOAZTSOP645V/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -101,80 +103,31 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi Jakub, hi David,
+This version will contain all the (major or even only minor) changes for
+Linux 6.14.
 
-here is a cleanup pull request of batman-adv to go into net-next.
+The version number isn't a semantic version number with major and minor
+information. It is just encoding the year of the expected publishing as
+Linux -rc1 and the number of published versions this year (starting at 0).
 
-Please pull or let me know of any problem!
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+---
+ net/batman-adv/main.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thank you,
-      Simon
+diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
+index 97ea71a052f8..1fbe3a4dd965 100644
+--- a/net/batman-adv/main.h
++++ b/net/batman-adv/main.h
+@@ -13,7 +13,7 @@
+ #define BATADV_DRIVER_DEVICE "batman-adv"
+ 
+ #ifndef BATADV_SOURCE_VERSION
+-#define BATADV_SOURCE_VERSION "2024.3"
++#define BATADV_SOURCE_VERSION "2025.0"
+ #endif
+ 
+ /* B.A.T.M.A.N. parameters */
+-- 
+2.39.5
 
-The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
-
-  Linux 6.13-rc1 (2024-12-01 14:28:56 -0800)
-
-are available in the Git repository at:
-
-  git://git.open-mesh.org/linux-merge.git tags/batadv-next-pullrequest-20250117
-
-for you to fetch changes up to 6ecc4fd6c2f43862c5e3b280cf419f0131e45c97:
-
-  batman-adv: netlink: reduce duplicate code by returning interfaces (2025-01-17 13:36:01 +0100)
-
-----------------------------------------------------------------
-This cleanup patchset includes the following patches:
-
- - bump version strings, by Simon Wunderlich
-
- - Reorder includes for distributed-arp-table.c, by Sven Eckelmann
-
- - Fix translation table change handling, by Remi Pommarel (2 patches)
-
- - Map VID 0 to untagged TT VLAN, by Sven Eckelmann
-
- - Update MAINTAINERS/mailmap e-mail addresses, by the respective authors
-   (4 patches)
-
- - netlink: reduce duplicate code by returning interfaces,
-   by Linus Lüssing
-
-----------------------------------------------------------------
-Antonio Quartulli (1):
-      MAINTAINERS: mailmap: add entries for Antonio Quartulli
-
-Linus Lüssing (1):
-      batman-adv: netlink: reduce duplicate code by returning interfaces
-
-Marek Lindner (1):
-      MAINTAINERS: update email address of Marek Linder
-
-Remi Pommarel (2):
-      batman-adv: Remove atomic usage for tt.local_changes
-      batman-adv: Don't keep redundant TT change events
-
-Simon Wunderlich (2):
-      batman-adv: Start new development cycle
-      mailmap: add entries for Simon Wunderlich
-
-Sven Eckelmann (3):
-      batman-adv: Reorder includes for distributed-arp-table.c
-      batman-adv: Map VID 0 to untagged TT VLAN
-      mailmap: add entries for Sven Eckelmann
-
- .mailmap                                |  19 +++++
- Documentation/networking/batman-adv.rst |   2 +-
- MAINTAINERS                             |   4 +-
- net/batman-adv/bridge_loop_avoidance.c  |  33 ++------
- net/batman-adv/distributed-arp-table.c  |  20 ++---
- net/batman-adv/gateway_client.c         |  18 +---
- net/batman-adv/main.c                   |   7 ++
- net/batman-adv/main.h                   |   4 +-
- net/batman-adv/multicast.c              |  17 +---
- net/batman-adv/netlink.c                | 146 ++++++++++++++++++++++----------
- net/batman-adv/netlink.h                |   5 +-
- net/batman-adv/originator.c             | 116 +++++++++----------------
- net/batman-adv/soft-interface.c         |  16 +++-
- net/batman-adv/translation-table.c      |  92 ++++++++------------
- net/batman-adv/types.h                  |   4 +-
- 15 files changed, 251 insertions(+), 252 deletions(-)
