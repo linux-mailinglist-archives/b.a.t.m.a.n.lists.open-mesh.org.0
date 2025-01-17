@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A02A14F83
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:44:35 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79455A14F87
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:45:31 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B48F084314
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:44:34 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3670C8453B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:45:31 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1737117874;
- b=MBvNBQfTDWmfnQSCEhHQmO6AJG0E0ckOtQOU89VaAarum8hAwYKAbZXouWYGEJgspnHwZ
- XYcp4ZXTq/vqUlajXxouDkZYZuWNCyq0q+bXDVXI//ETOidprOyt3QxLL/swGIG3BXlYmpb
- mVadUFTRvzxtg2umgvzNclY4XyNKnwI=
+ t=1737117931;
+ b=hfYKE4mKdw2GPNUbhiw3G9VlLAOuiYHxYq1dk29Myc+gWsuFBSCmdSb0AV8/CBfmW42ph
+ /+pah86WVnTbmhNBKw9/n/7LlJhq0g95mpVd/K1VgPsHQnlXfdYGAKctztTMq+i9rUUMSq8
+ piH2ZOMcBkPQp9JIvAppninkjl8Xx2U=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1737117874; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1737117931; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=feZRruAcUJ+Am2HGGm3SlXhvn+uKBqCHkBQP/YjTrVE=;
- b=bAx7ArYdXWf8LW1WqSzNH9chUtngfrwAilgoeAu75Q0WghMjf7S61u0/zOOUhDStrJhYE
- M/bFnmOf2waOPB9i90pNKSfSGwY37/dY0Nob3FUOkTNLNyS6qUCxcSKCHUjTGxTgyjQTCsv
- qExaQsSsY5Tjoc2I01sD2jSlfAK6fTg=
+ list-archive; bh=+Kb70Z5k1y0Pl1EtJjbF6twEOfd1u4YE37YIEjZcDX8=;
+ b=aLgEkc8jnGo7glRUgKchhgcorjAcjCdY3NEF/IwBCgjRqfEkSnmP8t3Z41hY/kFIV2usn
+ QSGP0I3o2fOry4t8Dd07dFHRTOzvEiTQSQQY+FTY7V2O8xCMTuMExvmlzPwxXrJOj7yB3Bv
+ QPl7+9bv3thL4kG/zakWEwqEu5H+hSw=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
@@ -30,58 +30,57 @@ ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
 Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
  policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 27CD984138
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:40 +0100 (CET)
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 19D4784113
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:41 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1737117580;
+	s=20121; t=1737117581;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=feZRruAcUJ+Am2HGGm3SlXhvn+uKBqCHkBQP/YjTrVE=;
-	b=BFbmnZl9J5ATgIvnaBH8hhVhG7r7gcK5dEnXs0D9PGjw9xAmJXtPeWeStRtXgyTPIrcJfe
-	1bBmt9wR9GvOmaSvCWfoiOHWmDSmd3q1VzxuQRtYCiCCclejxMdppa09ISDYFVkiB2Y8bY
-	pAXLT4zA+kUgnreuWXDikQUdWoJrr20=
+	bh=+Kb70Z5k1y0Pl1EtJjbF6twEOfd1u4YE37YIEjZcDX8=;
+	b=00mbOLEnCS3HH483w1qLDCIMEanSxc0qWOesx88Xj/3iZPV+lPUMzw8ax7vYmtQQUd9P6K
+	pcU23V/b/CJNWbgKonnj8DoNPoXJdspK/bZYUN18E0MJptbHHk8kpWbbaPnZmpa4Z8wQWw
+	qGt5H9v546v4IlKgmGrjBDkXYVmMkaY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117580; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117581; a=rsa-sha256;
 	cv=none;
-	b=q3njfyUpfGCY1Yj3q19BmjNnIwTxMuiUDeSj8igV4h5T4qoZMOa/a06RTrUE0iiUU4D9ng
-	XvTycGQvJwiwrbupvKM2gzUA6N25N3049jXuKHlPQMJJ8Z2MlIo23EQYv/ZH2aZ+faoPTU
-	g6n44lDfGSgwlmmpXXjOepXWQvzUyhs=
+	b=h72BPCGIl5pIuRZRDH/3skb+bpp8wuq6djBnIN6qyqmAorOkpwTnEQfdJMyrG1gaYwAORe
+	ljHTlvW0+er8kYrV6M3RtkiCr/Lz1yy7GYOS73xBUHwZC9jGDOFsSeFNWNotp42fljQ0Ma
+	VTvMNwe4ZQilsby9h50HR5Y1Yl8MTc8=
 Received: from kero.packetmixer.de
- (p200300C5973C90D8A96DD71A2E03f697.dip0.t-ipconnect.de
+ (p200300c5973c90d8a96Dd71A2E03F697.dip0.t-ipconnect.de
  [IPv6:2003:c5:973c:90d8:a96d:d71a:2e03:f697])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id B51E6FA366;
-	Fri, 17 Jan 2025 13:39:39 +0100 (CET)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 617C8FA367;
+	Fri, 17 Jan 2025 13:39:40 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: kuba@kernel.org,
 	davem@davemloft.net
 Cc: netdev@vger.kernel.org,
 	b.a.t.m.a.n@lists.open-mesh.org,
-	Marek Lindner <marek.lindner@mailbox.org>,
-	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 06/10] MAINTAINERS: update email address of Marek Linder
-Date: Fri, 17 Jan 2025 13:39:06 +0100
-Message-Id: <20250117123910.219278-7-sw@simonwunderlich.de>
+Subject: [PATCH 07/10] mailmap: add entries for Simon Wunderlich
+Date: Fri, 17 Jan 2025 13:39:07 +0100
+Message-Id: <20250117123910.219278-8-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250117123910.219278-1-sw@simonwunderlich.de>
 References: <20250117123910.219278-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: ODHEFIRU3YTC5LHQDC5546VNYP6IE53H
-X-Message-ID-Hash: ODHEFIRU3YTC5LHQDC5546VNYP6IE53H
+Message-ID-Hash: DQDSJ5IITKEHFUEP4BAM2SRF2P6K5Y2T
+X-Message-ID-Hash: DQDSJ5IITKEHFUEP4BAM2SRF2P6K5Y2T
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -95,7 +94,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ODHEFIRU3YTC5LHQDC5546VNYP6IE53H/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DQDSJ5IITKEHFUEP4BAM2SRF2P6K5Y2T/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -104,68 +103,30 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Marek Lindner <marek.lindner@mailbox.org>
+Map the defunc mail addresses to the currently used mail address (listed in
+MAINTAINERS).
 
-Signed-off-by: Marek Lindner <marek.lindner@mailbox.org>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- .mailmap                                | 2 ++
- Documentation/networking/batman-adv.rst | 2 +-
- MAINTAINERS                             | 2 +-
- net/batman-adv/main.h                   | 2 +-
- 4 files changed, 5 insertions(+), 3 deletions(-)
+ .mailmap | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/.mailmap b/.mailmap
-index 5ff0e5d681e7..53e038f5f654 100644
+index 53e038f5f654..efabe03f7849 100644
 --- a/.mailmap
 +++ b/.mailmap
-@@ -427,6 +427,8 @@ Marcin Nowakowski <marcin.nowakowski@mips.com> <marcin.nowakowski@imgtec.com>
- Marc Zyngier <maz@kernel.org> <marc.zyngier@arm.com>
- Marek Behún <kabel@kernel.org> <marek.behun@nic.cz>
- Marek Behún <kabel@kernel.org> Marek Behun <marek.behun@nic.cz>
-+Marek Lindner <marek.lindner@mailbox.org> <lindner_marek@yahoo.de>
-+Marek Lindner <marek.lindner@mailbox.org> <mareklindner@neomailbox.ch>
- Mark Brown <broonie@sirena.org.uk>
- Mark Starovoytov <mstarovo@pm.me> <mstarovoitov@marvell.com>
- Markus Schneider-Pargmann <msp@baylibre.com> <mpa@pengutronix.de>
-diff --git a/Documentation/networking/batman-adv.rst b/Documentation/networking/batman-adv.rst
-index 8a0dcb1894b4..44b9b5cc0e24 100644
---- a/Documentation/networking/batman-adv.rst
-+++ b/Documentation/networking/batman-adv.rst
-@@ -164,5 +164,5 @@ Mailing-list:
- 
- You can also contact the Authors:
- 
--* Marek Lindner <mareklindner@neomailbox.ch>
-+* Marek Lindner <marek.lindner@mailbox.org>
- * Simon Wunderlich <sw@simonwunderlich.de>
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..c5e909a759e6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3867,7 +3867,7 @@ S:	Maintained
- F:	drivers/platform/x86/barco-p50-gpio.c
- 
- BATMAN ADVANCED
--M:	Marek Lindner <mareklindner@neomailbox.ch>
-+M:	Marek Lindner <marek.lindner@mailbox.org>
- M:	Simon Wunderlich <sw@simonwunderlich.de>
- M:	Antonio Quartulli <a@unstable.cc>
- M:	Sven Eckelmann <sven@narfation.org>
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index 1fbe3a4dd965..964f3088af5b 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
-@@ -7,7 +7,7 @@
- #ifndef _NET_BATMAN_ADV_MAIN_H_
- #define _NET_BATMAN_ADV_MAIN_H_
- 
--#define BATADV_DRIVER_AUTHOR "Marek Lindner <mareklindner@neomailbox.ch>, " \
-+#define BATADV_DRIVER_AUTHOR "Marek Lindner <marek.lindner@mailbox.org>, " \
- 			     "Simon Wunderlich <sw@simonwunderlich.de>"
- #define BATADV_DRIVER_DESC   "B.A.T.M.A.N. advanced"
- #define BATADV_DRIVER_DEVICE "batman-adv"
+@@ -642,6 +642,11 @@ Simona Vetter <simona.vetter@ffwll.ch> <daniel@biene.ffwll.ch>
+ Simon Horman <horms@kernel.org> <simon.horman@corigine.com>
+ Simon Horman <horms@kernel.org> <simon.horman@netronome.com>
+ Simon Kelley <simon@thekelleys.org.uk>
++Simon Wunderlich <sw@simonwunderlich.de> <simon.wunderlich@open-mesh.com>
++Simon Wunderlich <sw@simonwunderlich.de> <simon.wunderlich@s2003.tu-chemnitz.de>
++Simon Wunderlich <sw@simonwunderlich.de> <simon.wunderlich@saxnet.de>
++Simon Wunderlich <sw@simonwunderlich.de> <simon@open-mesh.com>
++Simon Wunderlich <sw@simonwunderlich.de> <siwu@hrz.tu-chemnitz.de>
+ Sricharan Ramabadhran <quic_srichara@quicinc.com> <sricharan@codeaurora.org>
+ Srinivas Ramana <quic_sramana@quicinc.com> <sramana@codeaurora.org>
+ Sriram R <quic_srirrama@quicinc.com> <srirrama@codeaurora.org>
 -- 
 2.39.5
 
