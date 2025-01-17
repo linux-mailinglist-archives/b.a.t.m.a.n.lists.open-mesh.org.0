@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764F2A14F6B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:42:51 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3165A14F77
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:43:43 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4755384354
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:42:51 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 8F53D844E3
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:43:43 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1737117771;
- b=Hy51ymI67OAY9+nGvmGCDU48/GMuO+yW0kc5qVSOisrnRR4Oi2TsZ9Rsb9W21ld7ZsDu5
- tvaMKTex0FXXICFGzD+pucfnQFHDujQpAYa8XfwVWMrWTg95TziAnpoOUYIVdWzIzC2IALI
- AQqb8aWE4JAlRiRkWSYfIDRbOrQLL5o=
+ t=1737117823;
+ b=bqqPUNdU/Nqn7wIcyzMCbzrzONbHhx6ca1lgfW1t2Hxm2z7RgQXEuedNxoYWq7rZ8CMD8
+ D8DYiHZ8cKqGQwWfXyO5uEGmhajzPaTbJhSqnFOEEbzwmcQdsZusEHVEnQQRtSAl173hugf
+ MiRMHadt2UDIWtHlGJTD2FLcsIsTLCw=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1737117771; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1737117823; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=0oqPvgJsaAt29bxQ8joByFtcS0KdDVlCuXFru7DUizA=;
- b=Qxo+wfQuYcsSJ8hz4EukCAeV6/ufUYMW/rc/WPGBtGe6zSUsbeXaxnI+L/bKhEc3kCt1T
- iFr3fGvQM0m1Nu9ZiRyTI21kCOViUKnwYE1EcUS+elndPLCjNu3bCiBTTrajdcTatdWnxj7
- vhLnhec5C7wGX5hEbIIKjtgIr66NHDU=
+ list-archive; bh=q486DhNGkxMBBH5aZKvCNvWbWT29epSttkr3tU1CmVo=;
+ b=Cp9RfVxaYJM/xYE7fmUjOf7boGyJ+BkLrc2KQRdEi/Z5gFb8BYgbfeu1kU70fIM8/vJHN
+ n2rOriWu/yDUnWPUwbB6tS42j5RTBx5BB9ZfuQgHZuZyEWTI7N1kZV+yKt6KG0lXmBP+qXt
+ 9QaQ+1MJtVnkczJBF8bcjRIPUCeGNH0=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
@@ -30,57 +30,60 @@ ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
 Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
  policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9A2A383F21
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:33 +0100 (CET)
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 86ADD840DD
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:39 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1737117573;
+	s=20121; t=1737117579;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=0oqPvgJsaAt29bxQ8joByFtcS0KdDVlCuXFru7DUizA=;
-	b=ZzvVaJTyvdNnFoycSHjdU9il/p3WAgzKM0sINit7qtZt9zNbOGlkSZbBMJ4GFzXWywAgUK
-	1QKqzajVa9NYHpqhyOdKPCyBhweE6Gn1WF7RyWhFrjB2kpvJCWhbRFMMKu0i3fwq6Jubsd
-	eZGMXE7qE4DSuPWaovEqN7xQRyCz8Qg=
+	bh=q486DhNGkxMBBH5aZKvCNvWbWT29epSttkr3tU1CmVo=;
+	b=i0RiTRQF2CWn1Ncn4hRLxdoyeh9O8sdgcJ5ugstH9gdu1Piu5fX1Ot3tUUfiF7F6NHaqQO
+	VE4ksFj9KFvpJwlva6ZSKI06yK1v+wkdyHSnE0SKoAoavzb/o1JqJoWcuyFKxVthLbfzBm
+	toZViDhVp0fYjRftCYM80XCmtOxkRdM=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117573; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117579; a=rsa-sha256;
 	cv=none;
-	b=kYGLLE8ti3KBNwqw7WGlEqgATO0YDtlWtTZE2gf3z4XFY0zSSWIW3/d0fDyP7A6tFDsVUw
-	Fm2MmHPqpBFNlF24Hcr6pgB/UcTX+ZuiXdOzb31eMzWnZIZfGeiOId1+NAEiEEhWqhTffn
-	2lBB0i5D21XNpthgj9IN3RBGCcIX9RA=
+	b=Mm/zgEq+fw1BqoIRK3ROoI9FDWrF2peXO5qHw1dSuj7yYzRKyuqJnEzjdG3akQedM5sMsC
+	BxFGBMeVfnH7x3RzlHicUFvdJRMaHSGYJR0WqJ2344+ox6g3qwl0lMrG+48MzrHqePGzYg
+	e87FgK5XZbeyr/9vXnUgXNTxIS3by+4=
 Received: from kero.packetmixer.de
- (p200300C5973C90D8A96DD71A2E03f697.dip0.t-ipconnect.de
+ (p200300C5973c90D8A96Dd71A2E03F697.dip0.t-ipconnect.de
  [IPv6:2003:c5:973c:90d8:a96d:d71a:2e03:f697])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 3B2D1FA366;
-	Fri, 17 Jan 2025 13:39:33 +0100 (CET)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id F23C8FA365;
+	Fri, 17 Jan 2025 13:39:38 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: kuba@kernel.org,
 	davem@davemloft.net
 Cc: netdev@vger.kernel.org,
 	b.a.t.m.a.n@lists.open-mesh.org,
-	Remi Pommarel <repk@triplefau.lt>,
 	Sven Eckelmann <sven@narfation.org>,
+	Antonio Quartulli <antonio@mandelbit.com>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 04/10] batman-adv: Don't keep redundant TT change events
-Date: Fri, 17 Jan 2025 13:39:04 +0100
-Message-Id: <20250117123910.219278-5-sw@simonwunderlich.de>
+Subject: [PATCH 05/10] batman-adv: Map VID 0 to untagged TT VLAN
+Date: Fri, 17 Jan 2025 13:39:05 +0100
+Message-Id: <20250117123910.219278-6-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250117123910.219278-1-sw@simonwunderlich.de>
 References: <20250117123910.219278-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: XRUECHYU5CPZXAKBARH4OQV2AUU2BVP3
-X-Message-ID-Hash: XRUECHYU5CPZXAKBARH4OQV2AUU2BVP3
+Message-ID-Hash: UC7PFGFX7DOSGYOUTOD2GIXPRLPWBYP5
+X-Message-ID-Hash: UC7PFGFX7DOSGYOUTOD2GIXPRLPWBYP5
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -94,7 +97,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XRUECHYU5CPZXAKBARH4OQV2AUU2BVP3/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UC7PFGFX7DOSGYOUTOD2GIXPRLPWBYP5/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -103,86 +106,81 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Remi Pommarel <repk@triplefau.lt>
+From: Sven Eckelmann <sven@narfation.org>
 
-When adding a local TT twice within the same OGM interval (e.g. happens
-when flag get updated), the flags of the first TT change entry is updated
-with the second one and both change events is added to the change list.
-This leads to having the same ADD change entry twice. Similarly, a
-DEL+DEL scenario is also creating twice the same event.
+VID 0 is not a valid VLAN according to "802.1Q-2011" "Table 9-2—Reserved
+VID values". It is only used to indicate "priority tag" frames which only
+contain priority information and no VID.
 
-Deduplicate ADD+ADD or DEL+DEL scenarios to reduce the TT change events
-that need to be sent in both OGM and TT response.
+The 8021q is also redirecting the priority tagged frames to the underlying
+interface since commit ad1afb003939 ("vlan_dev: VLAN 0 should be treated as
+"no vlan tag" (802.1p packet)"). But at the same time, it automatically
+adds the VID 0 to all devices to ensure that VID 0 is in the allowed list
+of the HW filter. This resulted in a VLAN 0 which was always announced in
+OGM messages.
 
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-Co-developed-by: Sven Eckelmann <sven@narfation.org>
+batman-adv should therefore not create a new batadv_softif_vlan for VID 0
+and handle all VID 0 related frames using the "untagged" global/local
+translation tables.
+
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Acked-by: Antonio Quartulli <antonio@mandelbit.com>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/translation-table.c | 40 ++++++++++++++----------------
- 1 file changed, 18 insertions(+), 22 deletions(-)
+ net/batman-adv/main.c           |  7 +++++++
+ net/batman-adv/soft-interface.c | 14 ++++++++++++++
+ 2 files changed, 21 insertions(+)
 
-diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-index 6e0345b91ece..76d5517bb507 100644
---- a/net/batman-adv/translation-table.c
-+++ b/net/batman-adv/translation-table.c
-@@ -438,7 +438,7 @@ static void batadv_tt_local_event(struct batadv_priv *bat_priv,
+diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
+index 8e0f44c71696..333e947afcce 100644
+--- a/net/batman-adv/main.c
++++ b/net/batman-adv/main.c
+@@ -637,6 +637,13 @@ unsigned short batadv_get_vid(struct sk_buff *skb, size_t header_len)
  
- 	del_op_requested = flags & BATADV_TT_CLIENT_DEL;
+ 	vhdr = (struct vlan_ethhdr *)(skb->data + header_len);
+ 	vid = ntohs(vhdr->h_vlan_TCI) & VLAN_VID_MASK;
++
++	/* VID 0 is only used to indicate "priority tag" frames which only
++	 * contain priority information and no VID.
++	 */
++	if (vid == 0)
++		return BATADV_NO_FLAGS;
++
+ 	vid |= BATADV_VLAN_HAS_TAG;
  
--	/* check for ADD+DEL or DEL+ADD events */
-+	/* check for ADD+DEL, DEL+ADD, ADD+ADD or DEL+DEL events */
- 	spin_lock_bh(&bat_priv->tt.changes_list_lock);
- 	changes = READ_ONCE(bat_priv->tt.local_changes);
- 	list_for_each_entry_safe(entry, safe, &bat_priv->tt.changes_list,
-@@ -446,30 +446,26 @@ static void batadv_tt_local_event(struct batadv_priv *bat_priv,
- 		if (!batadv_compare_eth(entry->change.addr, common->addr))
- 			continue;
+ 	return vid;
+diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interface.c
+index 5666c268cead..822d788a5f86 100644
+--- a/net/batman-adv/soft-interface.c
++++ b/net/batman-adv/soft-interface.c
+@@ -637,6 +637,14 @@ static int batadv_interface_add_vid(struct net_device *dev, __be16 proto,
+ 	if (proto != htons(ETH_P_8021Q))
+ 		return -EINVAL;
  
--		/* DEL+ADD in the same orig interval have no effect and can be
--		 * removed to avoid silly behaviour on the receiver side. The
--		 * other way around (ADD+DEL) can happen in case of roaming of
--		 * a client still in the NEW state. Roaming of NEW clients is
--		 * now possible due to automatically recognition of "temporary"
--		 * clients
--		 */
- 		del_op_entry = entry->change.flags & BATADV_TT_CLIENT_DEL;
--		if (!del_op_requested && del_op_entry)
--			goto del;
--		if (del_op_requested && !del_op_entry)
--			goto del;
--
--		/* this is a second add in the same originator interval. It
--		 * means that flags have been changed: update them!
--		 */
--		if (!del_op_requested && !del_op_entry)
-+		if (del_op_requested != del_op_entry) {
-+			/* DEL+ADD in the same orig interval have no effect and
-+			 * can be removed to avoid silly behaviour on the
-+			 * receiver side. The  other way around (ADD+DEL) can
-+			 * happen in case of roaming of  a client still in the
-+			 * NEW state. Roaming of NEW clients is now possible due
-+			 * to automatically recognition of "temporary" clients
-+			 */
-+			list_del(&entry->list);
-+			kmem_cache_free(batadv_tt_change_cache, entry);
-+			changes--;
-+		} else {
-+			/* this is a second add or del in the same originator
-+			 * interval. It could mean that flags have been changed
-+			 * (e.g. double add): update them
-+			 */
- 			entry->change.flags = flags;
-+		}
++	/* VID 0 is only used to indicate "priority tag" frames which only
++	 * contain priority information and no VID. No management structures
++	 * should be created for this VID and it should be handled like an
++	 * untagged frame.
++	 */
++	if (vid == 0)
++		return 0;
++
+ 	vid |= BATADV_VLAN_HAS_TAG;
  
--		continue;
--del:
--		list_del(&entry->list);
--		kmem_cache_free(batadv_tt_change_cache, entry);
--		changes--;
- 		kmem_cache_free(batadv_tt_change_cache, tt_change_node);
- 		goto update_changes;
- 	}
+ 	/* if a new vlan is getting created and it already exists, it means that
+@@ -684,6 +692,12 @@ static int batadv_interface_kill_vid(struct net_device *dev, __be16 proto,
+ 	if (proto != htons(ETH_P_8021Q))
+ 		return -EINVAL;
+ 
++	/* "priority tag" frames are handled like "untagged" frames
++	 * and no softif_vlan needs to be destroyed
++	 */
++	if (vid == 0)
++		return 0;
++
+ 	vlan = batadv_softif_vlan_get(bat_priv, vid | BATADV_VLAN_HAS_TAG);
+ 	if (!vlan)
+ 		return -ENOENT;
 -- 
 2.39.5
 
