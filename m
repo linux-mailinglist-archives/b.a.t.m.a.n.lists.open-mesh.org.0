@@ -2,76 +2,84 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C04CA14B84
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 09:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C8EA14F49
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:40:06 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 43AFE83D06
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 09:56:15 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 75506842C0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 17 Jan 2025 13:40:06 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1737104175;
- b=D9UNR4de5x4nyv+i1qhP0sQebosRev5LRwSI0gAerWOKGryZRE2Ww3LfaUlv9yBsvUkGC
- 93iPYyzn1bjxNGX9cLTD+yPuNi8jV8FmtKBQxKCAuDWDaesb34Kxdb7zOcbBGwfr5l6AySN
- pyQf7eXMAIpphdzv+jW2a1tMadzNuwU=
+ t=1737117606;
+ b=1MbTdtRa5uN1gOvVUNe/IVwJk0O9/HO4aOZ4o71RBr5Ff6m47QIiELb3KbQj5M/L3j4GF
+ KfMx+jGZjm5Msht8TrPYJDcNN9BrbA/gCWGie9lwKDAfvu//aVJhNfz7ghC0FsYQmQh5/Fh
+ Mk03sN7Lraj4KaVeBZwZcD2XcOySzas=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1737104175; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1737117606; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=xP4uiqzMZ3N6AJyrQgD4DT0f0aKO9p6rUmY8AXLHhew=;
- b=I5t4ZpryoCsmsu5a9H8P2ndCtZef0Oxp7EuVoyoz9Rr/5Qc+E15syTCP8A2kc0rtGudO5
- zM2X6SqOfLfj7JLKSIU7VP93GD7Yo1RN5T2FlG3nRg0hxxXLZa1QoQLeC0aI/h32iGa1amO
- F6JaH62vJ3kz1wYTponMU4Sr9/av5gs=
+ list-archive; bh=XmpilTFuSNAg6FQWIEMKEo4fDrYph4EI5a/mVe82IF4=;
+ b=H3yg0bA6Skn6BkkG7bQLfNH81k9TSFAgoStGblusKCUlTOhhgWwDaI7H5cK/CFBpJmQKm
+ r4goX4JxAoJd5cqwr4vhdJPCvRDM/KvB3/p4yoiknTnfIGDH6DglVhcRdhuYAQ1tO++Qgb7
+ VC/GRh8La3A2rdA4mGXYDAzqAEkjueo=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=none
-Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id BE1DD821C0
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 09:53:23 +0100 (CET)
+  dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
+ policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
+ dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
+ policy.dmarc=none
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8C8CE81B1A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 17 Jan 2025 13:39:24 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1737104003;
+	s=20121; t=1737117564;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xP4uiqzMZ3N6AJyrQgD4DT0f0aKO9p6rUmY8AXLHhew=;
-	b=Jay099OheqQMgZmTa6rzxleCKDqOtWWQRKvsWUzwfXbLv6+Z9ODHyRi7rJnwA/JBp5gRuB
-	fA8BtNINGL1KsNjW5vpIBGP1el62A/ZKxAg+hbFSnGkyoNcZGUev6E3xStIaMj1G4Zvo/s
-	fNPFDQY3lfQhfEsvakWZ1xnv6iwK9Fo=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=XmpilTFuSNAg6FQWIEMKEo4fDrYph4EI5a/mVe82IF4=;
+	b=s8ZMYa/V1Bo9XVaggWq2iyFMOrPLhbzfxo7lPrUb6IRmvZtq/sYQQNXEmTy0P0YkEIDdpx
+	dUk3ZWdyiV7XL0yMoCkbrHFLicn6jsaGlapVFJ6x0SoXq3TP9hWdIcvpPW39djwl+X63FD
+	UYdXkQYyR8/8gCVYpXZ5hRwix3c8A/E=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
-	spf=pass (diktynna.open-mesh.org: domain of linus.luessing@c0d3.blue
- designates 116.203.183.178 as permitted sender)
- smtp.mailfrom=linus.luessing@c0d3.blue;
-	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737104003; a=rsa-sha256;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
+	dmarc=pass (policy=none) header.from=simonwunderlich.de
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1737117564; a=rsa-sha256;
 	cv=none;
-	b=vTQUW08H8mgz1T1MFLNQlrI2/Pzvl6fFOzIe9waORX4Pu35nr/USlpdwWJtU5/nGUrtbjr
-	oSjNoE+26L+Vnskdystt3P4RxnIJcIrh0xbTBgek1RlpQc0aP2e1DvZZlI2C8TC89wjA5v
-	Q9c9SOvKPXARmhEjM3KuO91agDTSrlA=
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 538E354C65A;
-	Fri, 17 Jan 2025 09:53:23 +0100 (CET)
-From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-Subject: [PATCH v4 3/3] batman-adv: avoid adding bridge VLAN IDs through
- ndo_vlan_rx_add_vid()
-Date: Fri, 17 Jan 2025 09:39:15 +0100
-Message-ID: <20250117085317.3426-4-linus.luessing@c0d3.blue>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250117085317.3426-1-linus.luessing@c0d3.blue>
-References: <20250117085317.3426-1-linus.luessing@c0d3.blue>
+	b=Qk3T3kBWZs1mO+ztxFD0G9yJr36rAsvvopj13iuhSvcZe0b55oyEPSy5bxdadzVjz1q2M5
+	GkHLV5bqtmzugs++eiOP8JD753kbNbUoqaxRV9ytz3Ci7BTai+zFSqp3RzCQ1nY6eqRPZr
+	Mhytiy8pMnvezEKfKbwnkjAcBt+Z1nQ=
+Received: from kero.packetmixer.de
+ (p200300c5973c90d8A96DD71A2E03F697.dip0.t-ipconnect.de
+ [IPv6:2003:c5:973c:90d8:a96d:d71a:2e03:f697])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256)
+	(No client certificate requested)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 8733DFA132;
+	Fri, 17 Jan 2025 13:39:23 +0100 (CET)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: kuba@kernel.org,
+	davem@davemloft.net
+Cc: netdev@vger.kernel.org,
+	b.a.t.m.a.n@lists.open-mesh.org,
+	Simon Wunderlich <sw@simonwunderlich.de>
+Subject: [PATCH 00/10] pull request for net-next: batman-adv 2025-01-17
+Date: Fri, 17 Jan 2025 13:39:00 +0100
+Message-Id: <20250117123910.219278-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: 5WSMTNQKWRMT6XMWEK24ZPJDSEZWLL7Z
-X-Message-ID-Hash: 5WSMTNQKWRMT6XMWEK24ZPJDSEZWLL7Z
-X-MailFrom: linus.luessing@c0d3.blue
+Message-ID-Hash: Q6KRW4Y6AXYJSBGWNQQKMNGEUAQR3RHT
+X-Message-ID-Hash: Q6KRW4Y6AXYJSBGWNQQKMNGEUAQR3RHT
+X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -84,7 +92,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/5WSMTNQKWRMT6XMWEK24ZPJDSEZWLL7Z/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Q6KRW4Y6AXYJSBGWNQQKMNGEUAQR3RHT/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -93,183 +101,80 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-The Linux bridge by default adds the PVID of a port (default VID 1) and
-by that triggers our ndo_vlan_rx_add_vid() handler. The PVID is
-for ingress traffic from bat0 to the bridge and other bridge ports.
-However this makes no statement about what is received or send on bat0
-itself, bat0 might as well be an untagged access port, even with a PVID
-configured. Therefore ignoring here when a bridge is involved.
+Hi Jakub, hi David,
 
-Also, similarly a "bridge vlan add vid 42 dev bat0 untagged" would call
-this handler with VID 42. Even though we wouldn't be interested in this
-VLAN as its traffic would be untagged on our side.
+here is a cleanup pull request of batman-adv to go into net-next.
 
-The issue is that any extra VLAN currently increases our own
-OGM protocol overhead quite a bit, so we want to avoid that
-by only adding VLANs that we are sure someone will be using.
-So only add VLANs through snooping of actual, VLAN tagged
-traffic, not through kernel internal network events
-if we have a bridge on top.
+Please pull or let me know of any problem!
 
-Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
----
- net/batman-adv/multicast.c      | 29 ++------------------
- net/batman-adv/soft-interface.c | 47 +++++++++++++++++++++++++++++++++
- net/batman-adv/soft-interface.h |  1 +
- 3 files changed, 50 insertions(+), 27 deletions(-)
+Thank you,
+      Simon
 
-diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
-index 61e765352e29..b73e52426b3a 100644
---- a/net/batman-adv/multicast.c
-+++ b/net/batman-adv/multicast.c
-@@ -72,31 +72,6 @@ static void batadv_mcast_start_timer(struct batadv_priv *bat_priv)
- 			   msecs_to_jiffies(BATADV_MCAST_WORK_PERIOD));
- }
- 
--/**
-- * batadv_mcast_get_bridge() - get the bridge on top of the softif if it exists
-- * @soft_iface: netdev struct of the mesh interface
-- *
-- * If the given soft interface has a bridge on top then the refcount
-- * of the according net device is increased.
-- *
-- * Return: NULL if no such bridge exists. Otherwise the net device of the
-- * bridge.
-- */
--static struct net_device *batadv_mcast_get_bridge(struct net_device *soft_iface)
--{
--	struct net_device *upper = soft_iface;
--
--	rcu_read_lock();
--	do {
--		upper = netdev_master_upper_dev_get_rcu(upper);
--	} while (upper && !netif_is_bridge_master(upper));
--
--	dev_hold(upper);
--	rcu_read_unlock();
--
--	return upper;
--}
--
- /**
-  * batadv_mcast_mla_rtr_flags_softif_get_ipv4() - get mcast router flags from
-  *  node for IPv4
-@@ -289,7 +264,7 @@ batadv_mcast_mla_flags_get(struct batadv_priv *bat_priv)
- 	struct batadv_mcast_mla_flags mla_flags;
- 	struct net_device *bridge;
- 
--	bridge = batadv_mcast_get_bridge(dev);
-+	bridge = batadv_softif_get_bridge(dev);
- 
- 	memset(&mla_flags, 0, sizeof(mla_flags));
- 	mla_flags.enabled = 1;
-@@ -531,7 +506,7 @@ batadv_mcast_mla_softif_get(struct net_device *dev,
- 			    struct hlist_head *mcast_list,
- 			    struct batadv_mcast_mla_flags *flags)
- {
--	struct net_device *bridge = batadv_mcast_get_bridge(dev);
-+	struct net_device *bridge = batadv_softif_get_bridge(dev);
- 	int ret4, ret6 = 0;
- 
- 	if (bridge)
-diff --git a/net/batman-adv/soft-interface.c b/net/batman-adv/soft-interface.c
-index 806c30fd17ce..70a27eb1db8e 100644
---- a/net/batman-adv/soft-interface.c
-+++ b/net/batman-adv/soft-interface.c
-@@ -677,6 +677,31 @@ static void batadv_softif_destroy_vlan_own(struct batadv_priv *bat_priv,
- 			       "vlan interface destroyed", false);
- }
- 
-+/**
-+ * batadv_softif_get_bridge() - get the bridge on top of the softif if it exists
-+ * @soft_iface: netdev struct of the mesh interface
-+ *
-+ * If the given soft interface has a bridge on top then the refcount
-+ * of the according net device is increased.
-+ *
-+ * Return: NULL if no such bridge exists. Otherwise the net device of the
-+ * bridge.
-+ */
-+struct net_device *batadv_softif_get_bridge(struct net_device *soft_iface)
-+{
-+	struct net_device *upper = soft_iface;
-+
-+	rcu_read_lock();
-+	do {
-+		upper = netdev_master_upper_dev_get_rcu(upper);
-+	} while (upper && !netif_is_bridge_master(upper));
-+
-+	dev_hold(upper);
-+	rcu_read_unlock();
-+
-+	return upper;
-+}
-+
- /**
-  * batadv_interface_add_vid() - ndo_add_vid API implementation
-  * @dev: the netdev of the mesh interface
-@@ -692,6 +717,7 @@ static int batadv_interface_add_vid(struct net_device *dev, __be16 proto,
- 				    unsigned short vid)
- {
- 	struct batadv_priv *bat_priv = netdev_priv(dev);
-+	struct net_device *bridge;
- 
- 	/* only 802.1Q vlans are supported.
- 	 * batman-adv does not know how to handle other types
-@@ -707,6 +733,20 @@ static int batadv_interface_add_vid(struct net_device *dev, __be16 proto,
- 	if (vid == 0)
- 		return 0;
- 
-+	/* The Linux bridge adds the PVID of a port (default VID 1) and
-+	 * triggers this handler. The PVID is for ingress traffic from
-+	 * bat0 to the bridge and other bridge ports. However this makes no
-+	 * statement about what is received or send on bat0 itself, bat0
-+	 * might as well be an untagged access port, even with a PVID
-+	 * configured. Therefore ignoring here when a bridge is involved.
-+	 * Instead learn VLANs on the fly from traffic.
-+	 */
-+	bridge = batadv_softif_get_bridge(dev);
-+	if (bridge) {
-+		dev_put(bridge);
-+		return 0;
-+	}
-+
- 	vid |= BATADV_VLAN_HAS_TAG;
- 
- 	return batadv_softif_create_vlan_own(bat_priv, vid);
-@@ -728,6 +768,7 @@ static int batadv_interface_kill_vid(struct net_device *dev, __be16 proto,
- 				     unsigned short vid)
- {
- 	struct batadv_priv *bat_priv = netdev_priv(dev);
-+	struct net_device *bridge;
- 
- 	/* only 802.1Q vlans are supported. batman-adv does not know how to
- 	 * handle other types
-@@ -741,6 +782,12 @@ static int batadv_interface_kill_vid(struct net_device *dev, __be16 proto,
- 	if (vid == 0)
- 		return 0;
- 
-+	bridge = batadv_softif_get_bridge(dev);
-+	if (bridge) {
-+		dev_put(bridge);
-+		return 0;
-+	}
-+
- 	batadv_softif_destroy_vlan_own(bat_priv, vid | BATADV_VLAN_HAS_TAG);
- 	return 0;
- }
-diff --git a/net/batman-adv/soft-interface.h b/net/batman-adv/soft-interface.h
-index f5334d275229..130447cb22a8 100644
---- a/net/batman-adv/soft-interface.h
-+++ b/net/batman-adv/soft-interface.h
-@@ -19,6 +19,7 @@ int batadv_skb_head_push(struct sk_buff *skb, unsigned int len);
- void batadv_interface_rx(struct net_device *soft_iface,
- 			 struct sk_buff *skb, int hdr_size,
- 			 struct batadv_orig_node *orig_node);
-+struct net_device *batadv_softif_get_bridge(struct net_device *soft_iface);
- bool batadv_softif_is_valid(const struct net_device *net_dev);
- extern struct rtnl_link_ops batadv_link_ops;
- int batadv_softif_create_vlan_own(struct batadv_priv *bat_priv,
--- 
-2.47.1
+The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
 
+  Linux 6.13-rc1 (2024-12-01 14:28:56 -0800)
+
+are available in the Git repository at:
+
+  git://git.open-mesh.org/linux-merge.git tags/batadv-next-pullrequest-20250117
+
+for you to fetch changes up to 6ecc4fd6c2f43862c5e3b280cf419f0131e45c97:
+
+  batman-adv: netlink: reduce duplicate code by returning interfaces (2025-01-17 13:36:01 +0100)
+
+----------------------------------------------------------------
+This cleanup patchset includes the following patches:
+
+ - bump version strings, by Simon Wunderlich
+
+ - Reorder includes for distributed-arp-table.c, by Sven Eckelmann
+
+ - Fix translation table change handling, by Remi Pommarel (2 patches)
+
+ - Map VID 0 to untagged TT VLAN, by Sven Eckelmann
+
+ - Update MAINTAINERS/mailmap e-mail addresses, by the respective authors
+   (4 patches)
+
+ - netlink: reduce duplicate code by returning interfaces,
+   by Linus Lüssing
+
+----------------------------------------------------------------
+Antonio Quartulli (1):
+      MAINTAINERS: mailmap: add entries for Antonio Quartulli
+
+Linus Lüssing (1):
+      batman-adv: netlink: reduce duplicate code by returning interfaces
+
+Marek Lindner (1):
+      MAINTAINERS: update email address of Marek Linder
+
+Remi Pommarel (2):
+      batman-adv: Remove atomic usage for tt.local_changes
+      batman-adv: Don't keep redundant TT change events
+
+Simon Wunderlich (2):
+      batman-adv: Start new development cycle
+      mailmap: add entries for Simon Wunderlich
+
+Sven Eckelmann (3):
+      batman-adv: Reorder includes for distributed-arp-table.c
+      batman-adv: Map VID 0 to untagged TT VLAN
+      mailmap: add entries for Sven Eckelmann
+
+ .mailmap                                |  19 +++++
+ Documentation/networking/batman-adv.rst |   2 +-
+ MAINTAINERS                             |   4 +-
+ net/batman-adv/bridge_loop_avoidance.c  |  33 ++------
+ net/batman-adv/distributed-arp-table.c  |  20 ++---
+ net/batman-adv/gateway_client.c         |  18 +---
+ net/batman-adv/main.c                   |   7 ++
+ net/batman-adv/main.h                   |   4 +-
+ net/batman-adv/multicast.c              |  17 +---
+ net/batman-adv/netlink.c                | 146 ++++++++++++++++++++++----------
+ net/batman-adv/netlink.h                |   5 +-
+ net/batman-adv/originator.c             | 116 +++++++++----------------
+ net/batman-adv/soft-interface.c         |  16 +++-
+ net/batman-adv/translation-table.c      |  92 ++++++++------------
+ net/batman-adv/types.h                  |   4 +-
+ 15 files changed, 251 insertions(+), 252 deletions(-)
