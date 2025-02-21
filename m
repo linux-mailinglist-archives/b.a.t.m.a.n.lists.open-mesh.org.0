@@ -1,90 +1,90 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1858A3EDBE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 21 Feb 2025 08:57:13 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED90A3EDC0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 21 Feb 2025 08:57:55 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9BEDE83FFA
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 21 Feb 2025 08:57:13 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 39CC0842EF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 21 Feb 2025 08:57:55 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1740124633;
- b=h1rxI1vD53ZZyyjBZiuZaSqLFn4cVxa8J85bdVWpQzlPlgn+pRa/FWylP3aDdS/M8sl/I
- 27DPixXoVJY47BfdwL1pT6Zum8/rpQLYSbCi91mIHPnF63fqf6YZv8fxQGbzRPbIMF2g4wz
- YeMPkU640EGuc8S2t0+/6JMgCv3CSXw=
+ t=1740124675;
+ b=MBYIGNDyHcZZqr5Spc/nPbykIANKbGvAYCOZU5Yb1cRtzqFJopagghF4TePTZjPqzB4XG
+ Ik0jlMCDroSQswBY3BWZDoPzuwZyAvwUY16taDkHV2EXWOGTP8Gofzl6vBqyF8aF7nXAD6y
+ BJ7PdGO/ssptsnBXIxjl5py0CwWfMTM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1740124633; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1740124675; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=M3R4jgVzCNPLBzNuXpXuKMyO2gDw390ime/+zg7mysY=;
- b=1FKxJD4LJ+ryApD1r13e0gK3XTvFYX0SDmW14j2OeqOGyS7i9kZHbu0vnYIssiQsXidt1
- M530bCLPy4f3fmEbX0KQJ5kJ+ghGk+GixCPZKV5wrNXqH8O6sUGglcN/u/qkvspB2liWhBD
- S2ckccxIux3xA6Q9HMluDMWgRRqd+7I=
+ list-archive; bh=hwbCjops9YNPWmDfophlYDE2t1KmR8e+5lnc5x6kKzA=;
+ b=KGRsOmA4CrPtshqJL6Cnsmcgu3LM6YP6gW55sskDej8vuCLievvSN3XbJLNpJtr7RRQfx
+ qnF52ojLC6yDH9MdNDJjLqNVrC4BxC133Hkq7/jGBAqzp1gtkGoCUdm8xqajJI+q35baTBg
+ 2zrMhKmiOQXRcPofoZbDCs+vVU/g+o4=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=amazon.com header.i=@amazon.com;
   arc=pass;
   dmarc=none
 Authentication-Results: open-mesh.org;
  dkim=pass header.d=amazon.com header.i=@amazon.com; arc=pass; dmarc=none
-Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com
- [207.171.184.29])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 865B283ADE
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 21 Feb 2025 05:09:24 +0100 (CET)
+Received: from smtp-fw-80009.amazon.com (smtp-fw-80009.amazon.com
+ [99.78.197.220])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4296F8353C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 21 Feb 2025 05:10:49 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1740110965;
+	s=20121; t=1740111049;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=M3R4jgVzCNPLBzNuXpXuKMyO2gDw390ime/+zg7mysY=;
-	b=p//5QqHuGKixHz+3+zg4fCi+KjCd2qEJQ7GBMyo7ES0rB4sdJ4mDpcj6pvG9JOgsE/s8jc
-	ARzfqM0rq1uP3BkmdV8lYFw9Js187PhIpQ0FLRQ3OdXbiK2PqxFLbhPhKXhed7JHm2Hmwx
-	wg7QX3T4cqnrl6kJyMd9KYN72OGRk/E=
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1740110965; a=rsa-sha256;
+	bh=hwbCjops9YNPWmDfophlYDE2t1KmR8e+5lnc5x6kKzA=;
+	b=I4eLqAiBrnMg4vS2O7dLujjPfC8AQsmrD5watmR9kPDfVYUGnQ7ARn+v3D4zbJ+aN0QymL
+	PgsigH2QD3tzAdK66pvL6vKJELYU0BgLcU4Kd9+G8hhyES2FrXQlMh67+d0mnpyLr79D48
+	IgYYKvHO486R9fJ8Ns2wBkh4cQPlJZI=
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1740111049; a=rsa-sha256;
 	cv=none;
-	b=DPxPoU3NJOgs5Qrm/zgB2Rcr3fW92AIn6b3thphJ6mtQ6bEg8F9j7RDz1mgQkHiQAluuXL
-	t9xPBXrAkcYavY/pk/E/dPwP2Xji+mKwKafM2L0ilR771bVV2AOlZriPFEZxCdYFjzluAD
-	w/i8Uc1kltSRKVfeupbigd26S+VllV4=
+	b=wUHjeTImSUWkDsjh1V74xSF/Wxi+G2fw/8HJ+bvIaBPoHCKfV2VRWRElADnZ+mEDKL8sYO
+	A8/GKmlshw+TKu3wiCPpeg7+qP0uSBbK8Yqvttn+CrLxcEWxcdJZCtgfaxqVo62XFSPn6w
+	vpCOzKcRxfZiyxh8Ulgy1+j331/5fps=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=amazon.com header.s=amazon201209 header.b=s5o9M4Nq;
+	dkim=pass header.d=amazon.com header.s=amazon201209 header.b=IR2FuNQ8;
 	spf=pass (diktynna.open-mesh.org: domain of
- "prvs=140266d62=kuniyu@amazon.co.jp" designates 207.171.184.29 as permitted
+ "prvs=140266d62=kuniyu@amazon.co.jp" designates 99.78.197.220 as permitted
  sender) smtp.mailfrom="prvs=140266d62=kuniyu@amazon.co.jp";
 	dmarc=pass (policy=quarantine) header.from=amazon.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1740110965; x=1771646965;
+  t=1740111049; x=1771647049;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=M3R4jgVzCNPLBzNuXpXuKMyO2gDw390ime/+zg7mysY=;
-  b=s5o9M4NqD96f5Q18op7NFd2lN5NPn0UqxeSEVnnBLnEnWlnUa0Zm7DEi
-   EAuAfDVCaD6dRwwx0BxW/mNhKX0AKgek+X/n1bLc5s2N/VBDZNbdKBnEf
-   PGhBULo9cbBDmcpMbZNtCliyVoL38GuA8IRgEWunaN5FfWf6jnNiH4YGY
-   A=;
+  bh=hwbCjops9YNPWmDfophlYDE2t1KmR8e+5lnc5x6kKzA=;
+  b=IR2FuNQ8O6JvDc396ZA9LHiKztg+X0ITxjhTTchW/5eVgYdqdigP3c4r
+   hsHnTUSI53eTouCiA0e3apN+lynrP5Kmi1UW+Pa7vWVmGuZXx2fMkl0Iq
+   TmxDLnOHNIHvDDXEWM2gBaObjcP2CLk19Q39+kvkbIG3RFZ5b2QCe7YoB
+   s=;
 X-IronPort-AV: E=Sophos;i="6.13,303,1732579200";
-   d="scan'208";a="495807538"
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO
- smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.214])
-  by smtp-border-fw-9102.sea19.amazon.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 04:09:13 +0000
-Received: from EX19MTAUWB002.ant.amazon.com [10.0.7.35:23369]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.18.32:2525]
+   d="scan'208";a="174489550"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO
+ smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.210])
+  by smtp-border-fw-80009.pdx80.corp.amazon.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 04:10:44 +0000
+Received: from EX19MTAUWC002.ant.amazon.com [10.0.21.151:50069]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.35.58:2525]
  with esmtp (Farcaster)
- id c0ba83e4-397a-4153-a293-f9b3f392ec9f;
- Fri, 21 Feb 2025 04:09:12 +0000 (UTC)
-X-Farcaster-Flow-ID: c0ba83e4-397a-4153-a293-f9b3f392ec9f
+ id fbfaca7d-a389-4e71-a4ee-c9c9b4945549;
+ Fri, 21 Feb 2025 04:10:44 +0000 (UTC)
+X-Farcaster-Flow-ID: fbfaca7d-a389-4e71-a4ee-c9c9b4945549
 Received: from EX19D004ANA001.ant.amazon.com (10.37.240.138) by
- EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
+ EX19MTAUWC002.ant.amazon.com (10.250.64.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1258.39;
- Fri, 21 Feb 2025 04:09:12 +0000
+ Fri, 21 Feb 2025 04:10:44 +0000
 Received: from 6c7e67bfbae3.amazon.com (10.135.209.63) by
  EX19D004ANA001.ant.amazon.com (10.37.240.138) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Fri, 21 Feb 2025 04:09:06 +0000
+ Fri, 21 Feb 2025 04:10:39 +0000
 From: Kuniyuki Iwashima <kuniyu@amazon.com>
 To: <shaw.leon@gmail.com>
 CC: <alex.aring@gmail.com>, <andrew+netdev@lunn.ch>,
@@ -99,18 +99,18 @@ CC: <alex.aring@gmail.com>, <andrew+netdev@lunn.ch>,
 	<netdev@vger.kernel.org>, <osmocom-net-gprs@lists.osmocom.org>,
 	<pabeni@redhat.com>, <shuah@kernel.org>, <stefan@datenfreihafen.org>,
 	<steffen.klassert@secunet.com>, <wireguard@lists.zx2c4.com>
-Subject: Re: [PATCH net-next v10 08/13] net: ipv6: Use link netns in newlink()
+Subject: Re: [PATCH net-next v10 09/13] net: xfrm: Use link netns in newlink()
  of rtnl_link_ops
-Date: Thu, 20 Feb 2025 20:08:58 -0800
-Message-ID: <20250221040858.78214-1-kuniyu@amazon.com>
+Date: Thu, 20 Feb 2025 20:10:30 -0800
+Message-ID: <20250221041030.78359-1-kuniyu@amazon.com>
 X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250219125039.18024-9-shaw.leon@gmail.com>
-References: <20250219125039.18024-9-shaw.leon@gmail.com>
+In-Reply-To: <20250219125039.18024-10-shaw.leon@gmail.com>
+References: <20250219125039.18024-10-shaw.leon@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.135.209.63]
-X-ClientProxiedBy: EX19D042UWA004.ant.amazon.com (10.13.139.16) To
+X-ClientProxiedBy: EX19D035UWB003.ant.amazon.com (10.13.138.85) To
  EX19D004ANA001.ant.amazon.com (10.37.240.138)
 X-MailFrom: prvs=140266d62=kuniyu@amazon.co.jp
 X-Mailman-Rule-Hits: nonmember-moderation
@@ -119,15 +119,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2
-Message-ID-Hash: FGRL77RLL46LX4KEQCXAU4TV4UU7GP32
-X-Message-ID-Hash: FGRL77RLL46LX4KEQCXAU4TV4UU7GP32
+Message-ID-Hash: BG3Z7QWW6PJIPKFFCO3MCI4SHWKS275Y
+X-Message-ID-Hash: BG3Z7QWW6PJIPKFFCO3MCI4SHWKS275Y
 X-Mailman-Approved-At: Fri, 21 Feb 2025 08:53:56 +0100
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FGRL77RLL46LX4KEQCXAU4TV4UU7GP32/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BG3Z7QWW6PJIPKFFCO3MCI4SHWKS275Y/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -137,7 +137,7 @@ List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 From: Xiao Liang <shaw.leon@gmail.com>
-Date: Wed, 19 Feb 2025 20:50:34 +0800
+Date: Wed, 19 Feb 2025 20:50:35 +0800
 > When link_net is set, use it as link netns instead of dev_net(). This
 > prepares for rtnetlink core to create device in target netns directly,
 > in which case the two namespaces may be different.
