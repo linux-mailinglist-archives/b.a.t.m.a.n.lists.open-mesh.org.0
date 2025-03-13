@@ -2,27 +2,27 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CA8A5FB24
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:18:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 011AFA5FB2C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:18:38 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6EE6B84299
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:18:05 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CAEAB84358
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:18:37 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1741882685;
- b=QXtGZC1DBxrs4T7QJGzxUEW6Q2Sq96zhJ6NLzneSyGHmjqxVk5sOxeh+rJi1nQgp0M+tx
- 17BXwrVj3zQ8H1CoapEO36LJMTDwG614eDCXeaA+URt8F2WLPkJSqJcgssrxOzQbsK8mLCQ
- BNLGzGIjv0WJZ6IF+3KsVnzluEr3A+8=
+ t=1741882717;
+ b=c9oY3mKQOgKEpg6Uf9HKYg9Wg6HCCWpIQC+vTo1Jc4d0o6PhbW8ibDj5M03MpHE7vzMN2
+ lQquSPORNNcNYtwMyOIUzbUrsFYklsK9z11VYgSQdCVz5x3sf7yhnQaGb4QbRpGZ+VVX9A4
+ TzQjhBFwHEq1w9QPFJlSNPX5uXDVea8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1741882685; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1741882717; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=VMQ+6fs4CmEPlFkKzTJwaoCA0D2oJV+t2quPSshPkSM=;
- b=CVAgyqcblHISfyA1VRyDPVxvz02LO3mih5F3+0o/pHR5iXYB1/Ny/ba+CO9i9ZufYQ4vX
- zNMqXKzfUOpPBhWls3VUrQLmiDuapUkSip73K8piuvs93AZgJPBqgxWgxYQ5E/MfbKZTipE
- Hvw/GMOn54B5QcB0YJfqxe8gMXMH5cQ=
+ list-archive; bh=TYYOJ3ru+lfyMj+KH3Gz1l4OP+IWN7bRXNGl1OZ6nCQ=;
+ b=cvyMxL8bPT1nFVocVW+GlbkTZoGB7DhaGFLbbkjEB/x75lK/Y5/yA8t+veUqNecp7eHLf
+ FH3YEIFtV06rzGPGrrSZ1KcJFD1OcHmNtUHYcqLVZQSUe1vWjdWphXn1ZN0xFi0qXY/CiqE
+ 2wlg1FAO1YtpbT5iHUXxv/KfXKDFHIA=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
@@ -32,51 +32,57 @@ Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 30DFD818D3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Mar 2025 17:17:40 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8C4CB841F0
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Mar 2025 17:17:42 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1741882661;
+	s=20121; t=1741882662;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=VMQ+6fs4CmEPlFkKzTJwaoCA0D2oJV+t2quPSshPkSM=;
-	b=SUluo3DYkYpOgk4Y5ifekW9X9tUCdynIPRFuMBpsHj2JJCfMVXKMZw1zHqVyJsbNxRQ9bO
-	6rXgf7593uddL5zR0c1413YxdO5VFea2upLlu1KvoT4C2F6kX6oog/ki6KKXvp2us7O02g
-	JZ+FlMvJnUtt1oV27LqpNSalaD1Rg7M=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TYYOJ3ru+lfyMj+KH3Gz1l4OP+IWN7bRXNGl1OZ6nCQ=;
+	b=ajO8OA/SzAgnXssdgZ0S5uhEdfnsJzZmauxWYyKbgk2Vzqp9cfukVhqGads9Yyr3gRDDpW
+	vVWN9t9SXNNmm2IrlV5Y8NXaXq4B//d2pzSonrAIKJNJcZaG1AMHPSQhRs1rCAfgpt5+tZ
+	l2+0MnrC1691QHNOq1ZBsze8+CdNBbU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1741882661; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1741882662; a=rsa-sha256;
 	cv=none;
-	b=N2t2aliWZCvoAGKO48jTGRzBXVLMqBFpqV+KW/38Iuyq/ccb5ngQQNSOuBfoTg4p2NLpcS
-	P9N7NsvXLL6NaVSD5RnM4IWdDKSZydIwEZ2mjeZk3EILEYkgYot8gZlG0KltlTwMx7G8KP
-	utoPNrippMIVT7wslZmnzeEjxBjJKPI=
+	b=hVGKQRufN0txoFKOGRDBXj3Ti6Nd5QfVPDJff3b7QvpuJk0pOHvs2LTDLYllJjX5exjDjh
+	8C07PatIqpWX0unkrL4SM4iLI5NHuXeCpi7IHlZj2Y4lymohK56z3wN3u39S3d2tAVi4FX
+	U0S+rsMjPwZDNSFkYpmuSHOmtx9JUTs=
 Received: from kero.packetmixer.de
- (p200300fA272413901A38A4bc9c0De305.dip0.t-ipconnect.de
+ (p200300fa272413901a38a4bC9c0De305.dip0.t-ipconnect.de
  [IPv6:2003:fa:2724:1390:1a38:a4bc:9c0d:e305])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 6041AFA131;
-	Thu, 13 Mar 2025 17:17:40 +0100 (CET)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 8687EFA132;
+	Thu, 13 Mar 2025 17:17:41 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: davem@davemloft.net,
 	kuba@kernel.org
 Cc: netdev@vger.kernel.org,
 	b.a.t.m.a.n@lists.open-mesh.org,
+	Andy Strohman <andrew@andrewstrohman.com>,
+	stable@vger.kernel.org,
+	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 0/5] pull request for net: batman-adv 2025-03-13
-Date: Thu, 13 Mar 2025 17:17:33 +0100
-Message-Id: <20250313161738.71299-1-sw@simonwunderlich.de>
+Subject: [PATCH 1/5] batman-adv: fix panic during interface removal
+Date: Thu, 13 Mar 2025 17:17:34 +0100
+Message-Id: <20250313161738.71299-2-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250313161738.71299-1-sw@simonwunderlich.de>
+References: <20250313161738.71299-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MABW7XC5HZA74K4ABIZSQQVS2IXNWP52
-X-Message-ID-Hash: MABW7XC5HZA74K4ABIZSQQVS2IXNWP52
+Message-ID-Hash: GE7JBZYT3KRAQ47DAMJCV6KFOOXIQNKP
+X-Message-ID-Hash: GE7JBZYT3KRAQ47DAMJCV6KFOOXIQNKP
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -90,7 +96,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/MABW7XC5HZA74K4ABIZSQQVS2IXNWP52/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GE7JBZYT3KRAQ47DAMJCV6KFOOXIQNKP/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -99,57 +105,81 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi David, hi Jakub,
+From: Andy Strohman <andrew@andrewstrohman.com>
 
-here are some bugfixes for batman-adv which we would like to have integrated into net.
+Reference counting is used to ensure that
+batadv_hardif_neigh_node and batadv_hard_iface
+are not freed before/during
+batadv_v_elp_throughput_metric_update work is
+finished.
 
-Please pull or let me know of any problem!
+But there isn't a guarantee that the hard if will
+remain associated with a soft interface up until
+the work is finished.
 
-Thank you,
-      Simon
+This fixes a crash triggered by reboot that looks
+like this:
 
-The following changes since commit fff8f17c1a6fc802ca23bbd3a276abfde8cc58e6:
+Call trace:
+ batadv_v_mesh_free+0xd0/0x4dc [batman_adv]
+ batadv_v_elp_throughput_metric_update+0x1c/0xa4
+ process_one_work+0x178/0x398
+ worker_thread+0x2e8/0x4d0
+ kthread+0xd8/0xdc
+ ret_from_fork+0x10/0x20
 
-  batman-adv: Do not let TT changes list grows indefinitely (2024-12-05 22:38:26 +0100)
+(the batadv_v_mesh_free call is misleading,
+and does not actually happen)
 
-are available in the Git repository at:
+I was able to make the issue happen more reliably
+by changing hardif_neigh->bat_v.metric_work work
+to be delayed work. This allowed me to track down
+and confirm the fix.
 
-  git://git.open-mesh.org/linux-merge.git tags/batadv-net-pullrequest-20250313
+Cc: stable@vger.kernel.org
+Fixes: c833484e5f38 ("batman-adv: ELP - compute the metric based on the estimated throughput")
+Signed-off-by: Andy Strohman <andrew@andrewstrohman.com>
+[sven@narfation.org: prevent entering batadv_v_elp_get_throughput without
+ soft_iface]
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+---
+ net/batman-adv/bat_v_elp.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-for you to fetch changes up to 548b0c5de7619ef53bbde5590700693f2f6d2a56:
+diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
+index 1d704574e6bf..fbf499bcc671 100644
+--- a/net/batman-adv/bat_v_elp.c
++++ b/net/batman-adv/bat_v_elp.c
+@@ -66,12 +66,19 @@ static void batadv_v_elp_start_timer(struct batadv_hard_iface *hard_iface)
+ static u32 batadv_v_elp_get_throughput(struct batadv_hardif_neigh_node *neigh)
+ {
+ 	struct batadv_hard_iface *hard_iface = neigh->if_incoming;
++	struct net_device *soft_iface = hard_iface->soft_iface;
+ 	struct ethtool_link_ksettings link_settings;
+ 	struct net_device *real_netdev;
+ 	struct station_info sinfo;
+ 	u32 throughput;
+ 	int ret;
+ 
++	/* don't query throughput when no longer associated with any
++	 * batman-adv interface
++	 */
++	if (!soft_iface)
++		return BATADV_THROUGHPUT_DEFAULT_VALUE;
++
+ 	/* if the user specified a customised value for this interface, then
+ 	 * return it directly
+ 	 */
+@@ -141,7 +148,7 @@ static u32 batadv_v_elp_get_throughput(struct batadv_hardif_neigh_node *neigh)
+ 
+ default_throughput:
+ 	if (!(hard_iface->bat_v.flags & BATADV_WARNING_DEFAULT)) {
+-		batadv_info(hard_iface->soft_iface,
++		batadv_info(soft_iface,
+ 			    "WiFi driver or ethtool info does not provide information about link speeds on interface %s, therefore defaulting to hardcoded throughput values of %u.%1u Mbps. Consider overriding the throughput manually or checking your driver.\n",
+ 			    hard_iface->net_dev->name,
+ 			    BATADV_THROUGHPUT_DEFAULT_VALUE / 10,
+-- 
+2.39.5
 
-  batman-adv: Ignore own maximum aggregation size during RX (2025-02-08 19:24:33 +0100)
-
-----------------------------------------------------------------
-Here are some batman-adv bugfixes:
-
-- fix panic during interface removal, by Andy Strohman
-
-- Ignore neighbor throughput metrics in error case, by Sven Eckelmann
-
-- Drop unmanaged ELP metric worker, by Sven Eckelmann
-
-- Fix incorrect offset in batadv_tt_tvlv_ogm_handler_v1(), by Remi Pommarel
-
-- Ignore own maximum aggregation size during RX, Sven Eckelmann
-
-----------------------------------------------------------------
-Andy Strohman (1):
-      batman-adv: fix panic during interface removal
-
-Remi Pommarel (1):
-      batman-adv: Fix incorrect offset in batadv_tt_tvlv_ogm_handler_v1()
-
-Sven Eckelmann (3):
-      batman-adv: Ignore neighbor throughput metrics in error case
-      batman-adv: Drop unmanaged ELP metric worker
-      batman-adv: Ignore own maximum aggregation size during RX
-
- net/batman-adv/bat_iv_ogm.c        |   3 +-
- net/batman-adv/bat_v.c             |   2 -
- net/batman-adv/bat_v_elp.c         | 122 ++++++++++++++++++++++++++-----------
- net/batman-adv/bat_v_elp.h         |   2 -
- net/batman-adv/bat_v_ogm.c         |   3 +-
- net/batman-adv/translation-table.c |  12 ++--
- net/batman-adv/types.h             |   3 -
- 7 files changed, 93 insertions(+), 54 deletions(-)
