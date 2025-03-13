@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8456EA5FC8B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:50:17 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2831CA5FC8C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:50:51 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0571D84316
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:50:17 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 07C8A845E4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 13 Mar 2025 17:50:51 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1741884617;
- b=al84m2Dj/C+kG1i7J2nDc9Hj1pyGEuO3dGldk8PAXh4jYBVTliL87UKs3jI7k+fXGc/aY
- kjDZZ6uPh4AfvlgBN3yxtf7uaLkvoSpk7radOujgngYZYLT5mpyIA8nn6JFqyGxUOB/ABPC
- GgIx6ZJEcIzSPnRLpmRTmq3akBx6IKg=
+ t=1741884651;
+ b=Lrch/lj7fceIuZOkDWpTP4oM8Yo+JhA9+EPJYf9pCwEOK6WhduRMEASmIVaBBdxfmJgCm
+ vzfcOQYY466WetbTMKMzJVYYhHGvTX4Nag/KcCBZW9RdS2QRmGZ08ziN3bSUUkmQm5loEaJ
+ LQiNAPzkh16ULedK18n1mWsDgGsaqB4=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1741884617; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1741884651; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=4XbpSU8AJVK9zTUzLjfOmv+0HBg+eeMgqjWMS9B0lrw=;
- b=ItRwuYPt0HkTrUr9KuViD47eBiCTZ6dZZMNm9/I6y145j8jheoEiZz0AelUPA5/WlGMMG
- 5zv3MtCbpTtmY4JsmWQo2SZUeFhNWXdIwgHo4TXU6xj516F5Hi/Cdcf4ix8o2+M4finOogj
- diLZJcc6kL6wkzl7VIe1eOxZZ3q4i7A=
+ list-archive; bh=7cBSPKtnU5NBhtVvbUZvFFoM0SkWk3Yzo5yyCWyLwec=;
+ b=PKRllSMasKzewQiL3q+WikoqGffbRWyoDi5Io5fHoHlWt6eArNgK5/m0hKCTjqRhQ2+Aa
+ joAgB7riArNPeLxZc88ieNzZ4271WkFJ9+0JB0Kqqo4vnx9i05J/1SSzaSbuP8fAxCepOdJ
+ /fFDVQInSXe+Bx9S6PagGW3HuNwAEUw=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
@@ -32,29 +32,29 @@ Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id D88DC8428D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Mar 2025 17:45:30 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 853288427B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 13 Mar 2025 17:45:31 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1741884330;
+	s=20121; t=1741884331;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=4XbpSU8AJVK9zTUzLjfOmv+0HBg+eeMgqjWMS9B0lrw=;
-	b=yNB2mZhFz3kYhz7NesWbnJrjOZXm0/7ad++/Iof9iTfsbDE67ZmuHjb0P+JE4AbxQ3mN+q
-	ZBTnN2FHoLqmLrXWN46l74MkIQV5CwszmoCbUMhJ5VilJi2KSGa9i0QwS9YzQp3tnoezEW
-	LuH2dESl7LszgLALR2tlpMmvJoFu240=
+	bh=7cBSPKtnU5NBhtVvbUZvFFoM0SkWk3Yzo5yyCWyLwec=;
+	b=sRoG6uwq8W5p3Cab+gr02b22GM8GRAnPIk+Bd5yAHWBoczrsPV5+QQvKHuENgLF3QGL0T2
+	wx96yhwzDNIKEyzQPfb+qEMdlZlbxMfexfD2x8eN1RoJ35SHr7GkWD625ezXxUBxoSQ12q
+	MQ3xR0B9Ug6DxsAqdnoALalgZr5vvgo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1741884330; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1741884331; a=rsa-sha256;
 	cv=none;
-	b=yImvlLE26l982z5NHg2pbVVW/7CA/JJ7dVVN4t3U2ezMkux0oOFo1gmXKkQMuIRimREFyT
-	QbC5Eafe9tmr7gaFdCaN1tRrA9PMaHczK5bRoRFovOv0FFqgDQLOOqCVaSkMxXXTONs5Tb
-	uxJihUcMdapzbdWHAZOwbPOaWj+2mS4=
+	b=L0lyMg2HQrlzuR8yguuv1LDmY2i9wM80Wzv98d6Oi1J+A/m06fv7lp1wdl6cGIKMP80RNP
+	N5UWCNlbkBhDXnKlBwkAAcgjoKYOecYK91bnFKFibgW+ajoa/E7W5taug3pMCeW8jr8i4r
+	y8PVCKxexNBUmnG5fTdx8AatU7Uyiy0=
 Received: from kero.packetmixer.de
  (p200300Fa272413901A38A4BC9c0De305.dip0.t-ipconnect.de
  [IPv6:2003:fa:2724:1390:1a38:a4bc:9c0d:e305])
@@ -62,8 +62,8 @@ Received: from kero.packetmixer.de
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id BB7EEFA44B;
-	Thu, 13 Mar 2025 17:45:30 +0100 (CET)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 51E68FA44C;
+	Thu, 13 Mar 2025 17:45:31 +0100 (CET)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: kuba@kernel.org,
 	davem@davemloft.net
@@ -71,16 +71,16 @@ Cc: netdev@vger.kernel.org,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH 09/10] batman-adv: Limit aggregation size to outgoing MTU
-Date: Thu, 13 Mar 2025 17:45:18 +0100
-Message-Id: <20250313164519.72808-10-sw@simonwunderlich.de>
+Subject: [PATCH 10/10] batman-adv: add missing newlines for log macros
+Date: Thu, 13 Mar 2025 17:45:19 +0100
+Message-Id: <20250313164519.72808-11-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250313164519.72808-1-sw@simonwunderlich.de>
 References: <20250313164519.72808-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: RZ7FJXLAJZHT7R6CD6IA3GM2E5O2BVFQ
-X-Message-ID-Hash: RZ7FJXLAJZHT7R6CD6IA3GM2E5O2BVFQ
+Message-ID-Hash: FHZPYM3HSYKD3H5LEEZCNOPD6URBVKUT
+X-Message-ID-Hash: FHZPYM3HSYKD3H5LEEZCNOPD6URBVKUT
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -94,7 +94,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RZ7FJXLAJZHT7R6CD6IA3GM2E5O2BVFQ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FHZPYM3HSYKD3H5LEEZCNOPD6URBVKUT/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -105,83 +105,28 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 From: Sven Eckelmann <sven@narfation.org>
 
-If a B.A.T.M.A.N. IV aggregated OGM was prepared, it was always assumed
-that 512 bytes (BATADV_MAX_AGGREGATION_BYTES) can be transmitted. But the
-outgoing MTU might be too small for these 512 bytes and the aggregation
-size must be adjusted in this case. Otherwise, the aggregates will cause
-unnecessary packet loss.
-
-For now, the non-aggregated packet length is not touched.
+Missing trailing newlines can lead to incomplete log lines that do not
+appear properly in dmesg or in console output.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/bat_iv_ogm.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ net/batman-adv/netlink.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index a20d7f3004c1..7b4f659612a3 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -23,6 +23,7 @@
- #include <linux/kref.h>
- #include <linux/list.h>
- #include <linux/lockdep.h>
-+#include <linux/minmax.h>
- #include <linux/mutex.h>
- #include <linux/netdevice.h>
- #include <linux/netlink.h>
-@@ -444,22 +445,26 @@ batadv_iv_ogm_can_aggregate(const struct batadv_ogm_packet *new_bat_ogm_packet,
- 			    const struct batadv_forw_packet *forw_packet)
- {
- 	struct batadv_ogm_packet *batadv_ogm_packet;
--	int aggregated_bytes = forw_packet->packet_len + packet_len;
-+	unsigned int aggregated_bytes = forw_packet->packet_len + packet_len;
- 	struct batadv_hard_iface *primary_if = NULL;
- 	u8 packet_num = forw_packet->num_packets;
- 	bool res = false;
- 	unsigned long aggregation_end_time;
-+	unsigned int max_bytes;
+diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
+index 13935570fae1..e7c8f9f2bb1f 100644
+--- a/net/batman-adv/netlink.c
++++ b/net/batman-adv/netlink.c
+@@ -1567,7 +1567,7 @@ void __init batadv_netlink_register(void)
  
- 	batadv_ogm_packet = (struct batadv_ogm_packet *)forw_packet->skb->data;
- 	aggregation_end_time = send_time;
- 	aggregation_end_time += msecs_to_jiffies(BATADV_MAX_AGGREGATION_MS);
+ 	ret = genl_register_family(&batadv_netlink_family);
+ 	if (ret)
+-		pr_warn("unable to register netlink family");
++		pr_warn("unable to register netlink family\n");
+ }
  
-+	max_bytes = min_t(unsigned int, if_outgoing->net_dev->mtu,
-+			  BATADV_MAX_AGGREGATION_BYTES);
-+
- 	/* we can aggregate the current packet to this aggregated packet
- 	 * if:
- 	 *
- 	 * - the send time is within our MAX_AGGREGATION_MS time
- 	 * - the resulting packet won't be bigger than
--	 *   MAX_AGGREGATION_BYTES
-+	 *   MAX_AGGREGATION_BYTES and MTU of the outgoing interface
- 	 * - the number of packets is lower than MAX_AGGREGATION_PACKETS
- 	 * otherwise aggregation is not possible
- 	 */
-@@ -467,7 +472,7 @@ batadv_iv_ogm_can_aggregate(const struct batadv_ogm_packet *new_bat_ogm_packet,
- 	    !time_after_eq(aggregation_end_time, forw_packet->send_time))
- 		return false;
- 
--	if (aggregated_bytes > BATADV_MAX_AGGREGATION_BYTES)
-+	if (aggregated_bytes > max_bytes)
- 		return false;
- 
- 	if (packet_num >= BATADV_MAX_AGGREGATION_PACKETS)
-@@ -552,9 +557,9 @@ static void batadv_iv_ogm_aggregate_new(const unsigned char *packet_buff,
- 	unsigned int skb_size;
- 	atomic_t *queue_left = own_packet ? NULL : &bat_priv->batman_queue_left;
- 
--	if (atomic_read(&bat_priv->aggregated_ogms) &&
--	    packet_len < BATADV_MAX_AGGREGATION_BYTES)
--		skb_size = BATADV_MAX_AGGREGATION_BYTES;
-+	if (atomic_read(&bat_priv->aggregated_ogms))
-+		skb_size = max_t(unsigned int, BATADV_MAX_AGGREGATION_BYTES,
-+				 packet_len);
- 	else
- 		skb_size = packet_len;
- 
+ /**
 -- 
 2.39.5
 
