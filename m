@@ -1,110 +1,114 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE2CCA6AB08
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 20 Mar 2025 17:30:01 +0100 (CET)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0CCA776B6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Apr 2025 10:45:21 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 688F8842BD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 20 Mar 2025 17:30:01 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A852F8433E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue,  1 Apr 2025 10:45:21 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1742488201;
- b=qRpJ05+N0bIgbFSlTo1gMaYR3Qjfx7FlF2KCgxPhTQ3W/I5xRVLfi3MLH7JPgQt2ozc1k
- WvdojIBrxIdGl0Fegk72yuYdfk8HzglqPaJ2ersO0K8xyG6KL7VWzt0ez2XDL7ap/0Rc3ou
- r8pKpSqWeQ6zzwou6u69+gQZvOd/oCM=
+ t=1743497121;
+ b=mZDFds5YZyLk1aK0XM45UyGKK0Bp5Xd9kFN+mDwGiJ64sdX/ENYt5vycU1IhQh3c4Y/Rp
+ QvsTwdF3Asi0ZUZuDehYyE93eMes5OTgHxDPrT1ZG7AMkl9uUgAiVB1wCbZgERvpaquCaEU
+ CeTyjcZC4FZRv33txp71ohXucGILV10=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1742488201; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1743497121; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=uPLX2O5zKgNshMmqeCxxoMXKwAZcjJ61ij2mF22vjJ4=;
- b=MjtKG3T4j9gxjmU1CpZlkdumYTLICEwt9vom83WtONmD07KwrZ+qz8DZIPYrHQDkpR2ff
- SVigIEOheR6mQDVSzAt0FCJX38pBuyC3h9xjqSWigKV1mOuj/Y/CiROFR3dKuJ1R5t82Dpk
- bustWODyqCEjNuLdM0cDdiXjD/Z7VXU=
-ARC-Authentication-Results: i=2; open-mesh.org; dkim=pass header.d=kernel.org;
+ list-archive; bh=A6wXBAj2WuBmmKGR90I0iVTSPHWbqOoIW4e01PI8x+U=;
+ b=Z2CR4PbSw0ojegadaeXBAdWBNieEDFPriu4rEAy/8xZLmNeCnoCixTg3ApXvkDDZgytay
+ tzA9XDfvWPjWWLscq0eR5+gjNX7gnVRDE9KapL6DvKycqQZxn8qR/3BRyO1eo+Eyty147qn
+ mh8gqbFgNZox/PCe1qRpuBP3aH043s0=
+ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 940EC80F86
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 20 Mar 2025 15:39:59 +0100 (CET)
+  dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id E44B2809EC
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue,  1 Apr 2025 10:39:39 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1742481609;
+	s=20121; t=1743496783;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=uPLX2O5zKgNshMmqeCxxoMXKwAZcjJ61ij2mF22vjJ4=;
-	b=vPR7J9N1dDhCZe3CT2GkrKU7oUrbKr32iLoCuLrj5Aiwvuppkou3vB7TVAxlBJkLVD04pN
-	xkqA0MqmSi/Z/vwb5cnIt75yAD5HfFh3RrJIARfEXHFk+Kr8DQcEmzbF+zAVPmAyFOmVVp
-	j6lssjR5WP5P4sDPhoIG3TZP30XTn4M=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=A6wXBAj2WuBmmKGR90I0iVTSPHWbqOoIW4e01PI8x+U=;
+	b=eOAwIF5sETiLwgpwSDa3nUypy68YRPm4MQLG283wUZroqYgt+otmfgS+jGA2o6LJJTIPBu
+	EFkv/36V6y69GtJfkhU8kHxzQvaZ6DD7slF3aXjBAMd+FhFGCuUjlrXaZn8Ey/yfOdfmTs
+	WZbeBWZfW6mNS1tqtJJA9zxQTD6pEZo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=OzZQOp73;
-	spf=pass (diktynna.open-mesh.org: domain of
- patchwork-bot+netdevbpf@kernel.org designates 172.105.4.254 as permitted
- sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1742481609; a=rsa-sha256;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of vulab@iscas.ac.cn designates
+ 159.226.251.21 as permitted sender) smtp.mailfrom=vulab@iscas.ac.cn;
+	dmarc=none
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1743496783; a=rsa-sha256;
 	cv=none;
-	b=K5F1PacSOhcyhKzWJwYiJ7KkqKzwbdl2s2m/OsTA9g/fMdZSYTB37eIck0Jsz0DlCvk1lv
-	8ioHgAUmC0a3/IjfvFccN0s+duyvW6q+9fno7m7w8NFi4tOyAIyMRU5X5UK/LFUobJ9Pk2
-	i52gCa/iDzRRXR47eIKeGqeEkexp9zk=
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 502766115E;
-	Thu, 20 Mar 2025 14:39:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1DDAC4CEED;
-	Thu, 20 Mar 2025 14:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742481596;
-	bh=oVQojLeLWiozl0E/5VrnXjJuDZpnqy9tjthf9fqPAEc=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=OzZQOp73hasAgu0NBkmj6knatSW70kMR70mPUGqkd+WBRrDnvFjCuPRpl6+0Ezrrs
-	 arZo2gIUtNhuOFjCANOfg8VuKUGaWgCXfiQ2bSksz62DpZH7/aHGGwzJz30zoLzCgW
-	 xldy8+lHwwEV8hue0zAppb0PO6o0MA3G4FQ8iDg86zJhb1hQLo3+M7Ts7YPQX8DT2k
-	 lWXClKH10lcFP+bBiMhpSCbGXTejOFl/C9Y48BpLLctZaKWyIerVtwOWjK38keAwd1
-	 +WcUYlkMWMHuj8qrRtvNPrGZd8oAakV8V4wDeOs9sjR7C1T0VhbOCM1DdVK+ksiUvd
-	 8XV+ZvEoNjJnQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id
- ADDD33806654;
-	Thu, 20 Mar 2025 14:40:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	b=rqDIIu+1/mC5uaXF6efdwDEsuANA6F0vOJSog75K3BnzcbnjSF6nbBLxtKzwKXqeAmKGft
+	9fejD+i9cvHIf3pn9MA6FOL+eYbUoZq01Cn6x8h3aKGfTBoT0VGlg9EKyCi4kxq1NuJEzS
+	JjNJBNZNIP2HPrgAqMRqnuND1uw4qlg=
+Received: from localhost.localdomain (unknown [124.16.141.245])
+	by APP-01 (Coremail) with SMTP id qwCowAA33f1AputnQ5eqBA--.451S2;
+	Tue, 01 Apr 2025 16:39:30 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: mareklindner@neomailbox.ch,
+	sw@simonwunderlich.de,
+	a@unstable.cc,
+	sven@narfation.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	horms@kernel.org
+Cc: b.a.t.m.a.n@lists.open-mesh.org,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Wentao Liang <vulab@iscas.ac.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] batman-adv: batman-adv: handle tvlv unicast send errors
+Date: Tue,  1 Apr 2025 16:39:00 +0800
+Message-ID: <20250401083901.2261-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.42.0.windows.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net 1/1] batman-adv: Ignore own maximum aggregation size
- during RX
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <174248163252.1791127.9515297719544787878.git-patchwork-notify@kernel.org>
-Date: Thu, 20 Mar 2025 14:40:32 +0000
-References: <20250318150035.35356-2-sw@simonwunderlich.de>
-In-Reply-To: <20250318150035.35356-2-sw@simonwunderlich.de>
-To: Simon Wunderlich <sw@simonwunderlich.de>
-Cc: davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
- pabeni@redhat.com, b.a.t.m.a.n@lists.open-mesh.org, sven@narfation.org,
- stable@vger.kernel.org
-X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+X-CM-TRANSID: qwCowAA33f1AputnQ5eqBA--.451S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Ww1rGF1DCrW8XrWUuw13CFg_yoW8XF17pF
+	Z5Gr15Gw1DJa1SqFyjq345Zr4Yyws7KrWj9FZ7A3W3ZFsxKrySgay8Z34jyF4rXay2ka1D
+	Xr4qgF9xAa4DCFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+	6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-Originating-IP: [124.16.141.245]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCQ8TA2frlbhKlQAAso
+X-MailFrom: vulab@iscas.ac.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2
-Message-ID-Hash: L2FRG26PYSLLKQI4ZWF7467TJVAFGZPQ
-X-Message-ID-Hash: L2FRG26PYSLLKQI4ZWF7467TJVAFGZPQ
-X-Mailman-Approved-At: Thu, 20 Mar 2025 17:29:19 +0100
+Message-ID-Hash: 4SL2YREUIEZ4F2SRHOKDY3UNHEX7HCM7
+X-Message-ID-Hash: 4SL2YREUIEZ4F2SRHOKDY3UNHEX7HCM7
+X-Mailman-Approved-At: Tue, 01 Apr 2025 10:44:40 +0200
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/B4X7BDHVTEMYLVH6TNAUWL46CU2PRLIQ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4SL2YREUIEZ4F2SRHOKDY3UNHEX7HCM7/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -113,29 +117,45 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hello:
+In batadv_tvlv_unicast_send(), the return value of
+batadv_send_skb_to_orig() is ignored. This could silently
+drop send failures, making it difficult to detect connectivity
+issues.
 
-This patch was applied to netdev/net.git (main)
-by Simon Wunderlich <sw@simonwunderlich.de>:
+Add error checking for batadv_send_skb_to_orig() and log failures
+via batadv_dbg() to improve error visibility.
 
-On Tue, 18 Mar 2025 16:00:35 +0100 you wrote:
-> From: Sven Eckelmann <sven@narfation.org>
-> 
-> An OGMv1 and OGMv2 packet receive processing were not only limited by the
-> number of bytes in the received packet but also by the nodes maximum
-> aggregation packet size limit. But this limit is relevant for TX and not
-> for RX. It must not be enforced by batadv_(i)v_ogm_aggr_packet to avoid
-> loss of information in case of a different limit for sender and receiver.
-> 
-> [...]
+Fixes: 1ad5bcb2a032 ("batman-adv: Consume skb in batadv_send_skb_to_orig")
+Cc: stable@vger.kernel.org # 4.10+
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+---
+ net/batman-adv/tvlv.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Here is the summary with links:
-  - [net,1/1] batman-adv: Ignore own maximum aggregation size during RX
-    https://git.kernel.org/netdev/net/c/548b0c5de761
-
-You are awesome, thank you!
+diff --git a/net/batman-adv/tvlv.c b/net/batman-adv/tvlv.c
+index 2a583215d439..f081136cc5b7 100644
+--- a/net/batman-adv/tvlv.c
++++ b/net/batman-adv/tvlv.c
+@@ -625,6 +625,7 @@ void batadv_tvlv_unicast_send(struct batadv_priv *bat_priv, const u8 *src,
+ 	unsigned char *tvlv_buff;
+ 	unsigned int tvlv_len;
+ 	ssize_t hdr_len = sizeof(*unicast_tvlv_packet);
++	int r;
+ 
+ 	orig_node = batadv_orig_hash_find(bat_priv, dst);
+ 	if (!orig_node)
+@@ -657,7 +658,10 @@ void batadv_tvlv_unicast_send(struct batadv_priv *bat_priv, const u8 *src,
+ 	tvlv_buff += sizeof(*tvlv_hdr);
+ 	memcpy(tvlv_buff, tvlv_value, tvlv_value_len);
+ 
+-	batadv_send_skb_to_orig(skb, orig_node, NULL);
++	r = batadv_send_skb_to_orig(skb, orig_node, NULL);
++	if (r != NET_XMIT_SUCCESS)
++		batadv_dbg(BATADV_DBG_TP_METER, bat_priv,
++			   "Fail to send the ack.");
+ out:
+ 	batadv_orig_node_put(orig_node);
+ }
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.42.0.windows.2
 
