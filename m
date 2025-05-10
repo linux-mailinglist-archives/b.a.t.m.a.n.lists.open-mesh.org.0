@@ -1,45 +1,45 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54A92AB222A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 10 May 2025 10:38:33 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E8CAB222B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 10 May 2025 10:39:16 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 324BF849D7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 10 May 2025 10:38:33 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A548384B94
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 10 May 2025 10:39:16 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1746866313;
- b=dy61jryphfMFcqHW5E57B7/sfh9qV8oX0OpTg7joudfmTgcwgwTkXr/8ORCQm3wXUB2Z4
- Eb2FsQo/hW+2eEteTVlSyfHEZqv/kcMHaUsEVprKIH5px8IhFgxG8skdvoboQR5XyoQzJ8a
- xYEsBJZ7QRk7G/RVvZKly9l8O8n1VLc=
+ t=1746866356;
+ b=4GVapzOFbnDrX/ZH3Vn2KNAHgDqgtXN1BFuLz/BWoi9tji7kU6HtuHw87Ndv/NtoGeYJv
+ A8Ar6QSuVURMC7XasaXV8c+AUOipQlDARbvq5OmueeuzuRvmOtqlcpeQ15xRxXqnuxi1RRB
+ Ceg3M5hxpE6bz0kc9POWv/j9kX1db94=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1746866313; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1746866356; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=/2Uy6pixP/6jbU9mTIug5m1HbpqijOqKQN653kuTLy0=;
- b=qZ2P/rfW9/eg+g8CjC9tB2Tt+uOjY6+uBm+fxLP5uIZAEUosVV3qZVLgSs5mObYi33x0F
- Xb+5e4nU8kBMwTzpQ6Nxoth/2QPOZLzuDojUl/YK/gvVd3eWjTSjvx2pSOCe/+C0TIbGFBd
- hM9eYIuz1hZz0TwTzFXIPPE6rP+LZZI=
+ list-archive; bh=KXlnFH0TGqGQmK9MGm0Bn6n3pRojpRMhl3aIrIOl+gc=;
+ b=XBxmvPzdWM9UODTCkwr13JhEj2lXX/TLp4xIM+iJTPSMjjaxCxxDCkcgc6idHr5K740BO
+ gmSbRE7kDWQ5rOZUbXttk7QCZhCBLeGf88uf8fqacBnHWF6ZSKSde2glhqzlpXahTG3nbr9
+ rGiqNgEJswe7X0Uju97z81bOMQJ7zlE=
 ARC-Authentication-Results: i=2; open-mesh.org; dkim=fail;
   arc=pass;
   dmarc=none
 Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
 Received: from mail.aperture-lab.de (mail.aperture-lab.de
  [IPv6:2a01:4f8:c2c:665b::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id D9E8284622
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 10 May 2025 10:37:45 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2AB3284AB6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 10 May 2025 10:38:28 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1746866275;
+	s=20121; t=1746866308;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=/2Uy6pixP/6jbU9mTIug5m1HbpqijOqKQN653kuTLy0=;
-	b=cv8Y522lGSghk8OIrt17wR9reE/8ttmgbQ5H83sKx0g6zLx1HWDpft3RKyynNzo9l3QPfa
-	A9mCWI0DWKhipd7+u6pnMaV/JDlAUNAn18y7M0+e2mtHsWWR4Hm36aLVcMDKoFrcupdIBH
-	xmIHbwgk7IEgfb/iEBm5lsAy6awaYzI=
+	bh=KXlnFH0TGqGQmK9MGm0Bn6n3pRojpRMhl3aIrIOl+gc=;
+	b=pK6VVmvtkACOkRJEI3D4gXkyvEqdxukij7xdlvr0S70XSmHEdzulD8Z6iu9qmiQhfVryGV
+	EOQpGBWq5saAcXpVjUaQ1nHTrWosP2xOBrYod1xtqmE6klncHaipdEWDtv5tuWEg/3DX8V
+	AQO6766ex1fSiXc/4SPeKRxQ97S5H80=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
@@ -47,28 +47,27 @@ ARC-Authentication-Results: i=1;
  designates 2a01:4f8:c2c:665b::1 as permitted sender)
  smtp.mailfrom=linus.luessing@c0d3.blue;
 	dmarc=none
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1746866275; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1746866308; a=rsa-sha256;
 	cv=none;
-	b=vF8a6iZl56eU10f7O2hdQajauqwO8MMI/h1C1r8zBRFxIMC0FTX1D5dWIdPveemvDEMUR+
-	ucHAX0dFxTuUP8zwrFnZx3sGj+Uh8UmFWQO9knr9zKI4K74MViCnuYXbnFuzONsDbeBYgg
-	aQSTNK6UDgz8biZt4bY5gDXZgtr2CGw=
+	b=wWkFyNxOaRAdoZCEe4NGkkpDrFd0VzpwpI2tFBL0f/vXsBjXI4/NzoU0mFYTZdt+0wR/jj
+	QhtFmf302sWcUWadv7YlSHI2voPV5xmvi/f06TcoXmPwyYJW1gjIJ0yfhtCOxNjzVA8yvO
+	M253gZdHUc4P0nE8D7VUm6tFDZaD8l8=
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 9930754DF32
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 10 May 2025 10:37:43 +0200 (CEST)
-Date: Sat, 10 May 2025 10:37:41 +0200
+ with ESMTPSA id 6BEE754DF32
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 10 May 2025 10:38:27 +0200 (CEST)
+Date: Sat, 10 May 2025 10:38:26 +0200
 From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Fwd: [Battlemesh] BattleMesh =?utf-8?Q?v17?=
- =?utf-8?B?IE9mZmljaWFsIEFubm91bmNlbWVudCDigJMgMTDigJMx?= =?utf-8?Q?6?= June
- 2025, Sundhausen, Thuringia, Germany
-Message-ID: <aB8QVcM1ZCmgLnoU@sellars>
+Subject: Fwd: [WLANtalk] Wireless Community Weekend from 30.5.-1.6.2025 in
+ Berlin
+Message-ID: <aB8QgsJmsiYI0P7M@sellars>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: ZL5ESTIEQFB2VQ5ILPVASJN5NHEG4OV5
-X-Message-ID-Hash: ZL5ESTIEQFB2VQ5ILPVASJN5NHEG4OV5
+Message-ID-Hash: W7A3F7572CAZFUTWNRXVPIIUHWX4SVGD
+X-Message-ID-Hash: W7A3F7572CAZFUTWNRXVPIIUHWX4SVGD
 X-MailFrom: linus.luessing@c0d3.blue
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation;
@@ -82,7 +81,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZL5ESTIEQFB2VQ5ILPVASJN5NHEG4OV5/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/W7A3F7572CAZFUTWNRXVPIIUHWX4SVGD/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -91,68 +90,59 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
------ Forwarded message from Andreas Bräu via Battlemesh <battlemesh@ml.ninux.org> -----
+----- Forwarded message from Andreas Bräu via WLANtalk <wlantalk@freifunk.net> -----
 
-Date: Thu, 06 Mar 2025 22:15:50 +0100
-From: Andreas Bräu via Battlemesh <battlemesh@ml.ninux.org>
-To: Battle of the Mesh Mailing List <battlemesh@ml.ninux.org>
+Date: Sat, 22 Feb 2025 22:42:59 +0100
+From: Andreas Bräu via WLANtalk <wlantalk@freifunk.net>
+To: Deutschlandweite Liste für WLAN Layer 8 = Diskussion und Austausch <wlantalk@freifunk.net>
 Cc: Andreas Bräu <ab@andi95.de>
-Subject: [Battlemesh] BattleMesh v17 Official Announcement – 10–16 June 2025, Sundhausen, Thuringia, Germany
+Subject: [WLANtalk] Wireless Community Weekend from 30.5.-1.6.2025 in Berlin
 
 Hello everyone,
 
-We are excited to announce the 17th edition of the Wireless Battle of
-the Mesh! This event aims to further the discussion on the right to
-connectivity, community-owned infrastructure, and related free open
-source projects.
+the next Wireless Community Weekend (WCW) will take place in Berlin from May 30 to June 1, 2025! 🎉
 
-Event Details:
-Date: 10–16 June 2025 (7 days)
-Venue: Sundhausen, Thuringia, Germany (51°09'25.1"N 10°43'00.7"E)
-Cost: Free and open to everyone
+The WCW is the big meeting of Freifunk communities from all over Germany and wireless network communities from all over the world. It's all about exchanging ideas about free networks, mesh technologies, community projects and everything that connects us - technically and socially.
 
-In addition, the co-hosted OpenWrt Summit will be held from 13–15 June
-2025.
+📍 Location: c-base, Rungestr. 20, 10179 Berlin
+📅 Date: May 30 - June 1, 2025
+💬 Topics: Network technology, infrastructure, community organization, politics, exciting projects, BBQ and more!
 
-Registration:
+Whether you're a long-time community member or a newcomer - everyone is welcome! There will be sessions, workshops and plenty of opportunities to hack, discuss and network. 
 
-Please add yourself to the participants list here:
-https://www.battlemesh.org/BattleMeshV17/Participants
-If you’d prefer not to have your name displayed publicly, kindly email
-the organisation team (battlemeshv17-orga@freifunk.net) with the same
-details.
 
-Accommodation Options:
+You can find the most important information and pages here: 
 
-* Camping: Self-organized, free of charge
-* Apartments: Contact the organisation team (very limited, charges
-apply)
-* More details: https://battlemesh.org/BattleMeshV17/Accomodation
+ℹ️ General info: https://wiki.freifunk.net/Wireless_Community_Weekend_2025
+📝 Registration: https://wiki.freifunk.net/Wireless_Community_Weekend_2025:Participants
+💡 Suggested topics: https://wiki.freifunk.net/Wireless_Community_Weekend_2025:Topics
+🛏️ Accommodation: https://wiki.freifunk.net/Wireless_Community_Weekend_2025:Endorsements
 
-Visa & Travel Support:
-The University of Nordhausen offers visa invitation letters. Please
-reach out to the organisation team with your details if needed.
-Travel support may be available on a case-by-case basis — simply email
-the team with your background.
 
-Additional Information:
-Directions: https://battlemesh.org/BattleMeshV17/Directions
-Workshop/Session Ideas (CfP): https://battlemesh.org/BattleMeshV17/CfP
-More about the event: https://www.battlemesh.org/BattleMeshV17
 
-Please help us spread the word by sharing this announcement.
+We look forward to seeing you!
+
+
 
 Best regards,
 
-Bluse and Andi
-Battlemesh Organisation Team
+
+
+cven and Andi
+
+ps: the WCW happens about 10 days before this year’s battle mesh v17 in Sundhausen, Germany!
+
+
+
 
 
 
 _______________________________________________
-Battlemesh mailing list
-Battlemesh@ml.ninux.org
-https://ml.ninux.org/mailman/listinfo/battlemesh
+WLANtalk mailing list
+WLANtalk@freifunk.net
+Abonnement abbestellen? -> https://lists.freifunk.net/mailman/listinfo/wlantalk-freifunk.net
+
+Weitere Infos zu den freifunk.net Mailinglisten und zur An- und Abmeldung unter http://freifunk.net/mailinglisten
 
 
 ----- End forwarded message -----
