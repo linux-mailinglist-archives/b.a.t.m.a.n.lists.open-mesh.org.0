@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5BE8B3EC0B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  1 Sep 2025 18:16:10 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D82AB3EC0D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon,  1 Sep 2025 18:16:58 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 963F483E2E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Sep 2025 18:16:10 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id BEA63841B4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Sep 2025 18:16:57 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1756743370;
- b=xnrHVvIAdIlypMF+UloN0sArl3qjc8uCPnrxU9hCeb3vEwm+6gkUGvXyx9oYA3n6yeD/x
- cXgzE9pIXm37JGgaTJ88/T2RnLg9ojJzGdUaTXrn3IQDfcMbuP3u0okL45NSRCysFAJtjIC
- zrPPzTeAFYrazNvrChE77t42QVukKtg=
+ t=1756743417;
+ b=vN9wpGba7lpbg7wXhii8XmZzFT2AQ6EdD8gBRy1M8WXZrdvyPUl8uHgZu4BdbG/Lf9aD9
+ 4WBAGk9zG6Uo7/LbKYiEdLLasVWqDL3M+2BqE2zpFch3y3gHaC5fktIp6/d1CyYDu2Q/EuI
+ nFtZFvoxbJF9dboHs9coxyVz76WH6+k=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1756743370; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1756743417; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=dHfMmgOay6SnJhUxCSVnUjSJVqKM4w+xTEq1XLRPUA8=;
- b=p/grzOoLI0IWrmjzrUfhNQ1l98m0/MJFXqcX1UeC+X6Y6OqRA+8r/UpCNTGlIctfvT9nU
- GDwKr+woyFm7WKboQ5W9fZdqF7Ck1lW+Z2leha29oOvZTIptsnDzZExiCgZJfW77ZsZTXA5
- F787fCqVzsXuip9oLma7XH76qux99/Y=
+ list-archive; bh=cED103PYAELfDk+plBrYQI2IXTpCscVry615cIeCq7M=;
+ b=0eU14qAk3RMuOmrDgA36wOpXrmbv+hhqAPFB4oRuk7f4KOxeobomVnTJ/z8QPli7Sone/
+ kUlEvXUQw2oqMBaEepOLr62jL8I9n35FP9IcNdsV+OVlzlChHWx6YufO+abvpRMQ8nfCkuj
+ jXCw/Ch3RreZcNfny+M8P+lkG/ZtBkI=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=fail;
  arc=pass;
@@ -32,17 +32,18 @@ Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4C65082FA8
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 524F583CE0
 	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 01 Sep 2025 18:15:54 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	s=20121; t=1756743364;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=dHfMmgOay6SnJhUxCSVnUjSJVqKM4w+xTEq1XLRPUA8=;
-	b=eo//PEgky4fZ7o5T3tsoh5Df78HWMEl8O+yF57Vb1SOCXYp6e9Ff3fOSTgmrkUjrF3pi6l
-	xxOwTn++t5BzTYUIGqunEu6n8YKtn/Fbfj6f2qxW1V4qQPxMW+L59xBKIm/DwOu29dh/2C
-	OODzIBKEpGhdKGXwwbnkdLrCiOj8SbU=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cED103PYAELfDk+plBrYQI2IXTpCscVry615cIeCq7M=;
+	b=DFsxaQ/To7on/C4/8PhfrIwksfWSlrRiZYobCtvP/mctRYj+T6iu38zm6wRslytebm6bnm
+	QdKuPb9G3E268qwLRha215XYjJSQHmfsO7i9uIUUzXTh5FZaQTSC99g0ZqhON1/50SxHC/
+	br75jbrKVSKE6bRaMMljfWwvv4R5JNE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
@@ -51,29 +52,32 @@ ARC-Authentication-Results: i=1;
  2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1756743364; a=rsa-sha256;
 	cv=none;
-	b=x2W8w2EoJd2D8g1Rj/N0JKhaucdD/JmQwbibEBjXLqnO4CVNtXRdsLrPrzGZgIjG9HG6WC
-	MZetwrfx7ZFnqxY19HpLqukhGcQJ2fCLEjl2ZtSiYvOvGtG294ewhENQjHrJ5SoPfkQS+C
-	vYBhWNbzWIBRqPK5m0CJxKNdWmEJRsE=
+	b=J+WZ/o7Nwsz+SS7HNPYX5gPZiNz9GylpiCbVNebeB1hvMdeXIJHDJHDP5KpypQ5oN5BaFw
+	huefiNHTPta6AtWFtp6XH0v7KRB01BGIUBEsz13/f+1uo0BmXrr0FDUZhvhvaItQur/WJM
+	lfSebn/6VnWa0OEQ4SoZWTefS2FnAYA=
 Received: from kero.packetmixer.de
- (p200300c59705add84F8b09D1D73C2E85.dip0.t-ipconnect.de
+ (p200300c59705aDD84F8b09d1D73c2e85.dip0.t-ipconnect.de
  [IPv6:2003:c5:9705:add8:4f8b:9d1:d73c:2e85])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 52666FA12C;
-	Mon,  1 Sep 2025 18:15:52 +0200 (CEST)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 51DDEFA130;
+	Mon,  1 Sep 2025 18:15:53 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Subject: [PATCH net 0/1] pull request: batman-adv 2025-09-01
-Date: Mon,  1 Sep 2025 18:15:45 +0200
-Message-ID: <20250901161546.1463690-1-sw@simonwunderlich.de>
+Subject: [PATCH net 1/1] batman-adv: fix OOB read/write in network-coding
+ decode
+Date: Mon,  1 Sep 2025 18:15:46 +0200
+Message-ID: <20250901161546.1463690-2-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250901161546.1463690-1-sw@simonwunderlich.de>
+References: <20250901161546.1463690-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MGWO37LZBMYTRDAV2ZO7FGJT6RACXVF5
-X-Message-ID-Hash: MGWO37LZBMYTRDAV2ZO7FGJT6RACXVF5
+Message-ID-Hash: NKW7XOUSQTPXUN6AQGTKK5EOWCCXNRYD
+X-Message-ID-Hash: NKW7XOUSQTPXUN6AQGTKK5EOWCCXNRYD
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -81,13 +85,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2; emergency; member-moderation;
  nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
  news-moderation; no-subject; digests; suspicious-header
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org,
+ Stanislav Fort <stanislav.fort@aisle.com>, stable@vger.kernel.org,
+ Stanislav Fort <disclosure@aisle.com>
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/MGWO37LZBMYTRDAV2ZO7FGJT6RACXVF5/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NKW7XOUSQTPXUN6AQGTKK5EOWCCXNRYD/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -96,35 +102,44 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-Hi David, hi Jakub,
+From: Stanislav Fort <stanislav.fort@aisle.com>
 
-here is a bugfix for batman-adv which we would like to have integrated into net.
+batadv_nc_skb_decode_packet() trusts coded_len and checks only against
+skb->len. XOR starts at sizeof(struct batadv_unicast_packet), reducing
+payload headroom, and the source skb length is not verified, allowing an
+out-of-bounds read and a small out-of-bounds write.
 
-Please pull or let me know of any problem!
+Validate that coded_len fits within the payload area of both destination
+and source sk_buffs before XORing.
 
-Thank you,
-      Simon
-
-The following changes since commit 6439a0e64c355d2e375bd094f365d56ce81faba3:
-
-  Merge tag 'net-6.17-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net (2025-08-21 13:51:15 -0400)
-
-are available in the Git repository at:
-
-  git+ssh://git@open-mesh.org/linux-merge.git tags/batadv-net-pullrequest-20250901
-
-for you to fetch changes up to d77b6ff0ce35a6d0b0b7b9581bc3f76d041d4087:
-
-  batman-adv: fix OOB read/write in network-coding decode (2025-08-31 17:01:35 +0200)
-
-----------------------------------------------------------------
-Here is a batman-adv bugfix:
-
- - fix OOB read/write in network-coding decode, by Stanislav Fort
-
-----------------------------------------------------------------
-Stanislav Fort (1):
-      batman-adv: fix OOB read/write in network-coding decode
-
+Fixes: 2df5278b0267 ("batman-adv: network coding - receive coded packets and decode them")
+Cc: stable@vger.kernel.org
+Reported-by: Stanislav Fort <disclosure@aisle.com>
+Signed-off-by: Stanislav Fort <stanislav.fort@aisle.com>
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
+---
  net/batman-adv/network-coding.c | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/net/batman-adv/network-coding.c b/net/batman-adv/network-coding.c
+index 9f56308779cc3..af97d077369f9 100644
+--- a/net/batman-adv/network-coding.c
++++ b/net/batman-adv/network-coding.c
+@@ -1687,7 +1687,12 @@ batadv_nc_skb_decode_packet(struct batadv_priv *bat_priv, struct sk_buff *skb,
+ 
+ 	coding_len = ntohs(coded_packet_tmp.coded_len);
+ 
+-	if (coding_len > skb->len)
++	/* ensure dst buffer is large enough (payload only) */
++	if (coding_len + h_size > skb->len)
++		return NULL;
++
++	/* ensure src buffer is large enough (payload only) */
++	if (coding_len + h_size > nc_packet->skb->len)
+ 		return NULL;
+ 
+ 	/* Here the magic is reversed:
+-- 
+2.47.2
+
