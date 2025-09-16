@@ -1,102 +1,93 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB628B58119
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 15 Sep 2025 17:44:48 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id A73DBB5961E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 16 Sep 2025 14:26:21 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B0CFC845D5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 15 Sep 2025 17:44:48 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7F8608466A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 16 Sep 2025 14:26:21 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1757951088;
- b=QBV1lBavbqQV+ZUVKtG7I5+fsQvanABJEaLX8e5Iwk0lWMbH7bMX2HsSqwAHqUIV0zHgy
- zktFn5CadvTxQxmhaNcgp2YxXJraQHErgtSopiARRAX7FIP+TDkcb6NffqoztAIcEFa/1P0
- KeX3VDTrvIcnRsFDkLH0SXgq2zggi9Q=
+ t=1758025581;
+ b=K0h4WYqfe/sRMdCTC0Rb8QF7zrYMV1/UEYha6za3g+6EPa81L/ZmqgcjbjSkYowvdXgB0
+ 3F0BUHlaOwzIVLrG1dGYJo38o5BUa/qhlHQ3MSjfaQZsohC1wMu9TCmW7ZNbp1JdjAE9Bt/
+ Oo6je462aMhROMSP8hgH2+EYLe/BpCc=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1757951088; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1758025581; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=KTXKCMxwbcP49H5LBrmWVv4oui5DohGUnCKREPxuOqM=;
- b=emKWgf49sETSbXe2fF6nVmjHK8u0IFhtMq3S4BafJ3NxOtzawXrLPO0R6Ck1ASB7KzPrQ
- 60pjd8HrYq030SaQZSrS/1Xh1KBF1k1saQW1cuciDIqXl2iV17crQ6QtTgyKDLYMEvKlL6l
- eJh+Ilnfko550evbIGUlEY0AUbHhFxk=
+ list-archive; bh=bpZbzm6HFqBxvcfchyUSBFLGW8UOsoL3GVzpxa8bmD0=;
+ b=0ok38S24v1v5FSRUQ7BNPzKxLuyuMPQOgBGXKWzcBI2tVQ6BJ6zeEJZroWJPWPvuWWtdL
+ PYia7ivyz7q65iWOMTaPwb+pYBL19QPuot81l8wGxzcz2itWgNl+ULwytIVyqcsALpk5EQG
+ cvqBzTDi79NEuZS5/qIlAVuJYjxzr0g=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=protonmail.com;
+ dkim=fail;
  arc=pass;
- dmarc=pass header.from=protonmail.com policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=pass header.d=protonmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=protonmail.com policy.dmarc=quarantine
-Received: from mail-43167.protonmail.ch (mail-43167.protonmail.ch
- [185.70.43.167])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9CD6384576
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 15 Sep 2025 15:51:36 +0200 (CEST)
+ dmarc=fail header.from=simonwunderlich.de policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
+ dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
+ policy.dmarc=none
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 72F4B845FB
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 16 Sep 2025 14:24:49 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1757944296;
+	s=20121; t=1758025494;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=KTXKCMxwbcP49H5LBrmWVv4oui5DohGUnCKREPxuOqM=;
-	b=ozAxehX565ryJ7gJV/0ALBWQ5LN46NUoT2eCKuce0Bn/LKKENC1lax3GyfBBh/WzvgEgsc
-	yGXPo2kt37/xPbTWczAf3s+FDwzcHuU3b1G6dmEjNQIon4sdv/ENIZSTbffjnvW9C07ESJ
-	CKlCNV+TZZ+GdDeRsMo0eCpGjt0M3wE=
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bpZbzm6HFqBxvcfchyUSBFLGW8UOsoL3GVzpxa8bmD0=;
+	b=quktvz1tIkrlIMCnVCRZYhlk9MTXa55GXHzQSNeC5UFD3BfWMR4uZaDcD1rILXgxGtltyw
+	LcAHbYm40v79QFqxa7CYxiAeapc0NdBsRuxBhEuFSPjp+HnNowfzHPKoXcRAfuqGwJ2coT
+	v7Cdi2+UAr5coEdEqlzGWV0XDDYYgk0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=protonmail.com header.s=protonmail3 header.b=taRcLydr;
-	dmarc=pass (policy=quarantine) header.from=protonmail.com;
-	spf=pass (diktynna.open-mesh.org: domain of martinvdberg@protonmail.com
- designates 185.70.43.167 as permitted sender)
- smtp.mailfrom=martinvdberg@protonmail.com
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1757944296; a=rsa-sha256;
+	dkim=none;
+	dmarc=pass (policy=none) header.from=simonwunderlich.de;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
+ 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1758025494; a=rsa-sha256;
 	cv=none;
-	b=1t9BDwDVdkRBkx5uRStT2PmZn9oY9Lzz5VogRElOodyef5UwurSTfIsGIn6r0bcbqx40j7
-	Of66KbMblZqU/H9GUMJY11bEj9ljOdA5uJz6HuefRFAUw22Fqwy6qxGNZYkKDuS96dCUuQ
-	ZnXgB4C1dyFLYZ7t6nsM8ikvhS35DRo=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1757944295; x=1758203495;
-	bh=KTXKCMxwbcP49H5LBrmWVv4oui5DohGUnCKREPxuOqM=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=taRcLydrVBW8oKsYGKgpH4YhyHU8x5RhyJV8/ueGEkcwwtblG75aobmdqnwkaWxdT
-	 ZhPDtJAO4AjVWZVPwU+En5Epr7pzPE0EmAWSwJkN5ysdLz99fRUh0NVWAIv1FuDiri
-	 ljL+m18NBGSBFyY1qLT+OnScF44yaPPcVxKeUtku2BM3rY1B9sZYxV/iKc4SViUh4z
-	 7BryxhMOR+mscvjtw9bcYhZA+DlT+OzVWTFbrD8sMgu1OiW8KAZAwicObrbKy7PXh2
-	 eA+CP6GKen+wNUYYWobXHn8yeZGvJT4x/+MmQaA/iRHXGjuOLuLNQppwpk9v0amDfk
-	 StdTjPKR7MGSg==
-Date: Mon, 15 Sep 2025 13:51:29 +0000
-To: b.a.t.m.a.n@lists.open-mesh.org
-From: Martin <martinvdberg@protonmail.com>
-Subject: Re: Mobile Ad-Hoc use-case where each node may be Client and Gateway
-Message-ID: 
- <qHQMzCyEL-Q3npasUKO_FuIkHWmEcRMmUwzL6GVCabNQ_Xwk5-jYPeiU1cb82Vv84XfVtD5dGM0VLKbJBI70Te6SJktZGuO5EUfGr_8uVT0=@protonmail.com>
-In-Reply-To: <2da5b8ef-1628-4296-b85a-9dcf8ae1a184@unstable.cc>
-References: <175776078622.1495.8426151955000236578@diktynna.open-mesh.org>
- <2da5b8ef-1628-4296-b85a-9dcf8ae1a184@unstable.cc>
-Feedback-ID: 6271043:user:proton
-X-Pm-Message-ID: 2423b3de25bb06b73dca62183e8ecaf6370f2faa
+	b=CDYiI09t6NAIyav6pOKgXSGds8aj6+Lf1FtjNV9yqw8Ix110Ap+gtGfMcT4v2bYmI6Qt98
+	GYF2Dj/1KcTD4QTiX14/zfau8/mnxvUjK8r4kRyPM/y4lHtD7de3cPMGd/GLvgGCCOiHDg
+	Go8tqjoW9XtbeFDCbOjT1pUsOhIwgfk=
+Received: from kero.packetmixer.de
+ (p200300c5972536D8604E0A64d0d3AAD8.dip0.t-ipconnect.de
+ [IPv6:2003:c5:9725:36d8:604e:a64:d0d3:aad8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256)
+	(No client certificate requested)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id D79CDFA12C;
+	Tue, 16 Sep 2025 14:24:48 +0200 (CEST)
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: kuba@kernel.org,
+	davem@davemloft.net
+Subject: [PATCH net-next 0/4] pull request for net-next: batman-adv 2025-09-16
+Date: Tue, 16 Sep 2025 14:24:37 +0200
+Message-ID: <20250916122441.89246-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-MailFrom: martinvdberg@protonmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: VHRTD3JNK54CF3B7KQ26XFBT27NQFVBE
+X-Message-ID-Hash: VHRTD3JNK54CF3B7KQ26XFBT27NQFVBE
+X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-2; emergency; member-moderation
-Message-ID-Hash: UJPWQ66V7FTQMAVH3KJUZ3GNUPMQ74TP
-X-Message-ID-Hash: UJPWQ66V7FTQMAVH3KJUZ3GNUPMQ74TP
-X-Mailman-Approved-At: Mon, 15 Sep 2025 17:44:39 +0200
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-2; emergency; member-moderation;
+ nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
+ news-moderation; no-subject; digests; suspicious-header
+CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UJPWQ66V7FTQMAVH3KJUZ3GNUPMQ74TP/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VHRTD3JNK54CF3B7KQ26XFBT27NQFVBE/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -106,24 +97,69 @@ List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 
-Hi Antonio,
+Hi Jakub, hi David,
 
-Thanks for your reply.
+here is a cleanup pull request of batman-adv to go into net-next.
 
-> > My main concern is whether a node can simultaneously act as both a gate=
-way and a client. Is this possible, and if so, how can it be configured?
->=20
-> Given what I said above, I hope you understand that batman-adv expects
-> each node to be either gateway or client at any given time.
->=20
-> If you want to dynamically switch between gateway and client, then you
-> must have some extra logic (external to batman-adv) that takes care of
-> the switch.
+This time we use a https pull request link as we have turned off our
+public git protocol server - sorry for the hiccup last time, I hope
+everything is smooth now.
 
-Clear! I will need to add some user-level deamon that takes are of the swit=
-ching.
+Please pull or let me know of any problem!
 
-Regards!=20
+Thank you,
+      Simon
 
+The following changes since commit d69eb204c255c35abd9e8cb621484e8074c75eaa:
 
+  Merge tag 'net-6.17-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net (2025-09-04 09:59:15 -0700)
 
+are available in the Git repository at:
+
+  https://git.open-mesh.org/linux-merge.git tags/batadv-next-pullrequest-20250916
+
+for you to fetch changes up to 629a2b18e8729497eeac5b63e575e0961ca3a4ab:
+
+  batman-adv: remove includes for extern declarations (2025-09-05 15:11:02 +0200)
+
+----------------------------------------------------------------
+This cleanup patchset includes the following patches:
+
+ - bump version strings, by Simon Wunderlich
+
+ - Remove network coding support, by Sven Eckelmann (2 patches)
+
+ - remove includes for extern declarations, by Sven Eckelmann
+
+----------------------------------------------------------------
+Simon Wunderlich (1):
+      batman-adv: Start new development cycle
+
+Sven Eckelmann (3):
+      batman-adv: remove network coding support
+      batman-adv: keep skb crc32 helper local in BLA
+      batman-adv: remove includes for extern declarations
+
+ net/batman-adv/Kconfig                 |   13 -
+ net/batman-adv/Makefile                |    1 -
+ net/batman-adv/bat_iv_ogm.c            |    5 -
+ net/batman-adv/bridge_loop_avoidance.c |   34 +
+ net/batman-adv/hard-interface.c        |    1 +
+ net/batman-adv/hard-interface.h        |    1 -
+ net/batman-adv/log.h                   |    3 -
+ net/batman-adv/main.c                  |   50 -
+ net/batman-adv/main.h                  |    5 +-
+ net/batman-adv/mesh-interface.c        |   15 +-
+ net/batman-adv/mesh-interface.h        |    1 -
+ net/batman-adv/netlink.c               |   17 -
+ net/batman-adv/netlink.h               |    1 -
+ net/batman-adv/network-coding.c        | 1878 --------------------------------
+ net/batman-adv/network-coding.h        |  106 --
+ net/batman-adv/originator.c            |    6 -
+ net/batman-adv/routing.c               |    9 +-
+ net/batman-adv/send.c                  |   16 +-
+ net/batman-adv/translation-table.c     |    4 +-
+ net/batman-adv/types.h                 |  216 ----
+ 20 files changed, 41 insertions(+), 2341 deletions(-)
+ delete mode 100644 net/batman-adv/network-coding.c
+ delete mode 100644 net/batman-adv/network-coding.h
