@@ -2,96 +2,105 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ECAAB59616
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 16 Sep 2025 14:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1100B7D579
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 17 Sep 2025 14:25:02 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id C25798469E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 16 Sep 2025 14:25:29 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3BFA5846C2
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 17 Sep 2025 02:41:03 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1758025529;
- b=fhmaLpe7Tu4wcqbSEXDPncNdIWnfnGaH1h06MqLyTUe8GuXIThEYdE/Rajb7qqs0q6z5m
- CsBI+qxl9rCXKg91A/i3SWzcx3SIIfigv95rRGeE+77IpGBCizlD5J5jGG8az9YMgiywhsf
- 6D2fsQ5/5DICrtHMburhTCBwtLxwGJg=
+ t=1758069663;
+ b=WqYXX8P2weidlo+1EX2vqj2aluetluMJq1FLyw0hFc0Wpr1LG0lMeWd3lExIpkcqyf37t
+ LuSg9x9G68Rs7DNLD5wghpITlpXcmsAgLEbFHpHqqM3Q3x8JUy0He3gAM/zl+dhuSj8QAc7
+ lGXZ0XesHNq4w5UprhXuS61/E1WAh1g=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1758025529; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1758069663; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=hbs3mzFRrQenZU9aO8mTruY7LIbEng58MZUfp4p243Q=;
- b=xlg90xbGgwhHm8lSj/AOKqYta/3kKz/9QiYlACuj8IexE+vADkINx8o8aLkJ+5gTbSdq5
- TbMCHjARRNd1Yl39TeG2i2RoB4UKgw1XQBsUQvcgkAG91DbZ0RAoeiGNO49LCv9i248hfp+
- FCayGekV3NorwEZ/2f0N+05LTtpWXeg=
+ list-archive; bh=T6CnkjreI8YMimuUvgp4iY4EQ0pHKzTxrDcHHIDEziQ=;
+ b=BObUQ/xKdnTMxDE8JpJsWHlNkGHCdfcAHpS4V4ooo89S9dAIieQnNwgyKY3YqLnMckhB1
+ V6345w7CEOEynWh01HXKlfpZeSCXB5I3I0b8uTzOXxxJx2Pme55RrewNnVPffg+OQuJtqvq
+ 8FHPAVrI/XztZHq3waS3I5LRGC9XgqA=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=fail;
+ dkim=pass header.d=kernel.org;
  arc=pass;
- dmarc=fail header.from=simonwunderlich.de policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
- dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
- policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 12E5F82F18
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 16 Sep 2025 14:24:52 +0200 (CEST)
+ dmarc=pass header.from=kernel.org policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 2739F84356
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 17 Sep 2025 02:40:18 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1758025493;
+	s=20121; t=1758069628;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hbs3mzFRrQenZU9aO8mTruY7LIbEng58MZUfp4p243Q=;
-	b=o9qPQAod6Nz4n4tXCkBUK/DHhcoDm4yKRAH9+v3uS68Rfwdc4oygwMPXbqqqu+CbbpH1o/
-	v0IbxWTUbcI950H+F8f0SBHzfXEpFupI67A0PLBAzPWJI0Wj+5o8L6JHIRc8iJqv7zNvmq
-	yZFKty/id37dATnQNaZXO8YbZ9qhG1A=
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=T6CnkjreI8YMimuUvgp4iY4EQ0pHKzTxrDcHHIDEziQ=;
+	b=Ut+ySFzfCQ73F/x0sXxqGR/nIPWfUYcOma1otO5GldXFZLGRUYQtf6WvYRIXYyDtTFwqPH
+	kDD055ct/YpbxsZqVuRciCEvcmIqBfeb6WR7HbX1aBAMCF58PGtYpCRHOePWEHMXDjvxzv
+	1tB3hjL5hDs5ocpXVTT3LDMmL6eqNPQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=none;
-	dmarc=pass (policy=none) header.from=simonwunderlich.de;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1758025493; a=rsa-sha256;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=l0hP5AXc;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (diktynna.open-mesh.org: domain of
+ patchwork-bot+netdevbpf@kernel.org designates 172.105.4.254 as permitted
+ sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1758069628; a=rsa-sha256;
 	cv=none;
-	b=n9T7Nr3XJ4xW3bRb65+GcbShuOsKfNikcyv5deWyfvFT3nV7kGcZqLggSk8xTI6+s+Yny9
-	Q4l1QD6nSr0cynm2w2lAEFs0XOz3qnVLRr9MqO3lo1IcYDmx/xqBBa+w8xwDLCGgaTMdH7
-	ihDjoFCaCScfy8Y8CbM4wMuzM5uXb2g=
-Received: from kero.packetmixer.de
- (p200300c5972536D8604E0A64d0d3AAD8.dip0.t-ipconnect.de
- [IPv6:2003:c5:9725:36d8:604e:a64:d0d3:aad8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256)
-	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 81448FA1AE;
-	Tue, 16 Sep 2025 14:24:52 +0200 (CEST)
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Subject: [PATCH net-next 4/4] batman-adv: remove includes for extern
- declarations
-Date: Tue, 16 Sep 2025 14:24:41 +0200
-Message-ID: <20250916122441.89246-5-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20250916122441.89246-1-sw@simonwunderlich.de>
-References: <20250916122441.89246-1-sw@simonwunderlich.de>
+	b=JjO/pMXoxgPcaJvOZdRO8WEPFCRzSX0mMJHUeaWy/aq5mxJBTsYmJ1OcsFgpaa3I6jLEJr
+	sS/C6Zytkpzr3QTCZgXNL3ZKjx+DuQ/u7PNVy5yzmzJ93dqTwqyS/etaU7GIldYZbFfZ0c
+	Q5QGBz/wEP6OYJaAWMYYw2sovtrepiM=
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 0B8E8600BB;
+	Wed, 17 Sep 2025 00:40:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8BF0C4CEEB;
+	Wed, 17 Sep 2025 00:40:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758069616;
+	bh=rnDkxy/4mWZk9SkftVtBJu0BQs1wlm10vns+kUnGYNw=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=l0hP5AXcwPeYBvMEvlEmlVvBsl6m6jUSC93yAG/BD9y8jn3IKysIoZ/jjW2HvPYG5
+	 tjBKeSfdHwFtleLXnhUKFMllM98p6OFkuJUKCNO1AnxyM+oN/SE8j/TtlAhTRoHXVK
+	 LDAScw8CDRJGrDcoQsQbErJ7L1BH9AMDJeP+EV3s79jh/BO4zoHctarF67SetFjW3+
+	 JEcAs/QMdmioyBjDay3ERpZr+wS8hUjGEoVRqtm6JgKajhKLESThnC+ANc+vlSo3XX
+	 3jcTUpDJkmP87eBEyYooWU1LKZtS3lcEPXmUQPaI/xRKfi0ht5V9Pa3t1saaf0qg6F
+	 k3pD12SKBnZCQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id
+ EAFA339D0C1A;
+	Wed, 17 Sep 2025 00:40:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 6G6UXF2ZDQLT5UZAH257HLLTKIJDG6YW
-X-Message-ID-Hash: 6G6UXF2ZDQLT5UZAH257HLLTKIJDG6YW
-X-MailFrom: sw@simonwunderlich.de
+Subject: Re: [PATCH net-next 1/4] batman-adv: Start new development cycle
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175806961775.1416090.18211005840484684861.git-patchwork-notify@kernel.org>
+Date: Wed, 17 Sep 2025 00:40:17 +0000
+References: <20250916122441.89246-2-sw@simonwunderlich.de>
+In-Reply-To: <20250916122441.89246-2-sw@simonwunderlich.de>
+To: Simon Wunderlich <sw@simonwunderlich.de>
+Message-ID-Hash: 4HVD5HXTKHE2IH2TTFLAYZYQ7VXGKAEE
+X-Message-ID-Hash: 4HVD5HXTKHE2IH2TTFLAYZYQ7VXGKAEE
+X-MailFrom: patchwork-bot+netdevbpf@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-2; emergency; member-moderation;
- nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
- news-moderation; no-subject; digests; suspicious-header
-CC: netdev@vger.kernel.org, b.a.t.m.a.n@lists.open-mesh.org
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-2; emergency; member-moderation
+CC: kuba@kernel.org, davem@davemloft.net, netdev@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6G6UXF2ZDQLT5UZAH257HLLTKIJDG6YW/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4HVD5HXTKHE2IH2TTFLAYZYQ7VXGKAEE/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -100,83 +109,34 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+Hello:
 
-It is not necessary to include the header for the struct definition for an
-"extern " declaration. It can simply be dropped from the headers to reduce
-the number of includes the preprocessor has to process. If needed, it can
-be added to the actual C source file.
+This series was applied to netdev/net-next.git (main)
+by Simon Wunderlich <sw@simonwunderlich.de>:
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/hard-interface.c | 1 +
- net/batman-adv/hard-interface.h | 1 -
- net/batman-adv/mesh-interface.c | 1 +
- net/batman-adv/mesh-interface.h | 1 -
- net/batman-adv/netlink.h        | 1 -
- 5 files changed, 2 insertions(+), 3 deletions(-)
+On Tue, 16 Sep 2025 14:24:38 +0200 you wrote:
+> This version will contain all the (major or even only minor) changes for
+> Linux 6.18.
+> 
+> The version number isn't a semantic version number with major and minor
+> information. It is just encoding the year of the expected publishing as
+> Linux -rc1 and the number of published versions this year (starting at 0).
+> 
+> [...]
 
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index bace57e4f9a51..5113f879736b5 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -22,6 +22,7 @@
- #include <linux/minmax.h>
- #include <linux/mutex.h>
- #include <linux/netdevice.h>
-+#include <linux/notifier.h>
- #include <linux/printk.h>
- #include <linux/rculist.h>
- #include <linux/rtnetlink.h>
-diff --git a/net/batman-adv/hard-interface.h b/net/batman-adv/hard-interface.h
-index 262a783647427..9db8a310961ea 100644
---- a/net/batman-adv/hard-interface.h
-+++ b/net/batman-adv/hard-interface.h
-@@ -12,7 +12,6 @@
- #include <linux/compiler.h>
- #include <linux/kref.h>
- #include <linux/netdevice.h>
--#include <linux/notifier.h>
- #include <linux/rcupdate.h>
- #include <linux/stddef.h>
- #include <linux/types.h>
-diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
-index be55d8d87348c..df7e95811ef56 100644
---- a/net/batman-adv/mesh-interface.c
-+++ b/net/batman-adv/mesh-interface.c
-@@ -37,6 +37,7 @@
- #include <linux/string.h>
- #include <linux/types.h>
- #include <net/netlink.h>
-+#include <net/rtnetlink.h>
- #include <uapi/linux/batadv_packet.h>
- #include <uapi/linux/batman_adv.h>
- 
-diff --git a/net/batman-adv/mesh-interface.h b/net/batman-adv/mesh-interface.h
-index 7ba055b2bc269..53756c5a45e04 100644
---- a/net/batman-adv/mesh-interface.h
-+++ b/net/batman-adv/mesh-interface.h
-@@ -13,7 +13,6 @@
- #include <linux/netdevice.h>
- #include <linux/skbuff.h>
- #include <linux/types.h>
--#include <net/rtnetlink.h>
- 
- int batadv_skb_head_push(struct sk_buff *skb, unsigned int len);
- void batadv_interface_rx(struct net_device *mesh_iface,
-diff --git a/net/batman-adv/netlink.h b/net/batman-adv/netlink.h
-index fe4548b974bb0..4eae9e5ff1354 100644
---- a/net/batman-adv/netlink.h
-+++ b/net/batman-adv/netlink.h
-@@ -11,7 +11,6 @@
- 
- #include <linux/netlink.h>
- #include <linux/types.h>
--#include <net/genetlink.h>
- 
- void batadv_netlink_register(void);
- void batadv_netlink_unregister(void);
+Here is the summary with links:
+  - [net-next,1/4] batman-adv: Start new development cycle
+    https://git.kernel.org/netdev/net-next/c/e89888a1e778
+  - [net-next,2/4] batman-adv: remove network coding support
+    https://git.kernel.org/netdev/net-next/c/87b95082db32
+  - [net-next,3/4] batman-adv: keep skb crc32 helper local in BLA
+    https://git.kernel.org/netdev/net-next/c/d5d80ac74f80
+  - [net-next,4/4] batman-adv: remove includes for extern declarations
+    https://git.kernel.org/netdev/net-next/c/629a2b18e872
+
+You are awesome, thank you!
 -- 
-2.47.3
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
