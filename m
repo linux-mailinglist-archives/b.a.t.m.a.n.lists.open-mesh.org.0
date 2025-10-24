@@ -1,28 +1,28 @@
 Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764C5C054FD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Oct 2025 11:24:49 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2C5C0577D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Oct 2025 12:03:39 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 27D4C8069B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Oct 2025 11:24:49 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 26F5281AA1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 24 Oct 2025 12:03:39 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1761297889;
- b=2RsKTzf2h4rch3eKTfWyjKTeMyGJQTF1DSaMhXDez9UuUq9PdVTJ4PZj0y9JfIiMGu0xz
- tRX2oaKrzPVXHqnmGHzgnskfufUzOkYY16nEa+drz471KciNscPVHTddRPxRU05EgTV0ugY
- RNYQekRmu6S9ZwJWZH5NmXCyMtTVQLY=
+ t=1761300219;
+ b=AdjJKkJS9E13IpBpcMnSq9/SzfDlvGl+D5rDGDk3ZClrNijHlgryHguaoK6CaVWt2AsPR
+ DJg2KFZk1tIGwTXt4xuRrydPZi/9a2Lz2RwDGc/lWnXusx6p9DUpCCxQl2B3KXZqUGkDnY8
+ WuTEcjPLEtY73uuZ8oNfVwuXNhuSZPc=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1761297889; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1761300219; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=OkqVMFSSUwxydrKYN6Sc7lNcaHEl0uHnVntkQefuHws=;
- b=KT2GZ0ua5JvF6ipzDc71CwQpLQKASN3ZtZBBPkiv++ltfkWR7UB/ToPoqWZAPHgoPVRrp
- tKBluxTqJF4odHoAE/Ec0Qa6yIIgGYhpfqPm+2vFGFNAllJlESx35TylRbCBKLDkN7zBgUI
- tKsNCh5Dkjy/mRkyLKcf8ITXxgH5thI=
+ list-archive; bh=2/QaDQ6D4wsdtaHzsCyAZeip4UsZW1l+inN7auHlcOw=;
+ b=xp7arwU81aIzUOTk5fzmgFeSyabyv8LgSoi22mfHUDidcbx9ZKxHziDR/JewmuqlATxs7
+ cqLXLbpZVRxphGu+QFiE7hsxbE+RiCdqhJsLQM93+cnLLKDv1mw4SvbWcnYscSp+PjuA5j0
+ 0ezRzenlZaFt+Ns0uwAvPCBCUpv9o+U=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=fail;
  arc=pass;
@@ -30,58 +30,55 @@ ARC-Authentication-Results: i=2; open-mesh.org;
 Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
  dmarc=fail (Used From Domain Record) header.from=simonwunderlich.de
  policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F2B44802F2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 24 Oct 2025 11:23:29 +0200 (CEST)
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id CC89B81067
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 24 Oct 2025 12:03:23 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1761297810;
+	s=20121; t=1761300213;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=OkqVMFSSUwxydrKYN6Sc7lNcaHEl0uHnVntkQefuHws=;
-	b=CbfvR59Tj1XU7+T3bwfMcwTlnp0Mm0DZBialZue764r0VH7I5Zvc7p7JevVInHy9p/J5N9
-	9GK6E14AF60TfLE44RCTRfE7yhGsBQGa0b1oVaG6u2WAhfmRoqtPw8+TafhsSfSs1Kxlcl
-	79Qf/fLhhhjYjz5nJ+vIzqS2F5sIm3k=
+	bh=2/QaDQ6D4wsdtaHzsCyAZeip4UsZW1l+inN7auHlcOw=;
+	b=s7OjwdUqYHPOK1gGAnMDua0zFur+nXK+PeXOEEBtwd8RU7u/sva1WuAJWSF4JRB6IAxr6C
+	9AXpPVR9sIwbRIuilhz7EMDhsOp1oNuT4tH0uMEVWbXp1j7NkXPqtlI5yHWpA6Cr+DQF5H
+	kE8z2Qe10RgfLZWsZz/HFUW0XR+Tcuo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
 	dkim=none;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
-ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1761297810; a=rsa-sha256;
+ARC-Seal: i=1; s=20121; d=open-mesh.org; t=1761300213; a=rsa-sha256;
 	cv=none;
-	b=arIm3yMJEWHz/L2bsucd/f1v8bFoeL411Eh5NVqh9gh6Eglj5Uj2NdyqcUOAaopo6CHhJo
-	BlkM4ljBCtlfNWON/NYX0sPQShUJfFTrH75jDrqO3M8jdFNxtUFnG9cdX8OXLIKCeoy/1M
-	40YRyeOgiXjsIptGyssg0bPYwv1qpzg=
-Received: from kero.packetmixer.de
+	b=EFYFOsVGSjSFmljSw6aCg8y3AtDIhdKybT01ehNEKu5AZ/Hlub2p1FeRiCgK+grwVQnDDV
+	mn/fp1S0nLXA5+U7YKqlWG6E5jbBmvA5UKalti+R61w6XisLkHcSC0x3HL0QqgbvzD5DA5
+	zDKxHu084ai1Y/2dtwb6SM0f6Glgc3c=
+Received: from prime.localnet
  (p200300C5970781D8B076411Bb4C554a3.dip0.t-ipconnect.de
  [IPv6:2003:c5:9707:81d8:b076:411b:b4c5:54a3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
 	(No client certificate requested)
-	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 8837EFA182;
-	Fri, 24 Oct 2025 11:23:29 +0200 (CEST)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 49734FA130;
+	Fri, 24 Oct 2025 12:03:23 +0200 (CEST)
 From: Simon Wunderlich <sw@simonwunderlich.de>
-To: kuba@kernel.org,
-	davem@davemloft.net
-Cc: netdev@vger.kernel.org,
-	b.a.t.m.a.n@lists.open-mesh.org,
-	Sven Eckelmann <sven@narfation.org>,
-	Eric Biggers <ebiggers@kernel.org>,
-	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 2/2] batman-adv: use skb_crc32c() instead of
- skb_seq_read()
-Date: Fri, 24 Oct 2025 11:23:15 +0200
-Message-ID: <20251024092315.232636-3-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251024092315.232636-1-sw@simonwunderlich.de>
-References: <20251024092315.232636-1-sw@simonwunderlich.de>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: mbiglari4@gmail.com
+Subject: Re: Gateway shut down detection takes too time from other nodes
+Date: Fri, 24 Oct 2025 12:03:22 +0200
+Message-ID: <3735338.hdfAi7Kttb@prime>
+In-Reply-To: <176122249070.1493.7302683075039006895@diktynna.open-mesh.org>
+References: <9767419.DvuYhMxLoT@prime>
+ <176122249070.1493.7302683075039006895@diktynna.open-mesh.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: XQSUK3IRHYZQWGGS3O657LUM3EQQW7XR
-X-Message-ID-Hash: XQSUK3IRHYZQWGGS3O657LUM3EQQW7XR
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Message-ID-Hash: O565IWXPBY4MAPF46ZYIUU5AES2ULSPF
+X-Message-ID-Hash: O565IWXPBY4MAPF46ZYIUU5AES2ULSPF
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -94,7 +91,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XQSUK3IRHYZQWGGS3O657LUM3EQQW7XR/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/O565IWXPBY4MAPF46ZYIUU5AES2ULSPF/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -103,150 +100,69 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
-From: Sven Eckelmann <sven@narfation.org>
+On Thursday, October 23, 2025 2:28:10=E2=80=AFPM Central European Summer Ti=
+me=20
+mbiglari4@gmail.com wrote:
+> Dear Simon,
+>=20
+> I have a mesh network with three nodes that use 802.11s for the PHY and M=
+AC
+> layers, and BATMAN-adv on top to provide routing and mobility. Two of the
+> nodes act as gateways, and the other functions as a client. The client
+> selects the best gateway based on throughput.
+>=20
+> Currently, I don=E2=80=99t have a DHCP server in this network =E2=80=94 e=
+ach node has a
+> static IP address. The issue I=E2=80=99m encountering is that when the se=
+lected
+> gateway node turns off, the client takes too long to switch to a new
+> gateway. All nodes are using the BATMAN V routing protocol.
 
-Make batadv_bla_check_duplist() just use the new function skb_crc32c(),
-instead of calling skb_seq_read() with crc32c(). This is faster and
-simpler.
+The setup is still not really clear to me. If you are not using DHCP but us=
+e=20
+static IP addresses, how do you do the selection of the best gateway? Is th=
+is=20
+a functionality of batman-adv, or a script?
 
-Suggested-by: Eric Biggers <ebiggers@kernel.org>
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/Kconfig                 |  1 +
- net/batman-adv/bridge_loop_avoidance.c | 51 ++++----------------------
- net/batman-adv/types.h                 |  2 +-
- 3 files changed, 10 insertions(+), 44 deletions(-)
+batman-adv has the gateway feature [1] which optimizes the gateway based on=
+=20
+throughput, but this is useful only with DHCP enabled - because it redirect=
+s=20
+your DHCP requests, nothing more, nothing less. This mechanism is rather sl=
+ow,=20
+and changes will only happen when the IP address renewal is due.
 
-diff --git a/net/batman-adv/Kconfig b/net/batman-adv/Kconfig
-index c299e2bc87eda..58c408b7a7d9c 100644
---- a/net/batman-adv/Kconfig
-+++ b/net/batman-adv/Kconfig
-@@ -35,6 +35,7 @@ config BATMAN_ADV_BLA
- 	bool "Bridge Loop Avoidance"
- 	depends on BATMAN_ADV && INET
- 	select CRC16
-+	select NET_CRC32C
- 	default y
- 	help
- 	  This option enables BLA (Bridge Loop Avoidance), a mechanism
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index b992ba12aa247..3dc791c15bf72 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -12,7 +12,6 @@
- #include <linux/compiler.h>
- #include <linux/container_of.h>
- #include <linux/crc16.h>
--#include <linux/crc32.h>
- #include <linux/err.h>
- #include <linux/errno.h>
- #include <linux/etherdevice.h>
-@@ -1585,45 +1584,11 @@ int batadv_bla_init(struct batadv_priv *bat_priv)
- 	return 0;
- }
- 
--/**
-- * batadv_skb_crc32() - calculate CRC32 of the whole packet and skip bytes in
-- *  the header
-- * @skb: skb pointing to fragmented socket buffers
-- * @payload_ptr: Pointer to position inside the head buffer of the skb
-- *  marking the start of the data to be CRC'ed
-- *
-- * payload_ptr must always point to an address in the skb head buffer and not to
-- * a fragment.
-- *
-- * Return: big endian crc32c of the checksummed data
-- */
--static __be32 batadv_skb_crc32(struct sk_buff *skb, u8 *payload_ptr)
--{
--	unsigned int to = skb->len;
--	unsigned int consumed = 0;
--	struct skb_seq_state st;
--	unsigned int from;
--	unsigned int len;
--	const u8 *data;
--	u32 crc = 0;
--
--	from = (unsigned int)(payload_ptr - skb->data);
--
--	skb_prepare_seq_read(skb, from, to, &st);
--	while ((len = skb_seq_read(consumed, &data, &st)) != 0) {
--		crc = crc32c(crc, data, len);
--		consumed += len;
--	}
--
--	return htonl(crc);
--}
--
- /**
-  * batadv_bla_check_duplist() - Check if a frame is in the broadcast dup.
-  * @bat_priv: the bat priv with all the mesh interface information
-  * @skb: contains the multicast packet to be checked
-- * @payload_ptr: pointer to position inside the head buffer of the skb
-- *  marking the start of the data to be CRC'ed
-+ * @payload_offset: offset in the skb, marking the start of the data to be CRC'ed
-  * @orig: originator mac address, NULL if unknown
-  *
-  * Check if it is on our broadcast list. Another gateway might have sent the
-@@ -1638,16 +1603,18 @@ static __be32 batadv_skb_crc32(struct sk_buff *skb, u8 *payload_ptr)
-  * Return: true if a packet is in the duplicate list, false otherwise.
-  */
- static bool batadv_bla_check_duplist(struct batadv_priv *bat_priv,
--				     struct sk_buff *skb, u8 *payload_ptr,
-+				     struct sk_buff *skb, int payload_offset,
- 				     const u8 *orig)
- {
- 	struct batadv_bcast_duplist_entry *entry;
- 	bool ret = false;
-+	int payload_len;
- 	int i, curr;
--	__be32 crc;
-+	u32 crc;
- 
- 	/* calculate the crc ... */
--	crc = batadv_skb_crc32(skb, payload_ptr);
-+	payload_len = skb->len - payload_offset;
-+	crc = skb_crc32c(skb, payload_offset, payload_len, 0);
- 
- 	spin_lock_bh(&bat_priv->bla.bcast_duplist_lock);
- 
-@@ -1727,7 +1694,7 @@ static bool batadv_bla_check_duplist(struct batadv_priv *bat_priv,
- static bool batadv_bla_check_ucast_duplist(struct batadv_priv *bat_priv,
- 					   struct sk_buff *skb)
- {
--	return batadv_bla_check_duplist(bat_priv, skb, (u8 *)skb->data, NULL);
-+	return batadv_bla_check_duplist(bat_priv, skb, 0, NULL);
- }
- 
- /**
-@@ -1745,12 +1712,10 @@ bool batadv_bla_check_bcast_duplist(struct batadv_priv *bat_priv,
- 				    struct sk_buff *skb)
- {
- 	struct batadv_bcast_packet *bcast_packet;
--	u8 *payload_ptr;
- 
- 	bcast_packet = (struct batadv_bcast_packet *)skb->data;
--	payload_ptr = (u8 *)(bcast_packet + 1);
- 
--	return batadv_bla_check_duplist(bat_priv, skb, payload_ptr,
-+	return batadv_bla_check_duplist(bat_priv, skb, sizeof(*bcast_packet),
- 					bcast_packet->orig);
- }
- 
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index ae1d7a8dc480f..8fc5fe0e9b053 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -734,7 +734,7 @@ struct batadv_bcast_duplist_entry {
- 	u8 orig[ETH_ALEN];
- 
- 	/** @crc: crc32 checksum of broadcast payload */
--	__be32 crc;
-+	u32 crc;
- 
- 	/** @entrytime: time when the broadcast packet was received */
- 	unsigned long entrytime;
--- 
-2.47.3
+You may also have interconnect your gateways with Ethernet, use a bridge, a=
+nd=20
+enable BLA (bridge loop avoidance) in batman-adv. But it's not clear whethe=
+r=20
+you do that.
+
+Please explain your network setup in more detail, then we may be able to he=
+lp.
+
+[1] https://www.open-mesh.org/projects/batman-adv/wiki/Gateways
+
+>=20
+> I believe this delay could be reduced by factoring the last connection ti=
+me
+> into the throughput calculation. For example, if you=E2=80=99re using an =
+EWMA
+> filter, you could treat a node that has been disconnected for more than 10
+> seconds as having a throughput of zero. This would cause the EWMA value to
+> drop quickly, allowing the client to select a new gateway sooner.
+
+I can't really comment here unless I know which component in batman-adv wou=
+ld=20
+interact with, as explained above.
+
+However, if you have an idea, you can also go ahead and implement those thi=
+ngs=20
+yourself in batman-adv and try it out. Please note that BATMAN V is still=20
+considered experimental, and most networks I work with are running BATMAN I=
+V.
+
+Cheers,
+      Simon
+
 
