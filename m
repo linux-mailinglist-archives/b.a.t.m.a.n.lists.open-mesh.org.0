@@ -2,101 +2,112 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9906BCD3CF2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Dec 2025 09:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4BB0CD529D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 22 Dec 2025 09:49:10 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5F7368597E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Dec 2025 09:23:21 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id BECB5814F9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 22 Dec 2025 09:49:10 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1766305401;
- b=vlSnNUE/T5QSo5S9FoMh/9JHpxhwbrANL8mz5hGPTt6RndjiveWKnRykw0468vyBdBtIJ
- 2k4W0OPwAohoCVy+InodcTOidtIob4Sl58LrHnR06MXAPU45cQkcdDF9kDUPE3WyoKrSKYM
- G9QvM/00YTpNcUdYFJta6sDMRhpUZjY=
+ t=1766393350;
+ b=MGdDKwBU6F/zZcmeHtHstF7lGxcOZpzdcpJJgi0lnzD6r8MDyfxR0mpf1ML6z4/t8wKA8
+ Xh1Cj8wMdbkfbwyEH4Lote803F3kxAjMmdCKrBbgU40xKETe2XGER993yaHS+PvBisVCw/w
+ Kvnw8+k2pGmkOnVqoo2UvomLrEFgJlE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1766305401; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1766393350; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=tixElvWfZic6neBJx0wnMTBW1Kwx2f7gfSj2m6U48M4=;
- b=Gao3mEE8qb9wm57FDc+9v30iMCWsZKbh4mgHN3oVluhC8Ll0s0JaGMsb/H48N1WRdf7ON
- m9bXtDp89QffCnSUVigMUiJaqPSSFkGsC/aQhsSl9u4hgZlzVva5+LQZSNeb/1fXly9ajhc
- se9fExm4cat7PdMKUuPEHTM+KKUit9w=
+ list-archive; bh=xLNdxcCVCL/XjnGiW5sUArE7woaQiWfVTKp8d6MzjxA=;
+ b=1Ya8pRDgYn6eEebBgNN83zqFfcjWYmp8xA/69q43jyAb152ZfwjIIC+dREhfA8UsgdCqV
+ cH6qdsYnlC57cdidRl3UgZl2dYttLjg6TxUt4A9pDj7vrjMl1kpcinYnXYDj7zskB4XF0bW
+ HSoB33Wk4f4Mt63XkO1EAKEqE++Iux0=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=meshpointone.com;
+ dkim=fail;
  arc=pass;
- dmarc=pass header.from=meshpointone.com policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=meshpointone.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=meshpointone.com policy.dmarc=none
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com
- [IPv6:2001:41d0:1004:224b::ba])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id DB1CF817C4
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 20 Dec 2025 23:43:30 +0100 (CET)
+ dmarc=fail header.from=syzkaller.appspotmail.com policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass;
+ dmarc=fail (Used Org Domain Record) header.from=syzkaller.appspotmail.com
+ policy.dmarc=none
+Received: from mail-oo1-f80.google.com (mail-oo1-f80.google.com
+ [209.85.161.80])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 02D0183E65
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 22 Dec 2025 06:27:32 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1766270621;
-	h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=tixElvWfZic6neBJx0wnMTBW1Kwx2f7gfSj2m6U48M4=;
-	b=rhxzSIquLQBtdSj3M/Xb+ars4h6iXt+9KGl13kVDFR5qxuvJ53xeQOBsASrgc2gNfM6dpN
-	Enk/fh8KUCwxnC1nw79sQbmd2zEzxBxEFTHKp5j4F39+x8AlSeBKx7nPQ9CWgYZdoEex0U
-	gpXObx3ebh1olw+niNkU2mTkO7oUQ0A=
+	s=20121; t=1766381253;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=xLNdxcCVCL/XjnGiW5sUArE7woaQiWfVTKp8d6MzjxA=;
+	b=kf5/oqNGTTAXL5mLijj7mW9bqBkTOXuGii9W7DNK/cxP2s18gBctWIt+D/4TNiIvgZLvD2
+	8+O1mMLbtOBpbeJQOheFIZ/19dwWB562/r01tOeBIrCAQIPfhhwOPDQKrnN9z6j0i4SqdP
+	TUrWHFvOJhvs9TXZPK2sO87y6UWHQA8=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=meshpointone.com header.s=key1 header.b=GFeyGOyy;
-	spf=pass (diktynna.open-mesh.org: domain of valent@meshpointone.com
- designates 2001:41d0:1004:224b::ba as permitted sender)
- smtp.mailfrom=valent@meshpointone.com;
-	dmarc=pass (policy=none) header.from=meshpointone.com
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1766270621;
-	b=uk+PtWZ12ZX7mb1mG9Mlw+37eoDi7GUNHkYvNjfeEtfJgJZlFx5CNWb6wpmcH3654J+Y2n
-	kObSNkJR273gHysNtjqC/S+F5TNFBmgua6gjU/lT5YPdUmGOIBuynaeQJ97gyrORQTyvjU
-	IvsvdOAYOcZ8bnwiGhvzeJy/WnI3eqc=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=meshpointone.com;
-	s=key1; t=1766270602;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tixElvWfZic6neBJx0wnMTBW1Kwx2f7gfSj2m6U48M4=;
-	b=GFeyGOyyDPNJ21RAFN012l2Zh708A5qFlJejEK/gPtnxlojNHbjQ+rJFtddHrV7fTc/d8E
-	U/9tQJapkwaaKHnSN1fQHWSHITJEi23kFev2PMQFo8dQsimObti2NHZpW5YUEj4UXxrzgR
-	s8JGoFxJApWo+GugnvAdQiKeLTcT2UDcXiRaZFnfVPj3hHCkfV83xwQzY7sHbFwrCntRmm
-	9KZ8EiGaB/Dp1relm6Qq6m2VGfrguO9b/pg2EkwgGcvbttle7tkhZO0Yvgveq5Adb44LTL
-	L+q285mw/P6JwQDqn/MRKbZ6sjonnhmNF7fr2TTDAR866w+wTbaakT837ImuNg==
-From: "Valent@MeshPoint" <valent@meshpointone.com>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: 
- =?utf-8?q?Re=3a=20Restarting=20MeshPoint=20=e2=80=93=20seeking=20advice?=
- =?utf-8?q?=20on=20routing=20for=20crisis/disaster=20scenarios?=
-Date: Sat, 20 Dec 2025 22:43:20 +0000
-Message-Id: <em1e8ae4ba-b0f7-4a25-8bf3-1964f746b2ef@meshpointone.com>
-In-Reply-To: <7007a140a5226e6283b848128d97ca03fa49f1e8@meshpointone.com>
-References: <7007a140a5226e6283b848128d97ca03fa49f1e8@meshpointone.com>
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed),
+ No valid DKIM" header.from=appspotmail.com (policy=none);
+	spf=pass (diktynna.open-mesh.org: domain of
+ 3wtZIaQkbAOMXdePFQQJWFUUNI.LTTLQJZXJWHTSYJSY.HTR@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ designates 209.85.161.80 as permitted sender)
+ smtp.mailfrom=3wtZIaQkbAOMXdePFQQJWFUUNI.LTTLQJZXJWHTSYJSY.HTR@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1766381253;
+	b=uua8Ag+oQHO+W/Mi/Jo868huI1su9NciymYjnJGG1W7aRHTgHoKk0ZaDjf8GgIHc2J/DjP
+	9c2glz5i4bYc4Qfa9h6F6C063k+J/8oNle7i2URIRTMStJN8xXm7wn/QZq4tkFHk0m1BPc
+	sjMSDpBHAeeMmRTx+CB5DX2KiFNuUx0=
+Received: by mail-oo1-f80.google.com with SMTP id
+ 006d021491bc7-656b7cf5c66so5680032eaf.2
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Sun, 21 Dec 2025 21:27:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766381251; x=1766986051;
+        h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xLNdxcCVCL/XjnGiW5sUArE7woaQiWfVTKp8d6MzjxA=;
+        b=i3WuUsNAqQmFi9qUTAg0pFw/greuZvQH7aAqB+nMtBYg2kUkGI1/SMnKZEuoWUrXiT
+         hqVkG68NAfj1lfDH6+El6I2fEHR5MdGQQs5+PCC4izf29zlnMvp0kk+yQTm5baNkXdwI
+         ZepXC1fvThSOZEhqbn7RTZDqIGnb3XkObxeGCOxQzGcx79lVIskEbYuw49PSHblhdxPG
+         mStFe0MZPBQAKoVVTRsQZUrNaOuubpIZEZQa2kLDQZ7S/MHgaR5N2P0FZNCV6kCgeHyS
+         +1lyVzN3w0JHP3MZGLjAdiN/MfET0nbu8NzFFGA2mWF96evVqifcOCLFFwgRwr4ewwIk
+         syOA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWHEV4PXYl9csAJYqn8IoA4ZZ4Sxkw3rQnfaGv/ImXg/pjU1HSo+a+ZJ9J4UX6Sd8wAN3rY+Bm8onUPhg==@lists.open-mesh.org
+X-Gm-Message-State: AOJu0Yz2iPciRfvQE3z9GCzPw4a1/rmRLONwZGyMrLgoMKR3Xt+GjbH9
+	tvv2iXfJoywhPYivqyhs5aoplsrf+swhaWFZGrFQUR8q6OYqhVVK7fCsm+o/8CXhZAmaYOQbAzK
+	RtWkZUnGMaflbHt0NFraGjGs+/0c/MjQC/Z8ZvUiFctZu7l508ADIImEAjI4=
+X-Google-Smtp-Source: 
+ AGHT+IHoqMcU2jPDdYKOABZYg9/Gss9VjYM10tpiWXlE35MC2i2lFveumAVUDZgC4sVN70jEBaYF7rQxWt/G1nPzrSiL8YbeD3zo
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Migadu-Flow: FLOW_OUT
-X-MailFrom: valent@meshpointone.com
+X-Received: by 2002:a05:6820:2288:b0:659:7c9a:942d with SMTP id
+ 006d021491bc7-65d0e6c390amr4406808eaf.0.1766381250987; Sun, 21 Dec 2025
+ 21:27:30 -0800 (PST)
+Date: Sun, 21 Dec 2025 21:27:30 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <6948d6c2.a70a0220.25eec0.0083.GAE@google.com>
+Subject: [syzbot] [batman?] INFO: rcu detected stall in
+ batadv_iv_send_outstanding_bat_ogm_packet
+ (6)
+From: syzbot <syzbot+62348313fb96b25955aa@syzkaller.appspotmail.com>
+To: antonio@mandelbit.com, b.a.t.m.a.n@lists.open-mesh.org,
+	davem@davemloft.net, edumazet@google.com, horms@kernel.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, marek.lindner@mailbox.org,
+	netdev@vger.kernel.org, pabeni@redhat.com, sven@narfation.org,
+	sw@simonwunderlich.de, syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+X-MailFrom: 
+ 3wtZIaQkbAOMXdePFQQJWFUUNI.LTTLQJZXJWHTSYJSY.HTR@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
-Message-ID-Hash: DMT4VCNONWRHB7JSI3BDVMSZKA7QDHGJ
-X-Message-ID-Hash: DMT4VCNONWRHB7JSI3BDVMSZKA7QDHGJ
-X-Mailman-Approved-At: Sun, 21 Dec 2025 09:22:44 +0100
+Message-ID-Hash: PG6S3YH7QXGZQSVHNHL4UYE3TRNRQUFA
+X-Message-ID-Hash: PG6S3YH7QXGZQSVHNHL4UYE3TRNRQUFA
+X-Mailman-Approved-At: Mon, 22 Dec 2025 09:48:19 +0100
 X-Mailman-Version: 3.3.10
 Precedence: list
-Reply-To: "Valent@MeshPoint" <valent@meshpointone.com>
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: <>
@@ -109,135 +120,249 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 
 Hello,
 
-I wanted to follow up on my previous message. I did not see any replies,=20
-so I hope it is ok to share one concrete finding from recent testing in=20
-case it helps the discussion.
+syzbot found the following issue on:
 
-To move beyond purely theoretical arguments, I have been running large=20
-scale tests using meshnet lab
-https://github.com/mwarning/meshnet-lab
+HEAD commit:    516471569089 Merge tag 'libcrypto-fixes-for-linus' of git:..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=10ead77c580000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=a11e0f726bfb6765
+dashboard link: https://syzkaller.appspot.com/bug?extid=62348313fb96b25955aa
+compiler:       gcc (Debian 12.2.0-14+deb12u1) 12.2.0, GNU ld (GNU Binutils for Debian) 2.40
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=147f4d58580000
 
-The main reason for choosing it is that it allows replaying real world=20
-community network topologies, including Freifunk graphs, instead of=20
-relying on synthetic grids or ideal meshes. This makes it easier to=20
-observe behaviour under sparse, asymmetric, and imperfect conditions=20
-that are closer to what actually gets deployed.
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/5a94a2d04644/disk-51647156.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/31d4eeac4086/vmlinux-51647156.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/e58508861b69/bzImage-51647156.xz
 
-One interesting observation so far is that results can vary=20
-significantly depending on how nodes are brought up and how control=20
-plane load interacts with the topology. In other words, the same=20
-protocol on the same topology can behave very differently depending on=20
-timing, churn, and scale effects, even when the underlying links are=20
-identical. This was not obvious to me before testing at this scale.
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+62348313fb96b25955aa@syzkaller.appspotmail.com
 
-I am curious whether others here have used meshnet lab or similar=20
-namespace based emulation tools for BATMAN adv testing, and if so,=20
-whether your observations matched real deployments closely, or if there=20
-are known caveats when interpreting the results.
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-1): P5953/1:b..l P3819/1:b..l P36/1:b..l
+rcu: 	(detected by 0, t=10502 jiffies, g=8897, q=377 ncpus=2)
+task:kworker/u8:2    state:R  running task     stack:22840 pid:36    tgid:36    ppid:2      task_flags:0x24248060 flags:0x00080000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5256 [inline]
+ __schedule+0x1139/0x6150 kernel/sched/core.c:6863
+ preempt_schedule_irq+0x51/0x90 kernel/sched/core.c:7190
+ irqentry_exit+0x1d8/0x8c0 kernel/entry/common.c:216
+ asm_sysvec_reschedule_ipi+0x1a/0x20 arch/x86/include/asm/idtentry.h:702
+RIP: 0010:cpu_max_bits_warn include/linux/cpumask.h:138 [inline]
+RIP: 0010:cpumask_check include/linux/cpumask.h:145 [inline]
+RIP: 0010:cpumask_test_cpu include/linux/cpumask.h:649 [inline]
+RIP: 0010:cpu_online include/linux/cpumask.h:1231 [inline]
+RIP: 0010:trace_lock_acquire include/trace/events/lock.h:24 [inline]
+RIP: 0010:lock_acquire+0x3b/0x330 kernel/locking/lockdep.c:5831
+Code: 89 d5 41 54 45 89 c4 55 89 cd 53 48 89 fb 48 83 ec 38 65 48 8b 05 cd b4 18 12 48 89 44 24 30 31 c0 66 90 65 8b 05 e9 b4 18 12 <83> f8 07 0f 87 a2 02 00 00 89 c0 48 0f a3 05 72 b8 ee 0e 0f 82 74
+RSP: 0018:ffffc90000ac66d0 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: ffffffff8e3c9620 RCX: 0000000000000002
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff8e3c9620
+RBP: 0000000000000002 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000002 R11: 0000000000008490 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ rcu_lock_acquire include/linux/rcupdate.h:331 [inline]
+ rcu_read_lock include/linux/rcupdate.h:867 [inline]
+ class_rcu_constructor include/linux/rcupdate.h:1195 [inline]
+ unwind_next_frame+0xd1/0x20b0 arch/x86/kernel/unwind_orc.c:495
+ arch_stack_walk+0x94/0x100 arch/x86/kernel/stacktrace.c:25
+ stack_trace_save+0x8e/0xc0 kernel/stacktrace.c:122
+ kasan_save_stack+0x33/0x60 mm/kasan/common.c:56
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:77
+ unpoison_slab_object mm/kasan/common.c:339 [inline]
+ __kasan_slab_alloc+0x89/0x90 mm/kasan/common.c:365
+ kasan_slab_alloc include/linux/kasan.h:252 [inline]
+ slab_post_alloc_hook mm/slub.c:4953 [inline]
+ slab_alloc_node mm/slub.c:5263 [inline]
+ kmem_cache_alloc_noprof+0x25e/0x770 mm/slub.c:5270
+ mempool_alloc_noprof+0x1b4/0x2f0 mm/mempool.c:567
+ bio_alloc_bioset+0x3de/0x8c0 block/bio.c:565
+ bio_alloc_clone block/bio.c:873 [inline]
+ bio_split+0x13b/0x440 block/bio.c:1711
+ bio_submit_split_bioset+0x31/0xa40 block/blk-merge.c:122
+ bio_submit_split+0xa8/0x160 block/blk-merge.c:152
+ __bio_split_to_limits block/blk.h:402 [inline]
+ blk_mq_submit_bio+0x67b/0x2c50 block/blk-mq.c:3184
+ __submit_bio+0x3cc/0x690 block/blk-core.c:637
+ __submit_bio_noacct_mq block/blk-core.c:724 [inline]
+ submit_bio_noacct_nocheck+0x53d/0xbe0 block/blk-core.c:755
+ submit_bio_noacct+0x5bd/0x1f40 block/blk-core.c:879
+ ext4_io_submit+0xa6/0x140 fs/ext4/page-io.c:404
+ ext4_do_writepages+0xe42/0x3c80 fs/ext4/inode.c:2952
+ ext4_writepages+0x37a/0x7d0 fs/ext4/inode.c:3026
+ do_writepages+0x27a/0x600 mm/page-writeback.c:2598
+ __writeback_single_inode+0x168/0x14a0 fs/fs-writeback.c:1737
+ writeback_sb_inodes+0x72e/0x1ce0 fs/fs-writeback.c:2030
+ __writeback_inodes_wb+0xf8/0x2d0 fs/fs-writeback.c:2107
+ wb_writeback+0x799/0xae0 fs/fs-writeback.c:2218
+ wb_check_old_data_flush fs/fs-writeback.c:2322 [inline]
+ wb_do_writeback fs/fs-writeback.c:2375 [inline]
+ wb_workfn+0x8a0/0xbb0 fs/fs-writeback.c:2403
+ process_one_work+0x9ba/0x1b20 kernel/workqueue.c:3257
+ process_scheduled_works kernel/workqueue.c:3340 [inline]
+ worker_thread+0x6c8/0xf10 kernel/workqueue.c:3421
+ kthread+0x3c5/0x780 kernel/kthread.c:463
+ ret_from_fork+0x983/0xb10 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:246
+ </TASK>
+task:kworker/u8:14   state:R  running task     stack:25480 pid:3819  tgid:3819  ppid:2      task_flags:0x4208060 flags:0x00080000
+Workqueue: bat_events batadv_iv_send_outstanding_bat_ogm_packet
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5256 [inline]
+ __schedule+0x1139/0x6150 kernel/sched/core.c:6863
+ preempt_schedule_irq+0x51/0x90 kernel/sched/core.c:7190
+ irqentry_exit+0x1d8/0x8c0 kernel/entry/common.c:216
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:697
+RIP: 0010:lock_acquire+0x79/0x330 kernel/locking/lockdep.c:5872
+Code: 82 74 02 00 00 8b 35 0a e9 ee 0e 85 f6 0f 85 8d 00 00 00 48 8b 44 24 30 65 48 2b 05 89 b4 18 12 0f 85 ad 02 00 00 48 83 c4 38 <5b> 5d 41 5c 41 5d 41 5e 41 5f e9 08 38 e1 09 65 8b 05 95 b4 18 12
+RSP: 0018:ffffc9000d107a00 EFLAGS: 00000296
+RAX: 0000000000000000 RBX: ffffffff8e3c9620 RCX: 0000000042e2d81e
+RDX: 0000000000000000 RSI: ffffffff8daa7da3 RDI: ffffffff8bf2b380
+RBP: 0000000000000002 R08: 000000007a5a0105 R09: 0000000057a5a010
+R10: 0000000000000002 R11: ffff888033fc0b30 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ rcu_lock_acquire include/linux/rcupdate.h:331 [inline]
+ rcu_read_lock include/linux/rcupdate.h:867 [inline]
+ batadv_iv_ogm_slide_own_bcast_window net/batman-adv/bat_iv_ogm.c:761 [inline]
+ batadv_iv_ogm_schedule_buff+0x5d0/0x14c0 net/batman-adv/bat_iv_ogm.c:833
+ batadv_iv_ogm_schedule net/batman-adv/bat_iv_ogm.c:873 [inline]
+ batadv_iv_ogm_schedule net/batman-adv/bat_iv_ogm.c:866 [inline]
+ batadv_iv_send_outstanding_bat_ogm_packet+0x329/0x920 net/batman-adv/bat_iv_ogm.c:1709
+ process_one_work+0x9ba/0x1b20 kernel/workqueue.c:3257
+ process_scheduled_works kernel/workqueue.c:3340 [inline]
+ worker_thread+0x6c8/0xf10 kernel/workqueue.c:3421
+ kthread+0x3c5/0x780 kernel/kthread.c:463
+ ret_from_fork+0x983/0xb10 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:246
+ </TASK>
+task:udevd           state:R  running task     stack:27112 pid:5953  tgid:5953  ppid:5190   task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5256 [inline]
+ __schedule+0x1139/0x6150 kernel/sched/core.c:6863
+ preempt_schedule_notrace+0x62/0xe0 kernel/sched/core.c:7140
+ preempt_schedule_notrace_thunk+0x16/0x30 arch/x86/entry/thunk.S:13
+ rcu_is_watching+0x8e/0xc0 kernel/rcu/tree.c:752
+ trace_lock_release include/trace/events/lock.h:69 [inline]
+ lock_release+0x201/0x2d0 kernel/locking/lockdep.c:5879
+ rcu_lock_release include/linux/rcupdate.h:341 [inline]
+ rcu_read_unlock include/linux/rcupdate.h:897 [inline]
+ class_rcu_destructor include/linux/rcupdate.h:1195 [inline]
+ unwind_next_frame+0x3f9/0x20b0 arch/x86/kernel/unwind_orc.c:495
+ arch_stack_walk+0x94/0x100 arch/x86/kernel/stacktrace.c:25
+ stack_trace_save+0x8e/0xc0 kernel/stacktrace.c:122
+ kasan_save_stack+0x33/0x60 mm/kasan/common.c:56
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:77
+ unpoison_slab_object mm/kasan/common.c:339 [inline]
+ __kasan_slab_alloc+0x89/0x90 mm/kasan/common.c:365
+ kasan_slab_alloc include/linux/kasan.h:252 [inline]
+ slab_post_alloc_hook mm/slub.c:4953 [inline]
+ slab_alloc_node mm/slub.c:5263 [inline]
+ kmem_cache_alloc_noprof+0x25e/0x770 mm/slub.c:5270
+ lsm_file_alloc security/security.c:169 [inline]
+ security_file_alloc+0x34/0x2b0 security/security.c:2380
+ init_file+0x93/0x4c0 fs/file_table.c:159
+ alloc_empty_file+0x73/0x1e0 fs/file_table.c:241
+ path_openat+0xde/0x3140 fs/namei.c:4773
+ do_filp_open+0x20b/0x470 fs/namei.c:4814
+ do_sys_openat2+0x121/0x290 fs/open.c:1430
+ do_sys_open fs/open.c:1436 [inline]
+ __do_sys_openat fs/open.c:1452 [inline]
+ __se_sys_openat fs/open.c:1447 [inline]
+ __x64_sys_openat+0x174/0x210 fs/open.c:1447
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcd/0xf80 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f0d5b8a7407
+RSP: 002b:00007ffee52231a0 EFLAGS: 00000202 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 00007f0d5c0b1880 RCX: 00007f0d5b8a7407
+RDX: 0000000000080000 RSI: 0000559b925f46d0 RDI: ffffffffffffff9c
+RBP: 0000559b925f46d0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000009
+ </TASK>
+rcu: rcu_preempt kthread starved for 10623 jiffies! g8897 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:28328 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5256 [inline]
+ __schedule+0x1139/0x6150 kernel/sched/core.c:6863
+ __schedule_loop kernel/sched/core.c:6945 [inline]
+ schedule+0xe7/0x3a0 kernel/sched/core.c:6960
+ schedule_timeout+0x123/0x290 kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x1ea/0xaf0 kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x26d/0x380 kernel/rcu/tree.c:2285
+ kthread+0x3c5/0x780 kernel/kthread.c:463
+ ret_from_fork+0x983/0xb10 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:246
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 0 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 6101 Comm: syz.1.30 Not tainted syzkaller #0 PREEMPT(full) 
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/25/2025
+RIP: 0010:__lock_acquire+0x58/0x2890 kernel/locking/lockdep.c:5098
+Code: 18 12 48 89 44 24 68 31 c0 85 db 0f 84 54 04 00 00 48 8b 07 49 89 fd 48 3d 00 86 b9 93 0f 84 42 04 00 00 44 8b 1d c8 b5 92 0c <45> 89 c7 89 f5 89 d3 45 89 c8 45 85 db 74 5d 48 3d 10 86 b9 93 74
+RSP: 0018:ffffc90002fe78f8 EFLAGS: 00000006
+RAX: ffffffff9ac2cf60 RBX: 0000000000000001 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff888079e8d510
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000000
+R10: ffffc90002fe7bd8 R11: 0000000000000001 R12: ffff88802db2c980
+R13: ffff888079e8d510 R14: 0000000000000000 R15: 0000000000000000
+FS:  00007fa9d7eb66c0(0000) GS:ffff8881249f5000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa9d7eb5f98 CR3: 000000005b10e000 CR4: 00000000003526f0
+Call Trace:
+ <TASK>
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x179/0x330 kernel/locking/lockdep.c:5825
+ __mutex_lock_common kernel/locking/mutex.c:614 [inline]
+ __mutex_lock+0x1aa/0x1ca0 kernel/locking/mutex.c:776
+ seccomp_do_user_notification.constprop.0+0xaa/0xe80 kernel/seccomp.c:1173
+ __seccomp_filter+0x8ea/0x11f0 kernel/seccomp.c:1338
+ __secure_computing+0x287/0x3b0 kernel/seccomp.c:1404
+ syscall_trace_enter+0x89/0x220 kernel/entry/syscall-common.c:44
+ syscall_enter_from_user_mode_work include/linux/entry-common.h:78 [inline]
+ syscall_enter_from_user_mode include/linux/entry-common.h:109 [inline]
+ do_syscall_64+0x42b/0xf80 arch/x86/entry/syscall_64.c:90
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fa9d6f8f749
+Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fa9d7eb60e8 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: ffffffffffffffda RBX: 00007fa9d71e5fa8 RCX: 00007fa9d6f8f749
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007fa9d71e5fa8
+RBP: 00007fa9d71e5fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fa9d71e6038 R14: 00007ffd414eed50 R15: 00007ffd414eee38
+ </TASK>
 
-Any feedback or pointers would be appreciated.
 
-Best regards,
-Valent
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
 
------- Original Message ------
->From "Valent Turkovic" <valent@meshpointone.com>
-To b.a.t.m.a.n@lists.open-mesh.org
-Date 16.12.2025. 16:37:01
-Subject Restarting MeshPoint =E2=80=93 seeking advice on routing for=20
-crisis/disaster scenarios
+If the report is already addressed, let syzbot know by replying with:
+#syz fix: exact-commit-title
 
->Hi everyone,
->
->My name is Valent Turkovic.
->
->Between 2015 and 2018 I ran the MeshPoint project =E2=80=93 a simple, rugg=
-ed Wi-Fi hotspot designed to work in very tough conditions.
->
->During the refugee crisis in Croatia we deployed these devices in camps an=
-d transit centers, providing internet connectivity for humanitarian organiz=
-ations such as the Red Cross, UNICEF, IOM, Greenpeace, and many smaller NGO=
-s. Through these deployments, more than 500,000 people were able to stay co=
-nnected. The same system was also used in flood response and other emergenc=
-y situations. The project received the =E2=80=9CBest Humanitarian Tech of t=
-he Year=E2=80=9D award at The Europas in 2016.
->
->Unfortunately, financial constraints forced me to pause the project after=
- 2018. It was entirely self-funded, and the prolonged stress eventually led=
- to long-term health issues.
->
->Over the years I stayed in contact with first responders and field teams f=
-rom organizations such as WFP, UNICEF, the Red Cross, and various NGOs. The =
-feedback has remained consistent: when disasters strike, whether earthquak=
-es, floods, or large-scale displacement, teams still struggle to bring up r=
-eliable communications quickly. What they need most is a mesh network that=
- works within minutes, not hours or days, and that continues operating on ba=
-ttery power when infrastructure is down.
->
->I am fully aware that in active conflict zones Wi-Fi can be jammed or rest=
-ricted, for example due to drone countermeasures. However, there are many o=
-ther scenarios where Wi-Fi mesh remains extremely valuable: evacuation cent=
-ers, field hospitals, temporary shelters, flood-affected villages, and coor=
-dination points for responders. In these environments, fast, robust, and ea=
-sy-to-deploy networking makes a very real difference for coordination, fami=
-ly contact, and medical or logistical data sharing.
->
->Because of this, I am now restarting the project as MeshPoint V2. The focu=
-s is updated hardware, improved battery life, and even simpler deployment,=
- while keeping the original goal: crisis response and off-grid or underserve=
-d communities.
->
->In the original MeshPoint we used Babel. This was largely driven by practi=
-cal constraints at the time: our deployment tooling was based on Nodewatche=
-r, which was Babel-only. Technically, Babel served us very well. It converg=
-ed fast, was reliable, and worked nicely for small to medium-sized networks=
-.
->
->At the same time, I am well aware that many community networks and real-wo=
-rld mesh deployments successfully used batman-adv, often through Gluon or c=
-ustom firmware builds. In larger, more dynamic, or highly mobile topologies =
-typical for crisis scenarios, the layer-2 approach and seamless mobility p=
-roperties of batman-adv are very attractive, especially when nodes are freq=
-uently moved, powered on and off, or replaced in the field.
->
->For MeshPoint V2 I am evaluating batman-adv and would appreciate insights=
- on the following aspects, specifically in the context of crisis and emergen=
-cy deployments:
->
->Behaviour at larger scale in real deployments
->In crisis scenarios networks often start small but can grow quickly as mor=
-e nodes are deployed by different teams or organizations. We are interested =
-in how batman-adv behaves when scaling to hundreds or more nodes in non-id=
-eal, real-world conditions, without centralized planning and with limited a=
-bility for on-site tuning.
->
->Performance in sparse or highly mobile topologies
->Nodes in the field are frequently moved, turned off, replaced, or temporar=
-ily isolated. Vehicles, backpacks, and mobile command posts constantly chan=
-ge network topology. We are looking for practical experience with how well=
- batman-adv handles frequent topology changes, intermittent links, and spars=
-e node placement without requiring constant manual intervention.
->
->Suitability for battery-powered and intermittently connected nodes
->Many nodes run on battery for long periods and may sleep, reboot, or disap=
-pear entirely when power is lost. Low overhead, predictable behaviour, and=
- fast recovery after reconnect are essential. We are particularly interested =
-in any known trade-offs between routing performance, control traffic, and=
- power consumption in such environments.
->
->If there is existing work, documented limitations, field experience, or de=
-sign guidance relevant to these constraints, pointers would be greatly appr=
-eciated. The goal is to build a system that field teams can deploy and rely =
-on under stress, without requiring deep networking expertise on site.
->
->Thank you for your time, and thank you to everyone who has contributed to=
- making mesh networking viable outside of labs and into real-world, high-sta=
-kes situations.
->
->Best regards,
->Valent Turkovic
->https://www.meshpointone.com/
->
->Technical specifications of the original MeshPoint (for reference):
->https://www.meshpointone.com/technical-specifications/
+If you want syzbot to run the reproducer, reply with:
+#syz test: git://repo/address.git branch-or-commit-hash
+If you attach or paste a git patch, syzbot will apply it before testing.
+
+If you want to overwrite report's subsystems, reply with:
+#syz set subsystems: new-subsystem
+(See the list of subsystem names on the web dashboard)
+
+If the report is a duplicate of another one, reply with:
+#syz dup: exact-subject-of-another-report
+
+If you want to undo deduplication, reply with:
+#syz undup
