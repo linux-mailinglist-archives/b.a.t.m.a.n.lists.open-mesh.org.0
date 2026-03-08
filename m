@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EETCDGaNrWlE4QEAu9opvQ
+	id jOSqNNuQrWkQ4gEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 08 Mar 2026 15:53:26 +0100
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 08 Mar 2026 16:08:11 +0100
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55E9230C9A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 08 Mar 2026 15:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E45B230D52
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 08 Mar 2026 16:08:11 +0100 (CET)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7AB4085993
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 08 Mar 2026 15:53:25 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id D2AB185A03
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 08 Mar 2026 16:08:10 +0100 (CET)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1772981605;
- b=MG5hUz0AxR0Qi2uO3ThbgnuJ/lk62VX3TmwGVY8pEXwISsDixdeY+MC+P2j727lucp03y
- oYs5Lphl866pIdEReBU9NRYOZvNQs6rhCxxXf2ERwsgdfzrTC5cHotc/lj92RGKn7ehE+zS
- NG9jr5+fp80MNWB/n4JO0aLMX9qFYNk=
+ t=1772982490;
+ b=lCOSG4qaUOAf8FgnDw2Os/oHx5qZ/NJCZImMJW6vOXnykTOk6Z76Ud2PvAOsWdxrrP97t
+ fZPPZjHWUfWmwhbyC+i+uHwtc8F7frVGcroeC/SVsh+W8ZuYeYsCRr/RFLIrp32tZRZAFyu
+ C6jxTGQGB32PYCPe1hq39ngg2F/TZBk=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1772981605; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1772982490; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=dfiOdzhLgNO8ATiPYY9wVxeS0LjRjjc5jzGWToy0eTk=;
- b=RzbKfZBnj1sB1PDE4zg9Nm6/dqzlq6iaX3sRoh1fYSTI3IZYPGi84qTz+VA1iNvF0nw7X
- Gtt6cWduQwUaGdxoJIbIr7fw2Vy8UabuFgG6vEeZ6/CcySj0WwkOifUFauADLNSZ2lRigJu
- bhl+a41U5yn9CKOI2/oYKB61eIy9kUw=
+ list-archive; bh=7dNzhCJyOXhFvpAIr9acHGbxkmq0VisbDF2MnMYbLm8=;
+ b=Es3gGPaGmnhIj2SnplD49O0gohS+Il+3C+Y8f1CSbU/bIZfOE1gKQzXkNlxTFwqwv66s9
+ FBEamSXTery4bjoii13uOkBgqtEtgPWR6qGvIAWzZp7jeaz4/jZCZq1XxkvCNXrO7G8bASg
+ rJ1Ugf2TqVDVQmGZcERQ3oPSn7EgZHc=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -37,62 +37,62 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id E5AB883AFF
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 08 Mar 2026 15:52:39 +0100 (CET)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 814F08436B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 08 Mar 2026 16:07:33 +0100 (CET)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1772981570;
+	s=20121; t=1772982453;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=dfiOdzhLgNO8ATiPYY9wVxeS0LjRjjc5jzGWToy0eTk=;
-	b=Rx6kXBBukv/a6tiQqcXlVY/1jpHJpWR1unvR7CzHilrgs1DkJ6bNfSwssrqr60MCTKY62G
-	HK3+5NftuKJlsPoIkqeygpgYPCtLHyCnLbyYa3r/snQhu2zcgaJkJ1pRB5jkJ7G3CWJWn0
-	XOLVEs1W8oC6AE1DWAPWm95Yj7vjXA0=
+	bh=7dNzhCJyOXhFvpAIr9acHGbxkmq0VisbDF2MnMYbLm8=;
+	b=ATUNMLZfknawcvggTMIyRPxeorpUFpsm7H5wd2V/0rR8/j9Yg+WFZ8CyFP8HlUwZKRWufp
+	nqTSv/a48VS/oDpCT7sWmmrXjM+Vgv2c84+l8AGkzY7/QfQ8WJiYStNBcG779ZVN+RPy91
+	40lDZxfkQVSwEunNDyMNf0HFFkBCy0A=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=thwY5P+C;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=MgsXpkki;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1772981570;
-	b=lF6bfPGkLerjr4HDUZHCoVezb65NKOKf3LEJfJhKGmm0BTUZv3OKVrfbgolDb/3SO5oE02
-	wcfNnfgTcXMe0ZZAX5MI8HQXEyapgx28GIETHMnpOVuzZ3QcuY4OQUZI8l6nM85TB+eNAc
-	FpWBrYGwdPUx3/4rm8yLSN8tdEft4Go=
-Received: by dvalin.narfation.org (Postfix) id 098E9201FE;
-	Sun, 08 Mar 2026 14:52:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1772982453;
+	b=yxmtlo81E8WmxRU8ybW+VxZ2ocKhd2ybudehhB60VdJmJRvjwdIrS/gkGoRH7Hem/fdf22
+	vdlbe9B4c09EqYtPPlUxkKteqqUR0jgFZAKKOtyVXGCec5W7WuEDK6PVmaZ4RKHMFXICOx
+	iPSSzlxrD68lyyw/JCQlrIni1wzHWKk=
+Received: by dvalin.narfation.org (Postfix) id DF85E1FE5D;
+	Sun, 08 Mar 2026 15:07:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1772981558;
+	s=20121; t=1772982453;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=dfiOdzhLgNO8ATiPYY9wVxeS0LjRjjc5jzGWToy0eTk=;
-	b=thwY5P+CGjeuuwksx7JUV/XqClrM+iXwPQezUDTAK5Xto2qeAIbGNUho/7ioToHTz2uuUO
-	22yH86AxNtIPfZpSB44rt3t04mJ65DCxl47qtzvS0+ymYqu7JHKlKLgA1t1GxwnHNkh4zG
-	c1rdWzJqk6dNNG1qAfw0m5Pb+2WYYSs=
+	bh=7dNzhCJyOXhFvpAIr9acHGbxkmq0VisbDF2MnMYbLm8=;
+	b=MgsXpkkiYjv7aIvxo8Ln0Ee48HoxXQVjjyMwP3YAUDoGszCEw/Q6Qwuq7+mLJkX0szQhkB
+	lrl083UvJjcebSkuNLf5u8S7QIz6ZNDPkhaVaP3SrIX7fRe4SBCjkwE/6lyrVmxNg6H7mO
+	vLGdmEQJnxCjva2sixb4HkNtJPWMvMI=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 08 Mar 2026 15:52:30 +0100
-Subject: [PATCH] batctl: tcpdump: Fix printing of usecs
+Date: Sun, 08 Mar 2026 16:07:25 +0100
+Subject: [PATCH] alfred: Fix printing of timespec
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260308-t64-v1-1-ec68b80a2e68@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAC2NrWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYwML3RIzE11L00RDYyNDI8NUkzQloMqCotS0zAqwKdGxtbUAv0CWj1U
+Message-Id: <20260308-t64-v1-1-638047cd3e7e@narfation.org>
+X-B4-Tracking: v=1; b=H4sIAKyQrWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYwML3RIzE10Tw+QUQyNjM6OklGQloMqCotS0zAqwKdGxtbUAzOrUKFU
  AAAA=
-X-Change-ID: 20260308-t64-95a132121e4f
+X-Change-ID: 20260308-t64-41cd12362bdc
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1055; i=sven@narfation.org;
- h=from:subject:message-id; bh=ZllT51qzTHOVk/qnjc8hZ+Xvb562vs+DxzbTzDHmwRg=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDJlrew2vVjvVGMg+fr7Eo6ng2cFKfc5X/7j8I7fnp117J
- 3w8emNHRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAi+naMDPtNl94UUJu+qGnR
- pG2POdKNp4SfYv7Pe8iMkSUizez07jCGf8r3XcMDK6dw/9aTOn+yrLHuz+68c6vFFh2S+WMh94J
- pEhsA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2053; i=sven@narfation.org;
+ h=from:subject:message-id; bh=oRc6YWVus925BF08/r/UXrFXVPRtGso3dsC+Erdskec=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDJlrJ6xbE/Oras1Xix2a/2pEOv5ePf2g+vqyW/7zTTZen
+ 73BaQ9nY0cpC4MYF4OsmCLLniv55zezv5X/PO3jUZg5rEwgQxi4OAVgIuYMjAyzn+df5y65e5mr
+ qnt/5by8CKkEh30TGCf4HY35IHWqtD+P4X/SzeKy94IX1Jeqqb5YeGXN4VYrwTevqrcbGN17Pi3
+ 10EdeAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 5RB4SO75DE5GDQHFECRZHNGBLI47YVBW
-X-Message-ID-Hash: 5RB4SO75DE5GDQHFECRZHNGBLI47YVBW
+Message-ID-Hash: 7TH5R77U3SHXV57ZCWEURJCS5PY7E2OR
+X-Message-ID-Hash: 7TH5R77U3SHXV57ZCWEURJCS5PY7E2OR
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -112,64 +112,85 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: C55E9230C9A
+X-Rspamd-Queue-Id: 6E45B230D52
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	R_SPF_NA(0.00)[no SPF record];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.967];
-	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
+	MIME_TRACE(0.00)[0:+];
+	R_SPF_NA(0.00)[no SPF record];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	RCPT_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[narfation.org:+]
 X-Rspamd-Action: no action
 
 musl on a 32 bit system still uses a 64-bit value (long long) for the
-storage of microseconds. But the printf was evaluating this argument always
-only as long.
+storage of tv_sec and tv_nsec. But the printf was evaluating these
+arguments always only as long.
 
-During the print of this usec value, range of 0-999_999 is only possible.
-20 bit is therefore enough to store this range. For simplicity, just use an
-unsigned int.
+During the print of the nsec value, range of 0-999_999_999 is only
+possible. 30 bit is therefore enough to store this range. For simplicity,
+just use an unsigned int.
+
+The second value on the other hand can get up to 64 bit on a 64-bit-unix
+timestamp system. Just use long long for it to be on the safe side.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- tcpdump.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ main.c   | 4 +++-
+ server.c | 4 ++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/tcpdump.c b/tcpdump.c
-index 32f9a04..c89b5a7 100644
---- a/tcpdump.c
-+++ b/tcpdump.c
-@@ -102,7 +102,8 @@ static int print_time(void)
- 	tm = localtime(&tv.tv_sec);
+diff --git a/main.c b/main.c
+index 0f242e8..71a6260 100644
+--- a/main.c
++++ b/main.c
+@@ -285,7 +285,9 @@ static struct globals *alfred_init(int argc, char *argv[])
+ 			sync_period = strtod(optarg, NULL);
+ 			globals->sync_period.tv_sec = (int)sync_period;
+ 			globals->sync_period.tv_nsec = (double)(sync_period - (int)sync_period) * 1e9;
+-			printf(" ** Setting sync interval to: %.9f seconds (%ld.%09ld)\n", sync_period, globals->sync_period.tv_sec, globals->sync_period.tv_nsec);
++			printf(" ** Setting sync interval to: %.9f seconds (%lld.%09u)\n", sync_period,
++			       (long long)globals->sync_period.tv_sec,
++			       (unsigned int)globals->sync_period.tv_nsec);
+ 			break;
+ 		case '4':
+ 			globals->ipv4mode = true;
+diff --git a/server.c b/server.c
+index 0d792b0..c3d32a0 100644
+--- a/server.c
++++ b/server.c
+@@ -404,8 +404,8 @@ static void sync_period_timer(struct globals *globals,
  
- 	if (tm)
--		printf("%02d:%02d:%02d.%06ld ", tm->tm_hour, tm->tm_min, tm->tm_sec, tv.tv_usec);
-+		printf("%02d:%02d:%02d.%06u ", tm->tm_hour, tm->tm_min, tm->tm_sec,
-+		       (unsigned int)tv.tv_usec);
- 	else
- 		printf("00:00:00.000000 ");
- 
+ 	if (globals->opmode == OPMODE_PRIMARY) {
+ 		/* we are a primary */
+-		printf("[%ld.%09ld] announce primary ...\n",
+-		       now.tv_sec, now.tv_nsec);
++		printf("[%lld.%09u] announce primary ...\n",
++		       (long long)now.tv_sec, (unsigned int)now.tv_nsec);
+ 		announce_primary(globals);
+ 		sync_data(globals);
+ 	} else {
 
 ---
-base-commit: 8d256ac07c7dada8607ae792dcd0524d91eef127
-change-id: 20260308-t64-95a132121e4f
+base-commit: bdab2a4dd79716edd6c5ecdbda7bf38c8495083c
+change-id: 20260308-t64-41cd12362bdc
 
 Best regards,
 -- 
