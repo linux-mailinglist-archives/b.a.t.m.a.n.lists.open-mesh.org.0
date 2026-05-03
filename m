@@ -2,118 +2,127 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QO2QBTNa82lfzwEAu9opvQ
+	id WKgJMz3r9mkJaAIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 30 Apr 2026 15:33:39 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 08:29:17 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E47E44A3824
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 30 Apr 2026 15:33:33 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB4F4B49D3
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 08:29:16 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4268E85A4B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 30 Apr 2026 15:33:33 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 57B9C85AAC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 08:29:16 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1777556013;
- b=c++H+Sm7bKOle1sJio32ema+MYiXKclgUaDYc6KQ8NDXTwwMHV+E1nIXFIXZHGmR+pJcp
- +UuvuDHf+vbhy1xE0GZL3uWzTlki2W153L8WXl0wDBniWoPjGlCgkGoWUFQzvoalm4H04A/
- ef2LNOh9a4l3i+8em6dUOtsfAT5T8cs=
+ t=1777789756;
+ b=oTXg/ZPEYZ0SpwkGL+1DPtTawD0+CtxlFiTZhcRS9slEZY71/0pxquGToSWA/hCkZAf5k
+ TWZMuv9ml/QZVk6KoZO+H7t+bF2pGIsOOQlgg1vRVuv70ba5Aiq629Vb1UaGhTT5tHbFqrb
+ gQo9E/SXw64PhS861SQOv724cO2Toh8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1777556013; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1777789756; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=eef9yXm6XkyBRVRp1Tslp00310RuvOpdMSFBXBjo5j0=;
- b=C1JY7frsD5woFTUZHD40ngDuGYyiOmfAcGyCyqT2QVpfSwRAA10KfRZ/jyT5a3XMcnnE/
- HSfGeeOOCOxdWwNatLxLUNqd/2DJhz3nfopf8GdArMzaY3ZpiVsTld88Dm8nvyXv/t6DxM/
- Hg6wgeQ1rUrs86RBAvUCindc3mvd5l4=
+ list-archive; bh=jW+9Pv7ljZz23qHb+1/ku5/ck8ddnN56WAE5fWyjZOM=;
+ b=kJhYNJ9iTxEyQBRYdeZRUvthcV5MKhMcH1WhwpaUukBl2TuiMpcKdOdmVSN66FR3Jm6Xw
+ Cn9bHqtYtVGv03XflBjZ8497OvSXiA4Dh4FKkeLE9FA5U8vEkIBmv2o9VFetFFZBbCl3QTD
+ Fy+rjayxuxqSYCwfzlfdkEl1UDnXXCk=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=kernel.org;
+ dkim=fail;
  arc=pass;
- dmarc=pass header.from=kernel.org policy.dmarc=quarantine
-Authentication-Results: open-mesh.org; dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
-Received: from tor.source.kernel.org (tor.source.kernel.org
- [IPv6:2600:3c04:e001:324:0:1991:8:25])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 300808068E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 30 Apr 2026 15:32:06 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1777555926;
-	b=xnHeD86MgdfPPzkYISwOcDnVGqXSDwxjWOQ6MtKZrYfqhXiw+P/0UQ76oiBetip01E2LXy
-	rPWqfwRtEx4M0npwdFldPVI/hpHRnDHuFnDu1t8nQ6pi8LQroWlHWXa3H5zplW9eZ7AFsD
-	FijzZYzI461VaVRWqtrjyCZPnhjJJuM=
+ dmarc=none
+Authentication-Results: open-mesh.org; dkim=fail; arc=pass; dmarc=none
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net
+ [207.46.229.174])
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3DACF83C42
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 03 May 2026 06:29:04 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1777782548;
+	b=IWeFXGobNpOy38TbofSgW8f6LO6adryjukhz2faBPmp3FR+gN0GZLmOMkmguazMfeEQ0LM
+	trCWdQNq5CBIelhsfNlfSTU7jfp+qmU3BOE98z6ZzF4C4z+tWRrQVuyO8OGpDC3o3dKey2
+	jNSltoMZJCr3vPKDad9/r+a5CQOZT6o=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=MLfLT3gY;
-	spf=pass (diktynna.open-mesh.org: domain of sashal@kernel.org designates
- 2600:3c04:e001:324:0:1991:8:25 as permitted sender)
- smtp.mailfrom=sashal@kernel.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of n05ec@lzu.edu.cn designates
+ 207.46.229.174 as permitted sender) smtp.mailfrom=n05ec@lzu.edu.cn;
+	dmarc=none
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1777555926;
+	s=20121; t=1777782548;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=eef9yXm6XkyBRVRp1Tslp00310RuvOpdMSFBXBjo5j0=;
-	b=jONzdsq+DmMHo+u1JNyxR2nh+Qjlqa/BzT9jLbyZkV9LgYeiE7DpkbpctLSa/zVfmDbi6Z
-	TLOOjapGUWJAKxO5Elt8upO81MmlTYuXzYp0aO0I0s8LOw+63rGyCynoiLIIPo23NuRd4T
-	ulQGDxF7G1M7DdNyzzWDNGpMR6Fl5Sw=
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0F2D060142;
-	Thu, 30 Apr 2026 13:32:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90388C2BCB3;
-	Thu, 30 Apr 2026 13:32:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777555924;
-	bh=iN8DKEJJ1MqxD8Atz5WqGwwGI8zukpbk6ZFINC7U+H0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MLfLT3gYJYUrNlUUkxWDvsFI0GEOKhIELDpU30KfET7gp5dTZ9EY4yyMRczN4jZYE
-	 kqXh+s5ibDaz4iOJHmi/9a3t5PdwUCMVIPhSyv19a35G0YWrCuHRJ68M2QfyfU6FzX
-	 vbrFtrqv2nfcDGMpLeznkZGIaOVkMBBYgUR8RK+me3NEajH4Fm8l691ni6A/iw9Bzm
-	 evViPymfOmZlY003vEz7sliSgQKwulQt5UV8/tFcpCN0UoX+Q7TUlnqDc9ttQ8+a5w
-	 33Hchtzclp1IGnms+afkLKQSx0mG3M58jh1HGFCYfgOkMPwwuoI9aqhWUOf6Ic5shv
-	 occY/ASH6fFqQ==
-Date: Thu, 30 Apr 2026 09:32:03 -0400
-From: Sasha Levin <sashal@kernel.org>
-To: Sven Eckelmann <sven@narfation.org>
-Cc: stable@vger.kernel.org, Haoze Xie <royenheart@gmail.com>,
-	Robert Garcia <rob_garcia@163.com>, b.a.t.m.a.n@lists.open-mesh.org,
-	Simon Wunderlich <sw@simonwunderlich.de>,
-	Yifan Wu <yifanwucs@gmail.com>, Juefei Pu <tomapufckgml@gmail.com>,
-	Yuan Tan <yuantan098@gmail.com>, Xin Liu <bird@lzu.edu.cn>,
-	Ao Zhou <n05ec@lzu.edu.cn>,
-	Marek Lindner <mareklindner@neomailbox.ch>,
-	Antonio Quartulli <a@unstable.cc>,
-	"David S . Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5.15.y] batman-adv: hold claim backbone gateways by
- reference
-Message-ID: <afNZ0zVdXkgj5hvA@laps>
-References: <20260430071645.3030702-1-rob_garcia@163.com>
- <1857579.VLH7GnMWUR@ripper>
- <3609597.QJadu78ljV@ripper>
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jW+9Pv7ljZz23qHb+1/ku5/ck8ddnN56WAE5fWyjZOM=;
+	b=p//a1Vt9KtFFV7gqwsWsruvbV5vg0IpFk2ZTtyzsLIzONCGWHI8SO8NaXT7TBmIDnyJBvq
+	4qxYmUNw1PoGbXm66HgV8xlg7DvujzPf745Z58YjiRb9+Q/Uz3wFcstA33u1ycWsz3w4bh
+	n9pcyjNXy3P0Cb65TduwmzAfuy20l3w=
+Received: from enjou-Legion-Y7000P-2019.coin-barley.ts.net (unknown
+ [172.23.56.36])
+	by app1 (Coremail) with SMTP id ygmowACnHwAJz_Zp8tL0AA--.58707S3;
+	Sun, 03 May 2026 12:28:59 +0800 (CST)
+From: Ren Wei <n05ec@lzu.edu.cn>
+To: b.a.t.m.a.n@lists.open-mesh.org,
+	netdev@vger.kernel.org
+Cc: marek.lindner@mailbox.org,
+	sw@simonwunderlich.de,
+	antonio@mandelbit.com,
+	sven@narfation.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	horms@kernel.org,
+	yuantan098@gmail.com,
+	yifanwucs@gmail.com,
+	tomapufckgml@gmail.com,
+	bird@lzu.edu.cn,
+	wangjiexun2025@gmail.com,
+	n05ec@lzu.edu.cn
+Subject: [PATCH net 1/1] batman-adv: stop caching unowned originator pointers
+ in BAT IV
+Date: Sun,  3 May 2026 12:28:58 +0800
+Message-ID: 
+ <e12a51ee998808be6381780d6aaf32e093dc7d1e.1777692024.git.wangjiexun2025@gmail.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <cover.1777692024.git.wangjiexun2025@gmail.com>
+References: <cover.1777692024.git.wangjiexun2025@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <3609597.QJadu78ljV@ripper>
-Message-ID-Hash: LQAXJCI3ODGGP5WDH6PX2LCHOBK3QXUC
-X-Message-ID-Hash: LQAXJCI3ODGGP5WDH6PX2LCHOBK3QXUC
-X-MailFrom: sashal@kernel.org
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: ygmowACnHwAJz_Zp8tL0AA--.58707S3
+X-Coremail-Antispam: 1UD129KBjvJXoWxGF17CF13uFy8tF4xKFykXwb_yoWrtr1rp3
+	WfKrW5Crsrt3ZxWFW8t34avrWfAFZrtr4UKFykAr1YyryDtr95uw1Fga4UCF1rZFWkGr95
+	Kr10k34UXF1qyrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUB01xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AE
+	w4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2
+	IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E
+	87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+	xGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAa
+	w2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY2
+	0_Gr4l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8G
+	jcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2I
+	x0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK
+	8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I
+	0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRMXdjDUUUU
+X-CM-SenderInfo: zqqvvuo6o23hxhgxhubq/1tbiAQEQCWn1umMEugAAsi
+X-MailFrom: n05ec@lzu.edu.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
- nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
- news-moderation; no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
+Message-ID-Hash: RQ5ZW5RNFQ5Q4PHCKXU4PB35BPQ6XMVP
+X-Message-ID-Hash: RQ5ZW5RNFQ5Q4PHCKXU4PB35BPQ6XMVP
+X-Mailman-Approved-At: Sun, 03 May 2026 08:28:34 +0200
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LQAXJCI3ODGGP5WDH6PX2LCHOBK3QXUC/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RQ5ZW5RNFQ5Q4PHCKXU4PB35BPQ6XMVP/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -121,48 +130,165 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: E47E44A3824
+X-Rspamd-Queue-Id: 2BB4F4B49D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.51 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,163.com,lists.open-mesh.org,simonwunderlich.de,lzu.edu.cn,neomailbox.ch,unstable.cc,davemloft.net,kernel.org,lunn.ch];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	R_SPF_NA(0.00)[no SPF record];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RBL_SEM_FAIL(0.00)[136.243.236.17:query timed out];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-0.792];
+	DMARC_NA(0.00)[lzu.edu.cn];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[n05ec@lzu.edu.cn,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	R_DKIM_NA(0.00)[];
+	FREEMAIL_CC(0.00)[mailbox.org,simonwunderlich.de,mandelbit.com,narfation.org,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,lzu.edu.cn];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	TO_DN_NONE(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	R_SPF_NA(0.00)[no SPF record]
 
-On Thu, Apr 30, 2026 at 09:40:34AM +0200, Sven Eckelmann wrote:
->On Thursday, 30 April 2026 09:38:05 CEST Sven Eckelmann wrote:
->> Sasha Levin <sashal@kernel.org> picked it up for 5.15.y (on Sun, 19 Apr 2026
->> 21:13:58 -0400, MsgId 20260419195610.batman-adv-5.15@kernel.org).
->> Yes, it was not yet published or 5.15 - so maybe fell through the cracks.
->
->https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git/commit/?h=queue/5.15&id=6fd37208adf6771125b59e1ae0452561024be4e2
+From: Jiexun Wang <wangjiexun2025@gmail.com>
 
-Yup, it's still in the queue.
+BAT IV keeps the last-hop neighbor address in each neigh_node, but some
+paths also cache an originator pointer derived from a temporary lookup.
+That pointer is not owned by the neigh_node and may no longer refer to a
+live originator entry after purge handling runs.
 
+Stop storing the auxiliary originator pointer in the BAT IV neighbor
+state. When BAT IV needs the neighbor originator data, resolve it from
+the stored neighbor address and drop the reference again after use.
+
+Fixes: c6c8fea29769 ("net: Add batman-adv meshing protocol")
+Cc: stable@kernel.org
+Reported-by: Yuan Tan <yuantan098@gmail.com>
+Reported-by: Yifan Wu <yifanwucs@gmail.com>
+Reported-by: Juefei Pu <tomapufckgml@gmail.com>
+Reported-by: Xin Liu <bird@lzu.edu.cn>
+Signed-off-by: Jiexun Wang <wangjiexun2025@gmail.com>
+Signed-off-by: Ren Wei <n05ec@lzu.edu.cn>
+---
+ net/batman-adv/bat_iv_ogm.c | 56 +++++++++++++++++++++----------------
+ 1 file changed, 32 insertions(+), 24 deletions(-)
+
+diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
+index f28e9cbf8ad5..168b413dd18b 100644
+--- a/net/batman-adv/bat_iv_ogm.c
++++ b/net/batman-adv/bat_iv_ogm.c
+@@ -173,19 +173,12 @@ batadv_iv_ogm_orig_get(struct batadv_priv *bat_priv, const u8 *addr)
+ static struct batadv_neigh_node *
+ batadv_iv_ogm_neigh_new(struct batadv_hard_iface *hard_iface,
+ 			const u8 *neigh_addr,
+-			struct batadv_orig_node *orig_node,
+-			struct batadv_orig_node *orig_neigh)
++			struct batadv_orig_node *orig_node)
+ {
+ 	struct batadv_neigh_node *neigh_node;
+ 
+ 	neigh_node = batadv_neigh_node_get_or_create(orig_node,
+ 						     hard_iface, neigh_addr);
+-	if (!neigh_node)
+-		goto out;
+-
+-	neigh_node->orig_node = orig_neigh;
+-
+-out:
+ 	return neigh_node;
+ }
+ 
+@@ -906,6 +899,31 @@ static u8 batadv_iv_orig_ifinfo_sum(struct batadv_orig_node *orig_node,
+ 	return sum;
+ }
+ 
++/**
++ * batadv_iv_ogm_neigh_ifinfo_sum() - Get bcast_own sum for a last-hop neighbor
++ * @bat_priv: the bat priv with all the mesh interface information
++ * @neigh_node: last-hop neighbor of an originator
++ *
++ * Return: Number of replied (rebroadcasted) OGMs for the originator currently
++ * announced by the neighbor. Returns 0 if the neighbor's originator entry is
++ * not available anymore.
++ */
++static u8 batadv_iv_ogm_neigh_ifinfo_sum(struct batadv_priv *bat_priv,
++					 const struct batadv_neigh_node *neigh_node)
++{
++	struct batadv_orig_node *orig_neigh;
++	u8 sum;
++
++	orig_neigh = batadv_orig_hash_find(bat_priv, neigh_node->addr);
++	if (!orig_neigh)
++		return 0;
++
++	sum = batadv_iv_orig_ifinfo_sum(orig_neigh, neigh_node->if_incoming);
++	batadv_orig_node_put(orig_neigh);
++
++	return sum;
++}
++
+ /**
+  * batadv_iv_ogm_orig_update() - use OGM to update corresponding data in an
+  *  originator
+@@ -975,17 +993,9 @@ batadv_iv_ogm_orig_update(struct batadv_priv *bat_priv,
+ 	}
+ 
+ 	if (!neigh_node) {
+-		struct batadv_orig_node *orig_tmp;
+-
+-		orig_tmp = batadv_iv_ogm_orig_get(bat_priv, ethhdr->h_source);
+-		if (!orig_tmp)
+-			goto unlock;
+-
+ 		neigh_node = batadv_iv_ogm_neigh_new(if_incoming,
+ 						     ethhdr->h_source,
+-						     orig_node, orig_tmp);
+-
+-		batadv_orig_node_put(orig_tmp);
++						     orig_node);
+ 		if (!neigh_node)
+ 			goto unlock;
+ 	} else {
+@@ -1037,10 +1047,9 @@ batadv_iv_ogm_orig_update(struct batadv_priv *bat_priv,
+ 	 */
+ 	if (router_ifinfo &&
+ 	    neigh_ifinfo->bat_iv.tq_avg == router_ifinfo->bat_iv.tq_avg) {
+-		sum_orig = batadv_iv_orig_ifinfo_sum(router->orig_node,
+-						     router->if_incoming);
+-		sum_neigh = batadv_iv_orig_ifinfo_sum(neigh_node->orig_node,
+-						      neigh_node->if_incoming);
++		sum_orig = batadv_iv_ogm_neigh_ifinfo_sum(bat_priv, router);
++		sum_neigh = batadv_iv_ogm_neigh_ifinfo_sum(bat_priv,
++							   neigh_node);
+ 		if (sum_orig >= sum_neigh)
+ 			goto out;
+ 	}
+@@ -1106,7 +1115,6 @@ static bool batadv_iv_ogm_calc_tq(struct batadv_orig_node *orig_node,
+ 	if (!neigh_node)
+ 		neigh_node = batadv_iv_ogm_neigh_new(if_incoming,
+ 						     orig_neigh_node->orig,
+-						     orig_neigh_node,
+ 						     orig_neigh_node);
+ 
+ 	if (!neigh_node)
+@@ -1372,8 +1380,8 @@ batadv_iv_ogm_process_per_outif(const struct sk_buff *skb, int ogm_offset,
+ 
+ 	router = batadv_orig_router_get(orig_node, if_outgoing);
+ 	if (router) {
+-		router_router = batadv_orig_router_get(router->orig_node,
+-						       if_outgoing);
++		router_router = batadv_orig_to_router(bat_priv, router->addr,
++						      if_outgoing);
+ 		router_ifinfo = batadv_neigh_ifinfo_get(router, if_outgoing);
+ 	}
+ 
 -- 
-Thanks,
-Sasha
+2.34.1
+
