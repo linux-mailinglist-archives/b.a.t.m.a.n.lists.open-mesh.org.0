@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +L+4NNk/92k2dwIAu9opvQ
+	id cLOKOAZA92k2dwIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 14:30:17 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 14:31:02 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E944B5C2D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 14:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4704B5C52
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 14:31:02 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E535B85BE4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 14:30:16 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id EBA03802B2
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 03 May 2026 14:31:01 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1777811416;
- b=3XfkbTRyx6ETVxAY4GXbZoQ7OwtmFO+Tv7g8UqWNRdf/M+qFMNXPvVJmp/GgKdF3BgSOM
- Hg1VJdJV48c3UMyp54JzBnxPbrd43dUkIpsGkCkMBSdUa2l/Czaogsf9ZITI1gF+iUnHo2T
- K/2X5ZwmV5BWaj6nd8lz+TTzJYNX5rQ=
+ t=1777811461;
+ b=T1JKjoU9YqOBqVxrofiMyc/Fa9UQOVbFQp+cy7sjXfKHYIzoERQxYle/UIfc79kZNQIRV
+ MfEI5bHpNE8V+id2YUPiI+a71MOjBW0TRRGyZ8eAXuNdbpsZDUo3aFb0Pl8hsEoCErXvzxH
+ qQquQWNBXMLv/Zju0sp8iTAWS7MiPWE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1777811416; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1777811461; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=NU82pacaH/7nS3zsa5YdCbCT31Gr8zFCSqlWYU2hLoA=;
- b=1C18DEKSFORVm4qNVISkk0mtHinDIdfryrAUyapSOdJhmu4KUQwa4cT/0Fz/hHeqKBEnb
- 3oGcIdoS8fNdpofHXePnNnm0JXx3zS9XvgxXAmPmvPBOUXll8PqSeNf1nhXtvuUOHbm3IUK
- livSl5BsL/g75Pyn+oaltZybgxowQSw=
+ list-archive; bh=KhEbXNhkPfNvLqtNPlezsj4uw+CjuYhQZoIojUxX1vQ=;
+ b=1HmDTgsIlwtjKeQDrUl4qKi1VmjuhQUBjCfzweFswMHKscH9WxXUST73nauXsJ2FPwrdC
+ KJtVLUMkFnWXgltdF6SVQ0tgFRZ3KhYLHtjUmdNDoN0v8ddvxiQ3+kI1iHqt6oQpG9cN7BO
+ rs1Zki+0LcEe7OKe9qiAF9LYx8W6v+I=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -36,47 +36,48 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id CF3DF83D4C
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 03 May 2026 14:23:34 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1777811014;
-	b=VvOH8XuAM7FOujv4vua4BAvXb1kz7/lZJscfmZ3MseqFo5RSyswopGeTmtO37pupOC4EvE
-	FbGkILfAjvnoU7D2EY+6PwCVDpdn8Cv7gtdRKQGaKTWTB9dCiIt4qFmHUUFr/sWLZnZd61
-	rl8flecGz5/DzQzJaBWBG8PICvRfFxE=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id CA5E683D4C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 03 May 2026 14:23:45 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1777811025;
+	b=mPllSZuWdeqZ1RQI9oSkM4VAW7f60V+58w4YO13A2jaX/tz/MnwCtHrXNvqSAFy1S1jY9V
+	jKVONfgurCj/JH4ebDOw4+C12icYVkTGWLkSHlDPYBUFnUwYJ3mlbWy6PD0R3bA8c7sgDY
+	I8T/T/dR/cztm/pxpPcyGNiJu7N6oKc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=a0P767NB;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=SIiJoF+G;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1777811014;
+	s=20121; t=1777811025;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=NU82pacaH/7nS3zsa5YdCbCT31Gr8zFCSqlWYU2hLoA=;
-	b=oFf/sUPqkKBbOieIundETQwmitUYAiplpxVRxqDSFDKtKfI41IeK1v8pu7SvykZ8wK9Snw
-	xKM34cs2UgVvfenrNKQduvWTRf98sK7jwH7CenVR8GPdxMsfJ6sNYLKDhcR4dyzdLP40Qz
-	sh4ajWoSUGRD6gssCZaUPeREeP77sK8=
-Received: by dvalin.narfation.org (Postfix) id 87254218D1;
-	Sun, 03 May 2026 12:23:34 +0000 (UTC)
+	bh=KhEbXNhkPfNvLqtNPlezsj4uw+CjuYhQZoIojUxX1vQ=;
+	b=F2Cbq5AdJEKXnvt7atkZteNXd89B5aM3Jd8ijN+vkxk0cfIAu58VXKh9ztGe2KmmlVwgcM
+	VRlwFGBOdcdY6tHSWJF+i5BHYudfGmquwNG0kG6pqyxH550YPbjcXJAytfgce8bVX6qFz0
+	GuAB8yho/zFqK7zHW+DKithzgfynCPo=
+Received: by dvalin.narfation.org (Postfix) id 6A13D1FF1D;
+	Sun, 03 May 2026 12:23:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1777811014;
+	s=20121; t=1777811025;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=NU82pacaH/7nS3zsa5YdCbCT31Gr8zFCSqlWYU2hLoA=;
-	b=a0P767NBTkE9pKzFy+muqyG47jDDe6mf5qjkaVNytPv471KQS1VG8HqWJqvlE92G5hJkZf
-	aTZPZahoERrDqQHudqr4dXmyHtb/G5/zhZCErV4gYOUallQoRX5gzmtcIrEXbqJ2mTrgn+
-	uSxX3eF34g8lF+CsSS/PTDpiNzkowEA=
+	bh=KhEbXNhkPfNvLqtNPlezsj4uw+CjuYhQZoIojUxX1vQ=;
+	b=SIiJoF+GuOYBQBXDzSTj6QFlEeRy8CMj9C1U41hLFPkn2Cm64Ao0vE5Ii6d/IIvnestbuu
+	xWOfFqf2vXNwAS5TT76RFqXDHIiTJy2l0fe/g0aTd1WwItMnMMMljQGaaIWmjPOBJwj/SI
+	lJNbiawix4V7SGWUN3O1pRQOSd2PYAA=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 03 May 2026 14:22:40 +0200
-Subject: [PATCH batadv 7/8] batman-adv: tt: avoid empty VLAN responses
+Date: Sun, 03 May 2026 14:22:41 +0200
+Subject: [PATCH batadv 8/8] batman-adv: tt: prevent TVLV entry number
+ overflow
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260503-fixes-followup-v1-7-4313278918d3@narfation.org>
+Message-Id: <20260503-fixes-followup-v1-8-4313278918d3@narfation.org>
 References: <20260503-fixes-followup-v1-0-4313278918d3@narfation.org>
 In-Reply-To: <20260503-fixes-followup-v1-0-4313278918d3@narfation.org>
 To: Marek Lindner <marek.lindner@mailbox.org>,
@@ -94,12 +95,12 @@ Cc: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org,
  Yuan Tan <yuantan098@gmail.com>, Sven Eckelmann <sven@narfation.org>,
  stable@kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2790; i=sven@narfation.org;
- h=from:subject:message-id; bh=n6n5jwvCz38+o0+vFsAJCBUr18DFK/HTdcm7jn6fflQ=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDJnf7WTdUs3XVQpwhvsnhiy73HJDTjvl2If8pdJN01JYz
- qWLZFV2lLIwiHExyIopsuy5kn9+M/tb+c/TPh6FmcPKBDKEgYtTACYy5T7D/7RLSqkTT52xfdHu
- Iuj0saf8Qt366wsebZVlfhqmuf23FxfD/zjeKr26VRe2bNFuvbv5/rM7P5k3mxxcVqJe3utsyr/
- vKzsA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2180; i=sven@narfation.org;
+ h=from:subject:message-id; bh=og/KbJTzMBuS0M1D9ny3QC96ABI6fM7k015VpJIfs3c=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDJnf7WQ32n5Z//5qFfO5u7mOG/kcPN8kMnnqfeyeeuXin
+ JITywoedpSyMIhxMciKKbLsuZJ/fjP7W/nP0z4ehZnDygQyhIGLUwAm8ukNw39/tRAB9hurBKdP
+ mnH/wvObR9LOl94+1qm7L3eCue+Bb7dWMPyVUhO2X/dh+eVfxZ6L97wJ1Pd4fqrjw1ROa6bcaxf
+ VAiezAgA=
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
 X-MailFrom: sven@narfation.org
@@ -111,15 +112,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
  nonmember-moderation; administrivia; implicit-dest; max-size;
  news-moderation; no-subject; digests; suspicious-header
-Message-ID-Hash: DIBUA5ZOOOTKFDNXHMQ3G3C6T7H6KINR
-X-Message-ID-Hash: DIBUA5ZOOOTKFDNXHMQ3G3C6T7H6KINR
+Message-ID-Hash: IHKUIFVSLTZUXG34WJOB4OG6IKRE2U3W
+X-Message-ID-Hash: IHKUIFVSLTZUXG34WJOB4OG6IKRE2U3W
 X-Mailman-Approved-At: Sun, 03 May 2026 14:24:15 +0200
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DIBUA5ZOOOTKFDNXHMQ3G3C6T7H6KINR/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IHKUIFVSLTZUXG34WJOB4OG6IKRE2U3W/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -127,7 +128,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: 86E944B5C2D
+X-Rspamd-Queue-Id: 8A4704B5C52
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
@@ -156,83 +157,67 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,narfation.org:dkim,narfation.org:mid,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
 
-The commit 16116dac2339 ("batman-adv: prevent TT request storms by not
-sending inconsistent TT TLVLs") added checks to the local (direct) TT
-response code. But the response can also be done indirectly by another node
-using the global TT state. To avoid such inconsistency states reported in
-the original fix, also avoid sending empty VLANs for replies from the
-global TT state.
+The helpers to prepare the buffers for the local and global TT based
+replies are trying to sum up all TT entries which can be found for each
+VLAN. In theory, this sum can be too big for an u16 and therefore overflow.
+A too small buffer would then be allocated for the TVLV.
+
+The too small buffer will be handled gracefully by
+batadv_tt_tvlv_generate() and is not causing a buffer overflow - just a
+truncated reply. But this overflow shouldn't have happened in the first and
+the too small buffer should never have been allocated when an overflow was
+detected.
 
 Cc: stable@kernel.org
 Fixes: 7ea7b4a14275 ("batman-adv: make the TT CRC logic VLAN specific")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/translation-table.c | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+ net/batman-adv/translation-table.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-index f5b9143c803a..5a005d4e6cc6 100644
+index 5a005d4e6cc6..630ae8a66beb 100644
 --- a/net/batman-adv/translation-table.c
 +++ b/net/batman-adv/translation-table.c
-@@ -797,24 +797,26 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
- 				   s32 *tt_len)
- {
- 	u16 num_vlan = 0;
--	u16 num_entries = 0;
- 	u16 tvlv_len = 0;
- 	unsigned int change_offset;
- 	struct batadv_tvlv_tt_vlan_data *tt_vlan;
- 	struct batadv_orig_node_vlan *vlan;
-+	u16 total_entries = 0;
+@@ -804,11 +804,18 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
+ 	u16 total_entries = 0;
  	u8 *tt_change_ptr;
-+	int vlan_entries;
+ 	int vlan_entries;
++	u16 sum_entries;
  
  	spin_lock_bh(&orig_node->vlan_list_lock);
  	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
-+		vlan_entries = atomic_read(&vlan->tt.num_entries);
-+		total_entries += vlan_entries;
+ 		vlan_entries = atomic_read(&vlan->tt.num_entries);
+-		total_entries += vlan_entries;
++
++		if (check_add_overflow(vlan_entries, total_entries, &sum_entries)) {
++			*tt_len = 0;
++			goto out;
++		}
++
++		total_entries = sum_entries;
  		num_vlan++;
--		num_entries += atomic_read(&vlan->tt.num_entries);
  	}
  
- 	change_offset = struct_size(*tt_data, vlan_data, num_vlan);
+@@ -896,11 +903,18 @@ batadv_tt_prepare_tvlv_local_data(struct batadv_priv *bat_priv,
+ 	u16 total_entries = 0;
+ 	u16 tvlv_len;
+ 	u8 *tt_change_ptr;
++	u16 sum_entries;
  
- 	/* if tt_len is negative, allocate the space needed by the full table */
- 	if (*tt_len < 0)
--		*tt_len = batadv_tt_len(num_entries);
-+		*tt_len = batadv_tt_len(total_entries);
- 
- 	if (change_offset > U16_MAX || *tt_len > U16_MAX - change_offset) {
- 		*tt_len = 0;
-@@ -832,17 +834,28 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
- 
- 	(*tt_data)->flags = BATADV_NO_FLAGS;
- 	(*tt_data)->ttvn = atomic_read(&orig_node->last_ttvn);
--	(*tt_data)->num_vlan = htons(num_vlan);
- 
- 	tt_vlan = (*tt_data)->vlan_data;
-+	num_vlan = 0;
- 	hlist_for_each_entry(vlan, &orig_node->vlan_list, list) {
-+		vlan_entries = atomic_read(&vlan->tt.num_entries);
-+		if (vlan_entries < 1)
-+			continue;
+ 	spin_lock_bh(&bat_priv->meshif_vlan_list_lock);
+ 	hlist_for_each_entry(vlan, &bat_priv->meshif_vlan_list, list) {
+ 		vlan_entries = atomic_read(&vlan->tt.num_entries);
+-		total_entries += vlan_entries;
 +
- 		tt_vlan->vid = htons(vlan->vid);
- 		tt_vlan->crc = htonl(vlan->tt.crc);
- 		tt_vlan->reserved = 0;
- 
- 		tt_vlan++;
-+		num_vlan++;
++		if (check_add_overflow(vlan_entries, total_entries, &sum_entries)) {
++			tvlv_len = 0;
++			goto out;
++		}
++
++		total_entries = sum_entries;
+ 		num_vlan++;
  	}
- 
-+	/* recalculate in case number of VLANs reduced */
-+	change_offset = struct_size(*tt_data, vlan_data, num_vlan);
-+	tvlv_len = *tt_len + change_offset;
-+
-+	(*tt_data)->num_vlan = htons(num_vlan);
-+
- 	tt_change_ptr = (u8 *)*tt_data + change_offset;
- 	*tt_change = (struct batadv_tvlv_tt_change *)tt_change_ptr;
  
 
 -- 
