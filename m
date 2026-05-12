@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PUNOIuFA2ot6wEAu9opvQ
+	id mCcpEvaFA2ot6wEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 12 May 2026 21:54:51 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 12 May 2026 21:56:38 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D649528DD0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 12 May 2026 21:54:51 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDEBB528DEE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 12 May 2026 21:56:37 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4051885B4C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 12 May 2026 21:54:51 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C613B85AAF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 12 May 2026 21:56:37 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778615691;
- b=hr4MoDAUT4i6O9AZYw1NG22xZz3iEd6FTMpr74nP7ZOFljVOg6UjD5jusx5eSAb4joQ2c
- U82YI9Poi4F+c7UdC9gOWmXK/36s5dhVRp+1tQgwBKcE3WlLR2vFZRQWkdbsMhrtuKSi7fQ
- fFeY6TAklmN6U2sNeJR/COWfwASoiG4=
+ t=1778615797;
+ b=E4iBc//8VWt9l7XQz5HN8yx5CXURXFHl/T26dN8N8l6dG2A8o8zNmEeSGkbaAuOz+ihk9
+ +njbVgUaWL0ww26QqeYK23ee1cZXbqWXnQ0FubNBJc2Vt9CUl+hrZ2Ikw4ffEih0X0h+SKh
+ 2j0nW4BkE15ZRBdzNMunioiMPvlGWUY=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778615691; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778615797; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=vf17YTn+8gGdkTOx+LgjEiptUXnmXq8vWVHtq4Cq8oc=;
- b=CX0OQIw2Th3qOOUUBqHIGOkkt2lc75xlatcG/s9eZrcEaZKamrlw7pzpkfuNzJg6tjduJ
- e/zrHtXH0OlIvx0ypIMEAyDJK9rvgZAQtnVTLQCseR7tneysuYA3H+7ZwgRgqx78Y3CslYK
- 051mhGXvVB6fL9PfZ/z1C+d0YCS+0jc=
+ list-archive; bh=+giaqe5++ow2Z1T0By/IZaxNco507d3RABla6eoitqE=;
+ b=InXySgXj1ru0j0SKqLCIKIL8k5QQ8DY/p6cZmSh8aP/ffdicjxwzMQzwsn2MJTH9RE9JW
+ bwsIRUW4FZ5LXfExz5BuCgnbUYE2G9fUsgfKlJv3zrno4zYUbfIpHZLrEM6u6xtgU3Tyoim
+ n1/Ng/sR/Z8dvyYlwuKp7bgDgM7Txv8=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -37,63 +37,63 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id CED4785594
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 12 May 2026 21:53:33 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 632EA85959
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 12 May 2026 21:53:36 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778615613;
+	s=20121; t=1778615616;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=vf17YTn+8gGdkTOx+LgjEiptUXnmXq8vWVHtq4Cq8oc=;
-	b=rCYvcxvO/sNOsh0HE6YpWOhq7Id/IQqAbI28ym1emcmsrbYEuSp99NaDxuZvIdfRtYaTX1
-	n6stC68JOBzC57l4OPqcA6KBSUwpVUTVVq7nP/oPNx6W4D7PS4cRbHBVQc6JThxSKzNdeU
-	Xd3ipUkjtnwTSquqvjAentcyp3lhRmY=
+	bh=+giaqe5++ow2Z1T0By/IZaxNco507d3RABla6eoitqE=;
+	b=d/MblolvJY7XEjgVF2LCqH2EU28cNx9QygSXsRiW37gBaJa5qA6BIs1MsMWRpmHgclmRbu
+	bcDLe70eeFbIsuIVw2pPRMHZ5BRXm7yrkxH+l56V2M+03D+LOrz2rW4MRTKNFajZWi6p+i
+	OPq4c0S9SD7UgCXhJdn6I+cuBJRKexo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=kXnc8Axj;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="mTRbZeR/";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778615613;
-	b=2ebvnW0kEDyBPhDyHaBYEEtAiCDACzYy6yAmlYaHOGGL7mKM+WPtvx6gkwvpgeOpqo5zrm
-	jb0BfzBXHP3HFLS1xqAkwHl5h6qF/45s7BaWBhoDEejlg668GCDDIgivvF255uZTA3YSLt
-	NiW7a3mcLQIrYpgoZhtxh6LnEU8LnHA=
-Received: by dvalin.narfation.org (Postfix) id 79B54217E2;
-	Tue, 12 May 2026 19:53:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778615616;
+	b=ogNZsMqgZRqoITE9fCi7lKyQx/OXVUUEzWVlVA3R689ZN8ov0xYxvSEZdgsRTj32xNlzf2
+	UYCuzWujYMCX4owg2/EjWulCBT+/Wnlqpa3M2cSv8MXmqJTC98K0aGu/8+JdIVXfcln26a
+	aNhAv8pvLAyujYKndiQKolN08sJmqok=
+Received: by dvalin.narfation.org (Postfix) id BFD2B1FE70;
+	Tue, 12 May 2026 19:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778615613;
+	s=20121; t=1778615615;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=vf17YTn+8gGdkTOx+LgjEiptUXnmXq8vWVHtq4Cq8oc=;
-	b=kXnc8AxjtMVJRb7waHpYdiCVg6XfbslruKNIJl3R3dns0P1P27ui/43OBopFDL70y6UGDB
-	wA7n6+sskfs3jihjr+XHoC4P0+M6Md9JM5GWhBw3iMp9HpEigBUUTFSBqpGu4TA79ALL08
-	UjUmpGc54mEM7Eix1stttooRzdMPr9o=
+	bh=+giaqe5++ow2Z1T0By/IZaxNco507d3RABla6eoitqE=;
+	b=mTRbZeR/xq+zI4sPCIjIcqgJueqhJ/O9cnDiRbhmy89w7zyORTSmbIfPsduGADugoMvWqf
+	kQy7h9wEGzLeMLKUc/TGou2phiLWDNRxU7qrfmnIInk5GkzealdJJdjPEi9jiaSD5vlqn4
+	PL1m51kcKyJl77g3oftm5GEpehGzt6w=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 12 May 2026 21:53:07 +0200
-Subject: [PATCH batadv 2/7] batman-adv: replace non-atomic hardif config
+Date: Tue, 12 May 2026 21:53:08 +0200
+Subject: [PATCH batadv 3/7] batman-adv: replace non-atomic vlan config
  fields with (READ|WRITE)_ONCE
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260512-atomic-to-write-once-v1-2-76a4272fac0d@narfation.org>
+Message-Id: <20260512-atomic-to-write-once-v1-3-76a4272fac0d@narfation.org>
 References: <20260512-atomic-to-write-once-v1-0-76a4272fac0d@narfation.org>
 In-Reply-To: <20260512-atomic-to-write-once-v1-0-76a4272fac0d@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8032; i=sven@narfation.org;
- h=from:subject:message-id; bh=RRNw9I8ErFKJgWv73VD/R314INaYNHfyE37Uj5Alywo=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnMrcoKAcG3vgXaLv/1tWZd76OjymcUq7dZP513RqpsW
- 8j9XNfWjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE/s5h+B++uiiAwWAzd+dG
- W68L3OyOL9lfuGx/HntB8fWT2zujL4oyMqwt7VOcf8Ks87ui6fR7j7dLF5y4vNKrjMFti9g5hm1
- aNUwA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4018; i=sven@narfation.org;
+ h=from:subject:message-id; bh=PMQbXGVPa1PQNvFWi0k66BUmbCrpQVX0XubwVgox6Nk=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnMrcrrZ8remPbtv7XMBm+2vJ9BExrrfBKuHCre2BDPt
+ G7rrGMbO0pZGMS4GGTFFFn2XMk/v5n9rfznaR+PwsxhZQIZwsDFKQATecDO8M+sbdrtJfp3rsgv
+ udBt72PkkML04ki3RrHtbfYVf8OfesxgZNjbwyBZPGO3tEV7cFTwsbkr5rTaB9XrictoPesvaH+
+ 8iQUA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: Q4DLTEWLATXMZVT6AJ35YPY6GI3JLJMA
-X-Message-ID-Hash: Q4DLTEWLATXMZVT6AJ35YPY6GI3JLJMA
+Message-ID-Hash: BI6RUP743BQGXRFIZLTMZYMHDCVFTERC
+X-Message-ID-Hash: BI6RUP743BQGXRFIZLTMZYMHDCVFTERC
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/Q4DLTEWLATXMZVT6AJ35YPY6GI3JLJMA/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BI6RUP743BQGXRFIZLTMZYMHDCVFTERC/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -115,7 +115,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: 7D649528DD0
+X-Rspamd-Queue-Id: EDEBB528DEE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
@@ -126,7 +126,7 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -136,214 +136,119 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,narfation.org:mid,narfation.org:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	RCPT_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[narfation.org:+]
 X-Rspamd-Action: no action
 
-The hardif configuration values are only accessed as plain loads/stores and
+The vlan configuration values are only accessed as plain loads/stores and
 do not require full atomic_t semantics. Convert these fields to native
 integer types and replace their users with READ_ONCE()/WRITE_ONCE() to
 avoid load/store tearing.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/bat_iv_ogm.c     |  2 +-
- net/batman-adv/bat_v.c          |  5 ++---
- net/batman-adv/bat_v_elp.c      |  7 ++++---
- net/batman-adv/bat_v_ogm.c      |  6 +++---
- net/batman-adv/hard-interface.c |  2 +-
- net/batman-adv/netlink.c        | 12 ++++++------
- net/batman-adv/types.h          |  6 +++---
- 7 files changed, 20 insertions(+), 20 deletions(-)
+ net/batman-adv/main.c              | 2 +-
+ net/batman-adv/mesh-interface.c    | 2 +-
+ net/batman-adv/netlink.c           | 8 ++++----
+ net/batman-adv/translation-table.c | 2 +-
+ net/batman-adv/types.h             | 2 +-
+ 5 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 06cecc32..c7751e0a 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -1172,7 +1172,7 @@ static bool batadv_iv_ogm_calc_tq(struct batadv_orig_node *orig_node,
- 	inv_asym_penalty = BATADV_TQ_MAX_VALUE * neigh_rq_inv_cube;
- 	inv_asym_penalty /= neigh_rq_max_cube;
- 	tq_asym_penalty = BATADV_TQ_MAX_VALUE - inv_asym_penalty;
--	tq_iface_hop_penalty -= atomic_read(&if_incoming->hop_penalty);
-+	tq_iface_hop_penalty -= READ_ONCE(if_incoming->hop_penalty);
- 
- 	/* penalize if the OGM is forwarded on the same interface. WiFi
- 	 * interfaces and other half duplex devices suffer from throughput
-diff --git a/net/batman-adv/bat_v.c b/net/batman-adv/bat_v.c
-index 492058a8..ac2932da 100644
---- a/net/batman-adv/bat_v.c
-+++ b/net/batman-adv/bat_v.c
-@@ -7,7 +7,6 @@
- #include "bat_v.h"
- #include "main.h"
- 
--#include <linux/atomic.h>
- #include <linux/cache.h>
- #include <linux/compiler.h>
- #include <linux/errno.h>
-@@ -813,8 +812,8 @@ void batadv_v_hardif_init(struct batadv_hard_iface *hard_iface)
- 	/* enable link throughput auto-detection by setting the throughput
- 	 * override to zero
+diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
+index a4d33ee0..4ee2b14d 100644
+--- a/net/batman-adv/main.c
++++ b/net/batman-adv/main.c
+@@ -614,7 +614,7 @@ bool batadv_vlan_ap_isola_get(struct batadv_priv *bat_priv, unsigned short vid)
  	 */
--	atomic_set(&hard_iface->bat_v.throughput_override, 0);
--	atomic_set(&hard_iface->bat_v.elp_interval, 500);
-+	WRITE_ONCE(hard_iface->bat_v.throughput_override, 0);
-+	WRITE_ONCE(hard_iface->bat_v.elp_interval, 500);
+ 	vlan = batadv_meshif_vlan_get(bat_priv, vid);
+ 	if (vlan) {
+-		ap_isolation_enabled = atomic_read(&vlan->ap_isolation);
++		ap_isolation_enabled = READ_ONCE(vlan->ap_isolation);
+ 		batadv_meshif_vlan_put(vlan);
+ 	}
  
- 	hard_iface->bat_v.aggr_len = 0;
- 	skb_queue_head_init(&hard_iface->bat_v.aggr_list);
-diff --git a/net/batman-adv/bat_v_elp.c b/net/batman-adv/bat_v_elp.c
-index fdc2abe9..075a58dd 100644
---- a/net/batman-adv/bat_v_elp.c
-+++ b/net/batman-adv/bat_v_elp.c
-@@ -10,6 +10,7 @@
- #include <linux/atomic.h>
- #include <linux/bitops.h>
- #include <linux/byteorder/generic.h>
-+#include <linux/compiler.h>
- #include <linux/container_of.h>
- #include <linux/errno.h>
- #include <linux/etherdevice.h>
-@@ -62,7 +63,7 @@ static void batadv_v_elp_start_timer(struct batadv_hard_iface *hard_iface)
- {
- 	unsigned int msecs;
+diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
+index d1f50b8b..0e63fad0 100644
+--- a/net/batman-adv/mesh-interface.c
++++ b/net/batman-adv/mesh-interface.c
+@@ -565,7 +565,7 @@ int batadv_meshif_create_vlan(struct batadv_priv *bat_priv, unsigned short vid)
+ 	vlan->vid = vid;
+ 	kref_init(&vlan->refcount);
  
--	msecs = atomic_read(&hard_iface->bat_v.elp_interval) - BATADV_JITTER;
-+	msecs = READ_ONCE(hard_iface->bat_v.elp_interval) - BATADV_JITTER;
- 	msecs += get_random_u32_below(2 * BATADV_JITTER);
+-	atomic_set(&vlan->ap_isolation, 0);
++	WRITE_ONCE(vlan->ap_isolation, 0);
  
- 	queue_delayed_work(batadv_event_workqueue, &hard_iface->bat_v.elp_wq,
-@@ -97,7 +98,7 @@ static bool batadv_v_elp_get_throughput(struct batadv_hardif_neigh_node *neigh,
- 	/* if the user specified a customised value for this interface, then
- 	 * return it directly
- 	 */
--	throughput =  atomic_read(&hard_iface->bat_v.throughput_override);
-+	throughput =  READ_ONCE(hard_iface->bat_v.throughput_override);
- 	if (throughput != 0) {
- 		*pthroughput = throughput;
- 		return true;
-@@ -322,7 +323,7 @@ static void batadv_v_elp_periodic_work(struct work_struct *work)
- 
- 	elp_packet = (struct batadv_elp_packet *)skb->data;
- 	elp_packet->seqno = htonl(atomic_read(&hard_iface->bat_v.elp_seqno));
--	elp_interval = atomic_read(&hard_iface->bat_v.elp_interval);
-+	elp_interval = READ_ONCE(hard_iface->bat_v.elp_interval);
- 	elp_packet->elp_interval = htonl(elp_interval);
- 
- 	batadv_dbg(BATADV_DBG_BATMAN, bat_priv,
-diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
-index 4c637e00..1326a166 100644
---- a/net/batman-adv/bat_v_ogm.c
-+++ b/net/batman-adv/bat_v_ogm.c
-@@ -475,9 +475,9 @@ static u32 batadv_v_forward_penalty(struct batadv_priv *bat_priv,
- 				    struct batadv_hard_iface *if_outgoing,
- 				    u32 throughput)
- {
--	int if_hop_penalty = atomic_read(&if_incoming->hop_penalty);
--	int hop_penalty = READ_ONCE(bat_priv->hop_penalty);
--	int hop_penalty_max = BATADV_TQ_MAX_VALUE;
-+	u32 if_hop_penalty = READ_ONCE(if_incoming->hop_penalty);
-+	u32 hop_penalty = READ_ONCE(bat_priv->hop_penalty);
-+	u32 hop_penalty_max = BATADV_TQ_MAX_VALUE;
- 
- 	/* Apply per hardif hop penalty */
- 	throughput = throughput * (hop_penalty_max - if_hop_penalty) /
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 389be6f8..fb90779d 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -894,7 +894,7 @@ batadv_hardif_add_interface(struct net_device *net_dev)
- 	if (batadv_is_wifi_hardif(hard_iface))
- 		hard_iface->num_bcasts = BATADV_NUM_BCASTS_WIRELESS;
- 
--	atomic_set(&hard_iface->hop_penalty, 0);
-+	WRITE_ONCE(hard_iface->hop_penalty, 0);
- 
- 	batadv_v_hardif_init(hard_iface);
- 
+ 	kref_get(&vlan->refcount);
+ 	hlist_add_head_rcu(&vlan->list, &bat_priv->meshif_vlan_list);
 diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index dcf06536..64e26313 100644
+index 64e26313..711746c5 100644
 --- a/net/batman-adv/netlink.c
 +++ b/net/batman-adv/netlink.c
-@@ -810,16 +810,16 @@ static int batadv_netlink_hardif_fill(struct sk_buff *msg,
- 	}
+@@ -180,7 +180,7 @@ static int batadv_netlink_mesh_fill_ap_isolation(struct sk_buff *msg,
+ 	if (!vlan)
+ 		return 0;
  
- 	if (nla_put_u8(msg, BATADV_ATTR_HOP_PENALTY,
--		       atomic_read(&hard_iface->hop_penalty)))
-+		       READ_ONCE(hard_iface->hop_penalty)))
+-	ap_isolation = atomic_read(&vlan->ap_isolation);
++	ap_isolation = READ_ONCE(vlan->ap_isolation);
+ 	batadv_meshif_vlan_put(vlan);
+ 
+ 	return nla_put_u8(msg, BATADV_ATTR_AP_ISOLATION_ENABLED,
+@@ -203,7 +203,7 @@ static int batadv_netlink_set_mesh_ap_isolation(struct nlattr *attr,
+ 	if (!vlan)
+ 		return -ENOENT;
+ 
+-	atomic_set(&vlan->ap_isolation, !!nla_get_u8(attr));
++	WRITE_ONCE(vlan->ap_isolation, !!nla_get_u8(attr));
+ 	batadv_meshif_vlan_put(vlan);
+ 
+ 	return 0;
+@@ -1021,7 +1021,7 @@ static int batadv_netlink_vlan_fill(struct sk_buff *msg,
  		goto nla_put_failure;
  
- #ifdef CONFIG_BATMAN_ADV_BATMAN_V
- 	if (nla_put_u32(msg, BATADV_ATTR_ELP_INTERVAL,
--			atomic_read(&hard_iface->bat_v.elp_interval)))
-+			READ_ONCE(hard_iface->bat_v.elp_interval)))
+ 	if (nla_put_u8(msg, BATADV_ATTR_AP_ISOLATION_ENABLED,
+-		       !!atomic_read(&vlan->ap_isolation)))
++		       !!READ_ONCE(vlan->ap_isolation)))
  		goto nla_put_failure;
  
- 	if (nla_put_u32(msg, BATADV_ATTR_THROUGHPUT_OVERRIDE,
--			atomic_read(&hard_iface->bat_v.throughput_override)))
-+			READ_ONCE(hard_iface->bat_v.throughput_override)))
- 		goto nla_put_failure;
- #endif /* CONFIG_BATMAN_ADV_BATMAN_V */
+ 	genlmsg_end(msg, hdr);
+@@ -1109,7 +1109,7 @@ static int batadv_netlink_set_vlan(struct sk_buff *skb, struct genl_info *info)
+ 	if (info->attrs[BATADV_ATTR_AP_ISOLATION_ENABLED]) {
+ 		attr = info->attrs[BATADV_ATTR_AP_ISOLATION_ENABLED];
  
-@@ -912,7 +912,7 @@ static int batadv_netlink_set_hardif(struct sk_buff *skb,
- 	if (info->attrs[BATADV_ATTR_HOP_PENALTY]) {
- 		attr = info->attrs[BATADV_ATTR_HOP_PENALTY];
- 
--		atomic_set(&hard_iface->hop_penalty, nla_get_u8(attr));
-+		WRITE_ONCE(hard_iface->hop_penalty, nla_get_u8(attr));
+-		atomic_set(&vlan->ap_isolation, !!nla_get_u8(attr));
++		WRITE_ONCE(vlan->ap_isolation, !!nla_get_u8(attr));
  	}
  
- #ifdef CONFIG_BATMAN_ADV_BATMAN_V
-@@ -920,13 +920,13 @@ static int batadv_netlink_set_hardif(struct sk_buff *skb,
- 	if (info->attrs[BATADV_ATTR_ELP_INTERVAL]) {
- 		attr = info->attrs[BATADV_ATTR_ELP_INTERVAL];
+ 	batadv_netlink_notify_vlan(bat_priv, vlan);
+diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
+index 8bfb2fd2..7df5490d 100644
+--- a/net/batman-adv/translation-table.c
++++ b/net/batman-adv/translation-table.c
+@@ -3767,7 +3767,7 @@ bool batadv_is_ap_isolated(struct batadv_priv *bat_priv, u8 *src, u8 *dst,
+ 	if (!vlan)
+ 		return false;
  
--		atomic_set(&hard_iface->bat_v.elp_interval, nla_get_u32(attr));
-+		WRITE_ONCE(hard_iface->bat_v.elp_interval, nla_get_u32(attr));
- 	}
+-	if (!atomic_read(&vlan->ap_isolation))
++	if (!READ_ONCE(vlan->ap_isolation))
+ 		goto vlan_put;
  
- 	if (info->attrs[BATADV_ATTR_THROUGHPUT_OVERRIDE]) {
- 		attr = info->attrs[BATADV_ATTR_THROUGHPUT_OVERRIDE];
- 
--		atomic_set(&hard_iface->bat_v.throughput_override,
-+		WRITE_ONCE(hard_iface->bat_v.throughput_override,
- 			   nla_get_u32(attr));
- 	}
- #endif /* CONFIG_BATMAN_ADV_BATMAN_V */
+ 	tt_local_entry = batadv_tt_local_hash_find(bat_priv, dst, vid);
 diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index cf354f2c..0f861152 100644
+index 0f861152..d4437dd7 100644
 --- a/net/batman-adv/types.h
 +++ b/net/batman-adv/types.h
-@@ -110,7 +110,7 @@ enum batadv_v_hard_iface_flags {
-  */
- struct batadv_hard_iface_bat_v {
- 	/** @elp_interval: time interval between two ELP transmissions */
--	atomic_t elp_interval;
-+	u32 elp_interval;
+@@ -1432,7 +1432,7 @@ struct batadv_meshif_vlan {
+ 	unsigned short vid;
  
- 	/** @elp_seqno: current ELP sequence number */
- 	atomic_t elp_seqno;
-@@ -134,7 +134,7 @@ struct batadv_hard_iface_bat_v {
- 	 * @throughput_override: throughput override to disable link
- 	 *  auto-detection
- 	 */
--	atomic_t throughput_override;
-+	u32 throughput_override;
+ 	/** @ap_isolation: AP isolation state */
+-	atomic_t ap_isolation;		/* boolean */
++	u8 ap_isolation;		/* boolean */
  
- 	/** @flags: interface specific flags */
- 	u8 flags;
-@@ -215,7 +215,7 @@ struct batadv_hard_iface {
- 	 * @hop_penalty: penalty which will be applied to the tq-field
- 	 * of an OGM received via this interface
- 	 */
--	atomic_t hop_penalty;
-+	u8 hop_penalty;
- 
- 	/** @bat_iv: per hard-interface B.A.T.M.A.N. IV data */
- 	struct batadv_hard_iface_bat_iv bat_iv;
+ 	/** @tt: TT private attributes (VLAN specific) */
+ 	struct batadv_vlan_tt tt;
 
 -- 
 2.47.3
