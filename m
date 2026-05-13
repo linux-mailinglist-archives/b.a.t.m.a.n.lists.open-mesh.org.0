@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oAubCcwiBGoZEwIAu9opvQ
+	id kLZ+CCYjBGoZEwIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 13 May 2026 09:05:48 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 13 May 2026 09:07:18 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AEB52E69A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 13 May 2026 09:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC69952E6BF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 13 May 2026 09:07:17 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 20E6785D78
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 13 May 2026 09:05:47 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 92CC485D3D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 13 May 2026 09:07:17 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778655947;
- b=DiYjPYkpcPjOTo3OowswxNSDivjJX0+KE/vxzIdvV/69KlHZPplKFHO7jFrE5Ty40EBvd
- h18VgqBGBNBl/d1gCshzlfioJTWFL9j13m1A+K7z/ZxBA868pKgMtwTQ7BqUtVqN84/tU4Y
- IL7dAlv1/shw4N6NXmCAdhQqIfZgxaM=
+ t=1778656037;
+ b=zmdZfkg5z7IuiMWNI+jPkibruIM/Mla5Ux3Bkjitbf7/GWUEjXES06OyWGNNPgXbBP28e
+ xYzsuHMMfrUYwyRr6kwqrLlQ7a9r84SV60n06p0sh/Si6jQXcuBixNbnfrHSEJ5OCS7Vien
+ TFOBk7M/uthSys/EMjzuD72XTaYQtys=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778655947; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778656037; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=7FhV8uYtLVrXqEWgikmmFJfbLqQL/Kx0Whl/yCouyps=;
- b=paSKT5vMzfbFbKaM0d3wB6rDjNbVb2o4GjlJXWS23XXwPebILhE+WhUIzsmHePXrq2P87
- Syqg+c1prwpQB/4QLc39LkYm2/3rZyvVr8tYFFMpaD+4+6Vi7ohlqGQzxXmX5paADGz2KzG
- nLJN8oxFn/YI2Fo2Ypwtju5AemSelvc=
+ list-archive; bh=mSZ5FtZXaDt1vSwqM5N6nlV4bkzcivJ3Y0aiVtQE+G0=;
+ b=F7Ao8oKX+9/04e17bHTtrjLXE4D1FgEVUcwuvdH4Uv0KMu/3SvJxUraigChOlihxOQl4v
+ XNYLWn8Xe32THqrg0X2lJVmGru9fZl8VAcc+Mf5WwGAELsPWwOstawtxqJT1FZY1Yp9/hKp
+ keek010WnslK1zfVOX2TRh7tincxx94=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -37,48 +37,48 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 1B99E848AE
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 13 May 2026 09:01:50 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 634B8823C1
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 13 May 2026 09:01:52 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778655715;
+	s=20121; t=1778655717;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=7FhV8uYtLVrXqEWgikmmFJfbLqQL/Kx0Whl/yCouyps=;
-	b=RoorUtLcPpAvJRrR7wVN509IZ164n6oE1sbmMiPG1St8Wp1tcr+6E4lnIKZK+OIjPKgbVF
-	da+EpCnC4+dgFYODYZ43zx2pB6ORaKifNsQ8Ri3Ubx7fap1nMpukUVQWV/l6Vq6ljnahmU
-	GOh7f5egpqlZDqZVGiSvQhyxulqefJs=
+	bh=mSZ5FtZXaDt1vSwqM5N6nlV4bkzcivJ3Y0aiVtQE+G0=;
+	b=fkUfjpksf9NGTaiKDcfJnT0yD18awN1RlgVh5GMl97iyqPfj7Tv5Ea2L3P985JaNb5/MQi
+	ZIwi75Zw/dAY8bUDVsWO+wr8M8Y4Kd3hxL8knMKN/dRIHdkThNKSj8IWKV4ZdNsyRlHYnc
+	CtCWG3puMvXMZb7HhmpNF4p6DQzJX04=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=rqGcJyxb;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=CEpOvuFM;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778655715;
-	b=YCJOMxvPyU9nMBNX5EDTY/u8ZN3Rm7hhwYP/dbp05B7xf/HOahjkOC+/BD8iSkl7r+qZga
-	4Ytj8Ry//PmmoSkC8clV6sv6E5fTOOAaoyKor3/0wPCs4MwjzEtcqxXbn8xJ+5I8eOSDTD
-	pY7oaQHktsYBymZLm+ThA80ZYwxkTBA=
-Received: by dvalin.narfation.org (Postfix) id 5B10721CEA;
-	Wed, 13 May 2026 07:01:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778655717;
+	b=EQliEN2EZpWEO98w5rhCbIfGhSvwK86Lc0H+c4/u4SSgIDX6EylUIpWJDjKq6vmQHvytwE
+	E9I5xi+pH0+gH1i1OqhPTwcM36mYnI7rH0JeDap2OnIxn1am+sZyz/epl/KGhcEoomCbUM
+	m2wCJjpBzV0a35gJeq9wtY9VHAogQbE=
+Received: by dvalin.narfation.org (Postfix) id DF43A21D52;
+	Wed, 13 May 2026 07:01:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778655709;
+	s=20121; t=1778655712;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=7FhV8uYtLVrXqEWgikmmFJfbLqQL/Kx0Whl/yCouyps=;
-	b=rqGcJyxbwH4KXLimf6DcPBXWZ1rEEGYSDKt2w2HF2aV4Ho40Ou/IhPleg+dfUOCNYtyej0
-	Fs5+sL6hvc6GjsnwCiOjJl8hAQzQ6uj1s8g4PCTl09WxyrFpgn68+u7UGBFHKcwToIoFl+
-	S6ix3917evwWfivaQ+poBJO4JA9RpEM=
+	bh=mSZ5FtZXaDt1vSwqM5N6nlV4bkzcivJ3Y0aiVtQE+G0=;
+	b=CEpOvuFMLYPgpaXPM0zmchBwF3h0xaSuZ1sa+joAPjeIzXoTG2JY6OB5dOoyp5Y2kyDDUp
+	ySF4MUsIbOJcfcGMJDMXyWbwQT894Lq2v6ptRcieeKMYsfhMnzjvd2+bw8ZlD6hGvVt8YZ
+	dBr5RSTO292nPZGMAKvzZ9li7hQvFUo=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Wed, 13 May 2026 09:01:37 +0200
-Subject: [PATCH batadv v2 4/5] batman-adv: tvlv: reject oversized TVLV
- packets
+Date: Wed, 13 May 2026 09:01:38 +0200
+Subject: [PATCH batadv v2 5/5] batman-adv: v: stop OGMv2 on disabled
+ interface
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-yuantan098-bugfixes-v2-4-863e9caa2a57@narfation.org>
+Message-Id: <20260513-yuantan098-bugfixes-v2-5-863e9caa2a57@narfation.org>
 References: <20260513-yuantan098-bugfixes-v2-0-863e9caa2a57@narfation.org>
 In-Reply-To: <20260513-yuantan098-bugfixes-v2-0-863e9caa2a57@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
@@ -86,16 +86,16 @@ Cc: Yuan Tan <yuantan098@gmail.com>, Sven Eckelmann <sven@narfation.org>,
  stable@kernel.org, Yifan Wu <yifanwucs@gmail.com>,
  Juefei Pu <tomapufckgml@gmail.com>, Xin Liu <bird@lzu.edu.cn>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2681; i=sven@narfation.org;
- h=from:subject:message-id; bh=H7Xtp7N2xy/WtirGLVr8wODQBj7+vZVuhbFur9wkKuc=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFksihd0GP9USewyc+ngPnbyIkOfbdczJr3b0tVt/5VS/
- 9bPPbCso5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjARvQBGhlPRD553GDwIDp+r
- LP9TatJWCwHbYoP2VJkft0JqJpYfuMTI8PKO/I2yLQLnSt/uPlJzbWZUTmr7BYfZ00/6dr+4ee1
- WITMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5475; i=sven@narfation.org;
+ h=from:subject:message-id; bh=t0kbwbeiJCFm+xaCc+exgTXtx/ZPvSGQxRxv1RB7tNM=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFksihfeBZ33VLL51+Nvdt43uT6zzKzt+IflmYLuVza0H
+ VEV+nWjo5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjARw1eMDD9+6Ty4PlnKpcdp
+ CvNSl4Bfik+a65LvHNlTcfZyGqf7rTsM/+OSX4hej9efL+zQdEZmX+rBa4amkV360l7JkaptZ44
+ kcQIA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 7XAUFJPPA7ENVNF4PTNFKHTUW5USH7SU
-X-Message-ID-Hash: 7XAUFJPPA7ENVNF4PTNFKHTUW5USH7SU
+Message-ID-Hash: LZRL37SKXWMS2IC5OKNV5ZI7EBH6THTG
+X-Message-ID-Hash: LZRL37SKXWMS2IC5OKNV5ZI7EBH6THTG
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7XAUFJPPA7ENVNF4PTNFKHTUW5USH7SU/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LZRL37SKXWMS2IC5OKNV5ZI7EBH6THTG/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -117,7 +117,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: C6AEB52E69A
+X-Rspamd-Queue-Id: BC69952E6BF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
@@ -143,77 +143,149 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:email,narfation.org:mid,narfation.org:dkim,lzu.edu.cn:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lzu.edu.cn:email,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:email,narfation.org:mid,narfation.org:dkim,aggr_wq.work:url]
 X-Rspamd-Action: no action
 
-batadv_tvlv_container_ogm_append() builds a TVLV packet section from
-the tvlv.container_list. The total size of this section is computed by
-batadv_tvlv_container_list_size(), which sums the sizes of all registered
-containers.
+When a batadv_hard_iface is disabled, its mesh_iface pointer is set to
+NULL. However, batadv_v_ogm_send_meshif() may still dispatch OGMs via
+batadv_v_ogm_queue_on_if() for interfaces that have since lost their
+mesh_iface association. This results in a NULL pointer dereference when
+batadv_v_ogm_queue_on_if() unconditionally calls netdev_priv() on the
+now NULL hard_iface->mesh_iface to retrieve the batadv_priv.
 
-The return type and accumulator in batadv_tvlv_container_list_size() were
-u16. If the accumulated size exceeds U16_MAX, the value wraps around,
-causing the subsequent allocation in batadv_tvlv_container_ogm_append()
-to be undersized. The memcpy-style copy that follows would then write
-beyond the end of the allocated buffer, corrupting kernel memory.
-
-Fix this by widening the return type of batadv_tvlv_container_list_size()
-to size_t. In batadv_tvlv_container_ogm_append(), check the computed length
-against U16_MAX before proceeding, and bail out as if the allocation had
-failed when the limit is exceeded.
+It is necessary to ensure that the batadv_v_ogm_queue_on_if() checks that
+it is using the same mesh_iface for which batadv_v_ogm_send_meshif() was
+called.
 
 Cc: stable@kernel.org
-Fixes: ef26157747d4 ("batman-adv: tvlv - basic infrastructure")
+Fixes: 0da0035942d4 ("batman-adv: OGMv2 - add basic infrastructure")
 Reported-by: Yuan Tan <yuantan098@gmail.com>
 Reported-by: Yifan Wu <yifanwucs@gmail.com>
 Reported-by: Juefei Pu <tomapufckgml@gmail.com>
 Reported-by: Xin Liu <bird@lzu.edu.cn>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/tvlv.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ net/batman-adv/bat_v_ogm.c | 39 +++++++++++++++++++++++++++------------
+ 1 file changed, 27 insertions(+), 12 deletions(-)
 
-diff --git a/net/batman-adv/tvlv.c b/net/batman-adv/tvlv.c
-index 8129a3f9..4e2a9ec7 100644
---- a/net/batman-adv/tvlv.c
-+++ b/net/batman-adv/tvlv.c
-@@ -12,6 +12,7 @@
- #include <linux/gfp.h>
- #include <linux/if_ether.h>
- #include <linux/kref.h>
-+#include <linux/limits.h>
- #include <linux/list.h>
- #include <linux/lockdep.h>
- #include <linux/netdevice.h>
-@@ -159,10 +160,10 @@ batadv_tvlv_container_get(struct batadv_priv *bat_priv, u8 type, u8 version)
-  *
-  * Return: size of all currently registered tvlv containers in bytes.
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index e3870492..0643a723 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -113,14 +113,14 @@ static void batadv_v_ogm_start_timer(struct batadv_priv *bat_priv)
+ 
+ /**
+  * batadv_v_ogm_send_to_if() - send a batman ogm using a given interface
++ * @bat_priv: the bat priv with all the mesh interface information
+  * @skb: the OGM to send
+  * @hard_iface: the interface to use to send the OGM
   */
--static u16 batadv_tvlv_container_list_size(struct batadv_priv *bat_priv)
-+static size_t batadv_tvlv_container_list_size(struct batadv_priv *bat_priv)
+-static void batadv_v_ogm_send_to_if(struct sk_buff *skb,
++static void batadv_v_ogm_send_to_if(struct batadv_priv *bat_priv,
++				    struct sk_buff *skb,
+ 				    struct batadv_hard_iface *hard_iface)
  {
- 	struct batadv_tvlv_container *tvlv;
--	u16 tvlv_len = 0;
-+	size_t tvlv_len = 0;
+-	struct batadv_priv *bat_priv = netdev_priv(hard_iface->mesh_iface);
+-
+ 	if (hard_iface->if_status != BATADV_IF_ACTIVE) {
+ 		kfree_skb(skb);
+ 		return;
+@@ -187,6 +187,7 @@ static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
  
- 	lockdep_assert_held(&bat_priv->tvlv.container_list_lock);
- 
-@@ -314,12 +315,14 @@ u16 batadv_tvlv_container_ogm_append(struct batadv_priv *bat_priv,
+ /**
+  * batadv_v_ogm_aggr_send() - flush & send aggregation queue
++ * @bat_priv: the bat priv with all the mesh interface information
+  * @hard_iface: the interface with the aggregation queue to flush
+  *
+  * Aggregates all OGMv2 packets currently in the aggregation queue into a
+@@ -196,7 +197,8 @@ static void batadv_v_ogm_aggr_list_free(struct batadv_hard_iface *hard_iface)
+  *
+  * Caller needs to hold the hard_iface->bat_v.aggr_list.lock.
+  */
+-static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
++static void batadv_v_ogm_aggr_send(struct batadv_priv *bat_priv,
++				   struct batadv_hard_iface *hard_iface)
  {
- 	struct batadv_tvlv_container *tvlv;
- 	struct batadv_tvlv_hdr *tvlv_hdr;
--	u16 tvlv_value_len;
-+	size_t tvlv_value_len;
- 	void *tvlv_value;
- 	bool ret;
+ 	unsigned int aggr_len = hard_iface->bat_v.aggr_len;
+ 	struct sk_buff *skb_aggr;
+@@ -226,27 +228,32 @@ static void batadv_v_ogm_aggr_send(struct batadv_hard_iface *hard_iface)
+ 		consume_skb(skb);
+ 	}
  
- 	spin_lock_bh(&bat_priv->tvlv.container_list_lock);
- 	tvlv_value_len = batadv_tvlv_container_list_size(bat_priv);
-+	if (tvlv_value_len > U16_MAX)
-+		goto end;
+-	batadv_v_ogm_send_to_if(skb_aggr, hard_iface);
++	batadv_v_ogm_send_to_if(bat_priv, skb_aggr, hard_iface);
+ }
  
- 	ret = batadv_tvlv_realloc_packet_buff(packet_buff, packet_buff_len,
- 					      packet_min_len, tvlv_value_len);
+ /**
+  * batadv_v_ogm_queue_on_if() - queue a batman ogm on a given interface
++ * @bat_priv: the bat priv with all the mesh interface information
+  * @skb: the OGM to queue
+  * @hard_iface: the interface to queue the OGM on
+  */
+-static void batadv_v_ogm_queue_on_if(struct sk_buff *skb,
++static void batadv_v_ogm_queue_on_if(struct batadv_priv *bat_priv,
++				     struct sk_buff *skb,
+ 				     struct batadv_hard_iface *hard_iface)
+ {
+-	struct batadv_priv *bat_priv = netdev_priv(hard_iface->mesh_iface);
++	if (hard_iface->mesh_iface != bat_priv->mesh_iface) {
++		kfree_skb(skb);
++		return;
++	}
+ 
+ 	if (!atomic_read(&bat_priv->aggregated_ogms)) {
+-		batadv_v_ogm_send_to_if(skb, hard_iface);
++		batadv_v_ogm_send_to_if(bat_priv, skb, hard_iface);
+ 		return;
+ 	}
+ 
+ 	spin_lock_bh(&hard_iface->bat_v.aggr_list.lock);
+ 	if (!batadv_v_ogm_queue_left(skb, hard_iface))
+-		batadv_v_ogm_aggr_send(hard_iface);
++		batadv_v_ogm_aggr_send(bat_priv, hard_iface);
+ 
+ 	hard_iface->bat_v.aggr_len += batadv_v_ogm_len(skb);
+ 	__skb_queue_tail(&hard_iface->bat_v.aggr_list, skb);
+@@ -343,7 +350,7 @@ static void batadv_v_ogm_send_meshif(struct batadv_priv *bat_priv)
+ 			break;
+ 		}
+ 
+-		batadv_v_ogm_queue_on_if(skb_tmp, hard_iface);
++		batadv_v_ogm_queue_on_if(bat_priv, skb_tmp, hard_iface);
+ 		batadv_hardif_put(hard_iface);
+ 	}
+ 	rcu_read_unlock();
+@@ -383,12 +390,20 @@ void batadv_v_ogm_aggr_work(struct work_struct *work)
+ {
+ 	struct batadv_hard_iface_bat_v *batv;
+ 	struct batadv_hard_iface *hard_iface;
++	struct batadv_priv *bat_priv;
++	struct net_device *meshif;
+ 
+ 	batv = container_of(work, struct batadv_hard_iface_bat_v, aggr_wq.work);
+ 	hard_iface = container_of(batv, struct batadv_hard_iface, bat_v);
++	meshif = hard_iface->mesh_iface;
++
++	if (!meshif)
++		return;
++
++	bat_priv = netdev_priv(meshif);
+ 
+ 	spin_lock_bh(&hard_iface->bat_v.aggr_list.lock);
+-	batadv_v_ogm_aggr_send(hard_iface);
++	batadv_v_ogm_aggr_send(bat_priv, hard_iface);
+ 	spin_unlock_bh(&hard_iface->bat_v.aggr_list.lock);
+ 
+ 	batadv_v_ogm_start_queue_timer(hard_iface);
+@@ -578,7 +593,7 @@ static void batadv_v_ogm_forward(struct batadv_priv *bat_priv,
+ 		   if_outgoing->net_dev->name, ntohl(ogm_forward->throughput),
+ 		   ogm_forward->ttl, if_incoming->net_dev->name);
+ 
+-	batadv_v_ogm_queue_on_if(skb, if_outgoing);
++	batadv_v_ogm_queue_on_if(bat_priv, skb, if_outgoing);
+ 
+ out:
+ 	batadv_orig_ifinfo_put(orig_ifinfo);
 
 -- 
 2.47.3
