@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHJXGO6IBWrGYAIAu9opvQ
+	id AMffOoeZBWqJYwIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2026 10:33:50 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2026 11:44:39 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1DB953F5E1
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2026 10:33:49 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E4953FF4B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2026 11:44:39 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 510A585BF5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2026 10:33:49 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 546A085BDB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 14 May 2026 11:44:39 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778747629;
- b=WZVnJHPFC8eG9CEpnia/k5kv1W1lUL5G43XIEyp6Uc2kkHoleY5J7hFB2VUY5Lu60rdsW
- 9iwCCxH3ABD0tMFO7f8G+qO2EGNT16H/z9ktNU2W9lhx+Amu8270eyysk9L1b6mWVxgGS4k
- APh9zF0PbvHT5i8+/uzbVCtlMR/Zvgk=
+ t=1778751879;
+ b=25yMR7dFyWJCE520H5AVlP+BG7/W6lZLA530bc7K0XJYD3AbnheNViwoFz6hmZAFmEo3z
+ IKQyppetQn9hH/0/q/UK+8Oph3HSVKEPOmWboCjSVRCy4MkbOeLlAn4DZTkKdCjvrkvjw+F
+ mx7Km6QieqXu8/A4SlKBVARyn/dUtlg=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778747629; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778751879; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=pOC6KBcYvK7mpcWbdDYjYFsPQAOHt1igs+BK4MfBbAY=;
- b=ZCDrn2Jvv/STYlYWxsLElznmA4eiubLe615S9nE7DmE41uNVwT4rrLNoPFbdQOa+PBgIV
- Tgu5bamMxs1lGgvejqJ2l/szw1/Sa+uEuaUG7vCVZlZE8kvhc5zvr26aI8OUt52aFdeRD85
- JjGF2GK/vimP0rRDMYowwIB1TddFYwI=
+ list-archive; bh=lhgII0aEXrHQCMb8rVGCV/ADRDhBE0u1uUdOTq73t3o=;
+ b=I8aFFxSeeLJdFXaPr3gPgSl5P1U/xKSXRkzNt9Rtj7/Qco+AhnisWjLSHjLQIcZSFZTHO
+ RkXJKDmT7owMfZf+49Lwl6ENjNFqBY9Cbtt23vwSA4IqNIJghmWVdRS4hRoyZQX4x/s1HCy
+ cKQtG/c6tsXdBRZwn8aDuz/j/GWU31c=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -35,53 +35,67 @@ ARC-Authentication-Results: i=2; open-mesh.org;
 Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 427F4802D2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2026 10:33:09 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 9A03C83DC9
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2026 11:43:45 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778747600;
+	s=20121; t=1778751835;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=pOC6KBcYvK7mpcWbdDYjYFsPQAOHt1igs+BK4MfBbAY=;
-	b=TqEb4x67KB6yBYh1btHVu1SPN8fMBIY5XbMVO8SpIdhnul0Y28F6pKIECmRUfXf7yQisXJ
-	gcPOKRDQ4Q4b0U4CJ9Mu2hvBZ6CtloaAVID5wxigJZzxL17nIgqR5o8oOXXoiIGHUEH4oq
-	aik5BPDl1MuTEgqq1dT9U5s+h2Y9kS4=
+	bh=lhgII0aEXrHQCMb8rVGCV/ADRDhBE0u1uUdOTq73t3o=;
+	b=cIEW3jJkcB8uiffC0fuuZs89Rhw8uYkbh1y4/fyyIT8Uj1q2gsUMNb8WBjmQ/2sKi+B3GL
+	2m8N3tDkAdi5OL4wWrvRHK8JRnOYQjfxNUWevMPa6lU57hzvq+Vo3iVDXnSjMxEJLpyq+7
+	9SxCv7SKbR/zLcBDklixCSFyzT3oBQk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=SHCU9PZW;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=q5wVcgBZ;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778747600;
-	b=3jKfNodB5lxYAyaiZyO4w3jlIOoLuf7O2e5xROPiujZysrDtXRfoDCVY0mpUIq7qe6TcTV
-	LY46agxnxdb6oXyP+DRJ26G4fNBmHJW7H5+oOZTOHnOMxuFvxzCWZF383xgn3OE4Ba847/
-	VXnI2/zrepKwSflaalOrgROkjGd0jyM=
-Received: by dvalin.narfation.org (Postfix) id B0F7C200D8
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 14 May 2026 08:33:08 +0000 (UTC)
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778751835;
+	b=icfIO7Zcz6TiO5zkWENzAaFH4DKB96yieHwghj62zhvbOlknJtTTsUUS76Nwj9UEq1+4Yn
+	iPxn2JtlOaO2YRh2/CEh159s3htnWrtUnVgO4pxk2yhg1U9mreJ2YqzHKmRE1Wgkjj9tgZ
+	cfHXCyXIt3D74LDvjA9BetCh90yMQKo=
+Received: by dvalin.narfation.org (Postfix) id 6D866200D8;
+	Thu, 14 May 2026 09:43:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778747588;
+	s=20121; t=1778751823;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=pOC6KBcYvK7mpcWbdDYjYFsPQAOHt1igs+BK4MfBbAY=;
-	b=SHCU9PZWCeiV8L5kGhxr05E8ANhXj2Toxt1P6bjHWdsrQByv4VEj3NRDrpEI8Rd2vfuLw2
-	JS5bxEfq+/+TLXtY0XrEWx5mOBpZrmsGpq+pTGWxQAnm7Tz18py7d8utanBS69cw7wzixg
-	6Zg7YYzo6aWqnLMnGcUjgN86g6xPIzY=
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Subject: Re: [PATCH batadv] batman-adv: tp_meter: fix race condition in send
- error
- reporting
-Date: Thu, 14 May 2026 10:33:05 +0200
-Message-ID: <5993633.DvuYhMxLoT@sven-desktop>
-In-Reply-To: <20260513-tp-reason-missing-v1-1-752a882bd61a@narfation.org>
-References: <20260513-tp-reason-missing-v1-1-752a882bd61a@narfation.org>
+	bh=lhgII0aEXrHQCMb8rVGCV/ADRDhBE0u1uUdOTq73t3o=;
+	b=q5wVcgBZJMnBCBCX3jnnUO+IcOXB2kfxrfJhg6D0l/k68KHLloR0snQtHyBqxtmqJkWgQD
+	7QgGNSAEurFTrxsPmqh+i1eOThrTBJavxciJdz4y+k0qblXaELg4i/uOTFtfA2mYUiRA1a
+	65CGOXylbFdj+TE6zOG4dPZBAQrjFWg=
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6267779.lOV4Wx5bFT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-Message-ID-Hash: VNW57LABOLX4XGWXACHLBUAEXLO3Z4CB
-X-Message-ID-Hash: VNW57LABOLX4XGWXACHLBUAEXLO3Z4CB
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v6 2/3] batman-adv: limit number of learned VLANs from
+ bridged-in clients
+From: Sven Eckelmann <sven@narfation.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org,
+ =?utf-8?q?Linus_L=C3=BCssing?= <linus.luessing@c0d3.blue>
+In-Reply-To: <20250221-dynamic-vlans-v6-2-fd94c9b782a7@narfation.org>
+References: <20250221-dynamic-vlans-v6-0-fd94c9b782a7@narfation.org>
+ <20250221-dynamic-vlans-v6-2-fd94c9b782a7@narfation.org>
+Date: Thu, 14 May 2026 11:43:27 +0200
+Message-Id: <177875180717.12060.11060832190640770018.b4-review@b4>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3601; i=sven@narfation.org;
+ h=from:subject:message-id; bh=eNDL0F9admzlIlVnSiKa2gYKeiCUL9XTB5hUfZCMwag=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmsM121pH5G9r1NfHR/+gXJHPUjHGk6LokXrU/NupZyy
+ 9HcUvF7RykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAi75kYGWbGiWwqsHrZeuXB
+ lNU7ZQrO/XcP2LHxyzrN3Jxfs6K1jx9jZFgtYV9xNF3R9Gjkr4K3gfkXdA3+rp+z/Mv9qYs/bVn
+ EEMcOAA==
+X-Developer-Key: i=sven@narfation.org; a=openpgp;
+ fpr=522D7163831C73A635D12FE5EC371482956781AF
+Message-ID-Hash: FOS7VMT25GWNYHGI2VYU3POB4AT6AKJI
+X-Message-ID-Hash: FOS7VMT25GWNYHGI2VYU3POB4AT6AKJI
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -95,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VNW57LABOLX4XGWXACHLBUAEXLO3Z4CB/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FOS7VMT25GWNYHGI2VYU3POB4AT6AKJI/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -103,67 +117,132 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: F1DB953F5E1
+X-Rspamd-Queue-Id: 95E4953FF4B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.61 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-1.51 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	R_SPF_NA(0.00)[no SPF record];
-	RCPT_COUNT_ONE(0.00)[1];
 	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[narfation.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	R_SPF_NA(0.00)[no SPF record];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:dkim]
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[narfation.org:+]
 X-Rspamd-Action: no action
 
---nextPart6267779.lOV4Wx5bFT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Date: Thu, 14 May 2026 10:33:05 +0200
-Message-ID: <5993633.DvuYhMxLoT@sven-desktop>
-MIME-Version: 1.0
+On Fri, 21 Feb 2025 18:27:32 +0100, Sven Eckelmann <sven@narfation.org> wrote:
+> diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
+> index 3ca84176..5cf3a62c 100644
+> --- a/net/batman-adv/mesh-interface.c
+> +++ b/net/batman-adv/mesh-interface.c
+> @@ -573,6 +577,19 @@ batadv_meshif_create_vlan(struct batadv_priv *bat_priv, unsigned short vid)
+>  		return vlan;
+>  	}
+>  
+> +	vlan_dyn_max = bat_priv->meshif_vlan_dyn_max;
 
-On Wednesday, 13 May 2026 23:57:52 CEST Sven Eckelmann wrote:
-> +       /**
-> +        * @stop_reason: 0 when sending is ongoing and otherwise
-> +        * enum batadv_tp_meter_reason
-> +        */
-> +       atomic_t send_result;
+See my remark regarding the possible need for READ_ONCE.
 
-Should have been @send_result
---nextPart6267779.lOV4Wx5bFT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+> +	vlan_dyn_count = bat_priv->meshif_vlan_dyn_count;
+> +
+> +	if (vid & BATADV_VLAN_HAS_TAG && !own &&
+> +	    vlan_dyn_max <= vlan_dyn_count) {
+> +		spin_unlock_bh(&bat_priv->meshif_vlan_list_lock);
+> +
+> +		net_ratelimited_function(batadv_info, bat_priv->mesh_iface,
+> +					 "not adding VLAN %d, already learned %hu VID(s)\n",
+> +					 batadv_print_vid(vid), vlan_dyn_max);
+> +		return NULL;
+> +	}
+> +
+>  	vlan = kzalloc(sizeof(*vlan), GFP_ATOMIC);
+>  	if (!vlan) {
+>  		spin_unlock_bh(&bat_priv->meshif_vlan_list_lock);
 
------BEGIN PGP SIGNATURE-----
+The patch still applies at 41a3e32c2a80 ("batman-adv: add missing newlines for
+log macros"). But with the new way of allocating objects, you need to rebase.
+There will be a conflict which I think you need to solve via:
 
-iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCagWIwQAKCRBND3cr0xT1
-y6KtAQCELiTtjggqQwcrJRvj6KTYu4AnSRHYyL8cKCKw9NZX6wD/Yt+dj3cap1xa
-NdWreAuiu9T8DuGNDSUSmIhPNc479w8=
-=2cYa
------END PGP SIGNATURE-----
+--- a/net/batman-adv/mesh-interface.c
++++ b/net/batman-adv/mesh-interface.c
+@@ -564,9 +564,7 @@
+ 		return vlan;
+ 	}
+ 
+-<<<<<<<
+ 	vlan = kzalloc_obj(*vlan, GFP_ATOMIC);
+-=======
+ 	vlan_dyn_max = bat_priv->meshif_vlan_dyn_max;
+ 	vlan_dyn_count = bat_priv->meshif_vlan_dyn_count;
+ 
+@@ -580,8 +578,7 @@
+ 		return NULL;
+ 	}
+ 
+-	vlan = kzalloc(sizeof(*vlan), GFP_ATOMIC);
+->>>>>>>
++	vlan = kzalloc_obj(*vlan, GFP_ATOMIC);
+ 	if (!vlan) {
+ 		spin_unlock_bh(&bat_priv->meshif_vlan_list_lock);
+ 		return NULL;
 
---nextPart6267779.lOV4Wx5bFT--
+> @@ -824,6 +846,8 @@ static int batadv_meshif_init_late(struct net_device *dev)
+>  	bat_priv->tt.last_changeset_len = 0;
+>  	bat_priv->isolation_mark = 0;
+>  	bat_priv->isolation_mark_mask = 0;
+> +	bat_priv->meshif_vlan_dyn_max = 0;
 
+Just to signify the importance of the access pattern, I usually also use
+WRITE_ONCE() in the initializer. but this is not technically needed - and maybe
+also not preferred by other people.
 
+>
+> diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
+> index c33d2c6c..677d887e 100644
+> --- a/net/batman-adv/netlink.c
+> +++ b/net/batman-adv/netlink.c
+> @@ -610,6 +615,16 @@ static int batadv_netlink_set_mesh(struct sk_buff *skb, struct genl_info *info)
+>  		atomic_set(&bat_priv->orig_interval, orig_interval);
+>  	}
+>  
+> +	if (info->attrs[BATADV_ATTR_VLAN_DYN_MAX]) {
+> +		u16 vlan_dyn_max;
+> +
+> +		attr = info->attrs[BATADV_ATTR_VLAN_DYN_MAX];
+> +		vlan_dyn_max = nla_get_u16(attr);
+> +		vlan_dyn_max = min_t(u16, vlan_dyn_max, VLAN_N_VID);
+> +
+> +		bat_priv->meshif_vlan_dyn_max = vlan_dyn_max;
 
+Please double check if this is under the same lock as the readers. Because your
+need to otherwise use the READ_ONCE/WRITE_ONCE helpers to avoid problems like
+load/store tearing, reordering, merges, reloading, .... (just look at the
+memory-barriers documentation for a full list).
+
+>
+> diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+> index 0ca0fc07..5f2f467b 100644
+> --- a/net/batman-adv/types.h
+> +++ b/net/batman-adv/types.h
+> @@ -1751,6 +1751,12 @@ struct batadv_priv {
+>  	/** @meshif_vlan_list_lock: lock protecting meshif_vlan_list */
+>  	spinlock_t meshif_vlan_list_lock;
+
+I think this one is now also protecting meshif_vlan_dyn_count
+
+-- 
+Sven Eckelmann <sven@narfation.org>
