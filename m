@@ -2,111 +2,160 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KL+oM7/pBmpKowIAu9opvQ
+	id 4FBdNerwBmp+pAIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 11:39:11 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:09:46 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B5F54C964
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 11:39:11 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 870E554D11D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:09:46 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 47019857E2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 11:39:11 +0200 (CEST)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778837951;
- b=kWnBOkRZEJTx/gpEIa5/rHcc6zXxQmn7lNwtzxqzz8soQi5uWvnRqOWFrNquLwbW3ntaY
- 3F3x/efy6wFhhjT8tkbYROrgjtAu0Wa0fx6QZJNsSHg+e4BObabMjyWvrbWpY844TgRMPHB
- Z/bfUU2sneuHIQkTYEx9sDGf4tpsFtU=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778837951; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4E15385E70
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:09:46 +0200 (CEST)
+ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1778839786;
+ b=f+9MjwsJ16y2sUwP2fv/d7FgaO15Od2VHOsWJCLpkOtUJO8/YqZ//1gg31xKYg54zNjo8
+ x49Y/HoMUFnQdalmOk3gb8uXnzoRNjxCg3bGrHGBBI47orqOIzsFbakKALFyhip1VmBKpwW
+ F6rz+xkt71K58kKb6pMYzmpcdoMjn3Q=
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1778839786; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=KesFVBbFBdTXG1cYhGPrecWznk4odX3vlkrvcWA4D7g=;
- b=Ucu7Kr7Hujzu9ML9m1YdspGEb9lng2g5gwDEBr5jkGXMKS1kF/sboaIfxMYyvFfCuPhfa
- SlF6mL5RyzuJ6XqOt2bpdQMKFLXyB0cSorY/5kPymqny2Xt83P72bj417kAuxcVLFyGN8XF
- TvtUgAbUlpLx9aUJtgERxT0JY7WZZS8=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ list-archive; bh=5EElz+2jxl13VfEl6Ul4cSmF0KTR6hyaxEnjiNXlNlE=;
+ b=qj2A+Pq+yMCq6uCSE1RL67UvOE8+oWwjY3cTYlv++m/0OL1aCaWvW3NShWHNEzQW1zMr4
+ +dUSY03hBQ+Ji+0N+QudQn1KbzJ04EiB2dd9lU5bDivhXPtiXCEBckBhY06sOcM9EwGOVGC
+ bFDcvi2UO0Y9vdOyKJuPw/S0L/17kwM=
+ARC-Authentication-Results: i=3; open-mesh.org;
+ dkim=pass header.d=gmail.com;
  arc=pass;
- dmarc=pass header.from=narfation.org policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 0D58D84A9F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 11:38:17 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778837908;
+ dmarc=pass header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=pass header.d=gmail.com; arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com
+ [IPv6:2607:f8b0:4864:20::830])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5678484264
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 11:54:39 +0200 (CEST)
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1778838889;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=KesFVBbFBdTXG1cYhGPrecWznk4odX3vlkrvcWA4D7g=;
-	b=TqTezRkFpGWP/ixUvS8Iu2mE51nTEbAtxvAn7KP5rAI9DaEaKJbzmuC6wiT0Z2iJFtkCV4
-	MIitDy7uAiBGwerk4K5ngB36eW5Hymp7FYpxC6cdnfaSwUdBzsJb2dm8T8oVYOINuHkFR7
-	ZhyIOcY5f2ejZkdbHOGnI1YKnmftt5E=
-ARC-Authentication-Results: i=1;
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=5EElz+2jxl13VfEl6Ul4cSmF0KTR6hyaxEnjiNXlNlE=;
+	b=om+NCngddXC30DDSaAOd+4jmcdKFDVBaHVhmVmzmK4iv9sX7NdA23bvCFQZuhyZ0x3TEzJ
+	Y8RehglDbYK61Qyr82JGZT3UY39SRKdF/nMPD+I9fIfxGqFKgilqai+CWMHIuUrzh4wOS2
+	D5LOePkuM8O7j8cxHu5Infnr7Rc9SrI=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2QJz83sK;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778837908;
-	b=yLgB3HPbe/KUAYhGgtuLvR4NOrpmHwNpC4namwL8gGj/FCk0pXfiXZF0n4e2NKy4c+zqu1
-	RP3kJYfcQl59eLM3pYals9S8G08XkdwXG4NQ+5z9VA0EVDtX3zYxLQnU2DflDgMa4Kaf1J
-	pftulSjd9UuVdnE7QYz/kqol4t1qP4A=
-Received: by dvalin.narfation.org (Postfix) id 24ECE21550;
-	Fri, 15 May 2026 09:38:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778837896;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=KesFVBbFBdTXG1cYhGPrecWznk4odX3vlkrvcWA4D7g=;
-	b=2QJz83sK3AW+pJ5iDrJ3Fb7tzT3Desk9ykS6wWHL3fd6K0r8ON5//q6bog5Hl5CnVAGiyj
-	hVlziEAcI3Pi705tIk6idZUiUWGDwugIkXY0tOi3/500RuihmSs/ozCP4rahnj5pCqPR/M
-	6Edq0RGTIs69QQ2HT1nOR4RdIHKHfHI=
-From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 15 May 2026 11:38:08 +0200
-Subject: [PATCH] batctl: don't stop on missing batman-adv version file
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Zac+Mu20;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (diktynna.open-mesh.org: domain of yuantan098@gmail.com designates
+ 2607:f8b0:4864:20::830 as permitted sender)
+ smtp.mailfrom=yuantan098@gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
+ARC-Seal: i=2; a=rsa-sha256; d=open-mesh.org; s=20121; cv=pass; t=1778838889;
+	b=A7lHMVzyQtDKFkwLTb3VcXLffYx3DGhPYDkPfqtFkgMizPmqeM0fB40ky0zgrzXbO8GPwX
+	v4LwNTQda4DOQh8cdh9P/EimkZzjff/E/afJInrBhoZlr6B8SeWdlJ8pWGEzS7DTCMkoIT
+	dyOXWAAerdGMSOPb5WowtImnjzeafkc=
+Received: by mail-qt1-x830.google.com with SMTP id
+ d75a77b69052e-50e63771d91so87392691cf.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Fri, 15 May 2026 02:54:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778838878; cv=none;
+        d=google.com; s=arc-20240605;
+        b=TrbqpwZl8T6W8MWkVUH9MF83uzsYB4EuITwRP2bK+KRTKXw+WdmVbGbU15JzYfl2E4
+         blPpd3Dx/Z//N6wpXwc96M3AbNlC8KyiN2lRLW8/iSHQrNEQOWi8tra5HxEOVOabhj5K
+         k+NAD8JRg/bx859axncaZ1P5PNbCaL48UWZ78Db2uygLyx9mJAZLeigXECnrE7rvH11d
+         q6R0vwuMyvn+oSvDwpi0MsqpuTKd6vJ9zb4LHTr7yytO58qHjW+3Z5i4F5as1gdBERNP
+         9FvZz5EU0+RBNKtJZx8cg1rGT1DV0K6pZtzoj5ffvdc5k7VhHoG7MUVlj7ELZS7kIrvb
+         Idiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=5EElz+2jxl13VfEl6Ul4cSmF0KTR6hyaxEnjiNXlNlE=;
+        fh=fGpATJGdA5gBFxywIcayagIpQImFJ7uNKXfLW6dnd4U=;
+        b=j9qYLRNyzFCjZVmSDGuGLefgWdvDz7XFPHPV2BDXd5alG9H8mIk5sSuQ3yTFgGcmiB
+         EEf7lgb+1vY5PJCkaAvs6YY6mvliEfOoTU5psI1lHSR17nm3n0W4M34El25N/nKxFB1z
+         ffvdyZNjRtliF/oXpXaHMjrb43fIkkPzhjZhj+64fOkJ9ItWbb5AAgzQAwuq3Poc5FTC
+         6LAcdIsW8ymUkCq9p9b+Y3Q1pfhJc7sDt9SzHzgA3d7d26rGIvDbyfU3n7ODJHCjVgGf
+         kPkwUpW9auURIFJSDcFyiyiA0HecfAyp2WVsngG79QQiixSSDfAWi4CrUWf4YJLkJhTU
+         k3OA==;
+        darn=lists.open-mesh.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778838878; x=1779443678;
+ darn=lists.open-mesh.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5EElz+2jxl13VfEl6Ul4cSmF0KTR6hyaxEnjiNXlNlE=;
+        b=Zac+Mu20vSIZ5nh70WwJRAyQQNB89aChMrwexHCTU/JbrwH9tJVCP9PvWR/tBu2c3G
+         uJS6FayomV0p4JlM1fXMIsULv6g2Ppj6Ti51q1AJsEH8cE6Onag/jQxgfTvGqpm991px
+         qRy77OXEqStRVxClEHNMmrJzx9KMBuhCccXhx94XoOiIVfeLrol03hnsU0qvZFVhsZ+t
+         2bWoiOTby86UtaM60yEp7M9ZHUAcqONgvxHT8xODiDKo97aCBwjnYcacCgnVTRwtuobU
+         wvk3SBR5XBtHLAvWZHrZX2Ub/WUV2fJOG2RgYGZg/iJbbn8qlYU2l77SnxGGzXtb4Euc
+         Ejog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778838878; x=1779443678;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5EElz+2jxl13VfEl6Ul4cSmF0KTR6hyaxEnjiNXlNlE=;
+        b=D+MZEUEmOC4tqmhraBoNMFOic6abgN05kQycXZEsHIsfHSwijoGlmMDooMubucwiKS
+         dyxnWTF58InZ5FgUIT9ENMO69Swt7PRfRKlv6mwpZW1Gr9GPmggCKTy99caNxyQaxMrJ
+         uWoH6NKi0Fzurm/4BJMD1nAnzVMenBnzAgOFOu7kj42U16rjd4jjok7bbbMHfH9Ta6eX
+         0d0+FOXYaEkYtilOYx4d7h1rxXxjzKITim4ssGUcYNC65bTF2yU+xoAyUox8RLLmrvM4
+         BaheX2ZDP2tXA93DDESgQPXFBNGzrekgF2sICtJCxyZsZVjJhxswwOFdRojhyFo+6uo4
+         p9Gw==
+X-Gm-Message-State: AOJu0YyLgpVlY5KVhIZ67LMCzPrW3x8gKZx1MCMG9/0dWHxETnmQTH29
+	oyy1/6kUmqDUBqeQ82dhf7oyjFHg92EG0qw1YopMX42mM5vygllzRoP49Lu7fpIS3TeMcmq8fdO
+	QDAYqx2tRt8B7z6AKHjoi7jA20HPecpw=
+X-Gm-Gg: Acq92OFpqREgcvd3EihaO6qkPAAWLImDwfq0BjpW5JOtFYQsQwBx86ruLgJuiKAnpVO
+	YkCXCKVZZY6/zfydH0pFNlkPevFHQPj3zCGJabxbe2p3Z0iBFjaR2uHN+7A/HUutWPjDbBOgBjD
+	e6OSW546kFn6QFd4XOl84laQ5trXKurBR8wN0VtSDl1zgvzGSvd74//SY66vQ44s6YXylcSF32t
+	fVRw/Jj3o9nVjOPrhV8o4W+8TMdysnsDyfuWfgpBCYYoSmzIRQ83kygfdNJf8bjbCHjyZeXhJWJ
+	gY145yQ+jH4jdveIm5UhycDwR5kr1ppN7uDFEUKCoXn1gTPsC/4dM+NIfovl
+X-Received: by 2002:a05:622a:a1b:b0:50f:c109:b78 with SMTP id
+ d75a77b69052e-5165a27f690mr37826721cf.60.1778838877961; Fri, 15 May 2026
+ 02:54:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260515-no-version-file-check-v1-1-21c3dd60e4dc@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAH/pBmoC/yXMUQ6CMBCE4auQfXaTApZGr2J4gHUKq6aYVokJ4
- e4UefySmX+hhKhIdC0Wipg16RQyylNBMnZhAOs9mypTNcaWlsPEM+I+Y68vsIyQJztve3dxcq6
- NUP6+I7z+/t1bezh9+wfks8doXTeQC8preQAAAA==
-X-Change-ID: 20260515-no-version-file-check-7f5b797c430c
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4069; i=sven@narfation.org;
- h=from:subject:message-id; bh=WPQsqBr2OgOdD9AhAf1pbUX6+Ns/lzug696ikdd1yT0=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFlsL1uyLx36qfHtnfjF3FPCllcv1YY7ykYtP3P2apjJs
- ZsPrNbFdpSyMIhxMciKKbLsuZJ/fjP7W/nP0z4ehZnDygQyhIGLUwAmoq/AyHDjRuKnO6f4jQ7s
- 3nOk49aZJpNlNhuenX/0dj+j9Om0SWXXGBkudExjtFU8W3l6b/XVPa33/Dl733rZbTE5Ov1O8Mp
- V/+5wAQA=
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: F53HY5YWWH34E2KWSY35SV72CNYZV2BD
-X-Message-ID-Hash: F53HY5YWWH34E2KWSY35SV72CNYZV2BD
-X-MailFrom: sven@narfation.org
+References: <20260513-yuantan098-bugfixes-v2-0-863e9caa2a57@narfation.org>
+ <20260513-yuantan098-bugfixes-v2-4-863e9caa2a57@narfation.org>
+In-Reply-To: <20260513-yuantan098-bugfixes-v2-4-863e9caa2a57@narfation.org>
+From: Yuan Tan <yuantan098@gmail.com>
+Date: Fri, 15 May 2026 02:54:00 -0700
+X-Gm-Features: AVHnY4JgnFKwc7UzFU2M6OHRsJF05nTQbRKQ7BYR1MBFK-NEb4BVysrnvBpv6jE
+Message-ID: 
+ <CAPuPA7+5uDy5JX1LR_etpVwV3UEmWir-E+7dgpMH96Ca5MQjAw@mail.gmail.com>
+Subject: Re: [PATCH batadv v2 4/5] batman-adv: tvlv: reject oversized TVLV
+ packets
+To: Sven Eckelmann <sven@narfation.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org, stable@kernel.org,
+	Yifan Wu <yifanwucs@gmail.com>, Juefei Pu <tomapufckgml@gmail.com>,
+ Xin Liu <bird@lzu.edu.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: yuantan098@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
- nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
- news-moderation; no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
+Message-ID-Hash: I45SE3HHRAILHGB3PWT4GUWTXHEY7QZB
+X-Message-ID-Hash: I45SE3HHRAILHGB3PWT4GUWTXHEY7QZB
+X-Mailman-Approved-At: Fri, 15 May 2026 11:58:18 +0200
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/F53HY5YWWH34E2KWSY35SV72CNYZV2BD/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/I45SE3HHRAILHGB3PWT4GUWTXHEY7QZB/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -114,162 +163,116 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: 70B5F54C964
+X-Rspamd-Queue-Id: 870E554D11D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
-	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=3];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	R_SPF_NA(0.00)[no SPF record];
-	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	DKIM_TRACE(0.00)[narfation.org:+]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.open-mesh.org,kernel.org,gmail.com,lzu.edu.cn];
+	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	R_SPF_NA(0.00)[no SPF record];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[yuantan098@gmail.com,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Action: no action
 
-The system doesn't have to expose the /sys/module/batman_adv/version to the
-userspace. This can either happen because:
+On Wed, May 13, 2026 at 12:01=E2=80=AFAM Sven Eckelmann <sven@narfation.org=
+> wrote:
+>
+> batadv_tvlv_container_ogm_append() builds a TVLV packet section from
+> the tvlv.container_list. The total size of this section is computed by
+> batadv_tvlv_container_list_size(), which sums the sizes of all registered
+> containers.
+>
+> The return type and accumulator in batadv_tvlv_container_list_size() were
+> u16. If the accumulated size exceeds U16_MAX, the value wraps around,
+> causing the subsequent allocation in batadv_tvlv_container_ogm_append()
+> to be undersized. The memcpy-style copy that follows would then write
+> beyond the end of the allocated buffer, corrupting kernel memory.
+>
+> Fix this by widening the return type of batadv_tvlv_container_list_size()
+> to size_t. In batadv_tvlv_container_ogm_append(), check the computed leng=
+th
+> against U16_MAX before proceeding, and bail out as if the allocation had
+> failed when the limit is exceeded.
+>
+> Cc: stable@kernel.org
+> Fixes: ef26157747d4 ("batman-adv: tvlv - basic infrastructure")
+> Reported-by: Yuan Tan <yuantan098@gmail.com>
+> Reported-by: Yifan Wu <yifanwucs@gmail.com>
+> Reported-by: Juefei Pu <tomapufckgml@gmail.com>
+> Reported-by: Xin Liu <bird@lzu.edu.cn>
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+> ---
+>  net/batman-adv/tvlv.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+>
+> diff --git a/net/batman-adv/tvlv.c b/net/batman-adv/tvlv.c
+> index 8129a3f9..4e2a9ec7 100644
+> --- a/net/batman-adv/tvlv.c
+> +++ b/net/batman-adv/tvlv.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/gfp.h>
+>  #include <linux/if_ether.h>
+>  #include <linux/kref.h>
+> +#include <linux/limits.h>
+>  #include <linux/list.h>
+>  #include <linux/lockdep.h>
+>  #include <linux/netdevice.h>
+> @@ -159,10 +160,10 @@ batadv_tvlv_container_get(struct batadv_priv *bat_p=
+riv, u8 type, u8 version)
+>   *
+>   * Return: size of all currently registered tvlv containers in bytes.
+>   */
+> -static u16 batadv_tvlv_container_list_size(struct batadv_priv *bat_priv)
+> +static size_t batadv_tvlv_container_list_size(struct batadv_priv *bat_pr=
+iv)
+>  {
+>         struct batadv_tvlv_container *tvlv;
+> -       u16 tvlv_len =3D 0;
+> +       size_t tvlv_len =3D 0;
+>
+>         lockdep_assert_held(&bat_priv->tvlv.container_list_lock);
+>
+> @@ -314,12 +315,14 @@ u16 batadv_tvlv_container_ogm_append(struct batadv_=
+priv *bat_priv,
+>  {
+>         struct batadv_tvlv_container *tvlv;
+>         struct batadv_tvlv_hdr *tvlv_hdr;
+> -       u16 tvlv_value_len;
+> +       size_t tvlv_value_len;
+>         void *tvlv_value;
+>         bool ret;
+>
+>         spin_lock_bh(&bat_priv->tvlv.container_list_lock);
+>         tvlv_value_len =3D batadv_tvlv_container_list_size(bat_priv);
+> +       if (tvlv_value_len > U16_MAX)
+> +               goto end;
+>
+>         ret =3D batadv_tvlv_realloc_packet_buff(packet_buff, packet_buff_=
+len,
+>                                               packet_min_len, tvlv_value_=
+len);
+>
+> --
+> 2.47.3
+>
 
-* batman-adv was not loaded
-* container doesn't expose the root namespace's /sys/modules
-* distribution (like OpenWrt with `CONFIG_MODULE_STRIPPED`) decided to
-  strip out this information and therefore the file
-* kernel removed the version support at all
-* ...
-
-The check does therefore more harm and is not helping a lot to identify the
-a missing batman-adv kernel module.
-
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- functions.c | 12 ------------
- functions.h |  1 -
- interface.c | 11 -----------
- main.c      |  4 ++--
- main.h      |  2 --
- 5 files changed, 2 insertions(+), 28 deletions(-)
-
-diff --git a/functions.c b/functions.c
-index f7a3080..771b065 100644
---- a/functions.c
-+++ b/functions.c
-@@ -110,20 +110,8 @@ char *get_name_by_macstr(char *mac_str, int read_opt)
- 	return get_name_by_macaddr(mac_addr, read_opt);
- }
- 
--int file_exists(const char *fpath)
--{
--	struct stat st;
--
--	return stat(fpath, &st) == 0;
--}
--
- static void file_open_problem_dbg(const char *full_path)
- {
--	if (!file_exists(module_ver_path)) {
--		fprintf(stderr, "Error - batman-adv module has not been loaded\n");
--		return;
--	}
--
- 	fprintf(stderr, "Error - can't open file '%s': %s\n", full_path, strerror(errno));
- 	fprintf(stderr,
- 		"The option you called seems not to be compiled into your batman-adv kernel module.\n");
-diff --git a/functions.h b/functions.h
-index 33b57da..c2ce1b8 100644
---- a/functions.h
-+++ b/functions.h
-@@ -42,7 +42,6 @@ double end_timer(void);
- char *ether_ntoa_long(const struct ether_addr *addr);
- char *get_name_by_macaddr(struct ether_addr *mac_addr, int read_opt);
- char *get_name_by_macstr(char *mac_str, int read_opt);
--int file_exists(const char *fpath);
- int read_file(const char *full_path, int read_opt);
- struct ether_addr *translate_mac(struct state *state,
- 				 const struct ether_addr *mac);
-diff --git a/interface.c b/interface.c
-index dfe5ad4..dc77ad4 100644
---- a/interface.c
-+++ b/interface.c
-@@ -154,11 +154,6 @@ static int print_interfaces(struct state *state)
- {
- 	int ret;
- 
--	if (!file_exists(module_ver_path)) {
--		fprintf(stderr, "Error - batman-adv module has not been loaded\n");
--		return EXIT_FAILURE;
--	}
--
- 	/* duplicated code here from the main() because interface doesn't always
- 	 * need COMMAND_FLAG_MESH_IFACE and COMMAND_FLAG_NETLINK
- 	 */
-@@ -524,12 +519,6 @@ static int interface(struct state *state, int argc, char **argv)
- 		goto err;
- 	}
- 
--	/* make sure that batman-adv is loaded or was loaded by create_interface */
--	if (!file_exists(module_ver_path)) {
--		fprintf(stderr, "Error - batman-adv module has not been loaded\n");
--		goto err;
--	}
--
- 	pre_cnt = count_interfaces(state->mesh_iface);
- 
- 	for (i = 1; i < rest_argc; i++) {
-diff --git a/main.c b/main.c
-index 9516dee..921b3af 100644
---- a/main.c
-+++ b/main.c
-@@ -20,7 +20,7 @@
- #include "netlink.h"
- 
- char mesh_dfl_iface[] = "bat0";
--char module_ver_path[] = "/sys/module/batman_adv/version";
-+static const char module_ver_path[] = "/sys/module/batman_adv/version";
- 
- extern const struct command *__start___command[];
- extern const struct command *__stop___command[];
-@@ -138,7 +138,7 @@ static void version(void)
- 	if (ret == EXIT_SUCCESS)
- 		printf("%s]\n", line_ptr);
- 	else
--		printf("module not loaded]\n");
-+		printf("module version unknown]\n");
- 
- 	free(line_ptr);
- 	exit(EXIT_SUCCESS);
-diff --git a/main.h b/main.h
-index bbac4c2..e6a08d3 100644
---- a/main.h
-+++ b/main.h
-@@ -33,8 +33,6 @@
- #define __maybe_unused __attribute__((unused))
- #define BIT(nr)                 (1UL << (nr)) /* linux kernel compat */
- 
--extern char module_ver_path[];
--
- #ifndef VLAN_VID_MASK
- #define VLAN_VID_MASK   0xfff
- #endif
-
----
-base-commit: a77a273d30a2fff8027e0b2382b4759740435f8c
-change-id: 20260515-no-version-file-check-7f5b797c430c
-
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
-
+Reviewed-by: Yuan Tan <yuantan098@gmail.com>
