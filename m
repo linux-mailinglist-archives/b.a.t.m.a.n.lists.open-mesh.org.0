@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EKNINtzvBmofpAIAu9opvQ
+	id qHXwDwnwBmrOowIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:05:16 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:01 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EADF54CFDB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:05:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E135854D01A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:00 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6619C85D92
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:05:16 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B14F085EBC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:00 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778839516;
- b=DhISUidNrTDlsHbdAiv80r9wTu5HAm9jyxmuPTdUjpkhCQAb1oToYp1QspDth3eTbjnv6
- DK0vAh7KbjrAOKitV0LEP0y2cwQSFN+Ngb5PdQayNtlFHPVSZuLnln3CZ1VgaGSCf+YTVWr
- X4SU6OAg1H4NtyaB3xPwZEoh9rGeHtg=
+ t=1778839560;
+ b=HLXppfhxYF6kr5s86mzPoN73RmL2lwdJAsk0ekxJJNwtyb/o8HqngUMhHLVQ9ZrATEtak
+ ZywPLLOtU3BG6SD1HaZxXVsOQNMEDBUn6koSex3V7dP9rxRhZsRcjBQxCB9yVK/C3O6uniZ
+ NFHeQ+qj9Gehx5oG2dfFtWkbHdqFPlI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778839516; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778839560; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=JeFU2yocd90391ZPALZwK9q60q3TKgjMlk+bp4HtH7o=;
- b=BhpvgsS/mRC20hKH9uPdjFqd3r3+uI4AkesT2XnSGlHtnHBsuY7NZ76FHkctIKzSbhrjV
- URdfGFvlYphMNy3tYmBb8mxHiAJ9IHtLIcUhMS0D6Vz8zcxJpUQDek/dFagu22Rfrg2N6Tz
- ydf0bX2WGnIph/b6Fv3qIjp1yGDKl+w=
+ list-archive; bh=0K7x5d0HnCXiyQuckQHY2w5gbSJ9qlIcYYGqaA5h0nI=;
+ b=pORPm/NqnrzSeqxXRZ2kUeQr8sKNuEaxFsu1unVDav6zl6967AydW0PvCggWfsGh+SObi
+ lWgnj0ktrfojpV/eKogz2yBDjBBMwqfNDy/QNW6xfpAapLkYH53uECjEWPvo49Olj7pm2Z4
+ UTQdniQC0YB2qouNEZ3vWHrBtON7pSI=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
@@ -37,40 +37,40 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=simonwunderlich.de;
  dmarc=pass (Used From Domain Record) header.from=simonwunderlich.de policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4841285337
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 11:55:57 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 106AC853C1
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 11:55:58 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778838957;
+	s=20121; t=1778838958;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=JeFU2yocd90391ZPALZwK9q60q3TKgjMlk+bp4HtH7o=;
-	b=uTuFZp2DXWygRyVNWIiHGIxG1iz0X/TXKKruQwaLEMNkJHYkzJ+1PcWwWjU/rvRhnjmpfu
-	VWo0chszclOq7ZFAeRiKMOhsv7XXRQeUpRk+o/jGt/qkrSzxcttgYwHanS8v1xjt3R0GK3
-	KA9t18G7WRFtjF1FD3TCK3Zm4UAgnDQ=
+	bh=0K7x5d0HnCXiyQuckQHY2w5gbSJ9qlIcYYGqaA5h0nI=;
+	b=YDk+54zhMz9cAOO0Qkyr4uuMHiow9362h6/Se85WReTySGdTF86cfUHEPKY44mar5ssbKt
+	SoAd2waxTY+clU6Ifc0mCJUhZupG74in5qJaA7snjUSYb1O61flMKF3pUFjpUQuq2ooM6f
+	6zMXxMgQqP3CdPL53lS8GpiSV2Dylvs=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=e7kNwOJF;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=fpyH5y9D;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778838957;
-	b=zoCwZVSKUZG+FEyjeZgrDJ3CFW4aWqlp9FpBNjxV0C5R7hRdoz/lH+wxDxFBV23K68bako
-	AW/dO9ozEkXHdkMwJPkxItiUYK+hsDvgLzXVhaici9a9+DNuyHp1PqL3BnIjYR0rmvXsTR
-	uZz4JSa7T7uq9YfuSFCQotnsLCGMEwg=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778838958;
+	b=CShbiKn9jCkCCfkLLR+e1O81qgY79w8938Eq7oEMlnwXZiipVoDHHWIEm0c87Iy4KEA7bi
+	347jG/IYIJrs2c5etQ+hsliiq46nl+CyTWmja71dsDghCJ59MG3QfF+OocRJTGUrHiZhcU
+	lWO8L6MMCuJzcNF50kva4MIHscx4w5s=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	s=09092022; t=1778838956;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=JeFU2yocd90391ZPALZwK9q60q3TKgjMlk+bp4HtH7o=;
-	b=e7kNwOJFS6mSE1d3pyb3IM9FkmKlhNQ1XjGK1d1aJtc4F3DIWFQUd13UfQYned1DoroL5j
-	RkjHEb+OlxkleU1xe7J1TDRB4W1cZiiJs1n8knzN70FdPrGbIE1gGc5S2TPk29Ogw4J6oI
-	mgBNYFeCcyEHdtPPBjqBsSZlmOsvuHBAKhl0/UAEYVfPPSQ32UJdMgKfn3zumkjKtCpq49
-	MW9ggHk0qjaz4RLJMyaFrltQA1iE1NI5O7W/pVTSRMAxfrHHbYE/VemUM6/jKnj4K6Mgk+
-	hM+1pjulYKqMBKAYTU4Rzr/Q8jAuvsFP9EdkgAk3amLjUcT/I2RO5gmj0CUvzw==
+	bh=0K7x5d0HnCXiyQuckQHY2w5gbSJ9qlIcYYGqaA5h0nI=;
+	b=fpyH5y9DbZs5JfNlSpeKGgKA2yCoiAbOeeN5N2PCbKsRBxeizRQiCDCpPSYalLVcP90Kso
+	eCxoEKiaQ8YNA8Fqssh0su02bqCEv/k4OlBYha/y0Xod3PoS2gmX36+bCkYcJcoXetJVHG
+	QrU3/PSESha0H7I5xnFkUT8hlBuGsYt31P7v83FqEvUZnLH7U4eUqdxMxnXMaX7qhgWjDo
+	RE0Qt4ffIBtxbiHRqeRYxQ0WMA2d15MQMoTh1CYHUSg43ac/I0FHtKhbaE1WwnbnWXgV+V
+	FdaApkO86eamjjOvH5cWtyGC5jtxAx0+JMW/LcLBYWN4yX2SMu8QLf6ZYd9nsw==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -86,16 +86,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Juefei Pu <tomapufckgml@gmail.com>,
 	Xin Liu <bird@lzu.edu.cn>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 11/14] batman-adv: dat: handle forward allocation error
-Date: Fri, 15 May 2026 11:55:36 +0200
-Message-ID: <20260515095540.325586-12-sw@simonwunderlich.de>
+Subject: [PATCH net 12/14] batman-adv: tp_meter: avoid use of uninit sender
+ vars
+Date: Fri, 15 May 2026 11:55:37 +0200
+Message-ID: <20260515095540.325586-13-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260515095540.325586-1-sw@simonwunderlich.de>
 References: <20260515095540.325586-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: H6PHFD4Y6TRQ3A2OCL42ZJRKBMV523M2
-X-Message-ID-Hash: H6PHFD4Y6TRQ3A2OCL42ZJRKBMV523M2
+Message-ID-Hash: QBYJTUYH3O55I3S54ZSF6HED7IMRUSMV
+X-Message-ID-Hash: QBYJTUYH3O55I3S54ZSF6HED7IMRUSMV
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +110,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/H6PHFD4Y6TRQ3A2OCL42ZJRKBMV523M2/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QBYJTUYH3O55I3S54ZSF6HED7IMRUSMV/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -117,7 +118,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: 8EADF54CFDB
+X-Rspamd-Queue-Id: E135854D01A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.51 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -148,16 +149,20 @@ X-Rspamd-Action: no action
 
 From: Sven Eckelmann <sven@narfation.org>
 
-batadv_dat_forward_data() calls pskb_copy_for_clone() to duplicate an skb
-for each DHT candidate, but does not check the return value before passing
-it to batadv_send_skb_prepare_unicast_4addr(). That function dereferences
-the skb unconditionally, so a failed allocation triggers a NULL pointer
-dereference.
+batadv_tp_recv_ack() and batadv_tp_stop() are only valid for tp_vars in the
+BATADV_TP_SENDER role. When called with a BATADV_TP_RECEIVER role, it
+proceeds to read sender-only members that were never initialized, leading
+to undefined behavior.
 
-Skip forwarding to the current DHT candidate on allocation failure.
+This can be triggered when a node that is currently acting as a receiver in
+an ongoing tp_meter session receives a malicious ACK packet.
+
+Guard against this by checking tp_vars->role immediately after the
+lookup and bailing out if it is not BATADV_TP_SENDER, before any of
+those members are accessed.
 
 Cc: stable@kernel.org
-Fixes: 785ea1144182 ("batman-adv: Distributed ARP Table - create DHT helper functions")
+Fixes: 33a3bb4a3345 ("batman-adv: throughput meter implementation")
 Reported-by: Yuan Tan <yuantan098@gmail.com>
 Reported-by: Yifan Wu <yifanwucs@gmail.com>
 Reported-by: Juefei Pu <tomapufckgml@gmail.com>
@@ -166,23 +171,42 @@ Reviewed-by: Yuan Tan <yuantan098@gmail.com>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/distributed-arp-table.c | 3 +++
- 1 file changed, 3 insertions(+)
+ net/batman-adv/tp_meter.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
-index 3efc4cf50b469..0a8bd95e2f99e 100644
---- a/net/batman-adv/distributed-arp-table.c
-+++ b/net/batman-adv/distributed-arp-table.c
-@@ -696,6 +696,9 @@ static bool batadv_dat_forward_data(struct batadv_priv *bat_priv,
- 			goto free_orig;
+diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
+index ca6c3f6374bc5..a3593d104caa5 100644
+--- a/net/batman-adv/tp_meter.c
++++ b/net/batman-adv/tp_meter.c
+@@ -664,6 +664,9 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
+ 	if (unlikely(!tp_vars))
+ 		return;
  
- 		tmp_skb = pskb_copy_for_clone(skb, GFP_ATOMIC);
-+		if (!tmp_skb)
-+			goto free_neigh;
++	if (unlikely(tp_vars->role != BATADV_TP_SENDER))
++		goto out;
 +
- 		if (!batadv_send_skb_prepare_unicast_4addr(bat_priv, tmp_skb,
- 							   cand[i].orig_node,
- 							   packet_subtype)) {
+ 	if (unlikely(atomic_read(&tp_vars->sending) == 0))
+ 		goto out;
+ 
+@@ -1101,12 +1104,16 @@ void batadv_tp_stop(struct batadv_priv *bat_priv, const u8 *dst,
+ 	if (!tp_vars) {
+ 		batadv_dbg(BATADV_DBG_TP_METER, bat_priv,
+ 			   "Meter: trying to interrupt an already over connection\n");
+-		goto out;
++		goto out_put_orig_node;
+ 	}
+ 
++	if (unlikely(tp_vars->role != BATADV_TP_SENDER))
++		goto out_put_tp_vars;
++
+ 	batadv_tp_sender_shutdown(tp_vars, return_value);
++out_put_tp_vars:
+ 	batadv_tp_vars_put(tp_vars);
+-out:
++out_put_orig_node:
+ 	batadv_orig_node_put(orig_node);
+ }
+ 
 -- 
 2.47.3
 
