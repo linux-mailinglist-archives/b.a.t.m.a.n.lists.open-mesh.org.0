@@ -2,113 +2,160 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIhgA1/VBmomoQIAu9opvQ
+	id 6CY3I2nqBmpKowIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 10:12:15 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 11:42:01 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC01454B199
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 10:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2754754C9F7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 11:42:01 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 1536785367
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 10:12:10 +0200 (CEST)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778832730;
- b=gTQYss7KKFkXjKXBSpMVuN5PA173Q8911HZEoGPEHQ4isNdkN5lA2gnIe9/P4hAlbfEHq
- EgYWWuKE/aME9SvjwKrGi6wCcggugZFF0wJtwZGE7RlvMFs1S5UcihglQo4Opo9PFpe4rNF
- Vwu3ZlJPjReIx2h6ufb6mNUvpTtBYTY=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778832730; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C128485B0F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 11:42:00 +0200 (CEST)
+ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1778838120;
+ b=Vj2fsgyhjwvuMpLiAIkVAFjUcliVGZYyrmol2KDdFAaoLvnJ6oRl+rValiP/17Ns0aFbQ
+ Z8N6PSICYT9zhdeLD+Rsd9AyXL2P58re3nMb9ChHHOJpV/RZM9X1X709AAgrOrICZRUqQSy
+ 0FoL26uUHzrcH0pauE/GBDXYf5qRU5A=
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1778838120; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=jV/cwCYbnUhkCZkOtgnH9jR+yFAAXWUXv0Eu2H49SBU=;
- b=f/sWwvUABPXa88BSkCi1TLg716kFskVhVZl6mziE3kv9945JZGxY18i4ZwWaFuxDxPs1n
- uxza9+PS3n/fif+8cH6O41BFAvJEMqtBBfak0Ofcr+w1TO4JtUV4c9LphFOuUma/KjElO/M
- kGkhKfbLUljapkq2Jaw+KGDlt5ftV/Y=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ list-archive; bh=eTW3edd0iz7itkPvnlatci8goZhgBs5rERZ7V0Ca1W8=;
+ b=vL3zWWfGlTFuG9v4+zMwnJiZ4hkq9UggqGo08557Fktn+pVfwCXozzTvJYC69HsoVOFE0
+ 8yuxNhZ8G32qqOjObPEnmA3DSipKwq/kDLaM9VeqDYp7v+lu6dn/VxBaZL35pLC5ABZPcsx
+ juX3SzDTPBZE4s+wwaMb8eq4aEv2QEM=
+ARC-Authentication-Results: i=3; open-mesh.org;
+ dkim=pass header.d=gmail.com;
  arc=pass;
- dmarc=pass header.from=narfation.org policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 8B8B882727
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 10:00:17 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778832019;
+ dmarc=pass header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: open-mesh.org; dkim=pass header.d=gmail.com; arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com
+ [IPv6:2607:f8b0:4864:20::f2e])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3FC66849F2
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 10:27:44 +0200 (CEST)
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1778833675;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=jV/cwCYbnUhkCZkOtgnH9jR+yFAAXWUXv0Eu2H49SBU=;
-	b=TQSQ913UWMr58MMQRNvWKIiw7jGycfLFVdlLCoLjt3tfhxdaJHTy+yZrLlGhD7g1ToJ7Sw
-	k2h0yb2w/2wttcBRcouZJ/oNKC802RYGiMmyTSN2ncf4o0PZtnbFntK0TcEszDBpeeNYXB
-	M6C7XTqfOoL+V+WdU4Y1sfdvW7YAPh0=
-ARC-Authentication-Results: i=1;
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=eTW3edd0iz7itkPvnlatci8goZhgBs5rERZ7V0Ca1W8=;
+	b=twpAkmWdrFRVxZuYpb6qya07djoA0CsoSifbvpwa+cMLQuUhu9rAZ0ccKDLDN8C7ccnQmu
+	Lsbwu3XOCmmah1YkFgx8AqiSDRE5VCi1eaSw4F0sytSlOOoVrnYB05OcvX4XXyKj5WlsvY
+	ax9wGVVLCnNCRX90lVO1NdPf7zllaTA=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=wT2zxSbM;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778832019;
-	b=WdMf+F7dy+aUpi7fWe21vpxMGnO1IaTRDwaDGKoOKs9gZu+QErXbWtQoka0C2hOEqrr9VO
-	BJY2C/cBcF1Fl4Lit8iJ8cBaYNPBUjMkjd5yQgu1TzWzkfF3CNG2eYYnrGF88bN3rMSlEO
-	4Ds0LeMVt5XZOPOVXDAnJvPH4cRwM4g=
-Received: by dvalin.narfation.org (Postfix) id 8D70820C4F;
-	Fri, 15 May 2026 08:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778832012;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=jV/cwCYbnUhkCZkOtgnH9jR+yFAAXWUXv0Eu2H49SBU=;
-	b=wT2zxSbMJkK1XRokXd7q0WL0pZ83lmi7vSplbhxThd/NFypVdUaLeiZ0UZL7s/Db5wMldG
-	LQopzqyCNvixEYNuPLCcLyJoeXIclec9LSTpCoubnhfXwYiHjscCh2d7VPDMMzhD/bEYgj
-	RAxqTzk8oRb3AsTRZlz7ZSLmlg/GNAU=
-From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 15 May 2026 10:00:00 +0200
-Subject: [PATCH RFC batadv] batman-adv: drop batman-adv specific version
- for in-tree module
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hrP+v5Ba;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (diktynna.open-mesh.org: domain of yuantan098@gmail.com designates
+ 2607:f8b0:4864:20::f2e as permitted sender)
+ smtp.mailfrom=yuantan098@gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
+ARC-Seal: i=2; a=rsa-sha256; d=open-mesh.org; s=20121; cv=pass; t=1778833675;
+	b=VmKRZDvyMXVkbo1HunY0b/SEaiekRqC7PQD70Jno4pKEOoSd0hRxrEy+7q4DJr/U0utTIk
+	OgsLJyIQ0XKQ2WLImZ1mBZUdVO/bZ2g3nMKv2fVtvIfJEV40VtpgIhssDJLqqvrq58P7fc
+	lrRtFWNghEP5+G57WMth5owU3KLCDoM=
+Received: by mail-qv1-xf2e.google.com with SMTP id
+ 6a1803df08f44-8b6dd874471so116220176d6.0
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Fri, 15 May 2026 01:27:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778833663; cv=none;
+        d=google.com; s=arc-20240605;
+        b=E4Jwwzakh6jqU3EUu8lCldXIXJ8cFBhD9ughWKKyb1V+tFq3zvDt9L2U4ydcAhoC33
+         GqC5c2JaIS8j/G80pU2lXytx8wyEqcV+VP145EHxI1pXU62F7VGmJ+r7nRCkSJeLW3yd
+         vbbQW6owor0/7A5hgZL8C036WLAQjpzJZI8umsCfwZsR1sF4dvKO0KABr2e3DgGTSILf
+         DawqC16m4AEP5uApECbmNCUTBEbJIM+f9YcRYX7O5uuGr9Z2/xZyBVvJQNhGmXBA6sji
+         /0Hk1VbqvyfdPD/sMEaycQJhNFsAxjISL/FA5eDthlH20pf1lArgzGL/aksDrz9dykv/
+         Fsrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=eTW3edd0iz7itkPvnlatci8goZhgBs5rERZ7V0Ca1W8=;
+        fh=fGpATJGdA5gBFxywIcayagIpQImFJ7uNKXfLW6dnd4U=;
+        b=X2+ntLWws67J48tnte1WQHV4lEkCy8sxhvE4Wgs78rsgJ/9sPY999JpZ7KGun3wBk7
+         nwKBwj5NQ57NqlRyX3TXuRK/A269pVtql67JNlyACo6rofGLdcqvBtNvmk9m0ovqxCux
+         cbMC7Qom55CDppv2nCzM7MzjMryg3TbXJcDBkkT4MDZm0Krtx0+P5KjwCmnoc+T73g/p
+         alqb9zLl33PS1EotZsZxIaU8khOJxhizLgZjA0Xclyr4ThF9daRn5uTSu/Z9pdRHB8ZD
+         v2v9nts1aH2i8QaPKlP9fP9HMq2nH5WIQKS4DQjM5hzcHSjwfBL6SP6NZI7rwfdVgOUP
+         Qzlg==;
+        darn=lists.open-mesh.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778833663; x=1779438463;
+ darn=lists.open-mesh.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eTW3edd0iz7itkPvnlatci8goZhgBs5rERZ7V0Ca1W8=;
+        b=hrP+v5BahxUV5x3zSo9dhKOibSKM4Imni0XdT7HsceZ9ZF3mGzr1Z53YQQeqs3szD1
+         0C2033nydTwSPqTHtVl4vGlZExDjl7E6a+GgcBNsitxDBXbZkpvbk+gZ8JRvJTPDJNrO
+         AAZd1w1LGcHZvPhRmPtctYqQmbdDAm31KTMmMgeoC404dajxhT8SDkLv58ApPTSjgk5N
+         v/+DvJbmtc23rWkdbhaxlNdWt3ZOSFPHSuy4MnP8UMV1E84cEPabyzvNeTp2e+m50S2L
+         cnKKgazOo2dpPKeqUtdIV1L7pN9ZVyPiZYP/AKAbzV7fx9hqbrD8MjM4FU+GJoHqgPFA
+         SvXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778833663; x=1779438463;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=eTW3edd0iz7itkPvnlatci8goZhgBs5rERZ7V0Ca1W8=;
+        b=HPIqKihEh/xFj27I3wZ2NHwgMhE2359PtfObdjHzFimLoqCWI2NbkzE+dcaFbA+Hr/
+         xpasetZrqqZcar2fDf4IimesxY6LXubg/0e5hwoNjzsmRH1lVHrroH7rjB62tYIP3p30
+         64Bf/h2MZvpIBujd/jnRfVrfBdPTt6z1ALTwEK1LvUAyo3+yD/BReBxhE49z0gSI1ddV
+         1DSd6Wk4NInqkPNdt60sLMA/NwI8aB6vs9XOA6DeKGNSgX8+zIM0sjZkfgucXMfqzmAT
+         /kQeXeeaB3Oob3tbFK/903TsxexPP5//cO7fENqpBX1liH1ff9FCElmIw4DlXQH0SvBv
+         FyaQ==
+X-Gm-Message-State: AOJu0Yys68jryMs25mCULE1nMXSCARtxF78GEiciH20aCVBafQJJQQgs
+	zdprPqxqam5TUayoGeZSJ6YbVHavaRbT1QXAuqJSreGntiDCt2zSTbLQm6P47IdfpW9ahuPOkzZ
+	ad+MNzXsjbAyrPg4VOKyNxcGtkLAKQDo=
+X-Gm-Gg: Acq92OFTwy4G30e7vNGkcHNacHhJNgQSQoqHOUkk+mLGv7MK8YYYj5VJeSHGxRidEsH
+	b4uhC1buL1Z5Fp/oybT2zFgDVNBWEIK0AxB5mAqOeqYzxBa3VdgIVgrqTKoFTQS13xg3ssX75/6
+	vA3BgQ1o+P16nfOeUsp+6Z+SfKrp7gZHvcYhVz4I4rdoXuZsStmzMzTsz9rbbMeCPZrewvy/cgu
+	JFykUtri/5EPSBZO0u4j8mWAvmDPFz1ae2NFWvmRb6/rsXnDCXGAZ8gr4dN9+rE0+bmqD6eGW3u
+	A+nrA+D6Eel8uluyqa+K6rhC6efumk1pYdc6elg=
+X-Received: by 2002:a05:6214:478e:b0:8ca:f47:25ea with SMTP id
+ 6a1803df08f44-8ca0f4fcfb8mr47115646d6.0.1778833663368; Fri, 15 May 2026
+ 01:27:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: 
- <20260515-no-upstream-version-bumps-v1-1-6aa349f8e949@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAH/SBmoC/yWMwQrCMBBEf6Xs2YUmUhGvgh/gVTxs2lUjNA27S
- RBK/91EjzPz5q2gLJ4VTt0KwsWrX0INZtfB+KLwZPRTzWB7e+gHM2BYMEdNwjRjYWk8ujxHRSZ
- r9mSOFSOo/yj88J+f+wbXy7l1jhJNBe7/WbN785iaH7btC4SZJT2MAAAA
-X-Change-ID: 20260515-no-upstream-version-bumps-ea213a18051a
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3916; i=sven@narfation.org;
- h=from:subject:message-id; bh=9ucb7azKJEhzsTYm02LPU9dOfbPkutDxQ9vpRUe7qrg=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFlsl9rOeT275fNigoDjbcUVzHqu6xblOc74P3Phike35
- F2nrd3P0VHKwiDGxSArpsiy50r++c3sb+U/T/t4FGYOKxPIEAYuTgGYCMtdhj+cMxYaXBM88Hmm
- Q7CWgNjH2cUcV9/dTn54zX3mn18b3IQCGBlOP/t091fYleqn2zv2HHqR+XlPX8Sq4y3fKuZvSL8
- YvaaICwA=
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: VP7JXQ777RWYLMFJBHFFRONC57I5BH43
-X-Message-ID-Hash: VP7JXQ777RWYLMFJBHFFRONC57I5BH43
-X-MailFrom: sven@narfation.org
+References: <20260513-yuantan098-bugfixes-v2-0-863e9caa2a57@narfation.org>
+ <20260513-yuantan098-bugfixes-v2-3-863e9caa2a57@narfation.org>
+In-Reply-To: <20260513-yuantan098-bugfixes-v2-3-863e9caa2a57@narfation.org>
+From: Yuan Tan <yuantan098@gmail.com>
+Date: Fri, 15 May 2026 01:27:32 -0700
+X-Gm-Features: AVHnY4L-jlZwmfq7Tu_QdGkxqKXB6IKN5KXaDYTfI3al6Vuo0u4dHF3vb4AAX_s
+Message-ID: 
+ <CAPuPA7LKCUnBWWrGAg7T2cgnuzp3pcRveQeXg5Vxcxi00oZs7w@mail.gmail.com>
+Subject: Re: [PATCH batadv v2 3/5] batman-adv: frag: disallow unicast fragment
+ in fragment
+To: Sven Eckelmann <sven@narfation.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org, stable@kernel.org,
+	Yifan Wu <yifanwucs@gmail.com>, Juefei Pu <tomapufckgml@gmail.com>,
+ Xin Liu <bird@lzu.edu.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: yuantan098@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
- nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
- news-moderation; no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
+Message-ID-Hash: 7NPGMCMY6DSJW5TK3KL3N3EM7XRZTK5V
+X-Message-ID-Hash: 7NPGMCMY6DSJW5TK3KL3N3EM7XRZTK5V
+X-Mailman-Approved-At: Fri, 15 May 2026 11:41:18 +0200
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VP7JXQ777RWYLMFJBHFFRONC57I5BH43/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7NPGMCMY6DSJW5TK3KL3N3EM7XRZTK5V/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -116,154 +163,125 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: DC01454B199
+X-Rspamd-Queue-Id: 2754754C9F7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
-	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=3];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	FREEMAIL_CC(0.00)[lists.open-mesh.org,kernel.org,gmail.com,lzu.edu.cn];
+	RCVD_COUNT_THREE(0.00)[3];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	R_SPF_NA(0.00)[no SPF record];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[yuantan098@gmail.com,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:email,narfation.org:email,narfation.org:mid,narfation.org:dkim];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[narfation.org:+]
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Action: no action
 
-Bumping the version number on the first pull request after each merge
-window was deemed inappropriate for an in-tree component. The version
-number carries little meaningful information in the context of the Linux
-kernel release model, where stable and distribution might all carry
-slightly different patches (without any change to the batman-adv version).
+On Wed, May 13, 2026 at 12:01=E2=80=AFAM Sven Eckelmann <sven@narfation.org=
+> wrote:
+>
+> batadv_frag_skb_buffer() is called by batadv_batman_skb_recv() when a
+> BATADV_UNICAST_FRAG packet is received. Once all fragments are collected
+> and the packet is reassembled, batadv_recv_frag_packet() calls
+> batadv_batman_skb_recv() again to process the defragmented payload.
+>
+> A malicious sender can craft a BATADV_UNICAST_FRAG packet whose reassembl=
+ed
+> payload is itself a BATADV_UNICAST_FRAG packet (matryoshka-style nesting)=
+.
+> Each nesting level recurses through batadv_batman_skb_recv() without boun=
+d,
+> growing the kernel stack until it is exhausted.
+>
+> Since refragmentation or fragments in fragments are not actually allowed,
+> discard all packets which are still BATADV_UNICAST_FRAG packets after the
+> defragmentation process.
+>
+> Cc: stable@kernel.org
+> Fixes: 610bfc6bc99b ("batman-adv: Receive fragmented packets and merge")
+> Reported-by: Yuan Tan <yuantan098@gmail.com>
+> Reported-by: Yifan Wu <yifanwucs@gmail.com>
+> Reported-by: Juefei Pu <tomapufckgml@gmail.com>
+> Reported-by: Xin Liu <bird@lzu.edu.cn>
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+> ---
+>  net/batman-adv/fragmentation.c | 35 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>
+> diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentatio=
+n.c
+> index f4e45cc2..42f3d4ee 100644
+> --- a/net/batman-adv/fragmentation.c
+> +++ b/net/batman-adv/fragmentation.c
+> @@ -293,6 +293,31 @@ batadv_frag_merge_packets(struct hlist_head *chain)
+>         return skb_out;
+>  }
+>
+> +/**
+> + * batadv_skb_is_frag() - check if newly merged skb is gain a unicast pa=
+cket
+> + * @skb: newly merged skb
+> + *
+> + * Return: if newly skb is of type BATADV_UNICAST_FRAG
+> + */
+> +static bool batadv_skb_is_frag(struct sk_buff *skb)
+> +{
+> +       struct batadv_ogm_packet *batadv_ogm_packet;
+> +
+> +       /* packet should hold at least type and version */
+> +       if (unlikely(!pskb_may_pull(skb, 2)))
+> +               return false;
+> +
+> +       batadv_ogm_packet =3D (struct batadv_ogm_packet *)skb->data;
+> +
+> +       if (batadv_ogm_packet->version !=3D BATADV_COMPAT_VERSION)
+> +               return false;
+> +
+> +       if (batadv_ogm_packet->packet_type !=3D BATADV_UNICAST_FRAG)
+> +               return false;
+> +
+> +       return true;
+> +}
+> +
+>  /**
+>   * batadv_frag_skb_buffer() - buffer fragment for later merge
+>   * @skb: skb to buffer
+> @@ -326,6 +351,16 @@ bool batadv_frag_skb_buffer(struct sk_buff **skb,
+>         if (!skb_out)
+>                 goto out_err;
+>
+> +       /* fragment in fragment is not allowed. otherwise it is possible
+> +        * to exhaust the stack when receiving a matryoshka-style
+> +        * "fragments in a fragment packet"
+> +        */
+> +       if (batadv_skb_is_frag(skb_out)) {
+> +               kfree_skb(skb_out);
+> +               skb_out =3D NULL;
+> +               goto out_err;
+> +       }
+> +
+>  out:
+>         ret =3D true;
+>  out_err:
+>
+> --
+> 2.47.3
+>
 
-Instead, expose a UTC_RELEASE-based string to consumers of the netlink
-and ethtool interfaces.
-
-The out-of-tree batman-adv package is unaffected by this change.
-
-Link: https://lore.kernel.org/r/20200104195131.16577-3-info@metux.net
-Link: https://lore.kernel.org/r/20201202124959.29209-2-info@metux.net
-Link: https://lore.kernel.org/r/20210203163302.13e8a2a7@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com
-Link: https://lore.kernel.org/r/YnfjtpuAaH+Zkf9S@unreal
-Link: https://lore.kernel.org/r/Y9faTA0rNSXg%2FsLD@nanopsycho
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- .gitignore              | 2 ++
- Makefile                | 2 ++
- compat-sources/Makefile | 3 +++
- compat-sources/compat.c | 7 +++++++
- net/batman-adv/main.c   | 1 -
- net/batman-adv/main.h   | 9 +++++++++
- 6 files changed, 23 insertions(+), 1 deletion(-)
-
-diff --git a/.gitignore b/.gitignore
-index fdacbf29..1fa30c6b 100644
---- a/.gitignore
-+++ b/.gitignore
-@@ -8,6 +8,8 @@
- /compat-sources/**/*.o
- /modules.order
- /Module.symvers
-+/..module-common.o.cmd
-+/.module-common.o
- /net/batman-adv/batman-adv.ko
- /net/batman-adv/.batman-adv.ko.cmd
- /net/batman-adv/batman-adv.mod.c
-diff --git a/Makefile b/Makefile
-index ae3fd885..017165c6 100644
---- a/Makefile
-+++ b/Makefile
-@@ -39,6 +39,8 @@ NOSTDINC_FLAGS += \
- 	-include $(PWD)/compat.h \
- 	$(CFLAGS)
- 
-+include $(PWD)/compat-sources/Makefile
-+
- ifneq ($(REVISION),)
- NOSTDINC_FLAGS += -DBATADV_SOURCE_VERSION=\"$(REVISION)\"
- endif
-diff --git a/compat-sources/Makefile b/compat-sources/Makefile
-new file mode 100644
-index 00000000..daf80deb
---- /dev/null
-+++ b/compat-sources/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+batman-adv-y += ../../compat-sources/compat.o
-diff --git a/compat-sources/compat.c b/compat-sources/compat.c
-new file mode 100644
-index 00000000..4aa5fcb8
---- /dev/null
-+++ b/compat-sources/compat.c
-@@ -0,0 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/module.h>
-+
-+#include "../net/batman-adv/main.h"
-+
-+MODULE_VERSION(BATADV_SOURCE_VERSION);
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index 2baf8e2c..5d27175a 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -696,6 +696,5 @@ MODULE_LICENSE("GPL");
- 
- MODULE_AUTHOR(BATADV_DRIVER_AUTHOR);
- MODULE_DESCRIPTION(BATADV_DRIVER_DESC);
--MODULE_VERSION(BATADV_SOURCE_VERSION);
- MODULE_ALIAS_RTNL_LINK("batadv");
- MODULE_ALIAS_GENL_FAMILY(BATADV_NL_NAME);
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index 465d26d8..7f722425 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
-@@ -7,15 +7,24 @@
- #ifndef _NET_BATMAN_ADV_MAIN_H_
- #define _NET_BATMAN_ADV_MAIN_H_
- 
-+#include <generated/utsrelease.h>
-+
- #define BATADV_DRIVER_AUTHOR "Marek Lindner <marek.lindner@mailbox.org>, " \
- 			     "Simon Wunderlich <sw@simonwunderlich.de>"
- #define BATADV_DRIVER_DESC   "B.A.T.M.A.N. advanced"
- #define BATADV_DRIVER_DEVICE "batman-adv"
- 
-+#ifdef CONFIG_BATMAN_ADV_IN_TREE // UGLY_HACK_NEW
-+#define BATADV_SOURCE_VERSION "linux-" UTS_RELEASE
-+#else // UGLY_HACK_OLD
-+
-+/* prefer version provided by Makefile */
- #ifndef BATADV_SOURCE_VERSION
- #define BATADV_SOURCE_VERSION "2026.2"
- #endif
- 
-+#endif // UGLY_HACK_STOP
-+
- /* B.A.T.M.A.N. parameters */
- 
- #define BATADV_TQ_MAX_VALUE 255
-
----
-base-commit: 7700c90cbd12d04b8aabb62fe031ce6b31d6a4d9
-change-id: 20260515-no-upstream-version-bumps-ea213a18051a
-
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
-
+Reviewed-by: Yuan Tan <yuantan098@gmail.com>
