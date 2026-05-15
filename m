@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qHXwDwnwBmrOowIAu9opvQ
+	id UK/NDzbwBmofpAIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:01 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:46 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E135854D01A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF5854D046
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:45 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B14F085EBC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:00 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A8181854C7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 12:06:45 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778839560;
- b=HLXppfhxYF6kr5s86mzPoN73RmL2lwdJAsk0ekxJJNwtyb/o8HqngUMhHLVQ9ZrATEtak
- ZywPLLOtU3BG6SD1HaZxXVsOQNMEDBUn6koSex3V7dP9rxRhZsRcjBQxCB9yVK/C3O6uniZ
- NFHeQ+qj9Gehx5oG2dfFtWkbHdqFPlI=
+ t=1778839605;
+ b=1+Xr2uwPSrzUInK4YekAsltP1lgrjx2exoGHeIlIP29ZF5PLFo61PQhSGFr4Ku/rtQ/bM
+ 8U+smsTN8OC31SLN8smvY2V880UEbYU82vqmthdyphpVcCrw7XqI1z5wkrt+8qb+ey/P3hW
+ OUbm6wf99mrd/8OqI0Dh++oCaWPguEU=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778839560; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778839605; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=0K7x5d0HnCXiyQuckQHY2w5gbSJ9qlIcYYGqaA5h0nI=;
- b=pORPm/NqnrzSeqxXRZ2kUeQr8sKNuEaxFsu1unVDav6zl6967AydW0PvCggWfsGh+SObi
- lWgnj0ktrfojpV/eKogz2yBDjBBMwqfNDy/QNW6xfpAapLkYH53uECjEWPvo49Olj7pm2Z4
- UTQdniQC0YB2qouNEZ3vWHrBtON7pSI=
+ list-archive; bh=FhfNjkuMbZpr2ack+ilUXPWHeaOvldZUmgcoY4j+Ous=;
+ b=sy+zj5OizwX3VSBXJl9ahRga7ADCtFgoQx5B7wuiVNEUCvXOx8jGtX50RqH4+ESTAdwgv
+ 2Qcvd+CWS0qr/Hi9VIOe61iOen2qwypEloiYF4M83Kzd2Ska6vvwq0MZbjwWpWjXR+MbnYI
+ +ikMpDbjzhrZJxRyk6BkIY3mXYWiquo=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
@@ -37,7 +37,7 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=simonwunderlich.de;
  dmarc=pass (Used From Domain Record) header.from=simonwunderlich.de policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 106AC853C1
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B772285423
 	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 11:55:58 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	s=20121; t=1778838958;
@@ -45,32 +45,32 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=0K7x5d0HnCXiyQuckQHY2w5gbSJ9qlIcYYGqaA5h0nI=;
-	b=YDk+54zhMz9cAOO0Qkyr4uuMHiow9362h6/Se85WReTySGdTF86cfUHEPKY44mar5ssbKt
-	SoAd2waxTY+clU6Ifc0mCJUhZupG74in5qJaA7snjUSYb1O61flMKF3pUFjpUQuq2ooM6f
-	6zMXxMgQqP3CdPL53lS8GpiSV2Dylvs=
+	bh=FhfNjkuMbZpr2ack+ilUXPWHeaOvldZUmgcoY4j+Ous=;
+	b=AeHLmNFAKSnX+zX9guv+aKd83+0zQiYQ34aFYH1HeoLW8Kq2cia/d0g1ZuO64rrGtBmqeE
+	EhYUc5tYE4K8YhJi4yBo4EF7cNIjiaeWNd2GGDQY9Ys8Q/ebXptnGgEyi2llWdkAyjZ5uL
+	TzXkDk/swwObtp2D4c9o7/jx0sTSg/4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=fpyH5y9D;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=KzdBiR9d;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778838958;
-	b=CShbiKn9jCkCCfkLLR+e1O81qgY79w8938Eq7oEMlnwXZiipVoDHHWIEm0c87Iy4KEA7bi
-	347jG/IYIJrs2c5etQ+hsliiq46nl+CyTWmja71dsDghCJ59MG3QfF+OocRJTGUrHiZhcU
-	lWO8L6MMCuJzcNF50kva4MIHscx4w5s=
+	b=I3T3MqFAQp8ekMdg0t1ymE11030cSrOQRUDsgtF0b+6f/jh1JT9tWDhVZfrLeI1+o96EvP
+	RvhHwunm/98hMNDuh/HU4ahMNdH1IZz+GaOOQEblx7ow87uN5ka0FrKXg5dKsq26QiZ6ei
+	KdMZc5mEdGXDFpt4SmfEjhawo2acDgc=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1778838956;
+	s=09092022; t=1778838957;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=0K7x5d0HnCXiyQuckQHY2w5gbSJ9qlIcYYGqaA5h0nI=;
-	b=fpyH5y9DbZs5JfNlSpeKGgKA2yCoiAbOeeN5N2PCbKsRBxeizRQiCDCpPSYalLVcP90Kso
-	eCxoEKiaQ8YNA8Fqssh0su02bqCEv/k4OlBYha/y0Xod3PoS2gmX36+bCkYcJcoXetJVHG
-	QrU3/PSESha0H7I5xnFkUT8hlBuGsYt31P7v83FqEvUZnLH7U4eUqdxMxnXMaX7qhgWjDo
-	RE0Qt4ffIBtxbiHRqeRYxQ0WMA2d15MQMoTh1CYHUSg43ac/I0FHtKhbaE1WwnbnWXgV+V
-	FdaApkO86eamjjOvH5cWtyGC5jtxAx0+JMW/LcLBYWN4yX2SMu8QLf6ZYd9nsw==
+	bh=FhfNjkuMbZpr2ack+ilUXPWHeaOvldZUmgcoY4j+Ous=;
+	b=KzdBiR9dK3q3KNFqxvVPUJJ9mvASjFeyFmJxgXi3Pl7WwzY7hkSYJqy5DDsAJjXwig7dcE
+	luK2JPVw63+x43YGA+5SziXHLvYtg69FX67mkOH+U06saSO969F3OcFHkPN8s4BalosU+W
+	kQlG/yuiBxkMHU39dyax4Qkdh/OCMlJGbZW6mEOAAtZ8u0deSbx4CZGr2eADYstc9cd2C/
+	rBAuEhV8MW7kx+RnOrlIpc9yOME11s6h2vqlICRDo3qkoiW7xv+aVVYY4UOvFx2DP7FH2x
+	LSdSbWhbG+D0gu/e5wEOSlASAe2WdulE8ZVtgK5Fey4Zv7DvK+VTw9B87ePk+w==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -86,17 +86,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Juefei Pu <tomapufckgml@gmail.com>,
 	Xin Liu <bird@lzu.edu.cn>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 12/14] batman-adv: tp_meter: avoid use of uninit sender
- vars
-Date: Fri, 15 May 2026 11:55:37 +0200
-Message-ID: <20260515095540.325586-13-sw@simonwunderlich.de>
+Subject: [PATCH net 13/14] batman-adv: frag: disallow unicast fragment in
+ fragment
+Date: Fri, 15 May 2026 11:55:38 +0200
+Message-ID: <20260515095540.325586-14-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260515095540.325586-1-sw@simonwunderlich.de>
 References: <20260515095540.325586-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: QBYJTUYH3O55I3S54ZSF6HED7IMRUSMV
-X-Message-ID-Hash: QBYJTUYH3O55I3S54ZSF6HED7IMRUSMV
+Message-ID-Hash: N7T4ERDFKPERBH2ZQ5UV35O4Q5H7HP3O
+X-Message-ID-Hash: N7T4ERDFKPERBH2ZQ5UV35O4Q5H7HP3O
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -110,7 +110,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QBYJTUYH3O55I3S54ZSF6HED7IMRUSMV/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/N7T4ERDFKPERBH2ZQ5UV35O4Q5H7HP3O/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -118,7 +118,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: E135854D01A
+X-Rspamd-Queue-Id: DAF5854D046
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.51 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -149,20 +149,22 @@ X-Rspamd-Action: no action
 
 From: Sven Eckelmann <sven@narfation.org>
 
-batadv_tp_recv_ack() and batadv_tp_stop() are only valid for tp_vars in the
-BATADV_TP_SENDER role. When called with a BATADV_TP_RECEIVER role, it
-proceeds to read sender-only members that were never initialized, leading
-to undefined behavior.
+batadv_frag_skb_buffer() is called by batadv_batman_skb_recv() when a
+BATADV_UNICAST_FRAG packet is received. Once all fragments are collected
+and the packet is reassembled, batadv_recv_frag_packet() calls
+batadv_batman_skb_recv() again to process the defragmented payload.
 
-This can be triggered when a node that is currently acting as a receiver in
-an ongoing tp_meter session receives a malicious ACK packet.
+A malicious sender can craft a BATADV_UNICAST_FRAG packet whose reassembled
+payload is itself a BATADV_UNICAST_FRAG packet (matryoshka-style nesting).
+Each nesting level recurses through batadv_batman_skb_recv() without bound,
+growing the kernel stack until it is exhausted.
 
-Guard against this by checking tp_vars->role immediately after the
-lookup and bailing out if it is not BATADV_TP_SENDER, before any of
-those members are accessed.
+Since refragmentation or fragments in fragments are not actually allowed,
+discard all packets which are still BATADV_UNICAST_FRAG packets after the
+defragmentation process.
 
 Cc: stable@kernel.org
-Fixes: 33a3bb4a3345 ("batman-adv: throughput meter implementation")
+Fixes: 610bfc6bc99b ("batman-adv: Receive fragmented packets and merge")
 Reported-by: Yuan Tan <yuantan098@gmail.com>
 Reported-by: Yifan Wu <yifanwucs@gmail.com>
 Reported-by: Juefei Pu <tomapufckgml@gmail.com>
@@ -171,42 +173,62 @@ Reviewed-by: Yuan Tan <yuantan098@gmail.com>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/tp_meter.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ net/batman-adv/fragmentation.c | 35 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index ca6c3f6374bc5..a3593d104caa5 100644
---- a/net/batman-adv/tp_meter.c
-+++ b/net/batman-adv/tp_meter.c
-@@ -664,6 +664,9 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
- 	if (unlikely(!tp_vars))
- 		return;
- 
-+	if (unlikely(tp_vars->role != BATADV_TP_SENDER))
-+		goto out;
-+
- 	if (unlikely(atomic_read(&tp_vars->sending) == 0))
- 		goto out;
- 
-@@ -1101,12 +1104,16 @@ void batadv_tp_stop(struct batadv_priv *bat_priv, const u8 *dst,
- 	if (!tp_vars) {
- 		batadv_dbg(BATADV_DBG_TP_METER, bat_priv,
- 			   "Meter: trying to interrupt an already over connection\n");
--		goto out;
-+		goto out_put_orig_node;
- 	}
- 
-+	if (unlikely(tp_vars->role != BATADV_TP_SENDER))
-+		goto out_put_tp_vars;
-+
- 	batadv_tp_sender_shutdown(tp_vars, return_value);
-+out_put_tp_vars:
- 	batadv_tp_vars_put(tp_vars);
--out:
-+out_put_orig_node:
- 	batadv_orig_node_put(orig_node);
+diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentation.c
+index 1152c2ce0c1ea..4a594aa2ebf66 100644
+--- a/net/batman-adv/fragmentation.c
++++ b/net/batman-adv/fragmentation.c
+@@ -304,6 +304,31 @@ batadv_frag_merge_packets(struct hlist_head *chain)
+ 	return skb_out;
  }
  
++/**
++ * batadv_skb_is_frag() - check if newly merged skb is gain a unicast packet
++ * @skb: newly merged skb
++ *
++ * Return: if newly skb is of type BATADV_UNICAST_FRAG
++ */
++static bool batadv_skb_is_frag(struct sk_buff *skb)
++{
++	struct batadv_ogm_packet *batadv_ogm_packet;
++
++	/* packet should hold at least type and version */
++	if (unlikely(!pskb_may_pull(skb, 2)))
++		return false;
++
++	batadv_ogm_packet = (struct batadv_ogm_packet *)skb->data;
++
++	if (batadv_ogm_packet->version != BATADV_COMPAT_VERSION)
++		return false;
++
++	if (batadv_ogm_packet->packet_type != BATADV_UNICAST_FRAG)
++		return false;
++
++	return true;
++}
++
+ /**
+  * batadv_frag_skb_buffer() - buffer fragment for later merge
+  * @skb: skb to buffer
+@@ -337,6 +362,16 @@ bool batadv_frag_skb_buffer(struct sk_buff **skb,
+ 	if (!skb_out)
+ 		goto out_err;
+ 
++	/* fragment in fragment is not allowed. otherwise it is possible
++	 * to exhaust the stack when receiving a matryoshka-style
++	 * "fragments in a fragment packet"
++	 */
++	if (batadv_skb_is_frag(skb_out)) {
++		kfree_skb(skb_out);
++		skb_out = NULL;
++		goto out_err;
++	}
++
+ out:
+ 	ret = true;
+ out_err:
 -- 
 2.47.3
 
