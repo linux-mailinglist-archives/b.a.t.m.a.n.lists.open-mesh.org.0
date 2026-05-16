@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEKLDMVkCGromgMAu9opvQ
+	id CK7SEh9lCGromgMAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 14:36:21 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 14:37:51 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A2A55BCC7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 14:36:20 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC50F55BCD7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 14:37:50 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8C77A85DAF
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 14:36:20 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B938485ECD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 14:37:50 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778934980;
- b=BeETkf/+P+fN4YoIW2XvzJQyE7z/nNpa+TpJFCoRLFDe02K4SOZ1WNZmCgk9fme3tiuOR
- wQL5SZy3X+TuBv6KFP8mFTfnb8jhQFHq8+HW8YKea1qtJF+WwLifhwSLIYSFjSaYSYga+ZR
- QLOLd6NravfzQjQmFyn5KfekciYALi8=
+ t=1778935070;
+ b=tlSanQCuIUx1+xfli927A+JhXjz0U3EUyyaeu0JB6g3z4oU40F3qhJyBJaKLvshXlxZcX
+ jpca6t3vX+Tft5/VeX14z9Aiv0KX2HN4ufF53LKIqC2y+Fejr93jPF0+UY4DonTgbY9nb5R
+ CCyHCbdPkruimWbvR2//lsO4kncR8+c=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778934980; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778935070; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=UGB6yYAzMHwUwgMqivbsqIqn866x7NB5V1DXSM9qG7g=;
- b=npCeu7YupOKOpdyft0EMtrwb3ozVDZLtd1Xnn/lP2SOhpb+wggme2xYpQMQq9P8RUiydy
- PYe4UmazIKtG/zLkvWrL55MQDcZNLvXAEtCGoEpBqrKwlVtTrbIzP6JUdcr+3tAoicsKvmB
- D98CR7oA1LaCmWJ4hfHBF1OMVfLKwoM=
+ list-archive; bh=hM6FYXNlFN4EmdpZ9+EjxQMDo2uzEvgbJwYpU4b4BBw=;
+ b=zorYTttLQCXLDuAFGQpsMNOdoT8/8JMAnpvFWBOO5PduPst2MS2rEzCrwFGTaNx8j+E1T
+ UoT9IzYVjqlkzit50vH+kpdZZgOSqrBEwBXg0yevhY0ziZXmsSDkxvHrfGTlkzHITNVm4Xa
+ w2gsiTHz0g9YGv8L4REoel5j7etIpoI=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -36,63 +36,63 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 026EC80080
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 May 2026 14:35:27 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 6E3CE85DB2
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 May 2026 14:35:42 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778934938;
+	s=20121; t=1778934947;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=UGB6yYAzMHwUwgMqivbsqIqn866x7NB5V1DXSM9qG7g=;
-	b=Hd49LHAoy3tZp6ODGfC4AqOq5dkjlD3jX4d+EPThB88lX2Pop/qKCkb9NcgAgvy7mY3lUb
-	KSHUZXyjKDEcXXv7uQx/WQMz0LC1VqUf9QMkN770MD1Zxx8gQKL/v2R68o8Ch2aTh/v7kQ
-	u3nX64HFd/pOSDr84eTq5Imnu7DNoa8=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=hM6FYXNlFN4EmdpZ9+EjxQMDo2uzEvgbJwYpU4b4BBw=;
+	b=NhMrXzMdGnsxUrwNSwildlG2V3JmvLLa1q3WggK4OWvsqIy5uSj8ZFgRA/tnVxW7TC49BE
+	pONDHLEez668A5rXm09TQZP+reJBK759qKBq+DGPExT2wuxvq0fJx47fw8zpsaSXFqrXmc
+	zCa1/yg7bP/kY8g5rFxv+ZqtziWgE2w=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2kOyrkQy;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=hcL0ixpS;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778934938;
-	b=VcZurzO/bQgGsGv/WdW8U1v3MMlYJ2FF3pafKGL+9l7IaZ5rRqe0GizisrMfwedhO2q08i
-	DZZK1FkncgsHvBs/SMx6Gb4m94Dudqg5+uBXGMEzt6bmu77Wimf35EqzYrLiivEOtNBGF1
-	znbMtATz9MLE/nxEN1TtT3uiq3wBpgA=
-Received: by dvalin.narfation.org (Postfix) id E669420101;
-	Sat, 16 May 2026 12:35:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778934947;
+	b=wE8smGnpxQB6PLQdUihvF8V1oKCyoM6DIU1bipAlFc3kJBdbAOtU7ssTCK5jv6V0xVQDDn
+	cE5mw/wQOiayr1T5w1ZlpPWpT5fx1o5LSgAzNNAHhXz/U4eQAUTXRRwR8ZZe+75Bex1/Bc
+	bMvk8u0HNW1sn7SxiKMgXACpiNrjo1M=
+Received: by dvalin.narfation.org (Postfix) id DF2CA20101;
+	Sat, 16 May 2026 12:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778934927;
+	s=20121; t=1778934941;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=UGB6yYAzMHwUwgMqivbsqIqn866x7NB5V1DXSM9qG7g=;
-	b=2kOyrkQy2e8VP7iLtCXk2tp8daHJ0IjK+fkzyyteAmuGXAXQSQjW9VPmIMH/J/8ez8UjXT
-	jNavnWVcIr58LWS03eqbr9FO85htwB9rA1AeH24/vNFXmE0NkC5ad9DzfkrdqjrY7qkNYG
-	W+qVUD2VPmo0kWDmMJUkYFo0Hg3+bZI=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hM6FYXNlFN4EmdpZ9+EjxQMDo2uzEvgbJwYpU4b4BBw=;
+	b=hcL0ixpS+KtGQKZMnbdM1L3ipDohmXh4jmxJwk1VigwZu0KoqHE0FN8Ffd+/Fw3BdBmeRo
+	nOUeJ8qMvqeimdDZa9AOhY/ECFsikZECDH3vLgyi6XwjU3JUb3+Jf21Y6nxcoch1K99uN3
+	XF24+65Pk3hHfhX50MhECfe1s+hxdDM=
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH RFC batadv 0/5] batman-adv: allow to specify limits for
- remote learned objects
-Date: Sat, 16 May 2026 14:35:17 +0200
-Message-Id: <20260516-resource-limit-v1-0-6f597360ed2b@narfation.org>
+Date: Sat, 16 May 2026 14:35:18 +0200
+Subject: [PATCH RFC batadv 1/5] batman-adv: limit numbers of parallel
+ learned neighbors
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIVkCGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDU0Mz3aLU4vzSouRU3ZzM3MwSXdNkw0RjIwtLizTzZCWgpoKi1LTMCrC
- B0UpBbs4gsaTEksSUMqVYiHRxaVJWanIJyFCl2loA2qW6roEAAAA=
-X-Change-ID: 20260516-resource-limit-5c1a32898f7c
+Message-Id: <20260516-resource-limit-v1-1-6f597360ed2b@narfation.org>
+References: <20260516-resource-limit-v1-0-6f597360ed2b@narfation.org>
+In-Reply-To: <20260516-resource-limit-v1-0-6f597360ed2b@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2252; i=sven@narfation.org;
- h=from:subject:message-id; bh=SOAnDVfGasgIXrJ1h3mPNntVvUEwRByeWPyUOBfPt2o=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFkcKe35KdVLDxwNq/KVXBgQkvGy+v2lRVNOJ7i9vxV6f
- 5XMfhXmjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE0joYGVYXBf1YKHJ46mdR
- Du2PZko5K7n990qtPfDOwNC3eq9UWh/DP9PqrXLtFUGRU7epnFvQIVT2Mmgp00lpWe7GH03rWFt
- F2QE=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5860; i=sven@narfation.org;
+ h=from:subject:message-id; bh=pc6gIaMchHPGRfEYHNHLZspvXQ1xyvPA0+5sQf83IHE=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFkcKV137+Vv2RU562j5GdsXEe39wuG+O4qCrRdqBQbuc
+ /dQcb3cUcrCIMbFICumyLLnSv75zexv5T9P+3gUZg4rE8gQBi5OAZjIxUsM//RcFTZp/Fu527/K
+ rLnnyq24hxmKl5fvqNjYfm7txur5qb8Z/oee3hfV7u07baZi5XSpdTqpbFzcCo5h2TYWOoJn+G9
+ bMAMA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: SPSAZ24AOSTDSFY4I5EON2YTI6L3LDI3
-X-Message-ID-Hash: SPSAZ24AOSTDSFY4I5EON2YTI6L3LDI3
+Message-ID-Hash: WZODYDNBTGC2URVUITLRP7K45DQK43OM
+X-Message-ID-Hash: WZODYDNBTGC2URVUITLRP7K45DQK43OM
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -106,7 +106,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SPSAZ24AOSTDSFY4I5EON2YTI6L3LDI3/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WZODYDNBTGC2URVUITLRP7K45DQK43OM/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -114,7 +114,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: C0A2A55BCC7
+X-Rspamd-Queue-Id: DC50F55BCD7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
@@ -123,83 +123,187 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	R_SPF_NA(0.00)[no SPF record];
-	RCVD_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[narfation.org:+]
 X-Rspamd-Action: no action
 
-There are some concerns that an external entity could spam the batman-adv
-related interfaces with random mac addresses. The batman-adv would use more
-and more resources to safe things like neighbors, originators, TT, ... and
-would at some point run out of resources.
+A malicious actor behind one bridge port may spam the kernel with OGMs with
+a random source MAC address, each of which will create a neighbor node
+entry, each of which is a dynamic allocation in the kernel. This will at
+some point exhaust the available memory.
 
-One idea is to limit the number of entries for each resource type could
-have. Things which might need limits
+Mitigate this by maintaining a per meshif count of those automatically
+generated entries in neigh_learned, and a limit in neigh_max_learned. If
+the limit is hit new entries are not learned anymore.
 
-* orig_node
-* neigh_node
-* tt_local_entry
-* dat_entry
-* bla_backbone_gw
-* bla_claim
-
-Things which are limited by other things (maybe)
-
-* hardif_neigh_node
-* gw_node
-* orig_node_vlan
-* orig_info
-
-Unknown how to handle overly large tt_global_entries:
-
-* tt_global_entry
-
-This approach is also used for the bridge since commit bdb4dfda3b41 ("net:
-bridge: Track and limit dynamically learned FDB entries"). And it is also
-disabled by default.
-
-For the moment, I just want to demonstrate how this might work with some
-example code. I didn't invest any time to actually check out the other
-items in the list. So, please consider these lists as vague suggestions.
+For backwards compatibility, the default setting of 0 disables the limit.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-Sven Eckelmann (5):
-      batman-adv: limit numbers of parallel learned neighbors
-      batman-adv: limit numbers of parallel learned originators
-      batman-adv: limit numbers of parallel learned DAT entries
-      batman-adv: limit numbers of parallel learned BLA backbones
-      batman-adv: limit numbers of parallel learned BLA claims
+ include/uapi/linux/batman_adv.h |  6 ++++++
+ net/batman-adv/mesh-interface.c |  3 +++
+ net/batman-adv/netlink.c        | 11 +++++++++++
+ net/batman-adv/originator.c     | 12 ++++++++++++
+ net/batman-adv/types.h          |  6 ++++++
+ 5 files changed, 38 insertions(+)
 
- include/uapi/linux/batman_adv.h        | 30 ++++++++++++++++++++
- net/batman-adv/bat_iv_ogm.c            | 13 ++++++++-
- net/batman-adv/bat_v_ogm.c             | 11 ++++++++
- net/batman-adv/bridge_loop_avoidance.c | 22 +++++++++++++++
- net/batman-adv/distributed-arp-table.c | 11 ++++++++
- net/batman-adv/mesh-interface.c        | 15 ++++++++++
- net/batman-adv/netlink.c               | 51 ++++++++++++++++++++++++++++++++++
- net/batman-adv/originator.c            | 14 ++++++++++
- net/batman-adv/types.h                 | 30 ++++++++++++++++++++
- 9 files changed, 196 insertions(+), 1 deletion(-)
----
-base-commit: 7700c90cbd12d04b8aabb62fe031ce6b31d6a4d9
-change-id: 20260516-resource-limit-5c1a32898f7c
+diff --git a/include/uapi/linux/batman_adv.h b/include/uapi/linux/batman_adv.h
+index 936bcac2..addb6092 100644
+--- a/include/uapi/linux/batman_adv.h
++++ b/include/uapi/linux/batman_adv.h
+@@ -481,6 +481,12 @@ enum batadv_nl_attrs {
+ 	 */
+ 	BATADV_ATTR_MULTICAST_FANOUT,
+ 
++	/**
++	 * @BATADV_ATTR_NEIGH_MAX_LEARNED: defines the maximum number of neighbors
++	 * which can be learned in parallel
++	 */
++	BATADV_ATTR_NEIGH_MAX_LEARNED,
++
+ 	/* add attributes above here, update the policy in netlink.c */
+ 
+ 	/**
+diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
+index 50c26037..b9302c58 100644
+--- a/net/batman-adv/mesh-interface.c
++++ b/net/batman-adv/mesh-interface.c
+@@ -790,6 +790,9 @@ static int batadv_meshif_init_late(struct net_device *dev)
+ #endif
+ 	atomic_set(&bat_priv->tp_num, 0);
+ 
++	atomic_set(&bat_priv->neigh_learned, 0);
++	WRITE_ONCE(bat_priv->neigh_max_learned, 0);
++
+ 	WRITE_ONCE(bat_priv->tt.local_changes, 0);
+ 	bat_priv->tt.last_changeset = NULL;
+ 	bat_priv->tt.last_changeset_len = 0;
+diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
+index e52f44e7..915a7d74 100644
+--- a/net/batman-adv/netlink.c
++++ b/net/batman-adv/netlink.c
+@@ -13,6 +13,7 @@
+ #include <linux/bug.h>
+ #include <linux/byteorder/generic.h>
+ #include <linux/cache.h>
++#include <linux/compiler.h>
+ #include <linux/err.h>
+ #include <linux/errno.h>
+ #include <linux/gfp.h>
+@@ -146,6 +147,7 @@ static const struct nla_policy batadv_netlink_policy[NUM_BATADV_ATTR] = {
+ 	[BATADV_ATTR_ORIG_INTERVAL]		= { .type = NLA_U32 },
+ 	[BATADV_ATTR_ELP_INTERVAL]		= { .type = NLA_U32 },
+ 	[BATADV_ATTR_THROUGHPUT_OVERRIDE]	= { .type = NLA_U32 },
++	[BATADV_ATTR_NEIGH_MAX_LEARNED]		= { .type = NLA_U32 },
+ };
+ 
+ /**
+@@ -347,6 +349,10 @@ static int batadv_netlink_mesh_fill(struct sk_buff *msg,
+ 			atomic_read(&bat_priv->orig_interval)))
+ 		goto nla_put_failure;
+ 
++	if (nla_put_u32(msg, BATADV_ATTR_NEIGH_MAX_LEARNED,
++			READ_ONCE(bat_priv->neigh_max_learned)))
++		goto nla_put_failure;
++
+ 	batadv_hardif_put(primary_if);
+ 
+ 	genlmsg_end(msg, hdr);
+@@ -592,6 +598,11 @@ static int batadv_netlink_set_mesh(struct sk_buff *skb, struct genl_info *info)
+ 		atomic_set(&bat_priv->orig_interval, orig_interval);
+ 	}
+ 
++	if (info->attrs[BATADV_ATTR_NEIGH_MAX_LEARNED]) {
++		WRITE_ONCE(bat_priv->neigh_max_learned,
++			   nla_get_u32(info->attrs[BATADV_ATTR_NEIGH_MAX_LEARNED]));
++	}
++
+ 	batadv_netlink_notify_mesh(bat_priv);
+ 
+ 	return 0;
+diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
+index b3468cca..90f553fc 100644
+--- a/net/batman-adv/originator.c
++++ b/net/batman-adv/originator.c
+@@ -671,6 +671,8 @@ batadv_neigh_node_create(struct batadv_orig_node *orig_node,
+ {
+ 	struct batadv_neigh_node *neigh_node;
+ 	struct batadv_hardif_neigh_node *hardif_neigh = NULL;
++	u32 neigh_max_learned;
++	int neigh_learned;
+ 
+ 	spin_lock_bh(&orig_node->neigh_list_lock);
+ 
+@@ -678,6 +680,11 @@ batadv_neigh_node_create(struct batadv_orig_node *orig_node,
+ 	if (neigh_node)
+ 		goto out;
+ 
++	neigh_max_learned = READ_ONCE(orig_node->bat_priv->neigh_max_learned);
++	neigh_learned = atomic_read(&orig_node->bat_priv->neigh_learned);
++	if (neigh_max_learned && neigh_learned >= neigh_max_learned)
++		goto out;
++
+ 	hardif_neigh = batadv_hardif_neigh_get_or_create(hard_iface,
+ 							 neigh_addr, orig_node);
+ 	if (!hardif_neigh)
+@@ -701,6 +708,8 @@ batadv_neigh_node_create(struct batadv_orig_node *orig_node,
+ 	kref_get(&hardif_neigh->refcount);
+ 	neigh_node->hardif_neigh = hardif_neigh;
+ 
++	atomic_inc(&orig_node->bat_priv->neigh_learned);
++
+ 	/* extra reference for return */
+ 	kref_init(&neigh_node->refcount);
+ 
+@@ -866,6 +875,8 @@ void batadv_orig_node_release(struct kref *ref)
+ 				  &orig_node->neigh_list, list) {
+ 		hlist_del_rcu(&neigh_node->list);
+ 		batadv_neigh_node_put(neigh_node);
++
++		atomic_dec(&orig_node->bat_priv->neigh_learned);
+ 	}
+ 
+ 	hlist_for_each_entry_safe(orig_ifinfo, node_tmp,
+@@ -1144,6 +1155,7 @@ batadv_purge_orig_neighbors(struct batadv_priv *bat_priv,
+ 
+ 			hlist_del_rcu(&neigh_node->list);
+ 			batadv_neigh_node_put(neigh_node);
++			atomic_dec(&bat_priv->neigh_learned);
+ 		} else {
+ 			/* only necessary if not the whole neighbor is to be
+ 			 * deleted, but some interface has been removed.
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index a76afc25..bad73d6b 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -1655,6 +1655,12 @@ struct batadv_priv {
+ 	/** @meshif_vlan_list_lock: lock protecting meshif_vlan_list */
+ 	spinlock_t meshif_vlan_list_lock;
+ 
++	/** @neigh_max_learned: Maximum number of neighbors */
++	u32 neigh_max_learned;
++
++	/** @neigh_learned: current number of learned neighbors */
++	atomic_t neigh_learned;
++
+ #ifdef CONFIG_BATMAN_ADV_BLA
+ 	/** @bla: bridge loop avoidance data */
+ 	struct batadv_priv_bla bla;
 
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
+-- 
+2.47.3
 
