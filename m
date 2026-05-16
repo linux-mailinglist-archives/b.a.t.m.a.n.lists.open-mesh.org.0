@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qDCMLE2JB2ol7gIAu9opvQ
+	id APXCBvYZCGpLZQMAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 22:59:57 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 09:17:10 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5552A557982
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 22:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B3D55A954
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 09:17:09 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 9A78E85BB5
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 15 May 2026 22:59:56 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 88B13854A0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 16 May 2026 09:17:09 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1778878796;
- b=HR+Eex98yY86HFnsHS+VznGkEuGGL1sVnoT2jOYEVcwjncUlqi9euQNy+Iml/Mo+506aD
- 5m6Ux1zWcDLsvWookoI92rk4s9bYkDIS2l16yJjwlbumJkhleo/WbGKwMBMI8UiLBPTzoqV
- WKqbvgKPXB1sWhEye85CUouD2nNfzP8=
+ t=1778915829;
+ b=nWbWcABxPQlDpMbs7jaa5F8IoJSLA41qCXw0tTTbrhAZR417qrAJqNMWT9t4x/1Xl6sBU
+ 4+BqvHLhAwxq96zYDELYAcNGoJmDI/kaJM6O+JlV7woN9Kp8S8NSTitxSfIvTAr5lcZnJ4m
+ m8WqKpEJLMy4P2IuLwZ4wBBJcHHYyfY=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1778878796; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1778915829; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=SlHj3BYtyc3KT3jktVxtdF6XWyg1CmQIs41FBAbv0fM=;
- b=eKZJc1aFOMBzRjemwXcM/nH8XyvQBBCUNaLNqN+aSb+tDfgQmZtQJQMh6Tn1fdNJBjPjA
- 1drYuIStSis9UCH4pXLB0MS3/2s6APpGXFNI91FeMTQZzIn47ajm5Q2nq9g/ORBdQa0uqno
- D9rUge2GgzUtK6XxBXLmRRA3qItQzC0=
+ list-archive; bh=z/Vb10HZZXM8xyQzvhVc2aaGuq+L0ejqfENniO1jjRE=;
+ b=mzV+9TKvpp3cP3p2AU+DK8hjTOua6gBg05l616pmyJweUTG+9FS5p2rqRichCXqvxLwU4
+ yXltVk6jLN+z+/fS+O+IWhkNSSnxP3IKnkcSZ1f3gmGwe8HK5GUQcmrpNBA6Qh8yoUhhS3w
+ oFH2s4dHEvCQglcpbO+6Q+U87N5S5Q8=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -36,64 +36,63 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 2002A8227E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 15 May 2026 22:59:04 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id E7B6085D76
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 May 2026 09:15:02 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1778878754;
+	s=20121; t=1778915712;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=SlHj3BYtyc3KT3jktVxtdF6XWyg1CmQIs41FBAbv0fM=;
-	b=Mp/px3/tsbXe8y8LU6wI4OQpSZJNemGwPi0OdXtfjTo7eABLbABTt+xn79HYswMtLQiJQa
-	qlguhNWF0NFZCDmjE/+0oIKYUkOOPH6A5pZiZf3GoY94vXNw3+jouQSy3diD9kcraYRF6D
-	5RK7Zt3K6n2OXhDipTnFinmVzZKUCwU=
+	bh=z/Vb10HZZXM8xyQzvhVc2aaGuq+L0ejqfENniO1jjRE=;
+	b=dGlC1+Eu3K8pT7OnrhUYFmkob9sVlaky7+60H8SMIna6OEoSdNwPY3qVAkfCa+nTj1f2VD
+	th6e71SQF3oeOIeVv49UIucrC8V/nYpQnrzTRcymm/F6aq/rL1FMsKuFVbhQRqLmJukfyT
+	g44SNgcYNBaYbZDoK4r/Kvc6OdHBF78=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=uNtEfglr;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=fSxZDMy3;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778878754;
-	b=0zHC9WPusQE/07vtxb6RYGoigQVDGDd9GGMS5jl8LSmJM4lJYVY295ea5jTqIlArCxzHA2
-	92pSjoHQbjutB8UN91dD0ZFMf/zAbfvW/MWee0XvALVV5nxAvPPx5qeHaECDZJC1bBItXL
-	+tc8CD0VSFKhFIHtCwWpJINjLZlpXd4=
-Received: by dvalin.narfation.org (Postfix) id B783C1FF1D;
-	Fri, 15 May 2026 20:59:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1778915712;
+	b=ml7Q6465dQmJtPz1EZhtMQeEUVjosFsfv275ibEswV9G4iYY4GJTfO6bghgN35P988mlew
+	d9/IttlJaG5ZvK8VxSwdHNV+BVDviyARynLV9inNprSRD8qKSkg+JbJisezqMxLaunRBwy
+	VlGx+7u3EeAi4FGRkBFbbyCWvMfKQnU=
+Received: by dvalin.narfation.org (Postfix) id 235081FF78
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 16 May 2026 07:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1778878742;
+	s=20121; t=1778915702;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=SlHj3BYtyc3KT3jktVxtdF6XWyg1CmQIs41FBAbv0fM=;
-	b=uNtEfglrPgazuegWXftc3Z/ihnhDarySKwTDvKPRLoGmqfYcQxUP9Ph61K/KsemmYa3BET
-	9MnGMo+FkFBetvxRbINVEkP75BdTLRuKz7WAx2f+z4hkK4ehzJvTMt3yJdlatUwdMHkPgS
-	S0lKB/ehgWgtY6KG3cRGSb7nL6m+7b0=
+	bh=z/Vb10HZZXM8xyQzvhVc2aaGuq+L0ejqfENniO1jjRE=;
+	b=fSxZDMy3S8ncB8bl3CmN0uQqSuxGhUIttacdhDD3ahYYIQDAo+/miv1K4T1HzsnK3EL/C4
+	Xb6Mb9n3oou05223BYwqgigGSzW9pXrEhzpEU5+HI1UqfgyUseHI+cti+30YUHLyjoCZPa
+	NTDNMSw5bzKzaPfrIBAk6eM34OKYDms=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 15 May 2026 22:58:58 +0200
-Subject: [PATCH RFC batadv] batman-adv: iv: recover OGM scheduling after
- forward packet error
+Subject: [PATCH batadv v4 0/4] batman-adv: collected fixes (Yuan Tan)
+Date: Sat, 16 May 2026 09:14:55 +0200
+Message-Id: <20260516-yuantan098-bugfixes-v4-0-9b5743d147bd@narfation.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: 
- <20260515-bat_iv-own-fwd-failure-recover-v1-1-caa171e7d59e@narfation.org>
-X-B4-Tracking: v=1; b=H4sIABGJB2oC/yWNywrCMBBFf6XM2oGktPWxFfwAtyKSJhMdkUQmb
- SqU/rupLs+9cM4MiYQpwaGaQShz4hgK6E0F9mHCnZBdYahV3alWt9ib4cYZ4xTQTw694dcohEI
- 2ZhJU2nZmS82u2WsokreQ588vcIHz6bhuRWFchuv/TmP/JDusEViWL9KMzIiRAAAA
-X-Change-ID: 20260515-bat_iv-own-fwd-failure-recover-01c6a7e48491
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG8ZCGoC/23OwW7DIAwG4FepOJcJTGClp73HtINJTEoPpAKCV
+ lV595HkUk05WTb29/NimVKgzK6nF0tUQw5TbE13PrH+hnEkHobWMxBghBaWP2eMBaOwF+7m0Yd
+ fytyTM0YDrJW1y0ei7aEdfjOHBYfKfvZ5nt2d+rKS6+Yt5DKl5xZf5ba/J0l5mFQlF9zg4I012
+ oNTXxGTx9J+/TGlcUup8O6oYweaczGKbI8IqD+PHPXu6GNHNUejRistdNrAf2dZlj+XakpqZAE
+ AAA==
+X-Change-ID: 20260509-yuantan098-bugfixes-feb66522feb6
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8086; i=sven@narfation.org;
- h=from:subject:message-id; bh=9Cd2j2A3VDlSV0jW+aJ0GRuv7BWUVg9Sy9BbubeLMDM=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnsnUKlUndnLmauXWb6yzhuxxnxgsCHXB992jy9mh1OL
- N3rOOlNRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAiM7YzMjxu+3rlEfvVjluu
- 93T8F3l3CfNZWBxa5+kQOUnV7eUL70iG/9VqUzr6TgafaA3pXHkw8n7xTz+j08LnBSJssv98rgt
- jYgQA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2822; i=sven@narfation.org;
+ h=from:subject:message-id; bh=lAqp+Sgwa0CeNUfGLIlL5XiQ07QSFOuJPNzIyAT3dGc=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFkckkWJk4NnL6tcUiqTHTnv4rOa+f8fmOlf8refE77Iw
+ FJGcYZsRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAiE8IYGabejmjR4Dtw7FXx
+ oyWf8mtcQpn/39vbdvwe23qL2Q8yJHMYGb4FXjxqN+u9icqrKr+zat1GbYp7ObqjFz4TS3kRKbn
+ NlAsA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: QR26K32RJGTUV3Q44KDZTI6CLVPTJPIE
-X-Message-ID-Hash: QR26K32RJGTUV3Q44KDZTI6CLVPTJPIE
+Message-ID-Hash: AGPVBF4X35YSUQGMVZSF36RHHJ7EA26K
+X-Message-ID-Hash: AGPVBF4X35YSUQGMVZSF36RHHJ7EA26K
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +106,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QR26K32RJGTUV3Q44KDZTI6CLVPTJPIE/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AGPVBF4X35YSUQGMVZSF36RHHJ7EA26K/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -115,7 +114,7 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Rspamd-Queue-Id: 5552A557982
+X-Rspamd-Queue-Id: B3B3D55A954
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.01 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
@@ -124,231 +123,82 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,msgid.link:url];
 	R_SPF_NA(0.00)[no SPF record];
 	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
+	RCPT_COUNT_ONE(0.00)[1];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_NONE(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	DKIM_TRACE(0.00)[narfation.org:+]
 X-Rspamd-Action: no action
 
-When batadv_iv_ogm_schedule_buff() fails to allocate and queue a forward
-packet for OGM transmission, the work item that drives periodic OGM
-scheduling is never re-armed. This silently halts transmission of the
-node's own OGMs on the affected interface — only OGMs from other peers
-continue to be aggregated and forwarded.
+I was contacted by Yuan Tan regarding some of the problems which were found
+by them. I've proposed to go through the list and prepare changes for
+things which looked sensible. I've also prepared some PoC patches (lets
+call it part2) - just so Antonio+Simon+Marek can discuss about them
+internally.
 
-Fix this by tracking whether batadv_iv_ogm_queue_add() (and transitively
-batadv_iv_ogm_aggregate_new()) successfully scheduled a forward packet.
-When scheduling fails, batadv_iv_ogm_schedule_buff() falls back to queuing
-a dedicated recovery work item (reschedule_work) that fires after one
-originator interval and calls batadv_iv_ogm_schedule() again.
+The ones which don't need further discussion are shown in this patchset.
+For the others, I am waiting on the results of the internal discussion.
 
-Fixes: d893c5d00f63 ("[batman-adv] Cleanup aggregation.[ch]")
+It is more than likely that there will be updates to these patches because
+the team around Yuan Tan need to verify that these are actually working.
+
+Thanks to Yuan Tan, Yifan Wu, Juefei Pu, Xin Liu and all the other people
+involved in finding + fixing these bugs.
+
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-See https://www.open-mesh.org/issues/433
+Changes in v4:
+- always update length in batadv_tvlv_realloc_packet_buff()
+- fix allocation size in batadv_tvlv_realloc_packet_buff()
+- reorder TVLV fixes to first reject failed TVLV appends and only then
+  handle check for oversized TVLVs
+- fall back to non-TVLV version in case batadv_tvlv_container_ogm_append()
+  failed for B.A.T.M.A.N. IV - see
+  https://patch.msgid.link/20260515-bat_iv-own-fwd-failure-recover-v1-1-caa171e7d59e@narfation.org
+  for an idea how to handle it differently
+- Link to v3: https://patch.msgid.link/20260515-yuantan098-bugfixes-v3-0-5a5a91924562@narfation.org
+
+Changes in v3:
+- drop applied patches 1-3
+- add patch to return errors in batadv_tvlv_container_ogm_append()
+- add patch to avoid reallocating the ogm buffer for each send ogm (this is
+  actually a feature and should not be added for net.git)
+- Link to v2: https://patch.msgid.link/20260513-yuantan098-bugfixes-v2-0-863e9caa2a57@narfation.org
+
+Changes in v2:
+- add role checks in all tp_meter functions
+- free skb in batadv_v_ogm_queue_on_if
+- propagate bat_priv from batadv_v_ogm_queue_on_if to batadv_v_ogm_send_to_if
+- Link to v1: https://patch.msgid.link/20260511-yuantan098-bugfixes-v1-0-6adf6965f2b3@narfation.org
+
 ---
- net/batman-adv/bat_iv_ogm.c | 75 ++++++++++++++++++++++++++++++++++++---------
- net/batman-adv/types.h      |  3 ++
- 2 files changed, 64 insertions(+), 14 deletions(-)
+Sven Eckelmann (4):
+      batman-adv: v: stop OGMv2 on disabled interface
+      batman-adv: tvlv: abort OGM send on tvlv append failure
+      batman-adv: tvlv: reject oversized TVLV packets
+      batman-adv: tvlv: avoid unnecessary OGM buffer reallocations
 
-diff --git a/net/batman-adv/bat_iv_ogm.c b/net/batman-adv/bat_iv_ogm.c
-index 74ef7dc2..e67a296f 100644
---- a/net/batman-adv/bat_iv_ogm.c
-+++ b/net/batman-adv/bat_iv_ogm.c
-@@ -224,6 +224,8 @@ static void batadv_iv_ogm_iface_disable(struct batadv_hard_iface *hard_iface)
- 	hard_iface->bat_iv.ogm_buff = NULL;
- 
- 	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
-+
-+	cancel_delayed_work_sync(&hard_iface->bat_iv.reschedule_work);
- }
- 
- static void batadv_iv_ogm_iface_update_mac(struct batadv_hard_iface *hard_iface)
-@@ -536,8 +538,10 @@ batadv_iv_ogm_can_aggregate(const struct batadv_ogm_packet *new_bat_ogm_packet,
-  * @if_incoming: interface where the packet was received
-  * @if_outgoing: interface for which the retransmission should be considered
-  * @own_packet: true if it is a self-generated ogm
-+ *
-+ * Return: whether forward packet was scheduled
-  */
--static void batadv_iv_ogm_aggregate_new(const unsigned char *packet_buff,
-+static bool batadv_iv_ogm_aggregate_new(const unsigned char *packet_buff,
- 					int packet_len, unsigned long send_time,
- 					bool direct_link,
- 					struct batadv_hard_iface *if_incoming,
-@@ -561,13 +565,13 @@ static void batadv_iv_ogm_aggregate_new(const unsigned char *packet_buff,
- 
- 	skb = netdev_alloc_skb_ip_align(NULL, skb_size);
- 	if (!skb)
--		return;
-+		return false;
- 
- 	forw_packet_aggr = batadv_forw_packet_alloc(if_incoming, if_outgoing,
- 						    queue_left, bat_priv, skb);
- 	if (!forw_packet_aggr) {
- 		kfree_skb(skb);
--		return;
-+		return false;
- 	}
- 
- 	forw_packet_aggr->skb->priority = TC_PRIO_CONTROL;
-@@ -590,6 +594,8 @@ static void batadv_iv_ogm_aggregate_new(const unsigned char *packet_buff,
- 			  batadv_iv_send_outstanding_bat_ogm_packet);
- 
- 	batadv_forw_packet_ogmv1_queue(bat_priv, forw_packet_aggr, send_time);
-+
-+	return true;
- }
- 
- /* aggregate a new packet into the existing ogm packet */
-@@ -617,8 +623,10 @@ static void batadv_iv_ogm_aggregate(struct batadv_forw_packet *forw_packet_aggr,
-  * @if_outgoing: interface for which the retransmission should be considered
-  * @own_packet: true if it is a self-generated ogm
-  * @send_time: timestamp (jiffies) when the packet is to be sent
-+ *
-+ * Return: whether forward packet was scheduled
-  */
--static void batadv_iv_ogm_queue_add(struct batadv_priv *bat_priv,
-+static bool batadv_iv_ogm_queue_add(struct batadv_priv *bat_priv,
- 				    unsigned char *packet_buff,
- 				    int packet_len,
- 				    struct batadv_hard_iface *if_incoming,
-@@ -670,14 +678,16 @@ static void batadv_iv_ogm_queue_add(struct batadv_priv *bat_priv,
- 		if (!own_packet && atomic_read(&bat_priv->aggregated_ogms))
- 			send_time += max_aggregation_jiffies;
- 
--		batadv_iv_ogm_aggregate_new(packet_buff, packet_len,
--					    send_time, direct_link,
--					    if_incoming, if_outgoing,
--					    own_packet);
-+		return batadv_iv_ogm_aggregate_new(packet_buff, packet_len,
-+						   send_time, direct_link,
-+						   if_incoming, if_outgoing,
-+						   own_packet);
- 	} else {
- 		batadv_iv_ogm_aggregate(forw_packet_aggr, packet_buff,
- 					packet_len, direct_link);
- 		spin_unlock_bh(&bat_priv->forw_bat_list_lock);
-+
-+		return true;
- 	}
- }
- 
-@@ -790,6 +800,7 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
- 	u32 seqno;
- 	u16 tvlv_len = 0;
- 	unsigned long send_time;
-+	bool scheduled;
- 
- 	lockdep_assert_held(&hard_iface->bat_iv.ogm_buff_mutex);
- 
-@@ -834,8 +845,20 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
- 		/* OGMs from secondary interfaces are only scheduled on their
- 		 * respective interfaces.
- 		 */
--		batadv_iv_ogm_queue_add(bat_priv, *ogm_buff, *ogm_buff_len,
--					hard_iface, hard_iface, 1, send_time);
-+		scheduled = batadv_iv_ogm_queue_add(bat_priv, *ogm_buff, *ogm_buff_len,
-+						    hard_iface, hard_iface, 1, send_time);
-+		if (scheduled)
-+			goto out;
-+
-+		/* there was a failure scheduling the forward packet
-+		 * as result, the batadv_iv_send_outstanding_bat_ogm_packet()
-+		 * work item is no longer scheduled. it is therefore necessary
-+		 * to reschedule it manually
-+		 */
-+		queue_delayed_work(batadv_event_workqueue,
-+				   &hard_iface->bat_iv.reschedule_work,
-+				   msecs_to_jiffies(atomic_read(&bat_priv->orig_interval)));
-+
- 		goto out;
- 	}
- 
-@@ -847,11 +870,22 @@ static void batadv_iv_ogm_schedule_buff(struct batadv_hard_iface *hard_iface)
- 		if (!kref_get_unless_zero(&tmp_hard_iface->refcount))
- 			continue;
- 
--		batadv_iv_ogm_queue_add(bat_priv, *ogm_buff,
--					*ogm_buff_len, hard_iface,
--					tmp_hard_iface, 1, send_time);
--
-+		scheduled = batadv_iv_ogm_queue_add(bat_priv, *ogm_buff,
-+						    *ogm_buff_len, hard_iface,
-+						    tmp_hard_iface, 1, send_time);
- 		batadv_hardif_put(tmp_hard_iface);
-+
-+		if (scheduled || tmp_hard_iface != hard_iface)
-+			continue;
-+
-+		/* there was a failure scheduling the forward packet
-+		 * as result, the batadv_iv_send_outstanding_bat_ogm_packet()
-+		 * work item is no longer scheduled. it is therefore necessary
-+		 * to reschedule it manually
-+		 */
-+		queue_delayed_work(batadv_event_workqueue,
-+				   &hard_iface->bat_iv.reschedule_work,
-+				   msecs_to_jiffies(atomic_read(&bat_priv->orig_interval)));
- 	}
- 	rcu_read_unlock();
- 
-@@ -870,6 +904,17 @@ static void batadv_iv_ogm_schedule(struct batadv_hard_iface *hard_iface)
- 	mutex_unlock(&hard_iface->bat_iv.ogm_buff_mutex);
- }
- 
-+static void batadv_iv_ogm_reschedule(struct work_struct *work)
-+{
-+	struct delayed_work *delayed_work = to_delayed_work(work);
-+	struct batadv_hard_iface *hard_iface;
-+
-+	hard_iface = container_of(delayed_work,
-+				  struct batadv_hard_iface,
-+				  bat_iv.reschedule_work);
-+	batadv_iv_ogm_schedule(hard_iface);
-+}
-+
- /**
-  * batadv_iv_orig_ifinfo_sum() - Get bcast_own sum for originator over interface
-  * @orig_node: originator which reproadcasted the OGMs directly
-@@ -2262,6 +2307,8 @@ batadv_iv_ogm_neigh_is_sob(struct batadv_neigh_node *neigh1,
- 
- static void batadv_iv_iface_enabled(struct batadv_hard_iface *hard_iface)
- {
-+	INIT_DELAYED_WORK(&hard_iface->bat_iv.reschedule_work, batadv_iv_ogm_reschedule);
-+
- 	/* begin scheduling originator messages on that interface */
- 	batadv_iv_ogm_schedule(hard_iface);
- }
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index c8c3e806..6138f63a 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -83,6 +83,9 @@ struct batadv_hard_iface_bat_iv {
- 	/** @ogm_seqno: OGM sequence number - used to identify each OGM */
- 	atomic_t ogm_seqno;
- 
-+	/** @reschedule_work: recover OGM schedule after schedule error */
-+	struct delayed_work reschedule_work;
-+
- 	/** @ogm_buff_mutex: lock protecting ogm_buff and ogm_buff_len */
- 	struct mutex ogm_buff_mutex;
- };
-
+ net/batman-adv/bat_iv_ogm.c | 47 ++++++++++++++----------
+ net/batman-adv/bat_v_ogm.c  | 73 ++++++++++++++++++++-----------------
+ net/batman-adv/tvlv.c       | 88 ++++++++++++++++++++++++++++-----------------
+ net/batman-adv/tvlv.h       |  5 ++-
+ net/batman-adv/types.h      | 31 ++++++++++------
+ 5 files changed, 149 insertions(+), 95 deletions(-)
 ---
 base-commit: 724c381c1dcd0f0682ba36909ca6b843d11d3c2f
-change-id: 20260515-bat_iv-own-fwd-failure-recover-01c6a7e48491
+change-id: 20260509-yuantan098-bugfixes-feb66522feb6
 
 Best regards,
 --  
