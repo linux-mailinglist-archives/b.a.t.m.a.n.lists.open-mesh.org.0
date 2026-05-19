@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0BANCDUVDGoZVQUAu9opvQ
+	id qFhdEGshDGrhWwUAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:45:57 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 10:38:03 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8575795AF
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F8A57A42F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 10:38:02 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A68F780C12
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:45:56 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 9CE9080BAE
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 10:38:02 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1779176756;
- b=pSq2zlSTl9ZqXmOk0ibvCDVkLsn18CDdKjvyaDi+pK1dp77N+HHi/K6cLd+S8IQnzPHus
- H/ePYy0KC5BOYnQJ1Ze/0flI2COlvmnachMtix5Z+wu8ljJF0EsI3bielCDysnN+xZfX+DC
- yECHUL0+JhbckFVFLtp6nGjF93SjBp4=
+ t=1779179882;
+ b=wtbby/4s7HSEMPqNphidoLavFVkd7BQcTe56GchBKZWa9U1WxKoplnllM8ZnhZ1AE9kLy
+ YhR40L11Up4qVFhiluqCTG2PL4N0zU5WmIGxkXSSM5kc/6OiOlrebC/BtS5AjiLt74gA34s
+ pWrUuFG97cFxRuDxseozSKazB2Uel38=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1779176756; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1779179882; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=ufCjQtbFnz6ww2PZy7MlIKFOHXIcXYIcz3A0RQZDeBI=;
- b=yk331lFA44s53utl1EKDQQMvlmgvcvjgKZA2iQmrbkvQawx0k3txO6X/jKP92WRk5YoCr
- 2DD1/3fViFcOIs5sRIJlQksOX6q//MtueXlGp40gvoLMjrBV3Hdgj2aoxvMtgt3IbfcSvgB
- TtEPwGQ5O0VD3ZdbZHSrBu2jmV/c4LQ=
+ list-archive; bh=ZnzxoHNrbiLFBlPqCsYTZbX33no/2D7ec4ZZH8yzyyM=;
+ b=QvbbUSv9Qx2iL2kU8CicdLFRGf1oB7RBXd3AerRKXIQ/AopSXnIpYAGTd/qupfLgSxhRC
+ pp5zT7dSsthHdJQl+mIkXCcLI+JG4NiveTvB9vxD/JPskmGpZ022lYCMUp1RDzFmMK6fEW2
+ H2d3DBGDncpTsR1qddQtfnMCUvZ13WY=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -35,68 +35,53 @@ ARC-Authentication-Results: i=2; open-mesh.org;
 Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id F3FEA8032D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 May 2026 09:45:21 +0200 (CEST)
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id C34438042C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 May 2026 10:37:38 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1779176732;
+	s=20121; t=1779179868;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=ufCjQtbFnz6ww2PZy7MlIKFOHXIcXYIcz3A0RQZDeBI=;
-	b=WmhwNqCWPgs+XWpaelk8oJZ6386VYDzH+gk7MjFCHdmxljN9iEO/Lj76O/uD+/gK8UunFP
-	6yjL1cnfxqtPvqWLlCBTx4nJNTiP4YfOa180OGzGln+5FrnFCRBuv8pvLcBFZWX+M1ZKuO
-	UaiQjA0vcpIGJLQML2nEfQhocFtkMKQ=
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779176732;
-	b=ViYv9ZkEu2NJhcvzhVMokv9VXQNmDnJ3TpKuJbSzJHm5203WMuGujzjo6XCkDemZmGfVdM
-	ahuUwVRiOskewKGgbM4CqRjTIJlyq2ESxlwPSdhu/VRl/NfFbxVMHIWHetLdtDTH/mWEUY
-	lVRRwdb9OZ6HewBI7XkAm1UDlzYS6YY=
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=ZnzxoHNrbiLFBlPqCsYTZbX33no/2D7ec4ZZH8yzyyM=;
+	b=ULkAPYW0bLGoDnqjGLs2NSsau33FkCz6bbD6gozmy5fgnPSVioATYboAocbG8dMAkbkU+1
+	0iADqVi6mZ3kfyf8mIb5zi208aVcVPAaoIX4F1vhaj6H1FkdWKNb2ujHWKaGeuwZJXLI/h
+	36ZNjcn97rTwyQELTAT9HD9bxy8lbGA=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779179868;
+	b=OYzgklLu5mHITegEe9Q9LXoMWVAN/bzEpOYlwym2ZMwoa8scQkRebZQ9xAkNlFYUAD8j61
+	8q9sxfdpMfKCY1fhLgwqkUofnZOwhi75eVyKzlioQoarcrcQ/4L6CndASyeQ3GjaW7UZdB
+	ie4OuPHWX1hz5gnR1/tcGVC5w6ChARA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=VOPQ0LMy;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=yRIhkzjy;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 18B9D1FE7B;
-	Tue, 19 May 2026 07:45:21 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id F28231FD57
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 May 2026 08:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1779176721;
+	s=20121; t=1779179858;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=ufCjQtbFnz6ww2PZy7MlIKFOHXIcXYIcz3A0RQZDeBI=;
-	b=VOPQ0LMyYuGRmv3+L8mCPnXWitkyojweeYIQKu4ixOedw4yt1ulU7w7F8vxoEjzZUjPGWE
-	tpHFuI0cy/lTFU0OxAmMveA9q1V6hSpDciRlffMbqQakFwZLMmmWXj3HR86ajj8RChSejb
-	ugEzizrvP4D8u6TuO0CDB66HDRWIJ8U=
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZnzxoHNrbiLFBlPqCsYTZbX33no/2D7ec4ZZH8yzyyM=;
+	b=yRIhkzjyylB6jfLO8bdteGvrqh5TqjENZeW8vHh/E0x8DWmXtwOiYYYjC5Y96xnlNCRgeY
+	RR+zjgMDxtXjBpFX7BZZh3UFUStINd7o5U/+AacdRN9usvrQxb9hINi9Rynd3gjciwSKa1
+	v+EHFYAJyyqkpTcDgGEIj7SVMteOt7Y=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 19 May 2026 09:45:18 +0200
-Subject: [PATCH batadv] batman-adv: bla: avoid NULL-ptr deref for claim via
- dropped interface
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: 
- <20260519-bla-unchecked-hardif-meshif-deref-v1-1-59cddf032f0e@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAA0VDGoC/yWNSw7CMAwFr1J5jaW0FChcBbFwYpeYT0BJWyFVv
- XsNrJ5mFm9mKJJVCpyqGbJMWvSVDOpNBSFSugoqG0Pjmr3b1Uf0D8IxhSjhLoyRMmuPTynRhiV
- Lj8TdlttD8NQ5sJ+3Sf38GmfwNBBPcPn7MvqbhOEbgGVZAbT864uNAAAA
-X-Change-ID: 20260519-bla-unchecked-hardif-meshif-deref-ad83d47cba80
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Ido Schimmel <idosch@nvidia.com>, stable@kernel.org,
- syzbot+9fdcc9f05a98a540b816@syzkaller.appspotmail.com,
- Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2107; i=sven@narfation.org;
- h=from:subject:message-id; bh=xd8/W00+3lFECWJuPAIu0VSMgphausXzngx6Xdf7dNs=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFk8onyzGoSXtc76Hlu152htg6XR2iPpbvOfatfOnC6/8
- f0tnZZpHaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJXNzGyDDxzvFNWlsVT00z
- CIv/2M/xUfuwrbHu9YV3ntdXR9YeOruL4a+Y/i2bCM0lPlw8vdl828+dFVymxlmmEzKJfflmtxO
- ++/kB
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: GMOM4L6KQAR4HTQJJPQHOJ6FBGHJBRQV
-X-Message-ID-Hash: GMOM4L6KQAR4HTQJJPQHOJ6FBGHJBRQV
+Subject: Re: [PATCH RFC batadv v2 0/5] batman-adv: allow to specify limits for
+ remote
+ learned objects
+Date: Tue, 19 May 2026 10:37:34 +0200
+Message-ID: <3036655.mvXUDI8C0e@ripper>
+In-Reply-To: <20260519-resource-limit-v2-0-489c3c919a54@narfation.org>
+References: <20260519-resource-limit-v2-0-489c3c919a54@narfation.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart13100678.O9o76ZdvQC";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: QJAG33UB7V23ASCWXZSCSQEA572OKSJZ
+X-Message-ID-Hash: QJAG33UB7V23ASCWXZSCSQEA572OKSJZ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -110,7 +95,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GMOM4L6KQAR4HTQJJPQHOJ6FBGHJBRQV/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QJAG33UB7V23ASCWXZSCSQEA572OKSJZ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -118,87 +103,70 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Spamd-Result: default: False [-0.51 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.61 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n,9fdcc9f05a98a540b816];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_ONE(0.00)[1];
 	R_SPF_NA(0.00)[no SPF record];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[appspotmail.com:email,nvidia.com:email];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	DKIM_TRACE(0.00)[narfation.org:+]
-X-Rspamd-Queue-Id: EB8575795AF
+	DKIM_TRACE(0.00)[narfation.org:+];
+	TO_DN_NONE(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo]
+X-Rspamd-Queue-Id: D4F8A57A42F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Without rtnl_lock held, a hardif might be retrieved as primary interface of
-a meshif, but then (while operating on this interface) getting decoupled
-from the mesh interface. In this case, the meshif still exists but the
-pointer from the primary hardif to the meshif is set to NULL.
+--nextPart13100678.O9o76ZdvQC
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: b.a.t.m.a.n@lists.open-mesh.org
+Date: Tue, 19 May 2026 10:37:34 +0200
+Message-ID: <3036655.mvXUDI8C0e@ripper>
+In-Reply-To: <20260519-resource-limit-v2-0-489c3c919a54@narfation.org>
+References: <20260519-resource-limit-v2-0-489c3c919a54@narfation.org>
+MIME-Version: 1.0
 
-The mesh_iface must be checked first to be non-NULL before continuing to
-send an ARP request using meshif.
+On Tuesday, 19 May 2026 09:02:14 CEST Sven Eckelmann wrote:
+> For the moment, I just want to demonstrate how this might work with some
+> example code. I didn't invest any time to actually check out the other
+> items in the list. So, please consider these lists as vague suggestions.
 
-Cc: stable@kernel.org
-Fixes: 23721387c409 ("batman-adv: add basic bridge loop avoidance code")
-Reported-by: Ido Schimmel <idosch@nvidia.com>
-Reported-by: syzbot+9fdcc9f05a98a540b816@syzkaller.appspotmail.com
-Closes: https://syzkaller.appspot.com/bug?extid=9fdcc9f05a98a540b816
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
-Another reason why I should sit down and rebase + polish Nora Schiffer's
-"remove global hardif list" patchset. But first, I need to get the pile of
-other fixes out or otherwise I will never get out of these endless
-conflicts.
+Please also consider the commit messages as placeholder :)
 
-Btw. thanks to Ido for checking the backtrace in more detail and giving a
-really precise reason.
----
- net/batman-adv/bridge_loop_avoidance.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Regards,
+	Sven
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index cec11f12..c801b3ed 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -356,12 +356,14 @@ static void batadv_bla_send_claim(struct batadv_priv *bat_priv, const u8 *mac,
- 	       sizeof(local_claim_dest));
- 	local_claim_dest.type = claimtype;
- 
--	mesh_iface = primary_if->mesh_iface;
-+	mesh_iface = READ_ONCE(primary_if->mesh_iface);
-+	if (!mesh_iface)
-+		goto out;
- 
- 	skb = arp_create(ARPOP_REPLY, ETH_P_ARP,
- 			 /* IP DST: 0.0.0.0 */
- 			 zeroip,
--			 primary_if->mesh_iface,
-+			 mesh_iface,
- 			 /* IP SRC: 0.0.0.0 */
- 			 zeroip,
- 			 /* Ethernet DST: Broadcast */
+--nextPart13100678.O9o76ZdvQC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
----
-base-commit: ff182fc0c666754e3f35f7b63c9ccf0dff239e52
-change-id: 20260519-bla-unchecked-hardif-meshif-deref-ad83d47cba80
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCagwhTgAKCRBND3cr0xT1
+yzuTAP4hklHkgdBm9mo/pgF8jwlGs0Y1buax55npmSxu3AweHwEA9nEtm3yZ/H1a
+O4b8N9N2LgOfY8ll8FVRtzTi1OCWlgk=
+=XIBa
+-----END PGP SIGNATURE-----
+
+--nextPart13100678.O9o76ZdvQC--
+
+
 
