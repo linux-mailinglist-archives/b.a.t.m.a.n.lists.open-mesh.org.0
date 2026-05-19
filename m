@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIgSOr8NDGqJVAUAu9opvQ
+	id KGQ9Nu0NDGrRVAUAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:14:07 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:14:53 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D8F578C99
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:14:07 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82DDB578CE3
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:14:52 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A8E8C811D1
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:14:06 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C7AA08155F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 19 May 2026 09:14:52 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1779174846;
- b=x9i7UF5vUNzTby8jdTrPwOoo+gY97VJMpzyAw9jhzFsJ+Q6ka/a4Fdb2ynNUkIJYjbhiG
- ZIxwfF5ll8vwQmjYIKYS2uxxOIs7IyxDPkKmzgRsHrVGTP9DWJ64Hd0NCuBSX21t1lpHdRa
- NDxm43LPNwYyl57kQ1coDrxJSOHqP7M=
+ t=1779174892;
+ b=HeO0lOUpMRRawTRH1Ks0dIafU2AprKoV/OrhvWrBF4NohZryzOSGoXGEes9e9hx+4Qfh9
+ h6H1fLs+3mJRClTTQv+FCYrjFeqSwNUnFZh33b0K6siEuzWGm8AxRp7Kp8Sy5eBOYVj4e5t
+ wrSbKxArxuFF4O0jDqYlVGOCLNWvQXQ=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1779174846; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1779174892; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=DuNSwr9qXH3NZSEzo6TTE9Wq3c+xIMh8L0x59FYWeHI=;
- b=jRiknk7nIR+fj7E9yJ0AXB9MQA6qkg4dTfWbyQxo9H5P5K/pc84DWlbg9P9HBCyTvZEWf
- VUGLVZBz6PpQtRmFDrLaM6xQMhaAGEughyZcbvFMjuKHfUcAwBsAQ1A/G5dR/49GW929sVo
- fCxFx1tIUsAmkzKmXapa9gnnxiKWk3w=
+ list-archive; bh=hCJAOgbRvT5JNxbDZc2VDCR68Y74NZCyAJyuP51PccQ=;
+ b=plTqhO41bRoitHA7vpwPUULUCoHqxQtVpOiMpRIB47Boge3Ex0H6I97zqtQQJKXllvbVf
+ P0dsEt9amp5d4sEKRPrFtCFHXUlDrhelg21hUgBQWGbkLBzwNoiFKSFOTjkbgCVZbUtNd64
+ fbL2M0aRF3MkUyB4Mcm0VDrpFj+aqDE=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -36,63 +36,63 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 34A8780E2E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 May 2026 09:04:56 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 89D4A80D87
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 19 May 2026 09:04:58 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1779174296;
+	s=20121; t=1779174298;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=DuNSwr9qXH3NZSEzo6TTE9Wq3c+xIMh8L0x59FYWeHI=;
-	b=CLQ1Y6AdK92Hk5tVs0DxyKBFAX1Om0+q3N89RlXQUcMybzqwMSqfYEfV5bdT6Wkkb3zEkp
-	vpNG8X5g9YBwJEA1pSZztO7CaIZke13W2CIrvTdeIUuu100N8U0Qt8NiiH06ppblHvx38h
-	9LpKRBdi6XFdj/SjQjQxb/n2ywHF8Eo=
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779174296;
-	b=AKNWwOMlhiUjYJEDHRw+32NeW1eW2/Z2lVQRpMdj27cnKgCqPPVYu5BLexsuSSnWgjNQ60
-	6GKq9Z+M84gK7Act3LovCsI5OsH0o4UjD/HohVh/y3Zip02bYJ+Z+Z7rf2NZ+42yt51Bnt
-	y7IF9FofJlNzht2afsog/C6UT1DN0F8=
+	bh=hCJAOgbRvT5JNxbDZc2VDCR68Y74NZCyAJyuP51PccQ=;
+	b=uz4ldZ4K9MDIeMDyDl6pgGjkTUrSgfR6S1qS3IEynUS3viSfdwqvdOUOuXhCx3C3qO8MSI
+	gFAqK3xSYKJ6jwO/swRjoWzL/toeAwRIdZ/PmGX9n0EhdSYQ4S9LSp63jF9OV+exJB0nJp
+	y3kIeA3WmWnecQ8W6gibQNQVHWw/KBY=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779174298;
+	b=1LkqFGTQeUAuU5kX1/EDgwWM1NreY4DHeqlir4fGGgLY89xavYNbENhnMnaE+UpLtl68H2
+	OAcRYMlbujXcf1Lw/G4An8YdAp5+pJ5DTt8u1YXu1MCLoPaXi9LUEnnOgw5QWDOrYmVKpb
+	kNewf/fEUJdYfrGhssmySJxo93Mhw/k=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2YOGGfzq;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=ReBtQH2h;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id E41B31FD9C;
-	Tue, 19 May 2026 07:04:55 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 48E7B1FD9C;
+	Tue, 19 May 2026 07:04:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1779174296;
+	s=20121; t=1779174298;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=DuNSwr9qXH3NZSEzo6TTE9Wq3c+xIMh8L0x59FYWeHI=;
-	b=2YOGGfzqJ9/ss2LtlsdcPBftzq4CoUf0tALBPH1UqyUoXFbY4lld4S+RRxJAEunBzwBMRp
-	YrUE6SyzGv9U8h7o6VPPNEhEXf4UKA7+tiMZkRaIqFmUX2YQ0PWgPAustCGRCI+LIGOU09
-	eruqtc/5FssqGbjcTNWZac9k8xb9JXw=
+	bh=hCJAOgbRvT5JNxbDZc2VDCR68Y74NZCyAJyuP51PccQ=;
+	b=ReBtQH2hiSyUE8D8g/NYHWH40Q8P7IpSc2Jin2AcAovGUl1G9sxThG/v60nCQC91blI8X3
+	+j65NF4xLrsmz8Xf+QTiMDmxJM5wtop0to+RF53HTVGstrbu7b1j5vfTNmcODCDdrUgPZu
+	qgAn1ZUySoKCRc1fmLF+ZRguSFtNufA=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 19 May 2026 09:04:41 +0200
-Subject: [PATCH batadv v2 6/7] batman-adv: replace non-atomic last_ttvn
+Date: Tue, 19 May 2026 09:04:42 +0200
+Subject: [PATCH batadv v2 7/7] batman-adv: replace non-atomic last_acked
  with (READ|WRITE)_ONCE
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260519-atomic-to-write-once-v2-6-1b643e847a56@narfation.org>
+Message-Id: <20260519-atomic-to-write-once-v2-7-1b643e847a56@narfation.org>
 References: <20260519-atomic-to-write-once-v2-0-1b643e847a56@narfation.org>
 In-Reply-To: <20260519-atomic-to-write-once-v2-0-1b643e847a56@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5818; i=sven@narfation.org;
- h=from:subject:message-id; bh=m5Sic6RGzCm/FypcyEcR7uOonw7XuRp58urVVlIppZg=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFk83G3lltvDbAvebb9jxyK/vfnT2+YLZZ/Tn/utjHh2/
- vpzd++AjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEbHYzMiwVv/v335WsByf4
- LQ4p3tgUqfXgH+cy6x7duVbP3qV1CTgy/M9tENhw+m2iFvvMtlkPDJ19bjMJHdeavv3n+/Q5iwv
- 4P3EAAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4258; i=sven@narfation.org;
+ h=from:subject:message-id; bh=13/HQhtOBKIZOZHJ6oRT36k1KEAOLEen56K4pN2ERuA=;
+ b=kA0DAAoWTQ93K9MU9csByyZiAGoMC4bIfwGl1OE/fsQDxo5A5wOZp6z5vKr+9WyhDLiC85etp
+ Yh1BAAWCgAdFiEEvNRvz7MH7R/zlvHFTQ93K9MU9csFAmoMC4YACgkQTQ93K9MU9cvv5QEAnm3N
+ ru83EmAC+xOB+8a7ScilfuMC1gORKckRCH/cSGEA/3nUOGBmja2Upgb5SnkKFbfIiElb3HJ/k62
+ OyI648UQI
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: VHQLVGDZTZM6SOABJKS4SPFA3MPNS3T2
-X-Message-ID-Hash: VHQLVGDZTZM6SOABJKS4SPFA3MPNS3T2
+Message-ID-Hash: UANAZSHLKNOQED4R3YBBZLURPRTRUTZT
+X-Message-ID-Hash: UANAZSHLKNOQED4R3YBBZLURPRTRUTZT
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -106,7 +106,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VHQLVGDZTZM6SOABJKS4SPFA3MPNS3T2/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UANAZSHLKNOQED4R3YBBZLURPRTRUTZT/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -125,7 +125,7 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	R_SPF_NA(0.00)[no SPF record];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCPT_COUNT_TWO(0.00)[2];
@@ -133,165 +133,129 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,narfation.org:email,narfation.org:mid,narfation.org:dkim];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	DKIM_TRACE(0.00)[narfation.org:+]
-X-Rspamd-Queue-Id: 90D8F578C99
+X-Rspamd-Queue-Id: 82DDB578CE3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The last TT version number of an meshif is only accessed as plain
+The last_acked of a tp_meter transfer is only accessed as plain
 loads/stores and does not require full atomic_t semantics. Convert to an
 native integer and replace its users with READ_ONCE()/WRITE_ONCE() to avoid
 load/store tearing.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/originator.c        |  2 +-
- net/batman-adv/routing.c           |  4 ++--
- net/batman-adv/send.c              |  2 +-
- net/batman-adv/translation-table.c | 16 ++++++++--------
- net/batman-adv/types.h             |  2 +-
- 5 files changed, 13 insertions(+), 13 deletions(-)
+ net/batman-adv/tp_meter.c | 22 +++++++++++-----------
+ net/batman-adv/types.h    |  2 +-
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/net/batman-adv/originator.c b/net/batman-adv/originator.c
-index 5a5cb277..84dfb4fd 100644
---- a/net/batman-adv/originator.c
-+++ b/net/batman-adv/originator.c
-@@ -965,7 +965,7 @@ struct batadv_orig_node *batadv_orig_node_new(struct batadv_priv *bat_priv,
- 	orig_node->bat_priv = bat_priv;
- 	ether_addr_copy(orig_node->orig, addr);
- 	batadv_dat_init_orig_node_addr(orig_node);
--	atomic_set(&orig_node->last_ttvn, 0);
-+	WRITE_ONCE(orig_node->last_ttvn, 0);
- 	orig_node->tt_buff = NULL;
- 	orig_node->tt_buff_len = 0;
- 	orig_node->last_seen = jiffies;
-diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 1dd295d9..cd4368b8 100644
---- a/net/batman-adv/routing.c
-+++ b/net/batman-adv/routing.c
-@@ -765,7 +765,7 @@ batadv_reroute_unicast_packet(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 			goto out;
+diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
+index fef98fbe..ec2b4d72 100644
+--- a/net/batman-adv/tp_meter.c
++++ b/net/batman-adv/tp_meter.c
+@@ -523,14 +523,14 @@ static void batadv_tp_sender_timeout(struct timer_list *t)
+ 	batadv_dbg(BATADV_DBG_TP_METER, bat_priv,
+ 		   "Meter: RTO fired during test towards %pM! cwnd=%u new ss_thr=%u, resetting last_sent to %u\n",
+ 		   tp_vars->other_end, tp_vars->cwnd, tp_vars->ss_threshold,
+-		   atomic_read(&tp_vars->last_acked));
++		   READ_ONCE(tp_vars->last_acked));
  
- 		orig_addr = orig_node->orig;
--		orig_ttvn = (u8)atomic_read(&orig_node->last_ttvn);
-+		orig_ttvn = READ_ONCE(orig_node->last_ttvn);
- 	}
+ 	tp_vars->cwnd = BATADV_TP_PLEN * 3;
  
- 	/* update the packet header */
-@@ -845,7 +845,7 @@ static bool batadv_check_unicast_ttvn(struct batadv_priv *bat_priv,
- 		if (!orig_node)
- 			return false;
+ 	spin_unlock_bh(&tp_vars->cwnd_lock);
  
--		curr_ttvn = (u8)atomic_read(&orig_node->last_ttvn);
-+		curr_ttvn = READ_ONCE(orig_node->last_ttvn);
- 		batadv_orig_node_put(orig_node);
- 	}
+ 	/* resend the non-ACKed packets.. */
+-	tp_vars->last_sent = atomic_read(&tp_vars->last_acked);
++	tp_vars->last_sent = READ_ONCE(tp_vars->last_acked);
+ 	wake_up(&tp_vars->more_bytes);
  
-diff --git a/net/batman-adv/send.c b/net/batman-adv/send.c
-index c7e86c83..5f9da360 100644
---- a/net/batman-adv/send.c
-+++ b/net/batman-adv/send.c
-@@ -222,7 +222,7 @@ batadv_send_skb_push_fill_unicast(struct sk_buff *skb, int hdr_size,
- 				  struct batadv_orig_node *orig_node)
- {
- 	struct batadv_unicast_packet *unicast_packet;
--	u8 ttvn = (u8)atomic_read(&orig_node->last_ttvn);
-+	u8 ttvn = READ_ONCE(orig_node->last_ttvn);
+ 	batadv_tp_reset_sender_timer(tp_vars);
+@@ -645,6 +645,7 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
+ 	const unsigned char *dev_addr;
+ 	size_t packet_len, mss;
+ 	u32 rtt, recv_ack, cwnd;
++	u32 last_acked;
  
- 	if (batadv_skb_head_push(skb, hdr_size) < 0)
- 		return false;
-diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-index 382a5826..675338c9 100644
---- a/net/batman-adv/translation-table.c
-+++ b/net/batman-adv/translation-table.c
-@@ -880,7 +880,7 @@ batadv_tt_prepare_tvlv_global_data(struct batadv_orig_node *orig_node,
- 	}
- 
- 	(*tt_data)->flags = BATADV_NO_FLAGS;
--	(*tt_data)->ttvn = atomic_read(&orig_node->last_ttvn);
-+	(*tt_data)->ttvn = READ_ONCE(orig_node->last_ttvn);
- 	(*tt_data)->num_vlan = htons(num_vlan);
- 
- 	tt_vlan = (*tt_data)->vlan_data;
-@@ -1861,7 +1861,7 @@ batadv_tt_global_dump_subentry(struct sk_buff *msg, u32 portid, u32 seq,
- 	if (!hdr)
- 		return -ENOBUFS;
- 
--	last_ttvn = atomic_read(&orig->orig_node->last_ttvn);
-+	last_ttvn = READ_ONCE(orig->orig_node->last_ttvn);
- 
- 	if (nla_put(msg, BATADV_ATTR_TT_ADDRESS, ETH_ALEN, common->addr) ||
- 	    nla_put(msg, BATADV_ATTR_ORIG_ADDRESS, ETH_ALEN,
-@@ -3052,7 +3052,7 @@ static bool batadv_send_other_tt_response(struct batadv_priv *bat_priv,
- 	if (!res_dst_orig_node)
+ 	packet_len = BATADV_TP_PLEN;
+ 	mss = BATADV_TP_PLEN;
+@@ -665,8 +666,8 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
  		goto out;
  
--	orig_ttvn = (u8)atomic_read(&req_dst_orig_node->last_ttvn);
-+	orig_ttvn = READ_ONCE(req_dst_orig_node->last_ttvn);
- 	req_ttvn = tt_data->ttvn;
+ 	/* old ACK? silently drop it.. */
+-	if (batadv_seq_before(ntohl(icmp->seqno),
+-			      (u32)atomic_read(&tp_vars->last_acked)))
++	last_acked = READ_ONCE(tp_vars->last_acked);
++	if (batadv_seq_before(ntohl(icmp->seqno), last_acked))
+ 		goto out;
  
- 	/* this node doesn't have the requested data */
-@@ -3339,7 +3339,7 @@ static void batadv_tt_fill_gtable(struct batadv_priv *bat_priv,
- 	orig_node->tt_buff = NULL;
- 	spin_unlock_bh(&orig_node->tt_buff_lock);
+ 	primary_if = batadv_primary_if_get_selected(bat_priv);
+@@ -688,7 +689,7 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
+ 	recv_ack = ntohl(icmp->seqno);
  
--	atomic_set(&orig_node->last_ttvn, ttvn);
-+	WRITE_ONCE(orig_node->last_ttvn, ttvn);
+ 	/* check if this ACK is a duplicate */
+-	if (atomic_read(&tp_vars->last_acked) == recv_ack) {
++	if (last_acked == recv_ack) {
+ 		atomic_inc(&tp_vars->dup_acks);
+ 		if (atomic_read(&tp_vars->dup_acks) != 3)
+ 			goto out;
+@@ -723,8 +724,7 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
+ 		spin_unlock_bh(&tp_vars->cwnd_lock);
+ 	} else {
+ 		/* count the acked data */
+-		atomic64_add(recv_ack - atomic_read(&tp_vars->last_acked),
+-			     &tp_vars->tot_sent);
++		atomic64_add(recv_ack - last_acked, &tp_vars->tot_sent);
+ 		/* reset the duplicate ACKs counter */
+ 		atomic_set(&tp_vars->dup_acks, 0);
  
- out:
- 	batadv_orig_node_put(orig_node);
-@@ -3355,7 +3355,7 @@ static void batadv_tt_update_changes(struct batadv_priv *bat_priv,
+@@ -756,11 +756,11 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
+ 			goto move_twnd;
+ 		}
  
- 	batadv_tt_save_orig_buffer(bat_priv, orig_node, tt_change,
- 				   batadv_tt_len(tt_num_changes));
--	atomic_set(&orig_node->last_ttvn, ttvn);
-+	WRITE_ONCE(orig_node->last_ttvn, ttvn);
- }
+-		if (recv_ack - atomic_read(&tp_vars->last_acked) >= mss)
++		if (recv_ack - last_acked >= mss)
+ 			batadv_tp_update_cwnd(tp_vars, mss);
+ move_twnd:
+ 		/* move the Transmit Window */
+-		atomic_set(&tp_vars->last_acked, recv_ack);
++		WRITE_ONCE(tp_vars->last_acked, recv_ack);
+ 	}
  
- /**
-@@ -3808,7 +3808,7 @@ static void batadv_tt_update_orig(struct batadv_priv *bat_priv,
- 				  struct batadv_tvlv_tt_change *tt_change,
- 				  u16 tt_num_changes, u8 ttvn)
+ 	wake_up(&tp_vars->more_bytes);
+@@ -782,7 +782,7 @@ static bool batadv_tp_avail(struct batadv_tp_vars *tp_vars,
  {
--	u8 orig_ttvn = (u8)atomic_read(&orig_node->last_ttvn);
-+	u8 orig_ttvn = READ_ONCE(orig_node->last_ttvn);
- 	struct batadv_tvlv_tt_vlan_data *tt_vlan;
- 	bool full_table = true;
- 	bool has_tt_init;
-@@ -3950,7 +3950,7 @@ bool batadv_tt_add_temporary_global_entry(struct batadv_priv *bat_priv,
+ 	u32 win_left, win_limit;
  
- 	if (!batadv_tt_global_add(bat_priv, orig_node, addr, vid,
- 				  BATADV_TT_CLIENT_TEMP,
--				  atomic_read(&orig_node->last_ttvn)))
-+				  READ_ONCE(orig_node->last_ttvn)))
- 		return false;
+-	win_limit = atomic_read(&tp_vars->last_acked) + tp_vars->cwnd;
++	win_limit = READ_ONCE(tp_vars->last_acked) + tp_vars->cwnd;
+ 	win_left = win_limit - tp_vars->last_sent;
  
- 	batadv_dbg(BATADV_DBG_TT, bat_priv,
-@@ -4164,7 +4164,7 @@ static int batadv_roam_tvlv_unicast_handler_v1(struct batadv_priv *bat_priv,
+ 	return win_left >= payload_len;
+@@ -1011,7 +1011,7 @@ void batadv_tp_start(struct batadv_priv *bat_priv, const u8 *dst,
+ 	tp_vars->icmp_uid = icmp_uid;
  
- 	batadv_tt_global_add(bat_priv, orig_node, roaming_adv->client,
- 			     ntohs(roaming_adv->vid), BATADV_TT_CLIENT_ROAM,
--			     atomic_read(&orig_node->last_ttvn) + 1);
-+			     READ_ONCE(orig_node->last_ttvn) + 1);
+ 	tp_vars->last_sent = BATADV_TP_FIRST_SEQ;
+-	atomic_set(&tp_vars->last_acked, BATADV_TP_FIRST_SEQ);
++	WRITE_ONCE(tp_vars->last_acked, BATADV_TP_FIRST_SEQ);
+ 	tp_vars->fast_recovery = false;
+ 	tp_vars->recover = BATADV_TP_FIRST_SEQ;
  
- out:
- 	batadv_orig_node_put(orig_node);
 diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index d483abb8..154de214 100644
+index 154de214..87a835fe 100644
 --- a/net/batman-adv/types.h
 +++ b/net/batman-adv/types.h
-@@ -443,7 +443,7 @@ struct batadv_orig_node {
- 	unsigned long capa_initialized;
+@@ -1362,7 +1362,7 @@ struct batadv_tp_vars {
+ 	u32 ss_threshold;
  
- 	/** @last_ttvn: last seen translation table version number */
--	atomic_t last_ttvn;
-+	u8 last_ttvn;
+ 	/** @last_acked: last acked byte */
+-	atomic_t last_acked;
++	u32 last_acked;
  
- 	/** @tt_buff: last tt changeset this node received from the orig node */
- 	unsigned char *tt_buff;
+ 	/** @last_sent: last sent byte, not yet acked */
+ 	u32 last_sent;
 
 -- 
 2.47.3
