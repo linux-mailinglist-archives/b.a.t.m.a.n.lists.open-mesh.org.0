@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFRGN0SjDWqu0gUAu9opvQ
+	id cE3vKnmjDWq10QUAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 May 2026 14:04:20 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 May 2026 14:05:13 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E20B58D385
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 May 2026 14:04:20 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D4CC58D3D6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 May 2026 14:05:13 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 62BA983E3D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 May 2026 14:04:20 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 1AF4D84095
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 20 May 2026 14:05:13 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1779278660;
- b=KHMqjhSu2kEwvKx+AoF79gcWYxlnK5LbFZMQWKMowhZR9/lLyO1C5Mk572WZm+wirYbha
- +Mh006GFtSt+woLNyzIU7ronq0CuOMqOpBc/r4XpJIQQ2eQECyEJYXuWX+WeK7VBFzBP77q
- nz7OyPEBfbLIZHXdjRV//MRPmXJ8mpE=
+ t=1779278713;
+ b=CUzaz/BTwVA9jpYP0g8tymTmKpZmqEcMuRc6QnHMnD3jG+e0cqOhd0SYqm/Pk/gq0xt/F
+ I9u2wbqyQrYG3ngcMi8lLc+QVs/JZNQh/xItzeJ6V4WbhgU5WpBqglEuQFeKtF6l1MCqzQv
+ QeevNJOYVZz4OjsS7owvowJMXwzigLU=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1779278660; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1779278713; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=FYtewblOdVwpfCD0XV03JBhlqS1ubGmMoyNowXCEcvI=;
- b=xQo1TIkp5Vx3MwEcHqzZWBHxXhOktE8rq2NdQB+5j0t+8hdLW1StVVhPL25o7lB5ZQ/tp
- y1Rz+fk5AYZv9d0ydpOP2HtLr7PK0Va690dvf4AK2WsPN+sK4Wolj2tfb4YQv3at5nHuddf
- RjjcVgNrmrxxq1gMa1XXqMIx7eL+yiw=
+ list-archive; bh=TMSBQ8vty5KjvQRWobUPtXD4d+KsnwJfeTiOE5MDdw4=;
+ b=RhWwrHx5ZgACxon+0bKlBEuCsO9AC3gM8q+4pwOzlGxud8CTI+yThgY7+DZXNDamoDYGg
+ sSW/WxKM9EjSq0VO2Zu9s5y7/qyVGClnN40woYdEW1H85lkxK2LdQ/5ykC5mSHGxo93N+2f
+ XIYWMSSzThauj05mfCMXmT2S0sfUabk=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
@@ -35,30 +35,28 @@ ARC-Authentication-Results: i=2; open-mesh.org;
 Authentication-Results: open-mesh.org; dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id A0FF4825F5
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 20 May 2026 13:54:45 +0200 (CEST)
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7C0CB811CA
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 20 May 2026 13:54:46 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1779278085;
+	s=20121; t=1779278086;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=FYtewblOdVwpfCD0XV03JBhlqS1ubGmMoyNowXCEcvI=;
-	b=ewiv15uBy+EBRjV/x93ETCVNq5gEgPy6IiHlAAGBzuM28yBLfJTNXhy7F8LL9LZmqK0Svu
-	mw8xjzBQP0A6rTbmiNi5bCslcIOMynfN70wqTzDYc3VUIyIZyT+5JHwYbJJHMkGWFZdCy3
-	RBqj3Ba9v7if2I8Q9K69StqStfWR6+E=
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779278085;
-	b=pgA/cIyLkeZOZBwW9Oooz+3jYU3AumCOO5IAVKX4QdmQe4Mbq/N3LUjPn/14maaMAfZA0R
-	WhVL1HpHCVl50sDrLJDdcFiYzikCm3jgXNMpa+tAXplvG254+qgdtBnb2shrisvNzG5x6t
-	3YNFV9GaojMYPckPxAlOi2G0HJljNWk=
+	bh=TMSBQ8vty5KjvQRWobUPtXD4d+KsnwJfeTiOE5MDdw4=;
+	b=YlGQ/xDD2uukqC81E8FE5QaAUQesbaA/CkXbFYp6VxJpU3Udhi+Ifdvwm0zp8NYxLvfD/G
+	aAIozNnFmKrMhNzLCf2NYMLvJiiRHgftdq/iRpLgJljEh+XyPihHmmw6ipneE4DHbpv+ZN
+	FEb7XBa5vGyfSwPQj6dT9XyR06H2uBE=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779278086;
+	b=BOpHATkeLxdJXZGIjuZk49kWOxx4pi64RyAlJA0vd65eZkb2TL9SVOzeIuAJ/q4AfZaFSl
+	tz9JkmzmsrguCF5BZtOip9rPXK8h2jvocwYdUc2eJjpvOmC9V4e87u7yxTJ8l9KCGpuTWa
+	1cxPmXxEyn8S9pmN53yhUEYEn00STEk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=muyxCGjR;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=WmlK1rmA;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de;
+ 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	s=09092022; t=1779278085;
@@ -66,12 +64,12 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=FYtewblOdVwpfCD0XV03JBhlqS1ubGmMoyNowXCEcvI=;
-	b=muyxCGjRiT0vqpE1t7hatGx5VGZQy4wVZLXn4SRZpVCXwKclu+P7kEkzCPh2Px4DloVUJu
-	KUkl4B3OI2JrQK0IRPVzM2uTMOl4MrQ6HV4+BjwjwIVknRscTXv4ijHCmS69Tq+iP9BLG+
-	J2BZCnfDQ2MMSNSSImhEWexPd8fRAMggDDD08LVCj7r3qn+U/X8Pdd5UEAWSagpkHruH8G
-	zbTEBXbmfbOXLH5LAXFHqidCxyHAr+k/ReiDCSZy5tFzsnvpRUKHpehPR1t6r1yGNQtzNa
-	Cd2CoTTuInqgnTaZ2//MfPtX1uHWfROF0wJeAKN/Qc4yohd16yoFTExxzzRfgA==
+	bh=TMSBQ8vty5KjvQRWobUPtXD4d+KsnwJfeTiOE5MDdw4=;
+	b=WmlK1rmAnMvhqs2bx78u4Dhvw8v6D2tlP3X/UNXu8ET8l13eZFRWzc15kEtWCn4DBbLSt+
+	1WsyNqT0r/f2rArZpvQR5Qgm81/wqApw0r4wDaWE5zM/nntmewaqID1Fs8WtFr8bLRm7mB
+	/Iqv4JhvN812Hgsv7Q71+Q5rpWY3lK5prACqHcGc3Ht/YQTy4pgI6+PDPeUxtKapJzEGqG
+	Fjp4SX/qjvRtFle3lRoxKodEz9pxSap472+m7Oeb7t6QQyk4OTeD7B7PIjXz73aMCbb4Eo
+	Qa4ModJBAKQhwqmd3V/KUxLXyYj227y368mhn1zEXSQ+hwdByzy5pWqplhOfiw==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -82,18 +80,20 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	stable@kernel.org,
+	Ido Schimmel <idosch@nvidia.com>,
+	syzbot+9fdcc9f05a98a540b816@syzkaller.appspotmail.com,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 10/11] batman-adv: bla: avoid double decrement of
- bla.num_requests
-Date: Wed, 20 May 2026 13:54:21 +0200
-Message-ID: <20260520115422.53552-11-sw@simonwunderlich.de>
+Subject: [PATCH net 11/11] batman-adv: bla: avoid NULL-ptr deref for claim via
+ dropped interface
+Date: Wed, 20 May 2026 13:54:22 +0200
+Message-ID: <20260520115422.53552-12-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260520115422.53552-1-sw@simonwunderlich.de>
 References: <20260520115422.53552-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: TP5JNKAKMGMBLPTYMHTAWJHCVNTAVD5U
-X-Message-ID-Hash: TP5JNKAKMGMBLPTYMHTAWJHCVNTAVD5U
+Message-ID-Hash: CVYKBZ6IXVGHFHFECSTY7IPBMX3QD6AH
+X-Message-ID-Hash: CVYKBZ6IXVGHFHFECSTY7IPBMX3QD6AH
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TP5JNKAKMGMBLPTYMHTAWJHCVNTAVD5U/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CVYKBZ6IXVGHFHFECSTY7IPBMX3QD6AH/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -115,257 +115,78 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Spamd-Result: default: False [-0.51 / 15.00];
+X-Spamd-Result: default: False [0.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[simonwunderlich.de,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[simonwunderlich.de:s=09092022];
+	DMARC_POLICY_ALLOW(-0.50)[simonwunderlich.de,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[simonwunderlich.de:s=09092022];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,narfation.org:email,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[simonwunderlich.de:+];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[simonwunderlich.de:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,narfation.org:email,appspotmail.com:email,syzkaller.appspot.com:url,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n,9fdcc9f05a98a540b816];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	R_SPF_NA(0.00)[no SPF record]
-X-Rspamd-Queue-Id: 8E20B58D385
+X-Rspamd-Queue-Id: 5D4CC58D3D6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Sven Eckelmann <sven@narfation.org>
 
-The bla.num_requests is increased when no request_sent was in progress. And
-it is decremented in various places (announcement was received, backbone is
-purged, periodic work). But the check if the request_sent is actually set
-to a specific state and the atomic_dec/_inc are not safe because they are
-not atomic (TOCTOU) and multiple such code portions can run concurrently.
+Without rtnl_lock held, a hardif might be retrieved as primary interface of
+a meshif, but then (while operating on this interface) getting decoupled
+from the mesh interface. In this case, the meshif still exists but the
+pointer from the primary hardif to the meshif is set to NULL.
 
-At the same time, it is necessary to modify request_sent (state) and
-bla.num_requests atomically. Otherwise batadv_bla_send_request() might set
-request_sent to 1 and is interrupted.  batadv_handle_announce() can then
-set request_sent back to 0 and decrement num_requests before
-batadv_bla_send_request() incremented it.
-
-The two operations must therefore be locked. And since state (request_sent)
-and wait_periods are only accessed inside this lock, they can be converted
-to simpler datatypes. And to avoid that the bla.num_requests is touched by
-a parallel running context with a valid backbone_gw reference after
-batadv_bla_purge_backbone_gw() ran, a third state "stopped" is required to
-correctly signal that a backbone_gw is in the state of being cleaned up.
+The mesh_iface must be checked first to be non-NULL before continuing to
+send an ARP request using meshif.
 
 Cc: stable@kernel.org
 Fixes: 23721387c409 ("batman-adv: add basic bridge loop avoidance code")
+Reported-by: Ido Schimmel <idosch@nvidia.com>
+Reported-by: syzbot+9fdcc9f05a98a540b816@syzkaller.appspotmail.com
+Closes: https://syzkaller.appspot.com/bug?extid=9fdcc9f05a98a540b816
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/bridge_loop_avoidance.c | 51 ++++++++++++++++++--------
- net/batman-adv/mesh-interface.c        |  1 +
- net/batman-adv/types.h                 | 39 ++++++++++++++++----
- 3 files changed, 67 insertions(+), 24 deletions(-)
+ net/batman-adv/bridge_loop_avoidance.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index df1dfdf4a1a12..1bef12e659cb2 100644
+index 1bef12e659cb2..ffe854018bd3a 100644
 --- a/net/batman-adv/bridge_loop_avoidance.c
 +++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -514,8 +514,8 @@ batadv_bla_get_backbone_gw(struct batadv_priv *bat_priv, const u8 *orig,
- 	entry->crc = BATADV_BLA_CRC_INIT;
- 	entry->bat_priv = bat_priv;
- 	spin_lock_init(&entry->crc_lock);
--	atomic_set(&entry->request_sent, 0);
--	atomic_set(&entry->wait_periods, 0);
-+	entry->state = BATADV_BLA_BACKBONE_GW_SYNCED;
-+	entry->wait_periods = 0;
- 	ether_addr_copy(entry->orig, orig);
- 	INIT_WORK(&entry->report_work, batadv_bla_loopdetect_report);
- 	kref_init(&entry->refcount);
-@@ -544,9 +544,13 @@ batadv_bla_get_backbone_gw(struct batadv_priv *bat_priv, const u8 *orig,
- 		batadv_bla_send_announce(bat_priv, entry);
+@@ -356,12 +356,14 @@ static void batadv_bla_send_claim(struct batadv_priv *bat_priv, const u8 *mac,
+ 	       sizeof(local_claim_dest));
+ 	local_claim_dest.type = claimtype;
  
- 		/* this will be decreased in the worker thread */
--		atomic_inc(&entry->request_sent);
--		atomic_set(&entry->wait_periods, BATADV_BLA_WAIT_PERIODS);
--		atomic_inc(&bat_priv->bla.num_requests);
-+		spin_lock_bh(&bat_priv->bla.num_requests_lock);
-+		if (entry->state == BATADV_BLA_BACKBONE_GW_SYNCED) {
-+			entry->state = BATADV_BLA_BACKBONE_GW_UNSYNCED;
-+			entry->wait_periods = BATADV_BLA_WAIT_PERIODS;
-+			atomic_inc(&bat_priv->bla.num_requests);
-+		}
-+		spin_unlock_bh(&bat_priv->bla.num_requests_lock);
- 	}
+-	mesh_iface = primary_if->mesh_iface;
++	mesh_iface = READ_ONCE(primary_if->mesh_iface);
++	if (!mesh_iface)
++		goto out;
  
- 	return entry;
-@@ -649,10 +653,12 @@ static void batadv_bla_send_request(struct batadv_bla_backbone_gw *backbone_gw)
- 			      backbone_gw->vid, BATADV_CLAIM_TYPE_REQUEST);
- 
- 	/* no local broadcasts should be sent or received, for now. */
--	if (!atomic_read(&backbone_gw->request_sent)) {
-+	spin_lock_bh(&backbone_gw->bat_priv->bla.num_requests_lock);
-+	if (backbone_gw->state == BATADV_BLA_BACKBONE_GW_SYNCED) {
-+		backbone_gw->state = BATADV_BLA_BACKBONE_GW_UNSYNCED;
- 		atomic_inc(&backbone_gw->bat_priv->bla.num_requests);
--		atomic_set(&backbone_gw->request_sent, 1);
- 	}
-+	spin_unlock_bh(&backbone_gw->bat_priv->bla.num_requests_lock);
- }
- 
- /**
-@@ -873,10 +879,12 @@ static bool batadv_handle_announce(struct batadv_priv *bat_priv, u8 *an_addr,
- 		/* if we have sent a request and the crc was OK,
- 		 * we can allow traffic again.
- 		 */
--		if (atomic_read(&backbone_gw->request_sent)) {
-+		spin_lock_bh(&bat_priv->bla.num_requests_lock);
-+		if (backbone_gw->state == BATADV_BLA_BACKBONE_GW_UNSYNCED) {
-+			backbone_gw->state = BATADV_BLA_BACKBONE_GW_SYNCED;
- 			atomic_dec(&backbone_gw->bat_priv->bla.num_requests);
--			atomic_set(&backbone_gw->request_sent, 0);
- 		}
-+		spin_unlock_bh(&bat_priv->bla.num_requests_lock);
- 	}
- 
- 	batadv_backbone_gw_put(backbone_gw);
-@@ -1255,9 +1263,13 @@ static void batadv_bla_purge_backbone_gw(struct batadv_priv *bat_priv, int now)
- 				purged = true;
- 
- 				/* don't wait for the pending request anymore */
--				if (atomic_read(&backbone_gw->request_sent))
-+				spin_lock_bh(&bat_priv->bla.num_requests_lock);
-+				if (backbone_gw->state == BATADV_BLA_BACKBONE_GW_UNSYNCED)
- 					atomic_dec(&bat_priv->bla.num_requests);
- 
-+				backbone_gw->state = BATADV_BLA_BACKBONE_GW_STOPPED;
-+				spin_unlock_bh(&bat_priv->bla.num_requests_lock);
-+
- 				batadv_bla_del_backbone_claims(backbone_gw);
- 
- 				hlist_del_rcu(&backbone_gw->hash_entry);
-@@ -1508,7 +1520,7 @@ static void batadv_bla_periodic_work(struct work_struct *work)
- 				batadv_bla_send_loopdetect(bat_priv,
- 							   backbone_gw);
- 
--			/* request_sent is only set after creation to avoid
-+			/* state is only set to unsynced after creation to avoid
- 			 * problems when we are not yet known as backbone gw
- 			 * in the backbone.
- 			 *
-@@ -1517,14 +1529,21 @@ static void batadv_bla_periodic_work(struct work_struct *work)
- 			 * some grace time.
- 			 */
- 
--			if (atomic_read(&backbone_gw->request_sent) == 0)
--				continue;
-+			spin_lock_bh(&bat_priv->bla.num_requests_lock);
-+			if (backbone_gw->state != BATADV_BLA_BACKBONE_GW_UNSYNCED)
-+				goto unlock_next;
- 
--			if (!atomic_dec_and_test(&backbone_gw->wait_periods))
--				continue;
-+			if (backbone_gw->wait_periods > 0)
-+				backbone_gw->wait_periods--;
-+
-+			if (backbone_gw->wait_periods > 0)
-+				goto unlock_next;
- 
-+			backbone_gw->state = BATADV_BLA_BACKBONE_GW_SYNCED;
- 			atomic_dec(&backbone_gw->bat_priv->bla.num_requests);
--			atomic_set(&backbone_gw->request_sent, 0);
-+
-+unlock_next:
-+			spin_unlock_bh(&bat_priv->bla.num_requests_lock);
- 		}
- 		rcu_read_unlock();
- 	}
-diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
-index 56ca1c1b83f27..e7aa45bc6b7ad 100644
---- a/net/batman-adv/mesh-interface.c
-+++ b/net/batman-adv/mesh-interface.c
-@@ -787,6 +787,7 @@ static int batadv_meshif_init_late(struct net_device *dev)
- 	atomic_set(&bat_priv->tt.ogm_append_cnt, 0);
- #ifdef CONFIG_BATMAN_ADV_BLA
- 	atomic_set(&bat_priv->bla.num_requests, 0);
-+	spin_lock_init(&bat_priv->bla.num_requests_lock);
- #endif
- 	atomic_set(&bat_priv->tp_num, 0);
- 
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 821ada05d86a7..a01ee46d97f34 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -1026,6 +1026,12 @@ struct batadv_priv_bla {
- 	/** @num_requests: number of bla requests in flight */
- 	atomic_t num_requests;
- 
-+	/**
-+	 * @num_requests_lock: locks update num_requests +
-+	 * batadv_backbone_gw::state + batadv_backbone_gw::wait_periods update
-+	 */
-+	spinlock_t num_requests_lock;
-+
- 	/**
- 	 * @claim_hash: hash table containing mesh nodes this host has claimed
- 	 */
-@@ -1672,6 +1678,27 @@ struct batadv_priv {
- 
- #ifdef CONFIG_BATMAN_ADV_BLA
- 
-+enum batadv_bla_backbone_gw_state {
-+	/**
-+	 * @BATADV_BLA_BACKBONE_GW_STOPPED: backbone gw is being removed
-+	 * and it must not longer work on requests
-+	 */
-+	BATADV_BLA_BACKBONE_GW_STOPPED,
-+
-+	/**
-+	 * @BATADV_BLA_BACKBONE_GW_UNSYNCED: backbone was detected out
-+	 * of sync and a request was send. No traffic is forwarded until the
-+	 * situation is resolved
-+	 */
-+	BATADV_BLA_BACKBONE_GW_UNSYNCED,
-+
-+	/**
-+	 * @BATADV_BLA_BACKBONE_GW_SYNCED: backbone is consider to be in
-+	 * sync. traffic can be forwarded
-+	 */
-+	BATADV_BLA_BACKBONE_GW_SYNCED,
-+};
-+
- /**
-  * struct batadv_bla_backbone_gw - batman-adv gateway bridged into the LAN
-  */
-@@ -1697,16 +1724,12 @@ struct batadv_bla_backbone_gw {
- 	/**
- 	 * @wait_periods: grace time for bridge forward delays and bla group
- 	 *  forming at bootup phase - no bcast traffic is formwared until it has
--	 *  elapsed
-+	 *  elapsed. Must only be access with num_requests_lock.
- 	 */
--	atomic_t wait_periods;
-+	u8 wait_periods;
- 
--	/**
--	 * @request_sent: if this bool is set to true we are out of sync with
--	 *  this backbone gateway - no bcast traffic is formwared until the
--	 *  situation was resolved
--	 */
--	atomic_t request_sent;
-+	/** @state: sync state. Must only be access with num_requests_lock. */
-+	enum batadv_bla_backbone_gw_state state;
- 
- 	/** @crc: crc16 checksum over all claims */
- 	u16 crc;
+ 	skb = arp_create(ARPOP_REPLY, ETH_P_ARP,
+ 			 /* IP DST: 0.0.0.0 */
+ 			 zeroip,
+-			 primary_if->mesh_iface,
++			 mesh_iface,
+ 			 /* IP SRC: 0.0.0.0 */
+ 			 zeroip,
+ 			 /* Ethernet DST: Broadcast */
 -- 
 2.47.3
 
