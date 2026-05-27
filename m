@@ -2,112 +2,158 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EAOIFFL9FWqkggcAu9opvQ
+	id gMgeDBW/FmrOqgcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 May 2026 22:06:42 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 27 May 2026 11:53:25 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA5A5DC389
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 May 2026 22:06:41 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7C15E22D4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 27 May 2026 11:53:22 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id AFB0B83CB7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 26 May 2026 22:06:41 +0200 (CEST)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1779826001;
- b=G9vZMoYjylZFgE6bb7o6qRXhA5iDJMCjwi1pfFdjU9DK3hOJlZwNSqRQPxGmHfh9h5Fbj
- MI4WIeNbZY5Uu9uM8opyRWlCZrMsv25cPUF6f8gk8GwG/53eBoI4bsf7KE6UaUd6Hvi6dVi
- pd6Hxj/NQTIvGa2ivxss5Ik4rKtE9dc=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1779826001; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 684C283DDC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 27 May 2026 11:53:22 +0200 (CEST)
+ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1779875602;
+ b=21SxiZJKmcPf4zXzM2JXnOiEKlyk89Dt2RustXyYkrX572HCnhQK3J0ZyEE2xb9UYnpM7
+ OZ7eli+ln7hXMPveP9SjSBzvAl5M6/wBUHUe/LW4X2s+A2Oh83rqTyyIEOhyKPody4y8D+i
+ ZSQ5CjKF2Qxr39GNU+AlDjdMVQcMXhA=
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1779875602; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=rIxT03KQp5QT84JPnmJBJ1noHlhUKtvzU2vsvA262Kw=;
- b=FoRK9DxoOLtqpFyDbsggqNEQvVVGp+Ec/SEpTELN1xLsacFJilyUgmg0dl8ASmnuwq4vc
- Cocz3y97nPSeAMFuYWIZjSZ5iW+vt6WA2BkLybvUwi85TOP4LrhOg65xoOTQoVTZkIWM7V3
- 2R6sx1xQufyx/NiDp4mEVLinKIyMxPw=
-ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ list-archive; bh=2PN98aCoYgmIhUzX6WmjhPxG9QNi1I86AbhbpQXMYRA=;
+ b=k2ivBi8lwr99ZyECXbKkAQ3tRNBWLzXCC6aEiYGdzZxQfG7AJ47BUPqymYDFqFxlM4Aa9
+ UcqWXBchpg9TKA2QwSVJajdn3yOJ0G6C4LdskvuKcXxM1SzfVm8ZMg6pvLozyIZ0KVMCcRS
+ MPeGbSW71ZxOMSMmQwMxW0aGzLs/DKs=
+ARC-Authentication-Results: i=3; open-mesh.org;
+ dkim=pass header.d=snu.ac.kr;
  arc=pass;
- dmarc=pass header.from=narfation.org policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id AE07180DBE
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 26 May 2026 22:06:19 +0200 (CEST)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1779825979;
+ dmarc=pass header.from=snu.ac.kr policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=pass header.d=snu.ac.kr; arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=snu.ac.kr policy.dmarc=none
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 14F99810A6
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 27 May 2026 11:52:05 +0200 (CEST)
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1779875538;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=rIxT03KQp5QT84JPnmJBJ1noHlhUKtvzU2vsvA262Kw=;
-	b=GvpjFSPQdPUcg1Mt5Haq+rN7HhjTnHQ7PWJ9bcfj/S2WcVyjZJOJXSrycqmbKY3Tfi+b6t
-	v+Ae7MvqgLcj3UI3kLp/CuYrLakp/SRifjQVqiITGmWr1OXMeZr3rT8ZawU7MJWEimN657
-	+Yw7pvyPcaOhtmZ+qg1LBcGCWeUZm/g=
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779825979;
-	b=LhcrW7J46RZrqejBlldimmFijXbrZF/4fCogvZYvOGPCL3jLjMRQlqywCp6IR0psTYlmTv
-	Q5WKQqBU7PCe7qcNgfN1aFAeRsnz0ujfguQ6oyZgW6VxPkiUz81J4l0k6jI6JI6jks24PE
-	AfUOdOYAqdUCtt2OJ6J0mpif0TQke00=
-ARC-Authentication-Results: i=1;
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=2PN98aCoYgmIhUzX6WmjhPxG9QNi1I86AbhbpQXMYRA=;
+	b=qPMkgWOzdf0fXzCr66wHyqmx4Nqq7MeMA6AkrfC9vbOOc6F6nvYIO6e5x9ZNlm7XeuvNpu
+	s6SNBOFSyXiTOvl+fNQwzFN3Y/qIQUhCfqyKY5pE+MXqp7yXOPw3vEIGKjyVvWQIx3vnS4
+	2kACtJZ/xCcnzZAgKnbrprZvpfryXLk=
+ARC-Seal: i=2; a=rsa-sha256; d=open-mesh.org; s=20121; cv=pass; t=1779875538;
+	b=J0O90/DKSdbVDqMTIGvGu53UDH4pHwLxLym/yqoiadK6Kl3gMDQC1JrM5mrdXq5Z8FhuqU
+	hztXNup72FHM6tN7yL0ge/ke9t/hzwUi19qOyV5aWZBgJQqO4JHbvh+KwNBLsD6tzuiFEa
+	jCReYE2LIViE6wqMO/+myyo7aWeEG3o=
+ARC-Authentication-Results: i=2;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=bkW8tcb7;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 0EAE61FDD5;
-	Tue, 26 May 2026 20:06:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1779825974;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=rIxT03KQp5QT84JPnmJBJ1noHlhUKtvzU2vsvA262Kw=;
-	b=bkW8tcb7f2Fg7OINMkFsMEkn7w0/Epekxnc4kIderSzdxgYIJuU+NevdFAM1s8stPCojds
-	zMWdriFHHQ18ZdCpa7+AgqoiplwYwcGB8MDJRSjEUe6B38HlD6YUKgagCNt13O/w1/zkxp
-	+ssI2pV9ZNXuo3kqnrcqB/ft857Hlyo=
-From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 26 May 2026 22:06:00 +0200
-Subject: [PATCH batadv] batman-adv: bla: annotate lasttime access with
- READ/WRITE_ONCE
+	dkim=pass header.d=snu.ac.kr header.s=google header.b=bIQjpDUV;
+	spf=pass (diktynna.open-mesh.org: domain of swan2718@snu.ac.kr designates
+ 2a00:1450:4864:20::52b as permitted sender) smtp.mailfrom=swan2718@snu.ac.kr;
+	dmarc=pass (policy=none) header.from=snu.ac.kr;
+	arc=pass ("google.com:s=arc-20240605:i=1")
+Received: by mail-ed1-x52b.google.com with SMTP id
+ 4fb4d7f45d1cf-67cd93d8affso14244311a12.2
+        for <b.a.t.m.a.n@lists.open-mesh.org>;
+ Wed, 27 May 2026 02:52:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779875520; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IOJZ5lPQRuYndPDubib5qq59HvQflUDf+uzfvf2uEhCjLD17j+aReVAFu77i0ezz+/
+         NoyUD6s3DKBo30iGCpndM5HlnAeTHW5wDWNUEZZ1ZfNFumyxuW0UrzYw+sBUO0RMTZqz
+         IibHhB9Nn2wcLr5dEtmAtEghWTMJ7lwVseLlpvWTj/VQRTi7ITer4ASuQfblI3bMhc6j
+         bWvLgokfRyaCaQ2EfnUcEgfSyHOsTg48/fcf4GBJZaQ+Ml3hO8KU7sK1GIIfhO3KUBSo
+         Xi4u4wvpAUygSk6TjqtZ32Ue82sWt65GqGnbcBPa9QG4yvDaYYeEDDup1o15xbaTNyy5
+         f7GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=2PN98aCoYgmIhUzX6WmjhPxG9QNi1I86AbhbpQXMYRA=;
+        fh=txvG1RnDKlgYm5wEU0PUcwz60/SaDCLnYhKlOiMrVUU=;
+        b=BiwGN7K0n1zmdS/UVGBz8dt6YqTYZFIoPt+Nv00t0bMJ2Y00YdbfZZJjwms1qlPpkb
+         ndFXGTPe+HOi0PKNgzi/jcJi7ixuNaFCnuXdpj9UBLLm6+i5f32pFVOGpUw2jjFiQhhp
+         NDV8E8goBqcVU49JLFIHqQgHDB1wd15NspU2DociuuItNt5/2y5Z+KoXvMNaav2tsbd/
+         Ym+TrIAGZnZAjVurTAahyWoJltomrP/Zbe7GNug9Zq7RM63svwdNyGpXp/FKuamPZmzG
+         y426IXh0VadbbValhfcOWhytWDo7vLQ97QRnbrHur3ecj5zvGHju/E+A37HrW5O8GZ+2
+         A0Nw==;
+        darn=lists.open-mesh.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=snu.ac.kr; s=google; t=1779875520; x=1780480320;
+ darn=lists.open-mesh.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2PN98aCoYgmIhUzX6WmjhPxG9QNi1I86AbhbpQXMYRA=;
+        b=bIQjpDUVn1tJLI4GRGeoBwHq5RyMVeU229qe+GwA90R8O/j2f5xVIdJOPqV0KsGaMv
+         UHJB6bbX0OFmcm43hFB2CtTxSofh/c8Pqom3DJDKV2s+NxO3qkYwPPQ8qqT8+XtvqwQm
+         KzS5Z6yGP8Ktf1pWww9GoYsAn7pUw6+VKNkYQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779875520; x=1780480320;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=2PN98aCoYgmIhUzX6WmjhPxG9QNi1I86AbhbpQXMYRA=;
+        b=SkvecosiV2fsgSeF7Gh4vUESv9ZOwe9frKEBJHhckzmkMlvWNPpnLwcUXojLybLRVI
+         gU9aVIvEnYKG/zWMxCMvZqJl3Vix6WLw3wr+PwvfZ/8qKnhbR0lgfQsidJhF3Fsl/tuS
+         2ehriTW9afbhiEkSS7Onzd8YlqGJ6uRUVBXZGLdI6okp8i8McnUYVSAwO7Prfawl3YIt
+         YKYzPgLkXswqZhR1uGL3D8HYHdTqWwtV/IRRvl7by1GBSxaOHSTVQSoKzwwnKhOs6XFb
+         XWdx7LjQoL2mg+TbS1Bw7F/EW+jd3rRqfAvith8orb8O/DC1WaEv/xezhYI++OH4kuxk
+         VK/g==
+X-Gm-Message-State: AOJu0Yw76eDgl80XbhnV7qttoOC9YWTECNzyXWvGeEva4YCbooIvW4/B
+	LCyTpVs9RYIraa2GCv2T+LUSKntIU9ciVqgAMlu9OqKW4tLxFQWo6VYwuLNR8dAUwQdvhrtcXB6
+	+DCzgZDrHSrAfZGZRmHXWKk0a87C89LKptJ9c7Qb/dg==
+X-Gm-Gg: Acq92OGEi/VlKE1bbUPuvvE/qLwq6HPpDKsrC/fxNX5yDVmj7D6wiEGrC+5RivQ197T
+	6JH0ocHTVDcLG0Tyods5qGmiW0H/Os1TuzJLmLwQThhdrE+vRRIR4C9p+ogTvnuyUy/b4pkfkqI
+	f7ZZHPpljePzp2HMKvzGruZX0fmsNnosOpCbJLumzDhsj21UOpPj/LjbBe3E0GQowT/6IyvE8lC
+	1DbBwb+eQ2jPdpAs2oFZ5q7Nb6Q7HVO2rJCrgWUwu5PIjFXhnYyLQp4YE3H+zuUgaZoABr4ogNj
+	RXHeYIZk0mqrhAycGm8sBwzUPB6L4muza3d60XOj
+X-Received: by 2002:a05:6402:e10:b0:680:ccda:55b9 with SMTP id
+ 4fb4d7f45d1cf-6889c47031cmr11449807a12.16.1779875520030; Wed, 27 May 2026
+ 02:52:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260526-lasttime-once-v1-1-8fa43079b5fc@narfation.org>
-X-B4-Tracking: v=1; b=H4sIACf9FWoC/yWMwQrCMBAFf6Xs2UBdMaK/Ih426bNd0VSysRRK/
- 71RjzMws5AhK4wuzUIZk5qOqcJ+11AcJPVw2lUmbtm3R/buKVaKvuDGFOG8HDhCTmcEptq8M+4
- 6/35XClKkm+j29/YJD8TyndG6bpuQ1cp5AAAA
-X-Change-ID: 20260526-lasttime-once-6a32cea79eb2
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5768; i=sven@narfation.org;
- h=from:subject:message-id; bh=ptGZkStfZH823K+Kw5fGAqbKxHkKSyKTPKY6yGFSKQ4=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmifw2Mzl/YM5+9aZf2r7KSxcoXFp8VjtstOmFBlcWro
- EdLPu2U7ShlYRDjYpAVU2TZcyX//Gb2t/Kfp308CjOHlQlkCAMXpwBMpEea4RfTCsWTeWk6Susb
- z1+NtG+7t/XEAz//1OcHlkbq+dy2U5zD8Id/WUazxZbgUu56hTkTK6SYS+8J7ah/0COcvHzN8QZ
- pBmYA
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: I4FRP44VS5HZFVLNNC7BY6EK2EUY4JS7
-X-Message-ID-Hash: I4FRP44VS5HZFVLNNC7BY6EK2EUY4JS7
-X-MailFrom: sven@narfation.org
+References: <20260526064835.2233822-1-swan2718@snu.ac.kr>
+ <14018241.uLZWGnKmhe@ripper>
+ <CAL3z5EbfEeMn-2_JrvcXRtuKTtruEf+8MX9tCmn-N9edvvrjwA@mail.gmail.com>
+ <10856691.nUPlyArG6x@ripper>
+In-Reply-To: <10856691.nUPlyArG6x@ripper>
+From: =?UTF-8?B?wq3rsJXsiJjsmYQgLyDtlZnsg50gLyDsu7Ttk6jthLDqs7XtlZnrtoA=?=
+ <swan2718@snu.ac.kr>
+Date: Wed, 27 May 2026 18:51:49 +0900
+X-Gm-Features: AVHnY4IeA4ihcvnDzBQR8GLvg4LxRUs2gOTtjT3c6nUk8tNgpf6NhjYMEVU7tkc
+Message-ID: 
+ <CAL3z5EZDr3sK5pOuiQmX4agLy4-6sJx3UMw9kDYfApFJ6uYb-w@mail.gmail.com>
+Subject: Re: [PATCH] batman-adv: fix DAT purge use-after-free on teardown
+To: Sven Eckelmann <sven@narfation.org>
+Cc: b.a.t.m.a.n@lists.open-mesh.org, netdev@vger.kernel.org,
+	marek.lindner@mailbox.org, sw@simonwunderlich.de, antonio@mandelbit.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	horms@kernel.org, Tejun Heo <tj@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: swan2718@snu.ac.kr
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
- nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
- news-moderation; no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
+Message-ID-Hash: EL2M3QYHEWDF5LGGYTSUEAVJYLA6V4ZU
+X-Message-ID-Hash: EL2M3QYHEWDF5LGGYTSUEAVJYLA6V4ZU
+X-Mailman-Approved-At: Wed, 27 May 2026 11:53:00 +0200
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/I4FRP44VS5HZFVLNNC7BY6EK2EUY4JS7/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EL2M3QYHEWDF5LGGYTSUEAVJYLA6V4ZU/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -116,181 +162,65 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Spamd-Result: default: False [-2.01 / 15.00];
-	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=3];
+	DMARC_POLICY_ALLOW(-0.50)[snu.ac.kr,none];
+	R_DKIM_ALLOW(-0.20)[snu.ac.kr:s=google];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	NEURAL_HAM(-0.00)[-1.000];
 	R_SPF_NA(0.00)[no SPF record];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_NEQ_ENVFROM(0.00)[swan2718@snu.ac.kr,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
-	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[narfation.org:+]
-X-Rspamd-Queue-Id: EDA5A5DC389
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,narfation.org:email,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,snu.ac.kr:dkim,syzkaller.appspot.com:url];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[snu.ac.kr:+]
+X-Rspamd-Queue-Id: 4C7C15E22D4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The lasttime field for claim, backbone_gw, and loopdetect tracks the
-jiffies value of the most recent activity and is used to detect timeouts.
-These accesses are not consistently protected by a lock, so
-READ_ONCE/WRITE_ONCE must be used to prevent data races caused by compiler
-optimizations.
+I was running a modified syzkaller locally and the crash came from
+that setup. I've since lost the original log, and looking back, I may
+have confused an issue in my tooling with a kernel bug. I should have
+verified more carefully before sending this. Sorry for the confusion.
 
-Fixes: a9ce0dc43e2c ("batman-adv: add basic bridge loop avoidance code")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- net/batman-adv/bridge_loop_avoidance.c | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+Soowan Park
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index ffe85401..7f643de4 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -512,7 +512,7 @@ batadv_bla_get_backbone_gw(struct batadv_priv *bat_priv, const u8 *orig,
- 		return NULL;
- 
- 	entry->vid = vid;
--	entry->lasttime = jiffies;
-+	WRITE_ONCE(entry->lasttime, jiffies);
- 	entry->crc = BATADV_BLA_CRC_INIT;
- 	entry->bat_priv = bat_priv;
- 	spin_lock_init(&entry->crc_lock);
-@@ -580,7 +580,7 @@ batadv_bla_update_own_backbone_gw(struct batadv_priv *bat_priv,
- 	if (unlikely(!backbone_gw))
- 		return;
- 
--	backbone_gw->lasttime = jiffies;
-+	WRITE_ONCE(backbone_gw->lasttime, jiffies);
- 	batadv_backbone_gw_put(backbone_gw);
- }
- 
-@@ -714,7 +714,7 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
- 		ether_addr_copy(claim->addr, mac);
- 		spin_lock_init(&claim->backbone_lock);
- 		claim->vid = vid;
--		claim->lasttime = jiffies;
-+		WRITE_ONCE(claim->lasttime, jiffies);
- 		kref_get(&backbone_gw->refcount);
- 		claim->backbone_gw = backbone_gw;
- 		kref_init(&claim->refcount);
-@@ -736,7 +736,7 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
- 			return;
- 		}
- 	} else {
--		claim->lasttime = jiffies;
-+		WRITE_ONCE(claim->lasttime, jiffies);
- 		if (claim->backbone_gw == backbone_gw)
- 			/* no need to register a new backbone */
- 			goto claim_free_ref;
-@@ -769,7 +769,7 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
- 	spin_lock_bh(&backbone_gw->crc_lock);
- 	backbone_gw->crc ^= crc16(0, claim->addr, ETH_ALEN);
- 	spin_unlock_bh(&backbone_gw->crc_lock);
--	backbone_gw->lasttime = jiffies;
-+	WRITE_ONCE(backbone_gw->lasttime, jiffies);
- 
- claim_free_ref:
- 	batadv_claim_put(claim);
-@@ -858,7 +858,7 @@ static bool batadv_handle_announce(struct batadv_priv *bat_priv, u8 *an_addr,
- 		return true;
- 
- 	/* handle as ANNOUNCE frame */
--	backbone_gw->lasttime = jiffies;
-+	WRITE_ONCE(backbone_gw->lasttime, jiffies);
- 	crc = ntohs(*((__force __be16 *)(&an_addr[4])));
- 
- 	batadv_dbg(BATADV_DBG_BLA, bat_priv,
-@@ -1253,7 +1253,7 @@ static void batadv_bla_purge_backbone_gw(struct batadv_priv *bat_priv, int now)
- 						  head, hash_entry) {
- 				if (now)
- 					goto purge_now;
--				if (!batadv_has_timed_out(backbone_gw->lasttime,
-+				if (!batadv_has_timed_out(READ_ONCE(backbone_gw->lasttime),
- 							  BATADV_BLA_BACKBONE_TIMEOUT))
- 					continue;
- 
-@@ -1334,7 +1334,7 @@ static void batadv_bla_purge_claims(struct batadv_priv *bat_priv,
- 						primary_if->net_dev->dev_addr))
- 				goto skip;
- 
--			if (!batadv_has_timed_out(claim->lasttime,
-+			if (!batadv_has_timed_out(READ_ONCE(claim->lasttime),
- 						  BATADV_BLA_CLAIM_TIMEOUT))
- 				goto skip;
- 
-@@ -1494,7 +1494,7 @@ static void batadv_bla_periodic_work(struct work_struct *work)
- 		eth_random_addr(bat_priv->bla.loopdetect_addr);
- 		bat_priv->bla.loopdetect_addr[0] = 0xba;
- 		bat_priv->bla.loopdetect_addr[1] = 0xbe;
--		bat_priv->bla.loopdetect_lasttime = jiffies;
-+		WRITE_ONCE(bat_priv->bla.loopdetect_lasttime, jiffies);
- 		atomic_set(&bat_priv->bla.loopdetect_next,
- 			   BATADV_BLA_LOOPDETECT_PERIODS);
- 
-@@ -1515,7 +1515,7 @@ static void batadv_bla_periodic_work(struct work_struct *work)
- 						primary_if->net_dev->dev_addr))
- 				continue;
- 
--			backbone_gw->lasttime = jiffies;
-+			WRITE_ONCE(backbone_gw->lasttime, jiffies);
- 
- 			batadv_bla_send_announce(bat_priv, backbone_gw);
- 			if (send_loopdetect)
-@@ -1899,7 +1899,7 @@ batadv_bla_loopdetect_check(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 	/* If the packet came too late, don't forward it on the mesh
- 	 * but don't consider that as loop. It might be a coincidence.
- 	 */
--	if (batadv_has_timed_out(bat_priv->bla.loopdetect_lasttime,
-+	if (batadv_has_timed_out(READ_ONCE(bat_priv->bla.loopdetect_lasttime),
- 				 BATADV_BLA_LOOPDETECT_TIMEOUT))
- 		return true;
- 
-@@ -2014,7 +2014,7 @@ bool batadv_bla_rx(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 
- 	if (own_claim) {
- 		/* ... allow it in any case */
--		claim->lasttime = jiffies;
-+		WRITE_ONCE(claim->lasttime, jiffies);
- 		goto allow;
- 	}
- 
-@@ -2116,7 +2116,7 @@ bool batadv_bla_tx(struct batadv_priv *bat_priv, struct sk_buff *skb,
- 		/* if yes, the client has roamed and we have
- 		 * to unclaim it.
- 		 */
--		if (batadv_has_timed_out(claim->lasttime, 100)) {
-+		if (batadv_has_timed_out(READ_ONCE(claim->lasttime), 100)) {
- 			/* only unclaim if the last claim entry is
- 			 * older than 100 ms to make sure we really
- 			 * have a roaming client here.
-@@ -2361,7 +2361,7 @@ batadv_bla_backbone_dump_entry(struct sk_buff *msg, u32 portid,
- 	backbone_crc = backbone_gw->crc;
- 	spin_unlock_bh(&backbone_gw->crc_lock);
- 
--	msecs = jiffies_to_msecs(jiffies - backbone_gw->lasttime);
-+	msecs = jiffies_to_msecs(jiffies - READ_ONCE(backbone_gw->lasttime));
- 
- 	if (is_own)
- 		if (nla_put_flag(msg, BATADV_ATTR_BLA_OWN)) {
-
----
-base-commit: ec9f686b42917e9b67725d7245b50de72f59fa9e
-change-id: 20260526-lasttime-once-6a32cea79eb2
-
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
-
+2026=EB=85=84 5=EC=9B=94 26=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 11:18, =
+Sven Eckelmann <sven@narfation.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> On Tuesday, 26 May 2026 15:56:58 CEST =C2=AD=EB=B0=95=EC=88=98=EC=99=84 /=
+ =ED=95=99=EC=83=9D / =EC=BB=B4=ED=93=A8=ED=84=B0=EA=B3=B5=ED=95=99=EB=B6=
+=80 wrote:
+> > Hi Sven,
+> >
+> > You're right. I re-examined __cancel_work_sync() and confirmed that it
+> > internally disables the work before flushing, so the re-queue race I
+> > described does not exist. I'll withdraw this patch.
+> >
+> > Thanks for the review.
+>
+> But you said that this was reported by syzkaller. I can't find the report=
+ in
+> the official list [1]. I am guessing you have a reproducer in a private
+> instance and tested with it. And if you tested your patch with it, you ha=
+ve
+> found that your patch fixes it, right?
+>
+> Can you give us more information about this to let us figure out what is
+> actually going on?
+>
+> Regards,
+>         Sven
+>
+> [1] https://syzkaller.appspot.com/upstream/s/batman
