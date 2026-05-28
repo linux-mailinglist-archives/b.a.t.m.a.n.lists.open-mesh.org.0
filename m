@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wChkF19RGGqwiwgAu9opvQ
+	id eCwGGeNRGGqwiwgAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 May 2026 16:29:51 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 May 2026 16:32:03 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BBD5F3ACB
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 May 2026 16:29:50 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB6F5F3B76
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 May 2026 16:32:03 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A5D4883E9F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 May 2026 16:29:50 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 012E684190
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 28 May 2026 16:32:03 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1779978590;
- b=fYsSbWbYh2KFOyMEkLITsygxGMbeMU3JoT+1rbEdQ0l9YgStIgkuQc8MoMbQGWyP2oH3S
- j5roxUHqZ0goGNM0dNwSD0OexM8Vaa6L8veJcQAnaKgaMcFqLqidcV74EiY90IqrB6+SPjR
- +Vor7CQVEtI4/gUOM8y7m0yV23MVK0o=
+ t=1779978722;
+ b=xSEAR8kZNeHg1qWE19zMKLSYX+JDkR8Kz44rDpO+e6y/IrOx4w/a5wARrtOilYvFb4se1
+ UAZbcuWaNtOk4FZ1ml38vOIDCtGL0pLphT2rgn6nHRA9VR9CDVkCTc5seQGj6ZVkYnqk/9i
+ 9r3HeTlvHVcigosj+UgVaJakl2hXXyc=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1779978590; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1779978722; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=LWv8MafdPzKxu026SvAgMIOfMz0Utuf87oDhnSVFpeA=;
- b=IgpO7M9fSadHXndyUP6kQezNKkJsnPdVgervuVJG1zN0NO98G+SYVwMGl+meHNaXROf3q
- Z+YhZn5iFA6CT7wC4vBf58Prv7TqIH1D5xkX6vtpo7+eTloNJubcNUotmLH5hd+p4SFBWSJ
- VuoktKsaTxU0i+Xy9mRfNgiYGOiYZrY=
+ list-archive; bh=/EL+qJ6WKHkjBQeLQM+rO68NQsJGkz6Soatl6PUjU/0=;
+ b=OpIgNcl8IT5Xn4lZZsuXrF/RA4OBruSs1XSfw4intRhbWZDN30MD/rwuLywl7SujVWLLh
+ U2/m1vozQwqHgNxb5rey2fr9x8vXnY2qRrTgNJc7NjQcutXlGnjQs73/VUz5v7hBCKpYtG8
+ 2m1USFSsO8v2AahJz2DFj9ARXnXuVMI=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
@@ -36,7 +36,7 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=simonwunderlich.de policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6944E835FB
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 6AAFC83AAD
 	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 28 May 2026 16:29:29 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	s=20121; t=1779978569;
@@ -44,17 +44,17 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=LWv8MafdPzKxu026SvAgMIOfMz0Utuf87oDhnSVFpeA=;
-	b=hHFO5nmHjLVS6foUWa3ymNgg86EI3N9Erswt6rsf6Y+tryj8Ycv1tkFKvfZqU8TABBdcnS
-	ZUkTGEs6ZImAW0EhbSLfsAyBWHv2eCP2p6EbRSWuf7EGc+NX1OMVBUrY5hbRUWqvnm9X0h
-	xKD6TAfP+Wd445foWod41XxcKb/ndlw=
+	bh=/EL+qJ6WKHkjBQeLQM+rO68NQsJGkz6Soatl6PUjU/0=;
+	b=jpkGyzNFrcuyB50+jj3GlMzyt7y8OZp8+JMWHsCaiFTaRBKsU32XHKke7iayFMLQ2zgtvM
+	KN53XiytAb6pzomWrGExtohR6cC7J7/YHjA1s14JubsZnsvbCd4fGFRcSGDiLMYlBVTEzv
+	2lkorlOuin8iKvt8n5TRKTRlznDbOaY=
 ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1779978569;
-	b=tLBKglMjDD9uEFZFOyQE6jPgu/NsC2enD4YYhQJvwwIte59VKVpYdV+aCqT/uUL/p0DApD
-	sODgaUsyxSbwofqVs+UAnWRmS+t9HnOsG/vhELIkK1SzvsueTt7ws7OFMCavHth5Ej+jw4
-	7dQUZptwvFOjLgstAF2Er26Y//L+Nao=
+	b=bz7QCpwGiBYeRCUJHFYZTMQwyctPSei5jvRiXpI2FovPcgxmB2KaivIFZV4kiDknQ9nKXw
+	OhLYBlDrY8DRwIVi7/ekLhVUU/3zM+Rz+KWSfYvLH3c4t566bThFbsjuJ/l+PEN43d132/
+	ni6zUQL904IhHVJY0HTYy31Oxbbm4n8=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=XuReeURn;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="GbV+M//p";
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
@@ -64,12 +64,12 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LWv8MafdPzKxu026SvAgMIOfMz0Utuf87oDhnSVFpeA=;
-	b=XuReeURnPmos9GVoiIehsZ4NOFQyIXEOLSxJKjVMjf2AbmHFaOzxdtyQohk8M3YIGCC1IC
-	b0ZmpNPdb+s6UMYfOisArRdF55wpoRpL4u9RBmTyS0ZCBw1nB0ixHFYnjkGj70e6vcbSlU
-	LCfVdxHvLx8i203DNqu3Scr9hRAkNdMmGoMhiGs28eWgX8jpWx1CAjIBTi0bupI9LYKc1u
-	Zaqgmt9k60yKwQV9fX55tJ00HkFKYVbokzXil2eC/Jqo6VuvbCDYg/o+9rcBv3WoGpD5df
-	wsp9wyTkuK6Am/EKnpF8rRNij5GBkOM1LFYB73g3Pi4kXKptF2sxsNOQ4mOMbQ==
+	bh=/EL+qJ6WKHkjBQeLQM+rO68NQsJGkz6Soatl6PUjU/0=;
+	b=GbV+M//plOyCZbdFTYeFCduu6jVDmB8mP3aNV8NYm0iuSXNehFN6ANwokhWrTfvX9rFenJ
+	lFNcpXhZdEBql/ZRN8lhCXGfrxIPq1ze3Caq7e+KHkz/toc8WNHkGBeXB+9N63om33bX+U
+	uRVQ7jfusZ50KVbfxAPMKyC+D9dvGAUJUrOIe/inYPECsqZ4636Ycaf8CnI09Q6ddbMX5Y
+	PUDU9MUR9b4bkX2JP8xexqnrKMXZyrfVEcxuY4MnsZx9PS08vjqXRns+9ml6XA8BOjSFwU
+	WRm8sarAFIhlo1lHDzWEuZhZaiPBVYXRimiKa+IFinfW+ycdMJzJSl5bpfkLNA==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -80,16 +80,16 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 01/15] batman-adv: drop batman-adv specific version
-Date: Thu, 28 May 2026 16:29:10 +0200
-Message-ID: <20260528142924.329658-2-sw@simonwunderlich.de>
+Subject: [PATCH net-next 02/15] MAINTAINERS: Rename batman-adv T(ree)
+Date: Thu, 28 May 2026 16:29:11 +0200
+Message-ID: <20260528142924.329658-3-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260528142924.329658-1-sw@simonwunderlich.de>
 References: <20260528142924.329658-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: GBLL6426YDZXXVB7WESGHU4ITDQB4TYT
-X-Message-ID-Hash: GBLL6426YDZXXVB7WESGHU4ITDQB4TYT
+Message-ID-Hash: TFEVQJHG3VFXRMX5ARJN27Y7TUIPZPSV
+X-Message-ID-Hash: TFEVQJHG3VFXRMX5ARJN27Y7TUIPZPSV
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -103,7 +103,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GBLL6426YDZXXVB7WESGHU4ITDQB4TYT/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/TFEVQJHG3VFXRMX5ARJN27Y7TUIPZPSV/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,open-mesh.org:url,narfation.org:email,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
@@ -133,176 +133,40 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[simonwunderlich.de:+];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TO_DN_SOME(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
-X-Rspamd-Queue-Id: F1BBD5F3ACB
+X-Rspamd-Queue-Id: 3FB6F5F3B76
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Sven Eckelmann <sven@narfation.org>
 
-Bumping the version number on the first pull request after each merge
-window was deemed inappropriate for an in-tree component. The version
-number carries little meaningful information in the context of the Linux
-kernel release model, where stable and distribution might all carry
-slightly different patches (without any change to the batman-adv version).
+Replace the batman-adv tree name "linux-merge" with "batadv" to match the
+patch prefix convention used in subject lines (e.g. "[PATCH batadv 1/10]").
+The previous name "linux-merge" was ambiguous and was not suitable as a
+easy-to-recognize prefix. Routing of patches to net-next vs. net remains at
+maintainer discretion.
 
-Instead, expose a UTS_RELEASE-based string to consumers of the netlink
-and ethtool interfaces. But keep it in a separate file to avoid whole
-batman-adv recompilations when generated/utsrelease.h is recreated.
-
-Link: https://lore.kernel.org/r/20210203163302.13e8a2a7@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com
-Link: https://lore.kernel.org/r/YnfjtpuAaH+Zkf9S@unreal
-Link: https://lore.kernel.org/r/Y9faTA0rNSXg%2FsLD@nanopsycho
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/Makefile         |  1 +
- net/batman-adv/main.c           |  4 ++--
- net/batman-adv/main.h           |  4 ----
- net/batman-adv/mesh-interface.c |  3 ++-
- net/batman-adv/netlink.c        |  3 ++-
- net/batman-adv/version.c        | 18 ++++++++++++++++++
- net/batman-adv/version.h        |  8 ++++++++
- 7 files changed, 33 insertions(+), 8 deletions(-)
- create mode 100644 net/batman-adv/version.c
- create mode 100644 net/batman-adv/version.h
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/net/batman-adv/Makefile b/net/batman-adv/Makefile
-index d3c4d4143c144..5d7456f1240d7 100644
---- a/net/batman-adv/Makefile
-+++ b/net/batman-adv/Makefile
-@@ -30,5 +30,6 @@ batman-adv-$(CONFIG_BATMAN_ADV_TRACING) += trace.o
- batman-adv-y += tp_meter.o
- batman-adv-y += translation-table.o
- batman-adv-y += tvlv.o
-+batman-adv-y += version.o
- 
- CFLAGS_trace.o := -I$(src)
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index a4d33ee0fda59..b7acccdf3ce05 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -57,6 +57,7 @@
- #include "send.h"
- #include "tp_meter.h"
- #include "translation-table.h"
-+#include "version.h"
- 
- /* List manipulations on hardif_list have to be rtnl_lock()'ed,
-  * list traversals just rcu-locked
-@@ -112,7 +113,7 @@ static int __init batadv_init(void)
- 	batadv_netlink_register();
- 
- 	pr_info("B.A.T.M.A.N. advanced %s (compatibility version %i) loaded\n",
--		BATADV_SOURCE_VERSION, BATADV_COMPAT_VERSION);
-+		batadv_version, BATADV_COMPAT_VERSION);
- 
- 	return 0;
- 
-@@ -684,6 +685,5 @@ MODULE_LICENSE("GPL");
- 
- MODULE_AUTHOR(BATADV_DRIVER_AUTHOR);
- MODULE_DESCRIPTION(BATADV_DRIVER_DESC);
--MODULE_VERSION(BATADV_SOURCE_VERSION);
- MODULE_ALIAS_RTNL_LINK("batadv");
- MODULE_ALIAS_GENL_FAMILY(BATADV_NL_NAME);
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index af230b017bc17..f68fc8b7239cd 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
-@@ -12,10 +12,6 @@
- #define BATADV_DRIVER_DESC   "B.A.T.M.A.N. advanced"
- #define BATADV_DRIVER_DEVICE "batman-adv"
- 
--#ifndef BATADV_SOURCE_VERSION
--#define BATADV_SOURCE_VERSION "2025.5"
--#endif
--
- /* B.A.T.M.A.N. parameters */
- 
- #define BATADV_TQ_MAX_VALUE 255
-diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
-index e7aa45bc6b7ad..a244f5425406b 100644
---- a/net/batman-adv/mesh-interface.c
-+++ b/net/batman-adv/mesh-interface.c
-@@ -49,6 +49,7 @@
- #include "multicast.h"
- #include "send.h"
- #include "translation-table.h"
-+#include "version.h"
- 
- /**
-  * batadv_skb_head_push() - Increase header size and move (push) head pointer
-@@ -892,7 +893,7 @@ static void batadv_get_drvinfo(struct net_device *dev,
- 			       struct ethtool_drvinfo *info)
- {
- 	strscpy(info->driver, "B.A.T.M.A.N. advanced", sizeof(info->driver));
--	strscpy(info->version, BATADV_SOURCE_VERSION, sizeof(info->version));
-+	strscpy(info->version, batadv_version, sizeof(info->version));
- 	strscpy(info->fw_version, "N/A", sizeof(info->fw_version));
- 	strscpy(info->bus_info, "batman", sizeof(info->bus_info));
- }
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index 78c651f634cd3..8db29afeaa40b 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -47,6 +47,7 @@
- #include "originator.h"
- #include "tp_meter.h"
- #include "translation-table.h"
-+#include "version.h"
- 
- struct genl_family batadv_netlink_family;
- 
-@@ -233,7 +234,7 @@ static int batadv_netlink_mesh_fill(struct sk_buff *msg,
- 	if (!hdr)
- 		return -ENOBUFS;
- 
--	if (nla_put_string(msg, BATADV_ATTR_VERSION, BATADV_SOURCE_VERSION) ||
-+	if (nla_put_string(msg, BATADV_ATTR_VERSION, batadv_version) ||
- 	    nla_put_string(msg, BATADV_ATTR_ALGO_NAME,
- 			   bat_priv->algo_ops->name) ||
- 	    nla_put_u32(msg, BATADV_ATTR_MESH_IFINDEX, mesh_iface->ifindex) ||
-diff --git a/net/batman-adv/version.c b/net/batman-adv/version.c
-new file mode 100644
-index 0000000000000..6a7c26e4bc945
---- /dev/null
-+++ b/net/batman-adv/version.c
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include "version.h"
-+
-+#include <generated/utsrelease.h>
-+#include <linux/module.h>
-+
-+#define BATADV_SOURCE_VERSION "linux-" UTS_RELEASE
-+
-+const char *batadv_version = BATADV_SOURCE_VERSION;
-+
-+/* WARNING userspace tools like batctl were relying on
-+ * /sys/module/batman_adv/version to check if the module was loaded. If it
-+ * isn't present, they usually error out before finishing setup of the batadv
-+ * interface. It should be kept until it is unlikely that there are active
-+ * installations of these "broken" versions of these tools with recent kernels.
-+ */
-+MODULE_VERSION(BATADV_SOURCE_VERSION);
-diff --git a/net/batman-adv/version.h b/net/batman-adv/version.h
-new file mode 100644
-index 0000000000000..d8af91f365ff9
---- /dev/null
-+++ b/net/batman-adv/version.h
-@@ -0,0 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef _NET_BATMAN_ADV_VERSION_H_
-+#define _NET_BATMAN_ADV_VERSION_H_
-+
-+extern const char *batadv_version;
-+
-+#endif /* _NET_BATMAN_ADV_VERSION_H_ */
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f1d2a924d53dc..741fb4166aa2b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4440,7 +4440,7 @@ W:	https://www.open-mesh.org/
+ Q:	https://patchwork.open-mesh.org/project/batman/list/
+ B:	https://www.open-mesh.org/projects/batman-adv/issues
+ C:	ircs://irc.hackint.org/batadv
+-T:	git https://git.open-mesh.org/linux-merge.git
++T:	git https://git.open-mesh.org/batadv.git
+ F:	Documentation/networking/batman-adv.rst
+ F:	include/uapi/linux/batadv_packet.h
+ F:	include/uapi/linux/batman_adv.h
 -- 
 2.47.3
 
