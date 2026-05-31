@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +M1pJXoKGmo70wgAu9opvQ
+	id MDexAGPyG2qQHgkAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 May 2026 23:51:54 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 31 May 2026 10:33:39 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C4E6090AD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 May 2026 23:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A68D1615159
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 31 May 2026 10:33:38 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E657F83F68
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 29 May 2026 23:51:53 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 60079841E6
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 31 May 2026 10:33:38 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780091513;
- b=DBLWH4deP3l/CNjw9fMEKF+9cfy0amjGZS1MHB6ZP2FmIxWwq6VEgKUTeYWuqPbk87TV8
- zd45gpYL6URanb0pOexjj0WDVljtbXmzYfcSvpAyM7ww3758UePTat8s7cDV55sRV9xvcV3
- Q1QzNdTRrX6ZJ16qwPUVYh2B0OXBARE=
+ t=1780216418;
+ b=V3eGMQTtcBkFp9JbypV87RtDmsl4Y0fa0evmCLfmd9wjaR9w/P1BbRsjGAskIzqhWCGIH
+ B2VzB/7Y1JiHQvqljAIXAQYfpCWDHw0M8Asz99eziCOE7jk2kjYdBDeEuy/0mS5X9N2Z3Eo
+ l8+Mon8zjoqrEK6kr4l//nn5ZxXxveE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780091513; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780216418; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=K3tvs7VV/5iKvq7D7J4v0Yb0r1z9ksa/qbBOuU0ZmAc=;
- b=SQTNbMvYWrwmN3/JcKkoiEyLVTO1DeuGiHiKhOuenHAxNN9P9xKy6/TLjg+xQXhCDcAbg
- LlEVOF2u4G3yCZ52TBODUsL9IG6WZTfw7R7vI6EUuM7rVxlY9tm1tRa4WIhKElD5FDPbq7A
- 4vke8y4I8DNG5o8gQG8Oip6yl+QJ2Ic=
+ list-archive; bh=1BRrqqIgSVGv5iLWhlzLyQcQyif02bKPhWK7oTap8lg=;
+ b=SvAEVptBRpENSHmzR+uvETsFkhCa6hLfIPre15aNbNBWxxWe6Gq+cOWJYlCK5hKGO8W4h
+ osQOEMbN+gGuRlgrELAou+ELN7oyuhGx6u8SJVaNSC0DMRa5QLDBopaSfcfTtoWiPKCcYMN
+ o3APUr1HnR90imN/z/O/z2XkmW0CguI=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
@@ -37,63 +37,64 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
  dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id EBC7881824
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 29 May 2026 23:51:21 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id D38A5821AE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 31 May 2026 10:29:18 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780091492;
+	s=20121; t=1780216168;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=K3tvs7VV/5iKvq7D7J4v0Yb0r1z9ksa/qbBOuU0ZmAc=;
-	b=NKnvBcB7ClkdWhmgiI1/kdqZPeQYaMMJDy7/K8h+k7Unrt4AcEYO8ODlSfVvfS4nMc8dEv
-	/lxc1h9zQftdPNJN9AQMccGuht4irwD6BrFfreNtMCFkNnbr9s0ULz0clyX5aAWQFVRlIx
-	K9mLmyg3MlpNfSp0q1JLoCCVzbk8Ags=
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780091492;
-	b=EPP9VKu2QKYvBTPMXgcH8x0h5BLQmdekUr1pfmxflr6Pd/j1FVfjdEUAtYlwL9Txk6wCL6
-	Od2eQfxRqPsSE2qeGnmWJaPg4XuJ1MV3Rt0/zfcJiBkDY0jIbNttIkDPyFp81Db6IiUIhN
-	jr1Y4/bPMqvnGPGtuOzc+PbdXh3UHpk=
+	bh=1BRrqqIgSVGv5iLWhlzLyQcQyif02bKPhWK7oTap8lg=;
+	b=fEHHSw6BXIF5ZACrBUmYYQfLlu1EYRLCk69EwyJODUmCIGjODmIxNOk5rxYMPPE+Nc0Dr9
+	Tahyh9zyZq+kFjOSWcGR+hZNHMBZRJ2DSbAUDYQ//lIWHPwjP3CnNtZMXV8PHFh0iRqy0s
+	JkLRfX3pMJiNSspDOJMHDNIn99XRd4c=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780216168;
+	b=b4WF6utOa70UJG/f3Tkf5VGrrHjQTwllweKFs/Xnk4wgcs0zJ6Tvt6gOphNA9Nz+ogWoDj
+	SeBlVng0ivownsBnJYEYGdsXU4qYXxrzmOLDUlfQbmT7AaYp4lIwIyWjGaP6N46MzmAAXr
+	B8ElcXFx/3F2NlM4DmfqOrv9k9aMeN4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=zIbJd3Lg;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=h37IJqps;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 7E5B81FF62;
-	Fri, 29 May 2026 21:51:19 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id CD1981FD9C;
+	Sun, 31 May 2026 08:29:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1780091479;
+	s=20121; t=1780216156;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=K3tvs7VV/5iKvq7D7J4v0Yb0r1z9ksa/qbBOuU0ZmAc=;
-	b=zIbJd3LgiCeMjqQoG9TG3oGbFAVbohJn+8bSeQQ15rRiVEoAr94YkOkgsz80Rfq2YmyEau
-	K4AY7qQ9af9DsROlYawxUr1pr+Nz8NROu5/Nrzx16FD+yPGadxO7qYqJfVLWm/QZGToo79
-	H55f9jdtH7s4KglRCcdibOCDsvZ5UrA=
+	bh=1BRrqqIgSVGv5iLWhlzLyQcQyif02bKPhWK7oTap8lg=;
+	b=h37IJqpskLqun4z7DYz7SBSiTRyP4H1bOd/VlPbPm19t4jgb3f+f/4Fu3K1PlWwFz2MU2U
+	V5w3Ic4fkbpU5oP0+/l4AulIlSMLQyM91zIRLPtjP4t6Gt/bYknDR22r8UaCNUeGsKwdiH
+	DAtPEwF5PNP1JPq3U5Gi8zG/RqgFSHY=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 29 May 2026 23:51:12 +0200
-Subject: [PATCH batadv] batman-adv: prevent ELP transmission interval
- underflow
+Subject: [PATCH batadv v4 0/6] batman-adv: tp_meter: post fixes cleanups
+Date: Sun, 31 May 2026 10:28:50 +0200
+Message-Id: <20260531-tp-reason-missing-v4-0-5d2556e00128@narfation.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260529-jitter-underflow-v1-1-576f46981df6@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAE8KGmoC/yWMwQrCMBAFf6W8s4E0pAX9FfGwTba6RVLZpK1Q+
- u9GPc7AzI7MKpxxaXYor5JlThXaU4PwoHRnI7EynHW97dzZTFIKq1lSZB2f82Ys+eB933pyHWr
- 2Uh7l/VteMVChuOL293kZJg7l+8NxfABdkiw2fAAAAA==
-X-Change-ID: 20260529-jitter-underflow-0a4c44614a25
+X-B4-Tracking: v=1; b=H4sIAELxG2oC/33OwW7CMAwG4FdBOc8odpo2cOI90A5um5RMWoqSE
+ DGhvvtCd0Gi2vG37O/3QyQbvU3iuHuIaItPfg41NB87MVw4TBb8WLMgSa3UqCBfIVpOc4Bvn5I
+ PEzhk1uiUU10j6t01Wufvq3kWPWcei/j8m6db/2WH/ASfmxef8hx/1vKC6/4/PQUBodPExlA/t
+ sinwNFxrh/v5zitHYVelcOWQiDhMOhhREONVf2Wol4Uwi1FVYVao3XTSmm6t1+WZfkFur6gM1w
+ BAAA=
+X-Change-ID: 20260513-tp-reason-missing-f1aa51f3f374
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1706; i=sven@narfation.org;
- h=from:subject:message-id; bh=x4Lt6OcxgI9+WnjA1iFkmmrEHovk1HJvX+Vk9zPMfVU=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFlSXAGzIz1956zefrfBoOnV1EtTeud2POWZ29gyWV1d/
- soz7eobHaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJzHJnZNinUBFRss+tojnz
- 3x0mk3PezO2cb1b2tN3Sqe78xGL6xpDhf8VpCZntLx8+2qk2/UqG4/eKR2+2d8Q+FIrhL2Kc/k4
- xnB0A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2280; i=sven@narfation.org;
+ h=from:subject:message-id; bh=Me1z+9nyw11t1Ufr2ByQNrydoDs1roMMmjQ4yQuGyHo=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnSH8Ot7t7UONdybENt+rzDzOyMrslWVVIdLZcXv9TLO
+ 3muKNmuo5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjCR5ZMYGSYFTDjDuEXv0bGV
+ 15aw2sV0Z4a8lqvSzF/uK/LfzTkzIJ3hn6X7mYUqP29/mMM296uuTMKE414GS9aEH39ffvWG1s9
+ tXxkB
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 3ZSXA6AARUDQCQCPM7AIQGZ3KHUMKC3P
-X-Message-ID-Hash: 3ZSXA6AARUDQCQCPM7AIQGZ3KHUMKC3P
+Message-ID-Hash: DNUUBDCCKBHXG2ADCZHLGXOHNXHXNAH3
+X-Message-ID-Hash: DNUUBDCCKBHXG2ADCZHLGXOHNXHXNAH3
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/3ZSXA6AARUDQCQCPM7AIQGZ3KHUMKC3P/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DNUUBDCCKBHXG2ADCZHLGXOHNXHXNAH3/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -123,7 +124,7 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	TO_DN_SOME(0.00)[];
@@ -134,57 +135,66 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,narfation.org:mid,narfation.org:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	RCPT_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[narfation.org:+]
-X-Rspamd-Queue-Id: 32C4E6090AD
+X-Rspamd-Queue-Id: A68D1615159
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-batadv_v_elp_start_timer() enqeues a delayed work. The time when it starts
-is randomly chosen between (elp_interval - BATADV_JITTER) and
-(elp_interval + BATADV_JITTER). The configured elp_interval must therefore
-be larger or equal to BATADV_JITTER to avoid that it causes an underflow of
-the unsigned integer. If this would happen, then a "fast" ELP interval
-would turn into a "day long" delay.
+After most of the problems regarding the role confusion were fixed, we
+should use the opportunity to split the variables completly. This can
+prevent some of the confusions and at the same time reduce the memory
+consumption significantly.
 
-At the same time, it must not be larger than the maximum value the variable
-can store.
+Since the sender variables are separated from the rest, also clean up the
+congestion control code. Make sure that everything is in short blocks which
+ensure that the reader is aware of the locking and the results of the
+calculation. Which also means that the actions (sending) are extracted from
+the congestion control code.
 
-Fixes: 914db9648ed5 ("batman-adv: Add elp_interval hardif genl configuration")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/netlink.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+Changes in v4:
+- rebase
+- add patch to fix unacked_list order
+- add patch to initialize dup_acks explicitly
+- extract batadv_tp_avail fix to separate patch
+- split congestion control variable patch in "locking" and "structure"
+  patch
+- Link to v3: https://patch.msgid.link/20260521-tp-reason-missing-v3-0-26855460087a@narfation.org
 
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index e52f44e7..c8f7a2b2 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -917,9 +917,15 @@ static int batadv_netlink_set_hardif(struct sk_buff *skb,
- #ifdef CONFIG_BATMAN_ADV_BATMAN_V
- 
- 	if (info->attrs[BATADV_ATTR_ELP_INTERVAL]) {
--		attr = info->attrs[BATADV_ATTR_ELP_INTERVAL];
-+		u32 elp_interval;
- 
--		atomic_set(&hard_iface->bat_v.elp_interval, nla_get_u32(attr));
-+		attr = info->attrs[BATADV_ATTR_ELP_INTERVAL];
-+		elp_interval = nla_get_u32(attr);
-+
-+		elp_interval = min_t(u32, elp_interval, INT_MAX);
-+		elp_interval = max_t(u32, elp_interval, BATADV_JITTER);
-+
-+		atomic_set(&hard_iface->bat_v.elp_interval, elp_interval);
- 	}
- 
- 	if (info->attrs[BATADV_ATTR_THROUGHPUT_OVERRIDE]) {
+Changes in v3:
+- rebase patches
+- fix receiver cleanup "put"
+- add patch to cleanup the congestion control locking
+- Link to v2: https://patch.msgid.link/20260519-tp-reason-missing-v2-0-9c5cd1824e3b@narfation.org
+
+Changes in v2:
+- fix send_result kernel-doc
+- rebase patch
+- add patch to avoid role mixup in search functions
+- add patch to split sender and receiver sessions
+- Link to v1: https://patch.msgid.link/20260513-tp-reason-missing-v1-1-752a882bd61a@narfation.org
 
 ---
+Sven Eckelmann (6):
+      batman-adv: tp_meter: keep unacked list in ascending ordered
+      batman-adv: tp_meter: initialize dup_acks explicitly
+      batman-adv: tp_meter: avoid window underflow
+      batman-adv: tp_meter: split vars into sender and receiver types
+      batman-adv: tp_meter: use locking for all congestion control variables
+      batman-adv: tp_meter: consolidate congestion control variables
+
+ net/batman-adv/main.c     |   3 +-
+ net/batman-adv/tp_meter.c | 724 +++++++++++++++++++++++++++-------------------
+ net/batman-adv/types.h    | 145 +++++-----
+ 3 files changed, 503 insertions(+), 369 deletions(-)
+---
 base-commit: 80ee59dc80a8d6287b2af80dad4e7e1c04d3a2cf
-change-id: 20260529-jitter-underflow-0a4c44614a25
+change-id: 20260513-tp-reason-missing-f1aa51f3f374
 
 Best regards,
 --  
