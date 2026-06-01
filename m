@@ -2,99 +2,91 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sBzwMyBOHWrDYgkAu9opvQ
+	id yPrcN9V9HWotbQkAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 11:17:20 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:40:53 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4FC61C3C0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 11:17:19 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B0FF61F6D5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:40:53 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 609D38406C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 11:17:19 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 4969580821
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:40:53 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780305439;
- b=i/uBKH3SIYTF9ciKL93DHn1j9UueeLO2bKmVNkxQrCg0WQB8Z6+kdB3GNB8oi7Q/7oGls
- x8Gf0hGKgBVpJzDhBoJ27ov6HMODvsPgySBfd9l3CJsm5dkUE2iIr5hitB41mE73yY2WOb/
- V6N9mJJ1+xX7g4ScgTr35oTkcJ1Bu90=
+ t=1780317653;
+ b=rXtzY0Y+Y8GC95Abg+h30+IATxEEv5P5DVXNWfDl+KMa+/9rOh8t3/OhWGfSBOLuBF2Rt
+ yB1fsSBLs3yeG+RjW+FqSu7nyrW4bA7xd7tWMeLupBtUtOpvMo39QZbZ04a3xxZwT2TWJsV
+ VLk4ezBo7bXmctCXL4Iz+at6u5OaxAI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780305439; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780317653; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=liMJDMT5500RRnLHH86u+joLoEkWNQ3ZArD6cOt1f/w=;
- b=ro4ISUZU8BiVWN0k2ZkRwevg2AyKAG1+8xEvRv1KmlHEeB9Xrwcc90qXUslJqQ2SrJjJW
- OcTTpxVNeeQglD7edNx3pfRAFPBuzxe1+Hvfahz1fD0TGy1m3ufdGmnrKlWZ+tD/5AXfh/Q
- TVlXGF+ayrgIhaurEZscmOFrsngY1NQ=
+ list-archive; bh=VAwlRpw3cuwp2rmiwA0Nrn27eTvWbfo8mto76+Q0O6U=;
+ b=G8ZQpL0Vxv155rjpLc5pLIFYyUT4oWBwK/z7Fgmu/4aeSHfmlfSHu6OqsE8bhDNYCn7jp
+ 7+Z1PaL4ZlJgrqzva2LpfHJJfpSwGjTn1yJmcw7rdYRd3QZdl3QPSxcPESK2nmT4CS4Alna
+ E0cwdiHHHwQRahF15+haP+kTBjgreUM=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ dkim=pass header.d=simonwunderlich.de;
  arc=pass;
- dmarc=pass header.from=narfation.org policy.dmarc=none
-Authentication-Results: open-mesh.org; dkim=pass header.d=narfation.org;
+ dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
+Authentication-Results: open-mesh.org; dkim=pass header.d=simonwunderlich.de;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id B85F280C14
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 01 Jun 2026 11:16:47 +0200 (CEST)
+ dmarc=pass (Used From Domain Record) header.from=simonwunderlich.de policy.dmarc=none
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 17A0380529
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 01 Jun 2026 14:36:44 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780305417;
+	s=20121; t=1780317409;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=liMJDMT5500RRnLHH86u+joLoEkWNQ3ZArD6cOt1f/w=;
-	b=BfjrPqiPbfRoFJM6ZCvJSM7e9Ha6PckpXK0VQQ0Nsrv6LWy8Hwi1eBNuH0dpbyhEt5xDQA
-	ORVeJFwnBXe9gH3UoRzgcZApVcRVzHbe7TpcVKgFmFLfE1namz7i6rTE0URDdsFEDF3fAH
-	3evKNg6GMhHPR7mAATNHzvEUlzaJgZs=
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780305417;
-	b=o+6KfZlKL6ETn/Gxhajgz8wS9XPsAVD7AIqBnGsfMXRi82jNI8mcFhQ4LyhOn/Iw5pzJcq
-	jb41ypCx68lpRjRP+1/962Blw9ie1jeenWm+eX6cTLWj+K03f4w4+0NdZ+Dw7+Pi5SBTU4
-	3SItZrNxtBhBg5Co5tlUuuCFtSa/X9A=
+	bh=VAwlRpw3cuwp2rmiwA0Nrn27eTvWbfo8mto76+Q0O6U=;
+	b=Cmo1OLfXqDhstk7XUWsyJEdtPSLqawkmk+rICC5aSEEZe7Zft/1SnfL8eUIqPSz4m2rDxm
+	2crLwUFDGrtS801ByM3HZNWfh/UeSDjYiacMHindlm7/1TdWpY1d9Ay62IygEX7VDL1z13
+	AvYXFmikwIYwFsK05YO6e9EojJA9Nzc=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780317409;
+	b=WbvskOD8qXMrTZrvGKsXAS5cULjI6T6iLUpBR9wFiMnF/8v2r4t0Wenilqo0jtrEGwnKpI
+	NqeJORhYvVrVdyWhdeM8OZDxd0WNSCtaJNf2kzUTKiNnJdOqal+oYbaSqSwk0WYy9RWqBf
+	lqmjvDr9idxiW2WvSaMTfm8zln/7LAY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=kfCJotxd;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 638331FF27;
-	Mon, 01 Jun 2026 09:16:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1780305406;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=ZK8XN8qJ;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
+ 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
+	dmarc=pass (policy=none) header.from=simonwunderlich.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
+	s=09092022; t=1780317402;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=liMJDMT5500RRnLHH86u+joLoEkWNQ3ZArD6cOt1f/w=;
-	b=kfCJotxdhR+Zw1QxAxkA2M5X8P2bwiPkQdqys8hj8sSl028cN0650URvh+I05i2VkneOtk
-	7+rMYp2/SyxLH9DwZu/pwQ+L+lOKda6uAUlJn2wO1Wc6Q0fFNrkPDmiXtneWaieMCz9KSp
-	mNJG6uQ2u66Os7xQqAkMnuEoXjmqcpg=
-From: Sven Eckelmann <sven@narfation.org>
-Date: Mon, 01 Jun 2026 11:16:41 +0200
-Subject: [PATCH RFC batadv] batman-adv: tp_meter: fix fast recovery
- precondition
+	bh=VAwlRpw3cuwp2rmiwA0Nrn27eTvWbfo8mto76+Q0O6U=;
+	b=ZK8XN8qJO8nLAnBSKyr4xjuEVxi8nB1oAqHTzwf0ySKDSF0+/qJVjyIBo9s6JHEwI+2jNt
+	ul/RmutxaVsgIhgTaaPAtcw7BA2T/zvTKAa7XuLwAcwDVagVX7X7MdZv5wAW35b9zlf9/1
+	/pYZ2zzPvesj5Oc/Ddd+10eJENLI8YOYbPEhjw7xr7UXDwnpanaIhR5BN4oDNY/cqxEWkG
+	NpbHGa73JdRRHPw3WAqrXFU2H+3wgd30VA6CMMWrwrY3eEA9XrnQhz49G0AkRtGy9tA2gM
+	WS7t6bp2e/0+dZ39TVabuYkwiYfm3P4ZatUGeo5+Q4jhUl3yrOkKqP7iqa0gYQ==
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: netdev@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	b.a.t.m.a.n@lists.open-mesh.org,
+	Simon Wunderlich <sw@simonwunderlich.de>
+Subject: [PATCH net-next 00/15] pull request for net-next: batman-adv
+ 2026-06-01
+Date: Mon,  1 Jun 2026 14:36:14 +0200
+Message-ID: <20260601123629.707089-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260601-tp-meter-fast-recovery-v1-1-eac204f20e67@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAPhNHWoC/yWMQQrCMBBFr1Jm7UCSQgW3ggdwKy7SyUQj2JaZG
- JTSuzety/c/782gLIkVTs0MwiVpGocK9tAAPf3wYEyhMjjjOtMZi3nCN2cWjF4zCtNYWH5o6Ri
- CaYna6KDKk3BM3z18g+vlvG29zz4UuP9v/fQvprzFYVlWy3hFpokAAAA=
-X-Change-ID: 20260601-tp-meter-fast-recovery-1c7dd03cc3f2
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Antonio Quartulli <antonio@mandelbit.com>,
- Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1740; i=sven@narfation.org;
- h=from:subject:message-id; bh=stI3DiHrgMhMdoFVK/HMp8q0HXUnhi98tWCuNhJUcbs=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmyvj/bmU1For2N8hjSF/yYeMN9h7LtMwVHG5UdEfIBK
- RkCXpc7SlkYxLgYZMUUWfZcyT+/mf2t/OdpH4/CzGFlAhnCwMUpABPpeMzIcG2ByEMFi109Tx7d
- eiUWny0snrBzZlIye4fFZDatDnuZR4wMJ4o0/rx8/OSL3NUsNquA4l16NUVJltZBFxlvPjymbG7
- IDAA=
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: SKL3U25JUJLZHLCVWYGDWGFT7I3KP3TG
-X-Message-ID-Hash: SKL3U25JUJLZHLCVWYGDWGFT7I3KP3TG
-X-MailFrom: sven@narfation.org
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: 7A5N2Y557AWLZUQILQMVTM3ZVSZZLE5P
+X-Message-ID-Hash: 7A5N2Y557AWLZUQILQMVTM3ZVSZZLE5P
+X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
@@ -107,7 +99,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SKL3U25JUJLZHLCVWYGDWGFT7I3KP3TG/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7A5N2Y557AWLZUQILQMVTM3ZVSZZLE5P/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -115,79 +107,133 @@ List-Owner: <mailto:b.a.t.m.a.n-owner@lists.open-mesh.org>
 List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
-X-Spamd-Result: default: False [-2.01 / 15.00];
+X-Spamd-Result: default: False [-0.51 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[simonwunderlich.de,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[simonwunderlich.de:s=09092022];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.984];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_SPF_NA(0.00)[no SPF record];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[open-mesh.org:url,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[narfation.org:+]
-X-Rspamd-Queue-Id: 4B4FC61C3C0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:mid,simonwunderlich.de:dkim,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,open-mesh.org:url];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[simonwunderlich.de:+];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	TO_DN_SOME(0.00)[];
+	R_SPF_NA(0.00)[no SPF record]
+X-Rspamd-Queue-Id: 8B0FF61F6D5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The fast recovery precondition checks if the recover (initialized to
-BATADV_TP_FIRST_SEQ) is bigger than the received ack. But since recover is
-only updated when this check is successful, it will never enter the fast
-recovery mode.
+Dear net maintainers,
 
-According to RFC6582 Section 3.2 step 2, the check should actually be
-different:
+here is a cleanup pull request of batman-adv to go into net-next. This
+pull request supersedes batadv-next-pullrequest-20260528 [1]. The
+following minor changes were made (I marked the changed patches with v2):
 
-> When the third duplicate ACK is received, the TCP sender first
-> checks the value of recover to see if the Cumulative
-> Acknowledgment field covers more than recover
+* removal of version.h and switch to `init_utsname()->release` to dynamically retrieve linux version
+* switch back packet_size_max to signed integer datatype to match consumers
+* add missing kerneldoc for batadv_wifi_net_devices_init
 
-The precondition must therefore check if recover is smaller than the
-received ack - basically swapping the operands of the current check.
+Please pull or let me know of any problem!
 
-Fixes: 98d7a766b645 ("batman-adv: throughput meter implementation")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
-Sending as RFC because I haven't actually checked this in detail. See also
-https://www.open-mesh.org/issues/436. I will most likely adopt it for
-the "batman-adv: tp_meter: post fixes cleanups" patchset when there is some
-consensus.
----
- net/batman-adv/tp_meter.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thank you,
+      Simon
 
-diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index aefe7572..71655afd 100644
---- a/net/batman-adv/tp_meter.c
-+++ b/net/batman-adv/tp_meter.c
-@@ -730,7 +730,7 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
- 		if (atomic_read(&tp_vars->dup_acks) != 3)
- 			goto out;
- 
--		if (recv_ack >= tp_vars->recover)
-+		if (recv_ack <= tp_vars->recover)
- 			goto out;
- 
- 		/* if this is the third duplicate ACK do Fast Retransmit */
+[1] e-mail subject was: [PATCH net-next 00/15] pull request for net-next: batman-adv 2026-05-28
+reference: https://lore.kernel.org/all/20260528142924.329658-1-sw@simonwunderlich.de/
 
----
-base-commit: 761c9ff88caff7975be7a7f532b16957ecb8a16e
-change-id: 20260601-tp-meter-fast-recovery-1c7dd03cc3f2
+The following changes since commit 68993ced0f618e36cf33388f1e50223e5e6e78cc:
 
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
+  Merge tag 'net-7.1-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net (2026-05-21 14:39:12 -0700)
 
+are available in the Git repository at:
+
+  https://git.open-mesh.org/batadv.git tags/batadv-next-pullrequest-20260601
+
+for you to fetch changes up to 3bd64ca11d9a1672d67d3130a7264c2cf7f93cdf:
+
+  batman-adv: use neigh_node's orig_node only as id (2026-06-01 14:22:03 +0200)
+
+----------------------------------------------------------------
+This batman-adv cleanup patchset includes the following patches, all by
+Sven Eckelmann:
+
+ - drop batman-adv specific version
+
+ - MAINTAINERS housekeeping for batman-adv (two patches)
+
+ - add missing includes
+
+ - use atomic_xchg() for gw.reselect check
+
+ - extract netdev wifi detection information object
+
+ - replace inappropriate atomic access with (READ|WRITE)_ONCE
+   (six patches)
+
+ - tt: replace open-coded overflow check with helper
+
+ - tvlv: avoid unnecessary OGM buffer reallocations
+
+ - use neigh_node's orig_node only as id
+
+----------------------------------------------------------------
+Sven Eckelmann (15):
+      batman-adv: drop batman-adv specific version
+      MAINTAINERS: Rename batman-adv T(ree)
+      MAINTAINERS: Don't send batman-adv patches to netdev
+      batman-adv: add missing includes
+      batman-adv: use atomic_xchg() for gw.reselect check
+      batman-adv: extract netdev wifi detection information object
+      batman-adv: replace non-atomic meshif config fields with (READ|WRITE)_ONCE
+      batman-adv: replace non-atomic hardif config fields with (READ|WRITE)_ONCE
+      batman-adv: replace non-atomic vlan config fields with (READ|WRITE)_ONCE
+      batman-adv: replace non-atomic mesh state with (READ|WRITE)_ONCE
+      batman-adv: replace non-atomic packet_size_max with (READ|WRITE)_ONCE
+      batman-adv: replace non-atomic last_ttvn with (READ|WRITE)_ONCE
+      batman-adv: tt: replace open-coded overflow check with helper
+      batman-adv: tvlv: avoid unnecessary OGM buffer reallocations
+      batman-adv: use neigh_node's orig_node only as id
+
+ MAINTAINERS                            |   4 +-
+ net/batman-adv/Makefile                |   1 +
+ net/batman-adv/bat_iv_ogm.c            |  65 ++++++-----
+ net/batman-adv/bat_v.c                 |  10 +-
+ net/batman-adv/bat_v_elp.c             |  15 ++-
+ net/batman-adv/bat_v_ogm.c             |  46 ++++----
+ net/batman-adv/bridge_loop_avoidance.c |  15 +--
+ net/batman-adv/distributed-arp-table.c |  17 +--
+ net/batman-adv/fragmentation.c         |   1 +
+ net/batman-adv/gateway_client.c        |   9 +-
+ net/batman-adv/gateway_common.c        |  14 +--
+ net/batman-adv/hard-interface.c        | 207 +++++++++++++++++++++++++++++----
+ net/batman-adv/hard-interface.h        |  34 +++++-
+ net/batman-adv/log.h                   |   2 +-
+ net/batman-adv/main.c                  |  42 ++++---
+ net/batman-adv/main.h                  |   4 -
+ net/batman-adv/mesh-interface.c        |  42 +++----
+ net/batman-adv/multicast.c             |   4 +-
+ net/batman-adv/netlink.c               |  80 ++++++-------
+ net/batman-adv/originator.c            |   8 +-
+ net/batman-adv/routing.c               |   6 +-
+ net/batman-adv/send.c                  |   6 +-
+ net/batman-adv/tp_meter.c              |   6 +-
+ net/batman-adv/translation-table.c     |  32 +++--
+ net/batman-adv/tvlv.c                  |  57 +++++----
+ net/batman-adv/tvlv.h                  |   3 +-
+ net/batman-adv/types.h                 | 138 ++++++++++++++--------
+ net/batman-adv/version.c               |  12 ++
+ 28 files changed, 581 insertions(+), 299 deletions(-)
+ create mode 100644 net/batman-adv/version.c
