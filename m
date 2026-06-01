@@ -2,32 +2,32 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OK10HvR8HWrEbAkAu9opvQ
+	id 4FGzOEt9HWrEbAkAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:37:08 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:38:35 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A1061F5A0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:37:07 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF7861F60C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:38:35 +0200 (CEST)
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 98BC880750
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:37:07 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 185AC80B5D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 01 Jun 2026 14:38:35 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780317427;
- b=LLo2AJiNvvYfuL8+PdxLJ2fOYv8zvN4kj0Buh/K6x9vH8vv+r+mRakScf60QN04sCsNuh
- LBvFOuWO+OiataAKldFiafp9jmsghTHbCjT+V4UicvWrYkzLp6AI3Y8MmV6fIK9UeMeFqCv
- 84d57YshovRDmNKYA21eGXy2RIU+EAA=
+ t=1780317515;
+ b=Wlk1yMVXQImaJ6Wk7SGwrbnPdRGCXkxYFzQytsI0IYt67fCcrSDv8bT5NwEL91PwE13Ds
+ bWpzLXecbxrmhbL+p8sA2rFcQyf8+VKMOpL8++ABo5POdnq4GoVql8XpdFGy54vpM2YHc0/
+ dzkdIDkkWUM2qtS0dj1Cnw622NXEQ4A=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780317427; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780317515; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=/EL+qJ6WKHkjBQeLQM+rO68NQsJGkz6Soatl6PUjU/0=;
- b=XPJC5X3a2+oUfbUTUuSIF8JMmyAKW2J/vU/++sZnqX1WPzEKCiBC535Pb49sZonzT6wUs
- fvURspvCR+u8P18n+fBgkbd/ooAVfKIPk5L9DvngnASsh/tb1BW8rWBzkVDYmBSS/sY4QVE
- 61Mfx3V129rQqga1Ves5exh/AWa0tpk=
+ list-archive; bh=JIEy8VIPaknF5zTeIk9SKJnqfASk5vwCPb0ma2Lo9dw=;
+ b=1VVx1/FdlNykCu5ABgr7t+ErfIuxYnLW8P0lGq0Z2D8Sdqfue9w3LmTeT7ZitiohISqpQ
+ SzQ6UcmYPKsPbrv4w9g3aFHlXTjMDYRFjGKQUtQYC68xQA2Bwl3XkxCZMRqMRlyeEW+FVMP
+ AIGrTDC49SEOBwWwz20fGfT462DP7wc=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
@@ -37,7 +37,7 @@ Authentication-Results: open-mesh.org; dkim=pass header.d=simonwunderlich.de;
  dmarc=pass (Used From Domain Record) header.from=simonwunderlich.de policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
  [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 01FD080453
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id EEF7480452
 	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 01 Jun 2026 14:36:45 +0200 (CEST)
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	s=20121; t=1780317406;
@@ -45,33 +45,33 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=/EL+qJ6WKHkjBQeLQM+rO68NQsJGkz6Soatl6PUjU/0=;
-	b=QyAY9Uf8XUqGI/YSpuqFQxoBtbNYipt1lByHB/UtC35loe0jAOjA8Fa4RLom87FkLxPzsI
-	3waNwUO8keyQ0xN8g/hKfAl6ydLuCEhVf6XIdxce6JOgRiHQILtn6y+2L8p5VS27n+JBgX
-	PTZBltZlagYv/BSjA7uyX5NOQrc4lXA=
+	bh=JIEy8VIPaknF5zTeIk9SKJnqfASk5vwCPb0ma2Lo9dw=;
+	b=zPIVJcVMlp7M0Tue9BMvQ0ImH9OsCK9V7e0gH2NcjyyEyH3/msbf8djVXAhCGGHlB0eMnM
+	TWfIqC2P29AkdXyRQJXXBga3U7K/vKHmTkF4R/crcZYhmTm7nqHDXBk44Q6bIIe5OWmDDp
+	w/feGArDGjgsIl0RQHsRCO/s9H5OmPg=
 ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780317406;
-	b=xbWjT2cD7t32vfBe0upO1Yj2awS4XC0ve5ka9AACAdAEjIHC4k00CdUH/mmNeSKkMctItn
-	Z1YF15XEgEGW86/wKkPALYaviQFS5L2ijyWLf30wLcEWf6tEIW4O+N5bGDET/A9jNajQuV
-	6XBifsksVQwzVxpz4X0pmUC9vLtikW4=
+	b=1+F7BoMdOswspKgCSrqvLwU7YYoNpiOh25Idcrx1lOAoE6yQTNoDT7LJmOqTS/vcj/G6zz
+	agBwZXFsudrrGnFi/HVQa1bFI1hSEiKd8/VbfWIkzOUVAQl8pBTPWZfDv73CtLVbgRCymE
+	0h/PNeD/8hLr678So9jh/GGDdUiHavY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=Z1ZFqRCf;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=vz759esL;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  2a01:4f8:c17:e8c0::1 as permitted sender)
  smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1780317404;
+	s=09092022; t=1780317405;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/EL+qJ6WKHkjBQeLQM+rO68NQsJGkz6Soatl6PUjU/0=;
-	b=Z1ZFqRCfm3iRNubQWgFchAw3a+Q4BDDbE6kxXMJRWgHDFmbuEnA0mEdLEEgqBDGQvd/aob
-	gVVirkCIPaZ8c2gkIN6HbsxmvdQw1olmag2PIB8j+h9gmgAtzLANfpNgDOwH/N6wdtd4i4
-	j1tcRpLqvojUQZaD//y2arZ6Yikk59pjRfGZwhqgs4BcIaF8bSFRiXI+db8pdmqDZKUSsl
-	WTgcX8uWFQjhO/FvkPTHSeMgexx6kcYfIRzCLA+EIsMM8EVCBf6jeEyDJzVrogNhGpj9Nr
-	lQWqLQyi+2M9IiOi4Th872bguTKMMjT2+Pl4XrSN+boT/witeFD4taAf3sZDKw==
+	bh=JIEy8VIPaknF5zTeIk9SKJnqfASk5vwCPb0ma2Lo9dw=;
+	b=vz759esLIN3EOkBpyGzcOP/frAJ/4SSguFrP7K1GpzZ84AIU/KuPm9nfsov1MvC8HjUeb0
+	qIAQXCQtCWrhn3VQiK00Z46TYhc1M6EYHus5k0qoh5dq3Iah19hwZsnCiPjUob80w15Y3k
+	If+gJBWj7o1w9da9BXnqZUKWYzmxMew5asxh6A5hQ4N4Hps5EkhDYqBEWf5lwGZztmDHty
+	8x7glnvUtKVBX0C+D0UWWJqXnRY5VWwJaoAD5u2mEKc154JPFk7jvkyNYPKX3+sc7Yzafu
+	z/5d+IIigtrg5zLRRs8yUo2b6K3Gz33hlUcGuUwR5W+VTxQLPthAN1oGH0sqzw==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -82,16 +82,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 02/15] MAINTAINERS: Rename batman-adv T(ree)
-Date: Mon,  1 Jun 2026 14:36:16 +0200
-Message-ID: <20260601123629.707089-3-sw@simonwunderlich.de>
+Subject: [PATCH net-next 03/15] MAINTAINERS: Don't send batman-adv patches to
+ netdev
+Date: Mon,  1 Jun 2026 14:36:17 +0200
+Message-ID: <20260601123629.707089-4-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260601123629.707089-1-sw@simonwunderlich.de>
 References: <20260601123629.707089-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: PWGE6ND2IDFOESB4PSFLZ35JBMVFMURS
-X-Message-ID-Hash: PWGE6ND2IDFOESB4PSFLZ35JBMVFMURS
+Message-ID-Hash: WNS4UHXKWETN4L6APCYIPQXFGUVMQAR4
+X-Message-ID-Hash: WNS4UHXKWETN4L6APCYIPQXFGUVMQAR4
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -105,7 +106,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PWGE6ND2IDFOESB4PSFLZ35JBMVFMURS/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WNS4UHXKWETN4L6APCYIPQXFGUVMQAR4/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -124,7 +125,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[open-mesh.org:url,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,narfation.org:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,narfation.org:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
@@ -135,40 +136,50 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[simonwunderlich.de:+];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TO_DN_SOME(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
-X-Rspamd-Queue-Id: 12A1061F5A0
+X-Rspamd-Queue-Id: 6AF7861F60C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Sven Eckelmann <sven@narfation.org>
 
-Replace the batman-adv tree name "linux-merge" with "batadv" to match the
-patch prefix convention used in subject lines (e.g. "[PATCH batadv 1/10]").
-The previous name "linux-merge" was ambiguous and was not suitable as a
-easy-to-recognize prefix. Routing of patches to net-next vs. net remains at
-maintainer discretion.
+Do not send batman-adv patches directly to the networking maintainers or
+the netdev mailing list for initial review. Keeping these patch iterations
+off netdev reduces review load, especially for patchsets that require
+multiple revisions before reaching consensus.
+
+After the review was finished on the BATMAN ADVANCED mailing list, the
+patches will be queued up and then submitted to netdev as PR, including the
+full patchset in the same thread (for the last review).
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ MAINTAINERS | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index f1d2a924d53dc..741fb4166aa2b 100644
+index 741fb4166aa2b..75ff01377fc6f 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4440,7 +4440,7 @@ W:	https://www.open-mesh.org/
- Q:	https://patchwork.open-mesh.org/project/batman/list/
- B:	https://www.open-mesh.org/projects/batman-adv/issues
- C:	ircs://irc.hackint.org/batadv
--T:	git https://git.open-mesh.org/linux-merge.git
-+T:	git https://git.open-mesh.org/batadv.git
- F:	Documentation/networking/batman-adv.rst
- F:	include/uapi/linux/batadv_packet.h
- F:	include/uapi/linux/batman_adv.h
+@@ -18635,6 +18635,7 @@ F:	net/
+ F:	samples/pktgen/
+ F:	tools/net/
+ F:	tools/testing/selftests/net/
++X:	Documentation/networking/batman-adv.rst
+ X:	Documentation/networking/mac80211-injection.rst
+ X:	Documentation/networking/mac80211_hwsim/
+ X:	Documentation/networking/regulatory.rst
+@@ -18645,6 +18646,7 @@ X:	include/net/iw_handler.h
+ X:	include/net/mac80211.h
+ X:	include/net/wext.h
+ X:	net/9p/
++X:	net/batman-adv/
+ X:	net/bluetooth/
+ X:	net/can/
+ X:	net/ceph/
 -- 
 2.47.3
 
