@@ -2,100 +2,92 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id twF0HrzZH2perAAAu9opvQ
+	id IME2OM7tH2o6sgAAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 09:37:32 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 11:03:10 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19021635489
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 09:37:32 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C08A635F80
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 11:03:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=a9j9pyXT;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
-	dmarc=pass (policy=none) header.from=simonwunderlich.de;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=IO2Dej4j;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id EA54285A65
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 09:37:31 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5C1508580C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 11:03:10 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780472251;
- b=WkswR1t1cSIdMmUAKv+Ml2NUX+yw+CRZt4oAva5JTfidQdi8Lrt0hP+/GqRUAX/ML+Fr9
- 2akTu8GbvrlmfF4sKEcvj0cC/Z3fkhMOlR+ZPcntFSBhvlhHhuuyPD2kfO/kO8qdjSFaCFa
- iWWwDOlXSK7EqHCTGAMoyom87q17gRo=
+ t=1780477390;
+ b=idPBPvMVvYjDpm7ZROhoZ+ynSOX1IC9xfu+4bK+ZmpyHC3ny3BbE4YV+ZIMU4YoXOm9xD
+ 1XprcLgR9oWo2RLymLKkPTQZ9RMkNvDpHq/A7JuHGpFJnfJKpHgWQ6K10gWzK+nhT6YNCGS
+ qah2Qifx4u4Mum4pqZ6dMZFH9DJsnnI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780472251; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780477390; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=he0/n/acgmP1vB/t/w0LP0oXotNGkr4FL/Cuc2RofVQ=;
- b=Bjata3W1H0gXl2iaUUh7CaAHbf23540EOqLYThl6XPN60zcB2kgHQdhgFr/c3oS260LGs
- QSXz9GRs93xn1jZRmay70rBQVVSNTvWk7K6t50dHgohryNaKjKDD9TF/d4XKH+x5psZIeU6
- GHivEE5UlPqR21BO4/7e2AHv4DaiVqQ=
+ list-archive; bh=K0GOSa7pR1jJR5EBKpCSaPddlA99w+oFdD0eiBfewGU=;
+ b=BUoK7oRWKSDlM4fIDRPcn42EEn/O/rIeEujIRJfYcHyZGB6Ut1xT5vQnkHnz4mWfj92WK
+ CbEd7vPwaF69HAn/TQktsp1HGRIPiCBVplKFqXZGI+c1MYe7thjTCMrTQadyh5svUCODeBi
+ gMvGPTtUJWGIIKWhyoOFj5lGFi09sXc=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=simonwunderlich.de;
+ dkim=pass header.d=narfation.org;
  arc=pass;
- dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F1614846C2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 03 Jun 2026 09:25:39 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780471540;
-	b=IoeeCC3xG7bpO7bLb12IFH0UDgnWk/DnPZnRsZxEff+notzBBsMxJgjbKYFBvaS4iRLO3m
-	4Qmm+QdPDV5fD5VtmGx4IhIM0C+0upEtEUaKBJvW5wxguglqVtBoyvp62MuXGt9WqZIb5w
-	jUn6rirbjoPIa2tBaxENgIsc+v9z2Hk=
+ dmarc=pass header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 53BEB8447F
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 03 Jun 2026 11:02:26 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780477347;
+	b=oBzA7jPhgt8UrAVYaOK3sfMA2qfm/b2oEnLGnWXThxi9C1CHDV+dRNqStSxCtwSKM3PII6
+	T8hzPyXQ7NWDaMWeTR+Bk3BzcSmi1jTKN+qM/cmw5y9gP1YQUHqVEERMNUHSzxIWVclOUg
+	pNcshxCCZwsyzndY2xMeLRXoT+3dpJQ=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=a9j9pyXT;
-	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de;
-	dmarc=pass (policy=none) header.from=simonwunderlich.de
+	dkim=pass header.d=narfation.org header.s=20121 header.b=IO2Dej4j;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780471540;
+	s=20121; t=1780477347;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=he0/n/acgmP1vB/t/w0LP0oXotNGkr4FL/Cuc2RofVQ=;
-	b=TBMr1ADzP/c9msxWvmmFXb1ipLMm0anKs8BrwUPcqEwFAR8tbsHLfQ17RBsO/A26OkoP+a
-	wS0ZeQSzAQobBNaN5R9ueNv9B6TXvCP81deJiT2sOJL5vPx7wLoFyveMKxdO9khJmEqS2+
-	+8+c+BJy+h5d1JYv4b7FnP9YV4qp9BI=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1780471539;
+	bh=K0GOSa7pR1jJR5EBKpCSaPddlA99w+oFdD0eiBfewGU=;
+	b=yyOMLyFdwU+sdcQzc7RoCysPsEh4CJ627b6r2Jtt8ulAa9qf7gA6e0Ez7An9x3dV/AWhz+
+	yKpb1VCDA0eM/xfMajmHWhR0CR0B6Yux98R2hls2r2M2sE0Vu9H6wduK3RdWOVi5o72M4+
+	hZMe3rC2ClQV3UOxc9PnMtCEqjDmaPM=
+Received: by dvalin.narfation.org (Postfix) id D8D672023F;
+	Wed, 03 Jun 2026 09:02:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1780477346;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=he0/n/acgmP1vB/t/w0LP0oXotNGkr4FL/Cuc2RofVQ=;
-	b=a9j9pyXTUKQkbPU7aduarieiA3jnA9aDiRznBp9lT+pmmLPr5t2jc2FCsJyUIupP4aJUqr
-	9kz8k8pPfdKUQCh5hN4AUwTkuDF7ipsk8/P8AajBUgTCsVvERTxKXIsapkcQMm3jYgYUic
-	xl2n/LwOo4u3Yd81eU1TgZRW6YtHBWY+fsNg6VpAlTRziDHmqpSGaO/Sfr4E07CMwPBtS9
-	R//G1kL69lUArE11LSpK7mLuCTpFAV6r3jDTsque/Yv6+HO4P4GLppsWfyzOBuRFG2Ynep
-	HBRApSK7agZK8It4OIGhlP0YTP6r0qtZYd5G73jWTj1el6KBmHj/z/ue/dlIQg==
-From: Simon Wunderlich <sw@simonwunderlich.de>
-To: netdev@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	b.a.t.m.a.n@lists.open-mesh.org,
-	Sven Eckelmann <sven@narfation.org>,
-	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 15/15] batman-adv: tt: directly retrieve wifi flags
- of net_device
-Date: Wed,  3 Jun 2026 09:25:26 +0200
-Message-ID: <20260603072527.174487-16-sw@simonwunderlich.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260603072527.174487-1-sw@simonwunderlich.de>
-References: <20260603072527.174487-1-sw@simonwunderlich.de>
+	bh=K0GOSa7pR1jJR5EBKpCSaPddlA99w+oFdD0eiBfewGU=;
+	b=IO2Dej4jiDjYqggV8MHOmM3Ky1qiwgZLzy3Byeso0dLqda/EQKjzepBnA22QpjdMEd1vqR
+	5BcvBBF83MqRErYFzzTIi+kSINaZYgrc78FwKF0MD5eUV2/30oPBRbNVp02nZcuG5NkVNw
+	o/GJ+mc6QhDcRp3vlNfJZTDynU6mMv4=
+From: Sven Eckelmann <sven@narfation.org>
+To: sashiko-reviews@lists.linux.dev
+Cc: sw@simonwunderlich.de, marek.lindner@mailbox.org, antonio@mandelbit.com,
+ b.a.t.m.a.n@lists.open-mesh.org
+Subject: Re: [PATCH batadv 3/3] batman-adv: use GFP_KERNEL allocations for the
+ wifi
+ detection cache
+Date: Wed, 03 Jun 2026 11:02:23 +0200
+Message-ID: <2275479.Mh6RI2rZIc@ripper>
+In-Reply-To: <20260603045118.0625E1F00893@smtp.kernel.org>
+References: <20260603-wifi-cache-cleanup-v1-3-d5ed08075c96@narfation.org>
+ <20260603045118.0625E1F00893@smtp.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: RVQOFLLEOGHS43NXL7PVQUDNLOSKWZJ3
-X-Message-ID-Hash: RVQOFLLEOGHS43NXL7PVQUDNLOSKWZJ3
-X-MailFrom: sw@simonwunderlich.de
+Content-Type: multipart/signed; boundary="nextPart3760743.R56niFO833";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: G3A6BHS2GJAH2XKFTU672EZOD2T6NMBU
+X-Message-ID-Hash: G3A6BHS2GJAH2XKFTU672EZOD2T6NMBU
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
@@ -108,7 +100,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RVQOFLLEOGHS43NXL7PVQUDNLOSKWZJ3/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/G3A6BHS2GJAH2XKFTU672EZOD2T6NMBU/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -117,182 +109,127 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.51 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.61 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[simonwunderlich.de,none];
-	R_DKIM_ALLOW(-0.20)[simonwunderlich.de:s=09092022];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,m:sw@simonwunderlich.de,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	DKIM_TRACE(0.00)[simonwunderlich.de:+];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:mid,simonwunderlich.de:dkim,simonwunderlich.de:from_mime,simonwunderlich.de:email,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:email,lists.open-mesh.org:from_smtp];
-	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:sw@simonwunderlich.de,m:marek.lindner@mailbox.org,m:antonio@mandelbit.com,m:b.a.t.m.a.n@lists.open-mesh.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	R_SPF_NA(0.00)[no SPF record];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[narfation.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	R_SPF_NA(0.00)[no SPF record]
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:from_mime,narfation.org:dkim,ripper:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 19021635489
+X-Rspamd-Queue-Id: 7C08A635F80
 
+--nextPart3760743.R56niFO833
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
 From: Sven Eckelmann <sven@narfation.org>
+To: sashiko-reviews@lists.linux.dev
+Date: Wed, 03 Jun 2026 11:02:23 +0200
+Message-ID: <2275479.Mh6RI2rZIc@ripper>
+In-Reply-To: <20260603045118.0625E1F00893@smtp.kernel.org>
+MIME-Version: 1.0
 
-batadv_tt_local_add() tries to retrieve the wifi flags of an interface to
-mark the TT entry as wifi client for the AP isolation feature. In the past,
-it was necessary to look up the batadv_hard_iface because the wifi_flags
-were stored inside this struct. But with the batadv_wifi_net_devices
-rhashtable, it is preferred to directly retrieve the wifi_flags instead of
-the indirect route via batadv_hard_iface - which at the end only provides
-the net_device (which we used to find the batadv_hard_iface).
+On Wednesday, 3 June 2026 06:51:17 CEST sashiko-bot@kernel.org wrote:
+> [Severity: High]
+> This isn't a bug introduced by this patch, but while looking at the
+> rhashtable usage in this file, I noticed that rhashtable_lookup_fast() is
+> called without rcu_read_lock() in batadv_wifi_net_device_update():
+> 
+> net/batman-adv/hard-interface.c:batadv_wifi_net_device_update() {
+> ...
+>         wifi_flags = batadv_wifi_flags_evaluate(net_dev);
+>         device_state = rhashtable_lookup_fast(&batadv_wifi_net_devices,
+>                                               &net_dev,
+>                                               batadv_wifi_net_devices_params);
+> ...
+> }
+> 
+> And similarly in batadv_wifi_net_device_unregister():
+> 
+> net/batman-adv/hard-interface.c:batadv_wifi_net_device_unregister() {
+> ...
+>         device_state = rhashtable_lookup_fast(&batadv_wifi_net_devices,
+>                                               &net_dev,
+>                                               batadv_wifi_net_devices_params);
+> ...
+> }
+> 
+> Can this lead to a use-after-free on the bucket array?
+> 
+> Since batadv_wifi_net_devices is initialized with automatic_shrinking = true,
+> it can be asynchronously resized by a background worker at any time. This
+> worker frees the old bucket array via kfree_rcu(). Without an active RCU
+> read-side critical section, couldn't the RCU grace period end while
+> rhashtable_lookup_fast() is still iterating?
 
-This will also be essential when the global batadv_hardif_list is removed
-and each lookup via batadv_hardif_get_by_netdev() will require the RTNL
-lock.
+Would be nice if someone else can double check this. But this doesn't seem to 
+be valid:
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
-Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
----
- net/batman-adv/hard-interface.c    | 25 ++++++++++++++++++-------
- net/batman-adv/hard-interface.h    |  1 +
- net/batman-adv/translation-table.c | 14 ++++++++------
- 3 files changed, 27 insertions(+), 13 deletions(-)
+static __always_inline void *rhashtable_lookup_fast(
+	struct rhashtable *ht, const void *key,
+	const struct rhashtable_params params)
+{
+	void *obj;
 
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index bb3c31b5f259d..43ebf86e7b368 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -366,22 +366,19 @@ static u32 batadv_wifi_flags_evaluate(struct net_device *net_device)
- }
- 
- /**
-- * batadv_hardif_get_wifi_flags() - retrieve wifi flags for hard_iface
-- * @hard_iface: the device to check
-+ * batadv_netdev_get_wifi_flags() - retrieve wifi flags for net_device
-+ * @net_dev: the device to check
-  *
-  * Return: batadv_hard_iface_wifi_flags flags of the device
-  */
--u32 batadv_hardif_get_wifi_flags(struct batadv_hard_iface *hard_iface)
-+u32 batadv_netdev_get_wifi_flags(struct net_device *net_dev)
- {
- 	struct batadv_wifi_net_device_state *device_state;
- 	u32 wifi_flags = 0;
- 
--	if (!hard_iface)
--		return 0;
--
- 	rcu_read_lock();
- 	device_state = rhashtable_lookup_fast(&batadv_wifi_net_devices,
--					      &hard_iface->net_dev,
-+					      &net_dev,
- 					      batadv_wifi_net_devices_params);
- 	if (device_state)
- 		wifi_flags = READ_ONCE(device_state->wifi_flags);
-@@ -390,6 +387,20 @@ u32 batadv_hardif_get_wifi_flags(struct batadv_hard_iface *hard_iface)
- 	return wifi_flags;
- }
- 
-+/**
-+ * batadv_hardif_get_wifi_flags() - retrieve wifi flags for hard_iface
-+ * @hard_iface: the device to check
-+ *
-+ * Return: batadv_hard_iface_wifi_flags flags of the device
-+ */
-+u32 batadv_hardif_get_wifi_flags(struct batadv_hard_iface *hard_iface)
-+{
-+	if (!hard_iface)
-+		return 0;
-+
-+	return batadv_netdev_get_wifi_flags(hard_iface->net_dev);
-+}
-+
- /**
-  * batadv_is_wifi_hardif() - check if the given hardif is a wifi interface
-  * @hard_iface: the device to check
-diff --git a/net/batman-adv/hard-interface.h b/net/batman-adv/hard-interface.h
-index 089e65c8a4817..822e7e378c4d1 100644
---- a/net/batman-adv/hard-interface.h
-+++ b/net/batman-adv/hard-interface.h
-@@ -70,6 +70,7 @@ extern struct notifier_block batadv_hard_if_notifier;
- 
- struct net_device *__batadv_get_real_netdev(struct net_device *net_device);
- struct net_device *batadv_get_real_netdev(struct net_device *net_device);
-+u32 batadv_netdev_get_wifi_flags(struct net_device *net_dev);
- u32 batadv_hardif_get_wifi_flags(struct batadv_hard_iface *hard_iface);
- bool batadv_is_wifi_hardif(struct batadv_hard_iface *hard_iface);
- struct batadv_hard_iface*
-diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-index 44bbaa3bb37d1..c346e43d47b9b 100644
---- a/net/batman-adv/translation-table.c
-+++ b/net/batman-adv/translation-table.c
-@@ -596,20 +596,23 @@ bool batadv_tt_local_add(struct net_device *mesh_iface, const u8 *addr,
- 	struct net *net = dev_net(mesh_iface);
- 	struct batadv_meshif_vlan *vlan;
- 	struct net_device *in_dev = NULL;
--	struct batadv_hard_iface *in_hardif = NULL;
- 	struct hlist_head *head;
- 	struct batadv_tt_orig_list_entry *orig_entry;
- 	int hash_added, table_size, packet_size_max;
- 	bool ret = false;
- 	bool roamed_back = false;
-+	bool iif_is_wifi = false;
- 	u8 remote_flags;
- 	u32 match_mark;
- 
- 	if (ifindex != BATADV_NULL_IFINDEX)
- 		in_dev = dev_get_by_index(net, ifindex);
- 
--	if (in_dev)
--		in_hardif = batadv_hardif_get_by_netdev(in_dev);
-+	if (in_dev) {
-+		u32 wifi_flags = batadv_netdev_get_wifi_flags(in_dev);
-+
-+		iif_is_wifi = batadv_is_wifi(wifi_flags);
-+	}
- 
- 	tt_local = batadv_tt_local_hash_find(bat_priv, addr, vid);
- 
-@@ -684,7 +687,7 @@ bool batadv_tt_local_add(struct net_device *mesh_iface, const u8 *addr,
- 	 */
- 	tt_local->common.flags = BATADV_TT_CLIENT_NEW;
- 	tt_local->common.vid = vid;
--	if (batadv_is_wifi_hardif(in_hardif))
-+	if (iif_is_wifi)
- 		tt_local->common.flags |= BATADV_TT_CLIENT_WIFI;
- 	kref_init(&tt_local->common.refcount);
- 	tt_local->last_seen = jiffies;
-@@ -743,7 +746,7 @@ bool batadv_tt_local_add(struct net_device *mesh_iface, const u8 *addr,
- 	 */
- 	remote_flags = tt_local->common.flags & BATADV_TT_REMOTE_MASK;
- 
--	if (batadv_is_wifi_hardif(in_hardif))
-+	if (iif_is_wifi)
- 		tt_local->common.flags |= BATADV_TT_CLIENT_WIFI;
- 	else
- 		tt_local->common.flags &= ~BATADV_TT_CLIENT_WIFI;
-@@ -767,7 +770,6 @@ bool batadv_tt_local_add(struct net_device *mesh_iface, const u8 *addr,
- 
- 	ret = true;
- out:
--	batadv_hardif_put(in_hardif);
- 	dev_put(in_dev);
- 	batadv_tt_local_entry_put(tt_local);
- 	batadv_tt_global_entry_put(tt_global);
--- 
-2.47.3
+	rcu_read_lock();
+	obj = rhashtable_lookup(ht, key, params);
+	rcu_read_unlock();
+
+	return obj;
+}
+
+So, rhashtable_lookup_fast() takes rcu_read_lock() itself. And the returned obj 
+cannot be freed because all functions mentioned here are protected by the 
+rtnl_lock().
+
+We are therefore also fulfilling the requirement from the 
+rhashtable_lookup_fast comment:
+
+ * Only use this function when you have other mechanisms guaranteeing
+ * that the object won't go away after the RCU read lock is released.
+
+Regards,
+	Sven
+
+
+--nextPart3760743.R56niFO833
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCah/tnwAKCRBND3cr0xT1
+y8ZzAP9vEh68cW1+QPtnKyDD9MMkyFWwasYaKYcXBTLuiIysuAD/Sju84BZx5nyk
+qg4Z7ALt19w7SiOWotndBC/9ROpIMwU=
+=Vaaz
+-----END PGP SIGNATURE-----
+
+--nextPart3760743.R56niFO833--
+
+
 
