@@ -2,100 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id F41+HeSrH2paogAAu9opvQ
+	id cTjZLA6sH2pbogAAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:21:56 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:22:38 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F0D634222
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:21:55 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 605E9634226
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:22:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=OPvbd9U+;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=PdPRBdtJ;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B42DB80317
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:21:55 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3E0D581CDF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:22:38 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780460515;
- b=j+r8Q3u/DoFWOXLl+Ibb03nurS4Pok8kHUi3hFJ+ZlAtVcf9dY/90MJmxOVROgex/qnzX
- J2mUzCgbWtuwWRq1nx0v3TVJVj/+FnftJpgDtR1k9k+o3XZS1Zm02mOTPjB8zKjd0bFvtPg
- nfXKAhPcdS/6lJs/IKunS9GLrl81zkY=
+ t=1780460558;
+ b=of+mrPMOz0gm+u2KtHSXCd2LHwcnZtpXxZ0ZS/nc4oQCYtRQkHAgVgBS006oF6BMp3Teb
+ A2+YHWBuYLiehL3nD9cMPprYBOD6vtG7ziqRRFgHBfjv8sO3oey5rnC1g+GGA0xUWb6RpPv
+ aPT02iPv37+MVblV3859rMYDi0NcQK8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780460515; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780460558; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=UqRk6I1ba2c1OIRWXR+SfgMgjHFdB4Cr/LGU0D9T67s=;
- b=bz9DFb8o1al7Ol9t1ytqjnhGdSeZ9IlaEw08jIghWqH7dEZAbeD3ojy3Emc3nv7GQ9Va7
- TZbMt45angYDRk+VkXFPX/steUvQznbGbcAivEAwmsnDV1NS0H7uYNzLbFqF5B/iPIM56WI
- 3UYAGZ4k4IA7U2x61nvRc5MuiT86CgM=
+ list-archive; bh=wYLeAOdIVdwpGnywj6CvQKoN2mbEqYjidoAUSnQKgTk=;
+ b=o35l0gxuSMzIYsmALx7l01InTFgOEkp7DjJHXwj7cghTvMzIwB/jf08dCGV8d0rzmx18F
+ oMHvTvPCl8VugfEzN8Nts1JYQ+Mb0LL9W+BlK1hztH9rYqJsVxficRDLE4w5QZf3ckmUjbh
+ vkLo5c3yawpDCPGE7Pi/2zyZNlFR+zE=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id CC5CC81348
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 03 Jun 2026 06:17:54 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780460274;
-	b=HTMl7uMybB6P+cEswfWe3L9kSVNNRiTs4Zg32tBQM2dOxCky0ZVNeipZeGo4KaPBCWIeWe
-	77NmrIXhHI3z2h6M94WTcH/wcZICmX4lUSJB7F4EHf9MIGWZpxXQo8629JvgZtbJZomWTE
-	mVTA0j4nC3kCehXINEmSmfRUNzFhUCw=
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 36B4B840A1
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 03 Jun 2026 06:17:57 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780460277;
+	b=QgaoqdZ9fxTTuMqkzNGP4zGFT1GCJVWSCI2PDH86Q0kxe+opHpNAQ18B3NWmJJ35C5FMxI
+	NN1Svv4A9TByXq4G2v1dzkTeu1ogEefL3CwZ1N+SMmJY0pAN3GQPZPMkcTEpsIK/QGnwIs
+	6ElFAjxdaNqP0rPRbUbEDz4jVqbkLyI=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=OPvbd9U+;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=PdPRBdtJ;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780460274;
+	s=20121; t=1780460277;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=UqRk6I1ba2c1OIRWXR+SfgMgjHFdB4Cr/LGU0D9T67s=;
-	b=pVlkWZCnFMKndFTcCHUtihj0wGu5dn5oG+8vM+FomTP/duKUE8O7jFoaj2IU+gmP7EhjlK
-	LDetWenAalAcaWgF0Kur2is0yRg887RCdcZpySt014CU0c7bGay6u+Td9n9Z0D87K16nrN
-	dRaiPG6WUL9MoDL/JlFHzfC2r5SRcd4=
-Received: by dvalin.narfation.org (Postfix) id 6E6D220131;
-	Wed, 03 Jun 2026 04:17:54 +0000 (UTC)
+	bh=wYLeAOdIVdwpGnywj6CvQKoN2mbEqYjidoAUSnQKgTk=;
+	b=iPFmCIUV32Rsu11pKIiBiu85teLB24IDYHH6Kvuj45GItcOQntzCo7NEteSgV8S1/tcMuQ
+	vpo0pkl5leXIGqmI/bLdhocGiDVsxqDRFTJ1Ho1tP9zASBkQWg7UuNoNnsl10oD+O8MhJX
+	P19pHJ2kHrYM6FQzayvrfAjB1qOaU8s=
+Received: by dvalin.narfation.org (Postfix) id E2F4D20131;
+	Wed, 03 Jun 2026 04:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1780460274;
+	s=20121; t=1780460277;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UqRk6I1ba2c1OIRWXR+SfgMgjHFdB4Cr/LGU0D9T67s=;
-	b=OPvbd9U+rdLDHqnyimDXS1xHM+Srz9T5rktntjoDgWDlUlNjc1EbofocKylnHhkdCA0Oh0
-	3/eCGSHSwfoTxNPVTZu6BrcQHSP4+y1DDvURMep2c5Cyvr+qiDUYpXYclsijQzI6nYLLmA
-	HelDeRVwuc19VdU68Ve6tn6THBdGVJU=
+	bh=wYLeAOdIVdwpGnywj6CvQKoN2mbEqYjidoAUSnQKgTk=;
+	b=PdPRBdtJIJndfruCQkBFee5njBCX1r/im+hPWrrg/lUo6+lCr00Ib4VARsarCizwnzZ+9L
+	XmRisiL+8tUg2IvPGm7Uqf65VQqW5keCPKVHgVFN4K24V11op2ABRuBPL0D2TwyiI7GIZv
+	xEMBvemkA29f3FTTkxzEcQuHJfRp1NM=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Wed, 03 Jun 2026 06:17:17 +0200
-Subject: [PATCH batadv v6 05/11] batman-adv: tp_meter: avoid divide-by-zero
- for dec_cwnd
+Date: Wed, 03 Jun 2026 06:17:18 +0200
+Subject: [PATCH batadv v6 06/11] batman-adv: tp_meter: fix fast recovery
+ precondition
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-tp-reason-missing-v6-5-7011620f93a5@narfation.org>
+Message-Id: <20260603-tp-reason-missing-v6-6-7011620f93a5@narfation.org>
 References: <20260603-tp-reason-missing-v6-0-7011620f93a5@narfation.org>
 In-Reply-To: <20260603-tp-reason-missing-v6-0-7011620f93a5@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1965; i=sven@narfation.org;
- h=from:subject:message-id; bh=pfuF5zOCUOgY/szeJ57JoGemkyb1CkXGQWBTBc1wvrY=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnyq07ruixrPD5v9hbNoisuW+PXRF19dIf15sUV23+dt
- VTkKfMR7ChlYRDjYpAVU2TZcyX//Gb2t/Kfp308CjOHlQlkCAMXpwBMxCaT4X9leMaMt3X5Bg7T
- eRUKVnB/elD6v3DaNubX13oT/p33On+VkeHttuRmjYoliStm7/91dU6XS/H9RDOXn4u3sNxyXeU
- seYoRAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1335; i=sven@narfation.org;
+ h=from:subject:message-id; bh=77C0w5SL2Ou/2PMIk/V4vrAUafjbCBpJaMBW7o68ZAc=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnyq04XmKwtTOHJ6onwCki7buS/7n/MvxmKxnHiG/ftn
+ NxgXLy2o5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjCR31MYGXZ2b6zdsGu3Wkz2
+ aQ6H9LB35W/fPLnIu26B/e2bB79KL+1hZGhrmOR96mT2orOBh5MyLTjbnjA2dn90U+iyu3N0w9K
+ VW1kB
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: RPVRIHRFEVNZ3KI7QW4BPFDZDNIQA6JQ
-X-Message-ID-Hash: RPVRIHRFEVNZ3KI7QW4BPFDZDNIQA6JQ
+Message-ID-Hash: QN54UMV6L536JRMU53S35N3BVHHQNPLQ
+X-Message-ID-Hash: QN54UMV6L536JRMU53S35N3BVHHQNPLQ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RPVRIHRFEVNZ3KI7QW4BPFDZDNIQA6JQ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QN54UMV6L536JRMU53S35N3BVHHQNPLQ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -144,62 +143,46 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:mid,narfation.org:dkim,narfation.org:from_mime,narfation.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D8F0D634222
+X-Rspamd-Queue-Id: 605E9634226
 
-The cwnd is always MSS <= cwnd <= 0x20000000. But the calculation in
-batadv_tp_update_cwnd() assumes unsigned 32 bit arithmetics.
+The fast recovery precondition checks if the recover (initialized to
+BATADV_TP_FIRST_SEQ) is bigger than the received ack. But since recover is
+only updated when this check is successful, it will never enter the fast
+recovery mode.
 
-    ((mss * 8) ** 2) / (cwnd * 8)
+According to RFC6582 Section 3.2 step 2, the check should actually be
+different:
 
-In case cwnd is actually 0x20000000, it will be shifted by 3 bit to the
-left end up at 0x100000000 or U32_MAX + 1. It will therefore wrap around
-and be 0 - resulting in:
+> When the third duplicate ACK is received, the TCP sender first
+> checks the value of recover to see if the Cumulative
+> Acknowledgment field covers more than recover
 
-    ((mss * 8) ** 2) / 0
-
-This is of course invalid and cannot be calculated. The calculation should
-must be simplified to avoid this overflow:
-
-   (mss ** 2) * 8 / cwnd
-
-It will keep the precision enhancement from the scaling (by 8) but avoid
-the overflow in the divisor.
-
-In theory, there could still be an overflow in the dividend. It is at the
-moment fixed to BATADV_TP_PLEN in batadv_tp_recv_ack() - so it is not an
-imminent problem. But allowing it to use the whole u32 bit range, would
-mean that it can still use up to 67 bits. To keep this calculation safe for
-32 bit arithmetic, mss must never use more than floor((32 - 3) / 2) bits -
-or in other words: must never be larger than 16383.
+The precondition must therefore check if recover is smaller than the
+received ack - basically swapping the operands of the current check.
 
 Fixes: 98d7a766b645 ("batman-adv: throughput meter implementation")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/tp_meter.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ net/batman-adv/tp_meter.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index d0e9a53f..7760ace7 100644
+index 7760ace7..72ff3526 100644
 --- a/net/batman-adv/tp_meter.c
 +++ b/net/batman-adv/tp_meter.c
-@@ -154,9 +154,12 @@ static void batadv_tp_update_cwnd(struct batadv_tp_vars *tp_vars, u32 mss)
- 		return;
- 	}
+@@ -733,7 +733,7 @@ static void batadv_tp_recv_ack(struct batadv_priv *bat_priv,
+ 		if (atomic_read(&tp_vars->dup_acks) != 3)
+ 			goto out;
  
-+	/* prevent overflow in (mss * mss) << 3 */
-+	mss = min_t(u32, mss, (1U << 14) - 1);
-+
- 	/* increment CWND at least of 1 (section 3.1 of RFC5681) */
- 	tp_vars->dec_cwnd += max_t(u32, 1U << 3,
--				   ((mss * mss) << 6) / (tp_vars->cwnd << 3));
-+				   ((mss * mss) << 3) / tp_vars->cwnd);
- 	if (tp_vars->dec_cwnd < (mss << 3)) {
- 		spin_unlock_bh(&tp_vars->cwnd_lock);
- 		return;
+-		if (recv_ack >= tp_vars->recover)
++		if (tp_vars->recover >= recv_ack)
+ 			goto out;
+ 
+ 		/* if this is the third duplicate ACK do Fast Retransmit */
 
 -- 
 2.47.3
