@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id f3viC7atH2pzogAAu9opvQ
+	id Qm2UKeKtH2qBogAAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:29:42 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:30:26 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A3163425B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:29:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F52A63425F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:30:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=M2OIuUPy;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=nVKLBLqP;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id A10B2852BD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:29:41 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 0FF858161B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 03 Jun 2026 06:30:26 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780460981;
- b=GfdDkeWxqKtqe7giUBob1z1aWmR+Kg8rv0ukpQrrwsYemiQj8B0aSDn5bMEKyqukC3ah8
- 6gLPbzcb3x6anpRuFtOvw9tVn0lWPJjHZXRr3lWlI60pNrpOkWWcTAAXKNmTabqWNHv2R+v
- FWPD9B9psRQ0k7AZmWCI4sNTCMdNnHw=
+ t=1780461026;
+ b=FfdHCYFkei/rPoIU6cmyue2UDpJoQMtotvTu5z8JpCnoGj8MVWs+vAflyY9geipfohKR7
+ hTVPhGwdXho3ycxhs/gNaAQ3tG74GmAHKxyfb4DDJQRMSXjIy++FyZcvonEfzaHX+dpxiB9
+ uDf4BSeyZ/0oEbMIBybeoZRed50V99I=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780460981; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780461026; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=LPRDAnkz2Z38ljkyNOSbudooO/LtAKRvep0wyYjcCHE=;
- b=1RN9QxmI3DDrgvpRKF6ki7Pe+t2954KVCEwqKs8iFgtJ9aeWZwAZZfDroxWm7HRlQkLn+
- A0pcRu2bfwQCyQeCpVxt52R7I4uLYforxp5qCCk5fiIu8/2p34tWrqRWFV99Poj/jVT1FKM
- e5wUCw79rtRxVHMNFE75lI/eGrM9QLY=
+ list-archive; bh=6X1aQnbDbVTThl3dSzsccbRB8y1El+ULxx1VXc8IfuY=;
+ b=WwvswCZF+PEKO3MNDxnMPKbRBeSxc0k9RQyT2mrEhXxvOgKaLbdfFuPaKZwoM2OpW0v18
+ IIctlZQJjAnskeVfEgC9GZN5aMFJ6PXpaQyWWnfMYDXCm2WnDu0fT7OeSaKf2tXDEhlh71S
+ 1n96DqxTl39IonojuXPBxAMcrnLn+A0=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 3E1B380794
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 03 Jun 2026 06:21:58 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780460518;
-	b=U8WBzDLrGLwhyLRddH6QS2L9Shbdw6baCIeRLJEImRvK/uIVbR+S2X2Tzcba6BcAPMYipy
-	h0rZZoPUm+/7SwhZKHVW6++AsrPgVEPm+qP5DBHCKKBzBnsNz8ANxG25JL1HTp2qgXSRVS
-	Lx9Ux4aei+XBOahUtbr1H98aQ4bV0G8=
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id D30E680888
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 03 Jun 2026 06:22:00 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780460520;
+	b=FEJOFjX+Pm+40jhQLQC6AQV/pAkdKMdFFEpXmP/v6DVAU1XK0oxZq9P3em2bG1Bt45a10T
+	v/5f4uugHCwdr9nSQItuS04qkCVYdcdq4k5R02HYfVHaLxb3hvd2KsJQwVf2cAyxLMnB1C
+	ezE9zK+SOe+s0lWPnNrA3poW8jcHvcE=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=M2OIuUPy;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=nVKLBLqP;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780460518;
+	s=20121; t=1780460520;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=LPRDAnkz2Z38ljkyNOSbudooO/LtAKRvep0wyYjcCHE=;
-	b=aXSZfF6yFBa8laNtmiY8xvreJIu/OgQuvVSYQeea+0PB2cdJdTKg8GXcbSpkV6o63oflZE
-	baBEaWCMb08PrVF8QSWkm10jyp+/xDz1/FwiZw8MgHnVTVvSgaGqBwZfTSVIbY8/UL+Utr
-	APfaTS8fF7Aa7xRhawqU00Azn1IW3vE=
-Received: by dvalin.narfation.org (Postfix) id D851F1FEA4;
-	Wed, 03 Jun 2026 04:21:57 +0000 (UTC)
+	bh=6X1aQnbDbVTThl3dSzsccbRB8y1El+ULxx1VXc8IfuY=;
+	b=VrYGbvnCEXterjBlnzyC+UQ9GqFR4p/MaqiBsqYarjhIkzCAIk8cYKLGEBAEBXcV1T1aJW
+	X3lQVWZbk0DszFp/R3axM2vlfmt8dEtRYH5J+IM+aazT8PcPzQ+GtE/hJd6GDUI2fYFFZW
+	su23VxcaBlfHm80qMtc8rticfiz5THA=
+Received: by dvalin.narfation.org (Postfix) id 98CDC1FEA4;
+	Wed, 03 Jun 2026 04:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1780460517;
+	s=20121; t=1780460520;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LPRDAnkz2Z38ljkyNOSbudooO/LtAKRvep0wyYjcCHE=;
-	b=M2OIuUPyJI/3TUOeoMsw2BPYbaZ3i2+Khx6gFSdlME0xDaKTywUinmvWpUVv8ixlX6fjPC
-	QggSNN1ypQuCIqtu9YUu0/a8GvUdmHNsQzimw4art+icvaiXySKgDk6dyIn2YlKQX3h1Fd
-	6UAz/vQzOOlZcUqE+HOHFufzRxNuW+4=
+	bh=6X1aQnbDbVTThl3dSzsccbRB8y1El+ULxx1VXc8IfuY=;
+	b=nVKLBLqPf2Euqwz3dh1EDAA1qeyy/Pn4SSyoEG+aSIL57laB/BO2bFnyVcBk7qSG/g/WOg
+	fayaeVsgg504bgwtznlHAqnIourSXqUSj5uh39VGSzv+f84J/TgmbwnU2rZPfQ6SLOr2Ok
+	CcaXQwTGDvPm/okL38PAkpc1jmH3KJY=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Wed, 03 Jun 2026 06:21:39 +0200
-Subject: [PATCH batadv 2/3] batman-adv: drop duplicated wifi_flags assigned
+Date: Wed, 03 Jun 2026 06:21:40 +0200
+Subject: [PATCH batadv 3/3] batman-adv: use GFP_KERNEL allocations for the
+ wifi detection cache
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-wifi-cache-cleanup-v1-2-d5ed08075c96@narfation.org>
+Message-Id: <20260603-wifi-cache-cleanup-v1-3-d5ed08075c96@narfation.org>
 References: <20260603-wifi-cache-cleanup-v1-0-d5ed08075c96@narfation.org>
 In-Reply-To: <20260603-wifi-cache-cleanup-v1-0-d5ed08075c96@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=874; i=sven@narfation.org;
- h=from:subject:message-id; bh=w+JT++rAte7ImM+EsHFRVDvS9hgXrT7yZuDeUElH5e4=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnyqy9Pll36/YiNr3iI4ZZCh+B0af1FOrGXz59WOxMbo
- Mdz5GldRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAia+oY/pc8PRnGwSXYGVpc
- ry5jYcFkWW307lXWysyr6z46bL/nN5Xhr4SRzm/Thv/5/050O9ZPPazaupxjusWCc6kbw9TeOKz
- XYgcA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1083; i=sven@narfation.org;
+ h=from:subject:message-id; bh=yoSEJWujxT3OBjgrWQ0oAH03KYeo+kCZ8ASaMhGEEiY=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnyqy9HvU25NXPDna7s8tmyG+5yMzAZvZj//dMEDuXIy
+ 4JHa6tedZSyMIhxMciKKbLsuZJ/fjP7W/nP0z4ehZnDygQyhIGLUwAmkn2KkeFEpJXKVu3+yzV9
+ pZzL56lvWOKWveGmz0VBoXMubx5tnvaH4TebzMLWv+t3m7Zvu74+6MOa+mN3wmMs/Rw2l/jdt+Y
+ 5cooLAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: PU3YYPMDAQFBDBYYM5MPJ6K7XCTPPKRZ
-X-Message-ID-Hash: PU3YYPMDAQFBDBYYM5MPJ6K7XCTPPKRZ
+Message-ID-Hash: FE47RWMJZUQY3L52C456VTGVBFP2NA22
+X-Message-ID-Hash: FE47RWMJZUQY3L52C456VTGVBFP2NA22
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PU3YYPMDAQFBDBYYM5MPJ6K7XCTPPKRZ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/FE47RWMJZUQY3L52C456VTGVBFP2NA22/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -147,29 +147,35 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:mid,narfation.org:dkim,narfation.org:from_mime,narfation.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C2A3163425B
+X-Rspamd-Queue-Id: 4F52A63425F
 
-During the initialization of the batadv_wifi_net_device_state, it is enough
-to write the wifi_flags once before the batadv_wifi_net_device_state is
-added to the batadv_wifi_net_devices rhashtable.
+The batadv_wifi_net_device_insert() is called with ASSERT_RTNL() held, but
+not inside a spinlock or another context which prevents "might_sleep"
+functions. To relax the requirements for the allocator, use GFP_KERNEL.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/hard-interface.c | 1 -
- 1 file changed, 1 deletion(-)
+ net/batman-adv/hard-interface.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 213d4609..80eaac0e 100644
+index 80eaac0e..63caabf5 100644
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -976,7 +976,6 @@ batadv_wifi_net_device_insert(struct net_device *net_dev, u32 wifi_flags)
+@@ -972,11 +972,11 @@ batadv_wifi_net_device_insert(struct net_device *net_dev, u32 wifi_flags)
+ 
+ 	ASSERT_RTNL();
+ 
+-	device_state = kzalloc_obj(*device_state, GFP_ATOMIC);
++	device_state = kzalloc_obj(*device_state, GFP_KERNEL);
  	if (!device_state)
  		return -ENOMEM;
  
--	device_state->wifi_flags = wifi_flags;
- 	netdev_hold(net_dev, &device_state->dev_tracker, GFP_ATOMIC);
+-	netdev_hold(net_dev, &device_state->dev_tracker, GFP_ATOMIC);
++	netdev_hold(net_dev, &device_state->dev_tracker, GFP_KERNEL);
  	device_state->netdev = net_dev;
  	WRITE_ONCE(device_state->wifi_flags, wifi_flags);
+ 
 
 -- 
 2.47.3
