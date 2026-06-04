@@ -2,100 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qdbHA6/bIWoKPwEAu9opvQ
+	id DSSnDAfcIWorPwEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:10:23 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:11:51 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF856431C6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:10:22 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36C164320D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:11:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=uDfXNMfc;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=taVr8UCz;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8346E8539E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:10:22 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id AFF63853A7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:11:50 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780603822;
- b=gPVMoKKlggidbCK41H1esM4ie2mzCwpJgAsiVtHiXOy8tp9M61AMMKkcQZ+dgD0m+s8Kc
- VW8Qy3017LzMHZ0V2wZMBIdJLbLsesifjeHyjTpHkBc6rj8Hio0s/u+cDzt1BAJ3bNYZxBB
- YBzmmtCJyV/+4yyLae9RlYxgv0s7puk=
+ t=1780603910;
+ b=DFHy87zHIn8ajoQxslS/L3/GdkxnpszU/NPAhJLwkSs6nJonXMggNqEburOWIGkRCngGS
+ GS3jUW3f4PW8xZCBEclW0RvOcyXjPV27ggCP/Fodw9kaGPA3FgNePIvjZGbmyo/Ckvi0118
+ E4dCIi/Q8XcznoWVwiIYR3LnQ9AvQfY=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780603822; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780603910; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=+25m9Y2yy7hPOQ2q1MOMoLi3vOCVt3R2B0SYZoJEDic=;
- b=AbxO8e67p0qHaSQFJlqxhCYrkUgT8lg5XLITJMWInM3aVkYdCSaLMAqkO4qKB/QTwJmCM
- rmV6M0iwr5cHnOA/y4ilPlq0wxVPRnemgd0ZsdyjFZ2CKiuk/Fj7g3IG/DsMTT4XMJk/eSa
- JrvZvKX8PphRcEXZj7KREEFxwnhJAT4=
+ list-archive; bh=O1exFvQ+1G8Twm+1FYsYA7KMMFjDl1DN1aCxGfSOSI4=;
+ b=lMcmaOMFOSe0BU6AFWJyXjxAi0YXOUhwwXGO+2v7tun7i664IoMYEsOu9E/dA2Gb9o8Mc
+ jIo8fyNQOX/6t2QERAuU0SSGIntkFXUAsvfXX/+Nr0bZIrksSvFqMzTj0QHO8329+T3xXBN
+ stO8p3EkGzCnhnTXgg5BFsQq7ho5alg=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 2386E8212D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 04 Jun 2026 22:08:51 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780603736;
-	b=rIEcNrNGYGMkuMzAST7GJZW+bpFxsDBWWsi+VC4JoKpcz/9Z0t2csHkf9qm9eUtKoWmoUe
-	iPczk5vjtMiWW5V/6WZiIbyCzzn53uMKstm+vaskJOzZqM/osN1fXFWPnMskiwSY56f5vi
-	ywrXqjP51K6EJheOO4gFMxbe3wnORlQ=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 3516282587
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 04 Jun 2026 22:08:52 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780603737;
+	b=wBOVWxnS0hTrWUXAiy3LKdqhL5NLxsMsKUbR+94Va8RkwuH5copX+Oz/A8mSkjxi12vx4+
+	UcrrBtmVoqWWfk42rVRluInk6weXJHkxTkeuMNpKfHdoP4s0ugm0TDVMB/oMM7qr4BK+O2
+	yrCPVwWyRWKBaliqVQkGsk+3NoQj+vk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=uDfXNMfc;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=taVr8UCz;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780603736;
+	s=20121; t=1780603737;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=+25m9Y2yy7hPOQ2q1MOMoLi3vOCVt3R2B0SYZoJEDic=;
-	b=0ekzOc65I587tWsgdufwXpW1KiODVOainOt6Ar8s8l4gMT9WSbQBHfM3f7J+YIFjfEUy5M
-	tAgQMRPPuntSqReTDF08DmXUao0ZW7pxi8ca7KLQ0q3Oy2DHTVYTzPw2FiZJUbgNveNwmZ
-	mgPVJFZTsWUuVyIArlM0NYES//rvTXg=
-Received: by dvalin.narfation.org (Postfix) id AB47420263;
-	Thu, 04 Jun 2026 20:08:49 +0000 (UTC)
+	bh=O1exFvQ+1G8Twm+1FYsYA7KMMFjDl1DN1aCxGfSOSI4=;
+	b=0yPDZyzTBxknLZy0fKRgJn/4Q4Q5pbpADOK4X7D7upwFL7E49GQ4e6ed1srCPyvWd2ZRmH
+	3P2d04El/Sr6B0okEhQDSTftmazNJAtsKEZMxX0jqVOhXDvgGuqW1ivqtiP0KSgVQtpkmg
+	BiUPg9ckzmxw8+tOq70p2vipyO6mQF4=
+Received: by dvalin.narfation.org (Postfix) id CFC4420267;
+	Thu, 04 Jun 2026 20:08:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1780603729;
+	s=20121; t=1780603731;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+25m9Y2yy7hPOQ2q1MOMoLi3vOCVt3R2B0SYZoJEDic=;
-	b=uDfXNMfcN93XDrNCJJFO1B8uOTFB4fgWa9yeXh4n4AUbwNApY6EGpf1IDxH9YPMdKi63Qp
-	ASPTZKR5wCxt91k9j7kLNZJNbXfpBXDbLwKT2ksJcZAFlpg+f8HhXzRBxsWmnMz4bivZuo
-	a5jgyI5vqIiuVz+NJanP7ZxkOa1UY6U=
+	bh=O1exFvQ+1G8Twm+1FYsYA7KMMFjDl1DN1aCxGfSOSI4=;
+	b=taVr8UCz4bJtoGatV5Bx6/qVvXf51K8CXPXQsYeZxYtCvz043EAxaFspcqrMq/BOKDfSwX
+	Ppzfl/fiaXRTbzKl2XHqQ2wwlL2snH1y1XiN9VlhElIx4J3f02uAqhIlDpiWMNOt5ThK0+
+	rcGqjVdgeAAd7tPNHUgirxmRYiUuY10=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Thu, 04 Jun 2026 22:08:43 +0200
-Subject: [PATCH batadv 1/5] batman-adv: tp_meter: update stale kernel-doc
- after refactoring
+Date: Thu, 04 Jun 2026 22:08:44 +0200
+Subject: [PATCH batadv 2/5] batman-adv: bla: update stale kernel-doc
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260604-kernel-doc-cleanup-v1-1-c4c4d4a77c31@narfation.org>
+Message-Id: <20260604-kernel-doc-cleanup-v1-2-c4c4d4a77c31@narfation.org>
 References: <20260604-kernel-doc-cleanup-v1-0-c4c4d4a77c31@narfation.org>
 In-Reply-To: <20260604-kernel-doc-cleanup-v1-0-c4c4d4a77c31@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5576; i=sven@narfation.org;
- h=from:subject:message-id; bh=4NKiN8MrQ0pys+ZpWKLk57KuLd2elV+6DZGGpZEpC/w=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmKt72VSxLyDBlT+DlZzf/lFB2XyHhZzloTYVzzQsdQa
- 6Jc6sWOUhYGMS4GWTFFlj1X8s9vZn8r/3nax6Mwc1iZQIYwcHEKwER4Yhn+GTztqnpX7jdt6xrX
- L2+fy8xYUZGe/WnivTJP07zPVX91tjEyPAlSSWi59a9p3vr+6+rHP936wJ57WPxS/uZ/n1bPFd+
- ymAUA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2811; i=sven@narfation.org;
+ h=from:subject:message-id; bh=q4Po5jMiD9k4zDNoLj2olAjN1guYjh/U0qEy4Cfyb3Q=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmKt71nzPx4/Mj8gvc/VP8zzH0x3ePlvXkWfkH5Hlali
+ g07ecUkOkpZGMS4GGTFFFn2XMk/v5n9rfznaR+PwsxhZQIZwsDFKQATub2H4Z/B6q6LRSxzApo3
+ HVQMyHgW6zldZde2LR6Z06dKP3rVnlvIyNB1NnEp16eFst+Eji9fu7R3v14U4+nsTVOem/Ddbef
+ I+cECAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: OPFS7DD4JFRQX5EZVSGREFYV45MEL4VH
-X-Message-ID-Hash: OPFS7DD4JFRQX5EZVSGREFYV45MEL4VH
+Message-ID-Hash: XQL52XIIE6ZJRIVNO6JY3WA4LW2ZQVC5
+X-Message-ID-Hash: XQL52XIIE6ZJRIVNO6JY3WA4LW2ZQVC5
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OPFS7DD4JFRQX5EZVSGREFYV45MEL4VH/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XQL52XIIE6ZJRIVNO6JY3WA4LW2ZQVC5/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -144,148 +143,83 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:mid,narfation.org:dkim,narfation.org:from_mime,narfation.org:email,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9CF856431C6
+X-Rspamd-Queue-Id: D36C164320D
 
-The tp_meter codebase was recently refactored:
-
-* throughput meter sender and receiver variables were split into
-  two different structures
-* the congestion control variables were extracted in a separate structure
-
-But the kernel-doc was not updated everywhere to reflect these changes.
+The bridge-loop-avoidance code was changed recently to avoid inconsistent
+state and race condition problems. The kernel-doc addded in these commits
+(and related code) has various minor deficits which are now resolved.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/tp_meter.c | 16 ++++++++--------
- net/batman-adv/types.h    | 14 ++++++++------
- 2 files changed, 16 insertions(+), 14 deletions(-)
+ net/batman-adv/bridge_loop_avoidance.c |  2 +-
+ net/batman-adv/bridge_loop_avoidance.h |  2 +-
+ net/batman-adv/types.h                 | 10 +++++++---
+ 3 files changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index 978e32d9..3ce9af39 100644
---- a/net/batman-adv/tp_meter.c
-+++ b/net/batman-adv/tp_meter.c
-@@ -289,7 +289,7 @@ batadv_tp_list_find_sender(struct batadv_priv *bat_priv, const u8 *dst)
-  * @bat_priv: the bat priv with all the mesh interface information
-  * @dst: the other endpoint MAC address to look for
+diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
+index 0461f112..36421f76 100644
+--- a/net/batman-adv/bridge_loop_avoidance.c
++++ b/net/batman-adv/bridge_loop_avoidance.c
+@@ -123,7 +123,7 @@ static bool batadv_compare_backbone_gw(const struct hlist_node *node,
+  * @node: list node of the first entry to compare
+  * @data2: pointer to the second claims
   *
-- * Return: if matching session with @dst was found
-+ * Return: true if a matching session with @dst was found, false otherwise
+- * Return: true if the claim have the same data, 0 otherwise
++ * Return: true if the claims have the same data, false otherwise
   */
- static bool batadv_tp_list_active(struct batadv_priv *bat_priv, const u8 *dst)
- 	__must_hold(&bat_priv->tp_list_lock)
-@@ -355,7 +355,7 @@ batadv_tp_list_find_sender_session(struct batadv_priv *bat_priv, const u8 *dst,
- /**
-  * batadv_tp_vars_common_release() - release batadv_tp_vars_common from lists
-  *  and queue for free after rcu grace period
-- * @ref: kref pointer of the batadv_tp_vars
-+ * @ref: kref pointer of the batadv_tp_vars_common
+ static bool batadv_compare_claim(const struct hlist_node *node,
+ 				 const void *data2)
+diff --git a/net/batman-adv/bridge_loop_avoidance.h b/net/batman-adv/bridge_loop_avoidance.h
+index 8673a265..06c7dfb8 100644
+--- a/net/batman-adv/bridge_loop_avoidance.h
++++ b/net/batman-adv/bridge_loop_avoidance.h
+@@ -21,7 +21,7 @@
+  *  detect frame sent by bridge loop avoidance
+  * @mac: mac address to check
+  *
+- * Return: true if the it looks like a loop detect frame
++ * Return: true if it looks like a loop detect frame
+  * (mac starts with BA:BE), false otherwise
   */
- static void batadv_tp_vars_common_release(struct kref *ref)
- {
-@@ -391,7 +391,7 @@ static void batadv_tp_sender_put(struct batadv_tp_sender *tp_vars)
- }
- 
- /**
-- * batadv_tp_list_detach() - remove tp receiver session from mesh session list once
-+ * batadv_tp_list_detach() - remove tp session from mesh session list once
-  * @tp_vars: the private data of the current TP meter session
-  *
-  * Return: whether tp_vars was detached from list and reference must be freed
-@@ -509,7 +509,7 @@ static void batadv_tp_sender_finish(struct work_struct *work)
-  * batadv_tp_reset_sender_timer() - reschedule the sender timer
-  * @tp_vars: the private TP meter data for this session
-  *
-- * Reschedule the timer using tp_vars->rto as delay
-+ * Reschedule the timer using tp_vars->cc.rto as delay
-  */
- static void batadv_tp_reset_sender_timer(struct batadv_tp_sender *tp_vars)
- {
-@@ -621,9 +621,9 @@ static void batadv_tp_fill_prerandom(struct batadv_tp_sender *tp_vars,
-  *
-  * Create and send a single TP Meter message.
-  *
-- * Return: 0 on success, BATADV_TP_REASON_DST_UNREACHABLE if the destination is
-- * not reachable, BATADV_TP_REASON_MEMORY_ERROR if the packet couldn't be
-- * allocated
-+ * Return: 0 on success, BATADV_TP_REASON_MEMORY_ERROR if the packet couldn't
-+ * be allocated, BATADV_TP_REASON_CANT_SEND if the packet could not be
-+ * transmitted
-  */
- static int batadv_tp_send_msg(struct batadv_tp_sender *tp_vars, const u8 *src,
- 			      struct batadv_orig_node *orig_node,
-@@ -913,7 +913,7 @@ static int batadv_tp_wait_available(struct batadv_tp_sender *tp_vars, size_t ple
-  * batadv_tp_send() - main sending thread of a tp meter session
-  * @arg: address of the related tp_vars
-  *
-- * Return: nothing, this function never returns
-+ * Return: 0
-  */
- static int batadv_tp_send(void *arg)
- {
+ static inline bool batadv_bla_is_loopdetect_mac(const uint8_t *mac)
 diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index 5eb0371d..a7fa0d9e 100644
+index a7fa0d9e..5fd5bd35 100644
 --- a/net/batman-adv/types.h
 +++ b/net/batman-adv/types.h
-@@ -1331,7 +1331,7 @@ struct batadv_tp_unacked {
- 	/** @len: length of the packet */
- 	u16 len;
+@@ -1723,22 +1723,26 @@ struct batadv_priv {
  
--	/** @list: list node for &batadv_tp_vars.unacked_list */
-+	/** @list: list node for &batadv_tp_vars_common.unacked_list */
- 	struct list_head list;
- };
+ #ifdef CONFIG_BATMAN_ADV_BLA
  
-@@ -1367,7 +1367,9 @@ struct batadv_tp_vars_common {
- 	struct rcu_head rcu;
- };
- 
--/** struct batadv_tp_sender_cc - congestion control variables */
 +/**
-+ * struct batadv_tp_sender_cc - congestion control variables
++ * enum batadv_bla_backbone_gw_state - state of a bridge loop avoidance
++ *  backbone gateway
 + */
- struct batadv_tp_sender_cc {
- 	/** @fast_recovery: true if in Fast Recovery mode */
- 	bool fast_recovery:1;
-@@ -1410,7 +1412,7 @@ struct batadv_tp_sender_cc {
-  * struct batadv_tp_sender - sender tp meter private variables per session
-  */
- struct batadv_tp_sender {
--	/** @common: common batadv_tp_vars (best be first member) */
-+	/** @common: common batadv_tp_vars_common (must be first member) */
- 	struct batadv_tp_vars_common common;
+ enum batadv_bla_backbone_gw_state {
+ 	/**
+ 	 * @BATADV_BLA_BACKBONE_GW_STOPPED: backbone gw is being removed
+-	 * and it must not longer work on requests
++	 * and it must no longer work on requests
+ 	 */
+ 	BATADV_BLA_BACKBONE_GW_STOPPED,
  
- 	/** @start_time: start time in jiffies */
-@@ -1437,7 +1439,7 @@ struct batadv_tp_sender {
- 	/** @cc: congestion control variables */
- 	struct batadv_tp_sender_cc cc;
+ 	/**
+ 	 * @BATADV_BLA_BACKBONE_GW_UNSYNCED: backbone was detected out
+-	 * of sync and a request was send. No traffic is forwarded until the
++	 * of sync and a request was sent. No traffic is forwarded until the
+ 	 * situation is resolved
+ 	 */
+ 	BATADV_BLA_BACKBONE_GW_UNSYNCED,
  
--	/** @cc_lock: lock do protect @cc */
-+	/** @cc_lock: lock to protect @cc */
- 	spinlock_t cc_lock;
- 
- 	/** @tot_sent: amount of data sent/ACKed so far */
-@@ -1460,7 +1462,7 @@ struct batadv_tp_sender {
-  * struct batadv_tp_receiver - receiver tp meter private variables per session
-  */
- struct batadv_tp_receiver {
--	/** @common: common batadv_tp_vars (best be first member) */
-+	/** @common: common batadv_tp_vars_common (must be first member) */
- 	struct batadv_tp_vars_common common;
- 
- 	/** @receiving: receiving binary semaphore: 1 if receiving, 0 is not */
-@@ -1662,7 +1664,7 @@ struct batadv_priv {
- 	/** @forw_bcast_list_lock: lock protecting forw_bcast_list */
- 	spinlock_t forw_bcast_list_lock;
- 
--	/** @tp_list_lock: spinlock protecting @tp_list */
-+	/** @tp_list_lock: spinlock protecting @tp_sender_list + @tp_receiver_list */
- 	spinlock_t tp_list_lock;
- 
- 	/** @tp_num: number of currently active tp sessions */
+ 	/**
+-	 * @BATADV_BLA_BACKBONE_GW_SYNCED: backbone is consider to be in
++	 * @BATADV_BLA_BACKBONE_GW_SYNCED: backbone is considered to be in
+ 	 * sync. traffic can be forwarded
+ 	 */
+ 	BATADV_BLA_BACKBONE_GW_SYNCED,
 
 -- 
 2.47.3
