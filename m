@@ -2,100 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VEy7N4LbIWr3PgEAu9opvQ
+	id 3JFsGdrbIWohPwEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:09:38 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:11:06 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C68B643194
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 154676431F8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:11:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=AfG8vRwj;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Z23jw9Do;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 696B284A5D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:09:38 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E8F7F84936
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 04 Jun 2026 22:11:05 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780603778;
- b=NaxgtQpMBbTf/GD4Mf6JISjnoNgIgtHQE1mNNrUaiGxVYtjQ62izSF3JbyYRHkU4KRuKv
- hwKh4CeT5v+r5+PNZgZRvsKnHRqbexpek9cpcT9ZGtLgH97hXSHtb/Cq5tuKs9qyMJnpdCS
- EHN05g2oYIvTaq4d0LK3gEsECHg9PN8=
+ t=1780603865;
+ b=VQMYYXdnHiGClke4KiAaS83ZD3r7MJV/el2ddJ3XiPwHautpvEY4fsVjdP8NA6jfnRB+r
+ 3EssUHFU+nRlckmnicuSGnFFgJrKga6hTpcksH3dw6KxjifAuVoRzeTtgj2qGbwSJZsHeMl
+ 53iYGWV14MKxnCEZkxmBYGq4SDK9v8M=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780603778; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780603865; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=V+Ffcky9GoXavcRainSHI0r1nd2Uiyc6EN8rhRWxsb8=;
- b=zd3hviqz3iX+kLRlyfVoYydx/RqL7QBqFGmZmWg7xO9E6PLpok2PZJqpytbMnXxP7Lvpt
- C/TemCFvD5SfVvRfI1F8ct5p+CLMfkc1HVPkwDhRu6UbQoCAh0lmD4a4yX1Y6FW8MtBM++b
- hhDEMpy6HrJjqFhEbZm5q82scolrYPk=
+ list-archive; bh=nywLAPtb3eun7P/IaDFOJG4fw54dMDnyPr0b+FinR6I=;
+ b=s/WvrBVvJUVdG2QFJZls9Zv8iiwUoLgXlori1UW5CZtmDsTqW53rKSHW2nDg+wVspB3kh
+ UlAj7E8MYOd+YigmV7uSy28v5B5Fa2NaY0xjlLQmykDW4W46y5TeCjFQEDNsxpygpZc9RNH
+ ngw4WZUGNubUJsM/xr7DtDmQ1T19n0s=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 4BB1B82587
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 04 Jun 2026 22:08:54 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780603734;
-	b=dPD4fkAVnNtt8Y4jqlM/u93g2RWoENc2DpyoJ095pUfiUnQECyAIrZDB+NA7IyLmGvgUc8
-	JiTn0A5tYH2V9zw6yk6RAXTE+AqRicJlQW1kxC90sApuvEJrdjd8HhRoucwe/Y31MskNAj
-	ACjOmV58fj7mEFWn2T7a3VINgHhh9Y0=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 3796A84622
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 04 Jun 2026 22:08:56 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780603736;
+	b=U+gz5hYvMk6jdYpz2Z4mBF0O6gMo2kws4/RqyXpGZ65evv69LirnEZ3/JSJjdn3/E469RD
+	lTLj8wLvd5Bukby1h3lMfq+WBqYFnD+ESIfgURDmr7ePZPbKGMGWG2roTw1/dNqKiyEaH0
+	l2LlSmv2C/tSVLmNsc4A/b58QFN4Zi4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=AfG8vRwj;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Z23jw9Do;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780603734;
+	s=20121; t=1780603736;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=V+Ffcky9GoXavcRainSHI0r1nd2Uiyc6EN8rhRWxsb8=;
-	b=NvaLAjR4SSwF+FXaw+7Iy+v3nYRkPmHGwbw4VEIdmH0ydWpB1oDp+B+g9I2rm4YaAa9tNX
-	TFthhlhLJ/EA5ai3tjZ7JzTsVwZMyLANc1Ry/xGr0yH5oOxRXuI3ew65llHaCUrrgaCBBT
-	eVweITpQhhx/G4Aw6m207/PaCUiycAA=
-Received: by dvalin.narfation.org (Postfix) id D4A4220268;
-	Thu, 04 Jun 2026 20:08:53 +0000 (UTC)
+	bh=nywLAPtb3eun7P/IaDFOJG4fw54dMDnyPr0b+FinR6I=;
+	b=nU2wVwtMegEcycX2TsUoTiPHbEQq+P0QORO6vGKh6VXpe8vY/HecnFTqPQt7fzaZwHwItd
+	ao4R+kPrnZ2a2oek8Ei6CB+E5VKC6LxQnig2mC9r+eCVzH0g+ljZfAKzZRjkK8CllJh7Kw
+	GdowU3STaf1WnOJ30180LN7TODxX8pM=
+Received: by dvalin.narfation.org (Postfix) id E7D2420268;
+	Thu, 04 Jun 2026 20:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1780603733;
+	s=20121; t=1780603736;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=V+Ffcky9GoXavcRainSHI0r1nd2Uiyc6EN8rhRWxsb8=;
-	b=AfG8vRwjH1/JIC9lOI6Ekg1w0X3VbfgM6VU2Cxn0YkroTuuEPA0isQix7fR/0qCUF57DO7
-	PbrBoVYOipNx8sIQYXNN+zz10q9bhZ4F/xPpNBY7MNLXkLHVAuaxgHh94TmHYSn6sTH20F
-	zLTevagiwTmH0UxV/jq90Y2EHnhR7SE=
+	bh=nywLAPtb3eun7P/IaDFOJG4fw54dMDnyPr0b+FinR6I=;
+	b=Z23jw9Do7PfdCbUz5/173zXaY4QVJbKiuw9CnU3Nb7Q9lVFY6kV78p6YL9UmoWoAWVrvCx
+	GuZmb3zulg8tW5GaJ9jOX8f4tiwaoNgruOjLRUI/X2v0Ymj5q1hEmMyclmGBjiHt0A+2Jo
+	0utfzd8FYwmyKLlMR6vpalA8ENSxB0o=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Thu, 04 Jun 2026 22:08:45 +0200
-Subject: [PATCH batadv 3/5] batman-adv: uapi: keep kernel-doc in struct
- member order
+Date: Thu, 04 Jun 2026 22:08:46 +0200
+Subject: [PATCH batadv 4/5] batman-adv: fix batadv_v_ogm_packet_recv error
+ handling kernel-doc
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260604-kernel-doc-cleanup-v1-3-c4c4d4a77c31@narfation.org>
+Message-Id: <20260604-kernel-doc-cleanup-v1-4-c4c4d4a77c31@narfation.org>
 References: <20260604-kernel-doc-cleanup-v1-0-c4c4d4a77c31@narfation.org>
 In-Reply-To: <20260604-kernel-doc-cleanup-v1-0-c4c4d4a77c31@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2152; i=sven@narfation.org;
- h=from:subject:message-id; bh=XLdRAbf37dHnuGM+rQ5UfePJAOqr0/TajkzRZo6nMLc=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmKt73TvlVcX3tv8sWmhp/frrIfeGm+JdVrDs/y7kCfW
- 5ratiFXOkpZGMS4GGTFFFn2XMk/v5n9rfznaR+PwsxhZQIZwsDFKQAT+X+BkeHMioZKpt5pH1XO
- PlsennO26WvDuZa9t99cyr4e1Ljs3q4rDP+UJcU/CJpvNmX8vqlWR/9tYtPV0ojG75d7YgTSjgf
- 7fWQGAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=978; i=sven@narfation.org;
+ h=from:subject:message-id; bh=gNLT3/3o/CthwITihq7xKPLFPzPK+pG3Fcx7QA2Vwcw=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmKt33k3q3xz2sULir8fWFP9vIrj5afLbdqXC3d27/ny
+ bn7V7cf7ChlYRDjYpAVU2TZcyX//Gb2t/Kfp308CjOHlQlkCAMXpwBMxL+CkWF9o9ALlrwHPT/y
+ M6cteGw++28e47XGxhVH3ZMtWk9uvfWRkeGJv/9/pryPFUGTFKa9f/J5lVpc6vnY1eeP5PUcTTR
+ U6+YAAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: QOJHSWTLYXP4TIWY3HXOX4PIAJJDLDV5
-X-Message-ID-Hash: QOJHSWTLYXP4TIWY3HXOX4PIAJJDLDV5
+Message-ID-Hash: VOKPLT2CFCWYO3IUZ6OHLYVXHQ6WLJW3
+X-Message-ID-Hash: VOKPLT2CFCWYO3IUZ6OHLYVXHQ6WLJW3
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QOJHSWTLYXP4TIWY3HXOX4PIAJJDLDV5/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VOKPLT2CFCWYO3IUZ6OHLYVXHQ6WLJW3/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -146,53 +146,32 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:mid,narfation.org:dkim,narfation.org:from_mime,narfation.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C68B643194
+X-Rspamd-Queue-Id: 154676431F8
 
-The order of the members of struct batadv_coded_packet and struct
-batadv_unicast_tvlv_packet didn't match the kernel doc. This is the case
-for all other structures and should also be done the same way for these
-two.
+All receive handlers in batman-adv are consuming the skbuff independent of
+the result of the handler. The "(without freeing the skb) on failure" is
+therefore not corrrect anymore for the current implementation.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- include/uapi/linux/batadv_packet.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ net/batman-adv/bat_v_ogm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/batadv_packet.h
-index 439132a8..1241285b 100644
---- a/include/uapi/linux/batadv_packet.h
-+++ b/include/uapi/linux/batadv_packet.h
-@@ -518,16 +518,16 @@ struct batadv_mcast_packet {
-  * @packet_type: batman-adv packet type, part of the general header
-  * @version: batman-adv protocol version, part of the general header
-  * @ttl: time to live for this packet, part of the general header
-+ * @first_ttvn: tt-version number of first included packet
-  * @first_source: original source of first included packet
-  * @first_orig_dest: original destination of first included packet
-  * @first_crc: checksum of first included packet
-- * @first_ttvn: tt-version number of first included packet
-  * @second_ttl: ttl of second packet
-+ * @second_ttvn: tt version number of second included packet
-  * @second_dest: second receiver of this coded packet
-  * @second_source: original source of second included packet
-  * @second_orig_dest: original destination of second included packet
-  * @second_crc: checksum of second included packet
-- * @second_ttvn: tt version number of second included packet
-  * @coded_len: length of network coded part of the payload
+diff --git a/net/batman-adv/bat_v_ogm.c b/net/batman-adv/bat_v_ogm.c
+index 5936d004..b3f246f6 100644
+--- a/net/batman-adv/bat_v_ogm.c
++++ b/net/batman-adv/bat_v_ogm.c
+@@ -982,7 +982,7 @@ static void batadv_v_ogm_process(const struct sk_buff *skb, int ogm_offset,
+  * @if_incoming: the interface where this OGM has been received
+  *
+  * Return: NET_RX_SUCCESS and consume the skb on success or returns NET_RX_DROP
+- * (without freeing the skb) on failure
++ * (freeing the skb) on failure
   */
- struct batadv_coded_packet {
-@@ -554,8 +554,8 @@ struct batadv_coded_packet {
-  * @version: batman-adv protocol version, part of the general header
-  * @ttl: time to live for this packet, part of the general header
-  * @reserved: reserved field (for packet alignment)
-- * @src: address of the source
-  * @dst: address of the destination
-+ * @src: address of the source
-  * @tvlv_len: length of tvlv data following the unicast tvlv header
-  * @align: 2 bytes to align the header to a 4 byte boundary
-  */
+ int batadv_v_ogm_packet_recv(struct sk_buff *skb,
+ 			     struct batadv_hard_iface *if_incoming)
 
 -- 
 2.47.3
