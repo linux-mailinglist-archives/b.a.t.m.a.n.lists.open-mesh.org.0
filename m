@@ -2,51 +2,51 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id B8anC9p4ImoMYAEAu9opvQ
+	id 5N3fLgV5ImoXYAEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:20:58 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:21:41 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE020645E4E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631DC645E6A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:21:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="k/zYiKnl";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="gS2LJBm/";
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 81A448166E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:20:57 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 407CD81CDC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:21:41 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780644057;
- b=auo5kSpLIF71zHU1Hk7IbfCf80DdPjVUey5wDVYJAg8rSUWRYS/p39cro4z59VIziYj7k
- my7Aw6dtEpI+a4xWpS6PtSopsuV28cDNpleucUYAmFyVoH2jB/rWPuDpBQm48zmuE4T/UDt
- j/XDiwBt+jXVH6uF5bIIcD65DMsIJ7I=
+ t=1780644101;
+ b=ybobZhpI6FlGfw+b2f6PLm4q0TVDCpimEOn7X6jPbVZejbhIPJJpWxEf0h5djNJmdhHWF
+ L3WKeDK0ITKGgJKITIVIwaItid0eKm+M+Y7YAC1hGanICDMx8+Hcz6M9JUdOHKOewYJtU2m
+ I/3eks3NadmF6G+H0Zu6lSRI/3a3Rs0=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780644057; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780644101; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=t5VjgMR6R+zmUaoqlylF20/UjikHzP0+tYEYge+V4aQ=;
- b=DUzWq6gekJVTsCeL4DeenNxDG4BJq6Y/LvdqYjXb6RfTSUFoSmDfHHZH4sLk6IFj64bRk
- G7Epmvn+dB/IMD4eQGMxIi5XgkV2TVKVuCkrWIIfjRDCzrHZmSD5bo1b5bpBnYCjBtgm143
- PEUViW20Fv9ex6SP675QVv8PGLYoZAc=
+ list-archive; bh=pdWoGEypLT0hA4oET8XmjqY81On+S12Bc4UStp9tjaE=;
+ b=M+VFGu/62RByjmNFdQBmJ5HCde4ZWnnOfkDtjBqI+1lolWCkmxczmPSnt53skx/TrIYON
+ TCptXFN/6PpwIrO2CoU0gFuQmZJgfLEth5BUFdbMmuUsi/b66S+Kb1/j4J3ObuKVGkf0viW
+ LK5Eqxr+vAdrMylALh8eD5FLHDFgg0E=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3DB1F8026D
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jun 2026 09:20:13 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id E0F258026D
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jun 2026 09:20:14 +0200 (CEST)
 ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780644014;
-	b=xovVWO80VKeSKCUK1NIqn5LMNz4LckGgZePChGXiZgzOYBOvIrioozAVc+f0bNqtbUtzRX
-	s1AtsdJvmsKXz6clZVoz7uMoUfeHK007aU83Hhrjdxp7+QI3C6/8sCmw88btmQEV+L+f4U
-	4FndaGwbnUEBssfbM92G8DsVZOFFvl8=
+	b=yWCflH1LqHPKFRgh5rEGIfGLP/63Ohx9g2i6zUApLxLL0R8LHP231xSbImeEjaiJ3bPOv5
+	ChGY+0UhkjtSo609DW93HL0zzYoXUf6nUht85OrsDKGJwmpdwLlpsrS33+PlNl8SX44lO6
+	vXhfYhx3Aa/95khvUQLx+ubub1sjZ9A=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="k/zYiKnl";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="gS2LJBm/";
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
@@ -56,22 +56,22 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=t5VjgMR6R+zmUaoqlylF20/UjikHzP0+tYEYge+V4aQ=;
-	b=c3qHRyZIvAWG0KYWUoKYw1l6oy2gcklAl4e2zA6YXUV5tVOmIyJYMriID9vqa23Hcztwyv
-	lwbSqezbMOZDA0rel0XJvXHhI/41gZYYLE75wMJlba3pa3iEgZqVfINkOCT2RdOc0qqQwf
-	ZOHUJdf7b3XYOapm0MMvLKLfj29Vhv4=
+	bh=pdWoGEypLT0hA4oET8XmjqY81On+S12Bc4UStp9tjaE=;
+	b=F/k+Sp3Nt8DC9BHkaPyQ//8ddd7yOxH0BLlyN/9nnU+uIguW/UgRnGtZQ13OfAyrUBsyfy
+	oKZEZ0wPm/+q9X3DQbBU4DKTiUazA1gKanQsksHCARjypA+Tqxn81XFHntFr8zRpn6THGS
+	Q7AbpEQKKMVn0OocUwmppVWyTcCZszo=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	s=09092022; t=1780644013;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=t5VjgMR6R+zmUaoqlylF20/UjikHzP0+tYEYge+V4aQ=;
-	b=k/zYiKnlGSijjO53aH3e9I0c/Rcyd75R9R5vr9LMGh+BLm162CyI5A/q28zQ0Qg8HBI9q6
-	rKTWtEUtQBEJVj+pPHF33UN0QkPc7nPM4lLJHCcIIIun6Pmz4LEXk1mCXT+NUQWf1bwJSk
-	yzMWH0v13R+LdHKSyfuRzy5ZzImInKViqyL9e6RQ3LuiAxrC16E4Xzcstk6ewWmcgtZ5B+
-	ADoNPYRgQ8vy64ufaowBvYvvJAU+ii+7Kc+f9OJDERSqfwqmZeXojuN3mG4zhCqxtDG5fx
-	EBUMfrtHxzk1B0KmFXzN8i92tdh3os4pbe5ok/d6g7kW3ogfP16WtW8z3iAuZA==
+	bh=pdWoGEypLT0hA4oET8XmjqY81On+S12Bc4UStp9tjaE=;
+	b=gS2LJBm/VjTOKGxFoTLo1ffpyMs5uutNlKIeDzb5eUDOyKUpABtuoNt61FC2shV3GMoag1
+	56ncRJtsezrEuJw890ipKzVO0sa1aAPJloagU2iYU3LYgIQ0ZQFwI1q+TCtsxV5JAa3tUm
+	KxIOd5l4iEkIxTiMe+8NxYpDg9t8wUCqk1pbdlTy0cPLYyvudQN/jKfbk3IagbwYWo/8We
+	wljn19pDaT1sZTsdBmh/82go/dGrlz9bCGS5bz9Tq2uR5cLr5Fp14HLwyFB+QX3RpZSUwY
+	CJWkkUdPAEtSudGILXV5YwJ34cPHHVrpDLumIItPhUjvI+UTGGpAkiWqjxq/aA==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -82,17 +82,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 03/11] batman-adv: drop duplicated wifi_flags
- assignments
-Date: Fri,  5 Jun 2026 09:19:57 +0200
-Message-ID: <20260605072005.490368-4-sw@simonwunderlich.de>
+Subject: [PATCH net-next 04/11] batman-adv: use GFP_KERNEL allocations for the
+ wifi detection cache
+Date: Fri,  5 Jun 2026 09:19:58 +0200
+Message-ID: <20260605072005.490368-5-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260605072005.490368-1-sw@simonwunderlich.de>
 References: <20260605072005.490368-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: WM4VOXSTTYBOJHJBC5QEEXBKKHXYXNKW
-X-Message-ID-Hash: WM4VOXSTTYBOJHJBC5QEEXBKKHXYXNKW
+Message-ID-Hash: XY3XMLJH5QRFB5OAM5XOTJXFJ34J4LQ3
+X-Message-ID-Hash: XY3XMLJH5QRFB5OAM5XOTJXFJ34J4LQ3
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -106,7 +106,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WM4VOXSTTYBOJHJBC5QEEXBKKHXYXNKW/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/XY3XMLJH5QRFB5OAM5XOTJXFJ34J4LQ3/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -135,7 +135,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:email,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -146,32 +146,38 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AE020645E4E
+X-Rspamd-Queue-Id: 631DC645E6A
 
 From: Sven Eckelmann <sven@narfation.org>
 
-During the initialization of the batadv_wifi_net_device_state, it is enough
-to write the wifi_flags once before the batadv_wifi_net_device_state is
-added to the batadv_wifi_net_devices rhashtable.
+The batadv_wifi_net_device_insert() is called with ASSERT_RTNL() held, but
+not inside a spinlock or another context which prevents "might_sleep"
+functions. To relax the requirements for the allocator, use GFP_KERNEL.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/hard-interface.c | 1 -
- 1 file changed, 1 deletion(-)
+ net/batman-adv/hard-interface.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 43ebf86e7b368..96b8130375a3a 100644
+index 96b8130375a3a..04b227ec80525 100644
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -987,7 +987,6 @@ batadv_wifi_net_device_insert(struct net_device *net_dev, u32 wifi_flags)
+@@ -983,11 +983,11 @@ batadv_wifi_net_device_insert(struct net_device *net_dev, u32 wifi_flags)
+ 
+ 	ASSERT_RTNL();
+ 
+-	device_state = kzalloc_obj(*device_state, GFP_ATOMIC);
++	device_state = kzalloc_obj(*device_state, GFP_KERNEL);
  	if (!device_state)
  		return -ENOMEM;
  
--	device_state->wifi_flags = wifi_flags;
- 	netdev_hold(net_dev, &device_state->dev_tracker, GFP_ATOMIC);
+-	netdev_hold(net_dev, &device_state->dev_tracker, GFP_ATOMIC);
++	netdev_hold(net_dev, &device_state->dev_tracker, GFP_KERNEL);
  	device_state->netdev = net_dev;
  	WRITE_ONCE(device_state->wifi_flags, wifi_flags);
+ 
 -- 
 2.47.3
 
