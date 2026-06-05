@@ -2,76 +2,78 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TaVRNRR6ImprYAEAu9opvQ
+	id 4BoVAUB6ImqEYAEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:26:12 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:26:56 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF6A645F38
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:26:12 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1161645F4B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:26:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=RaHn+Uxw;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=Xzqz3z2M;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5C4D584033
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:26:12 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 80025844C0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:26:55 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780644372;
- b=b17xrJ+oR45cPakTAjOHWjnBMipHDgdLdzobSeIdtg9Fe5pDjQ+wLXhk7xCJG+yuLK3tA
- +iOMWtmBVMnf0+L5dn9opFPxprJqQeuBJPqqKlphU7zySF34O74fYs3g4Y8jsx47CjI+Rjy
- 9Z9cQWfknXZJ2sgEBOlMMUc4EqYWFEM=
+ t=1780644415;
+ b=CdLgp8gaDkcgDlPNuWBu34mgzDADTjGCrTzipTxLK44+Xikgae1m09KniBYiD6T0p/4IT
+ Y4b6OL9LgzIfG25JVz6znW0hAE4CK2HAclEh2lRLkIqDVTm31Tw481D+7q1kmYYrLExBQsR
+ P6hkvUzsc2yl/8lCSGHCSL3lMBmcsdw=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780644372; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780644415; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=dwwDQk/o0iE4YuAUidfs7nDM7wYXtXm46RbYWVM/OnI=;
- b=FN7xSnKYRRf2nsVr00A863FDjf00CyyYk9C9snjzVvJGctEuiHiZHh1RHDlGLqFJOC9E7
- uRwvKwr4qbz47Nwd79sQhmHtY0w3zgk3FTaCBv0fUExn67z+NTE/O6ZkrgRXm5WtL/oZslD
- PNp3Oy9W6btM2njU5o/CaQKy3ujDhks=
+ list-archive; bh=eoYEIYbvnyhBcDmR6uf7zB0wO4FVOJZsykYBKJGC6fY=;
+ b=1HkLVvXEFZuPDyy0QxrKAXSrXlQEhTpZvAYXHW2V+3Xay9LvauBJvfSxP8r9Xx3Qngu5Q
+ 1znSQgx4ovXDmh46mm0zHl/CYD/6Nvnxsp6oSi6rkTvOLnyPqgs7bdIj2L6nB+D9FHnhla4
+ ckJvDgu5n5ECoNVAIDYWrtZ123cBxBo=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id CBE3781115
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jun 2026 09:20:17 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780644017;
-	b=nEO57l1bHQbUPMwiKa8ULMFvvvEU/iTfkAmemtHzqgZFGVnfbbqIlWH6CPxKDmdj4IEgbA
-	Yb3ze0DsSuD6fMwKS1g6XHkPmlp4Z8znh5CzVoVu45yZ5R7jv6+cpgYQUoQlkyi4Hpch6f
-	0XeV/VRsGGltX6C3ZFOb4j3ycbISFGg=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id EF50981124
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jun 2026 09:20:18 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780644019;
+	b=hpfDr5qhCNtbjPj96mhG32udeJFBcKDQyxQW7+BSsW6pwvGCnB3np4LhPae2JtjaGz4KZO
+	z3YPz+yfPvkp2uXDDnAZ4Z61aMtOFqcCU6OAuOP1Wj8iYS8CMrh0hNk7zzEQIMhs6177zq
+	W8v+XVUwdmzJqjifpqul/e7Sm4kBPWY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=RaHn+Uxw;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=Xzqz3z2M;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780644017;
+	s=20121; t=1780644019;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=dwwDQk/o0iE4YuAUidfs7nDM7wYXtXm46RbYWVM/OnI=;
-	b=Vxder4s4vSzlE8sOddyBy52rQdanH+7o2qqYC1/Z5RGZFsgGmZ9yXibX0S+hTQyLTA1gP2
-	ofGoAkcH06PwE26ywO3U5btO0etMqHcSn+tjrWAcGxYl1lJNau74512DA9Yia9YJIdadw9
-	RZc5FR7SuuRb5bcRnGfzN2u8Ff+ubno=
+	bh=eoYEIYbvnyhBcDmR6uf7zB0wO4FVOJZsykYBKJGC6fY=;
+	b=tSn+s7BHndpYFV8dRy6NaPYEee6dkukOTxJQdLSYpuLWFGuio5weNxZkvrVgAE6psYdL9y
+	hyAioi0GTRHzRL5dTd7x3zAR3sQREBydblIeLi2bTI2BrkK06cseO4R+aMFVMvW1Pf0hcM
+	LgpzCSEJCxNxyrvF/HiP5Ljtrp0JpAA=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1780644017;
+	s=09092022; t=1780644018;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=dwwDQk/o0iE4YuAUidfs7nDM7wYXtXm46RbYWVM/OnI=;
-	b=RaHn+UxwTY05k7h3JSOpPEmjfA+ZKR3+yqksxOWtYbOPI7qDCsIfBJiJkGr3LqyhzTeDZo
-	/nrd9Kj/HblE+KNko565FI5V9Ls+2YQZcJGtGV6XZg+BYSaYPl3KICfAC3mp371PXrcFrz
-	jVMi7FYCc9f0K2KVYCp00wZRpkUAOjmsgPsSTEi9hIPW2M0FBz0nZprJ/M1N8kPZfqW3kg
-	PZQqj7ea6Etc//FyR8xgTC+ODBrcvQjNflgsmTyqGeSb8tHmhmGH51JcqgBD/wVNXKmJfb
-	pe+0rNs7GWtialp/I/GlgIoZim4UJ7gPadIN41qyHOa1sFksRuT9kGvLBc36Lw==
+	bh=eoYEIYbvnyhBcDmR6uf7zB0wO4FVOJZsykYBKJGC6fY=;
+	b=Xzqz3z2M3l+xKDXgC+r/XWHafAyV7pqqz5ZbH7givgEgrop4QFnpb/wwv9SjAYORFrd/bQ
+	Wwwbb9jZm/X1houMwuOd/xWOs3lPiVp7yRFlZmzLwOlmB5nKhAsHfuTmRTcEd1ACFsKDaR
+	XFjz9meJnFhPmb9ZAKa1Cl2MHeEzztEyqzm9qFZHEePmTA45WfRn7u8KHu4GPD+pHdJrj0
+	qJPmKXQH8GtWTRSbEgqcJOryHa09/qBLo0aNYmptJ4XXfw3soJlz0gtoTXW3/cOs0esgGq
+	XDY8GYTZzhKYtUaTAy1WyriWGVy8nFw5I/9Vm/hwgLXoyuAS+nZaI/FR62vG9Q==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -82,16 +84,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 08/11] batman-adv: bla: update stale kernel-doc
-Date: Fri,  5 Jun 2026 09:20:02 +0200
-Message-ID: <20260605072005.490368-9-sw@simonwunderlich.de>
+Subject: [PATCH net-next 09/11] batman-adv: uapi: keep kernel-doc in struct
+ member order
+Date: Fri,  5 Jun 2026 09:20:03 +0200
+Message-ID: <20260605072005.490368-10-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260605072005.490368-1-sw@simonwunderlich.de>
 References: <20260605072005.490368-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: BMLMQKAOM2M5RPQSPZRZS2YSZSROMPDR
-X-Message-ID-Hash: BMLMQKAOM2M5RPQSPZRZS2YSZSROMPDR
+Message-ID-Hash: KPS6TVDANKMQKXU7D6DGGJNLCYONO4YB
+X-Message-ID-Hash: KPS6TVDANKMQKXU7D6DGGJNLCYONO4YB
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -105,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BMLMQKAOM2M5RPQSPZRZS2YSZSROMPDR/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KPS6TVDANKMQKXU7D6DGGJNLCYONO4YB/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -131,7 +134,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	DKIM_TRACE(0.00)[simonwunderlich.de:+];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:email,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,simonwunderlich.de:mid,simonwunderlich.de:dkim,simonwunderlich.de:from_mime,simonwunderlich.de:email];
@@ -145,82 +148,54 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7EF6A645F38
+X-Rspamd-Queue-Id: A1161645F4B
 
 From: Sven Eckelmann <sven@narfation.org>
 
-The bridge-loop-avoidance code was changed recently to avoid inconsistent
-state and race condition problems. The kernel-doc addded in these commits
-(and related code) has various minor deficits which are now resolved.
+The order of the members of struct batadv_coded_packet and struct
+batadv_unicast_tvlv_packet didn't match the kernel doc. This is the case
+for all other structures and should also be done the same way for these
+two.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/bridge_loop_avoidance.c |  2 +-
- net/batman-adv/bridge_loop_avoidance.h |  2 +-
- net/batman-adv/types.h                 | 10 +++++++---
- 3 files changed, 9 insertions(+), 5 deletions(-)
+ include/uapi/linux/batadv_packet.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index 0bd24a19ff202..5c73f6ba16cff 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -123,7 +123,7 @@ static bool batadv_compare_backbone_gw(const struct hlist_node *node,
-  * @node: list node of the first entry to compare
-  * @data2: pointer to the second claims
-  *
-- * Return: true if the claim have the same data, 0 otherwise
-+ * Return: true if the claims have the same data, false otherwise
+diff --git a/include/uapi/linux/batadv_packet.h b/include/uapi/linux/batadv_packet.h
+index 439132a819eac..1241285b866cd 100644
+--- a/include/uapi/linux/batadv_packet.h
++++ b/include/uapi/linux/batadv_packet.h
+@@ -518,16 +518,16 @@ struct batadv_mcast_packet {
+  * @packet_type: batman-adv packet type, part of the general header
+  * @version: batman-adv protocol version, part of the general header
+  * @ttl: time to live for this packet, part of the general header
++ * @first_ttvn: tt-version number of first included packet
+  * @first_source: original source of first included packet
+  * @first_orig_dest: original destination of first included packet
+  * @first_crc: checksum of first included packet
+- * @first_ttvn: tt-version number of first included packet
+  * @second_ttl: ttl of second packet
++ * @second_ttvn: tt version number of second included packet
+  * @second_dest: second receiver of this coded packet
+  * @second_source: original source of second included packet
+  * @second_orig_dest: original destination of second included packet
+  * @second_crc: checksum of second included packet
+- * @second_ttvn: tt version number of second included packet
+  * @coded_len: length of network coded part of the payload
   */
- static bool batadv_compare_claim(const struct hlist_node *node,
- 				 const void *data2)
-diff --git a/net/batman-adv/bridge_loop_avoidance.h b/net/batman-adv/bridge_loop_avoidance.h
-index 8673a265995ff..06c7dfb8c677f 100644
---- a/net/batman-adv/bridge_loop_avoidance.h
-+++ b/net/batman-adv/bridge_loop_avoidance.h
-@@ -21,7 +21,7 @@
-  *  detect frame sent by bridge loop avoidance
-  * @mac: mac address to check
-  *
-- * Return: true if the it looks like a loop detect frame
-+ * Return: true if it looks like a loop detect frame
-  * (mac starts with BA:BE), false otherwise
+ struct batadv_coded_packet {
+@@ -554,8 +554,8 @@ struct batadv_coded_packet {
+  * @version: batman-adv protocol version, part of the general header
+  * @ttl: time to live for this packet, part of the general header
+  * @reserved: reserved field (for packet alignment)
+- * @src: address of the source
+  * @dst: address of the destination
++ * @src: address of the source
+  * @tvlv_len: length of tvlv data following the unicast tvlv header
+  * @align: 2 bytes to align the header to a 4 byte boundary
   */
- static inline bool batadv_bla_is_loopdetect_mac(const uint8_t *mac)
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index a7fa0d9e09288..5fd5bd358a249 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -1723,22 +1723,26 @@ struct batadv_priv {
- 
- #ifdef CONFIG_BATMAN_ADV_BLA
- 
-+/**
-+ * enum batadv_bla_backbone_gw_state - state of a bridge loop avoidance
-+ *  backbone gateway
-+ */
- enum batadv_bla_backbone_gw_state {
- 	/**
- 	 * @BATADV_BLA_BACKBONE_GW_STOPPED: backbone gw is being removed
--	 * and it must not longer work on requests
-+	 * and it must no longer work on requests
- 	 */
- 	BATADV_BLA_BACKBONE_GW_STOPPED,
- 
- 	/**
- 	 * @BATADV_BLA_BACKBONE_GW_UNSYNCED: backbone was detected out
--	 * of sync and a request was send. No traffic is forwarded until the
-+	 * of sync and a request was sent. No traffic is forwarded until the
- 	 * situation is resolved
- 	 */
- 	BATADV_BLA_BACKBONE_GW_UNSYNCED,
- 
- 	/**
--	 * @BATADV_BLA_BACKBONE_GW_SYNCED: backbone is consider to be in
-+	 * @BATADV_BLA_BACKBONE_GW_SYNCED: backbone is considered to be in
- 	 * sync. traffic can be forwarded
- 	 */
- 	BATADV_BLA_BACKBONE_GW_SYNCED,
 -- 
 2.47.3
 
