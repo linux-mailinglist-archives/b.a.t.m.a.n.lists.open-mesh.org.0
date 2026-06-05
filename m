@@ -2,78 +2,76 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id eZSQHZB5Imo/YAEAu9opvQ
+	id eTHRHDF5ImofYAEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:24:00 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:22:25 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15FBB645ED6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D8FE645E85
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:22:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=LcIl2QsH;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=AVdrMZoK;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E888683D9C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:23:59 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id DDFCF83D9C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 05 Jun 2026 09:22:24 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1780644239;
- b=G+dIuyQueVV4hcSK84KKRASLT2pbS272U6Yz+EhEPv3j1sKJZwmNhmj8rX698Npc9HM6U
- eZdqiY63MOkvAIOnhAKtqUA7+IyapwEHkhXeJRuza6obuJP7nvFOcCwXPDLNPpVkp1o1gm1
- risFzWPNGHqgUa7lPwD4pkhQ2J3p8Do=
+ t=1780644144;
+ b=MCXtr6id+037J80m4HmcIX/hY6GPxnsacKH2Q3ZxH76oK88SI8n4y4iX/qyNZ/W74TxBa
+ gaJyrs/fjg3zzB3/6dqjV7qqgwZKoHRXR5JBPgQUCFDNFm7as7mOWvxrCmeYYunh5c3++ii
+ j1PhbGQ956JlHPeHFKk8mJmA187ygBI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1780644239; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1780644144; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=8Z3e0PI28LeGcMYG8odw5Z/Z//UT2Tl+ozm0Mg/7nqE=;
- b=RydItRv6zQzUA6ZF/wh9ky/ns4MlHsLtdfY++Cack44Oa7Ct7LCyqt66XtqXz4+rdSESX
- dymqpNMTncR9B6z4hyJyROGR8smqCoqUanEym3wJ4AwNGD0MZVpZZWypSySJsy7CzJgpH5H
- qNxgG+oZDxNz58V4Kd3GRm47Ssqovz0=
+ list-archive; bh=RsEJ65hYXPcCWEyEzR+SRyfNmgEFmJ3/S+o4eeaUnSA=;
+ b=Q6UjRnIRHXclhHqYknKTcgTsRXcvv9DjERqo8GRCD/dHgH4PaHZkRVD7Asb9/sSsSdMiz
+ mu1hzcv9UH7BBxD2/0boIYkfvvpNFPwkq2mi0CxB0vohEJ2B6ulCZVXu2ZTLKkkCGApG3Yp
+ aobEEUFlXG9lJ+CrhB1Xv3HQoyW0htA=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 5B410810BF
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jun 2026 09:20:17 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780644017;
-	b=rDHuduCiqsnfK/In/i9Y8+I0RBLU8AGEb8mxbKAwczZk+lMvlWTEOJwxirT72hKMPl7wIg
-	Xa6FG4IZAofxjLj0nWcTaQsCu2uWfBJSeQu7RLbfHGHk3bTJQ3l+jJVRmKRwnBQwWuWNuZ
-	Lf8EH5B7AFVSMpSseMGaRK3iOmgJ/XI=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 414BB81060
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 05 Jun 2026 09:20:16 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1780644016;
+	b=32YeAUdRoOxmgLOWXztLgjyUAuo/mWmBj5O3dZ82ixtcUFQJJAt9YHH8ZUV4mdzykmSM3B
+	5plNC8dTuXWrp1HAniESUhlPDQWQ8LrxSnfABfvXVoyoAe232XkR6MmAhCSSLffM63x9A5
+	/u4xEy076JmdAn+OFdSIcGC1MFRzufc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=LcIl2QsH;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=AVdrMZoK;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de;
+ 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1780644017;
+	s=20121; t=1780644016;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=8Z3e0PI28LeGcMYG8odw5Z/Z//UT2Tl+ozm0Mg/7nqE=;
-	b=Eru8yEs4a90lqC5XlmTyolFFBM+SsQsZaVVPm8sU45HKO+n1a4zpdlIEyPk4uYHGK3zizO
-	qeU2ou33tKGwSqRHFVl/w/GufVsgPV55wByOLrUmAgJTOe6aVF9P/pxGdFJ6dfgQTFG8qP
-	UvmF2OTibHBqYEfzpXom9uN976OIZpQ=
+	bh=RsEJ65hYXPcCWEyEzR+SRyfNmgEFmJ3/S+o4eeaUnSA=;
+	b=Km9Gcank0UykwE2zvcZs/LTnFx5dXcRH5qAubwhxu89uRdoM2aM5PNYhRQu0KpO15Jkag5
+	d2CX0lGK8VZbHnXR3HNdxb+F6GB6PyZ+vrJ/pd9swRTV8Vpy9Z5curkXH7oJPx7k1LYz/n
+	OcHZ4MPYm9hrmBmaN2DxoqTPv3VGu7E=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1780644014;
+	s=09092022; t=1780644015;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=8Z3e0PI28LeGcMYG8odw5Z/Z//UT2Tl+ozm0Mg/7nqE=;
-	b=LcIl2QsHTdsLYxV/GZ5xPeL2W2u0vR4HHxqSzoAsROkZZqSU+qzUFsBeT/NfSvYIwNWt7m
-	qbIbDlBVGdipyNX0d689qoitud/P1z9XGQgqGSIWvoGebFEoF/y8BXQ7TY2Qy62Gs/Iuy3
-	oOqEkxjcUKh2U3dQoAPy7WX9sOoSYvyFQ05QEAFRAH5/uifRNwdopc/007UHK/y/geS4aT
-	KPgHu+HFNJlYxQA9SGQtKoDnbuU3/MxDZHEbwCEPPvHkCo/I9f6m18bq1UqNY4b8XldSG8
-	XnBqNgIsr13vWUDaozQ0mGjd+DMpoytRB9fVFzmCfWOa36AgJkfnSN38HF0uOA==
+	bh=RsEJ65hYXPcCWEyEzR+SRyfNmgEFmJ3/S+o4eeaUnSA=;
+	b=AVdrMZoK84TZnMtoxSL8nFPkwZS8Cka89dVvERMvAhfdwSRzEJvLB9a3ZJ9RmVszn9/lRi
+	p6be7JHwAoebauFj7M8qpttbPrVjcZU5TjmrA8Wuqor0toEtuUsLw7XwwcxKsom0xWbrh/
+	VaCaBgC3m+EdtZ2eKKnjb29T1k6PTndAhtbkkWhiWA03TLmbpgBtoOcq12eTl8eO6Urqzc
+	NiylzQlkqcSbBsyy/sWwWhg0cn8+mKfUCgCupTVJmG61MYZ2PdvSfsNZsqJ04ZkN+m1j5K
+	/uhGfRQLMuEtl5nOgmMWsMbKoyEjou5DuflzIuL+f8aVIpxoNl7JcK+qXCS03g==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -84,17 +82,16 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	b.a.t.m.a.n@lists.open-mesh.org,
 	Sven Eckelmann <sven@narfation.org>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 05/11] batman-adv: document cleanup of
- batadv_wifi_net_devices entries
-Date: Fri,  5 Jun 2026 09:19:59 +0200
-Message-ID: <20260605072005.490368-6-sw@simonwunderlich.de>
+Subject: [PATCH net-next 06/11] batman-adv: correct batadv_wifi_* kernel-doc
+Date: Fri,  5 Jun 2026 09:20:00 +0200
+Message-ID: <20260605072005.490368-7-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260605072005.490368-1-sw@simonwunderlich.de>
 References: <20260605072005.490368-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: IVMJAJBZAO3RTUGPOU6TCN7YGZDXKOQI
-X-Message-ID-Hash: IVMJAJBZAO3RTUGPOU6TCN7YGZDXKOQI
+Message-ID-Hash: 4DN74WKE37NQROH4JZUHNT7RBGKUZN56
+X-Message-ID-Hash: 4DN74WKE37NQROH4JZUHNT7RBGKUZN56
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +105,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/IVMJAJBZAO3RTUGPOU6TCN7YGZDXKOQI/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4DN74WKE37NQROH4JZUHNT7RBGKUZN56/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -137,7 +134,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,simonwunderlich.de:mid,simonwunderlich.de:dkim,simonwunderlich.de:from_mime,simonwunderlich.de:email,narfation.org:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,simonwunderlich.de:from_mime,simonwunderlich.de:email];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -148,35 +145,67 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 15FBB645ED6
+X-Rspamd-Queue-Id: 0D8FE645E85
 
 From: Sven Eckelmann <sven@narfation.org>
 
-It doesn't seem to be obvious how the entries from the
-batadv_wifi_net_devices rhashtable are getting removed before the actual
-rhashtable is destroyed. Document the idea behind the process and which
-steps are involved.
+The original kernel documentation for the batadv_wifi_* functions contained
+copy+paste errors. Correct them to make it easier understandable.
 
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/hard-interface.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ net/batman-adv/hard-interface.c | 6 +++---
+ net/batman-adv/hard-interface.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 04b227ec80525..e2c85bd8dbb53 100644
+index e2c85bd8dbb53..60cee2c2f2f41 100644
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -1185,5 +1185,9 @@ int __init batadv_wifi_net_devices_init(void)
+@@ -971,9 +971,9 @@ static int batadv_hard_if_event_meshif(unsigned long event,
+ /**
+  * batadv_wifi_net_device_insert() - save information about wifi net_device
+  * @net_dev: net_device to add to batadv_wifi_net_devices
+- * @wifi_flags: net_device which generated an event
++ * @wifi_flags: extracted batadv_hard_iface_wifi_flags of a net_device
+  *
+- * Return: 0 on result, negative value on error
++ * Return: 0 on success, negative value on error
   */
- void batadv_wifi_net_devices_deinit(void)
- {
-+	/* just destroy table. entries should have been removed by
-+	 * unregister_netdevice_notifier() and the corresponding
-+	 * NETDEV_UNREGISTER events
-+	 */
- 	rhashtable_destroy(&batadv_wifi_net_devices);
- }
+ static int
+ batadv_wifi_net_device_insert(struct net_device *net_dev, u32 wifi_flags)
+@@ -1006,7 +1006,7 @@ batadv_wifi_net_device_insert(struct net_device *net_dev, u32 wifi_flags)
+ 
+ /**
+  * batadv_wifi_net_device_remove() - remove information about wifi net_device
+- * @device_state: wifi net_device state to remove from batadv_wifi_net_device_state
++ * @device_state: wifi net_device state to remove from batadv_wifi_net_devices
+  */
+ static void
+ batadv_wifi_net_device_remove(struct batadv_wifi_net_device_state *device_state)
+diff --git a/net/batman-adv/hard-interface.h b/net/batman-adv/hard-interface.h
+index 822e7e378c4d1..af31696c39780 100644
+--- a/net/batman-adv/hard-interface.h
++++ b/net/batman-adv/hard-interface.h
+@@ -126,7 +126,7 @@ batadv_primary_if_get_selected(struct batadv_priv *bat_priv)
+ /**
+  * batadv_is_cfg80211() - check if the given hardif is a cfg80211
+  *  wifi interface
+- * @wifi_flags: extracted batadv_hard_iface_wifi_flagss of an net_device
++ * @wifi_flags: extracted batadv_hard_iface_wifi_flags of a net_device
+  *
+  * Return: true if the net device is a cfg80211 wireless device, false
+  *  otherwise.
+@@ -143,7 +143,7 @@ static inline bool batadv_is_cfg80211(u32 wifi_flags)
+ 
+ /**
+  * batadv_is_wifi() - check if flags belong to wifi interface
+- * @wifi_flags: extracted batadv_hard_iface_wifi_flagss of an net_device
++ * @wifi_flags: extracted batadv_hard_iface_wifi_flags of a net_device
+  *
+  * Return: true if the net device is a 802.11 wireless device, false otherwise.
+  */
 -- 
 2.47.3
 
