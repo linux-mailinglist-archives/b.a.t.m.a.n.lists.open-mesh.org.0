@@ -2,107 +2,104 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +Ci9C/CuKWrVbwMAu9opvQ
+	id lbgHJZGuKWrGbwMAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:37:36 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:36:01 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBB2666C4E0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:37:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37DEF66C4B0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:36:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=universe-factory.net header.s=dkim header.b=KSR3R7D5;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="G/q5JQyd";
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
-	dmarc=pass (policy=reject) header.from=universe-factory.net;
+	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 98C8D83FE4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:37:35 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 02EF883FE9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:36:01 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1781116655;
- b=uf9qPmJN6JWtxRR/PdSZIe853MQSe1I4srFin9wCXIWZTBRftuiEbUKFFhq9944j6w/H9
- sq21bsfmPk/H7bJ0bz7OpUkyJjfNL7TEzTYPsCmYh+ND3sWW+W67ybk0lWEj2e35ogL4aE7
- 1LCFq5TAA0uFNwuBMdCLF0jnmQYYTos=
+ t=1781116561;
+ b=gXfZUonRtIvaGy1o6fF/voCJ5a2IZLvmsLyPdWHdwrhjkFlrIUyGpETsFmKLD9NGK+WO3
+ 4Z78R3QDso5PhniLQnU1ABlJRpnU167Q0Lh5GuZ5jrz3LfrGXhYaFTBzDgidpKIr04wRs5T
+ RlsO0oy77gWGGSlHYSOzhu1WnhIdmSM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1781116655; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1781116561; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=Lcq7x01AFOAsOBmf/radJ1N6xxoViPuimWg8PHRj0oc=;
- b=0uSJmPlrS7DYfm+18/FqqDMY92J5/wuSfMEH5kx/tzqZXFx0vsQqyRXDwbMWPtmHbp59L
- qf0lb6IZwnCC2NhADaDklqqUz2XAUTTfEUwLc/TW84YxZ/LUZt+1NtlK3x5MKN0KX2g7xtC
- rysdx6d6MN/exGa/FuIKkNXeGkCZChI=
+ list-archive; bh=/CjyputoTMp6UpnADn3bCtJgpBMxojZzwM5b81b2ZiY=;
+ b=S9YoJMcP0gRc122d0cGUix758oodWqTKQCBjqRpsaCZJxci2vYVsgDqS4qEksbjXz2O6o
+ umMVGLXEuwQbpXcsscCr6iY2W1PKAYTRBaca8KAAzk01xuFKWa4oU2u9bL2nDJPwGtOAIH4
+ 2rFgLeOZEBPnx2tNE00Xm5jWU9ND5JQ=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=universe-factory.net;
+ dkim=pass header.d=narfation.org;
  arc=pass;
- dmarc=none
-Received: from mail.universe-factory.net (osgiliath.universe-factory.net
- [141.95.161.142])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7B98E81C55
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 10 Jun 2026 19:50:15 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781113816;
-	b=mq15itHehgluDIUrUwvx1wgbSVjKhv04MfBeRrBwVG5x1rhz7lFEXl+Kfw6TYpRPZCuVrg
-	T49OaXQaKHBX1FhF5stLq+RKqs8xdhufSJIhS77hHV4cBKdr00bVwr9Np+2M94x1qESo7B
-	3bTgHIi/2+XeF5Ve48DPdOf4lBmpN+s=
+ dmarc=pass header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 8F1A081CCE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 10 Jun 2026 20:35:05 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781116516;
+	b=r/7Skf+DQ4L863vs4UzUJfQc7ykBFUfMeFAQ6h2t9iOtpgykN2MYPYh8ebyUjO8c/EPNUD
+	N4Yos7ov2YswRMZboNwd9BiLhztgAV0+8cjLTEgvkGJfgL6NiPon0ztXWrI8cmMLc7968H
+	GrjeHF7SaQfc+81FTQwpr6SaJVawBG0=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1781113816;
+	s=20121; t=1781116516;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Lcq7x01AFOAsOBmf/radJ1N6xxoViPuimWg8PHRj0oc=;
-	b=e/947x8Qd7l9jgLD3ccSCTcvM+3UFFb2atZa9TYFt2XWRzBJuXlP18gV/LpWsGpZNoeoMR
-	K7bJ76z5CoDuFu3AVQW27ZPRGzo5lotR94Pm1jkwj6P5ZtcC/u4n+Ib7BIR+POcpaIbfDm
-	VsSdkAYWOySUICCTw10zGxlLfczuehE=
+	bh=/CjyputoTMp6UpnADn3bCtJgpBMxojZzwM5b81b2ZiY=;
+	b=xNHwV7dtRbjhuIScacSDf/yInN9uiGwe1MHABP2DWknWbX2NqlLu5Dty24fJTV1HRvqG/Y
+	UYqle5FTEkheucLvL5l7mk5FGtjSz8MZdiGZotzlmJUfGUXBAGDXinCU1z/oJWUYJQsxub
+	4GKuD/K5xFutEWiLxGLyxdJkGtF5AcU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=universe-factory.net header.s=dkim header.b=KSR3R7D5;
-	dmarc=pass (policy=reject) header.from=universe-factory.net;
-	spf=pass (diktynna.open-mesh.org: domain of neocturne@universe-factory.net
- designates 141.95.161.142 as permitted sender)
- smtp.mailfrom=neocturne@universe-factory.net
-Message-ID: <658521a4-cbcf-4f71-b5ee-586bec229bd4@universe-factory.net>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=universe-factory.net;
-	s=dkim; t=1781113813;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="G/q5JQyd";
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
+Received: by dvalin.narfation.org (Postfix) id 3EB0B20280;
+	Wed, 10 Jun 2026 18:35:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1781116504;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Lcq7x01AFOAsOBmf/radJ1N6xxoViPuimWg8PHRj0oc=;
-	b=KSR3R7D529eN+UVtLfRVXEFx5TFDlKuGI5usRUdVBwE/bm8cz48Gsf3s2iSbXwvcvi9PS1
-	Sy7V/D2mDyRJG4SQh5txlq822ruTbiFJVZ1v4WHwjrgY0foDv/JBpCyYA+km15IO9iO1xU
-	KA8e9IWamOb1ZNp5oARQx/Nc++Wfkm59FR9jP1HGcWTMQFN7MeBHmFxkvb7q6jXq3VKFwd
-	caSK2gu79B9KoVDEqCYm8AM0B5jp72T5qt8oitfmBCTbTSI92q1Ioqmy6Zi5sh9t6nagne
-	ZFjOlNkXqzlq/mkuSpG/dFa+Ql8/c+FBEOS5KH1RJdmOQm6cOIVTe/BKtJW4Iw==
-Date: Wed, 10 Jun 2026 19:50:12 +0200
-MIME-Version: 1.0
+	bh=/CjyputoTMp6UpnADn3bCtJgpBMxojZzwM5b81b2ZiY=;
+	b=G/q5JQydR4iW7Ek6zgHTxXjx2m2v9a+lpgidSLr4NJ15W0CetxSUI+/FPKP7W0WPFeklc8
+	DFkMq+48o4khy5M8xqySgM3UROp8D10VnXx+phYDruDmFeDgOrHEVMhaipsJpBqigUz0W+
+	9FiyzfkPdkjl+o9bec62KLbykaxFB5g=
+From: Sven Eckelmann <sven@narfation.org>
+To: Nora Schiffer <neocturne@universe-factory.net>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
 Subject: Re: [PATCH batadv] batman-adv: gw: don't deselect gateway with active
  hardif
-Content-Language: en-US-large
-To: Sven Eckelmann <sven@narfation.org>, b.a.t.m.a.n@lists.open-mesh.org
+Date: Wed, 10 Jun 2026 20:35:00 +0200
+Message-ID: <6276013.lOV4Wx5bFT@sven-desktop>
+In-Reply-To: <658521a4-cbcf-4f71-b5ee-586bec229bd4@universe-factory.net>
 References: <20260607-gw-disable-check-v1-1-d156beb975ce@narfation.org>
-From: Nora Schiffer <neocturne@universe-factory.net>
-In-Reply-To: <20260607-gw-disable-check-v1-1-d156beb975ce@narfation.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Bar: ---
-X-MailFrom: neocturne@universe-factory.net
-X-Mailman-Rule-Hits: member-moderation
+ <658521a4-cbcf-4f71-b5ee-586bec229bd4@universe-factory.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart5107962.31r3eYUQgx";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: QHNKWMK2RP4LB3KTXELX7HFEYGFCQ6ER
+X-Message-ID-Hash: QHNKWMK2RP4LB3KTXELX7HFEYGFCQ6ER
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency
-Message-ID-Hash: VBZZHR3DHVM2UDKGMMQVVRZUGU4WGHFI
-X-Message-ID-Hash: VBZZHR3DHVM2UDKGMMQVVRZUGU4WGHFI
-X-Mailman-Approved-At: Wed, 10 Jun 2026 20:36:21 +0200
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
+ nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
+ news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VBZZHR3DHVM2UDKGMMQVVRZUGU4WGHFI/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/QHNKWMK2RP4LB3KTXELX7HFEYGFCQ6ER/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -111,96 +108,87 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.01 / 15.00];
+X-Spamd-Result: default: False [-3.61 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[universe-factory.net,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[universe-factory.net:s=dkim];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	HAS_LIST_UNSUB(-0.01)[];
-	R_SPF_NA(0.00)[no SPF record];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sven@narfation.org,m:b.a.t.m.a.n@lists.open-mesh.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:neocturne@universe-factory.net,m:b.a.t.m.a.n@lists.open-mesh.org,s:lists@lfdr.de];
+	R_SPF_NA(0.00)[no SPF record];
+	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[neocturne@universe-factory.net,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[universe-factory.net:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neocturne@universe-factory.net,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[narfation.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:email,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BBB2666C4E0
+X-Rspamd-Queue-Id: 37DEF66C4B0
 
-On 07/06/2026 14:57, Sven Eckelmann wrote:
-> The batadv_hardif_cnt() was previously checking if there is an
-> batadv_hard_iface->mesh_iface which is has the same mesh_iface. And since
-> batadv_hardif_disable_interface() was resetting the
-> batadv_hard_iface->mesh_iface after this check, it had to verify whether
-> *1* interface was still part of the mesh_iface before it started the
-> gateway deselection.
+--nextPart5107962.31r3eYUQgx
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Nora Schiffer <neocturne@universe-factory.net>
+Cc: b.a.t.m.a.n@lists.open-mesh.org
+Date: Wed, 10 Jun 2026 20:35:00 +0200
+Message-ID: <6276013.lOV4Wx5bFT@sven-desktop>
+MIME-Version: 1.0
+
+On Wednesday, 10 June 2026 19:50:12 CEST Nora Schiffer wrote:
+[...]
+> >   	/* nobody uses this interface anymore */
+> > -	if (batadv_hardif_cnt(hard_iface->mesh_iface) <= 1)
+> > +	if (batadv_hardif_cnt(hard_iface->mesh_iface) == 0)
+> >   		batadv_gw_check_client_stop(bat_priv);
 > 
-> But after batadv_hardif_cnt() is now checking the lower interfaces of
-> mesh_iface and batadv_hardif_disable_interface() already removed the
-> interface via netdev_upper_dev_unlink() earlier in this function, the check
-> must now make sure that *0* interfaces can be found by batadv_hardif_cnt()
-> before selected gateway must be deselected. Otherwise the deselection would
-> already happen one batadv_hard_iface too early.
+> The change looks correct, but this is the only remaining user of 
+> batadv_hardif_cnt(), and it's only checking if there aren't any hardifs, so 
+> this could avoid counting altogether and just use
 > 
-> Fixes: 702c52a87eab ("batman-adv: store hard_iface as iflink private data")
-> Cc: Nora Schiffer <neocturne@universe-factory.net>
-> Signed-off-by: Sven Eckelmann <sven@narfation.org>
-> ---
->   net/batman-adv/hard-interface.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> 	if (list_empty(&hard_iface->mesh_iface->adj_list.lower))
 > 
-> diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-> index 60cee2c2..ae19f144 100644
-> --- a/net/batman-adv/hard-interface.c
-> +++ b/net/batman-adv/hard-interface.c
-> @@ -879,7 +879,7 @@ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface)
->   	batadv_hardif_recalc_extra_skbroom(hard_iface->mesh_iface);
->   
->   	/* nobody uses this interface anymore */
-> -	if (batadv_hardif_cnt(hard_iface->mesh_iface) <= 1)
-> +	if (batadv_hardif_cnt(hard_iface->mesh_iface) == 0)
->   		batadv_gw_check_client_stop(bat_priv);
+> and drop batadv_hardif_cnt().
 
-The change looks correct, but this is the only remaining user of 
-batadv_hardif_cnt(), and it's only checking if there aren't any hardifs, so 
-this could avoid counting altogether and just use
+Good point. Will submit a new version.
 
-	if (list_empty(&hard_iface->mesh_iface->adj_list.lower))
+> We are holding RTNL here, right?
 
-and drop batadv_hardif_cnt().
+Yes, all callers are holding RTNL.
 
-We are holding RTNL here, right?
+Regards,
+	Sven
+--nextPart5107962.31r3eYUQgx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Best,
-Nora
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCaimuVAAKCRBND3cr0xT1
+y6wEAQC0HYuK67xOj13zQXC3+qxLppYywmxGILFbciSYtRt7EgEAqCIG5+mrhDab
+0i0lGBq9MphDdttNm4l1ZmqGhUXPkQM=
+=yHDg
+-----END PGP SIGNATURE-----
+
+--nextPart5107962.31r3eYUQgx--
 
 
->   
->   	hard_iface->mesh_iface = NULL;
-> 
-> ---
-> base-commit: 385b248dd4e46c4ce022adeb1b13e547d1954901
-> change-id: 20260607-gw-disable-check-f3393c3a4989
-> 
-> Best regards,
-> --
-> Sven Eckelmann <sven@narfation.org>
-> 
 
