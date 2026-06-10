@@ -2,101 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qGyMLr2uKWrPbwMAu9opvQ
+	id b6LpEqa6KWrTcQMAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:36:45 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 21:27:34 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A60B66C4CE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D691766C814
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 21:27:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=AGIZY74a;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Q+p5WywK;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 388C784215
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 20:36:45 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id ADF5983F94
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 10 Jun 2026 21:27:33 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1781116605;
- b=z1M/YnGkrCepE0iZY5H/1ZNUffXeIu077Mukc0wSphAx45sPVI2ofkJcEw5/ZFcOZ5Btk
- tbVVWJtGKdEGJmU7Kdbu6BxBs/K7Jl3GnsvFlDSO28DWffB0UyyxAjZj9+e7ErK3+VSGOz2
- X9DmWCrEq7liKIXs1maVTs1Rc5HGToQ=
+ t=1781119653;
+ b=PHKWQEdInIBEdbr9S9VCtOG4wSSj8hht6Jjuhhjuoarr/hFiKOAmpKDEmGZmGYioM8ZjR
+ FuR2n891ZPNZqhEq9aMMXWWVDPG5ggxrBBkctOdTO944g8lSUCVbjQHhPcRyZBlwZozSjFO
+ ZmOn9Vbmp8Y6mQCfHPojR+RiONMm0y0=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1781116605; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1781119653; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=dianGQe5jzV7/3TzbcQNmlfGrSlnmg+bhilcmzoSiAI=;
- b=TBluH8SfWlSDyoC5sA1k+m5l0Yr4SiiJIpoZ1wYgXx/H5JG7Ji5TFAUe5cD9XM5yPJwdq
- OY2uSY/UQRO4SrkCE1SKQKa1BDJqlsTN0XYOCzksOO+tYpdPyT8snmuz8q5qKMiJuX+iqWY
- xRMSbftyQNgVvWgSYmbXC+1HpPJzmN8=
+ list-archive; bh=/7w1p71EYXdBPBHi9un2jfCntx2ixCDoyM5/jUZp+/I=;
+ b=m+hxkckcMgFkvHs53Km1+KU9C1Nt9KLMU3gRmlZMAV/u01jg7/vRd6L9YOrBNtu1xnl8b
+ NIEg4R5driFWjSgcHiHRPRt9sOPVRKZyNhKvnwiw0bkgoWLz3Tk9YqKXHjDeyT4Vs+rerCC
+ tOmcO+Vpc4Fuebt0boTk/wXCmJZEvd0=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 1445F83E9F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 10 Jun 2026 20:35:36 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781116541;
-	b=UlILfUb4iICMUKByvk46h3uq9oyBn7Ypae02E0x4wNaPRyDhyNcKiEvB1AjXPxaV9REcKK
-	Dpq2iBB5YmUmXTDtfyaAqdpG1/+DbWczc98gsj0UKYCTC1Be4GNl2UJNHU6zaXJoWC0JdL
-	JDesW9cr4hnjw4rb9EF5GZ6OTYkEzMA=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 2D7A6827CE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 10 Jun 2026 21:26:39 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781119609;
+	b=a+YuENPBPj7r1xSvBgKUPHI+pSxBCwDnIFlUyIYm4YQN/9VEUA73uRyOYqDHYNrDsrdYXL
+	tiG/gUvynjLl9JSORqMe0sxjNAnP9J8WohY9iIcvSS0Lbd4QTHaGQPhldvHMX9YxORJd33
+	loOvYorTdNWs1f6RyyCMVxkjov6Be08=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1781116541;
+	s=20121; t=1781119609;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=dianGQe5jzV7/3TzbcQNmlfGrSlnmg+bhilcmzoSiAI=;
-	b=1tei1Paa9sdL8XNTBdmztQDMQMOo1LGQLPXNYTIxKCW2Q8QfJYVTubiYawm/Ms+hXvjWDa
-	Jxq2t2v/Xwy1m+CpJ7izf0Z+fnp6xV7gE015n6pPVU1thnROY/YrElnXQ2+ilZJFehq1ld
-	mhIyc6NXO7uBuH7xSYXQWTzKPvSDbOk=
+	bh=/7w1p71EYXdBPBHi9un2jfCntx2ixCDoyM5/jUZp+/I=;
+	b=TqmD609hDAqIlnyCD7cLEHtYd6H880/ZXU54scO+UzzI/BIf5KnlTsIcAnAr+FpHccElJf
+	5RrWDnDJl2HMe4im3JwUvLzY77g5R1jT8RPO4t7LQMbg6txyhmqoEk3W24J04QLKUn9CSb
+	LXE+gQG4cC3tej3OumJIaXk/HeqZ0/c=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=AGIZY74a;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Q+p5WywK;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org
-Received: by dvalin.narfation.org (Postfix) id 79F6A20280;
-	Wed, 10 Jun 2026 18:35:35 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 6746C1FED3;
+	Wed, 10 Jun 2026 19:26:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1781116535;
+	s=20121; t=1781119598;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=dianGQe5jzV7/3TzbcQNmlfGrSlnmg+bhilcmzoSiAI=;
-	b=AGIZY74aQguQQjkuPmYjv6vjowg7FBCCOo4rcAIvborQ7pgPnHBnT1DCCHAXSyUOIm/rLp
-	CfMhA0/4XcnGVc8OwIwHJLXVSLk5j69IPWrt8MQW/sfJAqeRI1hk8w5FLzpn9NESSSEmj0
-	bWnAIVTvZ5H2BRfIRnfYNtz9+2EykWs=
+	bh=/7w1p71EYXdBPBHi9un2jfCntx2ixCDoyM5/jUZp+/I=;
+	b=Q+p5WywKQRZGmkQglT2dYp+N1u/nVCBYPMMSOCXL72WmsRAxEbKBEc9L5eNWmEjJqoyssx
+	lLlJke1lc/zINBttjmZkbM53WPU7TLV1tYGHfdbLNil2bVcGgk+mKh2VTE90s6u9kXu6Yu
+	BOHdqfO4FJRjCx0RhgTUyyJsJmWJqgk=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Wed, 10 Jun 2026 20:35:27 +0200
-Subject: [PATCH batadv v2] batman-adv: gw: don't deselect gateway with
- active hardif
+Date: Wed, 10 Jun 2026 21:26:35 +0200
+Subject: [PATCH batadv] batman-adv: tp_meter: keep unacked list for
+ receivers
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260610-gw-disable-check-v2-1-12c96d736410@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAG6uKWoC/3WOyw6CMBBFf4XM2jGUClhX/odh0ccAVVNMW6uG8
- O8WXLu8N+c+ZgjkLQU4FTN4SjbYyWVR7QrQo3QDoTVZQ1VWTdmULQ4vNDZIdSfUI+kb9pwLrrk
- 8iKOAHHt46u17q7yAklGaBN3PD091JR3XvpUcbYiT/2zbiW38/5nEkKFhdaNIibbWdHbS9zLmv
- /vJD9Aty/IFAqNfGs4AAAA=
-X-Change-ID: 20260607-gw-disable-check-f3393c3a4989
+Message-Id: <20260610-tp-unacked-list-v1-1-02ecd953ebdd@narfation.org>
+X-B4-Tracking: v=1; b=H4sIAGq6KWoC/yWM0QrCMAwAf2Xk2UA7sKK/Ij6kTTajUkfTjcHYv
+ 1v18Q7uNjApKgaXboMii5q+cwN/6CDdKY+Cyo2hd31wwTusE86Z0lMYX2oVOUQ6s/P+JEdo1VR
+ k0PV3vEKkSrzA7e9tjg9J9buDff8Ah5zdjXsAAAA=
+X-Change-ID: 20260610-tp-unacked-list-d6ba9d0117e5
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3235; i=sven@narfation.org;
- h=from:subject:message-id; bh=ySL951JDrgigbgU0ROhPgtqIWKNqumbJPL8a58Kl9gY=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFma6wpNT6WoHhJpUgwId5vt/Gp63Mkrz0+YHngtlbP8/
- ZpjD5ivd5SyMIhxMciKKbLsuZJ/fjP7W/nP0z4ehZnDygQyhIGLUwAmwhnO8Fd82UXWh8/rax9G
- xH2Ye/PGE8v9L2x/nFz99MmDd/a2G17KM/wPUTfknMNolvlG92OQcs2imlPszqvMdJvl3i1UT80
- 1ms4PAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8424; i=sven@narfation.org;
+ h=from:subject:message-id; bh=HWhLbsfvv46KTgK1T/M9mYyMMnp7cphSNKGc6+eWR/o=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmau7JTPdj7VJzzZIr3GSZcVpwjnsf55Mr88yvnaq+7s
+ PV4oGJXRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAiMyYz/DPxWnZYbH7ghzL2
+ C4/uxNwocK4o2lJ/9nd41+pjjoVvDV0YGd50+0YdCrTfP/vHOX6eQ/zbtdqUg5kc39xsfVJrr3X
+ Jkx0A
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: NGSNXFSH3CDUXJ2AQTVZ4KQXXUDEPLSO
-X-Message-ID-Hash: NGSNXFSH3CDUXJ2AQTVZ4KQXXUDEPLSO
+Message-ID-Hash: UW3JQMODPCNZZQO5DN44HEMAK7GHJD32
+X-Message-ID-Hash: UW3JQMODPCNZZQO5DN44HEMAK7GHJD32
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -110,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/NGSNXFSH3CDUXJ2AQTVZ4KQXXUDEPLSO/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/UW3JQMODPCNZZQO5DN44HEMAK7GHJD32/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -147,87 +146,245 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,msgid.link:url,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5A60B66C4CE
+X-Rspamd-Queue-Id: D691766C814
 
-The batadv_hardif_cnt() was previously checking if there is an
-batadv_hard_iface->mesh_iface which is has the same mesh_iface. And since
-batadv_hardif_disable_interface() was resetting the
-batadv_hard_iface->mesh_iface after this check, it had to verify whether
-*1* interface was still part of the mesh_iface before it started the
-gateway deselection.
+There is no need to share the unacked list between sender and receivers.
+Only receivers will ever write to and read from it. The initialization in
+batadv_tp_start() was therefore never needed. After its removal, it is
+enough to just store it in struct batadv_tp_receiver.
 
-But after batadv_hardif_cnt() is now checking the lower interfaces of
-mesh_iface and batadv_hardif_disable_interface() already removed the
-interface via netdev_upper_dev_unlink() earlier in this function, the check
-must now make sure that *0* interfaces can be found by batadv_hardif_cnt()
-before selected gateway must be deselected. Otherwise the deselection would
-already happen one batadv_hard_iface too early.
-
-Because a 0 hardif count from batadv_hardif_cnt() is equal to an empty
-list, it is possible to replace the counting with a simple list_empty().
-
-Fixes: 702c52a87eab ("batman-adv: store hard_iface as iflink private data")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-Changes in v2:
-- dropped batadv_hardif_cnt, thanks Nora Schiffer
-- Link to v1: https://patch.msgid.link/20260607-gw-disable-check-v1-1-d156beb975ce@narfation.org
----
- net/batman-adv/hard-interface.c | 28 ++--------------------------
- 1 file changed, 2 insertions(+), 26 deletions(-)
+ net/batman-adv/tp_meter.c | 82 ++++++++++++++++++++++++++---------------------
+ net/batman-adv/types.h    | 14 ++++----
+ 2 files changed, 53 insertions(+), 43 deletions(-)
 
-diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 60cee2c2..03d01c20 100644
---- a/net/batman-adv/hard-interface.c
-+++ b/net/batman-adv/hard-interface.c
-@@ -814,30 +814,6 @@ int batadv_hardif_enable_interface(struct batadv_hard_iface *hard_iface,
- 	return ret;
+diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
+index 7e98cbfb..22ae0123 100644
+--- a/net/batman-adv/tp_meter.c
++++ b/net/batman-adv/tp_meter.c
+@@ -353,28 +353,16 @@ batadv_tp_list_find_sender_session(struct batadv_priv *bat_priv, const u8 *dst,
  }
  
--/**
-- * batadv_hardif_cnt() - get number of interfaces enslaved to mesh interface
-- * @mesh_iface: mesh interface to check
-- *
-- * This function is only using RCU for locking - the result can therefore be
-- * off when another function is modifying the list at the same time. The
-- * caller can use the rtnl_lock to make sure that the count is accurate.
-- *
-- * Return: number of connected/enslaved hard interfaces
-- */
--static size_t batadv_hardif_cnt(struct net_device *mesh_iface)
--{
--	struct batadv_hard_iface *hard_iface;
--	struct list_head *iter;
--	size_t count = 0;
--
--	rcu_read_lock();
--	netdev_for_each_lower_private_rcu(mesh_iface, hard_iface, iter)
--		count++;
--	rcu_read_unlock();
--
--	return count;
--}
--
  /**
-  * batadv_hardif_disable_interface() - Remove hard interface from mesh interface
-  * @hard_iface: hard interface to be removed
-@@ -878,8 +854,8 @@ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface)
- 	netdev_upper_dev_unlink(hard_iface->net_dev, hard_iface->mesh_iface);
- 	batadv_hardif_recalc_extra_skbroom(hard_iface->mesh_iface);
+- * batadv_tp_vars_common_release() - release batadv_tp_vars_common from lists
++ * batadv_tp_sender_release() - release batadv_tp_sender
+  *  and queue for free after rcu grace period
+  * @ref: kref pointer of the batadv_tp_vars_common
+  */
+-static void batadv_tp_vars_common_release(struct kref *ref)
++static void batadv_tp_sender_release(struct kref *ref)
+ {
+-	struct batadv_tp_vars_common *tp_vars;
+-	struct batadv_tp_unacked *un, *safe;
++	struct batadv_tp_sender *tp_vars;
  
--	/* nobody uses this interface anymore */
--	if (batadv_hardif_cnt(hard_iface->mesh_iface) <= 1)
-+	/* nobody uses this mesh interface anymore */
-+	if (list_empty(&hard_iface->mesh_iface->adj_list.lower))
- 		batadv_gw_check_client_stop(bat_priv);
+-	tp_vars = container_of(ref, struct batadv_tp_vars_common, refcount);
+-
+-	/* lock should not be needed because this object is now out of any
+-	 * context!
+-	 */
+-	spin_lock_bh(&tp_vars->unacked_lock);
+-	list_for_each_entry_safe(un, safe, &tp_vars->unacked_list, list) {
+-		list_del(&un->list);
+-		kfree(un);
+-	}
+-	spin_unlock_bh(&tp_vars->unacked_lock);
+-
+-	kfree_rcu(tp_vars, rcu);
++	tp_vars = container_of(ref, struct batadv_tp_sender, common.refcount);
++	kfree_rcu(tp_vars, common.rcu);
+ }
  
- 	hard_iface->mesh_iface = NULL;
+ /**
+@@ -387,7 +375,7 @@ static void batadv_tp_sender_put(struct batadv_tp_sender *tp_vars)
+ 	if (!tp_vars)
+ 		return;
+ 
+-	kref_put(&tp_vars->common.refcount, batadv_tp_vars_common_release);
++	kref_put(&tp_vars->common.refcount, batadv_tp_sender_release);
+ }
+ 
+ /**
+@@ -1140,9 +1128,6 @@ void batadv_tp_start(struct batadv_priv *bat_priv, const u8 *dst,
+ 	init_waitqueue_head(&tp_vars->more_bytes);
+ 	init_completion(&tp_vars->finished);
+ 
+-	spin_lock_init(&tp_vars->common.unacked_lock);
+-	INIT_LIST_HEAD(&tp_vars->common.unacked_list);
+-
+ 	spin_lock_init(&tp_vars->cc_lock);
+ 
+ 	tp_vars->prerandom_offset = 0;
+@@ -1246,6 +1231,31 @@ batadv_tp_list_find_receiver_session(struct batadv_priv *bat_priv, const u8 *dst
+ 	return tp_vars;
+ }
+ 
++/**
++ * batadv_tp_receiver_release() - release batadv_tp_receiver
++ *  and queue for free after rcu grace period
++ * @ref: kref pointer of the batadv_tp_vars_common
++ */
++static void batadv_tp_receiver_release(struct kref *ref)
++{
++	struct batadv_tp_unacked *un, *safe;
++	struct batadv_tp_receiver *tp_vars;
++
++	tp_vars = container_of(ref, struct batadv_tp_receiver, common.refcount);
++
++	/* lock should not be needed because this object is now out of any
++	 * context!
++	 */
++	spin_lock_bh(&tp_vars->unacked_lock);
++	list_for_each_entry_safe(un, safe, &tp_vars->unacked_list, list) {
++		list_del(&un->list);
++		kfree(un);
++	}
++	spin_unlock_bh(&tp_vars->unacked_lock);
++
++	kfree_rcu(tp_vars, common.rcu);
++}
++
+ /**
+  * batadv_tp_receiver_put() - decrement the batadv_tp_receiver
+  *  refcounter and possibly release it
+@@ -1256,7 +1266,7 @@ static void batadv_tp_receiver_put(struct batadv_tp_receiver *tp_vars)
+ 	if (!tp_vars)
+ 		return;
+ 
+-	kref_put(&tp_vars->common.refcount, batadv_tp_vars_common_release);
++	kref_put(&tp_vars->common.refcount, batadv_tp_receiver_release);
+ }
+ 
+ /**
+@@ -1299,12 +1309,12 @@ static void batadv_tp_receiver_shutdown(struct timer_list *t)
+ 	if (batadv_tp_list_detach(&tp_vars->common))
+ 		batadv_tp_receiver_put(tp_vars);
+ 
+-	spin_lock_bh(&tp_vars->common.unacked_lock);
+-	list_for_each_entry_safe(un, safe, &tp_vars->common.unacked_list, list) {
++	spin_lock_bh(&tp_vars->unacked_lock);
++	list_for_each_entry_safe(un, safe, &tp_vars->unacked_list, list) {
+ 		list_del(&un->list);
+ 		kfree(un);
+ 	}
+-	spin_unlock_bh(&tp_vars->common.unacked_lock);
++	spin_unlock_bh(&tp_vars->unacked_lock);
+ 
+ 	/* drop reference of timer */
+ 	if (WARN_ON(atomic_xchg(&tp_vars->receiving, 0) != 1))
+@@ -1412,10 +1422,10 @@ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+ 	payload_len = skb->len - sizeof(struct batadv_unicast_packet);
+ 	new->len = payload_len;
+ 
+-	spin_lock_bh(&tp_vars->common.unacked_lock);
++	spin_lock_bh(&tp_vars->unacked_lock);
+ 	/* if the list is empty immediately attach this new object */
+-	if (list_empty(&tp_vars->common.unacked_list)) {
+-		list_add(&new->list, &tp_vars->common.unacked_list);
++	if (list_empty(&tp_vars->unacked_list)) {
++		list_add(&new->list, &tp_vars->unacked_list);
+ 		goto out;
+ 	}
+ 
+@@ -1426,7 +1436,7 @@ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+ 	 * the last received packet (the one being processed now) has a bigger
+ 	 * seqno than all the others already stored.
+ 	 */
+-	list_for_each_entry_reverse(un, &tp_vars->common.unacked_list, list) {
++	list_for_each_entry_reverse(un, &tp_vars->unacked_list, list) {
+ 		/* check for duplicates */
+ 		if (new->seqno == un->seqno) {
+ 			if (new->len > un->len)
+@@ -1451,10 +1461,10 @@ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+ 
+ 	/* received packet with smallest seqno out of order; add it to front */
+ 	if (!added)
+-		list_add(&new->list, &tp_vars->common.unacked_list);
++		list_add(&new->list, &tp_vars->unacked_list);
+ 
+ out:
+-	spin_unlock_bh(&tp_vars->common.unacked_lock);
++	spin_unlock_bh(&tp_vars->unacked_lock);
+ 
+ 	return true;
+ }
+@@ -1472,8 +1482,8 @@ static void batadv_tp_ack_unordered(struct batadv_tp_receiver *tp_vars)
+ 	/* go through the unacked packet list and possibly ACK them as
+ 	 * well
+ 	 */
+-	spin_lock_bh(&tp_vars->common.unacked_lock);
+-	list_for_each_entry_safe(un, safe, &tp_vars->common.unacked_list, list) {
++	spin_lock_bh(&tp_vars->unacked_lock);
++	list_for_each_entry_safe(un, safe, &tp_vars->unacked_list, list) {
+ 		/* the list is ordered, therefore it is possible to stop as soon
+ 		 * there is a gap between the last acked seqno and the seqno of
+ 		 * the packet under inspection
+@@ -1489,7 +1499,7 @@ static void batadv_tp_ack_unordered(struct batadv_tp_receiver *tp_vars)
+ 		list_del(&un->list);
+ 		kfree(un);
+ 	}
+-	spin_unlock_bh(&tp_vars->common.unacked_lock);
++	spin_unlock_bh(&tp_vars->unacked_lock);
+ }
+ 
+ /**
+@@ -1535,8 +1545,8 @@ batadv_tp_init_recv(struct batadv_priv *bat_priv,
+ 	tp_vars->common.bat_priv = bat_priv;
+ 	kref_init(&tp_vars->common.refcount);
+ 
+-	spin_lock_init(&tp_vars->common.unacked_lock);
+-	INIT_LIST_HEAD(&tp_vars->common.unacked_list);
++	spin_lock_init(&tp_vars->unacked_lock);
++	INIT_LIST_HEAD(&tp_vars->unacked_list);
+ 
+ 	kref_get(&tp_vars->common.refcount);
+ 	timer_setup(&tp_vars->common.timer, batadv_tp_receiver_shutdown, 0);
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index 5fd5bd35..bced25d7 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -1331,7 +1331,7 @@ struct batadv_tp_unacked {
+ 	/** @len: length of the packet */
+ 	u16 len;
+ 
+-	/** @list: list node for &batadv_tp_vars_common.unacked_list */
++	/** @list: list node for &batadv_tp_receiver.unacked_list */
+ 	struct list_head list;
+ };
+ 
+@@ -1354,12 +1354,6 @@ struct batadv_tp_vars_common {
+ 	/** @session: TP session identifier */
+ 	u8 session[2];
+ 
+-	/** @unacked_list: list of unacked packets (meta-info only) */
+-	struct list_head unacked_list;
+-
+-	/** @unacked_lock: protect unacked_list */
+-	spinlock_t unacked_lock;
+-
+ 	/** @refcount: number of context where the object is used */
+ 	struct kref refcount;
+ 
+@@ -1473,6 +1467,12 @@ struct batadv_tp_receiver {
+ 
+ 	/** @last_recv_time: time (jiffies) a msg was received */
+ 	unsigned long last_recv_time;
++
++	/** @unacked_list: list of unacked packets (meta-info only) */
++	struct list_head unacked_list;
++
++	/** @unacked_lock: protect unacked_list */
++	spinlock_t unacked_lock;
+ };
+ 
+ /**
 
 ---
 base-commit: 385b248dd4e46c4ce022adeb1b13e547d1954901
-change-id: 20260607-gw-disable-check-f3393c3a4989
+change-id: 20260610-tp-unacked-list-d6ba9d0117e5
 
 Best regards,
 --  
