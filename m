@@ -2,76 +2,76 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uAHCGkTqNGr/jwYAu9opvQ
+	id guNLDM3qNGo1kAYAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:05:40 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:07:57 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130896A4365
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86CD6A43AB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:07:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=0MPDU36H;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=A05KCRQy;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DCDB98477F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:05:39 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A4CA785663
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:07:56 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1781852739;
- b=23/Gfl5AK7VN/Gomi15cI28gDZyv3CnDLx8gGk1rpTLNRyXIBkgYEjYMD50Y7ZNV11qFL
- DdsUidz/DME//mkkybxhPS+YXLlkyco0jUD78B3S5e3OewPu+8hUdVJQay0DZ43JANyL2wP
- cI6ATMyRoV71qkYj4J6YXwqUkoYZhfU=
+ t=1781852876;
+ b=f9heSQF+iiK5BDWE16htltajdEcqmfaCWhBcCXByOKhbXgnBsWED8jOlaryv6WCTdjUgq
+ TZbvr2NgCSSszCsRx5AC7V1rGhZMFHWvkNDNaJO2mO/DZXq604yndL1Wj06UTaFN0jIXSN7
+ PQp0i68JOp5Dj6E72KzDHh3WUQsjoBo=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1781852739; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1781852876; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=AQd/cgxuTb+DumCgZg9XLtulPUOEarubULtPkZBCDbc=;
- b=tx4Oj7J+/0vB9vj8dfvK9RaAEricmA0mqXIJKmiZw+K5B9T9UWr+NISckkZ5Tt7kHUpsr
- XXD0o+1m2UIW/Unio4KlvwlWX97C+q14nzX5qb+BdT4tctI8SeMX4Jlu01VisbOhC6pilYN
- vs94bVIRekX1D4JO+5icO56sOO+QgjU=
+ list-archive; bh=rCAtFVt4ZMP2kO4nXKaanvQl9nP0Gsfhi/ip7sFYGPU=;
+ b=obttDq46xWoumYScYCV+qNEsG5S/vKH1n0kr+JWJ2uvA7ZwZ8sr4XePYYwQC7UTTACWzN
+ SIsYEPmxNbp77oJ1mdZT1UATvrhsaj0mX8TmrxgMTQBV3X2Ftx2/TvvRR9hwHSJrrOqem21
+ HbJIEdHdgCtHViJ+ibEqI5xDqSLuQD4=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
 Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 51DE28081E
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 17D1483176
 	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 19 Jun 2026 09:00:54 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781852454;
-	b=wGmqICg1qjDPkQ28AMO6g36GjWEhGH50gBxG4YwcmNfXGaz5jhEazP/ztmm3zhPEfCHZw8
-	MEzShAlzpNnTDiAECC1DSKJK0aY40fYJURyvnReHEK+tt8Krb7nkCSVFC9iF1ljv9SDDgR
-	I9YxK2nFbPfHwlL2gSsis5drlM7mbmk=
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781852455;
+	b=FOrMND1XQhrYzqouC9Kh5m5c37YV1Fdye7U6d3eu6QksiJga6lptFi3zkV+kbylM5vCFYl
+	myeofaPs/olYd0QORu+AXaSMQn3rSw2Hj6dRVK6rGXaYd7NAW+ifsPw8TBhOEqhS3EhH47
+	+vRc1gfyt3YULsYC08n2S+x8GH/EAog=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1781852454;
+	s=20121; t=1781852455;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=AQd/cgxuTb+DumCgZg9XLtulPUOEarubULtPkZBCDbc=;
-	b=u+kUjhjIs/fFbsFd4WT1/gpAhVUYVq8MtkRH9aVb69wXiIB0oJlXUXkFnokbthcvYE6COm
-	5gyuklAYmAFXu4TEPlVBBekpxc/WRve0IRxV3aVlX1YpFpE2/4OD0iUlzTubE/R9EysKZ8
-	VZLaOc4X78Ipa2FnUQKhIvgpsVXomNE=
+	bh=rCAtFVt4ZMP2kO4nXKaanvQl9nP0Gsfhi/ip7sFYGPU=;
+	b=3II3jEJXxyHdt/H7vZ+kcTbcRgpHtqjPXKG0UwbmEwK76jw30+gMIk7mxlFSwWj2/tNY8H
+	w6XoCLnbc2iOGgeSi0ANqcPaIbv2s6G6C9JZJxtmn0mR1PUioCALQSZZKMVqEM9wxua/EF
+	hErjZTb45GXaFl1YHReEfYe+0ftUGko=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=0MPDU36H;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=A05KCRQy;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
  23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1781852452;
+	s=09092022; t=1781852453;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=AQd/cgxuTb+DumCgZg9XLtulPUOEarubULtPkZBCDbc=;
-	b=0MPDU36HfdD6K2dQBF7pvBE2is18mmRXGhtEzLpJCxkOpUMwbv1LAGcFtW+KqQfV0Esn7W
-	Ce7CgPtc3JCp3nfbA5c8VY+iKC0V/g7mzGmjW2S91nGVKKmEXf9HANCbgXB/gddIgdWtWb
-	2a0Ysy5/b0s1RlURGmGuIf6ncOGqVXBR/dmo9m4VOfrxVDJcKg8z/sAyxIfzF1g5RInblF
-	zA0IpgndRnWRVjux2tUe1s/y2lx6N9q3rY/5i5O56Dlw27JFkMhNOT5vpFDtF3DsgtWbJy
-	rWf6AV0nPWM0MozoKjV2IBY9s2ug012QlVfLmgWHp+ukHHyKHUSYVGgV7UUQ8Q==
+	bh=rCAtFVt4ZMP2kO4nXKaanvQl9nP0Gsfhi/ip7sFYGPU=;
+	b=A05KCRQyRsYS6Idsa7MZHFlmbya3+zeRShHcAVvPsZsqIarAL01Deio+sNEwSD8rDid3bG
+	WEITAEuS6sxkLMkp8WDaHR8WXRq0D8RNUOgOyzZiYKFeDmMGxqk8M0BZTBdBOfawuOCLbE
+	JaLFbh51h0/79NX95M35EqXyXIHCjRS4sRoWvSR75APlEGar3pLyzfyMzOEZ4nmoz5MRK0
+	N6Ix2Ihw0EXjfO9ANeTJqbaD+kQVN0yOlbjP02t8VR+TbPlfvvX/R2c82TgOY8csi1aRFc
+	ZXyupNB/4UW5i6MBFUinAbnwt+DDIScFyLRVWfLROdbJEIFsNFwsQX4ZmeUwFA==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -83,17 +83,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Sven Eckelmann <sven@narfation.org>,
 	stable@kernel.org,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 08/15] batman-adv: tp_meter: annotate last_recv_time
- access with READ/WRITE_ONCE
-Date: Fri, 19 Jun 2026 09:00:38 +0200
-Message-ID: <20260619070045.438101-9-sw@simonwunderlich.de>
+Subject: [PATCH net 09/15] batman-adv: tp_meter: prevent parallel
+ modifications of last_recv
+Date: Fri, 19 Jun 2026 09:00:39 +0200
+Message-ID: <20260619070045.438101-10-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260619070045.438101-1-sw@simonwunderlich.de>
 References: <20260619070045.438101-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: A4WDSEKHZUKW4M7U4VZ3JLAK4EYFUBAQ
-X-Message-ID-Hash: A4WDSEKHZUKW4M7U4VZ3JLAK4EYFUBAQ
+Message-ID-Hash: OAYQ5ARPSCC6MOKVTUPZ362UVKVLDPE7
+X-Message-ID-Hash: OAYQ5ARPSCC6MOKVTUPZ362UVKVLDPE7
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/A4WDSEKHZUKW4M7U4VZ3JLAK4EYFUBAQ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OAYQ5ARPSCC6MOKVTUPZ362UVKVLDPE7/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -136,7 +136,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:email,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -147,63 +147,154 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 130896A4365
+X-Rspamd-Queue-Id: C86CD6A43AB
 
 From: Sven Eckelmann <sven@narfation.org>
 
-The last_recv_time field for batadv_tp_receiver tracks the jiffies value of
-the most recent activity and is used to detect timeouts. These accesses are
-not consistently protected by a lock, so READ_ONCE/WRITE_ONCE must be used
-to prevent data races caused by compiler optimizations.
+When last_recv is updated to store the last receive sequence number, it is
+assuming that nothing is modifying in parallel while:
+
+* check for outdated packets is done
+* out of order check is performed (and packets are stored in out-of-order
+  queue)
+* the out-of-order queue was searched for closed gaps
+* sequence number for next ack is calculated
+
+Nothing of that was actually protected. It could therefore happen that the
+last_recv was updated multiple times in parallel and the final sequence
+number was calculated with deltas which had no connection to the sequence
+number they were added to.
+
+Lock this whole region with the same lock which was already used to protect
+the unacked (out-of-order) list.
 
 Cc: stable@kernel.org
 Fixes: 33a3bb4a3345 ("batman-adv: throughput meter implementation")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/tp_meter.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ net/batman-adv/tp_meter.c | 22 +++++++++++++---------
+ net/batman-adv/types.h    |  2 +-
+ 2 files changed, 14 insertions(+), 10 deletions(-)
 
 diff --git a/net/batman-adv/tp_meter.c b/net/batman-adv/tp_meter.c
-index 259ac8c307359..fb87fa141e32a 100644
+index fb87fa141e32a..055aa1ee6ac5c 100644
 --- a/net/batman-adv/tp_meter.c
 +++ b/net/batman-adv/tp_meter.c
-@@ -1290,7 +1290,7 @@ static void batadv_tp_receiver_shutdown(struct timer_list *t)
- 	bat_priv = tp_vars->common.bat_priv;
+@@ -1402,6 +1402,7 @@ static int batadv_tp_send_ack(struct batadv_priv *bat_priv, const u8 *dst,
+  */
+ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+ 					  const struct sk_buff *skb)
++	__must_hold(&tp_vars->common.unacked_lock)
+ {
+ 	const struct batadv_icmp_tp_packet *icmp;
+ 	struct batadv_tp_unacked *un, *new;
+@@ -1418,12 +1419,11 @@ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+ 	payload_len = skb->len - sizeof(struct batadv_unicast_packet);
+ 	new->len = payload_len;
  
- 	/* if there is recent activity rearm the timer */
--	if (!batadv_has_timed_out(tp_vars->last_recv_time,
-+	if (!batadv_has_timed_out(READ_ONCE(tp_vars->last_recv_time),
- 				  BATADV_TP_RECV_TIMEOUT)) {
- 		/* reset the receiver shutdown timer */
- 		batadv_tp_reset_receiver_timer(tp_vars);
-@@ -1532,7 +1532,7 @@ batadv_tp_init_recv(struct batadv_priv *bat_priv,
- 	tp_vars = batadv_tp_list_find_receiver_session(bat_priv, icmp->orig,
- 						       icmp->session);
- 	if (tp_vars) {
--		tp_vars->last_recv_time = jiffies;
-+		WRITE_ONCE(tp_vars->last_recv_time, jiffies);
- 		goto out_unlock;
+-	spin_lock_bh(&tp_vars->common.unacked_lock);
+ 	/* if the list is empty immediately attach this new object */
+ 	if (list_empty(&tp_vars->common.unacked_list)) {
+ 		list_add(&new->list, &tp_vars->common.unacked_list);
+ 		tp_vars->common.unacked_count++;
+-		goto out;
++		return true;
  	}
  
-@@ -1562,7 +1562,7 @@ batadv_tp_init_recv(struct batadv_priv *bat_priv,
- 	kref_get(&tp_vars->common.refcount);
- 	timer_setup(&tp_vars->common.timer, batadv_tp_receiver_shutdown, 0);
- 
--	tp_vars->last_recv_time = jiffies;
-+	WRITE_ONCE(tp_vars->last_recv_time, jiffies);
- 
- 	kref_get(&tp_vars->common.refcount);
- 	hlist_add_head_rcu(&tp_vars->common.list, &bat_priv->tp_receiver_list);
-@@ -1613,7 +1613,7 @@ static void batadv_tp_recv_msg(struct batadv_priv *bat_priv,
- 			goto out;
- 		}
- 
--		tp_vars->last_recv_time = jiffies;
-+		WRITE_ONCE(tp_vars->last_recv_time, jiffies);
+ 	/* otherwise loop over the list and either drop the packet because this
+@@ -1472,9 +1472,6 @@ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+ 		tp_vars->common.unacked_count--;
  	}
  
+-out:
+-	spin_unlock_bh(&tp_vars->common.unacked_lock);
+-
+ 	return true;
+ }
+ 
+@@ -1484,6 +1481,7 @@ static bool batadv_tp_handle_out_of_order(struct batadv_tp_receiver *tp_vars,
+  * @tp_vars: the private data of the current TP meter session
+  */
+ static void batadv_tp_ack_unordered(struct batadv_tp_receiver *tp_vars)
++	__must_hold(&tp_vars->common.unacked_lock)
+ {
+ 	struct batadv_tp_unacked *un, *safe;
+ 	u32 to_ack;
+@@ -1491,7 +1489,6 @@ static void batadv_tp_ack_unordered(struct batadv_tp_receiver *tp_vars)
+ 	/* go through the unacked packet list and possibly ACK them as
+ 	 * well
+ 	 */
+-	spin_lock_bh(&tp_vars->common.unacked_lock);
+ 	list_for_each_entry_safe(un, safe, &tp_vars->common.unacked_list, list) {
+ 		/* the list is ordered, therefore it is possible to stop as soon
+ 		 * there is a gap between the last acked seqno and the seqno of
+@@ -1509,7 +1506,6 @@ static void batadv_tp_ack_unordered(struct batadv_tp_receiver *tp_vars)
+ 		kfree(un);
+ 		tp_vars->common.unacked_count--;
+ 	}
+-	spin_unlock_bh(&tp_vars->common.unacked_lock);
+ }
+ 
+ /**
+@@ -1588,6 +1584,7 @@ static void batadv_tp_recv_msg(struct batadv_priv *bat_priv,
+ 	const struct batadv_icmp_tp_packet *icmp;
+ 	struct batadv_tp_receiver *tp_vars;
+ 	size_t packet_size;
++	u32 to_ack;
+ 	u32 seqno;
+ 
+ 	icmp = (struct batadv_icmp_tp_packet *)skb->data;
+@@ -1616,6 +1613,8 @@ static void batadv_tp_recv_msg(struct batadv_priv *bat_priv,
+ 		WRITE_ONCE(tp_vars->last_recv_time, jiffies);
+ 	}
+ 
++	spin_lock_bh(&tp_vars->common.unacked_lock);
++
  	/* if the packet is a duplicate, it may be the case that an ACK has been
+ 	 * lost. Resend the ACK
+ 	 */
+@@ -1627,8 +1626,10 @@ static void batadv_tp_recv_msg(struct batadv_priv *bat_priv,
+ 		/* exit immediately (and do not send any ACK) if the packet has
+ 		 * not been enqueued correctly
+ 		 */
+-		if (!batadv_tp_handle_out_of_order(tp_vars, skb))
++		if (!batadv_tp_handle_out_of_order(tp_vars, skb)) {
++			spin_unlock_bh(&tp_vars->common.unacked_lock);
+ 			goto out;
++		}
+ 
+ 		/* send a duplicate ACK */
+ 		goto send_ack;
+@@ -1642,11 +1643,14 @@ static void batadv_tp_recv_msg(struct batadv_priv *bat_priv,
+ 	batadv_tp_ack_unordered(tp_vars);
+ 
+ send_ack:
++	to_ack = tp_vars->last_recv;
++	spin_unlock_bh(&tp_vars->common.unacked_lock);
++
+ 	/* send the ACK. If the received packet was out of order, the ACK that
+ 	 * is going to be sent is a duplicate (the sender will count them and
+ 	 * possibly enter Fast Retransmit as soon as it has reached 3)
+ 	 */
+-	batadv_tp_send_ack(bat_priv, icmp->orig, tp_vars->last_recv,
++	batadv_tp_send_ack(bat_priv, icmp->orig, to_ack,
+ 			   icmp->timestamp, icmp->session, icmp->uid);
+ out:
+ 	batadv_tp_receiver_put(tp_vars);
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index 9fa8e73ff6e59..c1b3f989566f5 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -1363,7 +1363,7 @@ struct batadv_tp_vars_common {
+ 	/** @unacked_list: list of unacked packets (meta-info only) */
+ 	struct list_head unacked_list;
+ 
+-	/** @unacked_lock: protect unacked_list */
++	/** @unacked_lock: protect unacked_list + &batadv_tp_receiver.last_recv */
+ 	spinlock_t unacked_lock;
+ 
+ 	/** @unacked_count: number of unacked entries */
 -- 
 2.47.3
 
