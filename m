@@ -2,76 +2,77 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sExFGPjqNGpFkAYAu9opvQ
+	id X6FdFVPrNGppkAYAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:08:40 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:10:11 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1C76A43BC
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB57F6A43F0
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:10:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="15P/FOiS";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=wLyysndT;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DE2F980BDD
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:08:39 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id C7C0584C5F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:10:10 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1781852919;
- b=jkNfV2EKMoc9Y+xzgAkVwzRga5El5elbwzNCMDhVJCTwMtTVfbDk+y4QuOKeayOOzi9wB
- HvQv5vl+FQlugrFVed7CuLb0gGbCldqF1fQGGTzad4S8QVkvJ3Z1/o7gojGCQOAF40Wwuzh
- rkru3N10t+dwcFkNCJVxT/awlaV08Y4=
+ t=1781853010;
+ b=14oBI4m80OkeuERTiYbQQVit0E47KSIzmAQqEzE9OGiEmSGugTdTA0QXzxiy8vLSyCO2k
+ RKBIM3GWTb6uE6g+qC/QWXNa5GlH42wgG/aQdjTvMRPN4zlXHWB6WX4wb3Zu8K42PipoG0S
+ Tn1IWQNDldwxFhfQcvHHk9Ss521L9lE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1781852919; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1781853010; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=Sh8/d19dTv+BnqITWKo5mUC2hJ8B05RbL/Sh5BlrDOo=;
- b=qSTGoVCr5tGzObp8r97/7ZzmciboFfepUsObihB1j84iSypuzhgGfp1qAK1hVKHev54JE
- Iv9pCh2mnPhWve0iH14MidJq77mBzdkAeDdizJUISFxK5/VCrZwISUZkM5duYQUtW+QzLww
- kAUKqLkdCabnZnOIBnamFgFylIo75rg=
+ list-archive; bh=AXPyVK5TVKTKbsvEz9k/m1WC6aBSTInXdRLHE6va4j0=;
+ b=jOdD/DW7Ddo6TLSHFbD+/6i20qyNgDbWZbbNi3Gixc21E9S68NqlTd+j07X2+VMVb9C0O
+ gRYWZUSUS5FVi95u+s0txxTtlikZIPwKPl06keAQQQ52/K5pyiGTNPAxTzn/VbpMrL3TP3O
+ 3tgGy+j9Uka/JAsewveqUV31zURJCNA=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 3F8948081E
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 19 Jun 2026 09:00:55 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781852455;
-	b=lV75f3CFwT77djoAeUZbT0ys8L40sjnI9epzi9m9gNJjz020ATX1z3vZvet9TH63+wnUbM
-	Kwn1bz1GkGMEu0rDllfZtjiowZEQw+iD45HbNTn4JPTwffL0pDayz9Cfd2/qCxjv+APDen
-	Tm89GcuuX5TELLx7KAcx3hT7Sz8m+Rw=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 0C1208161B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 19 Jun 2026 09:00:56 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781852456;
+	b=j3FkU3ooVp43N97SwQAZwKNSvU/B8Oc7Lo8zr6pHFjMV0B8+eXASEiDSgI1i72MbOvFjSX
+	Keuz+cjcx3eA+1oY/DJiQZS5Vbj6nqHjQLNczD17sShe/kiS/W4yU3R3cDib7ac6sFu49M
+	d9BPO3DhBaqoLXZ00NXBdE9LIV8NrkE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1781852455;
+	s=20121; t=1781852456;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Sh8/d19dTv+BnqITWKo5mUC2hJ8B05RbL/Sh5BlrDOo=;
-	b=IMr1qiIYugFvboCi6UnxmZBesT7SqivgAKiNoZYUrS5y8qqR7nT/58uMHa3haFnnyItv/X
-	9HpiG6y1yoqBMeR25+Bpvegg6/T3snlY7rVcCyEbH3ktfnzTPzha1H4lQ6cGQQlxjqV0Pw
-	wz+IJU2SnX3OnVakK5fvh+32GD4l2BE=
+	bh=AXPyVK5TVKTKbsvEz9k/m1WC6aBSTInXdRLHE6va4j0=;
+	b=mAx/hmy+tivPhpC7kCc79FkDbMeH3iakvp6Q/RnwZCiXKckiqg9Ayevls/8L6FPJ9n0HmG
+	ZR3bHVSN4O+5lYDJC+ejdmEQkrNXgD5Q7A5BkqfDy1/8iGSolPh0jniJVZJKe4amQQVjhF
+	4BlRKXnWc19nHN2hBJ6PUMhkjp1zoAk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b="15P/FOiS";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=wLyysndT;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+ 2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1781852454;
+	s=09092022; t=1781852455;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Sh8/d19dTv+BnqITWKo5mUC2hJ8B05RbL/Sh5BlrDOo=;
-	b=15P/FOiSb2Egdx0WhrFpCTQj9sySCwZgzZwDyYL0e77yC8mkiuk4VeimCv0VY/KtLttsJh
-	bBibLQ268eFDIJTvUNUbhDsmIvFhrjZV+/iHpxe0fNzPu+ncBBH7XBtpYj5EP3hFTFxLXN
-	JiM8xMnGg3tSIvoOr8LTr0q33u7Jh+k5ZHQkPE7fyoUH3ys2Ur5SuNuDOJSol/I6L9Nv7z
-	SSapBJsqbrAkRob71AxQWiVMvpl8TMgns9J+6mOz+/MK/8Ue7JzA/X3NU6M2xtYMz9DyQ3
-	YKUImU8YR7sd5AZ7Sw4IyR+/42o2gXDXEnThW32i3oKwhv7nnXyURdnfeRGCKA==
+	bh=AXPyVK5TVKTKbsvEz9k/m1WC6aBSTInXdRLHE6va4j0=;
+	b=wLyysndTHpkvwu1ew7XwxMRl9e+jOg+eucC0jMaLVua2/ywNVhfD4rXFp5GeEIejDt/Kcw
+	BJyO2ENxmkSqpEnFz+/8zfASo8jk9NXNbn9XtiWOi4wpLwLxJ3IovdNOViuqdad/2eiKNG
+	IDhqWbrihPKL1/GH/51pRzfxtOJvX+/pjbU5YkecAJ5IJd6Y9w9VmIyDWmDZuISy/+KAxd
+	7a6CM7u2mnQTe87MBUEPggzIV9kVknedNlZMnkh1M81ntYhHQplp7gdBdlIX2rVKitxSKX
+	0mxtyr2c7vDpvbd6ooJKC+eFZMZkzCIMnA6TOdqqKCzAFP6KDGoUpmGFk4XzkQ==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -83,17 +84,16 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Sven Eckelmann <sven@narfation.org>,
 	stable@kernel.org,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 11/15] batman-adv: tt: don't merge change entries with
- different VIDs
-Date: Fri, 19 Jun 2026 09:00:41 +0200
-Message-ID: <20260619070045.438101-12-sw@simonwunderlich.de>
+Subject: [PATCH net 12/15] batman-adv: tt: track roam count per VID
+Date: Fri, 19 Jun 2026 09:00:42 +0200
+Message-ID: <20260619070045.438101-13-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260619070045.438101-1-sw@simonwunderlich.de>
 References: <20260619070045.438101-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MNH3RL3QFDFQ5NTU43X276RQS7BU5HKE
-X-Message-ID-Hash: MNH3RL3QFDFQ5NTU43X276RQS7BU5HKE
+Message-ID-Hash: VO6ENWF7NHNDOWEQZNRUO2HTEGQ6LREV
+X-Message-ID-Hash: VO6ENWF7NHNDOWEQZNRUO2HTEGQ6LREV
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/MNH3RL3QFDFQ5NTU43X276RQS7BU5HKE/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/VO6ENWF7NHNDOWEQZNRUO2HTEGQ6LREV/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -136,7 +136,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime,narfation.org:email,lists.open-mesh.org:from_smtp];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,narfation.org:email];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -147,43 +147,86 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0D1C76A43BC
+X-Rspamd-Queue-Id: EB57F6A43F0
 
 From: Sven Eckelmann <sven@narfation.org>
 
-batadv_tt_local_event() merges/cancels events for the same client which
-would conflict or be duplicates. The matching of the queued events only
-compares the MAC address - the VLAN ID stored in each event is ignored.
-
-If a MAC would now appear on multiple VID, the two ADD change events (for
-VID 1 and VID 2) would be merged to a single vid event. The remote can
-therefore not calculate the correct TT table and desync. A full translation
-table exchange is required to recover from this state.
-
-A check of VID is therefore necessary to avoid such wrong merges/cancels.
+batadv_tt_check_roam_count() is supposed to track roaming of a TT entry.
+But TT entries are for a MAC + VID. The VID was completely missed and thus
+leads to incorrect detection of ROAM counts when a client MAC exists in
+multiple VLANs.
 
 Cc: stable@kernel.org
 Fixes: c018ad3de61a ("batman-adv: add the VLAN ID attribute to the TT entry")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/translation-table.c | 3 +++
- 1 file changed, 3 insertions(+)
+ net/batman-adv/translation-table.c | 9 +++++++--
+ net/batman-adv/types.h             | 3 +++
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
-index 8b6c49c32c892..016ad100153bd 100644
+index 016ad100153bd..4bfad36a4b704 100644
 --- a/net/batman-adv/translation-table.c
 +++ b/net/batman-adv/translation-table.c
-@@ -447,6 +447,9 @@ static void batadv_tt_local_event(struct batadv_priv *bat_priv,
- 		if (!batadv_compare_eth(entry->change.addr, common->addr))
+@@ -3450,6 +3450,7 @@ static void batadv_tt_roam_purge(struct batadv_priv *bat_priv)
+  * batadv_tt_check_roam_count() - check if a client has roamed too frequently
+  * @bat_priv: the bat priv with all the mesh interface information
+  * @client: mac address of the roaming client
++ * @vid: VLAN identifier
+  *
+  * This function checks whether the client already reached the
+  * maximum number of possible roaming phases. In this case the ROAMING_ADV
+@@ -3457,7 +3458,7 @@ static void batadv_tt_roam_purge(struct batadv_priv *bat_priv)
+  *
+  * Return: true if the ROAMING_ADV can be sent, false otherwise
+  */
+-static bool batadv_tt_check_roam_count(struct batadv_priv *bat_priv, u8 *client)
++static bool batadv_tt_check_roam_count(struct batadv_priv *bat_priv, u8 *client, u16 vid)
+ {
+ 	struct batadv_tt_roam_node *tt_roam_node;
+ 	bool ret = false;
+@@ -3470,6 +3471,9 @@ static bool batadv_tt_check_roam_count(struct batadv_priv *bat_priv, u8 *client)
+ 		if (!batadv_compare_eth(tt_roam_node->addr, client))
  			continue;
  
-+		if (entry->change.vid != tt_change_node->change.vid)
++		if (tt_roam_node->vid != vid)
 +			continue;
 +
- 		del_op_entry = entry->change.flags & BATADV_TT_CLIENT_DEL;
- 		if (del_op_requested != del_op_entry) {
- 			/* DEL+ADD in the same orig interval have no effect and
+ 		if (batadv_has_timed_out(tt_roam_node->first_time,
+ 					 BATADV_ROAMING_MAX_TIME))
+ 			continue;
+@@ -3491,6 +3495,7 @@ static bool batadv_tt_check_roam_count(struct batadv_priv *bat_priv, u8 *client)
+ 		atomic_set(&tt_roam_node->counter,
+ 			   BATADV_ROAMING_MAX_COUNT - 1);
+ 		ether_addr_copy(tt_roam_node->addr, client);
++		tt_roam_node->vid = vid;
+ 
+ 		list_add(&tt_roam_node->list, &bat_priv->tt.roam_list);
+ 		ret = true;
+@@ -3527,7 +3532,7 @@ static void batadv_send_roam_adv(struct batadv_priv *bat_priv, u8 *client,
+ 	/* before going on we have to check whether the client has
+ 	 * already roamed to us too many times
+ 	 */
+-	if (!batadv_tt_check_roam_count(bat_priv, client))
++	if (!batadv_tt_check_roam_count(bat_priv, client, vid))
+ 		goto out;
+ 
+ 	batadv_dbg(BATADV_DBG_TT, bat_priv,
+diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
+index c1b3f989566f5..3de3c1ac0244f 100644
+--- a/net/batman-adv/types.h
++++ b/net/batman-adv/types.h
+@@ -1961,6 +1961,9 @@ struct batadv_tt_roam_node {
+ 	/** @addr: mac address of the client in the roaming phase */
+ 	u8 addr[ETH_ALEN];
+ 
++	/** @vid: VLAN identifier */
++	u16 vid;
++
+ 	/**
+ 	 * @counter: number of allowed roaming events per client within a single
+ 	 * OGM interval (changes are committed with each OGM)
 -- 
 2.47.3
 
