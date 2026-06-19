@@ -2,76 +2,77 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9WRFESjrNGpWkAYAu9opvQ
+	id N/TVOJfpNGrOjwYAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:09:28 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:02:47 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA9A56A43D4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:09:27 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EACD6A433E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:02:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=Gyx8VoFS;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=UvUZRmtv;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B58AA85995
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:09:27 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 69A4684032
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 19 Jun 2026 09:02:47 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1781852967;
- b=3uruHRScicOoBTsnsSUgEuBtAFPwkMU/mAR3c+w/OtDpqabFzDmpwsQizcJr4mVkeu4C7
- 4KbHmK8sjCN8tHpi4jJSJt5UQLlngj1vsVDi07uT7GmLtU2RFwg9vKTDIqDcFiXotG6vbBO
- xB7yxD9gq2stEkUlEEx60k3j4aLUa1g=
+ t=1781852567;
+ b=e9qvxk8EJ2BRfvqMKi8hMR6g2HPn5dxIEiTizhq08nVRrZVYY2zsimuVJbbd2Pw/GhYpt
+ 36Xy8boAMaPnxYRqY3LOiCPr3SxH+aWcRfL1CuW5xJfdr6Z5/cylE3IhfeoRvDd90nsMaYF
+ ZMqlPrMuOYnp3ikGwr3KlYCYPCczeH4=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1781852967; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1781852567; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=df0sc9RvZxEMHTxHbnI9oNmIsDOa2OH9rHZyYmPP0HE=;
- b=VAvN8qHW6cflOpXLJR4yv1T0UAdnlMIYo/sygk3eTOcZ3Fs08s2PDkP6e8o2VMjJSurGW
- G709HU5we2kvxsAoIwhjqfXHP4rPxRS9jidsUO3JkHJnvE0rIpYjx1Cy3J14C5tvmPygr9R
- wpo1hBDw1OlPhuHzWd/YcEIQGx4/g4g=
+ list-archive; bh=6e8joL+dyxKxUQbyUNURUpKgR0UCuyNlXRp5Lgytw+I=;
+ b=ifbSrIJllebn6Zg0WD+61O8tzi7d1YHx4TVFTmaWIRxYYiOeSNTXqjb0FcuivkDJbh2u2
+ 4LGGaXXFYzJMlgUJqmTOxRAwmo7hM2Odhju764lowGLc44vQwecYTJqXvl6UTtMdgQ3X1G/
+ 9heP1zJEx1GkAUfMlVbTNUj4t9F0bqA=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 67B4C83B32
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 19 Jun 2026 09:00:50 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781852455;
-	b=kng+uYY5oJ4MrTr/Jle/oDabuIRq59qs+RvfNlMecbiCPuIbFqxAUoWKRR77XSGNmhy0Rm
-	OkN3SzlJR8R84AhqiYtgwGBoDJKByKeY5tWojRypLsguOlMWIXjs3y9CtWypJRklzOjEM2
-	C5sgo5EZSYFUWfhH/twN+YULblYgqUY=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 35EC98081E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 19 Jun 2026 09:00:54 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1781852454;
+	b=lwaspQglAURDp4ufZt5vlIGOQeloB2fldm/Q3ge1dXVO2YC04wika+pYq5oCwebUHYj7F4
+	qEabSZOczKsDW+gOyJqQOpJXhn1lhWF77n8Oj2V23KtVdJSkBXbb/jaCRfOsaJ4jcS7REI
+	zD+I21+f+SQZSIIx1sCVZMOXdBIwlbA=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1781852455;
+	s=20121; t=1781852454;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=df0sc9RvZxEMHTxHbnI9oNmIsDOa2OH9rHZyYmPP0HE=;
-	b=T9aEpWXqghsiOiqv0gpZAZCjgR6XRobS+u3IHcfsJrlYb6OHJXDAShgopYdUUbr2bj3WdG
-	Xf7BvP/q8SWUwg0NyRqvK1ZcWK9JNhuwQoSH1RdHSAiARLsJJ9kdNuTFl0zrqKSjZcNguc
-	CDmjzvCUpMcwoS4mM7YfoAuw25qOFmI=
+	bh=6e8joL+dyxKxUQbyUNURUpKgR0UCuyNlXRp5Lgytw+I=;
+	b=Rk3pe1kSTj9RPHA0db6sPZGjrjFT/pJqNqMvWM0m739d2gkryQTTuULhg14M15WmwrfX98
+	gQIy3lFJZbYgeXNnNi/kItxUA54k0jXNIZYr3lBc0JhQs2UKL6/dck6fhmv50ANgUlYkkP
+	qAhLoqt8yqYN9fq8RVIa4fGf3svG6Rw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=Gyx8VoFS;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=UvUZRmtv;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
+ 2a01:4f8:c17:e8c0::1 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1781852449;
+	s=09092022; t=1781852450;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=df0sc9RvZxEMHTxHbnI9oNmIsDOa2OH9rHZyYmPP0HE=;
-	b=Gyx8VoFSJgR/rJAu3SHlSg43O/brt5+15CKcdS6vmgbPzcULKmnMC0IwPNScH7tOLSzUxh
-	He6s+ovORHfMWoWBwKgoD+kOtR3EZzSQIbc7bl3bBMtDa8S8TX/BY0mvQEFeYxz3T2p7VE
-	5TcGjPATjiKNyR6sMpB1Db97MWnEBsiFb1IRJ44g+lbzqmPnazSU1a3zFYeMiiUwZjcbmY
-	bqaMJGhJmcXIQ7XsgP9uy0vf55gAZFl1D4PkJtIHckzl+9Gekm6GoA5Xgo+tmwPTOgWbPS
-	MIkW8HhalYaI6F1BkplLBErp9EFxBYLgpgOAcjbz617vYW3TgkXEA+9BxQWxkQ==
+	bh=6e8joL+dyxKxUQbyUNURUpKgR0UCuyNlXRp5Lgytw+I=;
+	b=UvUZRmtvX36M0a/pCOfje421DFjf89Qe+/29VPXjgBufuG01zBA2yUqJDYhCfnu+GWxwbb
+	qw0MWYhE7sgAr/0JuQbGSwTjPRGDsdLu/R6DZ/OSs1hbWXlYzzXNCbudM/cCuDkHDVW8kS
+	3YHPJBG+lFLjiaPVNe3XEst9dbF0Up5k9/2cmORcxW+QoSlsCuCyVy+o1nd8i9xkT0oE1T
+	gfR0Ip1UOBSOz/M6n0q5os027q3Ff7dFulTtZhPYhQm0rKuOLCD0TBhJAxfAN8xiEas+va
+	+Lauwy5MgwkVEUcPok2fELI759sTE0H8gZnekEsHpbyXXqAFbfUHWrKUV4Ts9A==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -83,17 +84,16 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Sven Eckelmann <sven@narfation.org>,
 	stable@kernel.org,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 04/15] batman-adv: frag: ensure fragment is writable
- before modifying TTL
-Date: Fri, 19 Jun 2026 09:00:34 +0200
-Message-ID: <20260619070045.438101-5-sw@simonwunderlich.de>
+Subject: [PATCH net 05/15] batman-adv: frag: avoid underflow of TTL
+Date: Fri, 19 Jun 2026 09:00:35 +0200
+Message-ID: <20260619070045.438101-6-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260619070045.438101-1-sw@simonwunderlich.de>
 References: <20260619070045.438101-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: GMEKGQG3VJP5RSSA6XPC26PDI6J5YQRJ
-X-Message-ID-Hash: GMEKGQG3VJP5RSSA6XPC26PDI6J5YQRJ
+Message-ID-Hash: 7XZUM7MKVQOWSUH334OMTONABREF7XDK
+X-Message-ID-Hash: 7XZUM7MKVQOWSUH334OMTONABREF7XDK
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GMEKGQG3VJP5RSSA6XPC26PDI6J5YQRJ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7XZUM7MKVQOWSUH334OMTONABREF7XDK/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -133,10 +133,10 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	DKIM_TRACE(0.00)[simonwunderlich.de:+];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime,narfation.org:email,lists.open-mesh.org:from_smtp];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:email,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -147,104 +147,43 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DA9A56A43D4
+X-Rspamd-Queue-Id: 8EACD6A433E
 
 From: Sven Eckelmann <sven@narfation.org>
 
-Before batman-adv is allowed to write to an skb, it either has to have its
-own copy of the skb or use skb_cow() to ensure that the data part is not
-shared. But batadv_frag_skb_fwd() modifies the TTL even when it is shared.
+Packets with a TTL are using it to limit the amount of time this packet can
+be forwarded. But for batadv_frag_packet, the TTL was always only reduced
+but it was never evaluated. It could even underflow without any effect.
 
-Adding a skb_cow() right before this operation avoids this and can at the
-same time prepare it for the modifications required to forward the
-fragment.
+Check the TTL in batadv_frag_skb_fwd() before attempting to prepare it for
+forwarding. This keeps it in sync with the not fragmented unicast packet.
 
 Cc: stable@kernel.org
 Fixes: 610bfc6bc99b ("batman-adv: Receive fragmented packets and merge")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/fragmentation.c | 15 ++++++++++++++-
- net/batman-adv/fragmentation.h |  3 ++-
- net/batman-adv/routing.c       |  3 +--
- 3 files changed, 17 insertions(+), 4 deletions(-)
+ net/batman-adv/fragmentation.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/net/batman-adv/fragmentation.c b/net/batman-adv/fragmentation.c
-index 1e42cf99f8b33..f311a42203d2e 100644
+index f311a42203d2e..8a006a0473a87 100644
 --- a/net/batman-adv/fragmentation.c
 +++ b/net/batman-adv/fragmentation.c
-@@ -386,6 +386,8 @@ bool batadv_frag_skb_buffer(struct sk_buff **skb,
-  * @skb: skb to forward
-  * @recv_if: interface that the skb is received on
-  * @orig_node_src: originator that the skb is received from
-+ * @rx_result: set to NET_RX_SUCCESS when the fragment was forwarded and
-+ *  NET_RX_DROP when it was dropped; only valid when true is returned
-  *
-  * Look up the next-hop of the fragments payload and check if the merged packet
-  * will exceed the MTU towards the next-hop. If so, the fragment is forwarded
-@@ -395,7 +397,8 @@ bool batadv_frag_skb_buffer(struct sk_buff **skb,
-  */
- bool batadv_frag_skb_fwd(struct sk_buff *skb,
- 			 struct batadv_hard_iface *recv_if,
--			 struct batadv_orig_node *orig_node_src)
-+			 struct batadv_orig_node *orig_node_src,
-+			 int *rx_result)
- {
- 	struct batadv_priv *bat_priv = netdev_priv(recv_if->mesh_iface);
- 	struct batadv_neigh_node *neigh_node = NULL;
-@@ -414,12 +417,22 @@ bool batadv_frag_skb_fwd(struct sk_buff *skb,
+@@ -417,6 +417,13 @@ bool batadv_frag_skb_fwd(struct sk_buff *skb,
  	 */
  	total_size = ntohs(packet->total_size);
  	if (total_size > neigh_node->if_incoming->net_dev->mtu) {
-+		if (skb_cow(skb, ETH_HLEN) < 0) {
++		if (packet->ttl < 2) {
 +			kfree_skb(skb);
 +			*rx_result = NET_RX_DROP;
 +			ret = true;
 +			goto out;
 +		}
 +
-+		packet = (struct batadv_frag_packet *)skb->data;
-+
- 		batadv_inc_counter(bat_priv, BATADV_CNT_FRAG_FWD);
- 		batadv_add_counter(bat_priv, BATADV_CNT_FRAG_FWD_BYTES,
- 				   skb->len + ETH_HLEN);
- 
- 		packet->ttl--;
- 		batadv_send_unicast_skb(skb, neigh_node);
-+		*rx_result = NET_RX_SUCCESS;
- 		ret = true;
- 	}
- 
-diff --git a/net/batman-adv/fragmentation.h b/net/batman-adv/fragmentation.h
-index dbf0871f87030..51e281027ab63 100644
---- a/net/batman-adv/fragmentation.h
-+++ b/net/batman-adv/fragmentation.h
-@@ -19,7 +19,8 @@ void batadv_frag_purge_orig(struct batadv_orig_node *orig,
- 			    bool (*check_cb)(struct batadv_frag_table_entry *));
- bool batadv_frag_skb_fwd(struct sk_buff *skb,
- 			 struct batadv_hard_iface *recv_if,
--			 struct batadv_orig_node *orig_node_src);
-+			 struct batadv_orig_node *orig_node_src,
-+			 int *rx_result);
- bool batadv_frag_skb_buffer(struct sk_buff **skb,
- 			    struct batadv_orig_node *orig_node);
- int batadv_frag_send_packet(struct sk_buff *skb,
-diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 8786b66c8a924..9db57fd36e7d4 100644
---- a/net/batman-adv/routing.c
-+++ b/net/batman-adv/routing.c
-@@ -1168,10 +1168,9 @@ int batadv_recv_frag_packet(struct sk_buff *skb,
- 
- 	/* Route the fragment if it is not for us and too big to be merged. */
- 	if (!batadv_is_my_mac(bat_priv, frag_packet->dest) &&
--	    batadv_frag_skb_fwd(skb, recv_if, orig_node_src)) {
-+	    batadv_frag_skb_fwd(skb, recv_if, orig_node_src, &ret)) {
- 		/* skb was consumed */
- 		skb = NULL;
--		ret = NET_RX_SUCCESS;
- 		goto put_orig_node;
- 	}
- 
+ 		if (skb_cow(skb, ETH_HLEN) < 0) {
+ 			kfree_skb(skb);
+ 			*rx_result = NET_RX_DROP;
 -- 
 2.47.3
 
