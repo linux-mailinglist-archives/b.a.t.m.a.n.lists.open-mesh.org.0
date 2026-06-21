@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id v3k2Np72N2rRWAcAu9opvQ
+	id II1QKcn2N2rZWAcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:35:10 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:35:53 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CAB96AB157
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:35:10 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5E86AB15F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:35:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2NSXWbFh;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=OGVqoQW9;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 58CC880DC3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:35:10 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 2B71A8110E
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:35:53 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052510;
- b=3LQb8zUXwCrfB4ACWCLeKRlhzrUnX/1ee9h3pDT/SNJyboPMK3rF4pqlVQTySPRKEpY4R
- fvZPa4W+dQAVhHiRT1H7iJLCVj/jIZRZ5MoqqD1rpuOaeQ0+svnLVW/T1lfaq68Lc/lyqXB
- oeQYs343fXBFdeHRgOAkn+x/C1lMwoI=
+ t=1782052553;
+ b=EeQdbgAD1va1e2FD9fip+V1+ogoDjP3zDIsopzhOVi0yDzgQc9QpWzRp1BCYueWykAkDx
+ YJJ6olit53VZd32Pz6K2QvppN2RR2neLBfZAsP2t8xuYjw11xmJz3KvxLDbah7tgw6ILDDq
+ iiGvT8CUaoyw2X3nkcckcpFgve+HQtM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052510; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782052553; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=Oog+h8G+rl7vK2kIedlCQXJV1O+4WFXfJlgCeLKToQc=;
- b=NwcV5GxJBVGKM3CUpslwZ5qHkCtrpnzI0Q4rLVplDTPc9vtBAP/q2o9eNn2vdFqxIDD1/
- qcvVf99D7Xj7Hwld+AfSo4x+i+ByrFGiHK/KRjH3ed3EITKTH35joqhT+Z10p+Urr1M2SkF
- JYhnFmEKMTc/MgzkO4/MsNii3pkeb5g=
+ list-archive; bh=yAwoQg23DciWt3DRTJS0gHg8GssqRICLukFPkHY/EZ8=;
+ b=cqJ/qB1AGnyBDBR2SVsmzB0gWbsdsomOu+GgZIFTpFhVzdvT8wXPU3Kc79/q3ZnT1Jj2k
+ bH1PIdZ5eG/6TfLZXrui6csQLz+4qVLyEBMsA7NkdyZhZt75RjfPcsAKMOmVURnadQ6k9ey
+ lxm8gj6YYQ+GxYsBX6JZWLN4z4ufvDc=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id AA0AA80CC7
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:12 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051912;
-	b=XPOLcn3l575OavlbhR8zR54fVvWalWAHLJOQZv2YJIxMc8aT9zFuN6M1whIokiJIrUg5U/
-	RTWdT95zkx69yOLF+jaBYc1QLaZxI3ATFnqO+RdH1C6FKDHe/OnTzkhO2ZY8lDy+U9yC/c
-	1jR4PwSpxJr6EfIGCvyThcpfatvWJcQ=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id F23E484047
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:14 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051915;
+	b=Y0ORqpQfHKl6E2RtLlG0GnwQU9dTGP0oywwHPU5l7Sdi6LKI1c5/Fxb8pme8tzmMyDcRH+
+	UawcNbTVqipSnjCaLPWevSW4kBfMhFgXOntWYveoq6/x/FxfF5y4Ew/mrBauebss/k7dTg
+	/RBw7rFTjh2EFeceSozHJk47Z38Anu4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051912;
+	s=20121; t=1782051915;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Oog+h8G+rl7vK2kIedlCQXJV1O+4WFXfJlgCeLKToQc=;
-	b=wCwM+Sx9vdpkNFtgHfiRn3gqdvnravoYRWaWQgONb8LLyCLlT8Q915npqEd20WvuvCIVNb
-	/1IHFI+0Alzxhji28YaagOrckbaCHl7kH1pz5xmj6qsP+obiZIdsjGk91pRv8fw1pth7hF
-	NqaaR+678jlTIwAjCffe8Zd1OKw/0ck=
+	bh=yAwoQg23DciWt3DRTJS0gHg8GssqRICLukFPkHY/EZ8=;
+	b=DWZkxp91elU6229BPgkCanarScoizdI9CJm0qjMWM0ADsK518thUrfJV6m9QqDDDsKYcnk
+	1JiLnCWyD7zM0BfvYX//GExBryCWrU6YB97AGjpqX8DB1upnNujVyK9Gxyf3+gqk8lCoF1
+	JdOE+lQqNJkxQW3D5YWaYGLgmqGDHQg=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=2NSXWbFh;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=OGVqoQW9;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 2CBAF20059;
-	Sun, 21 Jun 2026 14:25:12 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 92D2C200C4;
+	Sun, 21 Jun 2026 14:25:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051912;
+	s=20121; t=1782051914;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Oog+h8G+rl7vK2kIedlCQXJV1O+4WFXfJlgCeLKToQc=;
-	b=2NSXWbFh6UadMWoPhSviKjJ+TlR4fT8xewYkFwY1Jw1/6ZEWDiNxtZkJxKLeF7eIRmpfh5
-	8BSdhFjQx0taAoWLocolB8i/V/fFc4ZnlUmKWCb5Ry1lLv7MpUGj+pHzr5s9pGtHRnGU+g
-	D3PnDTTgppL3Y5wHj+vT6evjmBlTTmA=
+	bh=yAwoQg23DciWt3DRTJS0gHg8GssqRICLukFPkHY/EZ8=;
+	b=OGVqoQW94tPtt1mBL4I8CCrYv1Qcbx/nC0/MCFQk/K7ZrpheI5n7Eb44+V7BBYz/ib7DLZ
+	b4g/ZryJZy0jcn5p+WWLwCXMEfhXfzS2eJR05NGLeqN010ukzajGyIVZwAldlu0zwd1ARA
+	FMIN+geSxwyt6KdgzwHjF76A5EwlWY0=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:24:04 +0200
-Subject: [PATCH 14/28] batctl: tcpdump: handle TCP packet with bogus data
- offset
+Date: Sun, 21 Jun 2026 16:24:05 +0200
+Subject: [PATCH 15/28] batctl: tpmeter: fix Gbps output
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-14-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-15-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1677; i=sven@narfation.org;
- h=from:subject:message-id; bh=rIWxfV5wtiyt+LHhBhZFV2Amuk7UfXaIVhQW3xHIQag=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9hyG5Ta3qXGe54y5/9e08rBNava7emR6b/19pu8u
- 9v8O/hDRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAiO4UZ/tnmNzvb/9x/yenA
- 7bI26ZmzJLxXd0/e7qZilaPzIcaQ/yLDX9GN+TM3T7u/YuHLTSqTTNKWVL99M/9Fl9ss1nXMSwR
- eCPEDAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1012; i=sven@narfation.org;
+ h=from:subject:message-id; bh=lG6m0zu+m/+8MlW3NxvbOoGkrMtsIeQm/N9/GYT7gGo=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9iOVtUdX3DqVfpsflaNyj1zPKL3Cj/5uOqcvC9nX
+ EK8+/yQjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE9ocx/JW5axjHUt1gtnHa
+ UbdIUxHGdRd93zfXOH+VV8qYwyggnMrIsDfo5tn8hr4Tt2fsffn/kHU9W3+UU2BJb8I51efzNfZ
+ fZQcA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 4MV6MQY6KII4XNMKKH2U3E26LPRMAGBQ
-X-Message-ID-Hash: 4MV6MQY6KII4XNMKKH2U3E26LPRMAGBQ
+Message-ID-Hash: CMDMMASNIKYP5V42L3XDK56J4IQKAKEJ
+X-Message-ID-Hash: CMDMMASNIKYP5V42L3XDK56J4IQKAKEJ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/4MV6MQY6KII4XNMKKH2U3E26LPRMAGBQ/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CMDMMASNIKYP5V42L3XDK56J4IQKAKEJ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -143,51 +143,36 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp,narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7CAB96AB157
+X-Rspamd-Queue-Id: 4F5E86AB15F
 
-dump_tcp() computes length as (buff_len - ip6_header_len - tcp_header_len),
-but the only bounds guard ensures 20 bytes, while doff allows a higher
-header length (60 bytes). With a doff of 15 (60 bytes) and only 20 bytes
-available in the buffer, the calculation would underflow and show a bugus
-length of the TCP payload. For now, set the payload length to zero for such
-a packet.
+The formatter for the Gbps result should print 2 digits after the dot. But
+the format specifier was different than in all other branches and didn't
+specify the precision after the dot. Instead a minimal number of digits (or
+spaces) before the dot was defined.
 
-Fixes: 35b37756f4a3 ("add IPv6 support to tcpdump parser")
+Fixes: f109b3473f86 ("batctl: introduce throughput meter support")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- tcpdump.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ throughputmeter.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tcpdump.c b/tcpdump.c
-index 9c90f36..7769cbf 100644
---- a/tcpdump.c
-+++ b/tcpdump.c
-@@ -537,18 +537,20 @@ static void dump_tcp(const char ip_string[], unsigned char *packet_buff,
- {
- 	uint16_t tcp_header_len;
- 	struct tcphdr *tcphdr;
-+	size_t tcp_len;
- 
- 	LEN_CHECK((size_t)buff_len - ip6_header_len,
- 		  sizeof(struct tcphdr), "TCP");
- 	tcphdr = (struct tcphdr *)(packet_buff + ip6_header_len);
- 	tcp_header_len = tcphdr->doff * 4;
-+	tcp_len = (size_t)buff_len - ip6_header_len;
- 	printf("%s %s.%i > ", ip_string, src_addr, ntohs(tcphdr->source));
- 	printf("%s.%i: TCP, Flags [%c%c%c%c%c%c], length %zu\n",
- 	       dst_addr, ntohs(tcphdr->dest),
- 	       (tcphdr->fin ? 'F' : '.'), (tcphdr->syn ? 'S' : '.'),
- 	       (tcphdr->rst ? 'R' : '.'), (tcphdr->psh ? 'P' : '.'),
- 	       (tcphdr->ack ? 'A' : '.'), (tcphdr->urg ? 'U' : '.'),
--	       (size_t)buff_len - ip6_header_len - tcp_header_len);
-+	       tcp_len > tcp_header_len ? tcp_len - tcp_header_len : 0);
- }
- 
- static void dump_udp(const char ip_string[], unsigned char *packet_buff,
+diff --git a/throughputmeter.c b/throughputmeter.c
+index d670c51..a45eb08 100644
+--- a/throughputmeter.c
++++ b/throughputmeter.c
+@@ -431,7 +431,7 @@ static int throughputmeter(struct state *state, int argc, char **argv)
+ 		if (throughput == UINT64_MAX)
+ 			printf("inf\n");
+ 		else if (throughput > (1UL << 30))
+-			printf("%.2f GB/s (%2.f Gbps)\n",
++			printf("%.2f GB/s (%.2f Gbps)\n",
+ 			       (float)throughput / (1 << 30),
+ 			       (float)throughput * 8 / 1000000000);
+ 		else if (throughput > (1UL << 20))
 
 -- 
 2.47.3
