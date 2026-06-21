@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id p6lUBSD3N2rtWAcAu9opvQ
+	id k+mnHEv3N2r3WAcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:37:20 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:38:03 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D516AB172
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:37:19 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 012026AB180
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:38:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=ZugJ2qFY;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=XKanUPQj;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 948CB8440C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:37:19 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id CF2298476F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:38:02 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052639;
- b=LNrZ7dl/OhdjtYK/zoTQXD0cB2akhu+l4LH0lkEsbwmqcHOSRrrDseoDl6eaUFxZ6or4v
- y8W5rZpvN0AMK9tjCU4MB3hLpfPTG+DN2u8iOOJuiZgXGg7Zm8+gDbQjRHDQRl+TzVd2owR
- ArNtQKYXSUHrI49hO/Y+9yr7PlNjIAc=
+ t=1782052682;
+ b=YH/tHUVLYnhFr8ze+5PfvvxNLmx6MsCiAb61TYOfvCumYkDobw29NU0w/AzYs6GYufB0m
+ J3U3+IHjniQLAvBkfaJOtRJ744SgUp09/B3DCvoJlzTfsMm8oiPqogKg8u/rxnc9+2Tkcx5
+ b80J36h0sKX/GEZIW8ArUsuAtMxqm7I=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052639; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782052682; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=rdSOu636v6SEFNELc2pwhakDAdk+lSr4K5Mk5TRPhDM=;
- b=NhsswGCDwhFIR2cB8MXXlshT1CTghLxNsZXmR7mQYMpgxdx3QkVnaJA8THxooLqsQPQrO
- U2+PstgEMjV8wOsSL/dXaELxsVh/JGpF77So9u+6FT8YJM21GQSl/9KQscs0yWdE/ZrmaPY
- IChYxKE+a2PdHL5DNnzpeSq0g0HiA+Y=
+ list-archive; bh=IOtLERlnPLNAM9Nsc2UxVDCOzfln0HUSSXxzVL2uKOc=;
+ b=fPYp+VVCS/F1N+ylsNqGb9NpXIXWdjzABQPqs08tCrKkhVCd2xZ0vg+aMhHWri+LKqPvG
+ nHBdFv9Nf3BaOXp1QsRpTnhR9H/9NSBLjyKdo4SutZXfJkUqpqn4lbFKHyuFWxSVg+bOyYK
+ TGcTDaHUmqMjH9jkteNUsxUI3nwf594=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 3A8BA841B6
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:19 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051919;
-	b=J/eKzg0Kv9Sn9mnvNy/qxPJ9wv3WO2GqIWQLZQNlp6AkFQGOiNXW2PqjuKqB7OavJLx42P
-	Cv+GNfXTbtWQ85AyLFAUbJ4j929XZLnTQvKEsxiNUB1ZshYV3o1TcQw0cghzVgrOWTKSg6
-	sAQ6BstlD2jMNHqbi2LWhfkVj1P2QKw=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 496C580DE1
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:21 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051921;
+	b=dagBXyQM2OexWy4J4TLQ/7gK2cVcKaOhk9WrdkfNZH2cszs+r8JTD0RIMMdIH7M+LzrFOj
+	+cWxbsgVzw+kjMD4xW+IJmEJa3In47gHwTAKdUzXa2zLSVpkCiy1P0iE5M8O9pb+QO6IoK
+	cF8JLqphnV/IWEVgSCO+Nt6n8ygts1w=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051919;
+	s=20121; t=1782051921;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=rdSOu636v6SEFNELc2pwhakDAdk+lSr4K5Mk5TRPhDM=;
-	b=cqf78siHs7ZNO2oh1izeXKqhuJn+KHpo4sHSVJHAlwSgjbMl0zOjwK2ttnzYV+eGTiF1kB
-	GawqftWVOf90mcDbT2jyOzhqorrh0Dws+DfNSwzbiVdqly0PCNaanoJXf9ujwy6tOArumj
-	SiX5LGBwqpHoAQjT5ahXViVP7bI0oIo=
+	bh=IOtLERlnPLNAM9Nsc2UxVDCOzfln0HUSSXxzVL2uKOc=;
+	b=cPWitEyg1rMt07/Kqp4q96tIT6gnz9ocmUGZrwRIVKcKpQho3O/B+dASRzOKOd10jR27mm
+	3zeDdWhehJKy5TlYmVCcnmFDvKWwB5dYHzCNMuSdmbWS7IE0dkNgzHXFpadZ1dZYxtgTLg
+	g+++b8aT9lti9pWFZqNm9To3elLuZaU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=ZugJ2qFY;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=XKanUPQj;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id BAAE620131;
-	Sun, 21 Jun 2026 14:25:18 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 0162920131;
+	Sun, 21 Jun 2026 14:25:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051918;
+	s=20121; t=1782051921;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=rdSOu636v6SEFNELc2pwhakDAdk+lSr4K5Mk5TRPhDM=;
-	b=ZugJ2qFY+Funtsi3DwPgL6Tlv1+jUCRBcT9GIiaoO/ZM7CbogM6Vn3OT9eZgwR1KRAu7Zd
-	2dixeCFN0CAR+vJfgSCZoHPv94zpaNzpjLnA/LRBrmG4Fz6Pc3R0PsUAU0NVi/Bfy+XbSl
-	zFfgKf1H1m4oGv+6q/ErWHJByfDb/Aw=
+	bh=IOtLERlnPLNAM9Nsc2UxVDCOzfln0HUSSXxzVL2uKOc=;
+	b=XKanUPQja53ccodlHxEvePLaKBkZRzFmTj/+gPVnUXQZ1oZHB7sj4q06kLmHSp4bt8g6rY
+	AMogqMbBNqd+GhY2208buHcCpPjk7jR+zBRg1YRohdnVzcBUjCQhtvJBuyN5t3AEspKFxp
+	pIPXUrSDc7X1xySROxy64KNicctD0n4=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:24:07 +0200
-Subject: [PATCH 17/28] batctl: netlink: check for BATADV_ATTR_MESH_ADDRESS
- before accessing it
+Date: Sun, 21 Jun 2026 16:24:08 +0200
+Subject: [PATCH 18/28] batctl: netlink: consume until acks even on errors
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-17-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-18-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=686; i=sven@narfation.org;
- h=from:subject:message-id; bh=qCeUnPDAofCnp2RRnuMMjBCVzCvJagTuLGFvG81ZeV8=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9imfLy4fv5V6WbeGgYuEdk73E/Sb7WcVfv3RbBBe
- NqL2Nl8HaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJHOBl+GfoMqWzyyN/WX3C
- jLWHuVsS7pnEeHPvvRZ4/nTiee+n5/0Y/ukeEy3eM3l3qpaXc0qsvsXDQ71vIwMFFc/+Xa8af0H
- 5FQcA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1528; i=sven@narfation.org;
+ h=from:subject:message-id; bh=RmaaFrO4w2MVTO+YYRW6OVu1BHkoKAoQnQoyF6jyEEs=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9huyC+7Xuz1vdbyY/Lh++pvbPnCvFecW3TvyOotX
+ Y9KhFIiOkpZGMS4GGTFFFn2XMk/v5n9rfznaR+PwsxhZQIZwsDFKQATiVVhZLgqs1g4yvun6M4z
+ ZvO1qxtdQpymlbP1NKXkcTDauPBzJTEyvLX7fGHh6VlbukLsdjrYyDBc0C3maVjxh+XMHOX526a
+ pcQEA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: JDQY3P2PEY2QYDZDXPGRN736WFV4GXYP
-X-Message-ID-Hash: JDQY3P2PEY2QYDZDXPGRN736WFV4GXYP
+Message-ID-Hash: GZL3MHVSM5KJ6XDNPJT7DX2VQDXWW6ZD
+X-Message-ID-Hash: GZL3MHVSM5KJ6XDNPJT7DX2VQDXWW6ZD
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JDQY3P2PEY2QYDZDXPGRN736WFV4GXYP/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GZL3MHVSM5KJ6XDNPJT7DX2VQDXWW6ZD/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -143,33 +143,62 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp,narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7D516AB172
+X-Rspamd-Queue-Id: 012026AB180
 
-info_callback expects the BATADV_ATTR_MESH_ADDRESS attribute to be set. But
-it never checked if it is not NULL.
+THe sys_simple_nlquery() function is used on a shared socket. The data
+until the ack must therefore _always_ be consumed to avoid receive
+confusions when another command is started on the same socket.
 
-Fixes: d8dd1ff1a0fe ("batctl: Use netlink to replace some of debugfs")
+Fixes: 0b81e8fbaed5 ("batctl: Consume genl ACKs after setting reads")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- netlink.c | 1 +
- 1 file changed, 1 insertion(+)
+ netlink.c | 8 +-------
+ sys.c     | 2 +-
+ 2 files changed, 2 insertions(+), 8 deletions(-)
 
 diff --git a/netlink.c b/netlink.c
-index 5f78602..be92a9c 100644
+index be92a9c..3a1c3a5 100644
 --- a/netlink.c
 +++ b/netlink.c
-@@ -325,6 +325,7 @@ int netlink_stop_callback(struct nl_msg *msg, void *arg __maybe_unused)
- static const int info_mandatory[] = {
- 	BATADV_ATTR_MESH_IFINDEX,
- 	BATADV_ATTR_MESH_IFNAME,
-+	BATADV_ATTR_MESH_ADDRESS,
- };
+@@ -466,7 +466,6 @@ char *netlink_get_info(struct state *state, uint8_t nl_cmd, const char *header)
+ 	};
+ 	struct nl_msg *msg;
+ 	struct nl_cb *cb;
+-	int ret;
  
- static const int info_hard_mandatory[] = {
+ 	msg = nlmsg_alloc();
+ 	if (!msg)
+@@ -488,12 +487,7 @@ char *netlink_get_info(struct state *state, uint8_t nl_cmd, const char *header)
+ 	nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, info_callback, &opts);
+ 	nl_cb_err(cb, NL_CB_CUSTOM, netlink_print_error, NULL);
+ 
+-	ret = nl_recvmsgs(state->sock, cb);
+-	if (ret < 0) {
+-		nl_cb_put(cb);
+-		return opts.remaining_header;
+-	}
+-
++	nl_recvmsgs(state->sock, cb);
+ 	nl_wait_for_ack(state->sock);
+ 
+ 	nl_cb_put(cb);
+diff --git a/sys.c b/sys.c
+index 35a026e..3018c09 100644
+--- a/sys.c
++++ b/sys.c
+@@ -110,7 +110,7 @@ int sys_simple_nlquery(struct state *state, enum batadv_nl_commands nl_cmd,
+ 	if (callback) {
+ 		ret = nl_recvmsgs(state->sock, state->cb);
+ 		if (ret < 0)
+-			return ret;
++			result = ret;
+ 	}
+ 
+ 	nl_wait_for_ack(state->sock);
 
 -- 
 2.47.3
