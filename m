@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l7gEEOv1N2qXWAcAu9opvQ
+	id nNfmDBb2N2qsWAcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:32:11 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:32:54 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B2A6AB124
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86AB6AB127
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:32:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=lpkwCFPD;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=yQlfIdR7;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id BC12A844FA
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:32:10 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id A4AAE81CD4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:32:53 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052330;
- b=hiDqxY5BzBFxnChxEnp/5gRSQMZOG26siazlq0ytfTc4aMPHaukPV71DeBv0KZrn4AD+8
- mVjjo264tC5UlPwS4U+7je6L9TJsMYUcOVlkGEAOPlEvX+ZZ3KMKB3YNvvVdos2+0r/y/yS
- HgrNs7G/CMcD1Pb4PuqX7eNVzv+DmH0=
+ t=1782052373;
+ b=g7tfnzFEX+M5WtoeGuIC40b5k1u/FQOkjfmAycpvYac6mP86LPKjImtZ9zhz96BBCZwnB
+ uA5NmflxYIAuqqTgoDuWXbNfAI7rx1J6aCsBEgNR3zZSXMd2ubUrU0rAnYrzuJ7lh069zpt
+ 1Txe36HZELjlMWiLl3f45a2XywctdqU=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052330; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782052373; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=F5J9ROC3BkkgoTA9CmkYa3oPapnVHalRUn6fCPUtr6E=;
- b=wdr+V0dYqaoP0Rviou8m9BVG8W4Nl7djNm2nEbl8r9bCdhfsx4jQ0c12Yuzppiznm8ust
- WfXB4hORiKgoHTtZlYqel2ZHVcdXkWh6uorJDEtNi5Dx/ReYz/b6OpWANxCMGZZBCkv0uGo
- 6y5dvOFcIBnTRiM8/gupYqMPG0tFP4k=
+ list-archive; bh=ndoHB2JqaTnOpG6F4Oa/aa9F4E7FYE4SdrD/AVD+YTQ=;
+ b=MsrdA7Y0iCnr/f7H5LfdIaIvesTFOUxIY8cgoGjcO2xN2uCleg+JTc2pU/mWYnUr1M3r6
+ qaQLXXYkUvaJY5c5vIjZ1ff34ypsPOk1eEGu/BKbFBRxMNcEea/HAYuCJiIk5VciT+N7HfW
+ sBx/I629oLOIWnfbtvvNefHci4adWUU=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id AFA8C84077
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:03 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051903;
-	b=Hg5NMeeHfzU5TdnRrgaePYm9s1XP373zfjr5NLYjWxTU4H7B/Ea/YLj8B9rci0fGPrSUxt
-	Z3hMdNecsjN7GMU2x6OQ1GU20x7ll1HjIMrkVa555mtxlqmrKWP0BDf6s0SE80+wcwoIfq
-	eNoXhjiAQ45G3dN7iuxE+CiP9i1w1Vw=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 418E4840E5
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:06 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051906;
+	b=0WgUu8r4q1kYmJCxaNcVM98qyRRPkVZBD3qLkHu/F2MKf/jPavz6R1gJ3mbhaG55o/kMvT
+	JcRyiGVExp8hy+D62RH2X8KRVCdJNy8YaWgEQfwG87y4oK2H1l61mF3OHa301qt/bViX29
+	lAmqNXSpB9U2K/F+8rdHD0Qyc4mb/is=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051903;
+	s=20121; t=1782051906;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=F5J9ROC3BkkgoTA9CmkYa3oPapnVHalRUn6fCPUtr6E=;
-	b=z3xaIhEE9e1r6qvdk387FyQX9AN/cfEOJn3koAhr32bi5GC5FmW/kXS5sVdnnwiPIlEiAk
-	liV52ZO8kgaJN9du1Cw16bz5glOBkfUO87L1IOxZRlwE6GqGIU3OZ3s/L965M8809syJkF
-	ccsTTSvYvd3e6tF6rPq+wHNIvR1+Sl0=
+	bh=ndoHB2JqaTnOpG6F4Oa/aa9F4E7FYE4SdrD/AVD+YTQ=;
+	b=akQiguck8PFlL2eLf2bRStv6fulIkjDr366eKhRhkYTUbFtoBCVUJh1i+L0CkjUqwume7k
+	cH7MsEShmUOPBlVTKU693zIL8HLaHBLljFKU/05B9ooEMg9e46Hym7I2zsE9n71XE6lKnl
+	DtgLdR6FTN80QPWNfHcYX2S9ppAcsrU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=lpkwCFPD;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=yQlfIdR7;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 67D4520059;
-	Sun, 21 Jun 2026 14:25:03 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id BB87E20059;
+	Sun, 21 Jun 2026 14:25:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051903;
+	s=20121; t=1782051905;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=F5J9ROC3BkkgoTA9CmkYa3oPapnVHalRUn6fCPUtr6E=;
-	b=lpkwCFPDgVe6tCaeGbMBRAcorDfuh+ppEtnyJqz0PTuFXKZp1aBUyL3SsXn9tommwvblZT
-	ER1vCDEqo8XTjUSiVQycwEz/xInLUu5zdE9y32QMdkGgX1oxDr6Ttm4fLJhcwoYoRYQt0g
-	Cd7c3hNEq7ZNEoJonDy/9XsB229L6EI=
+	bh=ndoHB2JqaTnOpG6F4Oa/aa9F4E7FYE4SdrD/AVD+YTQ=;
+	b=yQlfIdR7K1YJtv3HOOJ84I29eJAYROkuK7x8SUydKo8WOKbpOb3uEY92Aw4tOhAyJF+TOJ
+	XqN4KX0VcSVGnAJhjkYLSjTjTGtSNkY3UZiwWGno8GtLmbDgawVlL7LvHXOVi97pokUSnm
+	nx1SCb5bBcVKu9HQcSKzMaCh8WjBv2A=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:24:00 +0200
-Subject: [PATCH 10/28] batctl: tcpdump: fix endianness of fragmentation
- sequence number
+Date: Sun, 21 Jun 2026 16:24:01 +0200
+Subject: [PATCH 11/28] batctl: tcpdump: correct output of VLAN IDs
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-10-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-11-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1005; i=sven@narfation.org;
- h=from:subject:message-id; bh=GoEfJpsRyr/FI8xNrQHKVgyoAk934eSr+agfsXqCaH4=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX1g5mtbntfqmTf3uKXJ+t4mYXniu9+mZ5cf9T79pW
- af3IPBIRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAi0s8ZGWae11Pv5be/wdEQ
- 0361zOLk3p9F//tL755Ou21dabuvz5SRYf5p/07xpRotVYb3Ljycrxjm/86g1P3+7jZbromzj/h
- bsAMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1099; i=sven@narfation.org;
+ h=from:subject:message-id; bh=UpOxcgf53y1/Da5aDFHjHu2F1uvEyGV7i0eTRXnA/4w=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX1h/lBmtLLOdIFJgJM/9xZrxv1+j7OYD2qohNZf3b
+ D7JH2HVUcrCIMbFICumyLLnSv75zexv5T9P+3gUZg4rE8gQBi5OAZhIGzvDL+a7iw68+bV4Hsv0
+ G1pV0yqMN9c45qT3Gd49y671/fy3XlmG/8G7xW/pq5yMrvy4IdXH2WOHmULd2Yd2sdY7paWL9Fa
+ s5QYA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 6RZHTWELHCGEQ67FNAUR3KKX3V4JDW2H
-X-Message-ID-Hash: 6RZHTWELHCGEQ67FNAUR3KKX3V4JDW2H
+Message-ID-Hash: 5WKRXPAB3ZR67GK4PMD35GV5WQS6MW26
+X-Message-ID-Hash: 5WKRXPAB3ZR67GK4PMD35GV5WQS6MW26
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/6RZHTWELHCGEQ67FNAUR3KKX3V4JDW2H/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/5WKRXPAB3ZR67GK4PMD35GV5WQS6MW26/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -145,33 +145,37 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4B2A6AB124
+X-Rspamd-Queue-Id: C86AB6AB127
 
-The kernel returns the unicast fragmentation packet in network (big endian)
-byte order. But the system might be little endian. In this case, the bytes
-must be first reordered before they can be printed.
+The 16 bit TCI header for VLAN tagging (IEEE 802.1Q) stores 12 bit for the
+12 bit VID, 1 bit DEI and 3 bit PCP. It is therefore unexpected to print
+the 16 bit as vlan identifier without masking out the upper 4 bit.
 
-Fixes: 30f8fe9c105a ("batctl: tcpdump: Add support for unicast fragmentation")
+At the same time, also split the DEI ( Drop Eligible Indicator) and the PCP
+(Priority Code Point) in separate output fields.
+
+Fixes: 7738b534fb07 ("batctl: tcpdump - add vlan support")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- tcpdump.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ tcpdump.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/tcpdump.c b/tcpdump.c
-index aced4d3..ddcee03 100644
+index ddcee03..e417cd1 100644
 --- a/tcpdump.c
 +++ b/tcpdump.c
-@@ -1050,7 +1050,7 @@ static void dump_batman_ucast_frag(unsigned char *packet_buff, ssize_t buff_len,
- 	printf("%s: UCAST FRAG, seqno %d, no %d, ttl %hhu\n",
- 	       get_name_by_macaddr((struct ether_addr *)frag_packet->dest,
- 				   read_opt),
--	       frag_packet->seqno, frag_packet->no, frag_packet->ttl);
-+	       ntohs(frag_packet->seqno), frag_packet->no, frag_packet->ttl);
- }
+@@ -823,7 +823,8 @@ static void dump_vlan(unsigned char *packet_buff, ssize_t buff_len, int read_opt
+ 		time_printed = print_time();
  
- static void dump_batman_bcast(unsigned char *packet_buff, ssize_t buff_len,
+ 	vlanhdr->vid = ntohs(vlanhdr->vid);
+-	printf("vlan %u, p %u, ", vlanhdr->vid, vlanhdr->vid >> 12);
++	printf("vlan %u, d %u, p %u, ", vlanhdr->vid & 0x0fff, (vlanhdr->vid >> 12) & 0x1,
++	       vlanhdr->vid >> 13);
+ 
+ 	/* overwrite vlan tags */
+ 	memmove(packet_buff + 4, packet_buff, 2 * ETH_ALEN);
 
 -- 
 2.47.3
