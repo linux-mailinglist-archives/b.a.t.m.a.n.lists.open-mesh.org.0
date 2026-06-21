@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2n6AGlv4N2pCWQcAu9opvQ
+	id umDeAo/4N2pUWQcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:42:35 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:43:27 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B81C6AB1BA
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:42:35 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18296AB1C9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:43:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=0hyVKBhR;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=bvVI7kLy;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DC86680A6E
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:42:34 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 7891384727
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:43:26 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052954;
- b=S1oAsShBbCY/eliW2aUKW5qZL0NgW4dASLjxonskUcGysAnZnDAOWXLlkAAYS9igu3SW4
- uq/wRzIA/kn6cshZfH/cqmGrr+3fF50o3Y1uHVEZat8YBJm9853EEvEtsRge7deXXf3dYHX
- kCgZztc5W0wr0CFLtm5AydBeB57OwR0=
+ t=1782053006;
+ b=Wc3SwDloMOJRiULMVZlZVNYxMRwjE2wAtR9DnPVPp+a15PKYRhjQuqCDpfzcqEMsT63b2
+ B6itqi7iyDv0aSP5SWah6QJyIIYrLF5AHw/V+k+SHZiAtcbeAvAUxnIpMwFkdbUqY6yAz1q
+ XPkuo5w9Qn5z010By+5YhuOppSWzmy8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052954; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782053006; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=TDve1FjeEaxM3TQCGCdin0lJqmUKAL+JebDMyAeKFTM=;
- b=AfsQ/WVAtXuYI3uK2TklfPWlpfVGzgTEgzzvsMHTdqJ5vnwb92Rn0yJMH2TMFWbANC9/6
- uXr2CWz0JNPF56KdBMyAuRWfPBVFt+vUA+LIV9d5KHBZYgojnHfHn8T2vW57DGE8pTD/u7d
- c+wJQBRO0/euZm2B9DK3pVQQTglWZ8k=
+ list-archive; bh=DNBsZYB/Hj6HqBBP/FsM47g02KXRwSohNVZMXbMdTQs=;
+ b=AHSml6e4exzGcP2Ijm9l081KHziPxBMq9K0VbL8bOYHPX19DQ/fBGC1PAlo3lgde0Hn5D
+ oc81KpmyO+PnNJgxSRmjJW1dnLeyBG1OC4beWCo+DufCjFkreIoyL4uQPoudXdZQVMmd/xJ
+ z/TBcR7wUFgfkjtsJ9sR9GoIwME2C0c=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id E671E8427A
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:58 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051958;
-	b=WktX/eVB/jd0xCF7yrWhyIoa6omaS2ZRTJ564cDqRLjvonGoYr/JphZRN2BZTqeTK/Xr38
-	zvIzM7gGJRAgFZmSV2eZLhfz48q+rXlgtz8WuXHNhD1MG7kybRCPmBK8xDMECpnlxJiGkt
-	SmjYujZL3Wxeg+oYa8YNXEKHFn5Ddnc=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 9BB9C8059C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:26:16 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051976;
+	b=iEFE8oljjMTMAGbTZxJSqKwQlD4VQ2/lB4VCABAQP5vfwSBzMSvb3uUu8IR4XfIzThSN39
+	fizg10YGeRx7ie1msMo9jgc2AmEPUuKRor7Wh6qhOkSHwSZViAUNlXYJijFYURExKk/cHB
+	tOyRT8ZgS5KtYCFEqoMQPHF9d8GB3UM=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051958;
+	s=20121; t=1782051976;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=TDve1FjeEaxM3TQCGCdin0lJqmUKAL+JebDMyAeKFTM=;
-	b=igFGtvDx0e3ZHGuSXjyhXobB9eLdAMSYpbWYQND4KMJ9yUqWCB6Ip5eaIAGJA0HWMX1fX8
-	6tJnH9eWQO/8A2+bQk+GaZIu763cYt/4sK0M+33Am2aeoV31tbqucKuRDzWQSzexVwNmiz
-	NSwnzJp0LHN3Z49/HxXfB5vyqYHY6h4=
+	bh=DNBsZYB/Hj6HqBBP/FsM47g02KXRwSohNVZMXbMdTQs=;
+	b=33dow07lBSGAkdBNtOxUd2FJ9WsQfRCqegXW6ALLhpilDKYjJAQ+87BJBLvUxEiZ0hV/qD
+	XR3Ub397oRVMWLiQy7+9azRS1YVGTXWqGarlqnVzhG8vOkED529dTlCLDXkjoMtySgBKcf
+	KdgqZfCYi9MKKHuESCrUpG5UIkCqxm4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=0hyVKBhR;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=bvVI7kLy;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 958BA20131;
-	Sun, 21 Jun 2026 14:25:58 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 43A0820059;
+	Sun, 21 Jun 2026 14:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051958;
+	s=20121; t=1782051976;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=TDve1FjeEaxM3TQCGCdin0lJqmUKAL+JebDMyAeKFTM=;
-	b=0hyVKBhRJInD654gHaBeD5mXW/MAkWNYgcqOrpuB4cE7I9UMeTz9fSAI8EcKUUYjMvKljj
-	c2wCXDYkNGDYRGRAvTowEyPqWW5rukK4gLYbmdlEzifaC7Yu+TuiNAJ/rgI8r9ExhViXam
-	ub/YMmjSJC8NIMrSOWxHNvyrbXN4B3U=
+	bh=DNBsZYB/Hj6HqBBP/FsM47g02KXRwSohNVZMXbMdTQs=;
+	b=bvVI7kLy4yYMMca7irlhVhEATYJxZCfqa/mUijdCtSEiz4F+33QuyhMwIm67JzwU1/hwMB
+	osY3Ki3adGbEZImBgf2h34WM+OH2XdAy93TZDh6Q0GpvFdGADJjgCnMNiAXy+f+yYaOUtW
+	Bi5uztdHVe1Eo6UQzRF+DgG/bda2pXI=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:24:14 +0200
-Subject: [PATCH 24/28] batctl: bisect_iv: avoid access of uninitialized
- loop magic
+Date: Sun, 21 Jun 2026 16:24:15 +0200
+Subject: [PATCH 25/28] batctl: bisect_iv: handle failed node_get for
+ RT_FLAG_DELETE
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-24-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-25-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1457; i=sven@narfation.org;
- h=from:subject:message-id; bh=IWLBRw2QaiFx2r9yeYp4pwB419LrXZJ/sTAeEqUP3ys=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9i3makpP/KQlt7JqbNy36e3evveMHsxcn3c1Wq1e
- yUXy2bPjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEeMoY/ge89dFw5VKYx/K5
- z1/h0FHuZwFTLzhnLOO9xDDdQiXm8huGvwKT5ycELylYVFB0xPbAX68lbOzZ/1dekAt+c9S4ys6
- ohRUA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=844; i=sven@narfation.org;
+ h=from:subject:message-id; bh=x1OB1gsOVfp54vPsv22XXTVhuq0u4idDNEkpdW9i4oA=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9jV5Pv7d9dJR2zbOo3V3mDG2tO3/2tXLJ+ak/kka
+ PHiE1Y2HaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJbO5j+GdzWGEt014Tn3jZ
+ qlj1Vj/jiPmvD0r9Sq1fIfXny9/jkQcZGV68vuY65VIuH1v6vambfk+afZJPRtf2p93Go4n/TJn
+ Ka5kA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: PP5K33VGC7BIYA3K4YZBE5LKNQUPA4VE
-X-Message-ID-Hash: PP5K33VGC7BIYA3K4YZBE5LKNQUPA4VE
+Message-ID-Hash: GDZXIK7PQ74XUKHYHWOYH3P3G4CCWLBW
+X-Message-ID-Hash: GDZXIK7PQ74XUKHYHWOYH3P3G4CCWLBW
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PP5K33VGC7BIYA3K4YZBE5LKNQUPA4VE/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GDZXIK7PQ74XUKHYHWOYH3P3G4CCWLBW/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -143,47 +143,38 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp,narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0B81C6AB1BA
+X-Rspamd-Queue-Id: A18296AB1C9
 
-The loop magic string is initialized with snprintf - which can be a partial
-initialization. But the rest of the access assumes that all of the loop
-magic is initialized because it is then only access with memcmp and memcpy.
+When a node could not be found or allocated, then node_get() will return
+NULL. If this is not checked then it will cause NULL-ptr dereferences in
+the seqno_event->orig is accessed.
 
-Initialize everything to 0 at the beginning of the function to avoid
-uninitialized bytes.
-
-Fixes: ece05e1c4c1f ("[batctl] bisect (a tool to analyze logfiles) added")
+Fixes: 700749a4c2f4 ("[batctl] add recursive check for routing loops")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- bisect_iv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ bisect_iv.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/bisect_iv.c b/bisect_iv.c
-index 5da5bf1..f1ba94e 100644
+index f1ba94e..0e34d37 100644
 --- a/bisect_iv.c
 +++ b/bisect_iv.c
-@@ -658,7 +658,7 @@ static int print_rt_path_at_seqno(struct bat_node *src_node, struct bat_node *ds
- 				  struct bat_node *next_hop, long long seqno,
- 				  long long seqno_rand, int read_opt)
- {
--	char curr_loop_magic[LOOP_MAGIC_LEN];
-+	char curr_loop_magic[LOOP_MAGIC_LEN] = {};
- 	struct bat_node *next_hop_tmp;
- 	struct orig_event *orig_event;
- 	struct rt_hist *rt_hist;
-@@ -720,7 +720,7 @@ static int find_rt_table_change(struct bat_node *src_node, struct bat_node *dst_
- 				struct bat_node *curr_node, long long seqno_min,
- 				long long seqno_max, long long seqno_rand, int read_opt)
- {
--	char curr_loop_magic[LOOP_MAGIC_LEN];
-+	char curr_loop_magic[LOOP_MAGIC_LEN] = {};
- 	long long seqno_min_tmp = seqno_min;
- 	struct orig_event *orig_event;
- 	struct rt_hist *rt_hist_tmp;
+@@ -311,6 +311,11 @@ static int routing_table_new(char *orig, char *next_hop, char *old_next_hop, cha
+ 			}
+ 
+ 			seqno_event->orig = node_get(orig);
++			if (!seqno_event->orig) {
++				free(seqno_event);
++				goto rt_hist_free;
++			}
++
+ 			seqno_event->neigh = NULL;
+ 			seqno_event->prev_sender = NULL;
+ 			seqno_event->seqno = -1;
 
 -- 
 2.47.3
