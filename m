@@ -2,98 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WDfEKQr1N2oXWAcAu9opvQ
+	id 7fOdBDb1N2o0WAcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:28:26 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:29:10 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A12F6AB105
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:28:26 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id B806E6AB10B
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:29:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=NlyNAVXS;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=1bp77wyM;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 25F738078B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:28:26 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 92B4C82587
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:29:09 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052106;
- b=lUXeYcwlZ/M8as3eiv2DUNAAPLbt3T15xQDANOolBFrW/mx8DQDlpUnHL9e1vPxu+JYc9
- hHpNkeZQoIAZTkhbPVoI45NBLvr19iVn2VCbcg9mLMjWfgJjzDtqchuxX/l9lDAzV803bd1
- nxytCA0fqQ62D5fD+laY227deiGd67w=
+ t=1782052149;
+ b=IIJLcWveY9ye33k3rMlXfl9VBewkQIO1OMeWgp9W2cLPHwrj2vAL456yGToxQug7cG7qK
+ PYo2ZE6CvKoOVfNpInzKDCfNVcNwS9PknxdrhOWSMOOiz82Gcxmxd2mEZV+M7mkKlJ/i9XD
+ KYLREKyAe84ZC4ez1jj2YmF5fb6zxPw=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052106; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782052149; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=nvoiFkn/riz3ocyNSYyYcLnt2lF8TmoyFvg5wAGUOEg=;
- b=t6/QpdjltUZEpMnrX2QohtpTC+5I74JniIFhuP0TdokDKY3mwv+NKg5pRUFlSNDnDQvSH
- +toUSs+IpwG2D9Sf5tuBIkb4Dn7deRnrR/U33g93Tf/lbtPg1sDkedBiX0R1qx5dsG7Xdz/
- 28eEloL3lJwrtUJzFEmTJuJn/d+w/zs=
+ list-archive; bh=BsLSNHzzbUopmdD/CHZEkH9aHcOwJdraGDEfI05W0+s=;
+ b=EhQeIRF6k6erjTHiSx2j82M4jA0+/BXElNiRrHaPMy3B2Aguzhx06MU/ufkD5+GoNixmZ
+ pKH0O0tVvK2Lsa/PsS+BN9M1+dcbpzQII2ZcSzkNZkes+jwhbZQb+x+IpLJmGAc+FJ0X7om
+ FELm+BtMyOGVQbNpVqooFHzIoLtxSjg=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 88C0083FC6
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:24:40 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051880;
-	b=TttzAxJ3reyhcBQObDhUq3bvP5h16LiddUUljIWo3Bx7CG3+5ThBjN7zGEe1w1lF3XdRTh
-	EmX8+hOhsANFgXPrQo5dbFw3F0QilqCsLnasL+lXAh5JL+QiRXQcT/oj42S+Q9zFbbUx8j
-	uASjCN3ydLpGKZEbh8UnyUC+oLm2LZs=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 0470184016
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:24:53 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051894;
+	b=f+PnEVAHaBJRbul9G9ef73KToIBfHXc2EEVn5m9NReX7WYZpR87qtKkR82n+fNH2ytlxD3
+	XGPqfXMLGXl6AMVyHqkxB2j8TC4ffgcf4SQ/5ObP66LZFrvf97rAfOHlCaRFRZyOIRmb0O
+	ieJ+i98X3xoMoPqhQBWJ2NSvNeWFFak=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051880;
+	s=20121; t=1782051894;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=nvoiFkn/riz3ocyNSYyYcLnt2lF8TmoyFvg5wAGUOEg=;
-	b=IIKRd+LuodvS6gJFu/MCTlPk+kAmEnBModbJyrGiDEf1oovSDgch1GPv3T1VZJhADUUQ9N
-	d3PCYQvj9R4fJnEsXiI/SMVDXmiVVYUxucynsY1h1KQAO/FJ+sgnYnapoLpe9GjAnKIENF
-	ET0cwaxI/yWb9j8ASI0MZgxTGTXe71g=
+	bh=BsLSNHzzbUopmdD/CHZEkH9aHcOwJdraGDEfI05W0+s=;
+	b=eg+t0AxxgdcNQU/QyaO3ycqxQk6krbCyWawkegvtytnzTO+0dTfqljxEEuh/imOlhpd3po
+	hYkRQbSV0LsJwI0S+TvLjbn0zg2OkSphN+oonYNDEMAQLkxPpd6fsrc0Fb2Oto+7DwT/nM
+	JmjinPNuYDqKurNVj1V35r0TWcTRa2c=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=NlyNAVXS;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=1bp77wyM;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 42865200C4;
-	Sun, 21 Jun 2026 14:24:40 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 4F85F20059;
+	Sun, 21 Jun 2026 14:24:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051880;
+	s=20121; t=1782051893;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nvoiFkn/riz3ocyNSYyYcLnt2lF8TmoyFvg5wAGUOEg=;
-	b=NlyNAVXS6BoGPwulj0BOYoWg52u5m41dhKMSriEuSCtzT6WRCjO3IT7lVRDpIMA4hYo1/P
-	/BUO2Dpv4EI9KlM9BBXS/6SiySE2K9RTCZ3eqaRSkOg4L3H+iuNxDr83o2HlSYCM2ujTUY
-	83yBkT3LNPrVdcRd30fHhkKkuk92xDI=
+	bh=BsLSNHzzbUopmdD/CHZEkH9aHcOwJdraGDEfI05W0+s=;
+	b=1bp77wyM+RwlxcyVlXlIO3tkQ0uSRzK+nFnMM8EDL3eCnrKg7VvVodj5mzfM8VGK2ardMT
+	JgrQ1T8aSsokbSOGkrnlg3f/wl91A8z7r9PwMOvxIDSMhDBgQc20lffb7H9xlv0PZhhr1y
+	I1ogMxT8Ywyo1TFZ/KmAgoQLHtCEtXs=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:23:55 +0200
-Subject: [PATCH 05/28] batctl: improve number parsing error handling
+Date: Sun, 21 Jun 2026 16:23:56 +0200
+Subject: [PATCH 06/28] batctl: traceroute: handle fast replies
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-5-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-6-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7367; i=sven@narfation.org;
- h=from:subject:message-id; bh=wyceQFjYUqLql+ehxK3QUliMYKmTSMAD2wl990OZfPI=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX1jTHpz3vWSd2GCbLy09fa3sXn++PQF3H03Olmk7+
- tKPrai4o5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjARmUUM/wwN7yXc3mf2ckrn
- k4brF/Pnmm0yf/jovLsYT2r2ppZbdxYx/HcU3qC7JOf1xU4zHvHKbD+WZyz6887vKJhpE70z9t1
- yR04A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1929; i=sven@narfation.org;
+ h=from:subject:message-id; bh=A/1YzooUHK2kKnwYV448jx6r+BrJ0S/ZLtn7afO3BOA=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX1gTXTtu3jh4gfGC6f+7Xyt/yP3dc3vVkpidy50XP
+ oqN/eLZ1lHKwiDGxSArpsiy50r++c3sb+U/T/t4FGYOKxPIEAYuTgGYiKkFI8PZ85O/BFQIXzYx
+ zlzBevj1gv+8KQ3F++3CWmcxat4Ne6/O8M+2bb5+vr/3w/MBr72mLwpbf2fG8r3Od1fvt1Ot4F+
+ 7IJQJAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: PAJ3LWO3OISW2YVQMJWP6CD6K7E7CHWW
-X-Message-ID-Hash: PAJ3LWO3OISW2YVQMJWP6CD6K7E7CHWW
+Message-ID-Hash: LR7NMEAU6KC4YFJ7XXF2RVUQ2OKQWCQY
+X-Message-ID-Hash: LR7NMEAU6KC4YFJ7XXF2RVUQ2OKQWCQY
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PAJ3LWO3OISW2YVQMJWP6CD6K7E7CHWW/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LR7NMEAU6KC4YFJ7XXF2RVUQ2OKQWCQY/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -142,233 +143,61 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4A12F6AB105
+X-Rspamd-Queue-Id: B806E6AB10B
 
-The strtoul error handling is rather complicated and it is not only about
-checking the return value. The possible error indicators are:
+If a reply for a traceroute is received faster than the CLOCK_MONOTONIC
+precision or (in the rather unlikely scenario) the double precision,
+time_delta[i] would be 0. In this case, the packet would be counted as
+lost. Introduce a new array "received" to only track whether the packet was
+received or not.
 
-* endptr is NULL
-* endptr is not pointing to end delimiter
-* endptr is pointing at nptr (because it might have been an empty string)
-* returned value is larger than the expected maximum value range
-
-THe last two conditions were not checked even when it is a potential
-problem for multiple places.
-
-Fixes: df5c452a4469 ("batctl: Add elp_interval setting command")
-Fixes: 74b6d3bd7763 ("batctl: Parse the arguments for gw_mode")
-Fixes: cde0af829351 ("batctl: Add hop_penalty setting command")
-Fixes: a319ec4dcbff ("batctl: Support generic netlink for isolation_mark command")
-Fixes: 1ca604d5a0f2 ("batctl: add switch for setting multicast_fanout")
-Fixes: c49893119205 ("batctl: Support generic netlink for orig_interval command")
+Fixes: 0641511400dc ("batctl: traceroute - use all received packets to retrieve neighbor mac")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- elp_interval.c     | 7 +++++--
- functions.c        | 2 +-
- gw_mode.c          | 8 ++++++--
- hop_penalty.c      | 7 +++++--
- isolation_mark.c   | 8 ++++----
- multicast_fanout.c | 7 +++++--
- orig_interval.c    | 7 +++++--
- 7 files changed, 31 insertions(+), 15 deletions(-)
+ traceroute.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/elp_interval.c b/elp_interval.c
-index 7dcfa5f..71edf7f 100644
---- a/elp_interval.c
-+++ b/elp_interval.c
-@@ -22,6 +22,7 @@ static int parse_elp_interval(struct state *state, int argc, char *argv[])
- {
- 	struct settings_data *settings = state->cmd->arg;
- 	struct elp_interval_data *data = settings->data;
-+	unsigned long elp_interval;
- 	char *endptr;
+diff --git a/traceroute.c b/traceroute.c
+index 8f23128..d9db618 100644
+--- a/traceroute.c
++++ b/traceroute.c
+@@ -42,6 +42,7 @@ static int traceroute(struct state *state, int argc, char **argv)
+ 	struct batadv_icmp_packet icmp_packet_in;
+ 	struct ether_addr *dst_mac = NULL;
+ 	double time_delta[NUM_PACKETS];
++	uint8_t received[NUM_PACKETS];
+ 	int disable_translate_mac = 0;
+ 	int read_opt = USE_BAT_HOSTS;
+ 	struct bat_host *bat_host;
+@@ -125,6 +126,7 @@ static int traceroute(struct state *state, int argc, char **argv)
+ 		for (i = 0; i < NUM_PACKETS; i++) {
+ 			icmp_packet_out.seqno = htons(++seq_counter);
+ 			time_delta[i] = 0.0;
++			received[i] = 0;
  
- 	if (argc != 2) {
-@@ -29,12 +30,14 @@ static int parse_elp_interval(struct state *state, int argc, char *argv[])
- 		return -EINVAL;
- 	}
+ 			res = icmp_interface_write(state,
+ 						   (struct batadv_icmp_header *)&icmp_packet_out,
+@@ -162,6 +164,7 @@ static int traceroute(struct state *state, int argc, char **argv)
+ 				/* fall through */
+ 			case BATADV_TTL_EXCEEDED:
+ 				time_delta[i] = end_timer();
++				received[i] = 1;
  
--	data->elp_interval = strtoul(argv[1], &endptr, 0);
--	if (!endptr || *endptr != '\0') {
-+	elp_interval = strtoul(argv[1], &endptr, 0);
-+	if (!endptr || *endptr != '\0' || endptr == argv[1] || elp_interval > UINT32_MAX) {
- 		fprintf(stderr, "Error - the supplied argument is invalid: %s\n", argv[1]);
- 		return -EINVAL;
- 	}
+ 				if (!return_mac) {
+ 					return_mac = ether_ntoa_long((struct ether_addr *)&icmp_packet_in.orig);
+@@ -195,7 +198,7 @@ static int traceroute(struct state *state, int argc, char **argv)
+ 			       bat_host->name, return_mac);
  
-+	data->elp_interval = elp_interval;
-+
- 	return 0;
- }
- 
-diff --git a/functions.c b/functions.c
-index 5e1cb40..dc6bf75 100644
---- a/functions.c
-+++ b/functions.c
-@@ -970,7 +970,7 @@ bool parse_throughput(char *buff, const char *description, uint32_t *throughput)
- 	}
- 
- 	lthroughput = strtoull(buff, &endptr, 10);
--	if (!endptr || *endptr != '\0') {
-+	if (!endptr || *endptr != '\0' || endptr == buff) {
- 		fprintf(stderr, "Invalid throughput speed for %s: %s\n",
- 			description, buff);
- 		return false;
-diff --git a/gw_mode.c b/gw_mode.c
-index 767a7f8..a7cc9a0 100644
---- a/gw_mode.c
-+++ b/gw_mode.c
-@@ -90,6 +90,7 @@ static int parse_gw_limit(char *buff)
- 
- static int parse_gw(struct state *state, int argc, char *argv[])
- {
-+	unsigned long sel_class;
- 	char buff[256];
- 	char *endptr;
- 	int ret;
-@@ -131,13 +132,16 @@ static int parse_gw(struct state *state, int argc, char *argv[])
- 					      &gw_globals.sel_class))
- 				return -EINVAL;
- 		} else {
--			gw_globals.sel_class = strtoul(buff, &endptr, 0);
--			if (!endptr || *endptr != '\0') {
-+			sel_class = strtoul(buff, &endptr, 0);
-+			if (!endptr || *endptr != '\0' || endptr == buff ||
-+			    sel_class > UINT32_MAX) {
- 				fprintf(stderr,
- 					"Error - unexpected argument for mode \"client\": %s\n",
- 					buff);
- 				return -EINVAL;
- 			}
-+
-+			gw_globals.sel_class = sel_class;
- 		}
- 
- 		gw_globals.sel_class_found = 1;
-diff --git a/hop_penalty.c b/hop_penalty.c
-index f22d36c..db727ac 100644
---- a/hop_penalty.c
-+++ b/hop_penalty.c
-@@ -22,6 +22,7 @@ static int parse_hop_penalty(struct state *state, int argc, char *argv[])
- {
- 	struct settings_data *settings = state->cmd->arg;
- 	struct hop_penalty_data *data = settings->data;
-+	unsigned long hop_penalty;
- 	char *endptr;
- 
- 	if (argc != 2) {
-@@ -29,12 +30,14 @@ static int parse_hop_penalty(struct state *state, int argc, char *argv[])
- 		return -EINVAL;
- 	}
- 
--	data->hop_penalty = strtoul(argv[1], &endptr, 0);
--	if (!endptr || *endptr != '\0') {
-+	hop_penalty = strtoul(argv[1], &endptr, 0);
-+	if (!endptr || *endptr != '\0' || endptr == argv[1] || hop_penalty > UINT8_MAX) {
- 		fprintf(stderr, "Error - the supplied argument is invalid: %s\n", argv[1]);
- 		return -EINVAL;
- 	}
- 
-+	data->hop_penalty = hop_penalty;
-+
- 	return 0;
- }
- 
-diff --git a/isolation_mark.c b/isolation_mark.c
-index cef4de0..a13e3db 100644
---- a/isolation_mark.c
-+++ b/isolation_mark.c
-@@ -23,10 +23,10 @@ static int parse_isolation_mark(struct state *state, int argc, char *argv[])
- {
- 	struct settings_data *settings = state->cmd->arg;
- 	struct isolation_mark_data *data;
-+	unsigned long mark;
-+	unsigned long mask;
- 	char *mask_ptr;
- 	char buff[256];
--	uint32_t mark;
--	uint32_t mask;
- 	char *endptr;
- 
- 	if (argc != 2) {
-@@ -50,13 +50,13 @@ static int parse_isolation_mark(struct state *state, int argc, char *argv[])
- 		 * bitmask and not a prefix length
- 		 */
- 		mask = strtoul(mask_ptr, &endptr, 16);
--		if (!endptr || *endptr != '\0')
-+		if (!endptr || *endptr != '\0' || endptr == mask_ptr || mask > UINT32_MAX)
- 			goto inval_format;
- 	}
- 
- 	/* the mark can be entered in any base */
- 	mark = strtoul(buff, &endptr, 0);
--	if (!endptr || *endptr != '\0')
-+	if (!endptr || *endptr != '\0' || endptr == buff || mark > UINT32_MAX)
- 		goto inval_format;
- 
- 	data = settings->data;
-diff --git a/multicast_fanout.c b/multicast_fanout.c
-index 97d5e0a..6894266 100644
---- a/multicast_fanout.c
-+++ b/multicast_fanout.c
-@@ -22,6 +22,7 @@ static int parse_multicast_fanout(struct state *state, int argc, char *argv[])
- {
- 	struct settings_data *settings = state->cmd->arg;
- 	struct multicast_fanout_data *data;
-+	unsigned long multicast_fanout;
- 	char *endptr;
- 
- 	if (argc != 2) {
-@@ -30,12 +31,14 @@ static int parse_multicast_fanout(struct state *state, int argc, char *argv[])
- 	}
- 
- 	data = settings->data;
--	data->multicast_fanout = strtoul(argv[1], &endptr, 0);
--	if (!endptr || *endptr != '\0') {
-+	multicast_fanout = strtoul(argv[1], &endptr, 0);
-+	if (!endptr || *endptr != '\0' || endptr == argv[1] || multicast_fanout > UINT32_MAX) {
- 		fprintf(stderr, "Error - the supplied argument is invalid: %s\n", argv[1]);
- 		return -EINVAL;
- 	}
- 
-+	data->multicast_fanout = multicast_fanout;
-+
- 	return 0;
- }
- 
-diff --git a/orig_interval.c b/orig_interval.c
-index 970c752..e678d34 100644
---- a/orig_interval.c
-+++ b/orig_interval.c
-@@ -22,6 +22,7 @@ static int parse_orig_interval(struct state *state, int argc, char *argv[])
- {
- 	struct settings_data *settings = state->cmd->arg;
- 	struct orig_interval_data *data = settings->data;
-+	unsigned long orig_interval;
- 	char *endptr;
- 
- 	if (argc != 2) {
-@@ -29,12 +30,14 @@ static int parse_orig_interval(struct state *state, int argc, char *argv[])
- 		return -EINVAL;
- 	}
- 
--	data->orig_interval = strtoul(argv[1], &endptr, 0);
--	if (!endptr || *endptr != '\0') {
-+	orig_interval = strtoul(argv[1], &endptr, 0);
-+	if (!endptr || *endptr != '\0' || endptr == argv[1] || orig_interval > UINT32_MAX) {
- 		fprintf(stderr, "Error - the supplied argument is invalid: %s\n", argv[1]);
- 		return -EINVAL;
- 	}
- 
-+	data->orig_interval = orig_interval;
-+
- 	return 0;
- }
- 
+ 		for (i = 0; i < NUM_PACKETS; i++) {
+-			if (time_delta[i])
++			if (received[i])
+ 				printf("  %.3f ms", time_delta[i]);
+ 			else
+ 				printf("   *");
 
 -- 
 2.47.3
