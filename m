@@ -2,100 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9AnaA5X1N2phWAcAu9opvQ
+	id SmGdDsD1N2p/WAcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:30:45 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:31:28 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47426AB114
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:30:44 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D021A6AB118
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:31:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Ddeufr5s;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=u6qCFYHK;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7F302814FE
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:30:44 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id AD48C84380
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:31:27 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052244;
- b=MpzhTqzRZRx6xOoZLqWoKtSsfCHKTQKIrpcVJJ2ZUBbfIzK8sZL7G+pLNeqr7EadXs5zy
- OvjoKO2OBKuzqELDatseeimW0DDjEese3KXChGflVfLU2PJVuMDw6qrC1v1sSO2jZ6Cv0WT
- B4sXR/m0PC4Ja1JJNFxuvWHNQgQ6l1E=
+ t=1782052287;
+ b=DjPQc5U0Stg9HhJWcUChzGQJp5mqTSQexEyOscAgZqErk1hUYwjdW5mRH+FEc/sUW8jB8
+ rgL41NWHMqevqVPhosVVLqViT4P5ckMFA77hg5OBnkP6VYIQNd77q8beVrsI7qVZNi8duPj
+ UsGTf5EHP7qUQfirCNALuSM1OLk7Mpc=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052244; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782052287; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=Jqur1ISftoxbugIER6zY5sFt5KHIDdCqqr0xtJTddFg=;
- b=wj6ZOk1AzT9R57sLKax2pNMX5Eo51tTdHSMobMMSSB92zPWeYed7gRs5+jjB1x/L15P4n
- 8kYxN/PrTnobUESTeYFU8wJAK9DEp/SbXYMMDpPcOwht8yutDJJHXj7bBRzT6GV9qnJRhJI
- 4LIx3KBuXSqAeNtEfAcBIF5TswlTS3Y=
+ list-archive; bh=xfFIHVyRd75M3t1TKpC3QzrIceM9uQzubeg3M2KDdRE=;
+ b=XoMEMsGs9h0VNaZuOIURiyp4zoYpyHxrU5jYXW9iFhze7vhFSnurf2T4JqBKZ2KnNRRUO
+ oQAoaZLSGqx1poJO7Zmh5f0gEAaCywW3A7qkXjxDrYDrB8mg9bqE0JTeQZmj8dXDvBVh8wm
+ WKZD7+Xwhg3473WRB9uihoxlBjOPb8U=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 5AE148405F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:24:59 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051899;
-	b=RFb2ma1NuftvLgdkmiYU+CKAIxoAdxOhgol/dvKVbAKxzJPH6OxW+V1Wjmv+3YvgBaWFjd
-	b1Dn+syi2r3E5WKcNoWm7CMP6xuLVtfULlj9Jp66ObbakfjHUUwVb27/XlhhRvOnKvNzoK
-	lj6Hc34RDSi+Gk3pHJelNIeWFviSlCg=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 8952481ADF
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:01 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051901;
+	b=1JiR/bCVHD1Y8OJ3i85frPs3bDnqA0X8laGyQMM/0+v+slzpu/6C6nEGVcOffwRXlHyI+e
+	ArtJRkLi1SLE/PWkCCNf54kKiq3z9JIp5tNnU1t4Pv2xiBhgyWOMMxZLVLPvNRF0/xlfMe
+	2Ic1hZUx8z4C0eXOUYb0ekU/nn+PGEs=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051899;
+	s=20121; t=1782051901;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Jqur1ISftoxbugIER6zY5sFt5KHIDdCqqr0xtJTddFg=;
-	b=JHLSgLWavDGf1zLyyqSZBcxF2NxdyBW2nMpvrR1TTVtbMovrswEF/HoQRfZCw8NJ7cjZza
-	qji0EAtXF2VIxeaTRQNgIoSE8n6aKFWX2rCFGiPsm1i8nAc0T+FBd9ZR+pfInFu1SoTz2d
-	HldFHeclt/UC+0R/Ltf9yUwK1U7MA+0=
+	bh=xfFIHVyRd75M3t1TKpC3QzrIceM9uQzubeg3M2KDdRE=;
+	b=Bgi4PyHcJekj5rGjppCXbbP+ZM6WP66V3wsy/zOA3jk9tJbpkCqdvkDtHyQs+/qXIu1DRn
+	LCTIZA8nHhvDtygVzBm9I4EmrW3vxzt6A3uJLhhxCjq9B8pZpctzyZBVsVe/NoxRAOS1q8
+	IEtHoFGpAbznczLXR3Nze/JHOpZKs8g=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Ddeufr5s;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=u6qCFYHK;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 14BBC20059;
-	Sun, 21 Jun 2026 14:24:59 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 41F5420059;
+	Sun, 21 Jun 2026 14:25:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051899;
+	s=20121; t=1782051901;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Jqur1ISftoxbugIER6zY5sFt5KHIDdCqqr0xtJTddFg=;
-	b=Ddeufr5snYsQr5l4xWeOXdK9oudcRyHtx3MX5q3oqlPF4bbf3zzadh+wXWkpgsAGVeQGl/
-	PK5eg+Bg8TokxFZX5E6psoDSKD7JT6tvDDUX/ES5NiGHDl2MNbKiH6uDUKjPD6NH5Tb9jl
-	dz60FIof7bSKnfXk/DgRY9OBND+TbO8=
+	bh=xfFIHVyRd75M3t1TKpC3QzrIceM9uQzubeg3M2KDdRE=;
+	b=u6qCFYHKvIufU9HABwlkp4bHFfSZY1Glj87EFc2qmFXstw2m2t4a3yc3195GiysVDvCDz9
+	zaQjwbdiVhJg0JmKIsFRvtTmKuhvlHkrUAhZMRgqNIxSBCCxLq4ZPCYao14E0LR1WcQsIJ
+	gMx8qvy4z6vtS/GGJCR8nO1JLwHFaBA=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:23:58 +0200
-Subject: [PATCH 08/28] batctl: return only initialized icmp destination
- unreached bytes
+Date: Sun, 21 Jun 2026 16:23:59 +0200
+Subject: [PATCH 09/28] batctl: tcpdump: fix coded packet mac dest mac
+ addresses
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-8-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-9-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1243; i=sven@narfation.org;
- h=from:subject:message-id; bh=ERugwM4FM0y53CgOziL3IEGB/53oqbMoFcFb2w79MO4=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX1jnN3slpx/v/GzxzMhueUi3nXFwYFe8idWm01O/X
- zr2Qbiwo5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjCRpcmMDL8TDh6u09n0vOLL
- x39mJfdW8Kn7OzgW2X+0NRerWKbm/JrhrzhnBv8u+33X2N8VfVC+vn3zsvy06s9zxZ4sviwsV/B
- mOi8A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1089; i=sven@narfation.org;
+ h=from:subject:message-id; bh=KYCLdg6TmqRzVHcjbPGpSALPkjcYGbF77jOev869/mU=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX1j5Egwvy+csP6w/O0Lqsema9v1BNuZr2ln+upWtu
+ ZO37/61jlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEPhoyMlzZ+22tMR/f2blx
+ n14JHQpczn+joONfs5hhUqXHxSna3w8w/JX6qiL8XSm3b5pmzuO65etKEjctmfIgMXFDbi6TtN2
+ tKGYA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: V6C74Y3CJOVLAB3YFEKOSJSNU7HI5B5A
-X-Message-ID-Hash: V6C74Y3CJOVLAB3YFEKOSJSNU7HI5B5A
+Message-ID-Hash: JP5HKXNFVN5HSG4BQ5A4FW4VCJPNM2ZL
+X-Message-ID-Hash: JP5HKXNFVN5HSG4BQ5A4FW4VCJPNM2ZL
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/V6C74Y3CJOVLAB3YFEKOSJSNU7HI5B5A/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/JP5HKXNFVN5HSG4BQ5A4FW4VCJPNM2ZL/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -144,42 +144,39 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A47426AB114
+X-Rspamd-Queue-Id: D021A6AB118
 
-When icmp_interface_write() fails with an unreachable destination, it
-prepares a reply packet using original packet but changes the message type
-to BATADV_DESTINATION_UNREACHABLE. But when icmp_interface_read() tries to
-retrieve this data, the requested packet len could be higher than the
-length of the original packet. In this case, the returned packet length
-must be truncated to the number of bytes of the original one.
+get_name_by_macaddr uses returns shared buffer. The content of the buffer
+must therefore be processed first before the next get_name_by_macaddr()
+call is performed.
 
-Fixes: 4bd751eed4dc ("batctl: Implement non-routing batadv_icmp in userspace")
+Fixes: 9aae3c9f27b8 ("batctl: tcpdump: Add support for coded packets")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- icmp_helper.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ tcpdump.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/icmp_helper.c b/icmp_helper.c
-index 8b4fad7..64be9b2 100644
---- a/icmp_helper.c
-+++ b/icmp_helper.c
-@@ -471,6 +471,12 @@ ssize_t icmp_interface_read(struct batadv_icmp_header *icmp_packet, size_t len,
- 		packet_len = len;
+diff --git a/tcpdump.c b/tcpdump.c
+index 3409e59..aced4d3 100644
+--- a/tcpdump.c
++++ b/tcpdump.c
+@@ -1152,9 +1152,10 @@ static void dump_batman_coded(unsigned char *packet_buff, ssize_t buff_len,
+ 	       get_name_by_macaddr((struct ether_addr *)ether_header->ether_shost,
+ 				   read_opt));
  
- 	if (direct_reply_len > 0) {
-+		/* never deliver more than was actually stored by the
-+		 * dst_unreachable path, nor more than the caller's buffer holds
-+		 */
-+		if (packet_len > direct_reply_len)
-+			packet_len = direct_reply_len;
-+
- 		memcpy(icmp_packet, icmp_buffer, packet_len);
- 		direct_reply_len = 0;
- 		return (ssize_t)packet_len;
+-	printf("%s|%s: CODED, ttvn %d|%d, ttl %hhu\n",
++	printf("%s|",
+ 	       get_name_by_macaddr((struct ether_addr *)coded_packet->first_orig_dest,
+-				   read_opt),
++				   read_opt));
++	printf("%s: CODED, ttvn %d|%d, ttl %hhu\n",
+ 	       get_name_by_macaddr((struct ether_addr *)coded_packet->second_dest,
+ 				   read_opt),
+ 	       coded_packet->first_ttvn, coded_packet->second_ttvn,
 
 -- 
 2.47.3
