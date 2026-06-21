@@ -2,98 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P4SxIkH2N2q5WAcAu9opvQ
+	id GEmLGmz2N2rIWAcAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:33:37 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:34:20 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FEBF6AB13C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2066AB151
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:34:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=XBoZ1qgC;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Ay+7tWvs;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id E925484493
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:33:36 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id DC605801DB
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 21 Jun 2026 16:34:19 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782052416;
- b=UkDd6oHHfzspcLhuiKBnwZ3IDS4najAXPVkrY8WQia82p3wtG8yeVlszXpDbgnxqn3fB9
- iCwXtFyYfHxtn3mPtPNEAdjp3rJ0fQpjQmM76qVM7Rz9zCegIHCa+MUd80rZXw7y66dshn3
- PBZgBTokiszBI9QwLXRLNYo9+eSXXN0=
+ t=1782052459;
+ b=PDoo5OzI/C9THfGMVzwzQiyIMh8R2tzLUgMTmppt5HmwLCPDnlTVX5kZ0ShpypbJy8JE1
+ /IWFi1T7LJ7PuJiz2YBK1MBVT3k9KhAKw7BXBDjx1Q7oJhsTBZOJG5rvdG+4kz58KtpvTBt
+ OaZ/2GSf5k3rtWvJs6Tlp+Gmm/OuJUo=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782052416; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782052459; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=Mp9FjWpJygiqBkMyCIsIfz68kRfqHSyi88DTf9/lNhk=;
- b=04I6K9ZSaN/xKP/33A/RcTpVgTJLb0SFHl12+748eDjR8GSGssy7l2FAylISHcOjyNW2l
- kgECX1MfsaTasQ2JkXCKZRCScITrym2K5EV8qS8KPysZ+Q8QNPSJOTgC0a+DFquOgOU6DXA
- Ekv6GlDDT2Pk1hP/zmbWKAWtqVQbRU4=
+ list-archive; bh=4u7FnX8hNlnnmd5rm103/8F/gjTTKffauHCFBuCKTzs=;
+ b=siY3rEIoL4+0hWp5+LzFOKvTMGEfesBiGDH5KWXIdfABnjesPd+hiq3wRMvbXZZOZ+ZoO
+ c8eSVqHR0YIgIxekypQ6ZmcBizoX9yu+WOvlnagRPyEuiuTu8f/n3SDFFg9S8EcqNYEng3d
+ HDQSX/AFD0Blsmhmq2s1QaOVMGdBrtY=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 464C683CE2
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:08 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051908;
-	b=07OfnvOsFzZs59eOfKTTenZZx1sUSATusDQsQYLsCYUr2QneTrgQBTPVcOWQHGl7QOmATv
-	DBQZ9XRVBYHh617rTSZ8U2fZn63IHwSmqE8KbH2JBo4pfdV5ShTPYsy85EmBh+soXI0exW
-	VWlApkSJH4354fnF3pCb5pKKalxtzBs=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 710B68084B
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 21 Jun 2026 16:25:10 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782051910;
+	b=oQPSJzTwbqHmFM++1euOfZo9L1gRwD/6YbXargYA0qc/yshccyemZVXl+vuEEIcgrvIYdT
+	U4vaw8eeIVuXcGxKZyg5BRA20Qf2k/nOFEapPMgiH3mbfN9lCGH3JwDz6p1hotS18CBEcq
+	+90lH4dggPoHWpIZU8yNw30iGCpGSMg=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782051908;
+	s=20121; t=1782051910;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Mp9FjWpJygiqBkMyCIsIfz68kRfqHSyi88DTf9/lNhk=;
-	b=ssUXfXrPv6AvEl6L2U9w2SnAr8v4zI/goPs3+snpCYErzhQ1GS2ADYtLUy931TC8PEzvmz
-	HO9Ub2KFS5KLfLqNkmaMetpu3/ukCg679vicFZKwt3cSTHqZe/L2uLv826dGMo9I3OUSzr
-	6fKs8A+d5GJ3e39zrpN96u6hEvOAamg=
+	bh=4u7FnX8hNlnnmd5rm103/8F/gjTTKffauHCFBuCKTzs=;
+	b=c3iTxFu+91QftuQTjHjpx0lI1U69pG8kXzotTc5OAESSntxHZtq8RIp5NOx59Yn0eVoAzU
+	IJ1xnU8WjNbexAkjCSRxuTwxI2WcPPcGLsxsPdQ6JwWA4jFvIIxxoLONn8pFx8pcK97P9T
+	rgi+FKgS69RBRyJ1Mk3KYNoiePIczmA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=XBoZ1qgC;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Ay+7tWvs;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 0441120059;
-	Sun, 21 Jun 2026 14:25:07 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 2DABC20059;
+	Sun, 21 Jun 2026 14:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782051908;
+	s=20121; t=1782051910;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Mp9FjWpJygiqBkMyCIsIfz68kRfqHSyi88DTf9/lNhk=;
-	b=XBoZ1qgCIEPsd9dhnvSN3lwMOsBqFQkWAG68oqrD+N3wzyxOCrlbhtFqXZ3/xOT0hG6u4Q
-	x0GMa5s/IuwP8OHfw8ggI2fvzpMfgTkyL8UyFmPzgNJpN0wBMFhVVmXQ8bKhixdqv2hg8f
-	NrsfKn/f9n8VopI3DLKc57fMsa3RyHE=
+	bh=4u7FnX8hNlnnmd5rm103/8F/gjTTKffauHCFBuCKTzs=;
+	b=Ay+7tWvsOJdsLOjMUtmUyERiat/wI9kS/nKluvFmuEyz8GDQhTYx9a4IbI+Te1LZy03QoV
+	noymyQwAP/C88kxbNdvHA6bkdBq5CEkzNuoptTt4BzMCjchzXa6eqMBEEO2VYoHFMpKEIW
+	kyVl5+M3eeQb/y4xAzCAcaeLTVreP4M=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 21 Jun 2026 16:24:02 +0200
-Subject: [PATCH 12/28] batctl: tcpdump: drop hardcoded IPv6 buffer sizes
+Date: Sun, 21 Jun 2026 16:24:03 +0200
+Subject: [PATCH 13/28] batctl: tcpdump: fix reported length for
+ ICMP6_TIME_EXCEEDED
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260621-bugfixes-v1-12-b09736288a4a@narfation.org>
+Message-Id: <20260621-bugfixes-v1-13-b09736288a4a@narfation.org>
 References: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 In-Reply-To: <20260621-bugfixes-v1-0-b09736288a4a@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1513; i=sven@narfation.org;
- h=from:subject:message-id; bh=4HIoXmlx1Fhs0wr+KtsuaQzx6mhZLDgzTFDUbPZJX0Q=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9gavWd+PMXu0Xl1wQzPS6XSmQLtPA3cobEPu/Q2+
- N4Ss7bqKGVhEONikBVTZNlzJf/8Zva38p+nfTwKM4eVCWQIAxenAEwk5zHDP+NsD4Hr82S+l6Z9
- KQ88z5X6PPeE7NbUWPm5/0W1TsYtmc7wv1h2xalNL9Zq3NL4op27qI6dMcvgemVMWb7Y/Rpdg58
- n+QA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1094; i=sven@narfation.org;
+ h=from:subject:message-id; bh=q3NPUkStlHrTvYlpNFSceZwirANZxzppdiYkSkJZA3w=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnmX9gkzty4M8vPNSE5vGm+3eljrAuWi7x/8PrCp1lng
+ yZ9e//hUUcpC4MYF4OsmCLLniv55zezv5X/PO3jUZg5rEwgQxi4OAVgItc9GP5nLjnsoqnI9WN3
+ mvx1n80nXx87GH71RtgR8w8iCqUT3KaGMfxmNZH6dZ63Z8IGnXTBvxusI1qnNovH7c2riLkZyVd
+ 5o5IPAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: WNBZRJAPKYUFNESLGNK5PLE2NQ6CGYFD
-X-Message-ID-Hash: WNBZRJAPKYUFNESLGNK5PLE2NQ6CGYFD
+Message-ID-Hash: 7PZ2PGEYCKQ2CCYWM2SHTCDADPZJWJLK
+X-Message-ID-Hash: 7PZ2PGEYCKQ2CCYWM2SHTCDADPZJWJLK
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/WNBZRJAPKYUFNESLGNK5PLE2NQ6CGYFD/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7PZ2PGEYCKQ2CCYWM2SHTCDADPZJWJLK/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -146,44 +147,34 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp,narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2FEBF6AB13C
+X-Rspamd-Queue-Id: 0D2066AB151
 
-The inet_ntop expects to know the dst size buffer. But instead of
-specifying how to calculate the size of this buffer, just a value was
-hardcoded - which might not fulfill the "INET6_ADDRSTRLEN" size
-requirements.
-
-Evaluate the size of the buffer at compile time to avoid potential
-discrepancies.
+The remaining buffer size for ICMP6_TIME_EXCEEDED is only the buffer length
+minus the IPv6 header. It could now be discussed whether the output length
+should now be with or without the icmp6_hdr length. The length with
+icmp6_hdr was chosen because the code looks like a simple copy and paste
+error and ip6_hdr's length was most likely the actual intent for the
+calculation.
 
 Fixes: 35b37756f4a3 ("add IPv6 support to tcpdump parser")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- tcpdump.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ tcpdump.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/tcpdump.c b/tcpdump.c
-index e417cd1..0895c61 100644
+index 0895c61..9c90f36 100644
 --- a/tcpdump.c
 +++ b/tcpdump.c
-@@ -676,7 +676,7 @@ static void dump_ipv6(unsigned char *packet_buff, ssize_t buff_len,
- 				  sizeof(*nd_neigh_sol), "ICMPv6 Neighbor Solicitation");
- 			nd_neigh_sol = (struct nd_neighbor_solicit *)icmphdr;
- 			inet_ntop(AF_INET6, &nd_neigh_sol->nd_ns_target,
--				  nd_nas_target, 40);
-+				  nd_nas_target, sizeof(nd_nas_target));
- 			printf(" neighbor solicitation, who has %s, length %zd\n",
- 			       nd_nas_target, buff_len);
+@@ -669,7 +669,7 @@ static void dump_ipv6(unsigned char *packet_buff, ssize_t buff_len,
  			break;
-@@ -685,7 +685,7 @@ static void dump_ipv6(unsigned char *packet_buff, ssize_t buff_len,
- 				  sizeof(*nd_advert), "ICMPv6 Neighbor Advertisement");
- 			nd_advert = (struct nd_neighbor_advert *)icmphdr;
- 			inet_ntop(AF_INET6, &nd_advert->nd_na_target,
--				  nd_nas_target, 40);
-+				  nd_nas_target, sizeof(nd_nas_target));
- 			printf(" neighbor advertisement, tgt is %s, length %zd\n",
- 			       nd_nas_target, buff_len);
+ 		case ICMP6_TIME_EXCEEDED:
+ 			printf(" time exceeded in-transit, length %zu\n",
+-			       (size_t)buff_len - sizeof(struct icmp6_hdr));
++			       (size_t)buff_len - sizeof(struct ip6_hdr));
  			break;
+ 		case ND_NEIGHBOR_SOLICIT:
+ 			LEN_CHECK((size_t)buff_len - (size_t)(sizeof(struct ip6_hdr)),
 
 -- 
 2.47.3
