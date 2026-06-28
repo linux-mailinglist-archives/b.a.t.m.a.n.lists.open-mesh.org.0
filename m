@@ -2,113 +2,127 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q9wmLzvNQGoDiQkAu9opvQ
+	id ErnPM4vPQGpfiQkAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Jun 2026 09:28:59 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Jun 2026 09:38:51 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FF436D35A3
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Jun 2026 09:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2356D35E8
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Jun 2026 09:38:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=iEHOH3rR;
+	dkim=none;
+	dmarc=none;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
-	dmarc=pass (policy=none) header.from=narfation.org;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3C5DA84300
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Jun 2026 09:28:59 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5784980C46
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 28 Jun 2026 09:38:51 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782631739;
- b=NceS7hfrVcKtt8a9VTHqMP5+wLzc6GTqBiAVfFhy3ynWiQ+OgcFBqwHoallJwIpGkTzm9
- MapGaa9l3SmSXEBpA9Mifkb36pdt86fGn5+8uTKM99R3/tLvriQLExDk92Qfx3DU7qSX3eF
- k4noFoARyYYleCJrm/KhkBf3PV8H+BA=
+ t=1782632331;
+ b=c6aRVIfG/kYYEchMoWA6V7kM0RWuAZ8z+wPQx6RC95RUJhJbDO5KPmtuYD6EDMA6hs2LP
+ XuJqIiDJ0OGv9XQ3HApMiojsAOcJJMwXUgu2NWktqRmgGV9KaKC6v9L0pGX2t0pU9Vf9Gdf
+ r5bTpPsgPOQMYakjFZ1yv47rCWQsQyg=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782631739; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782632331; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=+SwMoy7GsN+2J4J2oBIPUa0NipcClM3IF4tgWEiss20=;
- b=Z39Jr6lOOWK1Pao3r91upxfHncQWlVm6mxE7uLoJm9ReI7o7jYwGfuTzuepZRJjxVo6x1
- YpmW9s4Qx281L6EVIgY+4h2JXapwTD6SB6xm3SBCn2Db2yV1b1ovozulndcw6vNSe9JisMR
- HbFOWxE9sVAGEB1TcInjCP6PSC6an9U=
+ list-archive; bh=VuX1gPD7SilKJ01lCbF9DvZYW/mJOv9AQz1qDJkY11s=;
+ b=eAm2lzzLSbc1GvV3n71K43A1uU/IliF6YPpzsQt/Zf7izZ0uLm7fF87u9d9E5Q8IyBwS9
+ 68JbU5ONtqFf2BY1UlmoVHjhiezKH7KG7A7clpjFNHfEbNy5zTXoowLxY4UtqdYabj3u+sa
+ k4LKy6LWZWCqW3KEm+1IhsM7QHbGgD8=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ dkim=fail;
  arc=pass;
- dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id F21FA807CF
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 28 Jun 2026 09:25:51 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782631552;
-	b=bYBTN+lgBAhTIVJ4rhIJfEL27vo69LRjmIfdotoaIabmkAqr3B7tr7wEioiT8g4vSFKCKB
-	KkCC3zGsc8hjMTM76BhxeULwMGV9vIEtk+fw1ezstGEjLPPWpBURKdyAsOmVjXl3+SBFbW
-	H+5dubUPXDuxY5UEgdF4seAz5AfYnis=
+ dmarc=none
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id B46318214C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 28 Jun 2026 09:30:46 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782631849;
+	b=UklF641COim2bYLzqIcuVGIbR9VSesdkVbVwki+F0AFGcSC9Hxz9XMk3yjGi/N5BZiT4pP
+	fVuRW0HQN6afcOT/QFIXERrFEUi6vRdO7BxVViTqvNb55u/fkzIQe/BEihMxyfZIrzwu/w
+	Jt7Rxs5VL8qKRgOn/H8v8fj1J53KgYE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782631552;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=+SwMoy7GsN+2J4J2oBIPUa0NipcClM3IF4tgWEiss20=;
-	b=ftBNcamm+SpunYE1Rk7DLMICetDOWi6bzcKFvzFy/dxVYPzwFMiUM3EweDAxkVvLODjn8b
-	UoqWNBbDLG/iETzJARlVD+Ayjs2ZxTKLYXvmmK7D3NzAvBGdx6qZi5EKjj6IBHKCapd27O
-	iCuztIWVqtVajXMiEI//hNZPLE8mpvo=
-ARC-Authentication-Results: i=1;
-	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=iEHOH3rR;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id B0A432031E;
-	Sun, 28 Jun 2026 07:25:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1782631551;
+	s=20121; t=1782631849;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+SwMoy7GsN+2J4J2oBIPUa0NipcClM3IF4tgWEiss20=;
-	b=iEHOH3rRqfD9lNYx0Hnk4DCzeuDAWQGRT8B7ZVapgktBjPhKEWKs+N6u+0b2sQaA2ieWVj
-	8ZQIhfyVxVdaMlWFzJ5nPDnpnj6gpD+UJIJ4AVv8B6Tva1yq/BK6mq1FwwSBZIxiue2KFj
-	yozol7NnKxhmEVwdokYM3xwVjq0xIDM=
-From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 28 Jun 2026 09:25:38 +0200
-Subject: [PATCH batadv v2 5/5] batman-adv: annotate functions which may
- reallocate the skbuff
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260628-skb-post-realloc-v2-5-59a58f5a471b@narfation.org>
-References: <20260628-skb-post-realloc-v2-0-59a58f5a471b@narfation.org>
-In-Reply-To: <20260628-skb-post-realloc-v2-0-59a58f5a471b@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9863; i=sven@narfation.org;
- h=from:subject:message-id; bh=0nKFgbzE2LxDcraPAqRUSP5icj1j5iwmyJGmyEJN2nk=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFkOZwoNwo71be3f6S/w7mPMTF6BlLZDMZvzOwsKXv7v2
- JXoamTeUcrCIMbFICumyLLnSv75zexv5T9P+3gUZg4rE8gQBi5OAZhI1g2Gf9be1+JX6M2MLzP8
- V+5T4jm18ZqAbZLvZvVs6T+n3L7nvWX4X3q8pKJBx7nnc9LsYMOGjVMXbHdt6MzbEyt4VdZL+lw
- 9NwA=
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 42HPN23GX35CUFACN5H6LRUH6RVV47XO
-X-Message-ID-Hash: 42HPN23GX35CUFACN5H6LRUH6RVV47XO
-X-MailFrom: sven@narfation.org
+	bh=VuX1gPD7SilKJ01lCbF9DvZYW/mJOv9AQz1qDJkY11s=;
+	b=w2kDfexXB9iWxR2UHDWJ4Es8T2RHAK/WZ3ghoWfpC25R7vdk3F+qL+MF76Tf3v4u33PMsN
+	e7KRAvOKguW0/X+NbmnNShl/1luUBaltPdFPj5kz9Ls8Got6j1xWyF289ZtVho23uCPGkI
+	jKJ1+Tywne+SuBcTdIDV7H4UK6/XRxs=
+ARC-Authentication-Results: i=1;
+	diktynna.open-mesh.org;
+	dkim=none;
+	spf=pass (diktynna.open-mesh.org: domain of vulab@iscas.ac.cn designates
+ 159.226.251.25 as permitted sender) smtp.mailfrom=vulab@iscas.ac.cn;
+	dmarc=none
+Received: from smtpclient.apple (unknown [117.182.74.7])
+	by APP-05 (Coremail) with SMTP id zQCowAB3zhGfzUBq4rG6FQ--.42871S2;
+	Sun, 28 Jun 2026 15:30:40 +0800 (CST)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
+Subject: Re: [PATCH] fix: net/batman-adv: batadv_interface_kill_vid: extra
+ batadv_meshif_vlan_put after destroy
+From: WenTao Liang <vulab@iscas.ac.cn>
+In-Reply-To: <20260627034636.59693-1-vulab@iscas.ac.cn>
+Date: Sun, 28 Jun 2026 15:30:28 +0800
+Cc: horms@kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org,
+ netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <60CD91EB-833B-40D9-8DCA-A982CE336041@iscas.ac.cn>
+References: <20260627034636.59693-1-vulab@iscas.ac.cn>
+To: marek.lindner@mailbox.org,
+ sw@simonwunderlich.de,
+ antonio@mandelbit.com,
+ sven@narfation.org,
+ davem@davemloft.net,
+ edumazet@google.com,
+ kuba@kernel.org,
+ pabeni@redhat.com
+X-Mailer: Apple Mail (2.3826.700.81.1.8)
+X-CM-TRANSID: zQCowAB3zhGfzUBq4rG6FQ--.42871S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kr18XF17Jr1UJrWrXFyfXrb_yoW8Xr4kpr
+	WUKFW3KFZxCayxKa9rKFy5uF1j9w4Skry0kF9akw4rAwnrta4Iga4F9r9rXFn5CFWxKF17
+	Jr4UCas7X3WDWrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvCb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
+	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
+	wI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
+	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
+	17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
+	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
+	6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2Kf
+	nxnUUI43ZEXa7IU8U5r7UUUUU==
+X-Originating-IP: [117.182.74.7]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwIMA2pAixFu8QAAsl
+X-MailFrom: vulab@iscas.ac.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
- nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
- news-moderation; no-subject; digests; suspicious-header
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
+Message-ID-Hash: YWAEVQGRI2TX6DJQUML2ZPHHRJJHBHX5
+X-Message-ID-Hash: YWAEVQGRI2TX6DJQUML2ZPHHRJJHBHX5
+X-Mailman-Approved-At: Sun, 28 Jun 2026 09:38:36 +0200
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/42HPN23GX35CUFACN5H6LRUH6RVV47XO/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/YWAEVQGRI2TX6DJQUML2ZPHHRJJHBHX5/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -117,232 +131,88 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.01 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
+	MV_CASE(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	R_SPF_NA(0.00)[no SPF record];
+	FORGED_RECIPIENTS(0.00)[m:horms@kernel.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,m:marek.lindner@mailbox.org,m:sw@simonwunderlich.de,m:antonio@mandelbit.com,m:sven@narfation.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[vulab@iscas.ac.cn,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[narfation.org:+];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	HAS_XOIP(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp,narfation.org:dkim,narfation.org:email,narfation.org:mid,narfation.org:from_mime]
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,iscas.ac.cn:email,iscas.ac.cn:mid,iscas.ac.cn:from_mime,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5FF436D35A3
+X-Rspamd-Queue-Id: 7B2356D35E8
 
-When a function is called which reallocated the skbuff, it is necessary to
-reacquire the pointers into the skb data. Otherwise they might cause an
-use-after-free.
 
-But is hard to identify such case when it is not clear that helpers are
-actually using skb-reallocating functions.
 
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- net/batman-adv/bridge_loop_avoidance.c | 10 +++++++++
- net/batman-adv/distributed-arp-table.c | 40 ++++++++++++++++++++++++++++++++++
- net/batman-adv/gateway_client.c        |  6 ++++-
- net/batman-adv/main.c                  |  5 +++++
- net/batman-adv/routing.c               |  5 +++++
- 5 files changed, 65 insertions(+), 1 deletion(-)
+> 2026=E5=B9=B46=E6=9C=8827=E6=97=A5 11:46=EF=BC=8CWenTao Liang =
+<vulab@iscas.ac.cn> =E5=86=99=E9=81=93=EF=BC=9A
+>=20
+> In batadv_interface_kill_vid(), batadv_meshif_vlan_get() acquires a
+> reference on the vlan object. batadv_meshif_destroy_vlan() internally
+> calls batadv_meshif_vlan_put() which balances that reference. However, =
+an
+> additional batadv_meshif_vlan_put(vlan) is called after
+> batadv_meshif_destroy_vlan(), causing a refcount underflow and =
+potential
+> use-after-free of the vlan object.
+>=20
+> Remove the extra batadv_meshif_vlan_put(vlan) call.
+>=20
+> Cc: stable@vger.kernel.org
+> Fixes: 5d2c05b21337 ("batman-adv: add per VLAN interface attribute =
+framework")
+> Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
+> ---
+> net/batman-adv/mesh-interface.c | 3 ---
+> 1 file changed, 3 deletions(-)
+>=20
+> diff --git a/net/batman-adv/mesh-interface.c =
+b/net/batman-adv/mesh-interface.c
+> index e7aa45bc6b7a..cc974f243200 100644
+> --- a/net/batman-adv/mesh-interface.c
+> +++ b/net/batman-adv/mesh-interface.c
+> @@ -691,9 +691,6 @@ static int batadv_interface_kill_vid(struct =
+net_device *dev, __be16 proto,
+>=20
+> 	batadv_meshif_destroy_vlan(bat_priv, vlan);
+>=20
+> -	/* finally free the vlan object */
+> -	batadv_meshif_vlan_put(vlan);
+> -
+> 	return 0;
+> }
+>=20
+> --=20
+> 2.39.5 (Apple Git-154)
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index fe2618b5..bf9593ca 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -1087,6 +1087,11 @@ static int batadv_check_claim_group(struct batadv_priv *bat_priv,
-  * @primary_if: the primary hard interface of this batman mesh interface
-  * @skb: the frame to be checked
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if it was a claim frame, otherwise return false to
-  * tell the callee that it can use the frame on its own.
-  */
-@@ -1820,6 +1825,11 @@ bool batadv_bla_is_backbone_gw_orig(struct batadv_priv *bat_priv, u8 *orig,
-  * @orig_node: the orig_node of the frame
-  * @hdr_size: maximum length of the frame
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * pskb_may_pull() and batadv_get_vid(). Any pointer into the skb data (e.g.
-+ * obtained from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if the orig_node is also a gateway on the mesh interface,
-  * otherwise it returns false.
-  */
-diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
-index 7221d569..f1066db8 100644
---- a/net/batman-adv/distributed-arp-table.c
-+++ b/net/batman-adv/distributed-arp-table.c
-@@ -1064,6 +1064,11 @@ int batadv_dat_cache_dump(struct sk_buff *msg, struct netlink_callback *cb)
-  * @skb: packet to analyse
-  * @hdr_size: size of the possible header before the ARP packet in the skb
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * pskb_may_pull(). Any pointer into the skb data (e.g. obtained from skb->data
-+ * or eth_hdr()) before this call must be considered invalid afterwards and has
-+ * to be reacquired.
-+ *
-  * Return: the ARP type if the skb contains a valid ARP packet, 0 otherwise.
-  */
- static u16 batadv_arp_get_type(struct batadv_priv *bat_priv,
-@@ -1139,6 +1144,11 @@ static u16 batadv_arp_get_type(struct batadv_priv *bat_priv,
-  * @skb: the buffer containing the packet to extract the VID from
-  * @hdr_size: the size of the batman-adv header encapsulating the packet
-  *
-+ * Warning: This function calls batadv_get_vid() and may therefore reallocate
-+ * the skb data buffer. Any pointer into the skb data (e.g. obtained from
-+ * skb->data or eth_hdr()) before this call must be considered invalid
-+ * afterwards and has to be reacquired.
-+ *
-  * Return: If the packet embedded in the skb is vlan tagged this function
-  * returns the VID with the BATADV_VLAN_HAS_TAG flag. Otherwise BATADV_NO_FLAGS
-  * is returned.
-@@ -1201,6 +1211,11 @@ batadv_dat_arp_create_reply(struct batadv_priv *bat_priv, __be32 ip_src,
-  * @bat_priv: the bat priv with all the mesh interface information
-  * @skb: packet to check
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_dat_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if the message has been sent to the dht candidates, false
-  * otherwise. In case of a positive return value the message has to be enqueued
-  * to permit the fallback.
-@@ -1300,6 +1315,11 @@ bool batadv_dat_snoop_outgoing_arp_request(struct batadv_priv *bat_priv,
-  * @skb: packet to check
-  * @hdr_size: size of the encapsulation header
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_dat_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if the request has been answered, false otherwise.
-  */
- bool batadv_dat_snoop_incoming_arp_request(struct batadv_priv *bat_priv,
-@@ -1367,6 +1387,11 @@ bool batadv_dat_snoop_incoming_arp_request(struct batadv_priv *bat_priv,
-  * batadv_dat_snoop_outgoing_arp_reply() - snoop the ARP reply and fill the DHT
-  * @bat_priv: the bat priv with all the mesh interface information
-  * @skb: packet to check
-+ *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_dat_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-  */
- void batadv_dat_snoop_outgoing_arp_reply(struct batadv_priv *bat_priv,
- 					 struct sk_buff *skb)
-@@ -1414,6 +1439,11 @@ void batadv_dat_snoop_outgoing_arp_reply(struct batadv_priv *bat_priv,
-  * @skb: packet to check
-  * @hdr_size: size of the encapsulation header
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_dat_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if the packet was snooped and consumed by DAT. False if the
-  * packet has to be delivered to the interface
-  */
-@@ -1817,6 +1847,11 @@ void batadv_dat_snoop_outgoing_dhcp_ack(struct batadv_priv *bat_priv,
-  * This function first checks whether the given skb is a valid DHCPACK. If
-  * so then its source MAC and IP as well as its DHCP Client Hardware Address
-  * field and DHCP Your IP Address field are added to the local DAT cache.
-+ *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * pskb_may_pull()/batadv_dat_get_vid(). Any pointer into the skb data (e.g.
-+ * obtained from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-  */
- void batadv_dat_snoop_incoming_dhcp_ack(struct batadv_priv *bat_priv,
- 					struct sk_buff *skb, int hdr_size)
-@@ -1865,6 +1900,11 @@ void batadv_dat_snoop_incoming_dhcp_ack(struct batadv_priv *bat_priv,
-  * @bat_priv: the bat priv with all the mesh interface information
-  * @forw_packet: the broadcast packet
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_dat_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if the node can drop the packet, false otherwise.
-  */
- bool batadv_dat_drop_broadcast_packet(struct batadv_priv *bat_priv,
-diff --git a/net/batman-adv/gateway_client.c b/net/batman-adv/gateway_client.c
-index bc69f2ba..0dfbd3f5 100644
---- a/net/batman-adv/gateway_client.c
-+++ b/net/batman-adv/gateway_client.c
-@@ -679,7 +679,11 @@ batadv_gw_dhcp_recipient_get(struct sk_buff *skb, unsigned int *header_len,
-  * server. Due to topology changes it may be the case that the GW server
-  * previously selected is not the best one anymore.
-  *
-- * This call might reallocate skb data.
-+ * Warning: This function may reallocate the skb data buffer via
-+ * batadv_get_vid(). Any pointer into the skb data (e.g. obtained
-+ * from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Must be invoked only when the DHCP packet is going TO a DHCP SERVER.
-  *
-  * Return: true if the packet destination is unicast and it is not the best gw,
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index 9a9d882a..95ad4f41 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -612,6 +612,11 @@ void batadv_recv_handler_unregister(u8 packet_type)
-  * @skb: the buffer containing the packet
-  * @header_len: length of the batman header preceding the ethernet header
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * pskb_may_pull(). Any pointer into the skb data (e.g. obtained from skb->data
-+ * or eth_hdr()) before this call must be considered invalid afterwards and has
-+ * to be reacquired.
-+ *
-  * Return: VID with the BATADV_VLAN_HAS_TAG flag when the packet embedded in the
-  * skb is vlan tagged. Otherwise BATADV_NO_FLAGS.
-  */
-diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
-index 7d9a2b59..cd290a7b 100644
---- a/net/batman-adv/routing.c
-+++ b/net/batman-adv/routing.c
-@@ -871,6 +871,11 @@ batadv_reroute_unicast_packet(struct batadv_priv *bat_priv, struct sk_buff *skb,
-  * @skb: the unicast packet to check
-  * @hdr_len: length of the unicast header preceding the payload
-  *
-+ * Warning: This function may reallocate the skb data buffer via
-+ * pskb_may_pull() and batadv_get_vid(). Any pointer into the skb data (e.g.
-+ * obtained from skb->data or eth_hdr()) before this call must be considered
-+ * invalid afterwards and has to be reacquired.
-+ *
-  * Return: true if the packet may be processed further, false if it has been
-  *  consumed or has to be dropped by the caller
-  */
+Please ignore this patch. I will resend a proper version after
+learning the kernel submission process.
 
--- 
-2.47.3
+Apologies for the noise.
+
+Best regards,
+WenTao Liang=
 
