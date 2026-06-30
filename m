@@ -2,76 +2,78 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 95oZLK/OQ2o6iwoAu9opvQ
+	id SALdMg3PQ2qAiwoAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2026 16:11:59 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2026 16:13:33 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551236E5439
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2026 16:11:59 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 745BF6E548A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2026 16:13:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=oyfmNBYO;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=mK2r2nAn;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 315D881E0F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2026 16:11:59 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3F78A80C75
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 30 Jun 2026 16:13:33 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1782828719;
- b=DkgTtBHZPIDaH2JulwLszZ9yK9Ko8Jbz8OMj8fiHWV1crIjcEzi5vXJi803uOxhE5e5zU
- W/MD5n7J1+Nli7q+1AMKFORqC5iGpxx8hKbHh1wWupavH87aGGHtUaJjdcNVWR8qjcPZzuw
- gNRMWDGIashLQv7BLc7gc4gdgYT9wpk=
+ t=1782828813;
+ b=ut9Tzze+Zp0++p8A5GoYbPs62MGtxn9kWDicN/L2IybrTRqxY5zI7IzWaW6hJmSkKo2pD
+ IU2SpmKjcytFXbgMIMOZLqbLrdJLK5hWvkiu2Ic50pRRHGBCgM2RKCglX0pxs41FGhM1Dn0
+ 2dBYdYGlYMx17KPqmyEhI1B6v8UHkRo=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1782828719; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1782828813; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=x55SrCjE/SAYM0tW2OsEVN1MHMkSWNA2sDpn+Zqq0i8=;
- b=O58wOk0Z6ucsMOVqMfMkCv0jvGMhPzVzfBDaomwalS3FWC42kmOBPyDE0uTBYTSXOxqSA
- uczaP4+X+FZPOpD3tSIknyGW+4qqCFoBi3SvJws5Jr6eADrW4DPuZ871KPuml3nBxpDT6FU
- HVVAlwdqkiZMnoz3KSppoNUImETTPSw=
+ list-archive; bh=QXJeX55aPHneDee3MRppeZCCDxksy2cihw5wER1FZrE=;
+ b=T1usUsiTNEumpN7uRjQyZkS1YBSb2Kgt306r1EF5qM6Jjr6KPKUzYVVNZPlDbohF8em2y
+ P7+M6dviUshGKkCu3I2yyEPvT2eI/bheROINchWz2ZbJaWhqf0yjyjODxOkPG2WfZ4XFaAA
+ UGcb1JyNfz2U6llAHpLDnERlBPy0GHo=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 7F21E810BD
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 30 Jun 2026 16:06:27 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782828392;
-	b=1vDS26YFW6VL7lXnEa25IRmVX/DgXqcEcT4+r5Ic3h9xdRpckP8CgTx2yw9EVi9UcZOPNK
-	vbYczHgiGHBqzSQ+AY2JPAcWNYY6uylllAB00OCgfWILVp6jSDiPZlZjPL/xGgN6l3eotC
-	RkSg/o66EbEbPaVgTTq/F3j/5mhj9Gc=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 1C71C81091
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 30 Jun 2026 16:06:28 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1782828393;
+	b=aCgynXrYy/UnlZGkjBlcoqmM4Hv2aAJ69Dk/GCpv7oGalNwPf6oWqKUYqr/0ZV2C3giq4u
+	nYa7jbW8w3041YpBo5RY72IANNfDFm/aEeb0vtC5KWqVRnl0/cfF/ar/bjnKHeKB4Knwed
+	1UpwOE5/6Ei9WYos8jvbdscXN11l9NE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1782828392;
+	s=20121; t=1782828393;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=x55SrCjE/SAYM0tW2OsEVN1MHMkSWNA2sDpn+Zqq0i8=;
-	b=ydvrr98Gboagpy+4qLwHOal55+8PsDAaHNBr1BOSktnp4OBge5HZDMVycInUOtaqLBYUZ8
-	sZ1h7faLTCDPafEoQ0uEVUcn63PC14t/X+Xlz13V/iFiR5G6KEaGNgs4xYHfpPjGpb7fHt
-	8j4KsK8nooTv3Br3GlMeflpm/sr+1SU=
+	bh=QXJeX55aPHneDee3MRppeZCCDxksy2cihw5wER1FZrE=;
+	b=KcK+Zkl8/7/6+teuAtSwT8kZDpYLU9y73GdAWe8GISZE7FKJxpaS5rqTHeJor9+wozojHW
+	TkERrTclHUc0yTJ7h1N0ErBOPTNUhHY3+7tTxDIUvLE1DrzTXVmCH7Wn8yg0KZECF5B9GA
+	Q+khS79iOL5GKPuLrAJjKsuuhT06yTU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=oyfmNBYO;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=mK2r2nAn;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1782828386;
+	s=09092022; t=1782828387;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=x55SrCjE/SAYM0tW2OsEVN1MHMkSWNA2sDpn+Zqq0i8=;
-	b=oyfmNBYOelpb2+oJ+tbASaJuyE1ot7iP7/vszpMDARk4uCXW9Ey54IcCIEBhcs+5iekfNl
-	sdxRvq+GdzIWzBvp8q7sfKPbL9XBJ3AqMBobxVnVY6MpVET8vsQREtZTu0wQA6wHJk5hgL
-	MlEy4aYSCtUWcbVV6iKjIqC2CmwGVCe8+hQymaCKyZsDW5c1lnqjD9oNlcCqYfxiQpbhCV
-	kwUP7J4TOMs67J998CZKLajdnH0hYbQVkI5E9MilGaUSIfHVhmIAHoE24mPQSBMTtsvilp
-	mxZS6MjyebwTJw8ne8J9ziIXP5F2Errh/XIDWrjuTZkhHP7CoezlKtUmO2NinQ==
+	bh=QXJeX55aPHneDee3MRppeZCCDxksy2cihw5wER1FZrE=;
+	b=mK2r2nAnU16thNu3idBKmFf1HwjqU4xBrkZPAkvS2o9L+TwCGtprtZjtwklXuS84qdwarP
+	2sAb3WbryzLaE3hyedDMgZyC7Yh27pJOea7Aikq9f77lwyddePYT5bP3N9P+LwgfVZVMGg
+	cJAUDrX86I3lpVNxYYHyxeKhzKdYci4sixgcL6UAZcFBdfpmPeyE6AOlwcA0fVbK9DM1P7
+	Y14Et9+xmBEE+jbVsHWJcY3bOpMCr8fl4CV2Ka9d+AFxuh7NDtOJryOueqO0ig1GzZyiKE
+	HaNjwgacN2Ae/H1VOt8C/qZx+4kfstz8JvcAPvmFuSYm1S1SOoHe3ue4ohpZdQ==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -80,19 +82,20 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Paolo Abeni <pabeni@redhat.com>,
 	Simon Horman <horms@kernel.org>,
 	b.a.t.m.a.n@lists.open-mesh.org,
-	Nora Schiffer <neocturne@universe-factory.net>,
 	Sven Eckelmann <sven@narfation.org>,
+	Nora Schiffer <neocturne@universe-factory.net>,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net-next 02/15] batman-adv: remove global hardif list
-Date: Tue, 30 Jun 2026 16:06:10 +0200
-Message-ID: <20260630140623.88431-3-sw@simonwunderlich.de>
+Subject: [PATCH net-next 03/15] batman-adv: make hard_iface->mesh_iface
+ immutable
+Date: Tue, 30 Jun 2026 16:06:11 +0200
+Message-ID: <20260630140623.88431-4-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260630140623.88431-1-sw@simonwunderlich.de>
 References: <20260630140623.88431-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: BCTLA5GPWKM4ATG7VFPUJCXRJ47AMRNP
-X-Message-ID-Hash: BCTLA5GPWKM4ATG7VFPUJCXRJ47AMRNP
+Message-ID-Hash: PCUFFVEZ53D2QEGE22LUCG3RNWETSDWF
+X-Message-ID-Hash: PCUFFVEZ53D2QEGE22LUCG3RNWETSDWF
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -106,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/BCTLA5GPWKM4ATG7VFPUJCXRJ47AMRNP/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PCUFFVEZ53D2QEGE22LUCG3RNWETSDWF/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -126,16 +129,16 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:neocturne@universe-factory.net,m:sven@narfation.org,m:sw@simonwunderlich.de,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,m:neocturne@universe-factory.net,m:sw@simonwunderlich.de,s:lists@lfdr.de];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	DKIM_TRACE(0.00)[simonwunderlich.de:+];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime,narfation.org:email,lists.open-mesh.org:from_smtp,universe-factory.net:email,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,simonwunderlich.de:dkim,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:from_mime,diktynna.open-mesh.org:rdns,diktynna.open-mesh.org:helo,lists.open-mesh.org:from_smtp,universe-factory.net:email];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -146,183 +149,62 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 551236E5439
+X-Rspamd-Queue-Id: 745BF6E548A
 
-From: Nora Schiffer <neocturne@universe-factory.net>
+From: Sven Eckelmann <sven@narfation.org>
 
-With interfaces being kept track of as iflink private data, there is no
-need for the global list anymore. batadv_hardif_get_by_netdev() can now
-use netdev_master_upper_dev_get()+netdev_lower_dev_get_private() to find
-the hardif corresponding to a netdev.
+With the hard_iface now being created for a specific mesh_iface, it is
+beneficial not to set mesh_iface to NULL when the interface is disabled,
+but instead keeping it immutable after the initial setup of the
+hard_iface. By also holding the reference to the mesh_iface until the
+hard_iface is released, hard_ifaces iterated over under RCU will always
+point to a valid mesh_iface.
 
+Co-developed-by: Nora Schiffer <neocturne@universe-factory.net>
 Signed-off-by: Nora Schiffer <neocturne@universe-factory.net>
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/hard-interface.c | 29 ++++++++++++-----------------
- net/batman-adv/hard-interface.h |  2 +-
- net/batman-adv/main.c           |  5 -----
- net/batman-adv/main.h           |  1 -
- net/batman-adv/netlink.c        |  2 ++
- net/batman-adv/types.h          |  3 ---
- 6 files changed, 15 insertions(+), 27 deletions(-)
+ net/batman-adv/hard-interface.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/net/batman-adv/hard-interface.c b/net/batman-adv/hard-interface.c
-index 9c9a892d22c6b..ace81348ddef7 100644
+index ace81348ddef7..a0b8b06f9a644 100644
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -75,21 +75,21 @@ void batadv_hardif_release(struct kref *ref)
-  * Return: batadv_hard_iface of net_dev (with increased refcnt), NULL on errors
-  */
- struct batadv_hard_iface *
--batadv_hardif_get_by_netdev(const struct net_device *net_dev)
-+batadv_hardif_get_by_netdev(struct net_device *net_dev)
- {
+@@ -63,6 +63,7 @@ void batadv_hardif_release(struct kref *ref)
  	struct batadv_hard_iface *hard_iface;
-+	struct net_device *mesh_iface;
  
--	rcu_read_lock();
--	list_for_each_entry_rcu(hard_iface, &batadv_hardif_list, list) {
--		if (hard_iface->net_dev == net_dev &&
--		    kref_get_unless_zero(&hard_iface->refcount))
--			goto out;
--	}
-+	ASSERT_RTNL();
+ 	hard_iface = container_of(ref, struct batadv_hard_iface, refcount);
++	netdev_put(hard_iface->mesh_iface, &hard_iface->meshif_dev_tracker);
+ 	netdev_put(hard_iface->net_dev, &hard_iface->dev_tracker);
  
--	hard_iface = NULL;
-+	mesh_iface = netdev_master_upper_dev_get(net_dev);
-+	if (!mesh_iface || !batadv_meshif_is_valid(mesh_iface))
-+		return NULL;
-+
-+	hard_iface = netdev_lower_dev_get_private(mesh_iface, net_dev);
-+	if (!kref_get_unless_zero(&hard_iface->refcount))
-+		return NULL;
- 
--out:
--	rcu_read_unlock();
- 	return hard_iface;
- }
- 
-@@ -761,7 +761,6 @@ int batadv_hardif_enable_interface(struct net_device *net_dev,
- 
- 	hard_iface->if_status = BATADV_IF_INACTIVE;
- 
--	INIT_LIST_HEAD(&hard_iface->list);
- 	INIT_HLIST_HEAD(&hard_iface->neigh_list);
- 
- 	mutex_init(&hard_iface->bat_iv.ogm_buff_mutex);
-@@ -780,6 +779,7 @@ int batadv_hardif_enable_interface(struct net_device *net_dev,
- 	hard_iface->mesh_iface = mesh_iface;
- 	bat_priv = netdev_priv(hard_iface->mesh_iface);
- 
-+	batadv_hardif_generation++;
- 	ret = netdev_master_upper_dev_link(hard_iface->net_dev,
- 					   mesh_iface, hard_iface, NULL, NULL);
- 	if (ret)
-@@ -824,9 +824,6 @@ int batadv_hardif_enable_interface(struct net_device *net_dev,
- 	if (bat_priv->algo_ops->iface.enabled)
- 		bat_priv->algo_ops->iface.enabled(hard_iface);
- 
--	list_add_tail_rcu(&hard_iface->list, &batadv_hardif_list);
--	batadv_hardif_generation++;
--
- 	return 0;
- 
+ 	kfree_rcu(hard_iface, rcu);
+@@ -829,8 +830,6 @@ int batadv_hardif_enable_interface(struct net_device *net_dev,
  err_upper:
-@@ -854,9 +851,6 @@ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface)
- 	if (hard_iface->if_status != BATADV_IF_INACTIVE)
- 		goto out;
- 
--	list_del_rcu(&hard_iface->list);
--	batadv_hardif_generation++;
--
- 	batadv_info(hard_iface->mesh_iface, "Removing interface: %s\n",
- 		    hard_iface->net_dev->name);
- 	dev_remove_pack(&hard_iface->batman_adv_ptype);
-@@ -879,6 +873,7 @@ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface)
- 	batadv_purge_outstanding_packets(bat_priv, hard_iface);
- 	netdev_put(hard_iface->mesh_iface, &hard_iface->meshif_dev_tracker);
- 
-+	batadv_hardif_generation++;
- 	netdev_upper_dev_unlink(hard_iface->net_dev, hard_iface->mesh_iface);
- 	batadv_hardif_recalc_extra_skbroom(hard_iface->mesh_iface);
- 
-diff --git a/net/batman-adv/hard-interface.h b/net/batman-adv/hard-interface.h
-index 6d72dbdd5c203..aa9275dec0976 100644
---- a/net/batman-adv/hard-interface.h
-+++ b/net/batman-adv/hard-interface.h
-@@ -74,7 +74,7 @@ u32 batadv_netdev_get_wifi_flags(struct net_device *net_dev);
- u32 batadv_hardif_get_wifi_flags(struct batadv_hard_iface *hard_iface);
- bool batadv_is_wifi_hardif(struct batadv_hard_iface *hard_iface);
- struct batadv_hard_iface*
--batadv_hardif_get_by_netdev(const struct net_device *net_dev);
-+batadv_hardif_get_by_netdev(struct net_device *net_dev);
- int batadv_hardif_enable_interface(struct net_device *net_dev,
- 				   struct net_device *mesh_iface);
- void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface);
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index 3c4572284b532..1d82f3a841a1b 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -59,10 +59,6 @@
- #include "tp_meter.h"
- #include "translation-table.h"
- 
--/* List manipulations on hardif_list have to be rtnl_lock()'ed,
-- * list traversals just rcu-locked
-- */
--struct list_head batadv_hardif_list;
- unsigned int batadv_hardif_generation;
- static int (*batadv_rx_handler[256])(struct sk_buff *skb,
- 				     struct batadv_hard_iface *recv_if);
-@@ -95,7 +91,6 @@ static int __init batadv_init(void)
- 	if (ret < 0)
- 		return ret;
- 
--	INIT_LIST_HEAD(&batadv_hardif_list);
- 	batadv_algo_init();
- 
- 	batadv_recv_handler_init();
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index f68fc8b7239cd..e34145047a341 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
-@@ -226,7 +226,6 @@ static inline int batadv_print_vid(unsigned short vid)
- 		return -1;
+ 	netdev_upper_dev_unlink(hard_iface->net_dev, mesh_iface);
+ err_dev:
+-	hard_iface->mesh_iface = NULL;
+-	netdev_put(mesh_iface, &hard_iface->meshif_dev_tracker);
+ 	batadv_hardif_put(hard_iface);
+ 	return ret;
  }
+@@ -871,7 +870,6 @@ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface)
+ 	/* delete all references to this hard_iface */
+ 	batadv_purge_orig_ref(bat_priv);
+ 	batadv_purge_outstanding_packets(bat_priv, hard_iface);
+-	netdev_put(hard_iface->mesh_iface, &hard_iface->meshif_dev_tracker);
  
--extern struct list_head batadv_hardif_list;
- extern unsigned int batadv_hardif_generation;
+ 	batadv_hardif_generation++;
+ 	netdev_upper_dev_unlink(hard_iface->net_dev, hard_iface->mesh_iface);
+@@ -881,7 +879,6 @@ void batadv_hardif_disable_interface(struct batadv_hard_iface *hard_iface)
+ 	if (list_empty(&hard_iface->mesh_iface->adj_list.lower))
+ 		batadv_gw_check_client_stop(bat_priv);
  
- extern struct workqueue_struct *batadv_event_workqueue;
-diff --git a/net/batman-adv/netlink.c b/net/batman-adv/netlink.c
-index 4cf9e3c54ad3b..62ea91aa3ead6 100644
---- a/net/batman-adv/netlink.c
-+++ b/net/batman-adv/netlink.c
-@@ -1211,7 +1211,9 @@ batadv_netlink_get_hardif_from_ifindex(struct batadv_priv *bat_priv,
- 	if (!hard_dev)
- 		return ERR_PTR(-ENODEV);
+-	hard_iface->mesh_iface = NULL;
+ 	batadv_hardif_put(hard_iface);
  
-+	rtnl_lock();
- 	hard_iface = batadv_hardif_get_by_netdev(hard_dev);
-+	rtnl_unlock();
- 	if (!hard_iface)
- 		goto err_put_harddev;
- 
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index b1f9f8964c3fd..1671380b37929 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -214,9 +214,6 @@ struct batadv_wifi_net_device_state {
-  * struct batadv_hard_iface - network device known to batman-adv
-  */
- struct batadv_hard_iface {
--	/** @list: list node for batadv_hardif_list */
--	struct list_head list;
--
- 	/** @if_status: status of the interface for batman-adv */
- 	char if_status;
- 
+ out:
 -- 
 2.47.3
 
