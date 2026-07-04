@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SnM0EfzwSGqRvgAAu9opvQ
+	id FQVvLEvySGoJvwAAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 13:39:40 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 13:45:15 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7C2C7076E6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 13:39:39 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4347076F7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 13:45:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=IA5QpeyL;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=BLoSeWxd;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 78F1384110
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 13:39:39 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E1F3F840F4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 13:45:14 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783165179;
- b=Z+KX+ZjFK9pFuYIBdPy4o6J0NTKaQ0qiVAswX+nSQdUK/SIWeakw3MyPwS0cmU/zJEW5Z
- V6cm8TsPf4i8Xh+9w1uiXrIgaMU5eF1px5pv0uY/6ybI8zEmSOcLQ/catp/rn4FTF/fvR2o
- CUzSgXHtl/m2AjsMzU6DdH3lXhH1HQk=
+ t=1783165514;
+ b=ueY2mpoUSER5wdkSm5Mlgr+S9h/SZBaOIBWD1ml4d63xiXw0ovEXqweFvzTOLcrt2SXa+
+ FqxsNe0PxOtpppKHbI3qbJATHVEsYrSs/B0prsHhQV1E8JUPyTx0JRukdGhbhoS4G8nm0Gc
+ 0PWljyn22xbzsCFubpmjfIMaFpYj9nU=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783165179; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783165514; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=dzYX6PuiZ/tc6m3J+K/1wMmZdSISipu9/Tmb5WI9Q2g=;
- b=AhkyN1GPn1kYx3fFQTmQcU3a3KX/Lbjp7254wiuoNkrhH/8A/kx9MSmhn35N08ZeIHJcp
- RSyluM9dMLZJkUQN0MQI8WfkYIA7ob5VCGo1IUvH+jjfBWj5UNLDokXuVBryb0N8pcZQjmv
- 9D6Hoj1DdvBuCoC2M3BfJ1xhOSFXR+g=
+ list-archive; bh=nVJ2C5s3e1RVvw2+XDswv9hqfDBjQYACzs8fYLQofJA=;
+ b=FFsTeSzvArLBARZN6vw/+jXTnWzejB99vdKr5NzXnu1u+P2KnClzIfY4okN1Kagt8WHpK
+ 0xFZS0SzSTh4JrRtbDL8Sn9qehNFxRUh7TJ6KaXht+/90+H6ASH4JDaGc5g8odcHX7MP6uQ
+ UO5qZb9+eenR66o1XUc3BWlI0osLsfY=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 934B3811BF
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 04 Jul 2026 13:39:21 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783165161;
-	b=H/t9/ddzZfwaILzNQ4Im8znH+CcdB+1yK3Crm7c7xtDkLxlnTQb9uG1YjEt/cUSqQPgf3q
-	A+62ZEAl/5Kh3zhelZP87xzdnwSnKbDcIZ8b1KOB//FkrTm4sZVgVOOVYkEUBTJ/wiabxf
-	pwb0So1aGKPJJAy2U1fQPYnONyGey8c=
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 8CB1281CDC
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 04 Jul 2026 13:44:46 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783165496;
+	b=gLun30KJje11xRyqj2XkleCqx2XCNKKJdWzH6+m9OW/LeBmdbs5JDLgQvtW9fEdK+rZ9oy
+	vft0YTZC/MV0+j47ZlLIP4LSUvPQ0G8AsIQHlBygNkaYQPca7esi5uO+w56jpBeCwixfXL
+	HFvG0IMiXCtco9xZ1ssJxsdrtEaw+wM=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783165161;
+	s=20121; t=1783165496;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=dzYX6PuiZ/tc6m3J+K/1wMmZdSISipu9/Tmb5WI9Q2g=;
-	b=ddcRDzkRl95wzd3xdVq61KC5na0s2APypiXX+c0mmTS7C1rI8Voc7wo3e5fWdtNEA46ulD
-	TqC2x2GH2WChNkmqyM9nZjQpC3FEOmio0667WXuiucJAjK50lxNJAz0Er8y1HL2TwFzNOi
-	TsUZpkXyIbSeXrQtCVbv2/Q8uovgfP0=
+	bh=nVJ2C5s3e1RVvw2+XDswv9hqfDBjQYACzs8fYLQofJA=;
+	b=l1JpD39kSTy7wSaGI3uV9aPRJ8YBvOH2XBB/fualtW2EEX7nu89/YF6OmJDW8KJjO/Hgmq
+	SCwsU59Pr/8gqkHbLYIQG7AsrYweABbluQ1yudLEDfMXLf7FS5PDXkWfWCw8HLdbQPifDP
+	/UbZNkqChHyV1ftg5iXpabws/KgS3gw=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=IA5QpeyL;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=BLoSeWxd;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 12C1120378;
-	Sat, 04 Jul 2026 11:39:20 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id CA54C1FECA;
+	Sat, 04 Jul 2026 11:44:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783165160;
+	s=20121; t=1783165485;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=dzYX6PuiZ/tc6m3J+K/1wMmZdSISipu9/Tmb5WI9Q2g=;
-	b=IA5QpeyLB9rWALBehl6sR9GIiBUXEt21uQ5mWAMnjG5UtrJN9pAREY81TdG9ieJ7ydyFnD
-	X50b4sb+4217SsWXfqioJkN+JIEqhfW43DY9g7XolGOggA4tzln577Gjugy5Dnw19v2VmM
-	t9YVlcrB+NL/a0FoeY+QWzf8QvuLkpE=
+	bh=nVJ2C5s3e1RVvw2+XDswv9hqfDBjQYACzs8fYLQofJA=;
+	b=BLoSeWxdGDTQygMqnXSYedxM9e29GuG+fGDFIJbhhJbdZiM0PXXqaUbfHK3k2d0+/buOyc
+	YBt4FbhMZ+a3EswFM9+lLS8I++HGDQKbWeDE85wyFBNz0Xm4KmP7Pa3FSdyFzCRBXWOHpz
+	YPA7Hf/R74NvOi+opi2Yqo5q8BABLeA=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 04 Jul 2026 13:39:10 +0200
-Subject: [PATCH] batctl: bat-hosts: free bat_host when hash_add fails
+Date: Sat, 04 Jul 2026 13:44:29 +0200
+Subject: [PATCH] batctl: dat_cache: fix multicast/unicast filter for MAC
+ address
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260704-bugfixes-bat-hosts-v1-1-b85f191fa837@narfation.org>
-X-B4-Tracking: v=1; b=H4sIAN3wSGoC/yXMQQqDQBBE0atIr20YJSrJVcSFPSm1XahMjyKId
- 88kWT6oXxcZgsLolV0UcKjpuiQUeUZ+6pcRrO9kKl1Zu8Y9WPZx0BPG0keeVovGFepnVQjEy0A
- p3AJ+k9S13d+2ywwfv0903x+MDuTydgAAAA==
-X-Change-ID: 20260704-bugfixes-bat-hosts-5e6951bebcbf
+Message-Id: <20260704-bugfixes-dat_cache-v1-1-beb52095f587@narfation.org>
+X-B4-Tracking: v=1; b=H4sIABzySGoC/yXMQQqEMAyF4atI1lPoaFXwKjJI00aNC0eaKoJ4d
+ 6suP3j/O0AoMAk02QGBNhb+zwnfTwZutPNAin0y5DqvdK2NwnXoeSdR3sbOWTeSMr4usERjS6w
+ ghUugZ5K69vdaVpzIxfsJzvMCcQQaNXYAAAA=
+X-Change-ID: 20260704-bugfixes-dat_cache-4d73b5b4a5b6
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1334; i=sven@narfation.org;
- h=from:subject:message-id; bh=Ub1SVMyUQ/JzWD/34eQQfn3D26WrxdlaCWy3DBhwO8w=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFkeHx40TO18bLFicUpC7OQDOvWhM18xexkXzmG9V1Zix
- 3y9cdm9jlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE3JYz/OEUviDl3f755ok3
- h/5GW7q9ucDqzS9Z7Cl08vij47xfVmxm+GdrcVp+b9IsRuW/H1N4ZC5t38NaX7GiouXO+UsZfAu
- 6FjMCAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1359; i=sven@narfation.org;
+ h=from:subject:message-id; bh=ReAwaDjYwZz8+HdzCkIGC0zJt3RmxQF5mZVQc+8QuVU=;
+ b=kA0DAAoWTQ93K9MU9csByyZiAGpI8h3IPO33HkJRfLFwdI/CWzm64PgRB498tUgV9NumnlQEy
+ 4h1BAAWCgAdFiEEvNRvz7MH7R/zlvHFTQ93K9MU9csFAmpI8h0ACgkQTQ93K9MU9csoyAD/WZUl
+ u4kIdOxyCnL0i/4KLaQ5q9yDa3WrJrAZUwtEQ2EA/1tKS74sSqqDzUZlOnYj5YvccaGMknooIah
+ ulWvkKjsC
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: DWX6M5B75ZL3FDE5SBHIQFUV76NZ2UZ5
-X-Message-ID-Hash: DWX6M5B75ZL3FDE5SBHIQFUV76NZ2UZ5
+Message-ID-Hash: N4TIGHB67AD443VVQZVDUB7QDMR3V7HP
+X-Message-ID-Hash: N4TIGHB67AD443VVQZVDUB7QDMR3V7HP
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DWX6M5B75ZL3FDE5SBHIQFUV76NZ2UZ5/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/N4TIGHB67AD443VVQZVDUB7QDMR3V7HP/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -143,49 +143,46 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,lists.open-mesh.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C7C2C7076E6
+X-Rspamd-Queue-Id: 3B4347076F7
 
-If the hash_add fails (OOM or duplicated entry), then the allocated
-bat_host would leak. The user would also not be informed about this
-problem.
+The -u/-m filters in the DAT cache callback test addr[0], but addr in this
+callback is function is the text representation of the mac address - not
+the binary representation like in all other functions. The binary check of
+the multicast-bit will therefore not correctly identify multicast entries.
 
-Check the return value and handle the error to make this problem visible to
-the user.
+The kernel reply BATADV_ATTR_DAT_CACHE_HWADDRESS has to be checked instead.
 
-Fixes: c7c76f63c1f9 ("[batctl] integrating batman hash implementation / move bat-hosts stuff into an extra set of files")
+Fixes: d8dd1ff1a0fe ("batctl: Use netlink to replace some of debugfs")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- bat-hosts.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ dat_cache.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/bat-hosts.c b/bat-hosts.c
-index 6ad8247..160d317 100644
---- a/bat-hosts.c
-+++ b/bat-hosts.c
-@@ -130,7 +130,14 @@ static void parse_hosts_file(struct hashtable_t **hash, const char path[], int r
- 		strncpy(bat_host->name, name, HOST_NAME_MAX_LEN);
- 		bat_host->name[HOST_NAME_MAX_LEN - 1] = '\0';
+diff --git a/dat_cache.c b/dat_cache.c
+index 2dee27a..b8a9656 100644
+--- a/dat_cache.c
++++ b/dat_cache.c
+@@ -78,10 +78,10 @@ static int dat_cache_callback(struct nl_msg *msg, void *arg)
+ 	last_seen_msecs = last_seen_msecs % 60000;
+ 	last_seen_secs = last_seen_msecs / 1000;
  
--		hash_add(*hash, bat_host);
-+		if (hash_add(*hash, bat_host) < 0) {
-+			if (read_opt & USE_BAT_HOSTS)
-+				fprintf(stderr,
-+					"Error - could not add bat host: %s\n",
-+					name);
-+			free(bat_host);
-+			continue;
-+		}
+-	if (opts->read_opt & MULTICAST_ONLY && !(addr[0] & 0x01))
++	if (opts->read_opt & MULTICAST_ONLY && !(hwaddr[0] & 0x01))
+ 		return NL_OK;
  
- 		if ((*hash)->elements * 4 > (*hash)->size) {
- 			swaphash = hash_resize((*hash), (*hash)->size * 2);
+-	if (opts->read_opt & UNICAST_ONLY && (addr[0] & 0x01))
++	if (opts->read_opt & UNICAST_ONLY && (hwaddr[0] & 0x01))
+ 		return NL_OK;
+ 
+ 	printf(" * %15s ", addr);
 
 ---
 base-commit: e93995999e80513db80eba200ea682b5b15556af
-change-id: 20260704-bugfixes-bat-hosts-5e6951bebcbf
+change-id: 20260704-bugfixes-dat_cache-4d73b5b4a5b6
 
 Best regards,
 --  
