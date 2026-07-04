@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id joydFhthSWqr0wAAu9opvQ
+	id DcggEkZhSWqy0wAAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 21:38:03 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 21:38:46 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF53A708423
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 21:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1A9708438
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 21:38:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=eU4CsGyF;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="0bv/8MWZ";
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CCE8183FF7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 21:38:02 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id BC8288071A
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sat, 04 Jul 2026 21:38:45 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783193882;
- b=pHjvSOmA7dge6qKvk/W32H6Bm2fgLfA8KRsegFt3fwuF80QqBmIhDO5melWk7Yn3HaW7l
- tgqnEVLwHqvVy2KTrupn1f4YMjQhBKW4EYj9CirMZ5VsaXVyVO7QD0QqXyj38satB4+UWCe
- 7vHFLGoTmMMZL6dAKKhwmyrq8KyHBIY=
+ t=1783193925;
+ b=ExARzY/nSGeR+GBqlfRssP3YjtByCJM0kzwi5wb9uRVnSAFSApaYZGmRdrdc2QL/6L2jW
+ Vf0deL/4O1xVeXVF2kvkdXIv63+JNZrSAtRA763z0w3ePYl9ueULE4uDmnWETYmuGkeLZHv
+ SR++AiAzHwqalcb/3Fq6qCi0r3KoWC8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783193882; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783193925; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=VJaVxT4aGcSTIZgE62LBxTDBp1HuhXRlXe0F1seshD4=;
- b=jft7qf9U7kJUtQcqJOaJtEmqRpdvOylMtLUg6zMeWY+vdYkmu5gawugax1Fj4QMd/LnPj
- 2a+vgUbtJqTa1cg3arb+rpxKL9FMaVGyFDfT/Xbp0GilmOwmfNEk3s9r6zkkkiFinsn20kz
- 5Qb3AgUThDU+JmVyrA18mJeW+IM6xAs=
+ list-archive; bh=fHAQ26mTO/hglD8/nUjokn3GOrrlBsa2A8tqYrmvDts=;
+ b=vmDFQ8S4BMTY2yz3YMzVjAc0nAlMsugm4xBH1/Tg7bFaTR4J4v+D9YCtfYUcRWzBwd3V6
+ orhTTmVxwP4Gm3Xhk0RZlqI7r1NbOs42LcPta5HoKtG+9eDTPMk3YfGxWLw+6qMDwmnOt+8
+ 30IdVgZRAP3VsdRWa2D0CrRzzvbfog0=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 322FF84206
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 04 Jul 2026 21:36:32 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783193792;
-	b=QC7O7YxW7VL9lOLDvjpNiTWMK59Cwrh1QNtU7U4igJQbxJoLUUxeJcijUl56K2NMRbPibL
-	0reAoz+PVOJ30x5DN+7kMT5XlFtoxG16A0+DGaB4OE9/twfT9Ajnd14TtCtwxS/g/d4aEu
-	N+tUATJd9E5nyEL4B5NigoTxR84ZCqk=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 1498E84206
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sat, 04 Jul 2026 21:36:34 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783193794;
+	b=XxGmrYQ8LLZCdABOTXSQVvlgeFVLSMqDy4Wj06SKJwPAp2DZO5ILbr3NS1KMCNxvomy4gb
+	B0ho7E6mfyouqr7jnZKHp+T3Xb2F05kvoKS/Ekn2hpCGNX/TryjowKIhNyv/Z5ygANslS6
+	muPL87TZTxyKorN3WlZen/wdjKyzDTU=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783193792;
+	s=20121; t=1783193794;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=VJaVxT4aGcSTIZgE62LBxTDBp1HuhXRlXe0F1seshD4=;
-	b=lrPTDhBamnbVLRZNwI4cZxqeQ5cwDT7KYu/NO4IInaElZOUiueqrAl9XYK/G90oVhipYS7
-	60bVy+76TvIHI/Jq0ml42vgayQRLvtX/V3RsaqeQjNdGaZEUT4rpyBZlEJj26heezE5mBO
-	LPDD6CoaFtDoBG0agjTjMQKMndv8S6U=
+	bh=fHAQ26mTO/hglD8/nUjokn3GOrrlBsa2A8tqYrmvDts=;
+	b=yq4Ci2Rzx94l4hqly7HD2A16KBl+PwM8ugur/0a6r6p6pboSaLMGfHpYyWwIH2K9Fk/DBE
+	aKEmgEXGvbLJTLHUPplM+5uEeVvwvdj+pANhT1BaKFLkA2jwjNc79L5nvD4oanFoqXyNv3
+	sF4lu0EKa7pTT87NVI6drLbTS2Htr90=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=eU4CsGyF;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="0bv/8MWZ";
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id AEB2720685;
-	Sat, 04 Jul 2026 19:36:31 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id C99D420685;
+	Sat, 04 Jul 2026 19:36:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783193791;
+	s=20121; t=1783193793;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=VJaVxT4aGcSTIZgE62LBxTDBp1HuhXRlXe0F1seshD4=;
-	b=eU4CsGyFrXHYhvFZKLE6TrE642XS8CSI28rLeoIlu5hQv2TKM+5xSH71AWqaqtzuVJK0LH
-	vpifmabMtXxTAT98pGz0PEYYh4aNgg/GkJiC2sduPzgeNFjV9VuAD1jOqc3CY1VCfe9+Ca
-	ve4B+o0fNJwybUeq6PQCCMBNMJhZDjg=
+	bh=fHAQ26mTO/hglD8/nUjokn3GOrrlBsa2A8tqYrmvDts=;
+	b=0bv/8MWZb/Kp8xqFobMPKJzO+y2I7CPWGkcUYNlbGW2NrTNrixDq5sMQfa0sT+wKpaybky
+	cR7ejWT9oetxw+I7G46CiRdt92dDiczXPIt9wJAtKa+62DVMDIigPDMDaRSFr1D4KheSew
+	MudNYRknflCbImloPRS0ugvzLTrI8Xc=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sat, 04 Jul 2026 21:36:00 +0200
-Subject: [PATCH 2/5] batctl: debug: use strict interval/timeout parsing
+Date: Sat, 04 Jul 2026 21:36:01 +0200
+Subject: [PATCH 3/5] batctl: debug: reject trailing garbage for intervals
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260704-bugfixes-debug-v1-2-888ddc878206@narfation.org>
+Message-Id: <20260704-bugfixes-debug-v1-3-888ddc878206@narfation.org>
 References: <20260704-bugfixes-debug-v1-0-888ddc878206@narfation.org>
 In-Reply-To: <20260704-bugfixes-debug-v1-0-888ddc878206@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1300; i=sven@narfation.org;
- h=from:subject:message-id; bh=eDjIqH6wHZiDH1tTHLB1BYJwQuu4EU8KKA8P2MZMtyM=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmeCcvXW/05Ouv5kpKGyxp/lydG75YKOPdlnXmB74fkJ
- yoaa0und5SyMIhxMciKKbLsuZJ/fjP7W/nP0z4ehZnDygQyhIGLUwAm8r2e4X9NlUT0qjPMouuV
- Mjg/nGENWXh+WyZz/Nzq+Nq3ultljOoZGe623Dl/IPx5ZLdGpelbj19RzVMjS7estF2c91T44b+
- fOZwA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1610; i=sven@narfation.org;
+ h=from:subject:message-id; bh=qHqQlcl94C7OiB7QkFIAdvt2A2OAAmoGlS98QFfCH9o=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmeCcuvzl7AZXfB9rzeYv2JnXFijCkfMqI8DlmnTFjk1
+ bpn/fFZHaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJGBgwMuyp3ahqF9FhMiFj
+ 2ydfVquSyUwvwo+X7NKv8Tvwjc3Ovpjhv9/6N0t21XdwBf1XMGCZzRzRtsBn0qpt28V4FSLOZDo
+ ocQEA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: ZLWFFQ43FKAAI7DAJR36QURJBTNRVIPB
-X-Message-ID-Hash: ZLWFFQ43FKAAI7DAJR36QURJBTNRVIPB
+Message-ID-Hash: OMFOWFGX4R24FNV54L4HWRV5LYOW7CVE
+X-Message-ID-Hash: OMFOWFGX4R24FNV54L4HWRV5LYOW7CVE
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZLWFFQ43FKAAI7DAJR36QURJBTNRVIPB/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OMFOWFGX4R24FNV54L4HWRV5LYOW7CVE/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -145,41 +145,51 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EF53A708423
+X-Rspamd-Queue-Id: DF1A9708438
 
-The sscanf() function does not only return 0 when the value could not be
-parsed from the string. Also EOF is a potential return value. To make the
-check more strict, just compare the returned value with the expected number
-of scanned/parsed items.
+ A "%f" sscanf conversion stops at the first
+character it cannot consume and reports success for the leading numeric
+part, so trailing garbag are still accepted silently.
+
+Append a "%c" conversion so any trailing character makes sscanf() report
+more than the one expected item.
 
 Fixes: 302a41a73915 ("batctl: Add timeout filtering option for originators")
 Fixes: e4a7b7733faf ("batctl: Add an optional interval for watch-mode")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- debug.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ debug.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/debug.c b/debug.c
-index bca81c8..ae13dce 100644
+index ae13dce..1cceea6 100644
 --- a/debug.c
 +++ b/debug.c
-@@ -67,7 +67,7 @@ int handle_debug_table(struct state *state, int argc, char **argv)
+@@ -51,6 +51,7 @@ int handle_debug_table(struct state *state, int argc, char **argv)
+ 	float watch_interval = 1;
+ 	char *orig_iface = NULL;
+ 	int optchar;
++	char tmp;
+ 	int err;
+ 
+ 	while ((optchar = getopt(argc, argv, "hnw::t:Humi:")) != -1) {
+@@ -67,7 +68,7 @@ int handle_debug_table(struct state *state, int argc, char **argv)
  			if (!optarg)
  				break;
  
--			if (!sscanf(optarg, "%f", &watch_interval)) {
-+			if (sscanf(optarg, "%f", &watch_interval) != 1) {
+-			if (sscanf(optarg, "%f", &watch_interval) != 1) {
++			if (sscanf(optarg, "%f%c", &watch_interval, &tmp) != 1) {
  				fprintf(stderr,
  					"Error - provided argument of '-%c' is not a number\n",
  					optchar);
-@@ -82,7 +82,7 @@ int handle_debug_table(struct state *state, int argc, char **argv)
+@@ -82,7 +83,7 @@ int handle_debug_table(struct state *state, int argc, char **argv)
  			}
  
  			read_opt |= NO_OLD_ORIGS;
--			if (!sscanf(optarg, "%f", &orig_timeout)) {
-+			if (sscanf(optarg, "%f", &orig_timeout) != 1) {
+-			if (sscanf(optarg, "%f", &orig_timeout) != 1) {
++			if (sscanf(optarg, "%f%c", &orig_timeout, &tmp) != 1) {
  				fprintf(stderr,
  					"Error - provided argument of '-%c' is not a number\n",
  					optchar);
