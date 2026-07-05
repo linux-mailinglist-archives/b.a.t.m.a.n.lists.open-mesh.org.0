@@ -2,100 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bvR3I0aWSmqXEwEAu9opvQ
+	id lePgJnulSmrhFQEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 19:37:10 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 20:42:03 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36DAC70AB81
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 19:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F28F70AD01
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 20:42:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=S4Q984zy;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=qPLqLQeU;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 0C34084612
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 19:37:10 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 0CD7983EB9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 20:42:03 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783273030;
- b=arqbsFMBCfP5l03JX6bXwOA0cY7ix1sp8tC+lEQPgQ5qAQwaELmFMQRdZ+h5OKY9eozP6
- vdkmzIUMqi1wDjS1FYhiLG7KJxL8fy6bd+KjGwLIisALt2+IePfpYrgOwc/eFV2IZ4tPDYM
- SsOcKfAIhR+/kvnW5JGjd1yXCpa9bw8=
+ t=1783276923;
+ b=KLcSWKghFf12o0KrmqU6ncAcPuUErA0I232nKDdsP1vI2hczwhlLKbLbvunvBtMUMTJF0
+ ymSw9sWL4thtIUSVgbCf0vPkhgbDUN3N3oHj8yBOIgvko3o+i8VWf0xRZjWjQctJypw1tNL
+ xv9N+42UOZqkO/7xOIaDcgn0913x8zs=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783273030; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783276923; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=wofGB+KRFcU90b+Onh8ATvCKEv8aVZfJw2Gb9HKaR4s=;
- b=VSVONKru8xsm6cFy634Nmf0kAuq5ovdzyuZocPMIwtba5Zzvr/rSVoBjeucWs6sISsOuu
- bJ3Yn8l8K5eFTmx6NpgnMw7rvx5SvQz7TUfvV4uoy3dPNWseNpA9OBSQ8yq2NxmkGqseSaZ
- +FC6VGgzSL22bk7zpL4HqftF+8I3tCg=
+ list-archive; bh=uW6niyKd3zYXPxWCgV5RL+iFZwPERvAL7psWWCRV9W8=;
+ b=h+Uwc7MCoWUCgjlbqZSmXXFedHqoj0e6q8+yMXx0psfZWyZl4/rmiW0Fh4m2PGnSlagjA
+ L2kGAFgBfAixFGSTfjytn4hdtfnF4MfK9hWbkMI75sbuR6rLrZ621znVZxjRTgpZ7FO3nS/
+ G7Ln1QNdKMiPHuhbdz1dcZkijZm66HA=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 9A64382F09
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 05 Jul 2026 19:30:28 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783272628;
-	b=ei0yDgZUl4bLBV+HhUAhVp+NaFTIHDkCmu1+kWdGAWNr/CXE75+Lo8B2E2qNYlWGlh1Kp3
-	8/mJXTturble2TjWPINuoNbnoG63TSAAABm9yluV5NxiSLjLzbNfNlDMTQyPccAhLZbdOz
-	I8g18efaOIrgQ2354esvGAR7AaWqhCQ=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 41114809EE
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 05 Jul 2026 20:41:37 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783276907;
+	b=sRpBAKx8MwLI7PtoKQNF1AcnVWSa4FMURJ/PARvO6gxCyvRExvPFhrQQqt7juo4V0InNDQ
+	QYcbdKzN7S69L9bUiE2wt00GnXMsZLbIYlCqPTnI7gRRxbhq23TO7C0CPmI26SQJAtNCSH
+	/t0JskTa1wORvOoHQ/gH8LsclLvPWsE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783272628;
+	s=20121; t=1783276907;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=wofGB+KRFcU90b+Onh8ATvCKEv8aVZfJw2Gb9HKaR4s=;
-	b=B6UMo+hFMhull9aBIHQLMVQq4SAtbqLIY2LBSddNs81Sp3jq95XgxgCnEC94hG0wH2M9ly
-	gB9GymTlVEfSEDelM6ZG0q35GsxLz/8p/57e3+CdURRogmPh9JrwF3O+Ku1SC7nat6rsTN
-	5fBtc1M22nPKNo4reLOIbZBfJPgnIxQ=
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=uW6niyKd3zYXPxWCgV5RL+iFZwPERvAL7psWWCRV9W8=;
+	b=MXDHKUwPgZs38cjUc6hpvb42Eutvleu/IPVDFtnyHVx22TcrGo83DHuiYKVnoAiHO9jsa2
+	3I39D1w9mPHT6EIK1C4cOvbkYL3ea3EzXBENXqsOY+mMLkgbN2vxez5xWyRtk8v45F51Kr
+	2IfgI8dVs9T6nU1iJx2em1149sGDiiU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=S4Q984zy;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=qPLqLQeU;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 4094E1FEE6;
-	Sun, 05 Jul 2026 17:30:28 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id DAD061FEF7;
+	Sun, 05 Jul 2026 18:41:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783272628;
+	s=20121; t=1783276895;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wofGB+KRFcU90b+Onh8ATvCKEv8aVZfJw2Gb9HKaR4s=;
-	b=S4Q984zyKPmzS4DsOi+ZOstLLzzsJNgsyxv+v/nuwLoIgAi6Z1hHRcaELtu2RhZdvsiUZB
-	be9NG3tQOLido9/oUVWx4rZYMGDOniP8ZqHH1GntrnauC2jGsYAsHsWfZzwgMoKhvzvP8F
-	FjRdla0zcB1W8EIVuf3w3AgP4fPp+ks=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=uW6niyKd3zYXPxWCgV5RL+iFZwPERvAL7psWWCRV9W8=;
+	b=qPLqLQeUUWtavqf7QW54TaPm8kWBU5sCk6q/VPNJN8MTd7l+ucQBAze2c25l3mVXRvVK2n
+	16+HX3LiuWduXFjfK81cApgwSqqtLnuQRL9lKtfACFZKsDW1cvqCYjxOjAPzQXk800593T
+	F3BfATkbMLFhLE6mGAoOQmjWSKUG8v8=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 05 Jul 2026 19:30:12 +0200
-Subject: [PATCH 9/9] batctl: tcpdump: fix source address selection for
- 802.11 data frames
+Date: Sun, 05 Jul 2026 20:41:20 +0200
+Subject: [PATCH batadv] batman-adv: dat: fix tie-break for candidate
+ selection
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260705-bugfixes-tcpdump-v1-9-c37f6f82eed1@narfation.org>
-References: <20260705-bugfixes-tcpdump-v1-0-c37f6f82eed1@narfation.org>
-In-Reply-To: <20260705-bugfixes-tcpdump-v1-0-c37f6f82eed1@narfation.org>
+Message-Id: <20260705-dat-tie-break-v1-1-5d06df5cd9e7@narfation.org>
+X-B4-Tracking: v=1; b=H4sIAE+lSmoC/yWMwQrCMBAFf6W8swvbgpX4K+Jhk111FaoksQil/
+ 26qxxmYWVAsuxUcuwXZZi/+nBr0uw7pJtPVyLUxBh5GPvCeVCpVN4rZ5EEWOIReNAVltOaV7eK
+ f3++EKFV0xvnvyzveLdVthnX9Au288Ul5AAAA
+X-Change-ID: 20260705-dat-tie-break-e90991adc9d0
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1182; i=sven@narfation.org;
- h=from:subject:message-id; bh=7UzXbjTQhRGdHYFFmRZHMv4Y772Q1NArsPi12/Cd3Xs=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFleU+brSZrlTOOZ+rLthqLZ6fSfN5+aaGpuUd88Mduts
- 3j/dqb1HaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJ6Dgx/HdjCWrxetnkuyac
- Sa3Ptlp6+s3TwUK/Hx9vmH3+rv3MTh1GhiWtKqxFim6ZN0y6JVg1uZltv95b+eWefLlXxWEt7V0
- n+QE=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1656; i=sven@narfation.org;
+ h=from:subject:message-id; bh=zmJGhaqnSGv08WQHKOEodAYvaVWBtJntC2qyWeKmjn8=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFleS0PiLf7JZ6b0pyrf3PF+yp7Tnb9mm7louzrFae633
+ vt2UfTbjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE/kxkZFj5NuEY86ep92YF
+ 8afM2/U1PNDiwq2Vkk2/pd6fSNolwLCe4X/s2hAPuxkpjOnvuLa123/48XnDBAeHpW/n7vKq/3/
+ Ot5EZAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: RIN23B5SZTN7HT36LQIJKNKSSHDPNCR3
-X-Message-ID-Hash: RIN23B5SZTN7HT36LQIJKNKSSHDPNCR3
+Message-ID-Hash: DM3UIITU3TGT265X4UKJPYMLHPQV252L
+X-Message-ID-Hash: DM3UIITU3TGT265X4UKJPYMLHPQV252L
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/RIN23B5SZTN7HT36LQIJKNKSSHDPNCR3/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/DM3UIITU3TGT265X4UKJPYMLHPQV252L/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -146,52 +146,49 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 36DAC70AB81
+X-Rspamd-Queue-Id: 2F28F70AD01
 
-For non-AMSDU data frame, we need to select as source host:
+The original version of the candidate selection for DAT attempted to
+compare both candidate and max_orig_node to identify which has the smaller
+MAC address. This comparison is required as tie-break when a hash collision
+happened.
 
-* neither from/to DS: addr2
-* from DS: addr3
-* to DS: addr2
-* from+to DS: addr4
+But the used function returned 0 when the function was not equal and a
+non-zero value when it was equal. As result, the actually selected
+node was dependent on the order of entries in the orig_hash and not
+actually on the mac addresses. The last originator in the hash collision
+would always win.
 
-But the code is actually selecting:
+To have a proper ordering, it must diff the actual MAC address bytes and
+reject the candidate when the diff is not smaller than 0.
 
-* neither from/to DS: addr2
-* from DS: addr3
-* to DS: addr4
-* from+to DS: addr3
-
-Instead of checking single bits, the special cases "from+to DS" and "from
-DS" have to be checked separately.
-
-Fixes: 5143e351a77b ("batctl: add raw wifi packet decapsulation support")
+Fixes: 34b3c3850e7d ("batman-adv: Distributed ARP Table - create DHT helper functions")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- tcpdump.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ net/batman-adv/distributed-arp-table.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tcpdump.c b/tcpdump.c
-index 48744ea..764b484 100644
---- a/tcpdump.c
-+++ b/tcpdump.c
-@@ -1369,10 +1369,10 @@ static void parse_wifi_hdr(unsigned char *packet_buff, ssize_t buff_len,
- 		return;
+diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
+index a5c9b6d0..30cb1e93 100644
+--- a/net/batman-adv/distributed-arp-table.c
++++ b/net/batman-adv/distributed-arp-table.c
+@@ -615,7 +615,7 @@ static bool batadv_is_orig_node_eligible(struct batadv_dat_candidate *res,
+ 	 * the one with the lowest address
+ 	 */
+ 	if (tmp_max == max && max_orig_node &&
+-	    batadv_compare_eth(candidate->orig, max_orig_node->orig))
++	    memcmp(candidate->orig, max_orig_node->orig, ETH_ALEN) >= 0)
+ 		goto out;
  
- 	shost = wifi_hdr->addr2;
--	if (fc & IEEE80211_FCTL_FROMDS)
--		shost = wifi_hdr->addr3;
--	else if (fc & IEEE80211_FCTL_TODS)
-+	if ((fc & IEEE80211_FCTL_FROMDS) && (fc & IEEE80211_FCTL_TODS))
- 		shost = wifi_hdr->addr4;
-+	else if (fc & IEEE80211_FCTL_FROMDS)
-+		shost = wifi_hdr->addr3;
- 
- 	dhost = wifi_hdr->addr1;
- 	if (fc & IEEE80211_FCTL_TODS)
+ 	ret = true;
 
--- 
-2.47.3
+---
+base-commit: e281f6726677f7e8950dad1640d5386867e6d2e6
+change-id: 20260705-dat-tie-break-e90991adc9d0
+
+Best regards,
+--  
+Sven Eckelmann <sven@narfation.org>
 
