@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qQp8E45+SmqKEAEAu9opvQ
+	id bYmyKA5/SmqlEAEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 17:55:58 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 17:58:06 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id E63F370A854
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 17:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DBC470A874
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 17:58:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=wcKX11Jr;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=m98pBMPo;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CB28C8419D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 17:55:57 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E85A5810AD
+	for <lists+b.a.t.m.a.n@lfdr.de>; Sun, 05 Jul 2026 17:58:05 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783266957;
- b=HaFhEUm2tE97xedZB2eBP9J59QI/QecrmElT1xy6o2NuO1vgdPamXG2PlsjrZydRuaFjV
- vrHV0iPl9zIxhIlow7OIUnWCTJDH6L7jd8LL9ZsbavyLPZCCno2vnzmDkf/3lw4UNkRZJAn
- WKFCOX35vmKDG/GtnqFLAHxf/IGUax8=
+ t=1783267085;
+ b=lrjNcckd1+Ek+gIl8qDEGKWpglrvkt0dVDpTxq8rhCfws3s9e5/YCIm/4xWJE0dGiUGkk
+ 39ccQIvDtFHsiwa5LplM8qo/NpREvAtbgvFNiRDpbSpvuRAIfwGgkMUQL5M/qAsj7vpMUqC
+ vhC9dQQh6LX3SL53ta0I62sRTBZge0s=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783266957; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783267085; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=+e0i0Q4P9hsh1O4boWFK9ee/E5ii4nnSuCnfoflUHXw=;
- b=sr0eXUEuQ69y8zFH3oXV8L/qQ3Rcmo+Umztu1tYXFIyin9kOXrd+hgeKaUJTa8y5dcHaP
- lYwjqe4LAFv2WOIPlDGOyRfLS0D7cxLzDye53agvqEWDiciP2AU+4gGOfHxaTO0e7mQLifb
- 0y930CBLu1cw186Y/Z+M/tM8o2TB00E=
+ list-archive; bh=Si27B/9yGfIMp8XIL4gBQ5xcCclhocPffro1VFbWr3g=;
+ b=wppu5jE/qtWKN9QZUYB+0ZN6SXMuzQzgmz0EIlTIcEAqT6d7HdRhyAjOv3IgJGtF/UFZX
+ 1Q/B0YvJfMQjYa2uCItioGCE6a6Y+jbrCnca3O5kaUo99yNA/5vaGqwBZYWIWP7a/Om6TZH
+ h1HhcQdQINkbd1uxrZuaLPuz/mkucq4=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id A4F5B819E6
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 05 Jul 2026 17:54:15 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783266855;
-	b=ghPhY8MQb0X7zvhRxyFc330U2O3wUlTWx0jr6l7G89Z3fCqeK44Qsl2zr5a5bkO2iVC1al
-	e0Q9nRg+MjFvCSqYq7gDMhrxrx42/4B8PKZwC7aH7Zu41UIgHoWivDnS6NLsQDpIA2j/W1
-	F5u6p6vTxIsp6Ew77ko0a95pAR5/Rr0=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id A21968191A
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Sun, 05 Jul 2026 17:54:17 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783266857;
+	b=RseCOV44+Y/OCVdY7xAql5KwHWWcmcZkAp2gEocg+2GkD3jhtLwp/qzUpuMBxqNUGu6WNG
+	RIaR8FSiOwhamY4vEdZdYSWNJZJQAhMmQSf5THmhI31oKdCD9FB0E4cxdiFp789uD6K2Ad
+	yOcqdxalJT52bTA1gl2Eh6UPpH8O+rM=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783266855;
+	s=20121; t=1783266857;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=+e0i0Q4P9hsh1O4boWFK9ee/E5ii4nnSuCnfoflUHXw=;
-	b=D5791vE8U+ZN4h+w4OSFTJv6BzTxTAdqP+LhkjDrp3s9kSZr4zfnXiVm+3a29fYP5sKZbO
-	3WzfYtkDB7IAsfbCLSeRUBoIYqesmSYPYM6hFSZdjiOWbe9W85n87ZtDkY/NomUTLP8E51
-	gAZvlUReLYfgQWCucuuGNDVucelbY6s=
+	bh=Si27B/9yGfIMp8XIL4gBQ5xcCclhocPffro1VFbWr3g=;
+	b=nNRkvsI+2onEHd9VQ5Qclvp2zy7VmJAten+kXmbunNxivFsxBm7OgiHGrbUvxNcVW7rWpo
+	rE7ETn7NAI6EVpksCWfTmv0aJgSng3N26s+nYW0JS+QifmOG340aNIX31742Wsv7v71AuP
+	rioPuAx141+U1m7H3UAd1Uaozn0T6cc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=wcKX11Jr;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=m98pBMPo;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 5900020539;
-	Sun, 05 Jul 2026 15:54:15 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 40A8E203F3;
+	Sun, 05 Jul 2026 15:54:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783266855;
+	s=20121; t=1783266857;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+e0i0Q4P9hsh1O4boWFK9ee/E5ii4nnSuCnfoflUHXw=;
-	b=wcKX11JroIkAPFQ7AkYepK8A6s0/d00sBUeCa4QiUYSV6HFJLfvUhbUcLE2zRsY267KZe6
-	FoYHOoO6tb+wCRk4vnE4u7ZdIXDh5OoncDaznCtUHXmGbv6vAKvETeh2BxTg9+J9rt9csI
-	4mPmA+66OjTcgbYzpHDcIoS2yx2CVFM=
+	bh=Si27B/9yGfIMp8XIL4gBQ5xcCclhocPffro1VFbWr3g=;
+	b=m98pBMPob4g5b3B4hhFmHj1CngmGIYQilhKQbCk1jQE69fZQ0buN9xOSCTDrEj29m06C7g
+	3cJD8HwsTjSHMXqh/ckrV2c+b3ljcevlZOeHUv2OYe5INSx9tvFutqGDVgT/Fvflomt9Ej
+	iN1iMwLnQ2hzoKaBoX71a2U0re+pgys=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Sun, 05 Jul 2026 17:53:38 +0200
-Subject: [PATCH 4/5] batctl: genl_json: escape non-printable characters as
- valid JSON
+Date: Sun, 05 Jul 2026 17:53:39 +0200
+Subject: [PATCH 5/5] batctl: genl_json: drop leftover network coding log
+ level
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260705-bugfixes-genl_json-v1-4-8cc79129012c@narfation.org>
+Message-Id: <20260705-bugfixes-genl_json-v1-5-8cc79129012c@narfation.org>
 References: <20260705-bugfixes-genl_json-v1-0-8cc79129012c@narfation.org>
 In-Reply-To: <20260705-bugfixes-genl_json-v1-0-8cc79129012c@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=782; i=sven@narfation.org;
- h=from:subject:message-id; bh=alJ8AlcKw9Hr3WMix/Q6/JwQrnKipFY95at3HbEmi2Y=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFledfyyvaFPTQKFak/5FRQe+W6U9cvrxTyJxjitoG3yb
- vz3I9w7SlkYxLgYZMUUWfZcyT+/mf2t/OdpH4/CzGFlAhnCwMUpABPpimH4p3lk8TvOZQoBDL86
- /Q09Z/fqTxVdtvlUmLrmWcVH+/lEehj+aTSJq3O85Xfs3cdh3f7zYqyjwmYmjYUTdPfFP/wx4f0
- hPgA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=784; i=sven@narfation.org;
+ h=from:subject:message-id; bh=qyIEaYIw3k3lrCbbtJq408/KPKoQu6MZZpWYnQHkdy0=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFledfzdCZNW1+m+2bVNUvnI7Z6uyTNPnTG7u01K8sg/n
+ xy+koD8jhIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEZl1nZDhSmXbh4xP3KS1r
+ L1V8kjizS7Zl7qaKV6l3ci9my53YcE+H4ceHKW7V14ubV6+1/huv1v1X9Fxb6E6XgnuPHsoVhab
+ rsgIA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: PTTB5FHXBWKQSOWJSJFG3WI7FKDEDHAE
-X-Message-ID-Hash: PTTB5FHXBWKQSOWJSJFG3WI7FKDEDHAE
+Message-ID-Hash: LWAP5RUKFGFARXZQE4ABYDZKIVSKSHQJ
+X-Message-ID-Hash: LWAP5RUKFGFARXZQE4ABYDZKIVSKSHQJ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/PTTB5FHXBWKQSOWJSJFG3WI7FKDEDHAE/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LWAP5RUKFGFARXZQE4ABYDZKIVSKSHQJ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -145,34 +145,32 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E63F370A854
+X-Rspamd-Queue-Id: 4DBC470A874
 
-sanitize_string() emits non-printable bytes as \xNN inside JSON string
-values. JSON only allows the escape sequences \" \\ \/ \b \f \n \r \t and
-\uXXXX. The latter is the correct option for printing arbitrary character
-values.
+Support for the network coding feature was removed from batctl but missed
+in the genl_json loglevel output.
 
-Fixes: ae1a3d3f0bb7 ("batctl: genl_json: Add generic JSON interface")
+Fixes: 882ab0d91468 ("batctl: remove support for network coding")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- genl_json.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ genl_json.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/genl_json.c b/genl_json.c
-index 917b255..bb32cab 100644
+index bb32cab..c3ef83a 100644
 --- a/genl_json.c
 +++ b/genl_json.c
-@@ -40,7 +40,7 @@ static void sanitize_string(const char *str)
- 			putchar('\\');
- 			putchar(*c);
- 		} else if (!isprint(*c)) {
--			printf("\\x%02x", *c);
-+			printf("\\u%04x", *c);
- 		} else {
- 			putchar(*c);
- 		}
+@@ -219,8 +219,6 @@ static void nljson_print_loglevel(struct nlattr *attrs[], int idx)
+ 	       val & BIT(3) ? "true" : "false");
+ 	printf("\"dat\": %s,",
+ 	       val & BIT(4) ? "true" : "false");
+-	printf("\"nc\": %s,",
+-	       val & BIT(5) ? "true" : "false");
+ 	printf("\"mcast\": %s,",
+ 	       val & BIT(6) ? "true" : "false");
+ 	printf("\"tp\": %s,",
 
 -- 
 2.47.3
