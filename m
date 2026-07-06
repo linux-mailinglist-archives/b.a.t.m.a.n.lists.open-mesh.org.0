@@ -2,101 +2,102 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DF+bMNfWS2rQbAEAu9opvQ
+	id niPULNHcS2p9bgEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 06 Jul 2026 18:24:55 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 06 Jul 2026 18:50:25 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D23E713376
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 06 Jul 2026 18:24:55 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E08713826
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 06 Jul 2026 18:50:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=XgmlrgD2;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=NndkyRxn;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 32E368406C
-	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 06 Jul 2026 18:24:55 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 0952783F73
+	for <lists+b.a.t.m.a.n@lfdr.de>; Mon, 06 Jul 2026 18:50:25 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783355095;
- b=Cb7g7x2RTEGbSOdhEFlFwZn9uRi3EWXhGqZy6yhWLZIadgPdLSZgNQJ5YYTvAYXH9ePB/
- e3QNbnTOXvB8MBRcjb+pQIDHeIBjMf8jkaOWHWn5jCzF8BIRhcFqTc4Oum0An5YXXGlTNx8
- e89ecrYygqSTi/AiqW3WSP/KAsDaN6c=
+ t=1783356625;
+ b=xyCEiit3hMkqkox+J/f8QX6e28QxvoQB3MiUpCeo38JUVVMbXIiNDhSX8IX9aTZRl7AZe
+ YiOHELPJlO2+ulJhLulNmJOtcVQsOaZrDpu9UILPhAh2oozrr94Z4gR+DLCwMRVmC1AvHol
+ lbKVTO5wxBueFXcZYQc03xvb1MdSkPI=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783355095; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783356625; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=hRNzpFCEH0j3rX4SlTUuSsUZ8Y87AH+XqKh6FAKt5Fc=;
- b=ptgNSPt9X7sUQfJZts7gmXu9k4jKgoi/rbysh0AlqqyCG1GQhDrTQ3Ay1EPnL7/ZxvUVs
- uuT++0BxLXtgjnFW7jiAIBNiC5PJkdKzKxoMvwfRAt86SXA/cWLO5Y95K5weAyA6ChQH5oa
- wFa728l/jJarkH1nIWEI1UsNJwpOL5g=
+ list-archive; bh=wIgJEV5Pb1o//hdhBgTuVOqPuBmbk7SiXnT8pW+L5Ck=;
+ b=uxtg4SljVubFPdDdq+pt+wD4j+WHGUWwaIBo252mv6yW/w5HJhnwv7jSWQZJ3uUaxTBZu
+ dIjFX/pHqkx7jppIZr5/OwgKEVQgElYvWTdChmt9bCiJqZ671P5xOzv0S3ovYkqrsQ5e/oe
+ rH8qEfKaA4h50qwRPTdDkqGjvfwHmew=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id BF2A180B67
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 06 Jul 2026 18:24:26 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783355077;
-	b=Qxeu8SgpyoLZ5G0loo3vq237lVLK3kGaLwaE0NyudftF8PUoILX0MuXhVapqXZgtkr+1a4
-	wqi4Qb3jZJJSkmCUsAsb/+u/eOYFZB5kahOQy4lN0ZYEo9eMcFEGz8EuqTdxFNDchCqTPv
-	TUylYeA3G/ChgCwa4lUK+dpkH2Mk4N0=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id BB3C683625
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Mon, 06 Jul 2026 18:49:56 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783356606;
+	b=0ucVwvRzUTyXzhGzguxw5R38jr6XXwWj8naBQbORUwu51cFm7FIsXAKAY1oEHOzoREfnKv
+	WbChUwwDlZ8+HhuRxVtrPzKXYKjCiqUxL0y9d/3emdGa0sBIQ7L7rbZcBxGzrOCvY01F2L
+	NG5fvcSE100xuJVey5rVhg65WQlVegk=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783355077;
+	s=20121; t=1783356606;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=hRNzpFCEH0j3rX4SlTUuSsUZ8Y87AH+XqKh6FAKt5Fc=;
-	b=ToK1OXePreWh2ws/8C0xA2hll7wahesxbFSMSoqz9TwH9te5PzO48kcHJ1mNVNzGtgBu72
-	NLxSAkmxa6Om/xqg9MDtbSUADQic7Lcb69/1u1SzhxoZCirXn6vCTm9Fo1uG8WolcQMduZ
-	2/P9HNlMRmLAGXlvTew9ghBxPIW7ieY=
+	bh=wIgJEV5Pb1o//hdhBgTuVOqPuBmbk7SiXnT8pW+L5Ck=;
+	b=1J5Dxh8E72CO7JbMk+UEb9Jfv4b3c3mIV1lY86ASKu/TidNmgh+IvfNrYgy4RilN1sLTRC
+	x9Mf3GS15cgyU3aUHY2yihyhV+/qnb4+iuHBV7LPom2xOGQQUS2beQFlUBEsw9RKGOapYA
+	Z9+wWBb29PJZx9fF3/Xjie1U/RP99tY=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=XgmlrgD2;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=NndkyRxn;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 4B1C11FEE6;
-	Mon, 06 Jul 2026 16:24:26 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 04B83202E1;
+	Mon, 06 Jul 2026 16:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783355066;
+	s=20121; t=1783356595;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=hRNzpFCEH0j3rX4SlTUuSsUZ8Y87AH+XqKh6FAKt5Fc=;
-	b=XgmlrgD2kLMxhor3HtEBLSAkHlv616oK5GVdPaPFUXYOw/3Yq6XybK/rcmEUNEsEfSwQFx
-	IvD6H43tu265ItyaHb+B3WMtoQnlX2NYBlwXoflQkTzwWeKke5nK1GgWYIrRrU0hnBVf6w
-	NCMA4WGSAgI/jdqyRXhzOZ7RxruY32I=
+	bh=wIgJEV5Pb1o//hdhBgTuVOqPuBmbk7SiXnT8pW+L5Ck=;
+	b=NndkyRxnSIdLLetNjb26hS+mR1X7ZsJiYEkz9s9d6CP0Y0zUUBOibEr8VP+zQPERatLLxG
+	5K2AaaSuUVzuTqSf33+xnndsopgHCLYbEFGzxpEbwbXLiLS6OQudtRBfVf4hT710G/KaPG
+	oOw1C9B8I5zaPminJgQj19PnnBHL1o8=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Mon, 06 Jul 2026 18:24:22 +0200
-Subject: [PATCH batadv v2] batman-adv: bla: avoid CRC corruption due to
+Date: Mon, 06 Jul 2026 18:49:51 +0200
+Subject: [PATCH batadv v3] batman-adv: bla: avoid CRC corruption due to
  parallel claim add
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20260706-bla-parallel-add-crc-corruption-v2-1-719af0bf87fa@narfation.org>
-X-B4-Tracking: v=1; b=H4sIALXWS2oC/41OSw6CMBC9ipm1Y9oqIq68h2Ex/UENATItjYZwd
- wEv4PL93wzRcXAR7ocZ2OUQw9CvQB0PYFrqG4fBrhiUUFdRigJ1RzgSU9e5DslaNGzQDMzTmNY
- sqrPS5UVLX1Ua1paRnQ/vfeEJmhLZDPWPj5N+OZO2+s3ZhpgG/uxXstz9f69miRIrcVNeaOWKy
- j56Yk+bdhq4gXpZli9ZMOhY7AAAAA==
+ <20260706-bla-parallel-add-crc-corruption-v3-1-d1261a377b2a@narfation.org>
+X-B4-Tracking: v=1; b=H4sIAK7cS2oC/42Oyw6CMBBFf4V07Zi2PqCu/A/jYvqCGgJkCo3G8
+ O8W3Bg3urwzd86ZJ4uOgovsVDwZuRRi6LscdpuCmQa72kGwOTPJ5ZGX/AC6RRiQsG1dC2gtGDJ
+ geqJpGPMtyJ3U5V4Lr5RmmTKQ8+G+Gi5M44g2set7Hid9c2Zc8EuzCXHs6bG+ksTa/9uaBAhQv
+ JKea+kOyp47JI/LbttTvRqT/GQefzNlZpZCYWb6qvT4zZzn+QXq4bLLQAEAAA==
 X-Change-ID: 20260705-bla-parallel-add-crc-corruption-232b74b1f99b
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sashiko <sashiko-bot@kernel.org>, Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5539; i=sven@narfation.org;
- h=from:subject:message-id; bh=pEX9g0TQJ7Sc2Amjrs2erTVIkfIxokmJGuztNTgCu3M=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFne17b9W/okou6er8Zc+W+L722zP3GisPNa/8/WNr32v
- 2IPzysIdZSyMIhxMciKKbLsuZJ/fjP7W/nP0z4ehZnDygQyhIGLUwAmwunB8D9p8eo/7PNKQ36J
- SSSffdPOoeWoefEnx73C9n/TnP/6fClg+J++/uy/S+Yn0l54OBvp7bzBZRoglKofeEuoK2puudu
- dS9wA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5794; i=sven@narfation.org;
+ h=from:subject:message-id; bh=CRcbSyP02zMtUJiFh0EB20RarPM7VW4XAmw1TSZ6uCo=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFnedzYIFznKdzry8Hw5sOFemasnr/Wypau9b90UWGPVe
+ Pia9d55HaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJHHnHyHBkT0ZJb+iJHaLy
+ 78WK9t6/smmb9v6KVT+sX2Vk7b1YMHkxw3/vyzX9B1dFVKpenBrw9Iz6krc1rmXlCtMCW+pML+h
+ OPcYJAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: KM3TN3WRH4BDCQRCOZUIUTVYTU2IT7KL
-X-Message-ID-Hash: KM3TN3WRH4BDCQRCOZUIUTVYTU2IT7KL
+Message-ID-Hash: EYSD2Q7EFCSAMQELWU2WFUC2ZQRYELLC
+X-Message-ID-Hash: EYSD2Q7EFCSAMQELWU2WFUC2ZQRYELLC
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -110,7 +111,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KM3TN3WRH4BDCQRCOZUIUTVYTU2IT7KL/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EYSD2Q7EFCSAMQELWU2WFUC2ZQRYELLC/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -145,11 +146,11 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5D23E713376
+X-Rspamd-Queue-Id: 27E08713826
 
 batadv_bla_add_claim() is used to add claims and modify the backbone of
 claims for CLAIM frames from remote backbones and local packets. When it
@@ -197,24 +198,29 @@ Reported-by: Sashiko <sashiko-bot@kernel.org>
 Fixes: a9ce0dc43e2c ("batman-adv: add basic bridge loop avoidance code")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
+Changes in v3:
+- make the "changing ownership" debug message less verbose
+- Link to v2: https://patch.msgid.link/20260706-bla-parallel-add-crc-corruption-v2-1-719af0bf87fa@narfation.org
+
 Changes in v2:
 - added the lost lasttime updates again
 - Link to v1: https://patch.msgid.link/20260705-bla-parallel-add-crc-corruption-v1-1-9082f0b2e59d@narfation.org
 ---
- net/batman-adv/bridge_loop_avoidance.c | 56 +++++++++++++++++++---------------
- 1 file changed, 32 insertions(+), 24 deletions(-)
+ net/batman-adv/bridge_loop_avoidance.c | 62 +++++++++++++++++++++-------------
+ 1 file changed, 38 insertions(+), 24 deletions(-)
 
 diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index e18e9885..15c980e0 100644
+index e18e9885..3c3fab5c 100644
 --- a/net/batman-adv/bridge_loop_avoidance.c
 +++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -695,12 +695,13 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
+@@ -695,12 +695,14 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
  	struct batadv_bla_backbone_gw *old_backbone_gw;
  	struct batadv_bla_claim search_claim;
  	struct batadv_bla_claim *claim;
 -	bool remove_crc = false;
  	int hash_added;
 +	u16 claim_crc;
++	bool changed;
  
  	ether_addr_copy(search_claim.addr, mac);
  	search_claim.vid = vid;
@@ -223,7 +229,7 @@ index e18e9885..15c980e0 100644
  
  	/* create a new claim entry if it does not exist yet. */
  	if (!claim) {
-@@ -732,43 +733,50 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
+@@ -732,43 +734,55 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
  			kfree(claim);
  			return;
  		}
@@ -233,42 +239,52 @@ index e18e9885..15c980e0 100644
 -			/* no need to register a new backbone */
 -			goto claim_free_ref;
  
--		batadv_dbg(BATADV_DBG_BLA, bat_priv,
--			   "%s(): changing ownership for %pM, vid %d to gw %pM\n",
--			   __func__, mac, batadv_print_vid(vid),
--			   backbone_gw->orig);
 +		spin_lock_bh(&backbone_gw->crc_lock);
 +		backbone_gw->crc ^= claim_crc;
 +		spin_unlock_bh(&backbone_gw->crc_lock);
- 
--		remove_crc = true;
++
 +		WRITE_ONCE(backbone_gw->lasttime, jiffies);
 +
 +		batadv_claim_put(claim);
 +		return;
- 	}
- 
++	}
++
 +	WRITE_ONCE(claim->lasttime, jiffies);
 +
-+	batadv_dbg(BATADV_DBG_BLA, bat_priv,
-+		   "%s(): changing ownership for %pM, vid %d to gw %pM\n",
-+		   __func__, mac, batadv_print_vid(vid),
-+		   backbone_gw->orig);
-+
- 	/* replace backbone_gw atomically and adjust reference counters */
- 	spin_lock_bh(&claim->backbone_lock);
--	old_backbone_gw = claim->backbone_gw;
--	kref_get(&backbone_gw->refcount);
--	claim->backbone_gw = backbone_gw;
++	/* replace backbone_gw atomically and adjust reference counters */
++	spin_lock_bh(&claim->backbone_lock);
 +	if (claim->backbone_gw != backbone_gw) {
++		changed = true;
++
 +		old_backbone_gw = claim->backbone_gw;
 +		kref_get(&backbone_gw->refcount);
 +		claim->backbone_gw = backbone_gw;
 +	} else {
 +		old_backbone_gw = NULL;
++		changed = false;
 +	}
- 	spin_unlock_bh(&claim->backbone_lock);
++	spin_unlock_bh(&claim->backbone_lock);
++
++	if (changed) {
+ 		batadv_dbg(BATADV_DBG_BLA, bat_priv,
+ 			   "%s(): changing ownership for %pM, vid %d to gw %pM\n",
+ 			   __func__, mac, batadv_print_vid(vid),
+ 			   backbone_gw->orig);
  
+-		remove_crc = true;
++		/* add claim address to new backbone_gw */
++		spin_lock_bh(&backbone_gw->crc_lock);
++		backbone_gw->crc ^= claim_crc;
++		spin_unlock_bh(&backbone_gw->crc_lock);
+ 	}
+ 
+-	/* replace backbone_gw atomically and adjust reference counters */
+-	spin_lock_bh(&claim->backbone_lock);
+-	old_backbone_gw = claim->backbone_gw;
+-	kref_get(&backbone_gw->refcount);
+-	claim->backbone_gw = backbone_gw;
+-	spin_unlock_bh(&claim->backbone_lock);
+-
 -	if (remove_crc) {
 +	if (old_backbone_gw) {
  		/* remove claim address from old backbone_gw */
@@ -276,11 +292,6 @@ index e18e9885..15c980e0 100644
 -		old_backbone_gw->crc ^= crc16(0, claim->addr, ETH_ALEN);
 +		old_backbone_gw->crc ^= claim_crc;
  		spin_unlock_bh(&old_backbone_gw->crc_lock);
-+
-+		/* add claim address to new backbone_gw */
-+		spin_lock_bh(&backbone_gw->crc_lock);
-+		backbone_gw->crc ^= claim_crc;
-+		spin_unlock_bh(&backbone_gw->crc_lock);
 +
 +		batadv_backbone_gw_put(old_backbone_gw);
  	}
