@@ -2,99 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6hpFAnRLTWowxwEAu9opvQ
+	id r8GEMJ5LTWozxwEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:54:44 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:55:26 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id A285471EC4D
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67CA471EC59
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:55:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=euenYNZT;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=BTZvdDTT;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 8026384C68
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:54:43 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 45B52841E4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:55:26 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783450483;
- b=MiYb58bMCzaVGlxJJwOY9jRNum2dk8sUaw7AgrTr62oFq6MbUxX1sO5gWc0QTczyiK4Li
- BqPwiFYFiybfOi7jCD+4OSjye9PlnpEecr3er3Im0swRw/9i2PBY1p9Lg5hq86I8SFNhB7r
- EeTtmqo7O1m8TxdIUeQtmZzeEzyUgso=
+ t=1783450526;
+ b=rCPwTSL7he2ATcsQL1NJJPyuu9HV/Atu/dcBZaH3kqenvkGA5RfoOsTFh7UzrD5AePgeC
+ ZBnG2QJlUTeJpWFVEGfuAaZ/OOCyKAtW6fNzxhHFmpfhy+XS18lpJ2U0Kphdh+MRhED0ILU
+ K23LciEIKEJ6Otxcau8sxoVaob1qTO4=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783450483; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783450526; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=b67R9gJcjRpDdIPTrRjQsBwHC1qxQ7H92ib4V7Yy0mc=;
- b=JrmS1J6QqEBVnicV6ZAHiuFHwBNEJZwu4jDWMGXvuaXWgDtYlLJgvEVOOpJLlaGfzvexc
- VV8SHp92GOTiAI7PTX45QhGC/Z1ifatJUqe6sZr3yRRZWRgRvhhoDspOiDcKd65aJwFuv29
- aczT8xENHQwuMVy0k29ZUt+d/23Qv8c=
+ list-archive; bh=XVb43KfsVvFcg9k+EQvJqROneRDZ+avzaHbPo/cGfr0=;
+ b=mVNOKFXOXZFiraQs3I9OwD9J0uJyB1EVp0NNNRP8voo4AyceHL8KJWr6IrKXHU4Q0pPPc
+ 5vsWamVMgXumjMvrJ+ge+sb+6Ew9LXZ2V94x9IyjiQue5EeCLlgDbN34T36/rPv2BQzf/IP
+ 5Yiu4j7QJ0IHcKDcnKJYZNGLlBk6uA0=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 0CE13841D4
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:14 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450034;
-	b=BzDfFhMIZAvbR/0dGDQ4zvkakKYFLuqdqmw2rmYhtxymtg3slt4J0fb/NE3xT3o5tCoJCX
-	yESVidQjtMT5s9s9UqpL8kHwg32z3Yz5KE6cB4iRnIdifVGcaJdiIckUltwY13+wigYBGf
-	eomTZZN5arzNDaHsQLSLH/egvdLyHSA=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 55E3684228
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:16 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450036;
+	b=kLpekI45LXTVPFzlGv85Ri/vGc2u4OQzIxaeiDMyUqR6ib5gBvZe9k8saUGetsr50pSX52
+	9x+n1+FNOacnbXBlBTbT5QCimuApM5ileszG87Vlajvq4xJjSU2v6oMyhTLsduJhHkkQ65
+	OfVnSSe6985bUoI7Tumn3Fz13URG0RQ=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783450034;
+	s=20121; t=1783450036;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=b67R9gJcjRpDdIPTrRjQsBwHC1qxQ7H92ib4V7Yy0mc=;
-	b=ad2DbxHjWHA+yxeVKlj7LtzL50mcm65n4rtkdMYklQm97WmiQiGnmW0AV9D5H7P6sPsPi3
-	qz7694ZuCo5nhsVnUlH8/p8MDXNHP3fVq9rVNqqVWvjpJdS5GcUXSKxwb+jwgewGgtDZav
-	gfNaqtJm3tJ4nOb1nkfKHdcu9cJrOMs=
+	bh=XVb43KfsVvFcg9k+EQvJqROneRDZ+avzaHbPo/cGfr0=;
+	b=QFPf5NKq+pt7A+JTlGzCgaQ07+AVvfhYMLsCC/VJ+DtGsREpgAZqN/9+jRwwVET3W6ZCYW
+	FMdzmEIfO06cdRdg8nVHoQ4NlsrUAX+BzRHLpRX1Pe+6qa5hyjfnf9HHdopXplIn82Tgny
+	OIWamMGhkHrY3J67TkYjCyDTBi9DSP4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=euenYNZT;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=BTZvdDTT;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 67E8D202D1;
-	Tue, 07 Jul 2026 18:47:13 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id CCD64202D1;
+	Tue, 07 Jul 2026 18:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783450033;
+	s=20121; t=1783450036;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=b67R9gJcjRpDdIPTrRjQsBwHC1qxQ7H92ib4V7Yy0mc=;
-	b=euenYNZTrFELdoy4hlJHDTDYh7V27daRH1HiiKbbQsfKsObur6eeVG97Ql/IjzsOOZgbH6
-	IjPp68Fl25hlE5921DpNfDjCbItrRIRmiR2lt0Aea+f+I+KUdmUtOHPqtwzKkqaEzlqkOR
-	P/eWGzmnZGTMZOEEa/MZzgxrPvUpIbU=
+	bh=XVb43KfsVvFcg9k+EQvJqROneRDZ+avzaHbPo/cGfr0=;
+	b=BTZvdDTTZZsy9XA/uxmr9GsyQtX++zIpPukrOlsxqC9ykGP87NCXYMOr4/bygPILxBLS68
+	WQ6SBnnfQgWpbbUu1T8hflD9d6tkZAT5TD51mywlZmoDY7iZRzAroJWWmMo+QfO9AyiR0K
+	iZ+j1Oio/hDzXBMwwmTLNrZhToonxZE=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 07 Jul 2026 20:46:52 +0200
-Subject: [PATCH 10/11] batctl: icmp_helper: fail send when the primary mac
- is unknown
+Date: Tue, 07 Jul 2026 20:46:53 +0200
+Subject: [PATCH 11/11] batctl: icmp_helper: attach socket filter before
+ packets can arrive
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-bugfixes-icmp-v1-10-ee563a984acf@narfation.org>
+Message-Id: <20260707-bugfixes-icmp-v1-11-ee563a984acf@narfation.org>
 References: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 In-Reply-To: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1578; i=sven@narfation.org;
- h=from:subject:message-id; bh=EiFH9JXJhwtNrkYd3Cr3YUJSVQn+D+YeBIr9rm9ZXg8=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+ntMuqPw6cS6bKTu5R/bfDDbDk8JxBRnTeL4vWSqne
- cj7wfa7HaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJTFjNyLD9njf3UpnVYbq1
- fEU/Nb5xWbBsfLBg+evJnf/8VN1iTN4zMlz6ONOrRbFeJplx27aAcvkUl+zS9EanLT3iTf7NHxO
- /MAIA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2481; i=sven@narfation.org;
+ h=from:subject:message-id; bh=6qsfORjjC9hs3/5EI7UUpfJq3WpI+v+xQAkgIBfitXU=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+ntNKvtSyhP2c2VLeZLcs/WqO9uygT1dcvmk7PvqmG
+ ez2QPFRRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAi4jKMDNdn/ecQf2q9fnWw
+ Ymflo2dXi+N1Nqb/kD09yd34Z6txnjTD/5wLG3exHVfdLs0WnT9Hyqxuu+wFkzkVaWpN4Ux/vnV
+ sZAMA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: I2ICXR7KKJK4ODPUH2SS7BZ3AZKH3WT4
-X-Message-ID-Hash: I2ICXR7KKJK4ODPUH2SS7BZ3AZKH3WT4
+Message-ID-Hash: ORHLUXLOXE4MWIKGHRI2KSAFOWTC4MNV
+X-Message-ID-Hash: ORHLUXLOXE4MWIKGHRI2KSAFOWTC4MNV
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/I2ICXR7KKJK4ODPUH2SS7BZ3AZKH3WT4/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ORHLUXLOXE4MWIKGHRI2KSAFOWTC4MNV/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -147,51 +148,73 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A285471EC4D
+X-Rspamd-Queue-Id: 67CA471EC59
 
-icmp_interface_update() calls get_primarymac_netlink() but discards its
-return value. That helper only writes the output buffer on success; on
-failure (netlink error, or BATADV_ATTR_HARD_ADDRESS missing from the
-BATADV_CMD_GET_MESH_INFO reply) it returns a negative errno and leaves the
-buffer untouched. primary_mac is a zero-initialised static and this is the
-only place that ever writes it, so a failed query leaves it as
-00:00:00:00:00:00. And address which the receiver cannot use to send a
-reply.
+The raw packet socket is created with ETH_P_ALL as protocol, which
+registers the ethernet packet hook immediately. Frames from every interface
+start queuing the moment the socket exists. The BPF filter that restricts
+the socket to batman-adv ICMP packets with our uid is only attached after
+bind(). Frames received in the window between socket() and SO_ATTACH_FILTER
+are therefore queued unfiltered.
 
-Propagate the failure out of icmp_interface_update() and abort the send.
+Delay the start of the capture by:
+
+* create the socket with protocol 0 (no capture)
+* attach the filter while the queue is guaranteed empty
+* then bind() with sll_protocol = htons(ETH_P_ALL)
+
+Only after the bind, packets will be captured.
 
 Fixes: 4bd751eed4dc ("batctl: Implement non-routing batadv_icmp in userspace")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- icmp_helper.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ icmp_helper.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
 diff --git a/icmp_helper.c b/icmp_helper.c
-index 65a2005..52ac22d 100644
+index 52ac22d..570f0b3 100644
 --- a/icmp_helper.c
 +++ b/icmp_helper.c
-@@ -337,9 +337,7 @@ static int icmp_interface_update(struct state *state)
- 	/* remove old interfaces */
- 	icmp_interface_sweep();
+@@ -176,7 +176,12 @@ static int icmp_interface_add(const char *ifname, const uint8_t mac[ETH_ALEN])
+ 	strncpy(iface->name, ifname, IFNAMSIZ);
+ 	iface->name[sizeof(iface->name) - 1] = '\0';
  
--	get_primarymac_netlink(state, primary_mac);
+-	iface->sock = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
++	/* create the socket with protocol 0 so the kernel does not start
++	 * capturing yet - otherwise frames would queue unfiltered between
++	 * socket() and SO_ATTACH_FILTER. Delivery only starts at bind() below,
++	 * by which time the filter is already installed.
++	 */
++	iface->sock = socket(PF_PACKET, SOCK_RAW, 0);
+ 	if (iface->sock < 0) {
+ 		perror("Error - can't create raw socket");
+ 		ret = -errno;
+@@ -194,6 +199,12 @@ static int icmp_interface_add(const char *ifname, const uint8_t mac[ETH_ALEN])
+ 		goto close_sock;
+ 	}
+ 
++	ret = icmp_interface_filter(iface->sock, uid);
++	if (ret < 0) {
++		fprintf(stderr, "Error - can't add filter to raw socket: %s\n", strerror(-ret));
++		goto close_sock;
++	}
++
+ 	memset(&sll, 0, sizeof(sll));
+ 	sll.sll_family = AF_PACKET;
+ 	sll.sll_protocol = htons(ETH_P_ALL);
+@@ -207,12 +218,6 @@ static int icmp_interface_add(const char *ifname, const uint8_t mac[ETH_ALEN])
+ 		goto close_sock;
+ 	}
+ 
+-	ret = icmp_interface_filter(iface->sock, uid);
+-	if (ret < 0) {
+-		fprintf(stderr, "Error - can't add filter to raw socket: %s\n", strerror(-ret));
+-		goto close_sock;
+-	}
 -
--	return 0;
-+	return get_primarymac_netlink(state, primary_mac);
- }
+ 	list_add(&iface->list, &interface_list);
  
- static int icmp_interface_send(struct batadv_icmp_header *icmp_packet,
-@@ -391,7 +389,9 @@ int icmp_interface_write(struct state *state,
- 	if (icmp_packet->msg_type != BATADV_ECHO_REQUEST)
- 		return -EINVAL;
- 
--	icmp_interface_update(state);
-+	ret = icmp_interface_update(state);
-+	if (ret < 0)
-+		return ret;
- 
- 	if (list_empty(&interface_list))
- 		return -EFAULT;
+ 	return 0;
 
 -- 
 2.47.3
