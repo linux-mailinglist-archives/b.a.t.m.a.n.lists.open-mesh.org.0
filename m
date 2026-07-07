@@ -2,99 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id alYHK5RKTWoLxwEAu9opvQ
+	id LwbxNshKTWoQxwEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:51:00 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:51:52 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B3071EBF7
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:51:00 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D58E71EC07
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:51:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=bYCsvR8S;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="JhKs/gLT";
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 3669584B00
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:51:00 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6BCE48466C
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:51:52 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783450260;
- b=VJ+MK/dZ4X2eyWtQ9kDrwY1BgF7PoH8LRw62rBAbYUMa6/bpZyYUx4/j2mLFNzgWZki2Y
- rM9nhmn24LSSslpRedTVdUt5XC7Nu8kRTd5CUfsBB9jnarEtjB7kLk/h8jyhvCFT3oVXhYK
- giniwFcPr37PwKBmWn2KC3dEoKxJKFQ=
+ t=1783450312;
+ b=Ej1Fs/afDspdxM2UZ/ofAjaHe8crOgzaOOzP/Rm0xLaF+AqBMmcuSjkLbNTmRzHpJbjKK
+ 7FvXuOREdTVZFInUvIfQqK3Ra7FP2hqAeBgoYrJ06ThxHSc9e/YzsqP3+tDr9GPYVMDju7+
+ SQpHegClDOGBmQrFhyW8l05wWZSmAmU=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783450260; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783450312; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=P94ZArtKvpyHdCfaj0ZIyoaNSWZcI/XRLMSCBOcZZLY=;
- b=T8XIXF3T9K58J8swv0L1Y7nfyAaRXUiSk5i0WcFxsi3AHNbz/O3ftT0PYyRo11AyFID+h
- 2dcCyDtS0eoM+ng84VvTu9RrZh3jzqNt8IaRv+sm0RQjkNVI/2ePT5iuV1a9msVDzDVMqTm
- R2ba1FnVXIcZWPPOfFvYyLCuwhpXTAw=
+ list-archive; bh=o93JsEmA6kjPCBHab1eJvAj7A1yxTeamAT6/6n0YQ8w=;
+ b=33bSKDkpJfzYeq0mxvHN2aA4TN/7ibVsjRI2Rvh3rrs3LQl7FVYl3Pe3dX93UBFCqM8xm
+ 1+CtHp3o/y/c2enLX3S/xHU3UPPA3d2Yee9QT1utcvkbbai3FjQ6C9TWib01eIwAlImIg4g
+ zc0Nd/wipUOMTb8ZRMYWI2sMY7JEFDM=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id F241980C7B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:03 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450024;
-	b=C51NTXw4QQm08Hkm2JrXy2QVyoV3hr1AT1972Rp8jQpHig/lz7WyQZ9q2GqF0ujQSVP1Lg
-	oJKmpNu3HZg59mCB+CJ3yNu2racki/IAlK3OKVXV7SSWjSk74GHrAHygxkR1wiccPmAG6m
-	S1OCa0IRod++/HBgcuQ/hx0SHY6XSFA=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 2E268810E8
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:06 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450026;
+	b=Ljaah45XvXujyPEeAys/5yf6xtSJHcQUFsh5irxV4SE+ip9UYn43i0OWBZ4Fvlyi8jeuVO
+	DZrZ2sh08DQGkRoOULdG7nJoNKnVji0pW+d59C7OlgjlNJIodHi2Ju6cPM0YtI8zR3yjlt
+	GfN0VhnVXHsKBPl9M/xYRhcIYgJt1Vs=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783450024;
+	s=20121; t=1783450026;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=P94ZArtKvpyHdCfaj0ZIyoaNSWZcI/XRLMSCBOcZZLY=;
-	b=y6OSEoJo7noXT1fV+8LA0bUH9vGXGIZlBmzEElhqPrbFbD+Nm8cNY8JsiGwyXMitIdm1Jh
-	v5ujqM0akk8dkallteWsKTOQ7skkzgaK15fBOqDkPqe2tWjfettPeSQ6qgynJGQdbnQRcq
-	YRw0K+VyHpFezoJgCFDHk9M8UPftU4I=
+	bh=o93JsEmA6kjPCBHab1eJvAj7A1yxTeamAT6/6n0YQ8w=;
+	b=Qy1Er5gfg1Fe90sxiPqEdzK1li2R0XnsUNzqPnp+18+by5Im6S1vvYtpHLK3b0C/+X7Pmm
+	a1NhJ8Yr4EYoM/FR3OW8+IvMbpjmtsl8+BeZWTTSivV5w8Uc3nsJUWRIxPHBm9Ia8d8Jrj
+	CjzKUjdWhfIWau7gHwLyGclLX72odso=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=bYCsvR8S;
+	dkim=pass header.d=narfation.org header.s=20121 header.b="JhKs/gLT";
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id AFEB3202D1;
-	Tue, 07 Jul 2026 18:47:03 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 9E973202D1;
+	Tue, 07 Jul 2026 18:47:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783450023;
+	s=20121; t=1783450025;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=P94ZArtKvpyHdCfaj0ZIyoaNSWZcI/XRLMSCBOcZZLY=;
-	b=bYCsvR8SJsDc+6hGOKUpUuwSMV/YQBlMQbZ0/RgkcYSxQ2IIP50mDBqP1x4k1HS1Qoxezp
-	JdU7FD3BqfptrMsly+LuNHTE+pLR7yLSJmN6/EPtrYUL94XvPpqhVuAa88SV+4AASd9h4e
-	iMl1u6jsjkAK+aKRgVLlUshxfwLvrX8=
+	bh=o93JsEmA6kjPCBHab1eJvAj7A1yxTeamAT6/6n0YQ8w=;
+	b=JhKs/gLTPaqFDW8r6xNl2cTKm1pqHAs1hexUzila0DTTYMm6WMV0rLiO7vcasLHE2V9n/Z
+	qXvvus0Z01DCyvOFKa07MIz4iuVTPa3MSKrVdJnaaAdzSI4OMwHWKxO2QtgWkDE0PnTFhw
+	1dMQAZQq9EOrBjHroB6FAubzEZNJaIE=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 07 Jul 2026 20:46:47 +0200
-Subject: [PATCH 05/11] batctl: traceroute: probe the advertised maximum
- number of hops
+Date: Tue, 07 Jul 2026 20:46:48 +0200
+Subject: [PATCH 06/11] batctl: ping: keep huge '-i' intervals from turning
+ into a flood ping
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-bugfixes-icmp-v1-5-ee563a984acf@narfation.org>
+Message-Id: <20260707-bugfixes-icmp-v1-6-ee563a984acf@narfation.org>
 References: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 In-Reply-To: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1012; i=sven@narfation.org;
- h=from:subject:message-id; bh=H4ojzUNkpb3anuk0AacR+ctmqv50LQTsYYozdONB2K4=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+ntNa7k5wXz058vGyy/+lrosp/rF0WMy2wdid/SH/J
- OEovfAdHaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJCE5gZDj01LD1potXYPxj
- /zPhbp+e13hEfFxbuG1iEt+RvEPf2DIZGfa11Rbz1pXt4arb9Piw3aYv+jPlar+yKMWsbKiYbSm
- swwQA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1267; i=sven@narfation.org;
+ h=from:subject:message-id; bh=b9XZ8ZGKNlFeHZJL/A4Wbi1d1FI9NcqO2WoudaBjEYg=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+ntOWaC+8ysHgsDxDjHft7rV+32eKJ07UyTxyes7j7
+ UvO31kX2FHKwiDGxSArpsiy50r++c3sb+U/T/t4FGYOKxPIEAYuTgGYCL8zI0PTHU9OyZOXPhy7
+ dm5ewfH0W66bLsttXCLqvadnTt/0e1mHGRmee06r7E5rKWs8v/6KWZ5p5a7Y7GVuwscd1/v9vf/
+ qXDYvAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 65MTHXGUBFC4CJEZW44O6QZ67BTKB6J7
-X-Message-ID-Hash: 65MTHXGUBFC4CJEZW44O6QZ67BTKB6J7
+Message-ID-Hash: CPNSL6KZXSD57WRQ353YXOGMEHWR34XT
+X-Message-ID-Hash: CPNSL6KZXSD57WRQ353YXOGMEHWR34XT
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/65MTHXGUBFC4CJEZW44O6QZ67BTKB6J7/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/CPNSL6KZXSD57WRQ353YXOGMEHWR34XT/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -143,38 +143,45 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 58B3071EBF7
+X-Rspamd-Queue-Id: 8D58E71EC07
 
-The hop loop stops when the TTL reaches TTL_MAX, so only 49 hops are probed
-while the header line announces "50 hops max". A destination which is
-exactly TTL_MAX hops away is reported as unreachable even though the last
-probe was never sent.
+strtod() happily accepts "inf" or values like 1e300 as ping interval.
+Converting such a value to time_t for the nanosleep interval is undefined
+behavior.
 
-Run the loop up to and including TTL_MAX.
+Clamp the interval to a well representable maximum before splitting it
+into seconds and nanoseconds.
 
-Fixes: e1c83d9260e8 ("[batctl] traceroute utility updated to latest batman adv")
+Fixes: 4ebe4fb7b08d ("batctl: ping: Add subsecond precision to ping interval")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- traceroute.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ ping.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/traceroute.c b/traceroute.c
-index 975c9ff..76f0f80 100644
---- a/traceroute.c
-+++ b/traceroute.c
-@@ -123,7 +123,7 @@ static int traceroute(struct state *state, int argc, char **argv)
- 	       dst_string, mac_string, TTL_MAX, sizeof(icmp_packet_out));
+diff --git a/ping.c b/ping.c
+index fcb8d5e..c875c38 100644
+--- a/ping.c
++++ b/ping.c
+@@ -106,12 +106,14 @@ static int ping(struct state *state, int argc, char **argv)
+ 		case 'i':
+ 			errno = 0;
+ 			ping_interval = strtod(optarg, &endptr);
+-			if (errno || *endptr != '\0') {
++			if (errno || *endptr != '\0' || endptr == optarg ||
++			    !isfinite(ping_interval) || ping_interval <= 0) {
+ 				fprintf(stderr, "Error - invalid ping interval '%s'\n", optarg);
+ 				goto out;
+ 			}
  
- 	for (icmp_packet_out.ttl = 1;
--	     !dst_reached && icmp_packet_out.ttl < TTL_MAX;
-+	     !dst_reached && icmp_packet_out.ttl <= TTL_MAX;
- 	     icmp_packet_out.ttl++) {
- 		return_mac = NULL;
- 		bat_host = NULL;
+ 			ping_interval = fmax(ping_interval, 0.001);
++			ping_interval = fmin(ping_interval, 1000000000.0);
+ 			fractional_part = modf(ping_interval, &integral_part);
+ 			loop_interval.tv_sec = (time_t)integral_part;
+ 			loop_interval.tv_nsec = (long)(fractional_part * 1000000000l);
 
 -- 
 2.47.3
