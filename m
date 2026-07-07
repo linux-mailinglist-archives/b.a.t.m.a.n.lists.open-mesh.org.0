@@ -2,100 +2,98 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id r8GEMJ5LTWozxwEAu9opvQ
+	id dOZ6MFVRTWoyyQEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:55:26 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:19:49 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CA471EC59
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:55:26 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5344A71F20D
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:19:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=BTZvdDTT;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=eJRPYuqF;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 45B52841E4
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:55:26 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 2DC6D846D5
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:19:49 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783450526;
- b=rCPwTSL7he2ATcsQL1NJJPyuu9HV/Atu/dcBZaH3kqenvkGA5RfoOsTFh7UzrD5AePgeC
- ZBnG2QJlUTeJpWFVEGfuAaZ/OOCyKAtW6fNzxhHFmpfhy+XS18lpJ2U0Kphdh+MRhED0ILU
- K23LciEIKEJ6Otxcau8sxoVaob1qTO4=
+ t=1783451989;
+ b=subS/l2uofKcVykv0l+Frb1JUbrgaYIKYo6L+36uZxXWJHVMW/wZOPmEg7+JsE9UxKpF6
+ lsf8GxmeynTJCMHXkJl/xCCzvKJtuwBvAO+1LrJe4sXNxhCsoGDdxEEm/FtR1ISJ5DMLSGx
+ O85QaXIj3b3Ipqx+WK6wa/YKNQH5A7M=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783450526; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783451989; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=XVb43KfsVvFcg9k+EQvJqROneRDZ+avzaHbPo/cGfr0=;
- b=mVNOKFXOXZFiraQs3I9OwD9J0uJyB1EVp0NNNRP8voo4AyceHL8KJWr6IrKXHU4Q0pPPc
- 5vsWamVMgXumjMvrJ+ge+sb+6Ew9LXZ2V94x9IyjiQue5EeCLlgDbN34T36/rPv2BQzf/IP
- 5Yiu4j7QJ0IHcKDcnKJYZNGLlBk6uA0=
+ list-archive; bh=f/KtcJgaNkHCflPXkp8SqtuePVBeflEXIwIHcfUjd8Q=;
+ b=h2YWWXhyCRiTCKxHIPg7w+dkov0+Mcy740QCYcvihhme50DOo1tsmYhig6R0mvarVcG4D
+ jiA6G5wLCJnsKz11WWp6F6ei0Qcv179mM5n2o7TpCaId2Z7f//G2xBEQV6yPJKLsXcOhx2c
+ CcMktm2aSDnTy21YeuN+LO7Kcie2LVc=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org
- [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 55E3684228
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:16 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450036;
-	b=kLpekI45LXTVPFzlGv85Ri/vGc2u4OQzIxaeiDMyUqR6ib5gBvZe9k8saUGetsr50pSX52
-	9x+n1+FNOacnbXBlBTbT5QCimuApM5ileszG87Vlajvq4xJjSU2v6oMyhTLsduJhHkkQ65
-	OfVnSSe6985bUoI7Tumn3Fz13URG0RQ=
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 5E167810D5
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 21:17:08 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783451838;
+	b=Gsh7xZ230LJEWaOuP9QVaEI+3RQ789E6SYsJDtqBECI1Se6coVkdHL8L+9ubqipmzB/9rn
+	LbbHj+VYdj1N9ZFZ3/fl+9oP5ArMV3Bp16Z9TQk2SsR3Mno/o+1YN4wBZG/bmvphglDWuf
+	j67M2dpiQmWYsII00gXBxW/8NYnPwqs=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783450036;
+	s=20121; t=1783451838;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=XVb43KfsVvFcg9k+EQvJqROneRDZ+avzaHbPo/cGfr0=;
-	b=QFPf5NKq+pt7A+JTlGzCgaQ07+AVvfhYMLsCC/VJ+DtGsREpgAZqN/9+jRwwVET3W6ZCYW
-	FMdzmEIfO06cdRdg8nVHoQ4NlsrUAX+BzRHLpRX1Pe+6qa5hyjfnf9HHdopXplIn82Tgny
-	OIWamMGhkHrY3J67TkYjCyDTBi9DSP4=
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=f/KtcJgaNkHCflPXkp8SqtuePVBeflEXIwIHcfUjd8Q=;
+	b=JkhG4KT3sFQ2rnQ3h9aF/dibSO769dQJQa0qjSJxsHDIfdB/lIHwPXMe5VCgcuodDIBfxh
+	cohaVuqBmD1Zawaxyue1fieTPat9XhMlvBxYTNXSOOYeStSDkoG6zJQuf5wN9ywmj4MHUl
+	BLt8KdHJvjTdTusytP4drY+XwW+KmqU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=BTZvdDTT;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=eJRPYuqF;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id CCD64202D1;
-	Tue, 07 Jul 2026 18:47:15 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id D3DBA20442;
+	Tue, 07 Jul 2026 19:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783450036;
+	s=20121; t=1783451827;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XVb43KfsVvFcg9k+EQvJqROneRDZ+avzaHbPo/cGfr0=;
-	b=BTZvdDTTZZsy9XA/uxmr9GsyQtX++zIpPukrOlsxqC9ykGP87NCXYMOr4/bygPILxBLS68
-	WQ6SBnnfQgWpbbUu1T8hflD9d6tkZAT5TD51mywlZmoDY7iZRzAroJWWmMo+QfO9AyiR0K
-	iZ+j1Oio/hDzXBMwwmTLNrZhToonxZE=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=f/KtcJgaNkHCflPXkp8SqtuePVBeflEXIwIHcfUjd8Q=;
+	b=eJRPYuqFbmjyCtRm4fiF+aGq57QkrisZZbcRzxsazVnYRUB6cVoZM0x6Jr/RBTnOuUb19V
+	NgLX9DdvW7gTdiBjX5f5tx8FvAmQelZZ1yjUcepF4DDyfwmMXPDriFKHWZlRTXWaIPST+j
+	eILO+91c86r8et4hvCvbYDmTyG/ZT6M=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 07 Jul 2026 20:46:53 +0200
-Subject: [PATCH 11/11] batctl: icmp_helper: attach socket filter before
- packets can arrive
+Subject: [PATCH 0/5] batctl: tpmeter bugfixes
+Date: Tue, 07 Jul 2026 21:16:59 +0200
+Message-Id: <20260707-bugfixes-tpmeter-v1-0-78d96fb7b36c@narfation.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-bugfixes-icmp-v1-11-ee563a984acf@narfation.org>
-References: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
-In-Reply-To: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
+X-B4-Tracking: v=1; b=H4sIAKtQTWoC/yXMQQqEMBBE0atIrw1Exyh4lcFFoqW2oCPpKAPi3
+ Y26fFC/DhJ4hlCdHOSxs/BvicjShNrRLgMUd9GU67zUlS6U24ae/xAV1hkBXlnT4WMqZ0pkFLP
+ V4xnE6tu8ls1NaMP9Q+d5AfOzefV0AAAA
+X-Change-ID: 20260704-bugfixes-tpmeter-a5de357b56e1
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2481; i=sven@narfation.org;
- h=from:subject:message-id; bh=6qsfORjjC9hs3/5EI7UUpfJq3WpI+v+xQAkgIBfitXU=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+ntNKvtSyhP2c2VLeZLcs/WqO9uygT1dcvmk7PvqmG
- ez2QPFRRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAi4jKMDNdn/ecQf2q9fnWw
- Ymflo2dXi+N1Nqb/kD09yd34Z6txnjTD/5wLG3exHVfdLs0WnT9Hyqxuu+wFkzkVaWpN4Ux/vnV
- sZAMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=942; i=sven@narfation.org;
+ h=from:subject:message-id; bh=avL7OmvnPUeLa87JM0DRkdWQYEZnlcR/bjCqClvXJCs=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+AWvzdXLSKjZvk/lz9b7oRJ03Tn1Plp9eedo8undpp
+ 4pZiMS6jlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE7FsYGbryBTOTzzzeueQ7
+ 25PAhOozE++bcT3bfH9jzNUdJ76Kz1BiZDilJFZh3WDmX+Vw3u2O/OfS33vuzp3im77ljd5N5mx
+ +Rn4A
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: ORHLUXLOXE4MWIKGHRI2KSAFOWTC4MNV
-X-Message-ID-Hash: ORHLUXLOXE4MWIKGHRI2KSAFOWTC4MNV
+Message-ID-Hash: OUFG6J653NT5MKMKWBMGNGSWGECATMHJ
+X-Message-ID-Hash: OUFG6J653NT5MKMKWBMGNGSWGECATMHJ
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ORHLUXLOXE4MWIKGHRI2KSAFOWTC4MNV/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OUFG6J653NT5MKMKWBMGNGSWGECATMHJ/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -144,78 +142,33 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67CA471EC59
+X-Rspamd-Queue-Id: 5344A71F20D
 
-The raw packet socket is created with ETH_P_ALL as protocol, which
-registers the ethernet packet hook immediately. Frames from every interface
-start queuing the moment the socket exists. The BPF filter that restricts
-the socket to batman-adv ICMP packets with our uid is only attached after
-bind(). Frames received in the window between socket() and SO_ATTACH_FILTER
-are therefore queued unfiltered.
+I have now splitted the bugfixes for batctl in topic branches to make it a
+little bit easier to review. Similar to the "random bugfixes 2026-06-21"
+patchset, they are just various (mostly minor) problems which should be
+tackled at some point.
 
-Delay the start of the capture by:
-
-* create the socket with protocol 0 (no capture)
-* attach the filter while the queue is guaranteed empty
-* then bind() with sll_protocol = htons(ETH_P_ALL)
-
-Only after the bind, packets will be captured.
-
-Fixes: 4bd751eed4dc ("batctl: Implement non-routing batadv_icmp in userspace")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- icmp_helper.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+Sven Eckelmann (5):
+      batctl: tpmeter: don't use negative errno as exit status
+      batctl: tpmeter: abort result wait on receive errors
+      batctl: tpmeter: reject invalid test duration argument
+      batctl: tpmeter: report kernel errors via strerror
+      batctl: tpmeter: don't cancel test from the signal handler
 
-diff --git a/icmp_helper.c b/icmp_helper.c
-index 52ac22d..570f0b3 100644
---- a/icmp_helper.c
-+++ b/icmp_helper.c
-@@ -176,7 +176,12 @@ static int icmp_interface_add(const char *ifname, const uint8_t mac[ETH_ALEN])
- 	strncpy(iface->name, ifname, IFNAMSIZ);
- 	iface->name[sizeof(iface->name) - 1] = '\0';
- 
--	iface->sock = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
-+	/* create the socket with protocol 0 so the kernel does not start
-+	 * capturing yet - otherwise frames would queue unfiltered between
-+	 * socket() and SO_ATTACH_FILTER. Delivery only starts at bind() below,
-+	 * by which time the filter is already installed.
-+	 */
-+	iface->sock = socket(PF_PACKET, SOCK_RAW, 0);
- 	if (iface->sock < 0) {
- 		perror("Error - can't create raw socket");
- 		ret = -errno;
-@@ -194,6 +199,12 @@ static int icmp_interface_add(const char *ifname, const uint8_t mac[ETH_ALEN])
- 		goto close_sock;
- 	}
- 
-+	ret = icmp_interface_filter(iface->sock, uid);
-+	if (ret < 0) {
-+		fprintf(stderr, "Error - can't add filter to raw socket: %s\n", strerror(-ret));
-+		goto close_sock;
-+	}
-+
- 	memset(&sll, 0, sizeof(sll));
- 	sll.sll_family = AF_PACKET;
- 	sll.sll_protocol = htons(ETH_P_ALL);
-@@ -207,12 +218,6 @@ static int icmp_interface_add(const char *ifname, const uint8_t mac[ETH_ALEN])
- 		goto close_sock;
- 	}
- 
--	ret = icmp_interface_filter(iface->sock, uid);
--	if (ret < 0) {
--		fprintf(stderr, "Error - can't add filter to raw socket: %s\n", strerror(-ret));
--		goto close_sock;
--	}
--
- 	list_add(&iface->list, &interface_list);
- 
- 	return 0;
+ throughputmeter.c | 58 ++++++++++++++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 51 insertions(+), 7 deletions(-)
+---
+base-commit: eb9597d4ca6db17c579f5ae9443c51b013e2fe65
+change-id: 20260704-bugfixes-tpmeter-a5de357b56e1
 
--- 
-2.47.3
+Best regards,
+--  
+Sven Eckelmann <sven@narfation.org>
 
