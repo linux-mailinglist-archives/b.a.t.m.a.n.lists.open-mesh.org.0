@@ -2,98 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0vkJMBNKTWrtxgEAu9opvQ
+	id 1eiyL+hJTWrmxgEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:48:51 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:48:08 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CD771EBB0
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:48:51 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 575C571EB90
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:48:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=g+nJnnmE;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Ylsxp8op;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 44AB3849F2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:48:51 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 38571846DF
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:48:08 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783450131;
- b=rEUth1ZEQ4ebjZX4kJaTw8hkELHsC1Wchm6tmoiUEE/7u6x+50i3oRTUVBlnpmm1D77Z4
- /sjm2qXHcc+dKpy8i7B+u9KkjC5yC9k/oH04mNGWEu1bHXTp0C4re3QClHhBMuVJr9M0cP0
- sWsP9+YSTyruQ8O6QifRLD2oPkRlgUw=
+ t=1783450088;
+ b=RaICyCgPererb6MXIZZyKS9r6Q77l/gE8j/qaexE4JDZHakD1Y2eHOIWqDgx88ji9L6Wb
+ Ph5PCbhJOlmVurXNH6oXTeNZR3fITgx0zF3inPBSOqIrL5SDnfoi1ofumzTtyLLwq+5dtYI
+ DDSHpixmVCx8Kv79HXOu4+1u19YKHb8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783450131; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783450088; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=scPE1j+bKUMKu0GStzI99RS336Ln/5PAYYRouv7x2JE=;
- b=VbgoWjV+0i7ayNTlZNoa5NSHw/nHldwiZreEOaR9xhgkNQPVGn5GD9lA88yhb8XQloFLw
- ACEYxpVpaY9tzc9/gKYdHOSCXV8YSRfHO5ympxXZg6EthHTzdIEQObqICQCFN5665nHgnkj
- MgZPIT3gABFIntJUjNO6mOtliaY16+4=
+ list-archive; bh=3dmzHretJY1gH/HmQVAR2OJGY72SB3le/4uSVtPZCeA=;
+ b=IfLH97rQvapl/qm52dy6NlIM0cLQRh4GSasoWtSwXIXLe3Ga1a4kHOjrvpViVimcnN1aI
+ BCzpQkocFYRYHfcdpXOHQsljULCDQDuuqlDubKgMuadpgYmFa6vmvd3zmnOpxI6HBvcMvlT
+ Dz86kn9i4fFnnZHHSqRx86DFtmM8A9g=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 2797483454
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:46:51 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450021;
-	b=ncWzqudilDgXHa357ywaYI5CTN5J0P7QbPXMT5BQEkUyU7/Rz5wjKzMgb7VJZtBT7l8qKw
-	WJfdTUfV1PT+iIyV0AGVuhXtO978w1EXZ+zHBEf+/AoXtl8xpffkaM5SJL+zfSnDpHovTU
-	gR+fxK6DXBpuI9HllsMA4/jxqU8VpqA=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 41DA282726
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:46:54 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450020;
+	b=Jn6mMXrcvmPwvlKS3hcD3HSpfOSJ0zKcz0Qp6c6sC05INW+uGFOHWAwxmnk/ZaR9Aq1NIL
+	ryqdyqqIrEjzWTQ/YuzKTQF2VcpAFKXDYKxRlhVZH8L/mLHRCE3qSsq8tfWokL2h4vz4Wx
+	k81Fz2FW7EMZjAVvRG4GRwnu2JQS4Oc=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783450021;
+	s=20121; t=1783450020;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=scPE1j+bKUMKu0GStzI99RS336Ln/5PAYYRouv7x2JE=;
-	b=1TSZLXIm55Y64QqfpYYgnLoy3MIXilrtbaJAfNi+8XoPu+592BWV9a0YvF1Wgaw9J/yZ9q
-	tvPNNVS9S3NfgROOzlBuNE/ohAX7QdsYZ3BmKsIVlTbPq5TeMijD2nxQGmaswcY0cgy8Qe
-	wsKz5m6GdKvwwhJauy9zz8IOgI2DNV4=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=3dmzHretJY1gH/HmQVAR2OJGY72SB3le/4uSVtPZCeA=;
+	b=KwWlgmdVcL2rVK16iCmc2NHL2Js4EtNNPCzT7k1ccBp7WoZR1yvgWYuXw4Cv7SMEu3VWbR
+	7fSavS1y/7b+259IK3GCuC7KG54Ee1YKgLWSjasUOyd7AaI0k1QFqU+Mz9mDE5EzPgBqjf
+	bDcYSusv2pBMR/Re7CruFP9nZL0Cwd4=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=g+nJnnmE;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=Ylsxp8op;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 4F1E620442;
-	Tue, 07 Jul 2026 18:46:50 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id B910D204D8;
+	Tue, 07 Jul 2026 18:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783450010;
+	s=20121; t=1783450012;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=scPE1j+bKUMKu0GStzI99RS336Ln/5PAYYRouv7x2JE=;
-	b=g+nJnnmEI0nIFty78VSuyrMpbfZkDdTcipFsGZ8MbFcVEF0tLfGsxBKt/+P5/MA7ilbrCl
-	wf4GMk18eH8Z+s7ifukiGSURCRqv3D9E7OUKV5vXShtMRgFdyerPTtsZRCroP9gNSoPxS3
-	E2ObfWdZmdVWSYqGneWy8/QZYyLLwUg=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3dmzHretJY1gH/HmQVAR2OJGY72SB3le/4uSVtPZCeA=;
+	b=Ylsxp8opvMyqM2d4vGuh0EaPaTNUKkGJspJYN4Glk9zuk6eEbLhnF3Zc9Lg70yrrlsvmq9
+	4NMMrKh+gB4EqACglV8Y4hX2xkhswU2FxzzXyWHC2te2uK1p3x+utSPehrQ7NGmp/vIUP0
+	RdGRODsy5lF/w7GXWVuXNr3mpZHP5F8=
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH 00/11] batctl: traceroute/ping bugfixes
-Date: Tue, 07 Jul 2026 20:46:42 +0200
-Message-Id: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
+Date: Tue, 07 Jul 2026 20:46:43 +0200
+Subject: [PATCH 01/11] batctl: traceroute: return EXIT_NOSUCCESS when
+ destination not reached
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJJJTWoC/yXMyw5AMBCF4VeRWWvS1t2riAXtYCQu6SAS8e6K5
- ZeT/1zA6AgZyuAChwcxLbOHCgMwQzP3KMh6g5Y6lZmMRbv3HZ3Igsy0ijxRNoq7ItfKgm9Wh9/
- qk6r+zXs7otneE7jvB7qzh41xAAAA
-X-Change-ID: 20260704-bugfixes-icmp-851d34f9821d
+Message-Id: <20260707-bugfixes-icmp-v1-1-ee563a984acf@narfation.org>
+References: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
+In-Reply-To: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1462; i=sven@narfation.org;
- h=from:subject:message-id; bh=GoEqoc1qv+GheujJ/0BS5V1XKA8TmD62Ahau5n+k9Us=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+nlO/T5Hk7bHerdurfeBc7IUXsiKJay83NG60+nrUO
- eDM/YCWjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEmh4x/BX78becZ+u2qtqD
- tq+jtn0P6N77VELUT//68+K/ny5psn1gZGgvaDmn31Ilraf55T5zqYVB8oF7u5M+VSUL1M5olzo
- byAcA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1048; i=sven@narfation.org;
+ h=from:subject:message-id; bh=rlmGfGYMxOMQOLtxdK9EBJM7IiZpfC9ATFZceKBuQVg=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+nlOnrU9k+Kwj6Gt0wluRPfXPzH1cxXHKzzkK9gTFP
+ n8i9uNPRykLgxgXg6yYIsueK/nnN7O/lf887eNRmDmsTCBDGLg4BWAi+S0M//NCXPaE5TGmzjuT
+ GzxzmejPZSkH5C2+i982lp4zV212SSjDT0bGLdevLWpacvDziTuVt+/Lr9Cw5UppfuW6VSWjX8L
+ 7DCcA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 72Z4ZEI5F5E4YAMT4O7UQ4ALDM73H4CB
-X-Message-ID-Hash: 72Z4ZEI5F5E4YAMT4O7UQ4ALDM73H4CB
+Message-ID-Hash: EJZYOTEDEHUPCHC5CT6BDKHX2GK5MALO
+X-Message-ID-Hash: EJZYOTEDEHUPCHC5CT6BDKHX2GK5MALO
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/72Z4ZEI5F5E4YAMT4O7UQ4ALDM73H4CB/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/EJZYOTEDEHUPCHC5CT6BDKHX2GK5MALO/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -142,41 +144,44 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67CD771EBB0
+X-Rspamd-Queue-Id: 575C571EB90
 
-I have now splitted the bugfixes for batctl in topic branches to make it a
-little bit easier to review. Similar to the "random bugfixes 2026-06-21"
-patchset, they are just various (mostly minor) problems which should be
-tackled at some point.
+traceroute sets ret to EXIT_SUCCESS unconditionally once the probe loop
+finishes. dst_reached is only set on an actual echo reply, so when the
+target never answers within TTL_MAX hops, it is unreachable or all
+probes time out. But this information is ignored when traceroute exits. A
+script will not be able to distinguish a failed and working traceroute.
 
+Use the same error codes as the ping but make it depend on the dst_reached
+variable.
+
+Fixes: e1c83d9260e8 ("[batctl] traceroute utility updated to latest batman adv")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
-Sven Eckelmann (11):
-      batctl: traceroute: return EXIT_NOSUCCESS when destination not reached
-      batctl: icmp_helper: return proper errno on syscall failures
-      batctl: ping: count sent and not received pings
-      batctl: ping/traceroute: don't restart RTT timer on stray replies
-      batctl: traceroute: probe the advertised maximum number of hops
-      batctl: ping: keep huge '-i' intervals from turning into a flood ping
-      batctl: ping: reject invalid packet count argument
-      batctl: ping: reject invalid timeout argument
-      batctl: ping: fix rtt minimum tracking when a sample is 0.0
-      batctl: icmp_helper: fail send when the primary mac is unknown
-      batctl: icmp_helper: attach socket filter before packets can arrive
+ traceroute.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
- icmp_helper.c | 47 ++++++++++++++++++++++++++++++-----------------
- ping.c        | 44 +++++++++++++++++++++++++++++++++-----------
- traceroute.c  |  9 ++++++---
- 3 files changed, 69 insertions(+), 31 deletions(-)
----
-base-commit: eb9597d4ca6db17c579f5ae9443c51b013e2fe65
-change-id: 20260704-bugfixes-icmp-851d34f9821d
+diff --git a/traceroute.c b/traceroute.c
+index 441cd77..94443d7 100644
+--- a/traceroute.c
++++ b/traceroute.c
+@@ -212,7 +212,10 @@ static int traceroute(struct state *state, int argc, char **argv)
+ 		printf("\n");
+ 	}
+ 
+-	ret = EXIT_SUCCESS;
++	if (dst_reached)
++		ret = EXIT_SUCCESS;
++	else
++		ret = EXIT_NOSUCCESS;
+ 
+ out:
+ 	icmp_interfaces_clean();
 
-Best regards,
---  
-Sven Eckelmann <sven@narfation.org>
+-- 
+2.47.3
 
