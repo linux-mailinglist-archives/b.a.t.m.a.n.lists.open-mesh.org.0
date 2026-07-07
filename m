@@ -2,98 +2,99 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bj7GNYBRTWo+yQEAu9opvQ
+	id SXSpD65RTWpJyQEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:20:32 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:21:18 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAA171F237
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:20:32 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id D601671F263
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:21:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b="pschvpI/";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=fxIodI6E;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5BF798531B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:20:32 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id B463381C3F
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:21:17 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783452032;
- b=k3mWon8gM3pHNJjSWUuu+b8OW9IY4Nr1ZQLU1I0ddWvYWIVUMN95WNgMhZcZR20W2Vf/i
- 0a4JGYPP1LmZRyGsOknz719eU/KTObXAVww5mgRInbH2uQteoJFSkD/fFDIsfG6M29v4Lv+
- 88RO8Zs2HR4WRJKgve+iu5avRtVbPqs=
+ t=1783452077;
+ b=XUY6k9OAh9SNZU3K/tw9votfubs4ujwhkP7EACK1ro9GyRQ2CBHk3PhAD9p5535tG0cXQ
+ BSV3UAvbiQ5K9yH3l5dNLZhMVre/pSP2rqvL0pHhIFBJyGp0AyIPem58YaU1Jm8dFRNPitC
+ ysf0erQaR+22g5/7ks9ZhV2u7xsfWag=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783452032; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783452077; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=E4Fe5SNc+c+ACxesM4OAcfypeMZU9Izw24apRVZt2N0=;
- b=ojWvEQx4QUGXFthEzsr67mXEYLFg+1g5qhceSToUkYc49hgE2CMEXPxpxQ1hqOSTHkjv7
- 2aNFMJXESMN5t2ikhVU8aIxrKjP6VvWrZy9bLZU3LZnq6iFQAN3AU8HU7Na+H9BD06jV4xe
- mkWo2QsVhPyGbl4XLD7evle62w+buGQ=
+ list-archive; bh=8WbFQzsnASkb3oaPa/TaO4kNLVZifbOFlOOZDSFZP7g=;
+ b=YlOAFsg0MK+yeQNa46b620yKHRH85UqBW+UexxpqGRSV6pb32L9EJM2FB/lEYWiD74UaF
+ 87JmVix1q7Sh4mQgQJm+tvw9N+FL5qKD3DlliNN+mdzzK6Oy9/gZoTRI/ce3MUCSL3pINFk
+ CauZMXeXZCRqMegiCJfI/UX2dENCAU8=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id A42DD81DCA
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 21:17:35 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783451855;
-	b=WAPq5s9jXZ3ayNa+Q6UvhJlcZqSyJUkbPAFdewXh0GyYDzPTlMLaNZClbWTrkeqxq1DLVK
-	u83YsEQGNIkSEgz1IIFxXrWLz6NelNw3tbQD+WKz1fkN8UfsmcCi/TdLP3aHnzfJFI39qO
-	F37/f9fQxOgkG0jpNFpbnBUiXKyfkUY=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id AA0E3846A3
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 21:18:02 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783451882;
+	b=39zN0yBuorKcfic/rM6HAt421G/y/OjiaGsFx9U5C5CzVTIuOJlUSUGFVimHFzgIDHcu7F
+	JKFidDiOIKKXXfE9189U2Syc++eVEB/WBolROGmGjW6olPcd+HzUlEbceIUGtUzk/6raqq
+	FCN5ub/6F21f1i4nKxcDj8jw6lXAdiM=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783451855;
+	s=20121; t=1783451882;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=E4Fe5SNc+c+ACxesM4OAcfypeMZU9Izw24apRVZt2N0=;
-	b=KAN4DN1ScTLXjAKbVp+8tGPZAHBmL8Kr8MrLXsccLzQZNYxlkVa1diLQa5gsBeuI6gIQs/
-	B2w4pOyk98/4tKDa+DCU4uLyYwRPNAH9ynodfkUcQX0vpnlJJFpE1zOyYS+mtanyX6O/Iq
-	DKG21ZmFR4Iidfofi++GBD5KplyeIEo=
+	bh=8WbFQzsnASkb3oaPa/TaO4kNLVZifbOFlOOZDSFZP7g=;
+	b=iU9bHFEOL4+BR5lqPcms/ue2iuGaVTN3le9aHuAp3Tggm8XPOaKzpBX7Ak+L0prdp6uK6p
+	sLdC3boZypSlF1Rt5ZINhCg6PxpLmFcicUk29yE1K+T+xgupRD2SMGEgwVF68MOapDgknm
+	OqdtRLHfCZmNqnFJQ/khMBU0+Ad/A8I=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b="pschvpI/";
+	dkim=pass header.d=narfation.org header.s=20121 header.b=fxIodI6E;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 474FA20442;
-	Tue, 07 Jul 2026 19:17:35 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 0DCCC20442;
+	Tue, 07 Jul 2026 19:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783451855;
+	s=20121; t=1783451882;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=E4Fe5SNc+c+ACxesM4OAcfypeMZU9Izw24apRVZt2N0=;
-	b=pschvpI/2ika2QQgC7MAVnn9PYzQetEPDL0PyHbo2A07m7t6X3aAFOQgGnXIeMIMupcALn
-	VPK1k9huFHUe6U5Qql/RSOFErdC3cn8/daRCb1QCsKyCIgvAt5A4olTdAyyAejuQurI+Lb
-	0aY+rEYUo6LYI9u9u6/rL3RTdZMYSCM=
+	bh=8WbFQzsnASkb3oaPa/TaO4kNLVZifbOFlOOZDSFZP7g=;
+	b=fxIodI6EE2Dn2kO62Lfiz3YS0llPN3LvATKnWFp6yzXTaAzS+CPLDLh9nPdXNEJQDsYE1U
+	IFdwzDb76w9olFlUQJgBsLB6GKpEsLwTxOq8Uyhzvwgp9IDZWD1NvpEPA8MJE51cQQgDbE
+	sW0Qz6qmW0m4jIwSyB7Rp07YMZUGRb4=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 07 Jul 2026 21:17:03 +0200
-Subject: [PATCH 4/5] batctl: tpmeter: report kernel errors via strerror
+Date: Tue, 07 Jul 2026 21:17:04 +0200
+Subject: [PATCH 5/5] batctl: tpmeter: don't cancel test from the signal
+ handler
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-bugfixes-tpmeter-v1-4-78d96fb7b36c@narfation.org>
+Message-Id: <20260707-bugfixes-tpmeter-v1-5-78d96fb7b36c@narfation.org>
 References: <20260707-bugfixes-tpmeter-v1-0-78d96fb7b36c@narfation.org>
 In-Reply-To: <20260707-bugfixes-tpmeter-v1-0-78d96fb7b36c@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1401; i=sven@narfation.org;
- h=from:subject:message-id; bh=0yT9uLenR8Z5BBnF8zbyTU4hPkTIyYjgI6isEVSMDcM=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+AeuncfRd2KkoI/I8rFNriqVJ8mmz58VCPw+YnPc5t
- HHSyc/WHaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJPDNl+J+8I3CJ05/Hcies
- n7xa5XN2UambIMOCzWecefyXL1681bqdkaH9raRC367bFzWSJm1d1iQv1dv2f3+43roco93r9xz
- PfMYPAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2532; i=sven@narfation.org;
+ h=from:subject:message-id; bh=cWO+vPlTb08ylkak6OYCudyfbWzQRYHw3mvFVoojgKE=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+Aeu5HcRD1e6o8x5t8FxxesVLjovT/CQOu8YoBM354
+ 3lu8my2jlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEzLIY/ufZev3R9noVHtNz
+ 4d3/mvmbz+vNakg0tJk9OeOxYrVV8DuGv0J/5uQ4aZ7MXF26SO/1j+KZwjd3/P6z9+kNH3PjM4v
+ U+BgB
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 7755VHSEHGLJ2DVE3DHTSTSGTHHQVJYT
-X-Message-ID-Hash: 7755VHSEHGLJ2DVE3DHTSTSGTHHQVJYT
+Message-ID-Hash: KT7S4EHX4THJNF5BSIG3ZR5OLYWXG4CW
+X-Message-ID-Hash: KT7S4EHX4THJNF5BSIG3ZR5OLYWXG4CW
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +108,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/7755VHSEHGLJ2DVE3DHTSTSGTHHQVJYT/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KT7S4EHX4THJNF5BSIG3ZR5OLYWXG4CW/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -142,47 +143,98 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7DAA171F237
+X-Rspamd-Queue-Id: D601671F263
 
-tp_meter_start() and tp_recv_result() return a negative system errno
-captured from the kernel's netlink error reply. Both failure paths in
-throughputmeter() printed that value with "%d", so the user saw a raw
-negative number instead of a readable message. In batctl, this is usually
-formatted with strerror() to get a human readable version.
+tp_sig_handler() calls fflush() and tp_meter_stop() directly from signal
+context. tp_meter_stop() allocates a netlink message with nlmsg_alloc() and
+sends it via nl_send_auto_complete() - none of these functions (nor fflush)
+are async-signal-safe.
 
+Let the signal handler only set a flag. tp_recv_result() now waits for the
+result notification with poll(), which is not restarted when a signal
+arrives, and sends the CANCEL request from the main flow before continuing
+to wait for the (then canceled) test result.
+
+Fixes: f109b3473f86 ("batctl: introduce throughput meter support")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- throughputmeter.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ throughputmeter.c | 29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
 diff --git a/throughputmeter.c b/throughputmeter.c
-index 7d41c10..6799c93 100644
+index 6799c93..dbb88f6 100644
 --- a/throughputmeter.c
 +++ b/throughputmeter.c
-@@ -397,7 +397,8 @@ static int throughputmeter(struct state *state, int argc, char **argv)
+@@ -17,6 +17,7 @@
+ #include <inttypes.h>
+ #include <limits.h>
+ #include <net/if.h>
++#include <poll.h>
+ #include <stdbool.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -34,6 +35,7 @@
  
- 	ret = tp_meter_start(state, dst_mac, time, &cookie);
- 	if (ret < 0) {
--		printf("Failed to send tp_meter request to kernel: %d\n", ret);
-+		printf("Failed to send tp_meter request to kernel: %s\n",
-+		       strerror(-ret));
- 		ret = EXIT_FAILURE;
- 		goto out;
- 	}
-@@ -405,7 +406,8 @@ static int throughputmeter(struct state *state, int argc, char **argv)
- 	result.cookie = cookie.cookie;
- 	ret = tp_recv_result(listen_sock, &result);
- 	if (ret < 0) {
--		printf("Failed to recv tp_meter result from kernel: %d\n", ret);
-+		printf("Failed to recv tp_meter result from kernel: %s\n",
-+		       strerror(-ret));
- 		ret = EXIT_FAILURE;
- 		goto out;
- 	}
+ static struct ether_addr *dst_mac;
+ static struct state *tp_state;
++static volatile sig_atomic_t tp_aborted;
+ 
+ struct tp_result {
+ 	int error;
+@@ -194,8 +196,15 @@ static int no_seq_check(struct nl_msg *msg __maybe_unused,
+ 	return NL_OK;
+ }
+ 
++static int tp_meter_stop(struct state *state, struct ether_addr *dst_mac);
++
+ static int tp_recv_result(struct nl_sock *sock, struct tp_result *result)
+ {
++	struct pollfd pfd = {
++		.fd = nl_socket_get_fd(sock),
++		.events = POLLIN,
++	};
++	bool cancel_sent = false;
+ 	struct nl_cb *cb;
+ 	int err = 0;
+ 	int ret;
+@@ -207,6 +216,23 @@ static int tp_recv_result(struct nl_sock *sock, struct tp_result *result)
+ 	nl_cb_err(cb, NL_CB_CUSTOM, tpmeter_nl_print_error, result);
+ 
+ 	while (result->error == 0 && !result->found) {
++		if (tp_aborted && !cancel_sent) {
++			cancel_sent = true;
++			tp_meter_stop(tp_state, dst_mac);
++		}
++
++		/* wake up regularly to notice an abort even when the signal
++		 * arrived outside of poll()
++		 */
++		ret = poll(&pfd, 1, 1000);
++		if (ret < 0) {
++			if (errno == EINTR)
++				continue;
++			break;
++		}
++		if (ret == 0)
++			continue;
++
+ 		ret = nl_recvmsgs(sock, cb);
+ 		if (ret < 0)
+ 			break;
+@@ -295,8 +321,7 @@ void tp_sig_handler(int sig)
+ 	switch (sig) {
+ 	case SIGINT:
+ 	case SIGTERM:
+-		fflush(stdout);
+-		tp_meter_stop(tp_state, dst_mac);
++		tp_aborted = 1;
+ 		break;
+ 	default:
+ 		break;
 
 -- 
 2.47.3
