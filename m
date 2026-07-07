@@ -2,98 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zXWROb1JTWrixgEAu9opvQ
+	id a9C9Mz5KTWr9xgEAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:47:25 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:49:34 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D96571EB82
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7276371EBC2
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:49:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=V0jSiMjf;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=OdJDRkAG;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 4E73B8440A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:47:25 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 3B82C84497
+	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 20:49:34 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783450045;
- b=VhiGYtFHai1XmOdJhDDei95/B58BFrzn7g9c5Bg+dRq+bv4uZIVzvjJaFKBiR/Iz5hRA4
- 5xGhquh6NoPLFPHN0AYBwvEnmtlrrldM68YD/gwsnsv8Hh6DtvYSj9soa1JTWtUgg6MNVUA
- X/d8m1qWeA0pD7bwK+dBfAgAygXI+/g=
+ t=1783450174;
+ b=tBSQ8ElcKppApi5+rj4vfZSO26aRWoQ8hjtA4HAOyPKRv1m2ocLA8CB+mU26N6rBULQqP
+ Y5+1nOGl86ljmZA9ds01a2MsJMhiN8za9VnymcrLJbWRitXeMuIOrRWsA0E6KqlBBA14/NV
+ V3d7m1p/q/gXnUOsPdzXkanR0cBgyJY=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783450045; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783450174; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=rCF4Nj7j6MccVQh3k1tDqJNozvQvX6d5n8wC4iBJYaw=;
- b=FNZIdRLBVZ1NJwbWs08uvtWeAkQOkp/oJSG2vlIUL7l8Wr7zhvUHX7Idb2ZwclwFDel1v
- 43+Q+uDGIQoiiy04LEB0bDur4OV0dsnLmPjaJy4/r/j0TBw34/G4GZS6sKEBLfCR0NxTTx3
- BhDo/ANZ3rMQf3uO+LT8c1JgWhtTVO0=
+ list-archive; bh=HD/FzkQ0p759m4I477DfN78ex+HPljmhLqMPGbCKRtw=;
+ b=kX2jMjH2hqs3HLtKmrgC54Qo/g3jIGgflgeQZZU76+a1ijItfW+0AkniisCZqvG4RLg/c
+ QJInhgMRXdnf9Kvlu27j8I81Rk3Iq1QEDVYrSrXvmwumkWoOLAXhnHPPm/YtMXg9EftTEv1
+ 5DM5oUZ4QkMvg+0f01YnX2O23vdK9QA=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 2E9C580C7B
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:00 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450020;
-	b=DzQDdB5lFWVwIyw6aTfeCYJbp8FSFCajPGZXAsBf+y1cEzRgX6bEHCFkmnwsEVw5xgoTtY
-	QWf78hBB5R/oxepeZCDZkFlRC4trbcVRt8hSwBWxvifDGmK1eq8JMOc/AH2ZNoYdUpvesd
-	BVwaLeG8F7hb8Q8u25x2UuzBIuV/3Ow=
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 15C5283454
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 20:47:02 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783450022;
+	b=iZsVvvvT3mAuwVrL1wZTyuiZoexMbHcckv+SMcIN8zYZH/VZAs0dwO4DX6/im++wn4bI14
+	kptNDnzNYezROnIt3ji+YOANck+7xFOvJ63sT1579p/g1R9vviNVWhdbfvUMH3ghnOXvkb
+	mkY/KRgupg426TBh9HOV+zlPCU22qSk=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783450020;
+	s=20121; t=1783450022;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=rCF4Nj7j6MccVQh3k1tDqJNozvQvX6d5n8wC4iBJYaw=;
-	b=laoptigOgSULMWyPQriDFaVE0nbw/Ti8z2qdU+OTwhTN5ZmUy/7XYyGUlDDWUchbDOzXkO
-	zYU8DkHsJU5LueDo6kd0moSDxKavbm89qTqxha8fszFL2d5YX0+3zX+d7TvaOqghtJmxAA
-	lW84IFCQWvE4SuNrheTN7cJZ18he488=
+	bh=HD/FzkQ0p759m4I477DfN78ex+HPljmhLqMPGbCKRtw=;
+	b=RJF3BTCE5MlqtvFOgcoJXVB5q0xVRutT0mFEod0NCLR0Z0n0ixGlrd94rHus5p3mYUM/vi
+	x4bKCguYD5Q2IP7JJd1u4RSAmGFVL+lYlOH5jyipDpVHFHH7s5LtdblaAWPhBk7RsnMgD7
+	ZgIeb/k7qaoSN1fTS+qf/E2GnFWc5r0=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=V0jSiMjf;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=OdJDRkAG;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 7AC2C20636;
-	Tue, 07 Jul 2026 18:46:59 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id AF7F520442;
+	Tue, 07 Jul 2026 18:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783450019;
+	s=20121; t=1783450021;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=rCF4Nj7j6MccVQh3k1tDqJNozvQvX6d5n8wC4iBJYaw=;
-	b=V0jSiMjfRCcpS32bOSTMGlzKpwyIgyQsO6ap2YC4yZA7x+0SNKYWaPyRqhTCjc2QPq7VFx
-	8zr52qJJryHykVeQpHYaqiJcxILaic8acdSYS9VOyrUtCK2hUNHWLxQKa/KQ4B61peALgE
-	O6J4NHAesHSkAtKyoVxLY1+fSP+tzeg=
+	bh=HD/FzkQ0p759m4I477DfN78ex+HPljmhLqMPGbCKRtw=;
+	b=OdJDRkAGz8i324J1TxbZTEcDJAQjkic+Bm1aVJER2+8XemyFoL8Pjo9kKguc9dmxgiLMiM
+	TpE9AmpjZ5LjKBZ6u2vX2kvjzSLxbdQhwyDdNol+xCiXYEz811QU8dau+YfP7Hel+8Zxni
+	pMCWj/QuUFA1mDGotOQ/t+mGKineXaM=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 07 Jul 2026 20:46:45 +0200
-Subject: [PATCH 03/11] batctl: ping: count sent and not received pings
+Date: Tue, 07 Jul 2026 20:46:46 +0200
+Subject: [PATCH 04/11] batctl: ping/traceroute: don't restart RTT timer on
+ stray replies
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-bugfixes-icmp-v1-3-ee563a984acf@narfation.org>
+Message-Id: <20260707-bugfixes-icmp-v1-4-ee563a984acf@narfation.org>
 References: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 In-Reply-To: <20260707-bugfixes-icmp-v1-0-ee563a984acf@narfation.org>
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1026; i=sven@narfation.org;
- h=from:subject:message-id; bh=jlrUU+4i1tzsxI282vMtxiuvE2eLkmZLVEBhFKyCeCI=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+nlPvPuputZ0y5+m6pW+W+qQe5Ytk9P9d+8lM7PzK8
- iDeyWnzO0pZGMS4GGTFFFn2XMk/v5n9rfznaR+PwsxhZQIZwsDFKQATOXqakWHqy467XKcXsvz1
- CJnyyLjN+qXls7O652/yBDs+Xa5+LkyI4X/sg+ygxfGtn+a3bA1Z3u71ecpspic287YdEea61/O
- rRokPAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1731; i=sven@narfation.org;
+ h=from:subject:message-id; bh=5q4BDQayQ4/FXlcIDQMAFZ9NNT5ERBLPs/1Qr8fu3xA=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+nlMfbXFUEXnzs6J+XpN8YrdPzu4Xf2tm7Ny9t98v7
+ +136+odHaUsDGJcDLJiiix7ruSf38z+Vv7ztI9HYeawMoEMYeDiFICJqMkw/A995p9ybEtXQsWj
+ JZNm7lqwJG8jq4vt1fMHVkmdb34T8+cGI8P33fYmUuf/rW0+z/DZxGdXfrdJ3atZxhOuy/zz8xB
+ kWs4NAA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: 33DOBUUSIXMA26RWAR3SXHMSEBQMGEX5
-X-Message-ID-Hash: 33DOBUUSIXMA26RWAR3SXHMSEBQMGEX5
+Message-ID-Hash: OTDLY3YB2LAECKQHZUIZU5F4CMUDCRXM
+X-Message-ID-Hash: OTDLY3YB2LAECKQHZUIZU5F4CMUDCRXM
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -107,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/33DOBUUSIXMA26RWAR3SXHMSEBQMGEX5/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/OTDLY3YB2LAECKQHZUIZU5F4CMUDCRXM/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -144,43 +146,61 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7D96571EB82
+X-Rspamd-Queue-Id: 7276371EBC2
 
-packets_out was increased whenever a read of a packet was started. But the
-read was repeated whenever the sequence number of a received packet was
-incorrect. The packets_out would then be higher then the actual sent ones.
+When a reply with an unexpected seqno arrives (for example a late answer to
+an already timed out request), ping and traceroute jump back to read_packet
+to keep waiting for the real answer. The jump target also re-runs
+start_timer(), so the reported round trip time only measures from the
+arrival of the stray packet instead of from the transmission of the
+request, underreporting the RTT and polluting the min/avg/max statistics.
 
-Fixes: 2474249a6312 ("[batctl] ping utility updated to latest batman adv")
+Start the timer (and initialize the timeout in traceroute) once per
+transmitted request. At the same time, let select in icmp_interface_read()
+the wait time instead of restarting it each time.
+
 Fixes: 2ecb2c8b060b ("batctl: tr / ping - ignore packets with wrong sequence number")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- ping.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ ping.c       | 2 +-
+ traceroute.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/ping.c b/ping.c
-index 9eb73c1..5eafdad 100644
+index 5eafdad..fcb8d5e 100644
 --- a/ping.c
 +++ b/ping.c
-@@ -213,6 +213,8 @@ static int ping(struct state *state, int argc, char **argv)
- 			goto sleep;
- 		}
+@@ -215,9 +215,9 @@ static int ping(struct state *state, int argc, char **argv)
  
-+		packets_out++;
-+
- read_packet:
+ 		packets_out++;
+ 
+-read_packet:
  		start_timer();
  
-@@ -222,8 +224,6 @@ static int ping(struct state *state, int argc, char **argv)
- 		if (is_aborted)
- 			break;
++read_packet:
+ 		read_len = icmp_interface_read((struct batadv_icmp_header *)&icmp_packet_in,
+ 					       packet_len, &tv);
  
--		packets_out++;
--
- 		if (read_len == 0) {
- 			printf("Reply from host %s timed out\n", dst_string);
- 			goto sleep;
+diff --git a/traceroute.c b/traceroute.c
+index 94443d7..975c9ff 100644
+--- a/traceroute.c
++++ b/traceroute.c
+@@ -142,12 +142,12 @@ static int traceroute(struct state *state, int argc, char **argv)
+ 				continue;
+ 			}
+ 
+-read_packet:
+ 			start_timer();
+ 
+ 			tv.tv_sec = 2;
+ 			tv.tv_usec = 0;
+ 
++read_packet:
+ 			read_len = icmp_interface_read((struct batadv_icmp_header *)&icmp_packet_in,
+ 						       sizeof(icmp_packet_in), &tv);
+ 			if (read_len <= 0)
 
 -- 
 2.47.3
