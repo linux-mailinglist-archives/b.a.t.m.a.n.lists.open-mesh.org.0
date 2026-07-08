@@ -2,78 +2,76 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sYCRFSwXTmrWCwIAu9opvQ
+	id vfC8NokXTmoGDAIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:23:56 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:25:29 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0DD0723A7F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8906B723AE4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:25:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=vtg7s09u;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=mN+nJC0h;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id CB9A784834
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:23:55 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 646BA810EC
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:25:29 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783502635;
- b=EOBbBy80jipHLXOmSa2bFZGMNbtKIurL6fEcoLhUphGIbqRoTc/NaLQntHD6L+qWxAqRl
- D06f1pvVDsS8gVDtD4Ehm2XLVLChikNLu5OXnNGhVZIebDHOwV5sns7CthBidam2XRNElgj
- clLN7zLbuRUwz5RHJjOzATx4Jpl3Usc=
+ t=1783502729;
+ b=UR719WZYBCfdferwgE6DixVrODgf3ELrCNoR1snAE2e2QtkrZWFhrHetE+teiCbAejsLa
+ tqD0gF3RnjFFfW4A92xnHU6b7A5BV2/KYbruRsLuk1YL7EqKlQL3XuaVG+bfJQta5B62z7h
+ p0YCsPjTUy/apoexDuIDCt6hJmFm7IE=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783502635; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783502729; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=5AMdxW44N2haoNqT9owFcCG9SY8E2sZKqXc4kIUckTo=;
- b=2VRyyPtT4IX5Rb0mAr3EnPhv6Z+mlwTPsK89XGlQ1ExODLHLMslgJEixwXk9VFtcnT5Uq
- IdEiUVLINhUWolMYjY9306RP2Q+ZCXXQwIqAYtuZA8XQ0wbL7r07phERwSbPKFw1Wo7jkVw
- PuNq5mElHWMQsTHUHFwcxhChgrSo2Y8=
+ list-archive; bh=Mhon6sTuY4kUTXwjWv/Mi9kGv+9UzLfGRQ7dJRuPoZ4=;
+ b=Dp217BSfFW/0GSYUeThy4P2Y5/2BPOO9EkQbMzl5fmdomVgGXy73n68Fj7yx6561fVLh6
+ qrhGAIztH6B0Wv4x3/uTQ5kMSClfKQrZ9qwPDskOrlR9G1ouy8KDhTspOa5KCoI1UNF4/un
+ mSlOuhVATVgEGO36CWQQZILB12f5Wm8=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id C7659803D9
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 08 Jul 2026 11:18:40 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783502325;
-	b=uiy4VHkSH3VLo0sA4XucHtpq3uI1kx3/WQtLe//BO9GvMLjUgY4GrFekiM14YaUZ2BtZTn
-	CuTeGBM2ryRuTiupy2ekKPEStZiDXWfhGs9bpxhO4doKJvahdkYYGeUUQ4JGjBksbe4RiH
-	57cqfrQKF7dKy2ySY1xod2AU01YRyNU=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id A580481E8C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 08 Jul 2026 11:18:41 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783502326;
+	b=UziTFucQo9ZonepYfz+jSBlSlOv1vKPwlSC3GQ71mHJfwGQdzvfvLvZXCRFhn0woCzLLpI
+	I4KR6+vEt74O4QSt2dGoaISSpUTDQvdt3pj5gjet3W9pnoTzCxw5xkux7fc5kCv+3uvjrp
+	GGn9eVZjsnj8+BbPLlwJzoiMqnHoRi0=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783502325;
+	s=20121; t=1783502326;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=5AMdxW44N2haoNqT9owFcCG9SY8E2sZKqXc4kIUckTo=;
-	b=Yrg8RGVt4EU9mrwGx3Qppy5BaQZ06tkIYX9nI50uDkZlL/AZbgTft0TauHhgnmF9fQEfkh
-	UfVuutJVE+30U/II8w62T0xz0I8VMqJwjsX9mvoOAoluw45PHiVWsXcI5LGBF6bmsqheig
-	0eBcYN3zyjSsD7XDvPbv4FCCbLzkRVU=
+	bh=Mhon6sTuY4kUTXwjWv/Mi9kGv+9UzLfGRQ7dJRuPoZ4=;
+	b=vXvtfEHtVrWQPBnt6TTeoM/rMr5XNBo5jyV1manFxekYudDCjTwbuWz3MjLHFuwi+gA7uW
+	pOdcrH1IkA0z0ymon/20x5tGMr2ln3AZaXqWsFXIzXKuXxPX+zyvwV5mRfvowQjkvDzN3i
+	FEBmvC9oNa7ejbS5TSQDm2woTgOmEMo=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=vtg7s09u;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=mN+nJC0h;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de;
+ 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
-	s=09092022; t=1783502319;
+	s=09092022; t=1783502320;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=5AMdxW44N2haoNqT9owFcCG9SY8E2sZKqXc4kIUckTo=;
-	b=vtg7s09uKKic1UBT1uzejFiC7QPuFsBbHLSeebTB7+kWaNdQkoqkyLoly26gW2WAGPftda
-	+Rai9PCNdEylgOR2YYaQ66PGuhpKj4yYyrV2U4jCKoui1TJSF8T9bwfEFpjvDeVB5tkv0h
-	YCcrtw5wSu01TGhXeQxjriKm2rNZJ0JmblcLqKV3pEzPzRZD0760wYtmR+mqt+YPcMoz4H
-	S9+CMxSzDi7q/nRhhGkCtA5/9QR8o3e7zy7CCqIFEHs8JlIZM2k2561wuFHgPa3GTVMnER
-	ZYvvXdVty836cjlWd8o7LspXRqXVhDmMDxWmtPcGqsVijltodXx02QSre/4QoA==
+	bh=Mhon6sTuY4kUTXwjWv/Mi9kGv+9UzLfGRQ7dJRuPoZ4=;
+	b=mN+nJC0hwMwr8tRccPs1GyDN2Pi/CAxBAEBxe1wnx42SIMgXXRUhZfXYc3m2lQtAb70G8B
+	WQL3CHenvd+3zxuodQAj9RkV+njCVLgnF9g24+NXwXj58VUOvWjKbufU5jRjEkkPmj0p/r
+	pgN6c1s+xqScl/WK7sVOl/8PErDZwMCDfGYKfvyaU1Fj/HSkJUoyHBo+t/+rMgb7nSuCIC
+	mHh38te0f84yXeM7fHJB39Geu5J+oKOPXqOZXhTJEjS3tqdnH1Pc61u8v3izyNkz/RiUdk
+	ZI7OZXEg4n8km/8MSMNIzf0emYMiGAKM1fAly6PgXddjr3sNMHb/c13tGvYTjQ==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -85,17 +83,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Sven Eckelmann <sven@narfation.org>,
 	stable@vger.kernel.org,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 3/9] batman-adv: clean untagged VLAN on netdev
- registration failure
-Date: Wed,  8 Jul 2026 11:18:15 +0200
-Message-ID: <20260708091821.314516-4-sw@simonwunderlich.de>
+Subject: [PATCH net 4/9] batman-adv: tt: avoid request storms during pending
+ request
+Date: Wed,  8 Jul 2026 11:18:16 +0200
+Message-ID: <20260708091821.314516-5-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260708091821.314516-1-sw@simonwunderlich.de>
 References: <20260708091821.314516-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: O7IOEH6O3P63S67BEI7MN6A7DY7HBYPO
-X-Message-ID-Hash: O7IOEH6O3P63S67BEI7MN6A7DY7HBYPO
+Message-ID-Hash: D33WRXO7VLOTN6RJ3ASFGKHIJHLHOUAM
+X-Message-ID-Hash: D33WRXO7VLOTN6RJ3ASFGKHIJHLHOUAM
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -109,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/O7IOEH6O3P63S67BEI7MN6A7DY7HBYPO/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/D33WRXO7VLOTN6RJ3ASFGKHIJHLHOUAM/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -138,7 +136,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:email,lists.open-mesh.org:from_smtp,simonwunderlich.de:from_mime,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,simonwunderlich.de:from_mime,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,narfation.org:email];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -149,109 +147,43 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F0DD0723A7F
+X-Rspamd-Queue-Id: 8906B723AE4
 
 From: Sven Eckelmann <sven@narfation.org>
 
-When an mesh interface is registered, it creates an untagged struct
-batadv_meshif_vlan on top of it via the NETDEV_REGISTER notifier. But in
-this process, another receiver of this notification can veto the
-registration. The netdev registration will be aborted because of this veto.
+batadv_send_tt_request() allocates a tt_req_node when none exists for the
+destination originator node. This should prevent that a multiple TT
+requests are send at the same time to an originator.
 
-The register_netdevice() call will try to clean up the net_device using
-unregister_netdevice_queue() - which only uses the .priv_destructor to
-free private resources. In this situation, .dellink will not be called.
+But if allocation of the send buffer failed, this request must be cleaned
+up again. But indicator for such a failure is "ret == false". But the
+actual implementation is checking for "ret == true".
 
-The cleanup of the untagged batadv_meshif_vlan must thefore be done in the
-destructor to avoid a leak of this object.
+The check must be inverted to not loose the information about the TT
+request directly after it was attempted to be sent out. This should avoid
+potential request storms.
 
 Cc: stable@vger.kernel.org
-Fixes: 5d2c05b21337 ("batman-adv: add per VLAN interface attribute framework")
+Fixes: 335fbe0f5d25 ("batman-adv: tvlv - convert tt query packet to use tvlv unicast packets")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/main.c           |  8 ++++++++
- net/batman-adv/mesh-interface.c | 13 ++-----------
- net/batman-adv/mesh-interface.h |  2 ++
- 3 files changed, 12 insertions(+), 11 deletions(-)
+ net/batman-adv/translation-table.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/net/batman-adv/main.c b/net/batman-adv/main.c
-index 8844e40e6a803..67bed3ee77e7e 100644
---- a/net/batman-adv/main.c
-+++ b/net/batman-adv/main.c
-@@ -259,6 +259,7 @@ int batadv_mesh_init(struct net_device *mesh_iface)
- void batadv_mesh_free(struct net_device *mesh_iface)
- {
- 	struct batadv_priv *bat_priv = netdev_priv(mesh_iface);
-+	struct batadv_meshif_vlan *vlan;
+diff --git a/net/batman-adv/translation-table.c b/net/batman-adv/translation-table.c
+index 4bfad36a4b704..aae72015645a4 100644
+--- a/net/batman-adv/translation-table.c
++++ b/net/batman-adv/translation-table.c
+@@ -2971,7 +2971,7 @@ static bool batadv_send_tt_request(struct batadv_priv *bat_priv,
+ out:
+ 	batadv_hardif_put(primary_if);
  
- 	WRITE_ONCE(bat_priv->mesh_state, BATADV_MESH_DEACTIVATING);
- 
-@@ -273,6 +274,13 @@ void batadv_mesh_free(struct net_device *mesh_iface)
- 
- 	batadv_mcast_free(bat_priv);
- 
-+	/* destroy the "untagged" VLAN */
-+	vlan = batadv_meshif_vlan_get(bat_priv, BATADV_NO_FLAGS);
-+	if (vlan) {
-+		batadv_meshif_destroy_vlan(bat_priv, vlan);
-+		batadv_meshif_vlan_put(vlan);
-+	}
-+
- 	/* Free the TT and the originator tables only after having terminated
- 	 * all the other depending components which may use these structures for
- 	 * their purposes.
-diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
-index 0b75234521b63..fbfd99268de47 100644
---- a/net/batman-adv/mesh-interface.c
-+++ b/net/batman-adv/mesh-interface.c
-@@ -595,8 +595,8 @@ int batadv_meshif_create_vlan(struct batadv_priv *bat_priv, unsigned short vid)
-  * @bat_priv: the bat priv with all the mesh interface information
-  * @vlan: the object to remove
-  */
--static void batadv_meshif_destroy_vlan(struct batadv_priv *bat_priv,
--				       struct batadv_meshif_vlan *vlan)
-+void batadv_meshif_destroy_vlan(struct batadv_priv *bat_priv,
-+				struct batadv_meshif_vlan *vlan)
- {
- 	/* explicitly remove the associated TT local entry because it is marked
- 	 * with the NOPURGE flag
-@@ -1091,22 +1091,13 @@ static int batadv_meshif_newlink(struct net_device *dev,
- static void batadv_meshif_destroy_netlink(struct net_device *mesh_iface,
- 					  struct list_head *head)
- {
--	struct batadv_priv *bat_priv = netdev_priv(mesh_iface);
- 	struct batadv_hard_iface *hard_iface;
--	struct batadv_meshif_vlan *vlan;
- 
- 	while (!list_empty(&mesh_iface->adj_list.lower)) {
- 		hard_iface = netdev_adjacent_get_private(mesh_iface->adj_list.lower.next);
- 		batadv_hardif_disable_interface(hard_iface);
- 	}
- 
--	/* destroy the "untagged" VLAN */
--	vlan = batadv_meshif_vlan_get(bat_priv, BATADV_NO_FLAGS);
--	if (vlan) {
--		batadv_meshif_destroy_vlan(bat_priv, vlan);
--		batadv_meshif_vlan_put(vlan);
--	}
--
- 	unregister_netdevice_queue(mesh_iface, head);
- }
- 
-diff --git a/net/batman-adv/mesh-interface.h b/net/batman-adv/mesh-interface.h
-index 53756c5a45e04..5e1e83e04ffbc 100644
---- a/net/batman-adv/mesh-interface.h
-+++ b/net/batman-adv/mesh-interface.h
-@@ -21,6 +21,8 @@ void batadv_interface_rx(struct net_device *mesh_iface,
- bool batadv_meshif_is_valid(const struct net_device *net_dev);
- extern struct rtnl_link_ops batadv_link_ops;
- int batadv_meshif_create_vlan(struct batadv_priv *bat_priv, unsigned short vid);
-+void batadv_meshif_destroy_vlan(struct batadv_priv *bat_priv,
-+				struct batadv_meshif_vlan *vlan);
- void batadv_meshif_vlan_release(struct kref *ref);
- struct batadv_meshif_vlan *batadv_meshif_vlan_get(struct batadv_priv *bat_priv,
- 						  unsigned short vid);
+-	if (ret && tt_req_node) {
++	if (!ret && tt_req_node) {
+ 		spin_lock_bh(&bat_priv->tt.req_list_lock);
+ 		if (!hlist_unhashed(&tt_req_node->list)) {
+ 			hlist_del_init(&tt_req_node->list);
 -- 
 2.47.3
 
