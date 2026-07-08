@@ -2,65 +2,63 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HzFzGgEXTmrACwIAu9opvQ
+	id +E+NN14XTmryCwIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:23:13 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:24:46 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F2C723A39
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 817BB723AC4
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:24:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=iEMFPxTV;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=muBAzhwl;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id DB45585426
-	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:23:12 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 5D20B85446
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:24:46 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783502592;
- b=G2YI+QkvE7omSgZJpG6vsLud9udKrLWmLkS9fhHr6T/LJS+afHXueZ+oMDa6C8sBwBAcM
- YMu4UXYP22rNTDtSCT6VAWN6aq92NINVLrZ/9Tyc4j9RPU2DoDGpSSs6JchY/ISFf/fek7L
- U0XG/lbL1k5Fdglf2uckIZEMJwOGgtA=
+ t=1783502686;
+ b=sZNKS+1dj+8cwfXG4ejxCpq8IhdomhxvfarBHwh6s520KmfXFI7R/kB6lnWK3mcsOOYbg
+ I3xbrTLPrLX5j6Q5wBEROqeirheD11xn6D/qa/vkq4O+Yy6AKeoPqJHaAw/sXO7JqZ1g2fe
+ FNbsRWsrNsX45yxh3T/XvmD1Djx4JYk=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783502592; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783502686; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=OCuwXId2v7DqeCQJa2ngxjQ154iwoRqGBdMHJgjMJ0g=;
- b=rEusYMXpuObT8Gh09t+9zTeq18wGchTl/D1hA6TW5kbs90O0vBCuojMvl7hQnabMdgggW
- 5xmAEo00MrXiwGRnu8vLtXgWkkEPXZw+s62xYjXcqdgWq+TnJVVthveU1rNmxMEdob1NPpz
- KenWviy2qSxSK2r4bTjwQpVWVBvT4ww=
+ list-archive; bh=5U8UISu70rMYz9drDEm9dQtE1+U1aVr9Myb/+AxDp0w=;
+ b=uRWLaIUwVo+E/pZgSxs2jsv8IJRL/Ni296j63Wx+4OHai8uSddwhk3u1GQHq33MoyYADL
+ xtiAsx8aFyA7veJh1IaHT/S09gac4LfEKG66iXcJivWtuVPUwrmmWvk/tBtL1hDi9G0oVi2
+ pWIH1u/h2xsfaBmFGePGx3I4rtJPYb4=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=simonwunderlich.de;
  arc=pass;
  dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
-Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
- [IPv6:2a01:4f8:c17:e8c0::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 510B983454
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 08 Jul 2026 11:18:45 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783502325;
-	b=iuq8O4U2xakmyp99OkxmZYxY/LTiJasdMoPvsu1CLHxfw6c3ys0g9l4fsWUT9GZzPBknKa
-	/Yn2rBKjYiaOzlcz2Rv4U0VALkBjNcEew5qvqMSvoXUUWbNXodYI5HbkCaIwac1o+UhqNr
-	EW9H/cmQckU6M0E7t2zX7/9wq9+0K74=
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 52E7D83704
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 08 Jul 2026 11:18:46 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783502326;
+	b=qsBX3cEWaJBzczqZ24j7YPyUeN04hakKWz4QK+38UOoHyjUI35yPWC+0hnEA7CxwdSj3O3
+	Z/qWiIjivwCmMhgcjnGLnRIiQl5n9I+J8uiGsyGHCtGM2hSRAdC0R9deUXDmPhSLXHrE8T
+	Zc87LnvKx2mbmux8AEpYH8IZUtQmXEg=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783502325;
+	s=20121; t=1783502326;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=OCuwXId2v7DqeCQJa2ngxjQ154iwoRqGBdMHJgjMJ0g=;
-	b=nJBn5vHmxk/s9HEOCGDRVKmlJxzRioHE6QDE5p6pLvWaYEV8fcqtIG0Ey1Qm0Pgv4pesAZ
-	/XL1Wos8zw2ObQBDy37MgZyQHjmrHyMI3ofjiXJ5VoYHTDaBYBqxfZN3nw9GQUjCuxSRj8
-	OSWaV/1Z/GsgYciVBxTTrSF+oZFtxzE=
+	bh=5U8UISu70rMYz9drDEm9dQtE1+U1aVr9Myb/+AxDp0w=;
+	b=LQ1KtNoenLKFOzqVpjy238QqOGPggUmmcwP+IrnnuDGGsOEjA9Coe1TijvDVGSMEUYN8/p
+	u9uVJ2j2sywloOjYAIoMWz+buymdI5qwm37qB+CIYHw4XJijb+L/0WZrFtjBQkI4bWrcyG
+	6ox2V5d6pOFJ1obj/wxuXijqzhZQW7k=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=iEMFPxTV;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=muBAzhwl;
 	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
- 2a01:4f8:c17:e8c0::1 as permitted sender)
- smtp.mailfrom=sw@simonwunderlich.de;
+ 23.88.38.48 as permitted sender) smtp.mailfrom=sw@simonwunderlich.de;
 	dmarc=pass (policy=none) header.from=simonwunderlich.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	s=09092022; t=1783502324;
@@ -68,12 +66,12 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=OCuwXId2v7DqeCQJa2ngxjQ154iwoRqGBdMHJgjMJ0g=;
-	b=iEMFPxTV6sLsxPX2IPpL2EVdoyPo87/ewUWZdWebm8ROvWiQCtLSUTsiAV8F/gLkITAkxO
-	J+JO0obTTMS2zelB0BgXU3322PJxSmte5jT6KJ+KKCE5XwTQkqvRZrHZtOcG3+VnFSXfB9
-	AL3t0nEiCx4EIDXhFHrgTDoA860VxVGL+G65LctT82Ig3KJZrFgzoIFRi5PZZnBaU6Yul8
-	ac75RDyN3eF5lNt08uBJ4kO1aRSwAJ8eG0n2RQcZUEnBTz+Mbs+tyqKK+gBysHhR8j+DDV
-	A1q9y4zFDx0uAnsruju6BXs+MOzxl73JFTWyaD9olG4U8NwIV3ecp+3MtSC4/g==
+	bh=5U8UISu70rMYz9drDEm9dQtE1+U1aVr9Myb/+AxDp0w=;
+	b=muBAzhwl74D3W/iPlVV2Ovb/bVoaPw6ZLpszOTHLeFfvbl0ZscfwKvPsXFEOoF5wThik4V
+	980JR9Mupm0Gbo0JHsyZ3FFmdX6i9ASXihka8cL0OQUO1v4A8RH4Ys+9iNmNQ3bzFURcXm
+	Lhwjnt7T8IyI2XsZ9JT0LC0w7Vhr+qbOl2epPrmkeJvKiZffS95abLFD/1HWbdnr5ledHM
+	BllMMsFgCKccIpKsvdwIe4ThjGxMVMRq7UVdagPc/ozINuNx3ecMfI+7ETqGWhwCHzC8ll
+	5K43jF0siA5VcHVAwzhagDsEg9yg5kG9dSvLkvlBoTywR+neC1X1GvPcEEcijg==
 From: Simon Wunderlich <sw@simonwunderlich.de>
 To: netdev@vger.kernel.org
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -85,16 +83,17 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	Sven Eckelmann <sven@narfation.org>,
 	stable@vger.kernel.org,
 	Simon Wunderlich <sw@simonwunderlich.de>
-Subject: [PATCH net 8/9] batman-adv: mcast: avoid OOB read of num_dests header
-Date: Wed,  8 Jul 2026 11:18:20 +0200
-Message-ID: <20260708091821.314516-9-sw@simonwunderlich.de>
+Subject: [PATCH net 9/9] batman-adv: dat: fix tie-break for candidate
+ selection
+Date: Wed,  8 Jul 2026 11:18:21 +0200
+Message-ID: <20260708091821.314516-10-sw@simonwunderlich.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260708091821.314516-1-sw@simonwunderlich.de>
 References: <20260708091821.314516-1-sw@simonwunderlich.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MMUVOJ6KN4CSAIQL3KOBOBFBVY3XAIP2
-X-Message-ID-Hash: MMUVOJ6KN4CSAIQL3KOBOBFBVY3XAIP2
+Message-ID-Hash: N3UPPIAWLL7QVMTHL6JHHJZ3Q6JKWZ4F
+X-Message-ID-Hash: N3UPPIAWLL7QVMTHL6JHHJZ3Q6JKWZ4F
 X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -108,7 +107,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/MMUVOJ6KN4CSAIQL3KOBOBFBVY3XAIP2/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/N3UPPIAWLL7QVMTHL6JHHJZ3Q6JKWZ4F/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -137,7 +136,7 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,narfation.org:email,simonwunderlich.de:from_mime,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,simonwunderlich.de:from_mime,simonwunderlich.de:email,simonwunderlich.de:mid,simonwunderlich.de:dkim,narfation.org:email,lists.open-mesh.org:from_smtp];
 	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -148,57 +147,45 @@ X-Spamd-Result: default: False [-0.51 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 09F2C723A39
+X-Rspamd-Queue-Id: 817BB723AC4
 
 From: Sven Eckelmann <sven@narfation.org>
 
-Before the access to struct batadv_tvlv_mcast_tracker's num_dests, it is
-attempted to check whether enough space is actually in the network header.
-But instead of using offsetofend() to check for the whole size (2) which
-must be accessible, offsetof() of is called. The latter is always returning
-0. The comparison with the network header length will always return that
-enough data is available - even when only 1 or 0 bytes are accessible.
+The original version of the candidate selection for DAT attempted to
+compare both candidate and max_orig_node to identify which has the smaller
+MAC address. This comparison is required as tie-break when a hash collision
+happened.
 
-Instead of using offsetofend(), use the more common check for the whole
-header.
+But the used function returned 0 when the function was not equal and a
+non-zero value when it was equal. As result, the actually selected
+node was dependent on the order of entries in the orig_hash and not
+actually on the mac addresses. The last originator in the hash collision
+would always win.
+
+To have a proper ordering, it must diff the actual MAC address bytes and
+reject the candidate when the diff is not smaller than 0.
 
 Cc: stable@vger.kernel.org
-Fixes: 07afe1ba288c ("batman-adv: mcast: implement multicast packet reception and forwarding")
+Fixes: 785ea1144182 ("batman-adv: Distributed ARP Table - create DHT helper functions")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 Signed-off-by: Simon Wunderlich <sw@simonwunderlich.de>
 ---
- net/batman-adv/multicast_forw.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ net/batman-adv/distributed-arp-table.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/net/batman-adv/multicast_forw.c b/net/batman-adv/multicast_forw.c
-index b8668a80b94a1..1404a3b7adfb1 100644
---- a/net/batman-adv/multicast_forw.c
-+++ b/net/batman-adv/multicast_forw.c
-@@ -927,11 +927,11 @@ static int batadv_mcast_forw_packet(struct batadv_priv *bat_priv,
- {
- 	struct batadv_tvlv_mcast_tracker *mcast_tracker;
- 	struct batadv_neigh_node *neigh_node;
--	unsigned long offset, num_dests_off;
- 	struct sk_buff *nexthop_skb;
- 	unsigned char *skb_net_hdr;
- 	bool local_recv = false;
- 	unsigned int tvlv_len;
-+	unsigned long offset;
- 	bool xmitted = false;
- 	u8 *dest, *next_dest;
- 	u16 num_dests;
-@@ -940,9 +940,8 @@ static int batadv_mcast_forw_packet(struct batadv_priv *bat_priv,
- 	/* (at least) TVLV part needs to be linearized */
- 	SKB_LINEAR_ASSERT(skb);
+diff --git a/net/batman-adv/distributed-arp-table.c b/net/batman-adv/distributed-arp-table.c
+index c40c9e02391be..a6fe4820f65b9 100644
+--- a/net/batman-adv/distributed-arp-table.c
++++ b/net/batman-adv/distributed-arp-table.c
+@@ -546,7 +546,7 @@ static bool batadv_is_orig_node_eligible(struct batadv_dat_candidate *res,
+ 	 * the one with the lowest address
+ 	 */
+ 	if (tmp_max == max && max_orig_node &&
+-	    batadv_compare_eth(candidate->orig, max_orig_node->orig))
++	    memcmp(candidate->orig, max_orig_node->orig, ETH_ALEN) >= 0)
+ 		goto out;
  
--	/* check if num_dests is within skb length */
--	num_dests_off = offsetof(struct batadv_tvlv_mcast_tracker, num_dests);
--	if (num_dests_off > skb_network_header_len(skb))
-+	/* check if batadv_tvlv_mcast_tracker header is within skb length */
-+	if (sizeof(*mcast_tracker) > skb_network_header_len(skb))
- 		return -EINVAL;
- 
- 	skb_net_hdr = skb_network_header(skb);
+ 	ret = true;
 -- 
 2.47.3
 
