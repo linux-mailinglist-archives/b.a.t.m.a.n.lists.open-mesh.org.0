@@ -2,100 +2,94 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SXSpD65RTWpJyQEAu9opvQ
+	id 4zBwHawWTmqWCwIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:21:18 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:21:48 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id D601671F263
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:21:17 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42F367239E3
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:21:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=fxIodI6E;
-	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=XAtDioUD;
+	dmarc=pass (policy=none) header.from=simonwunderlich.de;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B463381C3F
-	for <lists+b.a.t.m.a.n@lfdr.de>; Tue, 07 Jul 2026 21:21:17 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 06B49845D2
+	for <lists+b.a.t.m.a.n@lfdr.de>; Wed, 08 Jul 2026 11:21:48 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783452077;
- b=XUY6k9OAh9SNZU3K/tw9votfubs4ujwhkP7EACK1ro9GyRQ2CBHk3PhAD9p5535tG0cXQ
- BSV3UAvbiQ5K9yH3l5dNLZhMVre/pSP2rqvL0pHhIFBJyGp0AyIPem58YaU1Jm8dFRNPitC
- ysf0erQaR+22g5/7ks9ZhV2u7xsfWag=
+ t=1783502508;
+ b=yvD8bTnr3de9gDJxOgi3+FLNmyrY4VTzo+mCLm5akdM6MIKDnLMVqt0HDRLWCciRZTDme
+ vnzE2rdBKpsf5Fwlc/c+8s4jHDCtYZllu3L93ep8YejKzpUQKVBUSNIAjBjC6h1LwhZdqht
+ i4+73EQG1lXbGadLL08ldwF/rzq1IiQ=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783452077; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783502508; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=8WbFQzsnASkb3oaPa/TaO4kNLVZifbOFlOOZDSFZP7g=;
- b=YlOAFsg0MK+yeQNa46b620yKHRH85UqBW+UexxpqGRSV6pb32L9EJM2FB/lEYWiD74UaF
- 87JmVix1q7Sh4mQgQJm+tvw9N+FL5qKD3DlliNN+mdzzK6Oy9/gZoTRI/ce3MUCSL3pINFk
- CauZMXeXZCRqMegiCJfI/UX2dENCAU8=
+ list-archive; bh=XWkYU4Tl1LIlSBFPEbkVF+ndyjxVNCuoXkEReRpmdi4=;
+ b=QULUWaIrAtS2oVoe7q3QrqD7w8xXM+Udi1fpf8D+NR7G/TZLT8UH6uDu3P7aeaDWuMHtF
+ R7UpRSAHyXsqLBT0gActFY3vnl2eDLAwTCQ5b6adSXFwy4ooqk86wUMSTulQ3ONr030APEr
+ Wai0S+WS4g9NmS5B+4RpGDiPT7ruJGQ=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=narfation.org;
+ dkim=pass header.d=simonwunderlich.de;
  arc=pass;
- dmarc=pass header.from=narfation.org policy.dmarc=none
-Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id AA0E3846A3
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Tue, 07 Jul 2026 21:18:02 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783451882;
-	b=39zN0yBuorKcfic/rM6HAt421G/y/OjiaGsFx9U5C5CzVTIuOJlUSUGFVimHFzgIDHcu7F
-	JKFidDiOIKKXXfE9189U2Syc++eVEB/WBolROGmGjW6olPcd+HzUlEbceIUGtUzk/6raqq
-	FCN5ub/6F21f1i4nKxcDj8jw6lXAdiM=
+ dmarc=pass header.from=simonwunderlich.de policy.dmarc=none
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de
+ [IPv6:2a01:4f8:c17:e8c0::1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id 4CA0F81E8C
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Wed, 08 Jul 2026 11:18:39 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783502324;
+	b=Vy5OdjrYAFqViS+vhamkP+bjYQIcQ1VoGHW37OMGQpZmv4NFnaPqcWLq32DRil4J0Tcf2P
+	YdPfWM3xWsXY7Ab+eWqskI977T1q33XX4DKl5fakUS39fK+Jycdkux8CfQ1Qncn0+eVeN5
+	g9ceaAYbIxvrcfzfimRceNuvl8WcJUw=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783451882;
+	s=20121; t=1783502324;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=8WbFQzsnASkb3oaPa/TaO4kNLVZifbOFlOOZDSFZP7g=;
-	b=iU9bHFEOL4+BR5lqPcms/ue2iuGaVTN3le9aHuAp3Tggm8XPOaKzpBX7Ak+L0prdp6uK6p
-	sLdC3boZypSlF1Rt5ZINhCg6PxpLmFcicUk29yE1K+T+xgupRD2SMGEgwVF68MOapDgknm
-	OqdtRLHfCZmNqnFJQ/khMBU0+Ad/A8I=
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=XWkYU4Tl1LIlSBFPEbkVF+ndyjxVNCuoXkEReRpmdi4=;
+	b=1tcSDDgYcPQP1VL08R5NSq6Z135XD2DVN5EYuOzGvO/2HhKbLNadex5qcl/ZWqaTzQ9vKE
+	WJDGzQTUgvLFrMTXuq8F8iyvAibACB3ivOIFLYRG9QuxmWqTm3tUr9hWI4ON9HckQAREDj
+	vHlzYgJ5BgRbA0cO8/x9lbJbzv8EUbc=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=fxIodI6E;
-	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
- 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
-	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 0DCCC20442;
-	Tue, 07 Jul 2026 19:18:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783451882;
+	dkim=pass header.d=simonwunderlich.de header.s=09092022 header.b=XAtDioUD;
+	spf=pass (diktynna.open-mesh.org: domain of sw@simonwunderlich.de designates
+ 2a01:4f8:c17:e8c0::1 as permitted sender)
+ smtp.mailfrom=sw@simonwunderlich.de;
+	dmarc=pass (policy=none) header.from=simonwunderlich.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=simonwunderlich.de;
+	s=09092022; t=1783502316;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8WbFQzsnASkb3oaPa/TaO4kNLVZifbOFlOOZDSFZP7g=;
-	b=fxIodI6EE2Dn2kO62Lfiz3YS0llPN3LvATKnWFp6yzXTaAzS+CPLDLh9nPdXNEJQDsYE1U
-	IFdwzDb76w9olFlUQJgBsLB6GKpEsLwTxOq8Uyhzvwgp9IDZWD1NvpEPA8MJE51cQQgDbE
-	sW0Qz6qmW0m4jIwSyB7Rp07YMZUGRb4=
-From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 07 Jul 2026 21:17:04 +0200
-Subject: [PATCH 5/5] batctl: tpmeter: don't cancel test from the signal
- handler
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=XWkYU4Tl1LIlSBFPEbkVF+ndyjxVNCuoXkEReRpmdi4=;
+	b=XAtDioUDr99Cgtu7OTy1gMTDubFDxzvz5iPtM3udwsCPfWhxUsrk9zl69t+IeJ57MxJmbD
+	9hJc61i3XPFYxM2lJJF00zroGHFBckEJuzh6iqJ8rbG84BR0Vj3knN/uyhepxQbAh2rVYo
+	mq5zfOaIpE2FukxV8EBeXO4i8DPgItpHzoaK03e6TRbMRO9hoCWelmIm31PY3N8flQxUFH
+	SC5tVQoy25Fxgvvo3iubb9GWLIhlxEgULUWRLUnNOu1y6Ial0xLcC9rshhF+OSN5npFHUF
+	VV1VpqdIaxWl8qr3KDLFMSSyVe67xIMRfzPuWNNgJBDg8Z19onux6hyz0Qe+1Q==
+From: Simon Wunderlich <sw@simonwunderlich.de>
+To: netdev@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	b.a.t.m.a.n@lists.open-mesh.org,
+	Simon Wunderlich <sw@simonwunderlich.de>
+Subject: [PATCH net 0/9] pull request: batman-adv 2026-07-08
+Date: Wed,  8 Jul 2026 11:18:12 +0200
+Message-ID: <20260708091821.314516-1-sw@simonwunderlich.de>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-bugfixes-tpmeter-v1-5-78d96fb7b36c@narfation.org>
-References: <20260707-bugfixes-tpmeter-v1-0-78d96fb7b36c@narfation.org>
-In-Reply-To: <20260707-bugfixes-tpmeter-v1-0-78d96fb7b36c@narfation.org>
-To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2532; i=sven@narfation.org;
- h=from:subject:message-id; bh=cWO+vPlTb08ylkak6OYCudyfbWzQRYHw3mvFVoojgKE=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFm+Aeu5HcRD1e6o8x5t8FxxesVLjovT/CQOu8YoBM354
- 3lu8my2jlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBEzLIY/ufZev3R9noVHtNz
- 4d3/mvmbz+vNakg0tJk9OeOxYrVV8DuGv0J/5uQ4aZ7MXF26SO/1j+KZwjd3/P6z9+kNH3PjM4v
- U+BgB
-X-Developer-Key: i=sven@narfation.org; a=openpgp;
- fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: KT7S4EHX4THJNF5BSIG3ZR5OLYWXG4CW
-X-Message-ID-Hash: KT7S4EHX4THJNF5BSIG3ZR5OLYWXG4CW
-X-MailFrom: sven@narfation.org
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: LLZCN3X3FPUH7GFNGOHST6VLTLR5UUCN
+X-Message-ID-Hash: LLZCN3X3FPUH7GFNGOHST6VLTLR5UUCN
+X-MailFrom: sw@simonwunderlich.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
@@ -108,7 +102,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/KT7S4EHX4THJNF5BSIG3ZR5OLYWXG4CW/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/LLZCN3X3FPUH7GFNGOHST6VLTLR5UUCN/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -117,125 +111,99 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.01 / 15.00];
+X-Spamd-Result: default: False [-0.51 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
-	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[simonwunderlich.de,none];
+	R_DKIM_ALLOW(-0.20)[simonwunderlich.de:s=09092022];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:netdev@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:sw@simonwunderlich.de,s:lists@lfdr.de];
 	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	R_SPF_NA(0.00)[no SPF record];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	DKIM_TRACE(0.00)[simonwunderlich.de:+];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[simonwunderlich.de:from_mime,simonwunderlich.de:dkim,simonwunderlich.de:mid,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,open-mesh.org:url,lists.open-mesh.org:from_smtp];
+	FROM_NEQ_ENVFROM(0.00)[sw@simonwunderlich.de,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[narfation.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	R_SPF_NA(0.00)[no SPF record]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D601671F263
+X-Rspamd-Queue-Id: 42F367239E3
 
-tp_sig_handler() calls fflush() and tp_meter_stop() directly from signal
-context. tp_meter_stop() allocates a netlink message with nlmsg_alloc() and
-sends it via nl_send_auto_complete() - none of these functions (nor fflush)
-are async-signal-safe.
+Dear net maintainers,
 
-Let the signal handler only set a flag. tp_recv_result() now waits for the
-result notification with poll(), which is not restarted when a signal
-arrives, and sends the CANCEL request from the main flow before continuing
-to wait for the (then canceled) test result.
+here are some more smaller bugfixes for batman-adv which we would like
+to have integrated into net.
 
-Fixes: f109b3473f86 ("batctl: introduce throughput meter support")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- throughputmeter.c | 29 +++++++++++++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
+Please pull or let me know of any problem!
 
-diff --git a/throughputmeter.c b/throughputmeter.c
-index 6799c93..dbb88f6 100644
---- a/throughputmeter.c
-+++ b/throughputmeter.c
-@@ -17,6 +17,7 @@
- #include <inttypes.h>
- #include <limits.h>
- #include <net/if.h>
-+#include <poll.h>
- #include <stdbool.h>
- #include <stdio.h>
- #include <stdlib.h>
-@@ -34,6 +35,7 @@
- 
- static struct ether_addr *dst_mac;
- static struct state *tp_state;
-+static volatile sig_atomic_t tp_aborted;
- 
- struct tp_result {
- 	int error;
-@@ -194,8 +196,15 @@ static int no_seq_check(struct nl_msg *msg __maybe_unused,
- 	return NL_OK;
- }
- 
-+static int tp_meter_stop(struct state *state, struct ether_addr *dst_mac);
-+
- static int tp_recv_result(struct nl_sock *sock, struct tp_result *result)
- {
-+	struct pollfd pfd = {
-+		.fd = nl_socket_get_fd(sock),
-+		.events = POLLIN,
-+	};
-+	bool cancel_sent = false;
- 	struct nl_cb *cb;
- 	int err = 0;
- 	int ret;
-@@ -207,6 +216,23 @@ static int tp_recv_result(struct nl_sock *sock, struct tp_result *result)
- 	nl_cb_err(cb, NL_CB_CUSTOM, tpmeter_nl_print_error, result);
- 
- 	while (result->error == 0 && !result->found) {
-+		if (tp_aborted && !cancel_sent) {
-+			cancel_sent = true;
-+			tp_meter_stop(tp_state, dst_mac);
-+		}
-+
-+		/* wake up regularly to notice an abort even when the signal
-+		 * arrived outside of poll()
-+		 */
-+		ret = poll(&pfd, 1, 1000);
-+		if (ret < 0) {
-+			if (errno == EINTR)
-+				continue;
-+			break;
-+		}
-+		if (ret == 0)
-+			continue;
-+
- 		ret = nl_recvmsgs(sock, cb);
- 		if (ret < 0)
- 			break;
-@@ -295,8 +321,7 @@ void tp_sig_handler(int sig)
- 	switch (sig) {
- 	case SIGINT:
- 	case SIGTERM:
--		fflush(stdout);
--		tp_meter_stop(tp_state, dst_mac);
-+		tp_aborted = 1;
- 		break;
- 	default:
- 		break;
+Thank you,
+      Simon
 
--- 
-2.47.3
+The following changes since commit 26560c4a03dc4d607331600c187f59ab2df5f341:
 
+  batman-adv: dat: ensure accessible eth_hdr proto field (2026-06-28 11:49:04 +0200)
+
+are available in the Git repository at:
+
+  https://git.open-mesh.org/batadv.git tags/batadv-net-pullrequest-20260708
+
+for you to fetch changes up to 98052bdaf6ac1639a63ffc10244eeeab1f62ed2b:
+
+  batman-adv: dat: fix tie-break for candidate selection (2026-07-06 07:18:59 +0200)
+
+----------------------------------------------------------------
+Here are some batman-adv bugfixes, all by Sven Eckelmann:
+
+ - ensure minimal ethernet header on TX
+
+ - fix VLAN priority offset
+
+ - clean untagged VLAN on netdev registration failure
+
+ - tt: avoid request storms during pending request
+
+ - tt: prevent TVLV OOB check overflow
+
+ - frag: free unfragmentable packet
+
+ - frag: fix primary_if leak on failed linearization
+
+ - mcast: avoid OOB read of num_dests header
+
+ - dat: fix tie-break for candidate selection
+
+----------------------------------------------------------------
+Sven Eckelmann (9):
+      batman-adv: ensure minimal ethernet header on TX
+      batman-adv: fix VLAN priority offset
+      batman-adv: clean untagged VLAN on netdev registration failure
+      batman-adv: tt: avoid request storms during pending request
+      batman-adv: tt: prevent TVLV OOB check overflow
+      batman-adv: frag: free unfragmentable packet
+      batman-adv: frag: fix primary_if leak on failed linearization
+      batman-adv: mcast: avoid OOB read of num_dests header
+      batman-adv: dat: fix tie-break for candidate selection
+
+ net/batman-adv/distributed-arp-table.c |  2 +-
+ net/batman-adv/fragmentation.c         |  8 +++++---
+ net/batman-adv/main.c                  | 10 +++++++++-
+ net/batman-adv/mesh-interface.c        | 16 +++++-----------
+ net/batman-adv/mesh-interface.h        |  2 ++
+ net/batman-adv/multicast_forw.c        |  7 +++----
+ net/batman-adv/translation-table.c     |  5 +++--
+ 7 files changed, 28 insertions(+), 22 deletions(-)
