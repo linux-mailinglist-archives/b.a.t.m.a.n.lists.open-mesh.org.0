@@ -2,85 +2,85 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BAipCp76T2rJrQIAu9opvQ
+	id lpECJB37T2rcrQIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:46:38 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:48:45 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07FC735297
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F9FF7352B7
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:48:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Sc3f0I9y;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=kih5IK4e;
 	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 7D6A083FB6
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:46:37 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id EAA51853B9
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:48:44 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783626397;
- b=paYFqTf993E899ooCV5PXA0qbCW/qUa5xDlX9cpNYQEuJgq/NyP7pYM9t4KEcsJQdOPrd
- xmgmxhyJktNj7zcxPF9qeAxgugXSPjo0pO84NI1XiKkHEHlqUrSj6On6NfJHqCWz2u8tyCa
- s0HVjokYxJ1IWkMx+/GxNtWTJIRt+sA=
+ t=1783626524;
+ b=uapk5DCsCQR3ObFmJEokLIjxSkh4ijEUUhpiMVxnxH+Yqa2Cp9GHhq70jSEvb1dCaqikK
+ SgeOm5l8rxDZIY9fVbceIT2na8cO0Af9cDYd5I9puYZWbZ5hI1qSkwcSHqc4Jt/X1whTYpz
+ hmTQXvzC7w7NOTEZEHG/3DP4lnFR0/U=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783626397; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783626524; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=+Pd7siZNQttYgtwNfylG/g6MOvey4Wt0dvkyGMo0LBI=;
- b=suxg8+ptqLXt8Y0oNoxtMuu+MHu+nTpP/NUw1wOgZeRtGusad15ChJZrKysv0SdisnqQA
- SrVklj4stNorEL+XAvPWkV20nMAG0DlK8RDLyhTsAeQ+n/iUPZvIamPOIBlaH+mJ5eMApa2
- OnckFM/Ney3j+qq9LJldDgjYEhOPglA=
+ list-archive; bh=7fFZl6cR6yJ1E0qC7Ojntbx6BoRWi2TDZrKor93CJYU=;
+ b=TqBw7FVFjdsxQz91RQ7Xg89zZqT5L/2SsbUU/GzoPVJWe3sYsc6cvC+3ZmdAaUMrEyeql
+ aI49ilb43H6/3SG0pb8bWgTPLnm9inwaMoc97JcsYdUBvvZPhxDp1yfgc54a0KabP8+lzA7
+ RnXqL/dMkSeEeHTAPuMKXww7rvqQ6Us=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 48C1A83E95
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 09 Jul 2026 21:46:17 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783626383;
-	b=UPVGdiv31Vy5elztnE1Q/ehAC6/lIgdZOZC0/AMt9b7/aA1Ufu3u28Gn6zYMi6gvOJazjG
-	Tm16DpWQRYg2tZlCJPqLEiDgnsNhO69E0bSF7pFCfHbN3gmFdYGTqr6ir3w9/bf40YIpBF
-	HBkVgegW8LUVvCUeBPc2NpwT8/VoBw0=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 9D91083F88
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 09 Jul 2026 21:46:21 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783626386;
+	b=RlSDsQyomF1OFKGGdr6O4Y9gmmo/0+mWR31uWaffKHnZaCZYK/toIS+Jjo2Elp+PDPsscn
+	CCaDSYV9fVvpSkeBfLrdcfQ4wa4LQCd1G/dKl9VgznFGlTG1BRcSCofs4BB/Ayvkrhvnbp
+	/qVD8lHplaGrLPwZni4XtiTtgkW8cDw=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783626383;
+	s=20121; t=1783626386;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=+Pd7siZNQttYgtwNfylG/g6MOvey4Wt0dvkyGMo0LBI=;
-	b=IeBjWsI7X7t8zpx22pF6ncdR8cl2zDillwJ/5lTPgmfIsSoBrThFqs9p7BRasV5gjT5Tfy
-	sKEp3w8ZRg1jLe6lxTAJiz4IQ/qv7NP0gxdlaeqqSukXueMlJo0aGEy4iZdhPIAjkAYKg4
-	qhqOFPhmGNqbNaBtE4yQyr7dpdeUqH8=
+	bh=7fFZl6cR6yJ1E0qC7Ojntbx6BoRWi2TDZrKor93CJYU=;
+	b=Iqxz4wdQ/uKQEWCIWOFPJEmW1gzq5hwZZKjaKddJKMM2m5wXtqabUOWaxbNlP7Ci466HJa
+	Ozm+BJ8z61Gg+GQk4ZU2EuJz70i1m/HF7luLioDlsehoDQBXalodI7u7WJCR3VB/Ua8pv6
+	AGmQ76imKSUgGTeIln+CzbvPzxbAVHk=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=Sc3f0I9y;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=kih5IK4e;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id 7C3B82052D;
-	Thu, 09 Jul 2026 19:46:17 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 1357E20535;
+	Thu, 09 Jul 2026 19:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783626377;
+	s=20121; t=1783626381;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+Pd7siZNQttYgtwNfylG/g6MOvey4Wt0dvkyGMo0LBI=;
-	b=Sc3f0I9yaNo2DvI3xOnSCgo/d2KBtZ1mc4VzcKVSJdpn2ObcN9G7o4YT4D7/KyVOkHGHSU
-	ZNb4iItZebBeWqx0+lRO19xDT0woaH+AN9/qB67gXa+k82xQf0roWK7SG87bcGSRWf/UFh
-	FMD0I/lKj+UmwH1X0DjcRDu7PN2qbng=
+	bh=7fFZl6cR6yJ1E0qC7Ojntbx6BoRWi2TDZrKor93CJYU=;
+	b=kih5IK4e/jf5pO0E+nEaEm9zUhHR1JgTkUK+JgXxxRIGZylxjUsoR4Pi5ovBrtnHDfXhlH
+	42W/577zl+53w/eCyDZDs9zPj90Bwu+ClYfAjuglRbJJNQy/nMu0C+BaeElHvSgAFVaY9/
+	iGPrd8IESLur0gc+zp6VnSz3WlnlYlc=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Thu, 09 Jul 2026 21:45:55 +0200
-Subject: [PATCH batadv 1/3] batman-adv: fix TX priority extraction for
- BATADV_FORW_MCAST
+Date: Thu, 09 Jul 2026 21:45:56 +0200
+Subject: [PATCH batadv 2/3] batman-adv: mcast: ensure unshared skb for
+ multicast packets
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20260709-mcast-header-generation-bugs-v1-1-c7c111fa45b6@narfation.org>
+ <20260709-mcast-header-generation-bugs-v1-2-c7c111fa45b6@narfation.org>
 References: 
  <20260709-mcast-header-generation-bugs-v1-0-c7c111fa45b6@narfation.org>
 In-Reply-To: 
@@ -88,16 +88,16 @@ In-Reply-To:
 To: b.a.t.m.a.n@lists.open-mesh.org
 Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1901; i=sven@narfation.org;
- h=from:subject:message-id; bh=2cUZAvVE4i4/sPDy3k4WENqil0KhFCKgAZXH4XOaXuQ=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFn+v0rX55b8ML7M0DF/wYrEPe9C6g4Ynpl8cs2vjXIMZ
- b932x7c2VHKwiDGxSArpsiy50r++c3sb+U/T/t4FGYOKxPIEAYuTgGYyLfPDP/jJCOPan1gP7La
- QFlU7/3Znyuv1TbJb439znjziP/Gff+VGf5K8Pat+xmpk377v/CM24IRhma2Ev87GLId1utJbpp
- 02IQPAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1073; i=sven@narfation.org;
+ h=from:subject:message-id; bh=dfABjvIHlTgEg16wDCrHhwR6iRePazqbgA9CvHcQab0=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFn+v8rY3FZ84ljUznPD/1pH4ISsOyyZDDm6h1Ym1JfM6
+ m0KFHjYUcrCIMbFICumyLLnSv75zexv5T9P+3gUZg4rE8gQBi5OAZjIsdmMDGvtlJL/yd5yYD2Y
+ f9W/tKj9tdlVlS22/NPZwqpube8u6GRk2Do3/+L96ctXrBJ6VZR69ukXvY96os4vmH5Ubiyd6VC
+ XyQEA
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: AHIQ7QCCGNTAPLHDV5WI4FLWKRL5MB7C
-X-Message-ID-Hash: AHIQ7QCCGNTAPLHDV5WI4FLWKRL5MB7C
+Message-ID-Hash: GQ32KXGV77A22WAY6O3LHPOJ6QGNBERC
+X-Message-ID-Hash: GQ32KXGV77A22WAY6O3LHPOJ6QGNBERC
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -111,7 +111,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AHIQ7QCCGNTAPLHDV5WI4FLWKRL5MB7C/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GQ32KXGV77A22WAY6O3LHPOJ6QGNBERC/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -148,57 +148,37 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim,diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B07FC735297
+X-Rspamd-Queue-Id: 2F9FF7352B7
 
-batadv_mcast_forw_mode_by_count() pushs the skb->data for BATADV_FORW_MCAST
-forwarding via batadv_mcast_forw_mcsend(). But the
-batadv_skb_set_priority() expects the ethernet header directly before
-(skb->data + offset). With the moved skb->data, just some random data would
-be accessed to get the priority data.
+When a packet is transmitted via a batman-adv interface and has already
+enough room for the header then the nothing will make sure that the skbuff
+is unshared. But it is now allowed to modify a currently shared skbuff.
 
-Move the batadv_skb_set_priority() before the decision about the handling
-multicast packets and potential header modifications.
+Always make sure that the pskb_expand_head() is not only called for a too
+small header but also for shared skbuffs.
 
 Fixes: be9b0169c840 ("batman-adv: mcast: implement multicast packet generation")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/mesh-interface.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ net/batman-adv/multicast_forw.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
-index b2c8febe..20582fe0 100644
---- a/net/batman-adv/mesh-interface.c
-+++ b/net/batman-adv/mesh-interface.c
-@@ -300,6 +300,8 @@ static netdev_tx_t batadv_interface_tx(struct sk_buff *skb,
- 	if (batadv_compare_eth(ethhdr->h_dest, ectp_addr))
- 		goto dropped;
- 
-+	batadv_skb_set_priority(skb, 0);
-+
- 	gw_mode = READ_ONCE(bat_priv->gw.mode);
- 	if (is_multicast_ether_addr(ethhdr->h_dest)) {
- 		/* if gw mode is off, broadcast every packet */
-@@ -333,6 +335,9 @@ static netdev_tx_t batadv_interface_tx(struct sk_buff *skb,
- 
- send:
- 		if (do_bcast && !is_broadcast_ether_addr(ethhdr->h_dest)) {
-+			/* WARNING batadv_mcast_forw_mode might add more headers
-+			 * in front of the skb. and might even reallocate the skb
-+			 */
- 			forw_mode = batadv_mcast_forw_mode(bat_priv, skb, vid,
- 							   &mcast_is_routable);
- 			switch (forw_mode) {
-@@ -350,8 +355,6 @@ static netdev_tx_t batadv_interface_tx(struct sk_buff *skb,
- 		}
+diff --git a/net/batman-adv/multicast_forw.c b/net/batman-adv/multicast_forw.c
+index 60ad3a55..c5b8e2e3 100644
+--- a/net/batman-adv/multicast_forw.c
++++ b/net/batman-adv/multicast_forw.c
+@@ -1100,8 +1100,7 @@ static int batadv_mcast_forw_expand_head(struct batadv_priv *bat_priv,
+ 		return -EINVAL;
  	}
  
--	batadv_skb_set_priority(skb, 0);
--
- 	/* ethernet packet should be broadcasted */
- 	if (do_bcast) {
- 		primary_if = batadv_primary_if_get_selected(bat_priv);
+-	if (skb_headroom(skb) < hdr_size &&
+-	    pskb_expand_head(skb, hdr_size, 0, GFP_ATOMIC) < 0)
++	if (skb_cow(skb, hdr_size) < 0)
+ 		return -ENOMEM;
+ 
+ 	return 0;
 
 -- 
 2.47.3
