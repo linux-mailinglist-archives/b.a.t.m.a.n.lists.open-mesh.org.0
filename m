@@ -2,114 +2,113 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Fk9hDgZoT2qJgAIAu9opvQ
+	id PHM/HfP6T2rZrQIAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 11:21:10 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:48:03 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E91972EDA8
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 11:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 140917352B1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:48:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kCNUL24U;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=B0RnuuSk;
+	dmarc=pass (policy=none) header.from=narfation.org;
 	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 5EB568413A
-	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 11:21:09 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id E5DAD842BA
+	for <lists+b.a.t.m.a.n@lfdr.de>; Thu, 09 Jul 2026 21:48:02 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783588869;
- b=ovCPy9aRhTAz4Pqjunj/XMgvGo6AptvcPdwgMk41glj4DXdPMbdQmfkr77UUz5rl7slAy
- kLXpiO4nxoq4SDLBLaUfgj8Z9VFUa/mwd1bUIzUAxWNdvP9yiZN6iSUfyh8j8cCACtoZ+QM
- l8FnThCi1lx1KhhjAefXuEa7sHvCjpA=
+ t=1783626482;
+ b=lK5xN7brn0AwxWOjn9bMdiU4B1XcLDUSLIpSB5WKc8ygJg02TDKa1bVfRCEQptRhVIoh9
+ 6ZSwjbfZyK8nNQso/bWvVa8fx6BPOmRHEL8K7B9N9ovVS3QVHJLKpnNK9+4+izh4GNi/SF2
+ P9qgaNeH3NZV6D7/tUNkHkpZXE9cey8=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783588869; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783626482; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=K3oDSCq0e8fq1E3kfwxiBNJ3XGysx97IQDwhOEiZyFI=;
- b=0YpDerVOp+8p+iCeSm+G4sCEXpXsiPDarriI9JjqdQkjiXnL+ujHcF/nTVSaA5CXY16hy
- kPPFEcc03oIktIxZcG0Whldm4X8GgPH6jGC1COPXmsT4u2nAwjLGGzExdlSIz41ZuQjPv9j
- k9rgjUJD+wKfhlDDh3go1KY/PKp997g=
+ list-archive; bh=tgiiIc1fhcNyjC1WNVhrPfJ8RlfLZ5lpAjVRma8jkS0=;
+ b=px8jbEdkE0WV9DYxZnJ1XWANpwJg0m8wELLOSQbL0BekQOiMfskiL+4mXCz8icDrXk8+m
+ rAjxs7R3kYkGupxN9u+E9/y8mdgX+GuP6dY7MvQnaL5tjtOJTKmW6ZAvqF7HgPX9xYGDAP1
+ hUUozHS03g1eZdHBeA7ihkzEYj9tmHk=
 ARC-Authentication-Results: i=2; open-mesh.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=narfation.org;
  arc=pass;
- dmarc=pass header.from=kernel.org policy.dmarc=quarantine
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id F1486804FC
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 09 Jul 2026 11:20:44 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783588855;
-	b=moB+XGRDcY8/zQTpIdi01xpLOdZYaurDEtecXHId8LE2UuAias6ENuo18fh4RbzG1XsoC3
-	2Ijt7yTI8pXLi+ZkmE7hSiuVtoLQKtpDDtWBcZFHbACTUk3XQv/XhgTOuMC0pEnBMsTAFl
-	2fE0WXhKPCgQHYYX0pgLTDYkuscKXHQ=
+ dmarc=pass header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 863B383E95
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Thu, 09 Jul 2026 21:46:15 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783626385;
+	b=VOsTO470aDN0JCa5Oj3rp65DMVDowzhgfo6igpkJucTrYWeiyURCDiNDMp71h9DthlDnFT
+	yBE37PdknGyz3WxiWKZwk+fhDFPER/PAzy1/XmvG1d5ALVGd9Q32Ih39lgRHjscxGEo1v7
+	BM8WvfiRN0ppJp4GsB7sUbtito1FSqo=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783588855;
+	s=20121; t=1783626385;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=K3oDSCq0e8fq1E3kfwxiBNJ3XGysx97IQDwhOEiZyFI=;
-	b=yCkPwavbzHPNMLgkgbDZ9Lx7CLHiwdl+KDpZ9QAsqVk4eKPbCduprEbc3x8S7Taaku8Jsh
-	visz4enchTghIJETGmK5XSJ+XI5s8ztg4cNje9eXJrBo+C7CxiTAwcjYpgCKdcGLP89xAG
-	R1xEbbTRVp6AwrP6zMOWNmaxG0DGWO0=
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=tgiiIc1fhcNyjC1WNVhrPfJ8RlfLZ5lpAjVRma8jkS0=;
+	b=YYHaBYb5B4G2+pcLKTImTlx80wqbUpL1NDOkMxJwaWkr7qq8b6qW5DdJksiozoHe1rTjUv
+	8NmWRGMIKmYk2ryNknfeN1vLgTvta6RZx9fmAgvyB1lkf9NT3aVDLjbwJUsGDRVQ4DJZR6
+	umuRJAT37gAyHk/Fg5J80o7JjaIWDRA=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kCNUL24U;
-	spf=pass (diktynna.open-mesh.org: domain of
- patchwork-bot+netdevbpf@kernel.org designates 172.234.252.31 as permitted
- sender) smtp.mailfrom=patchwork-bot+netdevbpf@kernel.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CBE9D433AF;
-	Thu,  9 Jul 2026 09:20:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA661F000E9;
-	Thu,  9 Jul 2026 09:20:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783588842;
-	bh=K3oDSCq0e8fq1E3kfwxiBNJ3XGysx97IQDwhOEiZyFI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=kCNUL24UMlODqSOgMyE/UcsKJA04LYuGHy1ArpYvMMQFDRq5lvSjSBuxc4UpvEw3B
-	 dY0G0nqr9bdQa/rEkWk5tYJmsAx+qJbjg/nL9efqMP7CHYfwu+ESyos8IShg66DLjr
-	 osoXJeAgcI54NaSBfBFLpLvCX4SPgTpD1D822y0o4OA3HPKfnPHtpb3eO77RVAeqG3
-	 DKK97htGTLU3wnQ0+AH/baFwbrIeFo+1+CyhbcuoQJthICjM2F6Gap4/Em1P7JJx3g
-	 VXqGU1buhU4uU9eKJzdLRG6Q+UX/oIS+jCTQmb5JYsloojheoLkcaANuKUsjGSudFv
-	 2YlbQDWKo+RRg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id
- 939F3393A564;
-	Thu,  9 Jul 2026 09:20:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net 1/9] batman-adv: ensure minimal ethernet header on TX
-From: patchwork-bot+netdevbpf@kernel.org
+	dkim=pass header.d=narfation.org header.s=20121 header.b=B0RnuuSk;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 213.160.73.56 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dmarc=pass (policy=none) header.from=narfation.org
+Received: by dvalin.narfation.org (Postfix) id 60B542041E;
+	Thu, 09 Jul 2026 19:46:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1783626374;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tgiiIc1fhcNyjC1WNVhrPfJ8RlfLZ5lpAjVRma8jkS0=;
+	b=B0RnuuSkw3ibALY0QxE4iNDfwDbDX8TQPQBHg3eixQZ2Q4sYLSnDIsnqo5aaE4M4iB2DPM
+	7WGGmFYscSc7UNpccxrP+fG8epcQR9qYCndY10ThaxZlehxy8PcECMCDglc4vmcVHl6OtH
+	FOgPMBX2e38ht4NEPhEBCKYgmfv3L6Y=
+From: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH batadv 0/3] batman-adv: mcast header creation bugs
+Date: Thu, 09 Jul 2026 21:45:54 +0200
 Message-Id: 
- <178358882114.3359576.16875111531041578494.git-patchwork-notify@kernel.org>
-Date: Thu, 09 Jul 2026 09:20:21 +0000
-References: <20260708091821.314516-2-sw@simonwunderlich.de>
-In-Reply-To: <20260708091821.314516-2-sw@simonwunderlich.de>
-To: Simon Wunderlich <sw@simonwunderlich.de>
-Cc: netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
- b.a.t.m.a.n@lists.open-mesh.org, sven@narfation.org, stable@vger.kernel.org,
- sashiko-bot@kernel.org
-Message-ID-Hash: SPRJNSQFONQACXGZ3W6LL2TCF4Y4GVOX
-X-Message-ID-Hash: SPRJNSQFONQACXGZ3W6LL2TCF4Y4GVOX
-X-MailFrom: patchwork-bot+netdevbpf@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+ <20260709-mcast-header-generation-bugs-v1-0-c7c111fa45b6@narfation.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHL6T2oC/yXMUQrCMBCE4auUfXYhLdharyI+bJIxTcEo2bQUS
+ u9u1Md/YL6dFDlC6drslLFGja9Uoz015CZJARx9bepM15vBjPx0ooUniEfmgIQspX7YLkHZwre
+ Du5ylt0KVeGc84vbjb2SliF/p/t91sTNc+dp0HB/jf7vPiAAAAA==
+X-Change-ID: 20260709-mcast-header-generation-bugs-bed17c85a6ba
+To: b.a.t.m.a.n@lists.open-mesh.org
+Cc: Sven Eckelmann <sven@narfation.org>, Sashiko <sashiko-bot@kernel.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=970; i=sven@narfation.org;
+ h=from:subject:message-id; bh=WAwAEQa0Q9b9A482oFy9dGqWqa7rGVkBB6n5owHuQWQ=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFn+v0pdbaWO25o9rfFKC7zZVCPdPb/wTZfSty3Z8xcWN
+ 5jarlHtKGVhEONikBVTZNlzJf/8Zva38p+nfTwKM4eVCWQIAxenAEzEtZWRYb9r968t2/7vPPj/
+ A/uTF3rKK23CnX6mFMYabq6+Uf52IifDb/YcwfBfC6fqSJgqpe9mjv9r/8/9SpPwXuHPT5wnRnX
+ MYQMA
+X-Developer-Key: i=sven@narfation.org; a=openpgp;
+ fpr=522D7163831C73A635D12FE5EC371482956781AF
+Message-ID-Hash: MTTLO4X2VO2PK3UHJ6PYVU5ZV2NOANU7
+X-Message-ID-Hash: MTTLO4X2VO2PK3UHJ6PYVU5ZV2NOANU7
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
+ nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
+ news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/SPRJNSQFONQACXGZ3W6LL2TCF4Y4GVOX/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/MTTLO4X2VO2PK3UHJ6PYVU5ZV2NOANU7/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -120,78 +119,57 @@ List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.01 / 15.00];
 	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de,netdevbpf];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_NA(0.00)[no SPF record];
-	FORGED_RECIPIENTS(0.00)[m:sw@simonwunderlich.de,m:netdev@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,m:stable@vger.kernel.org,m:sashiko-bot@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[patchwork-bot@kernel.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,m:sashiko-bot@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	DKIM_TRACE(0.00)[narfation.org:+];
+	R_SPF_NA(0.00)[no SPF record];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[narfation.org:email,lists.open-mesh.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
+	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9E91972EDA8
+X-Rspamd-Queue-Id: 140917352B1
 
-Hello:
+The code which introduced the mcast packet format was expanding the skbuff
+header in various places. But this broke the priority extraction and was
+requiring various skb properties (linearized, unshared) but only in some
+paths (forwarding of TVLV) ensured that this is actually the case while
+forgetting in others (initial creation of an mcast packet).
 
-This series was applied to netdev/net.git (main)
-by Sven Eckelmann <sven@narfation.org>:
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+Sven Eckelmann (3):
+      batman-adv: fix TX priority extraction for BATADV_FORW_MCAST
+      batman-adv: mcast: ensure unshared skb for multicast packets
+      batman-adv: mcast: linearize skbuff for packet generation
 
-On Wed,  8 Jul 2026 11:18:13 +0200 you wrote:
-> From: Sven Eckelmann <sven@narfation.org>
-> 
-> As documented in commit 8bd67ebb50c0 ("net: bridge: xmit: make sure we have
-> at least eth header len bytes"), it is possible by for a local user with
-> eBPF TC hook access to attach a tc filter which truncates the packet and
-> redirects to an batadv interface. But the code assumes that at least
-> ETH_HLEN bytes are available and thus might read outside of the available
-> buffer.
-> 
-> [...]
+ net/batman-adv/mesh-interface.c | 7 +++++--
+ net/batman-adv/multicast_forw.c | 9 +++++----
+ 2 files changed, 10 insertions(+), 6 deletions(-)
+---
+base-commit: 6628ab4bc899bff39637008ebb5ef89372efd9d3
+change-id: 20260709-mcast-header-generation-bugs-bed17c85a6ba
 
-Here is the summary with links:
-  - [net,1/9] batman-adv: ensure minimal ethernet header on TX
-    https://git.kernel.org/netdev/net/c/49df66b7993c
-  - [net,2/9] batman-adv: fix VLAN priority offset
-    https://git.kernel.org/netdev/net/c/fdb3be00ba4d
-  - [net,3/9] batman-adv: clean untagged VLAN on netdev registration failure
-    https://git.kernel.org/netdev/net/c/8669a550c752
-  - [net,4/9] batman-adv: tt: avoid request storms during pending request
-    https://git.kernel.org/netdev/net/c/27c7d4000823
-  - [net,5/9] batman-adv: tt: prevent TVLV OOB check overflow
-    https://git.kernel.org/netdev/net/c/7a581d9aaba8
-  - [net,6/9] batman-adv: frag: free unfragmentable packet
-    https://git.kernel.org/netdev/net/c/6b628425aed4
-  - [net,7/9] batman-adv: frag: fix primary_if leak on failed linearization
-    https://git.kernel.org/netdev/net/c/353d2c1d5492
-  - [net,8/9] batman-adv: mcast: avoid OOB read of num_dests header
-    https://git.kernel.org/netdev/net/c/38eaed28e250
-  - [net,9/9] batman-adv: dat: fix tie-break for candidate selection
-    https://git.kernel.org/netdev/net/c/98052bdaf6ac
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Best regards,
+--  
+Sven Eckelmann <sven@narfation.org>
 
