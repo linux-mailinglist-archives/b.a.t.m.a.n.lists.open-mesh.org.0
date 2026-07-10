@@ -2,103 +2,100 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EAc8O/pPUWraCAMAu9opvQ
+	id f+9DOAZUUWrICQMAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 22:03:06 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 22:20:22 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 905EE73DFC2
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 22:03:06 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8592073E1C1
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 22:20:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=KX39t7OV;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=YP0QizeG;
 	dmarc=pass (policy=none) header.from=narfation.org;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
 	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id 6DA6884240
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 22:03:06 +0200 (CEST)
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 6219883540
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 22:20:22 +0200 (CEST)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783713786;
- b=MYe6J861SBzqfJaNtSNnLT0PpKx3Yd3koSvP1ZtmVDGRGRvSc+VLFuxLXgo46cwwN/x+o
- 3WmM4QfS/UHaLit48o07HvSJ1sZ3MqTvKk1+AHVquQhnrTV7O5nkHr3VejbmFU++O0l745C
- loAuPaY0tWEbygJ1URdrY+Yb5CU6KlI=
+ t=1783714822;
+ b=K/4AySc3SzwBBjAPMuQVnSo59OcC6jDnF2vqO4gvngSbYW6/8tOGrxr/p176XjTS7nxMJ
+ SRNVj5I9h97iub2JtnA0eMYVgWJqGGXsZrFfhvsP0xFYcEwZSwMCSxLv8bshNZMzeWjYgwG
+ 0qR95tSY1pNmO9BPiquPsWbP4rSHvdM=
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783713786; h=from : sender : reply-to :
+ d=open-mesh.org; s=20121; t=1783714822; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=RsbIyZoolxhSW3NGb9a6wqMW3AzCEEdbiN3KmULEBN4=;
- b=VNCYrVXXjos/hGxvPbNNwGP4OxXl7dQpfOen9x83rfJjM8gFFVwwZwoglamL7GagQnSbK
- 0V2H4syJ8wo5BEPy7wC8nusqdBLNZaPmQDtW3GBpmIm5slhX0QwiK1HH4v78wsckA8WhsIy
- 0eBs5/4wfwwSwC3hPBtxt5vpYiz5SHo=
+ list-archive; bh=aM47CtHpF9NsdqAvAoGPQbP0IgygXroyR3Qq1oGk4MQ=;
+ b=Zps3ellRVs8U9MeAYxSZUQLI9FT6eJaPsVwiE861nVFyrM6N9yxX0vsA8Og+ekXocg/h2
+ r9oPl6PPSUlBWh6h3krZdK9t/nLMvbPxVVka86h+KW74DSWXwzgFp9QLyMaO7Y+zZ8OATuW
+ uX8Cbzr53islxs7kgv9MXUihVz7TH4E=
 ARC-Authentication-Results: i=2; open-mesh.org;
  dkim=pass header.d=narfation.org;
  arc=pass;
  dmarc=pass header.from=narfation.org policy.dmarc=none
 Received: from dvalin.narfation.org (dvalin.narfation.org
  [IPv6:2a00:17d8:100::8b1])
-	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id 882A080F5F
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 10 Jul 2026 22:01:28 +0200 (CEST)
-ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783713688;
-	b=4HNj7+39djEmwpA/2uEcZamLHiTzBiOF7zdFkU1TuOUkVVxI2HbxrZ63Q6Hoa8Pq7OMgvI
-	GW/NYJR35FeYpD4rF2jgRJi23HQUC2c+/r6qJzYp9jFAlXa3Y79InHBiIimnxv5AxqeJ3f
-	3zafsFevukOAuRTleVW5N5HhR4g2AGE=
+	by diktynna.open-mesh.org (Postfix) with UTF8SMTPS id DA2C18103E
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 10 Jul 2026 22:20:08 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783714808;
+	b=osOrsWXjY3TXz1GA7jcOdl/xcb6aoiOBlDqihFOzurzJh1wuntMOOOlIJz8qwSYPJw9DL9
+	6+3rJsqHpZabYbc2mZte06NEHzyZk0AaOCjoacjTnbtktCKKt501C8ATW2gcyQNop4TeM5
+	GoboHBNyf0YNcnjHbHnZrogtdwvRe5Q=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783713688;
+	s=20121; t=1783714808;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=RsbIyZoolxhSW3NGb9a6wqMW3AzCEEdbiN3KmULEBN4=;
-	b=vGeqFEnUAJ620jTTS67e+Ix6dI/gmGowEbnIVuBch5lLZUQrOaJ9M/DK9KHS6hb0/vto9X
-	zTFmVjaFukl+gS9XyCyZ7GLm/pm8mUYRyIVB0vuyznWfPXnC+UcShDK3KC/qZC6D/F2fkE
-	rXLhkMFm+TS/5hgfRqri8XFSxiWhDsg=
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=aM47CtHpF9NsdqAvAoGPQbP0IgygXroyR3Qq1oGk4MQ=;
+	b=eOulPhKAsrDLkAFktenyxxax0wBO0CVCPrJlWGoyQuY8iLKRsadGHq6zKyrjJIa6qt23j2
+	GdrxxXqruyqR0oabPqJPqJxecHwe11T/0MSN/lQAHrHFmxtDRE4lWmj72ow9sUt2scd9oj
+	2xvgyiftcHNyVCy65xBkAYlkI49/GdU=
 ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=narfation.org header.s=20121 header.b=KX39t7OV;
+	dkim=pass header.d=narfation.org header.s=20121 header.b=YP0QizeG;
 	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
  2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
 	dmarc=pass (policy=none) header.from=narfation.org
-Received: by dvalin.narfation.org (Postfix) id F06262058C;
-	Fri, 10 Jul 2026 20:01:27 +0000 (UTC)
+Received: by dvalin.narfation.org (Postfix) id 3522220536;
+	Fri, 10 Jul 2026 20:20:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1783713688;
+	s=20121; t=1783714808;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RsbIyZoolxhSW3NGb9a6wqMW3AzCEEdbiN3KmULEBN4=;
-	b=KX39t7OVtWsbvyRfG0hOkMWj2Z019r2UkB7hxNvaQHq2t9WftJh9qlH409oGewY6tggQo1
-	0Lub1KS02MY0hzJewyy+KEOn2vwofMxyCPzEJKu2K+JDxhwAlECRgo1kTD3VL9htgUb6/J
-	QPHypip3wCSNbN/3FzO5Hd3eJpswxME=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=aM47CtHpF9NsdqAvAoGPQbP0IgygXroyR3Qq1oGk4MQ=;
+	b=YP0QizeGLi+zce2k/Iahto5/yYRjDRYyLdlhXXb7G6MKqQGdDqYpNDYtiG8oZGU+fUPVx3
+	/jExrqJ8qqCDLnaagjVgp+ozU9etDf8BgIkHzI5hK2uMsIJmszvWgCAgV1PD3vyq3rT+c4
+	QDOp9sXElqi6muaLOQt3PtX91N9r3X4=
 From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 10 Jul 2026 22:01:17 +0200
-Subject: [PATCH batadv v2 3/3] batman-adv: mcast: linearize skbuff for
- packet generation
+Date: Fri, 10 Jul 2026 22:19:58 +0200
+Subject: [PATCH batadv] batman-adv: annotate functions which may cow
+ reallocate the skbuff
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: 
- <20260710-mcast-header-generation-bugs-v2-3-06cd83c0f534@narfation.org>
-References: 
- <20260710-mcast-header-generation-bugs-v2-0-06cd83c0f534@narfation.org>
-In-Reply-To: 
- <20260710-mcast-header-generation-bugs-v2-0-06cd83c0f534@narfation.org>
+Message-Id: <20260710-realloc-kernel-doc-v1-1-3a45842b3a13@narfation.org>
+X-B4-Tracking: v=1; b=H4sIAO1TUWoC/yWMywrCMBBFf6XM2sA0C9v4K+Iij1sdDalMahFK/
+ 92ou3sunLNRhQoqnbqNFKtUmUuD/tBRvPlyhZHUmCzbIw89G4XPeY7mAS3IJrU5DpNzyXEY2VI
+ Tn4pJ3r/omYJffFrp8v/rK9wRl2+R9v0DAGql/n4AAAA=
+X-Change-ID: 20260710-realloc-kernel-doc-87f99d90b802
 To: b.a.t.m.a.n@lists.open-mesh.org
-Cc: Sven Eckelmann <sven@narfation.org>, Sashiko <sashiko-bot@kernel.org>
+Cc: Sven Eckelmann <sven@narfation.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1625; i=sven@narfation.org;
- h=from:subject:message-id; bh=bL55bK33cYlh7OYqf/q53jV4p21NpQQgGXoInOUTJoY=;
- b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmB/n0XpySrxXxcVafwM4YzuIVHQ3nlkrlFxu+myagbb
- 1sRe1Kjo5SFQYyLQVZMkWXPlfzzm9nfyn+e9vEozBxWJpAhDFycAjARHwmG/6Ficmc+7Rfff9FY
- 86Mdm/jdMy0mip927VoT591veaXF7hMjw8GoCakXP703dFi7qOtSyFtGbzHRz9tnTtnTvSTv++G
- ao+wA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3668; i=sven@narfation.org;
+ h=from:subject:message-id; bh=gJSyf/lH7n05Sp7hxP+irhdmdGMIhUuqPuhUNesbwSE=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDFmBwR8ZtWc+dP8194v8ggOBXtnvM+bci9nCLB8W3+zWc
+ aF36uSmjlIWBjEuBlkxRZY9V/LPb2Z/K/952sejMHNYmUCGMHBxCsBE3goyMuyrmT/zsYUDw3Pf
+ 96qnd+fdOLPoxTmVL80nmc49V695JDyRkeGEfpinzN8PVycYNMzQD7/munvu6TnTVn099XJu34a
+ O0lh+AA==
 X-Developer-Key: i=sven@narfation.org; a=openpgp;
  fpr=522D7163831C73A635D12FE5EC371482956781AF
-Message-ID-Hash: AGUDV2IGYIWORA4UB3NN5RMODHCIKB72
-X-Message-ID-Hash: AGUDV2IGYIWORA4UB3NN5RMODHCIKB72
+Message-ID-Hash: ZVC636KUFLDUV3HU4ZX3FQREOU42WVUI
+X-Message-ID-Hash: ZVC636KUFLDUV3HU4ZX3FQREOU42WVUI
 X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
@@ -112,7 +109,7 @@ Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/AGUDV2IGYIWORA4UB3NN5RMODHCIKB72/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/ZVC636KUFLDUV3HU4ZX3FQREOU42WVUI/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -128,74 +125,111 @@ X-Spamd-Result: default: False [-2.01 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,m:sashiko-bot@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:b.a.t.m.a.n@lists.open-mesh.org,m:sven@narfation.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWO(0.00)[2];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	DKIM_TRACE(0.00)[narfation.org:+];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
 	R_SPF_NA(0.00)[no SPF record];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[narfation.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[diktynna.open-mesh.org:helo,diktynna.open-mesh.org:rdns,lists.open-mesh.org:from_smtp,narfation.org:from_mime,narfation.org:email,narfation.org:mid,narfation.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 905EE73DFC2
+X-Rspamd-Queue-Id: 8592073E1C1
 
-batadv_mcast_forw_packet() and batadv_mcast_forw_packet() is not only
-called by the unsharing+linearizing batadv_recv_mcast_packet() handler.
-When it is called by batadv_mcast_forw_mcsend() then it will be unshared
-but not linearized. The SKB_LINEAR_ASSERT() can therefore cause a fatal
-BUG().
+When a function is called which reallocated the skbuff, it is necessary to
+reacquire the pointers into the skb data. Otherwise they might cause an
+use-after-free.
 
-The linearization should happen during the expansion of the head because
-the call chain because the scrape function can be hit already during the
-initial batadv_mcast_forw_mode() selection code:
+But is hard to identify such case when it is not clear that helpers are
+actually using skb-reallocating functions.
 
-* batadv_interface_tx
-* batadv_mcast_forw_mode
-* batadv_mcast_forw_mode_by_count()
-* batadv_mcast_forw_push()
-  -> calls batadv_mcast_forw_expand_head() before everything else
-* batadv_mcast_forw_push_tvlvs()
-* batadv_mcast_forw_push_dests()
-* batadv_mcast_forw_push_adjust_padding()
-* batadv_mcast_forw_scrape()
-
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Fixes: 8ed36122d709 ("batman-adv: mcast: implement multicast packet reception and forwarding")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- net/batman-adv/multicast_forw.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ net/batman-adv/mesh-interface.c |  5 +++++
+ net/batman-adv/multicast_forw.c | 10 ++++++++++
+ net/batman-adv/routing.c        |  5 +++++
+ 3 files changed, 20 insertions(+)
 
+diff --git a/net/batman-adv/mesh-interface.c b/net/batman-adv/mesh-interface.c
+index 20582fe0..f1bfe2a5 100644
+--- a/net/batman-adv/mesh-interface.c
++++ b/net/batman-adv/mesh-interface.c
+@@ -57,6 +57,11 @@
+  * @skb: packet buffer which should be modified
+  * @len: number of bytes to add
+  *
++ * Warning: This function may reallocate the skb data buffer via
++ * skb_cow_head(). Any pointer into the skb data (e.g. obtained
++ * from skb->data or eth_hdr()) before this call must be considered
++ * invalid afterwards and has to be reacquired.
++ *
+  * Return: 0 on success or negative error number in case of failure
+  */
+ int batadv_skb_head_push(struct sk_buff *skb, unsigned int len)
 diff --git a/net/batman-adv/multicast_forw.c b/net/batman-adv/multicast_forw.c
-index c5b8e2e3..d8374ef5 100644
+index d8374ef5..ccd4ae15 100644
 --- a/net/batman-adv/multicast_forw.c
 +++ b/net/batman-adv/multicast_forw.c
-@@ -1103,6 +1103,10 @@ static int batadv_mcast_forw_expand_head(struct batadv_priv *bat_priv,
- 	if (skb_cow(skb, hdr_size) < 0)
- 		return -ENOMEM;
- 
-+	/* batadv_mcast_forw_scrape() + batadv_mcast_forw_packet() require linearized skb */
-+	if (skb_linearize(skb) < 0)
-+		return -ENOMEM;
-+
- 	return 0;
- }
- 
+@@ -1080,6 +1080,11 @@ unsigned int batadv_mcast_forw_packet_hdrlen(unsigned int num_dests)
+  * Tries to expand an skb's headroom so that its head to tail is 1298
+  * bytes (minimum IPv6 MTU + vlan ethernet header size) large.
+  *
++ * Warning: This function may reallocate the skb data buffer via
++ * skb_cow() / skb_linearize(). Any pointer into the skb data (e.g.
++ * obtained from skb->data or eth_hdr()) before this call must be
++ * considered invalid afterwards and has to be reacquired.
++ *
+  * Return: -EINVAL if the given skb's length is too large or -ENOMEM on memory
+  * allocation failure. Otherwise, on success, zero is returned.
+  */
+@@ -1123,6 +1128,11 @@ static int batadv_mcast_forw_expand_head(struct batadv_priv *bat_priv,
+  * that signaled interest in it, that is either via the translation table or the
+  * according want-all flags, is attached accordingly.
+  *
++ * Warning: This function may reallocate the skb data buffer via
++ * batadv_mcast_forw_expand_head(). Any pointer into the skb data (e.g.
++ * obtained from skb->data or eth_hdr()) before this call must be
++ * considered invalid afterwards and has to be reacquired.
++ *
+  * Return: true on success, false otherwise.
+  */
+ bool batadv_mcast_forw_push(struct batadv_priv *bat_priv, struct sk_buff *skb,
+diff --git a/net/batman-adv/routing.c b/net/batman-adv/routing.c
+index cd290a7b..5193e370 100644
+--- a/net/batman-adv/routing.c
++++ b/net/batman-adv/routing.c
+@@ -172,6 +172,11 @@ bool batadv_window_protected(struct batadv_priv *bat_priv, s32 seq_num_diff,
+  * @hard_iface: incoming hard interface
+  * @header_len: minimal header length of packet type
+  *
++ * Warning: This function may reallocate the skb data buffer via
++ * skb_cow() / skb_linearize(). Any pointer into the skb data (e.g.
++ * obtained from skb->data or eth_hdr()) before this call must be
++ * considered invalid afterwards and has to be reacquired.
++ *
+  * Return: true when management preconditions are met, false otherwise
+  */
+ bool batadv_check_management_packet(struct sk_buff *skb,
 
--- 
-2.47.3
+---
+base-commit: e8d6ecd5b27bf4ab6dfef96e01cd0057065ed396
+change-id: 20260710-realloc-kernel-doc-87f99d90b802
+
+Best regards,
+--  
+Sven Eckelmann <sven@narfation.org>
 
