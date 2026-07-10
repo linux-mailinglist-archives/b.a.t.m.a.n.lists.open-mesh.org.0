@@ -2,118 +2,107 @@ Return-Path: <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>
 Delivered-To: lists+b.a.t.m.a.n@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id asGdG6YqUWotAQMAu9opvQ
+	id KeCkKHMyUWqVAgMAu9opvQ
 	(envelope-from <b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org>)
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 19:23:50 +0200
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 19:57:07 +0200
 X-Original-To: lists+b.a.t.m.a.n@lfdr.de
-Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [IPv6:2a01:4f8:241:fc1:136:243:236:17])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D0073D029
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 19:23:50 +0200 (CEST)
+Received: from diktynna.open-mesh.org (diktynna.open-mesh.org [136.243.236.17])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32EF173D240
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 19:57:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=auditcode.ai header.s=zmail header.b="cu/2Jt9h";
-	dmarc=pass (policy=none) header.from=auditcode.ai;
-	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 2a01:4f8:241:fc1:136:243:236:17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
-	arc=pass ("open-mesh.org:s=20121:i=3")
+	dkim=pass header.d=narfation.org header.s=20121 header.b=xgLp0G6K;
+	dmarc=pass (policy=none) header.from=narfation.org;
+	spf=none (mail.lfdr.de: domain of "b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org" has no SPF policy when checking 136.243.236.17) smtp.mailfrom="b.a.t.m.a.n-bounces+lists+b.a.t.m.a.n=lfdr.de@lists.open-mesh.org";
+	arc=pass ("open-mesh.org:s=20121:i=2")
 Received: from diktynna.open-mesh.org (localhost [IPv6:::1])
-	by diktynna.open-mesh.org (Postfix) with ESMTP id B4A9D8280B
-	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 19:23:49 +0200 (CEST)
-ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
- t=1783704229;
- b=BgbHnybK6CI7NAU0+TqnD/z3n8vgsPWFeDgTQ6Pr/iSLpDjkYJWj/TU6q/QvNIkqZeq6f
- nqd+bgf4g3sWM2iycbnHN2Ui2HfjWbJjRXQWjjTISHhntqImXl7vn6fBJggM9InKNevZZ4M
- HFs+iKQ3ilD0h4Zp1eyXHmofk8JcinI=
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
- d=open-mesh.org; s=20121; t=1783704229; h=from : sender : reply-to :
+	by diktynna.open-mesh.org (Postfix) with ESMTP id 0508D82623
+	for <lists+b.a.t.m.a.n@lfdr.de>; Fri, 10 Jul 2026 19:57:07 +0200 (CEST)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=open-mesh.org; s=20121;
+ t=1783706227;
+ b=sWQMRWOpvKqvFYE/Jf90uaIy0GhbIBmk7pFBYBJpKh8vc5xYZeIocXNMWGmLBOp5M5tVT
+ fDiKnxnSl/hdy53tetnpK+vvItA1iBdZwOXV5xiSO/vQZvEWyF2Z5mVoUBH1c7x2FkzRkRS
+ +bAmIaQ/5woI5EFo4Q5xoDS1w8NVhhQ=
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=open-mesh.org; s=20121; t=1783706227; h=from : sender : reply-to :
  subject : date : message-id : to : cc : mime-version : content-type :
  content-transfer-encoding : content-id : content-description :
  resent-date : resent-from : resent-sender : resent-to : resent-cc :
  resent-message-id : in-reply-to : references : list-id : list-help :
  list-unsubscribe : list-subscribe : list-post : list-owner :
- list-archive; bh=ymwoyO5d+sv+38372zTRo45+PiisAufXhgObzx67suk=;
- b=Zq0NMQqBTrxAIKWUKg4gNgzuG86WbV+eXQtDvHdmfI74tOcy2zpULcTH+JPAa3Aw+nOCZ
- RPpfP3s+sV47T6+xTJXrdwZokhQb8+SM5PJux6ESGvs+D4KI1aWiukvzMCWXPJhoxzsFY7z
- fBW4ygdseGn76zqVc+2IPkbwhy2S7/w=
-ARC-Authentication-Results: i=3; open-mesh.org;
- dkim=pass header.d=auditcode.ai header.i=security@auditcode.ai;
+ list-archive; bh=ritIdVLzbj6jGCexJmHL4fv3M9Of1DhbmY1pu2yQQGU=;
+ b=W9oTRBDEhZhFwK+ubVz2JxfK6tntm929ZaN+SKvlmmk/lJBLpaaJKdwHzWcUcfN7Orrow
+ cilRDL8YuAE7//clf//zOEMhEz0QFMrFsjE0G3TlXyEE3P3ES8LzAJJDNuqRg7O8rPfQYyJ
+ /7zicSiDMHFcZB3H5kO+AjPIotvR9UQ=
+ARC-Authentication-Results: i=2; open-mesh.org;
+ dkim=pass header.d=narfation.org;
  arc=pass;
- dmarc=pass header.from=auditcode.ai policy.dmarc=none
-Received: from sender-op-o17.zoho.eu (sender-op-o17.zoho.eu [136.143.169.17])
-	by diktynna.open-mesh.org (Postfix) with ESMTPS id 9FAA8810AD
-	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 10 Jul 2026 18:52:57 +0200 (CEST)
-ARC-Seal: i=2; a=rsa-sha256; d=open-mesh.org; s=20121; cv=pass; t=1783702378;
-	b=djj5YJKGCy5l7/o+2eX0tiCJtrPsOhnNwB7792rvdDnH9MZUp32BKF2KyGmd8NUG42/NeY
-	Qaq6L9ZR8crUFIM5Dy6jSrLe9uMMY9F4mdxSzrkcBlxkPCPoSMNXfV5njmR3IwLIRta0ZO
-	Wi0lwf5o/kUKClH8ig/SHQhcklioOEw=
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
-	s=20121; t=1783702378;
+ dmarc=pass header.from=narfation.org policy.dmarc=none
+Received: from dvalin.narfation.org (dvalin.narfation.org
+ [IPv6:2a00:17d8:100::8b1])
+	by diktynna.open-mesh.org (Postfix) with ESMTPS id F304C80A43
+	for <b.a.t.m.a.n@lists.open-mesh.org>; Fri, 10 Jul 2026 19:56:53 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; d=open-mesh.org; s=20121; cv=none; t=1783706214;
+	b=KVPpDn6nowB/c/frTDVSTitfIxJxTEk6p+i34JPtEVgGmJywiX5PULmU01BG22+/PAJ+Ko
+	GFvDetngqvYdOxB5uIUsgQug8+PTGJzql/cU8FBKDvL6HNkjfEOkbswrjPEUVnnYQyU8HA
+	gP4LMOhf8dSsbYkdc1a8zQA9khH3BXY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=open-mesh.org;
+	s=20121; t=1783706214;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=ymwoyO5d+sv+38372zTRo45+PiisAufXhgObzx67suk=;
-	b=MBndlaFsHo5Wu6jsPowTf6JAvVIfh8BBXL29OXeXk3NNoU0Lm3YOHunwUBmI5UWoZBhMaD
-	dB3u2mxbGsBqtx7WMnBO7WQ1q5y6R5G0B0oaPRTStTpRJBCqRyZMiZox4MX+N4k6sCmuV8
-	MWpMSS8vMDm5ktOteYjplnhuwOkAcQU=
-ARC-Authentication-Results: i=2;
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=ritIdVLzbj6jGCexJmHL4fv3M9Of1DhbmY1pu2yQQGU=;
+	b=UZWpRfseqhApjF/HzN6uZzOAr6DUVI+vmvHncITPOsqxdPC1ALIgZA9zQ7l3xmnbIKxjmM
+	zZsUZgwKW3xVW3wkI7rvYHhqsfxF+RA/nJn6EZUQD3xOCJyh5leY+Mx1BHmOsCFtbniVNx
+	El0M7woZYN1TKIt1YSERcL07NsTfJeA=
+ARC-Authentication-Results: i=1;
 	diktynna.open-mesh.org;
-	dkim=pass header.d=auditcode.ai header.s=zmail header.b="cu/2Jt9h";
-	spf=pass (diktynna.open-mesh.org: domain of security@auditcode.ai designates
- 136.143.169.17 as permitted sender) smtp.mailfrom=security@auditcode.ai;
-	dmarc=pass (policy=none) header.from=auditcode.ai;
-	arc=pass ("zohomail.eu:s=zohoarc:i=1")
-ARC-Seal: i=1; a=rsa-sha256; t=1783702351; cv=none;
-	d=zohomail.eu; s=zohoarc;
-	b=XDu4tADfNd/qn8k9UnrXMuA6EWwbZDi163G5rEgk7AZW34nN20u58lrDRX1eN41zjQVw0s9eO+jm4KCkZaKYPSqUbNZHnA84Bjd+HfDNKiwC2T71jmBWd+mMcqB3RNnb+mZcWXlmUxpRwotEmGPbcCrF4O0OHmg+6wv0NBMw0/M=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu;
- s=zohoarc;
-	t=1783702351;
- h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
-	bh=ymwoyO5d+sv+38372zTRo45+PiisAufXhgObzx67suk=;
-	b=aJCP6nhzrqHdFpaq7/Y9x95KVnf3UlyJ6qkwUJ7WonoPjEbkkjrOBmBm4mv/0XCm1V9V3Om11GiY4KrkXrT9dZLCtU/7r2Wolbze9QlFXvzyd+RcqMb3E6VhQq/nle+n0LPgqCDnL6CEMuYfMN6+uxe9yXid5S2hF5F0I500iCw=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=auditcode.ai;
-	spf=pass  smtp.mailfrom=security@auditcode.ai;
-	dmarc=pass header.from=<security@auditcode.ai>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783702351;
-	s=zmail; d=auditcode.ai; i=security@auditcode.ai;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=ymwoyO5d+sv+38372zTRo45+PiisAufXhgObzx67suk=;
-	b=cu/2Jt9hDDFqEEbAMl8cM4D+UtFPlaiJfqLBmT99EipUNgNsYZSSlLPzKHY1z0NA
-	+hu2Tcmb2nQX3x05dv3yhLZ3i5aRIkLnuwEi8e0wV+Bx33JehVd68QfH29vQbL3vxhT
-	2Fb9R43J1T96X3wjUEtzilSKxkiXHHw90tLUjpvQ=
-Received: by mx.zoho.eu with SMTPS id 178370234856547.84319191224199;
-	Fri, 10 Jul 2026 18:52:28 +0200 (CEST)
-From: Ibrahim Hashimov <security@auditcode.ai>
+	dkim=pass header.d=narfation.org header.s=20121 header.b=xgLp0G6K;
+	spf=pass (diktynna.open-mesh.org: domain of sven@narfation.org designates
+ 2a00:17d8:100::8b1 as permitted sender) smtp.mailfrom=sven@narfation.org;
+	dmarc=pass (policy=none) header.from=narfation.org
+Received: by dvalin.narfation.org (Postfix) id E8B941FEF7;
+	Fri, 10 Jul 2026 17:56:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1783706212;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ritIdVLzbj6jGCexJmHL4fv3M9Of1DhbmY1pu2yQQGU=;
+	b=xgLp0G6KISG8/9EskNJLZ6u7J+8YiO7e0cS7QaHyewhvJ5GQT0BVQhdS0+NVqkQ6/OqDlt
+	cUR2MAcCgtsoNx12pHk23L3op/TycLPuS3kIhl5F8iTYx8/o91mhROYZqFZPRJKdfXuglv
+	W4sklEtt6OWJyHfS1/Vd5FxhBPJ7N04=
+From: Sven Eckelmann <sven@narfation.org>
 To: Marek Lindner <marek.lindner@mailbox.org>,
-	Simon Wunderlich <sw@simonwunderlich.de>,
-	Antonio Quartulli <antonio@mandelbit.com>,
-	Sven Eckelmann <sven@narfation.org>
-Cc: b.a.t.m.a.n@lists.open-mesh.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH net] batman-adv: bound BLA claim and backbone gateway table
- growth
-Date: Fri, 10 Jul 2026 18:52:24 +0200
-Message-ID: <20260710165224.39411-1-security@auditcode.ai>
-X-Mailer: git-send-email 2.50.1
+ Simon Wunderlich <sw@simonwunderlich.de>,
+ Antonio Quartulli <antonio@mandelbit.com>,
+ Ibrahim Hashimov <security@auditcode.ai>
+Cc: b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH net] batman-adv: bound BLA claim and backbone gateway
+ table growth
+Date: Fri, 10 Jul 2026 19:56:41 +0200
+Message-ID: <9098133.T7Z3S40VBb@sven-desktop>
+In-Reply-To: <20260710165224.39411-1-security@auditcode.ai>
+References: <20260710165224.39411-1-security@auditcode.ai>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-MailFrom: security@auditcode.ai
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: multipart/signed; boundary="nextPart11273385.nUPlyArG6x";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+Message-ID-Hash: GOWHCYIRDMPZA3JPGCCW2TU35L2BXP35
+X-Message-ID-Hash: GOWHCYIRDMPZA3JPGCCW2TU35L2BXP35
+X-MailFrom: sven@narfation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; header-match-b.a.t.m.a.n.lists.open-mesh.org-0;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-1;
  header-match-b.a.t.m.a.n.lists.open-mesh.org-2;
- header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation
-Message-ID-Hash: 2DVWKYJHCW2W3Y4KDF5HX2FJM7NF54Q4
-X-Message-ID-Hash: 2DVWKYJHCW2W3Y4KDF5HX2FJM7NF54Q4
-X-Mailman-Approved-At: Fri, 10 Jul 2026 19:23:36 +0200
+ header-match-b.a.t.m.a.n.lists.open-mesh.org-3; emergency; member-moderation;
+ nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size;
+ news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: The list for a Better Approach To Mobile Ad-hoc Networking
  <b.a.t.m.a.n.lists.open-mesh.org>
 Archived-At: 
- <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/2DVWKYJHCW2W3Y4KDF5HX2FJM7NF54Q4/>
+ <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/message/GOWHCYIRDMPZA3JPGCCW2TU35L2BXP35/>
 List-Archive: 
  <https://lists.open-mesh.org/mailman3/hyperkitty/list/b.a.t.m.a.n@lists.open-mesh.org/>
 List-Help: <mailto:b.a.t.m.a.n-request@lists.open-mesh.org?subject=help>
@@ -122,244 +111,168 @@ List-Post: <mailto:b.a.t.m.a.n@lists.open-mesh.org>
 List-Subscribe: <mailto:b.a.t.m.a.n-join@lists.open-mesh.org>
 List-Unsubscribe: <mailto:b.a.t.m.a.n-leave@lists.open-mesh.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.51 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=3];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[auditcode.ai,none];
-	R_DKIM_ALLOW(-0.20)[auditcode.ai:s=zmail];
+X-Spamd-Result: default: False [-3.61 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	ARC_ALLOW(-1.00)[open-mesh.org:s=20121:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[narfation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[narfation.org:s=20121];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER(0.00)[security@auditcode.ai,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:marek.lindner@mailbox.org,m:sw@simonwunderlich.de,m:antonio@mandelbit.com,m:sven@narfation.org,m:b.a.t.m.a.n@lists.open-mesh.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:marek.lindner@mailbox.org,m:sw@simonwunderlich.de,m:antonio@mandelbit.com,m:security@auditcode.ai,m:b.a.t.m.a.n@lists.open-mesh.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[lists,b.a.t.m.a.n=lfdr.de];
+	R_SPF_NA(0.00)[no SPF record];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[auditcode.ai:from_mime,auditcode.ai:email,auditcode.ai:mid,auditcode.ai:dkim];
-	FROM_NEQ_ENVFROM(0.00)[security@auditcode.ai,b.a.t.m.a.n-bounces@lists.open-mesh.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[auditcode.ai:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@narfation.org,b.a.t.m.a.n-bounces@lists.open-mesh.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[narfation.org:+];
 	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:24940, ipnet:2a01:4f8::/32, country:DE];
 	TAGGED_RCPT(0.00)[b.a.t.m.a.n];
-	R_SPF_NA(0.00)[no SPF record]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:24940, ipnet:136.243.0.0/16, country:DE];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[auditcode.ai:email,sven-desktop:mid,lists.open-mesh.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 02D0073D029
+X-Rspamd-Queue-Id: 32EF173D240
 
-batadv_bla_add_claim() and batadv_bla_get_backbone_gw() each kzalloc a
-new hash entry (struct batadv_bla_claim / struct batadv_bla_backbone_gw)
-for every distinct (mac, vid) / (orig, vid) pair carried in a
-BLA-group-conforming CLAIM frame, and insert it into
-bat_priv->bla.claim_hash / backbone_hash. There is no maximum-entry
-cap on either table -- entries are only ever removed by the
-timeout-driven periodic purge (batadv_bla_purge_claims() /
-batadv_bla_purge_backbone_gw(), BATADV_BLA_CLAIM_TIMEOUT /
-BATADV_BLA_BACKBONE_TIMEOUT, on the order of 100 s).
+--nextPart11273385.nUPlyArG6x
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+Date: Fri, 10 Jul 2026 19:56:41 +0200
+Message-ID: <9098133.T7Z3S40VBb@sven-desktop>
+In-Reply-To: <20260710165224.39411-1-security@auditcode.ai>
+References: <20260710165224.39411-1-security@auditcode.ai>
+MIME-Version: 1.0
 
-The BLA group a frame must carry is htons(crc16(primary_hardif_mac)),
-which is trivially observable/derivable by any node already on the
-mesh soft-interface (batadv_check_claim_group()). A single on-mesh
-sender can therefore emit CLAIM frames with an incrementing source MAC
-and force one kzalloc(GFP_ATOMIC) per frame on both hot paths, growing
-kernel memory without bound for as long as the attacker keeps sending
--- uncontrolled resource allocation. Both allocations are
-GFP_ATOMIC with a NULL check, so this is a graceful memory-pressure
-DoS, not a crash: there is no OOB access.
+On Friday, 10 July 2026 18:52:24 CEST Ibrahim Hashimov wrote:
+> batadv_bla_add_claim() and batadv_bla_get_backbone_gw() each kzalloc a
+> new hash entry (struct batadv_bla_claim / struct batadv_bla_backbone_gw)
+> for every distinct (mac, vid) / (orig, vid) pair carried in a
+> BLA-group-conforming CLAIM frame, and insert it into
+> bat_priv->bla.claim_hash / backbone_hash. There is no maximum-entry
+> cap on either table -- entries are only ever removed by the
+> timeout-driven periodic purge (batadv_bla_purge_claims() /
+> batadv_bla_purge_backbone_gw(), BATADV_BLA_CLAIM_TIMEOUT /
+> BATADV_BLA_BACKBONE_TIMEOUT, on the order of 100 s).
+> 
+> The BLA group a frame must carry is htons(crc16(primary_hardif_mac)),
+> which is trivially observable/derivable by any node already on the
+> mesh soft-interface (batadv_check_claim_group()). A single on-mesh
+> sender can therefore emit CLAIM frames with an incrementing source MAC
+> and force one kzalloc(GFP_ATOMIC) per frame on both hot paths, growing
+> kernel memory without bound for as long as the attacker keeps sending
+> -- uncontrolled resource allocation. Both allocations are
+> GFP_ATOMIC with a NULL check, so this is a graceful memory-pressure
+> DoS, not a crash: there is no OOB access.
+> 
+> batman-adv already has an established pattern for capping an
+> attacker-/peer-influenced, unbounded-growth per-mesh-interface
+> resource: the TP-meter session list bounds concurrent sessions with a
+> fixed ceiling and an atomic_add_unless() admission check that rejects
+> new allocations once the cap is hit, logging and freeing/decrementing
+> on the abort path (net/batman-adv/tp_meter.c, BATADV_TP_MAX_NUM,
+> bat_priv->tp_num, "Meter: too many ongoing sessions, aborting").
+> 
+> Apply the same pattern to BLA: add two atomic_t counters,
+> bat_priv->bla.num_claims and bat_priv->bla.num_backbone_gws, each
+> capped at a new BATADV_BLA_MAX_CLAIMS / BATADV_BLA_MAX_BACKBONE_GW
+> limit (4096 / 256 -- generous for any real bridged LAN/VLAN
+> population, several orders of magnitude below what would need to be
+> sprayed to threaten memory availability). batadv_bla_add_claim() and
+> batadv_bla_get_backbone_gw() reserve a slot with atomic_add_unless()
+> before allocating; on cap-hit the frame is dropped (matching existing
+> "drop silently, let the sender resync/backoff" BLA behaviour) instead
+> of allocating. The reservation is released on every existing early-out
+> (kzalloc failure, hash_add failure) and in the kref release paths
+> (batadv_claim_release(), batadv_backbone_gw_release()), where the
+> counters are decremented right before the objects are freed. No
+> locking changes are needed: the counters are only ever touched via
+> atomic ops, mirroring tp_num.
+> 
+> This does not change on-the-wire behaviour, hash table sizing, or
+> timeout-based purging; it only stops a single on-mesh peer from
+> growing the tables past a bounded ceiling.
+> 
+> Verified by code review rather than by driving either counter to its
+> cap at runtime: the atomic_add_unless()/atomic_dec() pairing was
+> checked against every existing early-out (kzalloc failure, hash_add
+> failure) and against both kref release callbacks, confirming exactly
+> one reservation and one release per entry, mirroring the same
+> tp_num accounting in tp_meter.c. A loopback CLAIM-frame reproducer
+> was used earlier to confirm the pre-fix unbounded growth itself
+> (distinct claim_hash/backbone_hash entries scale linearly with the
+> number of distinct (mac, vid) pairs sent), but reaching the new
+> 4096 / 256 caps with that same reproducer is impractical: entries
+> age out via the existing timeout-driven purge faster than a
+> single-host reproducer can accumulate enough distinct pairs to hit
+> the ceiling, so the cap-hit and slot-release paths were exercised
+> by inspection, not by a live saturation run.
+> 
+> Fixes: 23721387c409 ("batman-adv: add basic bridge loop avoidance code")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ibrahim Hashimov <security@auditcode.ai>
+> Assisted-by: AuditCode-AI:2026.07
+> ---
+>  net/batman-adv/bridge_loop_avoidance.c | 38 ++++++++++++++++++++++++--
+>  net/batman-adv/main.h                  |  3 ++
+>  net/batman-adv/types.h                 |  6 ++++
+>  3 files changed, 45 insertions(+), 2 deletions(-)
 
-batman-adv already has an established pattern for capping an
-attacker-/peer-influenced, unbounded-growth per-mesh-interface
-resource: the TP-meter session list bounds concurrent sessions with a
-fixed ceiling and an atomic_add_unless() admission check that rejects
-new allocations once the cap is hit, logging and freeing/decrementing
-on the abort path (net/batman-adv/tp_meter.c, BATADV_TP_MAX_NUM,
-bat_priv->tp_num, "Meter: too many ongoing sessions, aborting").
 
-Apply the same pattern to BLA: add two atomic_t counters,
-bat_priv->bla.num_claims and bat_priv->bla.num_backbone_gws, each
-capped at a new BATADV_BLA_MAX_CLAIMS / BATADV_BLA_MAX_BACKBONE_GW
-limit (4096 / 256 -- generous for any real bridged LAN/VLAN
-population, several orders of magnitude below what would need to be
-sprayed to threaten memory availability). batadv_bla_add_claim() and
-batadv_bla_get_backbone_gw() reserve a slot with atomic_add_unless()
-before allocating; on cap-hit the frame is dropped (matching existing
-"drop silently, let the sender resync/backoff" BLA behaviour) instead
-of allocating. The reservation is released on every existing early-out
-(kzalloc failure, hash_add failure) and in the kref release paths
-(batadv_claim_release(), batadv_backbone_gw_release()), where the
-counters are decremented right before the objects are freed. No
-locking changes are needed: the counters are only ever touched via
-atomic ops, mirroring tp_num.
+Consider this rejected:
 
-This does not change on-the-wire behaviour, hash table sizing, or
-timeout-based purging; it only stops a single on-mesh peer from
-growing the tables past a bounded ceiling.
+* the target tree should be batadv and not "net"
+* patch doesn't even apply to batadv.git
 
-Verified by code review rather than by driving either counter to its
-cap at runtime: the atomic_add_unless()/atomic_dec() pairing was
-checked against every existing early-out (kzalloc failure, hash_add
-failure) and against both kref release callbacks, confirming exactly
-one reservation and one release per entry, mirroring the same
-tp_num accounting in tp_meter.c. A loopback CLAIM-frame reproducer
-was used earlier to confirm the pre-fix unbounded growth itself
-(distinct claim_hash/backbone_hash entries scale linearly with the
-number of distinct (mac, vid) pairs sent), but reaching the new
-4096 / 256 caps with that same reproducer is impractical: entries
-age out via the existing timeout-driven purge faster than a
-single-host reproducer can accumulate enough distinct pairs to hit
-the ceiling, so the cap-hit and slot-release paths were exercised
-by inspection, not by a live saturation run.
+  $ git am 20260710165224.39411-1-security@auditcode.ai.mbx
+  Applying: batman-adv: bound BLA claim and backbone gateway table growth
+  error: patch failed: net/batman-adv/bridge_loop_avoidance.c:179
+  error: net/batman-adv/bridge_loop_avoidance.c: patch does not apply
+  Patch failed at 0001 batman-adv: bound BLA claim and backbone gateway table growth
+  hint: Use 'git am --show-current-patch=diff' to see the failed patch
+  hint: When you have resolved this problem, run "git am --continue".
+  hint: If you prefer to skip this patch, run "git am --skip" instead.
+  hint: To restore the original branch and stop patching, run "git am --abort".
+  hint: Disable this message with "git config advice.mergeConflict false"
 
-Fixes: 23721387c409 ("batman-adv: add basic bridge loop avoidance code")
-Cc: stable@vger.kernel.org
-Signed-off-by: Ibrahim Hashimov <security@auditcode.ai>
-Assisted-by: AuditCode-AI:2026.07
----
- net/batman-adv/bridge_loop_avoidance.c | 38 ++++++++++++++++++++++++--
- net/batman-adv/main.h                  |  3 ++
- net/batman-adv/types.h                 |  6 ++++
- 3 files changed, 45 insertions(+), 2 deletions(-)
+* there are already patches for these for review [1]
+* breaks existing setups and doesn't allow users to adjust limits according to 
+  their requirements
+* own backbones must never be prevented
+* I start to get tired by all these overlong AI generated patch summaries 
+  which meander around completely irrelevant detail information - or 
+  information which are not even relevant here
 
-diff --git a/net/batman-adv/bridge_loop_avoidance.c b/net/batman-adv/bridge_loop_avoidance.c
-index 5c73f6ba16cf..1b6e9bee5c6c 100644
---- a/net/batman-adv/bridge_loop_avoidance.c
-+++ b/net/batman-adv/bridge_loop_avoidance.c
-@@ -154,6 +154,9 @@ static void batadv_backbone_gw_release(struct kref *ref)
- 	backbone_gw = container_of(ref, struct batadv_bla_backbone_gw,
- 				   refcount);
- 
-+	/* release the slot reserved in batadv_bla_get_backbone_gw() */
-+	atomic_dec(&backbone_gw->bat_priv->bla.num_backbone_gws);
-+
- 	kfree_rcu(backbone_gw, rcu);
- }
- 
-@@ -179,6 +182,7 @@ static void batadv_claim_release(struct kref *ref)
- {
- 	struct batadv_bla_claim *claim;
- 	struct batadv_bla_backbone_gw *old_backbone_gw;
-+	struct batadv_priv *bat_priv;
- 
- 	claim = container_of(ref, struct batadv_bla_claim, refcount);
- 
-@@ -187,12 +191,18 @@ static void batadv_claim_release(struct kref *ref)
- 	claim->backbone_gw = NULL;
- 	spin_unlock_bh(&claim->backbone_lock);
- 
-+	/* stash bat_priv before dropping our reference on old_backbone_gw */
-+	bat_priv = old_backbone_gw->bat_priv;
-+
- 	spin_lock_bh(&old_backbone_gw->crc_lock);
- 	old_backbone_gw->crc ^= crc16(0, claim->addr, ETH_ALEN);
- 	spin_unlock_bh(&old_backbone_gw->crc_lock);
- 
- 	batadv_backbone_gw_put(old_backbone_gw);
- 
-+	/* release the slot reserved in batadv_bla_add_claim() */
-+	atomic_dec(&bat_priv->bla.num_claims);
-+
- 	kfree_rcu(claim, rcu);
- }
- 
-@@ -508,9 +518,20 @@ batadv_bla_get_backbone_gw(struct batadv_priv *bat_priv, const u8 *orig,
- 		   "%s(): not found (%pM, %d), creating new entry\n", __func__,
- 		   orig, batadv_print_vid(vid));
- 
-+	if (!atomic_add_unless(&bat_priv->bla.num_backbone_gws, 1,
-+			       BATADV_BLA_MAX_BACKBONE_GW)) {
-+		batadv_dbg(BATADV_DBG_BLA, bat_priv,
-+			   "%s(): too many backbone gateways (limit %d), dropping (%pM, %d)\n",
-+			   __func__, BATADV_BLA_MAX_BACKBONE_GW, orig,
-+			   batadv_print_vid(vid));
-+		return NULL;
-+	}
-+
- 	entry = kzalloc_obj(*entry, GFP_ATOMIC);
--	if (!entry)
-+	if (!entry) {
-+		atomic_dec(&bat_priv->bla.num_backbone_gws);
- 		return NULL;
-+	}
- 
- 	entry->vid = vid;
- 	WRITE_ONCE(entry->lasttime, jiffies);
-@@ -531,6 +552,7 @@ batadv_bla_get_backbone_gw(struct batadv_priv *bat_priv, const u8 *orig,
- 
- 	if (unlikely(hash_added != 0)) {
- 		/* hash failed, free the structure */
-+		atomic_dec(&bat_priv->bla.num_backbone_gws);
- 		kfree(entry);
- 		return NULL;
- 	}
-@@ -708,9 +730,20 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
- 
- 	/* create a new claim entry if it does not exist yet. */
- 	if (!claim) {
-+		if (!atomic_add_unless(&bat_priv->bla.num_claims, 1,
-+				       BATADV_BLA_MAX_CLAIMS)) {
-+			batadv_dbg(BATADV_DBG_BLA, bat_priv,
-+				   "%s(): too many claims (limit %d), dropping %pM, vid %d\n",
-+				   __func__, BATADV_BLA_MAX_CLAIMS, mac,
-+				   batadv_print_vid(vid));
-+			return;
-+		}
-+
- 		claim = kzalloc_obj(*claim, GFP_ATOMIC);
--		if (!claim)
-+		if (!claim) {
-+			atomic_dec(&bat_priv->bla.num_claims);
- 			return;
-+		}
- 
- 		ether_addr_copy(claim->addr, mac);
- 		spin_lock_init(&claim->backbone_lock);
-@@ -732,6 +765,7 @@ static void batadv_bla_add_claim(struct batadv_priv *bat_priv,
- 
- 		if (unlikely(hash_added != 0)) {
- 			/* only local changes happened. */
-+			atomic_dec(&bat_priv->bla.num_claims);
- 			batadv_backbone_gw_put(backbone_gw);
- 			kfree(claim);
- 			return;
-diff --git a/net/batman-adv/main.h b/net/batman-adv/main.h
-index f68fc8b7239c..f7bb3991dbf1 100644
---- a/net/batman-adv/main.h
-+++ b/net/batman-adv/main.h
-@@ -110,6 +110,9 @@
- #define BATADV_BLA_WAIT_PERIODS		3
- #define BATADV_BLA_LOOPDETECT_PERIODS	6
- #define BATADV_BLA_LOOPDETECT_TIMEOUT	3000	/* 3 seconds */
-+/* upper bound on claim_hash / backbone_hash entries per mesh interface */
-+#define BATADV_BLA_MAX_CLAIMS		4096
-+#define BATADV_BLA_MAX_BACKBONE_GW	256
- 
- #define BATADV_DUPLIST_SIZE		16
- #define BATADV_DUPLIST_TIMEOUT		500	/* 500 ms */
-diff --git a/net/batman-adv/types.h b/net/batman-adv/types.h
-index b1f9f8964c3f..e427318eb6d9 100644
---- a/net/batman-adv/types.h
-+++ b/net/batman-adv/types.h
-@@ -1077,6 +1077,12 @@ struct batadv_priv_bla {
- 	 */
- 	spinlock_t num_requests_lock;
- 
-+	/** @num_claims: number of entries currently in @claim_hash */
-+	atomic_t num_claims;
-+
-+	/** @num_backbone_gws: number of entries currently in @backbone_hash */
-+	atomic_t num_backbone_gws;
-+
- 	/**
- 	 * @claim_hash: hash table containing mesh nodes this host has claimed
- 	 */
--- 
-2.50.1 (Apple Git-155)
+Regards,
+	Sven
+
+[1] https://patchwork.open-mesh.org/project/b.a.t.m.a.n./list/?series=726
+    https://git.open-mesh.org/pub/ecsv/batman-adv.git/log/?h=b4/resource-limit
+--nextPart11273385.nUPlyArG6x
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCalEyWQAKCRBND3cr0xT1
+yzCaAP9HyxUvpnN5Dwp5ZjnKHA/sfcJNIx4NLUj6XfqoSrg8QwD+J/iCM0F11StK
+uhvihT1OUCtBXnK6/uWK8K+TVALj1w0=
+=MqzO
+-----END PGP SIGNATURE-----
+
+--nextPart11273385.nUPlyArG6x--
+
+
 
